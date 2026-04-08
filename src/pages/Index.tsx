@@ -13,10 +13,9 @@ const lazyTechComparison = () => import('@/components/sections/TechnologyCompari
 // const lazyHowToliaWorks = () => import('@/components/sections/BottleToRoutineSection'); // TODO Part 3
 const lazyBusinessImpact = () => import('@/components/sections/BusinessImpactSection');
 const lazyTwoWays = () => import('@/components/sections/TwoWaysSection');
-const lazyCaseStudy = () => import('@/components/sections/CaseStudySection');
-const lazyMarketTraction = () => import('@/components/sections/MarketTractionSection');
+const lazyMarketProof = () => import('@/components/sections/MarketProofSection');
 const lazyBrandMarquee = () => import('@/components/sections/BrandMarqueeSection');
-// const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection'); // TODO Part 2
+const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection');
 // const lazyFAQ = () => import('@/components/sections/FAQSection'); // TODO Part 3
 const lazyContact = () => import('@/components/sections/ContactSection');
 
@@ -46,7 +45,7 @@ const Index: React.FC = () => {
 
       {/* 4. How Tolia Works — TODO Part 3 */}
 
-      {/* Problem/Tech (light) → Impact (dark) */}
+      {/* Tech (light) → Impact (dark) */}
       <SectionGradient from="hsl(33 35% 94%)" to="hsl(25 20% 12%)" height="200px" />
 
       {/* 5. Business Impact */}
@@ -58,20 +57,22 @@ const Index: React.FC = () => {
       {/* 6. Two Ways */}
       <LazySection factory={lazyTwoWays} fallbackHeight="800px" />
 
-      {/* Two Ways (light) → Proof (light) – subtle */}
-      {/* 7. Market Proof (CaseStudy + MarketTraction) — will be merged in Part 2 */}
-      <LazySection factory={lazyCaseStudy} fallbackHeight="700px" />
-      <LazySection factory={lazyMarketTraction} fallbackHeight="700px" />
+      {/* 7. Market Proof */}
+      <LazySection factory={lazyMarketProof} fallbackHeight="800px" />
 
       {/* 8. Brand Marquee */}
       <LazySection factory={lazyBrandMarquee} fallbackHeight="400px" />
 
-      {/* 9. WhyInnobiz — TODO Part 2 */}
+      {/* Marquee (light) → WhyInnobiz (dark) */}
+      <SectionGradient from="hsl(35 30% 97%)" to="hsl(25 20% 12%)" height="200px" />
+
+      {/* 9. Why Innobiz */}
+      <LazySection factory={lazyWhyInnobiz} fallbackHeight="600px" />
 
       {/* 10. FAQ — TODO Part 3 */}
 
-      {/* Marquee (light) → Contact (light) */}
-      <SectionGradient from="hsl(35 30% 97%)" to="hsl(35 30% 97%)" height="100px" />
+      {/* WhyInnobiz (dark) → Contact (light) */}
+      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 97%)" height="200px" />
 
       {/* 11. Contact */}
       <LazySection factory={lazyContact} fallbackHeight="800px" />
