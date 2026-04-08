@@ -12,12 +12,23 @@ const fadeUp: Variants = {
 
 const comparisonRows = [
   { label: 'Ideal for', wl: 'Brands building a signature diffuser line', stock: 'Brands adding Tolia to an existing range' },
-  { label: 'Branding', wl: 'Fully custom (unit, capsules, packaging)', stock: 'Branded Tolia, co-branded packaging option' },
-  { label: 'MOQ', wl: 'On request (project-based)', stock: '300 to 500 pieces' },
-  { label: 'Lead time', wl: '12 to 20 weeks', stock: 'Ships from stock, 2 to 4 weeks' },
-  { label: 'Customization', wl: 'Full — color, logo, capsule blends, box', stock: 'Co-branded sleeve, neutral inner packaging' },
-  { label: 'Time to launch', wl: '3 to 6 months', stock: 'Under 1 month' },
+  { label: 'Branding', wl: 'Fully custom — unit, capsules, packaging', stock: 'Branded Tolia, co-branded sleeve option' },
+  { label: 'MOQ', wl: 'Project-based (typically 3,000+)', stock: 'From 300 units' },
+  { label: 'Customization', wl: 'Color (RAL/Pantone), finishes (matte, soft-touch, metallic), materials (wood, resin, blown glass), logo, capsule blends, full box', stock: 'Co-branded outer sleeve, neutral inner packaging' },
+  { label: 'Lead time', wl: '12 to 20 weeks', stock: '2 to 4 weeks (ships from France)' },
+  { label: 'Time to market', wl: '3 to 6 months', stock: 'Under 1 month' },
+  { label: 'Territorial exclusivity', wl: 'Negotiable (by volume & commitment)', stock: 'Non-exclusive' },
 ];
+
+const handleCTA = (type: 'white-label' | 'stock', label: string) => {
+  trackCTAClick(label, 'two-ways');
+  const url = new URL(window.location.href);
+  url.searchParams.set('type', type);
+  url.hash = '#contact';
+  window.history.replaceState(null, '', url.toString());
+  window.dispatchEvent(new Event('tolia:pathchange'));
+  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+};
 
 const TwoWaysSection: React.FC = () => {
   const cards = [
@@ -31,9 +42,9 @@ const TwoWaysSection: React.FC = () => {
         'Full industrial and regulatory support',
         'MOQ on request — tailored to your launch plan',
       ],
-      cta: 'Request a white-label quote',
-      href: '/contact?type=white-label',
-      trackLabel: 'white-label-quote',
+      cta: 'Request a white-label consultation',
+      type: 'white-label' as const,
+      trackLabel: 'twoways_cta_whitelabel',
       accent: 'hsl(28 45% 48%)',
     },
     {
@@ -41,20 +52,21 @@ const TwoWaysSection: React.FC = () => {
       title: 'Add Tolia to your catalog — ready to ship',
       subtitle: 'For brands that want to offer Tolia without a white-label program',
       bullets: [
-        'Units available from stock',
-        'Minimum order: 300 pieces',
-        'Delivered as branded Tolia (not white-labeled)',
-        'Fastest time-to-market — ideal to test the category before committing to a full white-label line',
+        'Units available from stock — from 300 pieces',
+        'Delivered as branded Tolia',
+        'Co-branded outer packaging option',
+        'Fastest time-to-market — under 1 month',
       ],
-      cta: 'Order Tolia units',
-      href: '/contact?type=order',
-      trackLabel: 'order-300',
+      cta: 'Request a stock-order quote',
+      type: 'stock' as const,
+      trackLabel: 'twoways_cta_stock',
       accent: 'hsl(220 40% 45%)',
     },
   ];
 
   return (
-    <section id="two-ways" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(35 30% 96%) 0%, hsl(33 35% 94%) 100%)' }}>
+    <section id="two-ways" className="section-padding relative overflow-hidden"
+      style={{ background: 'linear-gradient(180deg, hsl(35 30% 96%) 0%, hsl(33 35% 94%) 100%)' }}>
       <div className="section-container">
         <motion.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
@@ -64,7 +76,7 @@ const TwoWaysSection: React.FC = () => {
             Two ways to work with Tolia
           </h2>
           <p className="text-body-lg max-w-3xl mx-auto">
-            Whether you want a signature diffuser under your own brand, or a proven product ready to add to your range today — Tolia adapts to your go-to-market.
+            Whether you want a fully branded signature diffuser or a proven product ready to add to your range this quarter — Tolia adapts to your go-to-market.
           </p>
         </motion.div>
 
@@ -75,10 +87,7 @@ const TwoWaysSection: React.FC = () => {
               key={i}
               className="rounded-3xl p-8 md:p-10 border bg-card flex flex-col h-full"
               style={{ borderColor: `${card.accent} / 0.2` }}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
+              initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
               whileHover={{ y: -6, boxShadow: `0 20px 40px -12px ${card.accent.replace(')', ' / 0.15)')}` }}
               transition={{ type: 'spring', stiffness: 260, damping: 20 }}
             >
@@ -96,15 +105,14 @@ const TwoWaysSection: React.FC = () => {
                 ))}
               </ul>
               <MagneticButton>
-                <a href={card.href} onClick={() => trackCTAClick(card.cta, card.trackLabel)}>
-                  <Button
-                    className="w-full font-semibold text-base py-4 rounded-2xl group"
-                    style={{ background: card.accent, color: 'hsl(0 0% 100%)' }}
-                  >
-                    {card.cta}
-                    <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </a>
+                <Button
+                  className="w-full font-semibold text-base py-4 rounded-2xl group"
+                  style={{ background: card.accent, color: 'hsl(0 0% 100%)' }}
+                  onClick={() => handleCTA(card.type, card.trackLabel)}
+                >
+                  {card.cta}
+                  <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                </Button>
               </MagneticButton>
             </motion.div>
           ))}
@@ -123,7 +131,7 @@ const TwoWaysSection: React.FC = () => {
               <thead>
                 <tr className="border-b border-border/60">
                   <th className="text-left p-4 font-medium text-muted-foreground w-1/4"></th>
-                  <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(28 45% 48%)' }}>White Label</th>
+                  <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(28 45% 48%)' }}>White-Label Program</th>
                   <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(220 40% 45%)' }}>Stock Order</th>
                 </tr>
               </thead>
@@ -140,7 +148,7 @@ const TwoWaysSection: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Comparison table — mobile (stacked cards) */}
+        {/* Mobile stacked */}
         <motion.div
           className="md:hidden space-y-6"
           initial={{ opacity: 0, y: 20 }}
@@ -149,7 +157,7 @@ const TwoWaysSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           {[
-            { title: 'White Label', color: 'hsl(28 45% 48%)', key: 'wl' as const },
+            { title: 'White-Label Program', color: 'hsl(28 45% 48%)', key: 'wl' as const },
             { title: 'Stock Order', color: 'hsl(220 40% 45%)', key: 'stock' as const },
           ].map((col) => (
             <div key={col.key} className="rounded-2xl border border-border/60 bg-card p-6">
