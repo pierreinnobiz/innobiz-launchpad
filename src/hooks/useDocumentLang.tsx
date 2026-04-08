@@ -15,15 +15,15 @@ const seoContent: Record<string, { title: string; description: string; ogTitle: 
     ogDescription: 'Le diffuseur en marque blanche qui transforme l\'aromathérapie en routines quotidiennes et vos synergies en revenus récurrents.',
   },
   en: {
-    title: 'Tolia by Innobiz — Proprietary Essential Oil Diffusion Technology',
+    title: 'Tolia by Innobiz | Proprietary Essential Oil Diffusion Technology',
     description: 'Tolia: the white-label diffuser that transforms aromatherapy into daily routines and your blends into recurring revenue. 20 years of Innobiz R&D.',
-    ogTitle: 'Tolia by Innobiz — Essential Oil Diffusion Technology',
+    ogTitle: 'Tolia by Innobiz | Essential Oil Diffusion Technology',
     ogDescription: 'The white-label diffuser that transforms aromatherapy into daily routines and your blends into recurring revenue.',
   },
   es: {
-    title: 'Tolia by Innobiz — Tecnología de difusión de aceites esenciales propietaria',
+    title: 'Tolia by Innobiz | Tecnología de difusión de aceites esenciales propietaria',
     description: 'Tolia: el difusor de marca blanca que transforma la aromaterapia en rutinas diarias y sus sinergias en ingresos recurrentes. 20 años de I+D de Innobiz.',
-    ogTitle: 'Tolia by Innobiz — Tecnología de difusión de aceites esenciales',
+    ogTitle: 'Tolia by Innobiz | Tecnología de difusión de aceites esenciales',
     ogDescription: 'El difusor de marca blanca que transforma la aromaterapia en rutinas diarias y sus sinergias en ingresos recurrentes.',
   },
 };

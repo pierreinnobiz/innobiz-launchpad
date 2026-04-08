@@ -115,7 +115,7 @@ const BusinessMathSection: React.FC = () => {
             <ul className="space-y-3 mb-6">
               {traditionalBullets.map((b, i) => (
                 <li key={i} className="flex items-start gap-3 text-sm leading-relaxed text-white/60">
-                  <span className="text-destructive/60 mt-0.5">—</span>
+                  <span className="text-destructive/60 mt-0.5">•</span>
                   {b}
                 </li>
               ))}
