@@ -94,6 +94,30 @@ const RangeRationalizationSection: React.FC = () => {
           </p>
         </motion.div>
 
+        {/* Hero image */}
+        <motion.div
+          className="max-w-4xl mx-auto mb-20 rounded-2xl overflow-hidden"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <img
+            src={toliaOneForAll}
+            alt={t3(l,
+              "Un diffuseur Tolia entouré de dizaines de flacons d'huiles essentielles, synergies, hydrolats et parfums d'intérieur",
+              "A Tolia diffuser surrounded by dozens of essential oil, blend, hydrosol and home fragrance bottles",
+              "Un difusor Tolia rodeado de decenas de frascos de aceites esenciales, mezclas, hidrolatos y fragancias para el hogar"
+            )}
+            className="w-full h-auto object-cover no-select"
+            draggable={false}
+            loading="lazy"
+            decoding="async"
+            width={1280}
+            height={720}
+          />
+        </motion.div>
+
         {/* Benefits grid */}
         <motion.div
           className="grid md:grid-cols-3 gap-6 mb-20"
