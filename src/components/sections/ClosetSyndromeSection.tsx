@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { ShoppingCart, AlertTriangle, Archive } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
-import closetImg from '@/assets/closet-syndrome.webp';
+import closetImg from '@/assets/closet-syndrome.jpg';
 
 const steps = [
   {
