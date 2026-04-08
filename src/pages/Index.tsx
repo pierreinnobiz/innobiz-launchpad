@@ -17,6 +17,8 @@ const lazyBusinessMath = () => import('@/components/sections/BusinessMathSection
 const lazyMarketProof = () => import('@/components/sections/MarketProofSection');
 const lazyBrandMarquee = () => import('@/components/sections/BrandMarqueeSection');
 const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection');
+const lazyRSE = () => import('@/components/sections/RSESection');
+const lazyRangeRationalization = () => import('@/components/sections/RangeRationalizationSection');
 const lazyTwoWays = () => import('@/components/sections/TwoWaysSection');
 const lazyFAQ = () => import('@/components/sections/FAQSection');
 const lazyContact = () => import('@/components/sections/ContactSection');
