@@ -17,6 +17,8 @@ const lazyBusinessMath = () => import('@/components/sections/BusinessMathSection
 const lazyMarketProof = () => import('@/components/sections/MarketProofSection');
 const lazyBrandMarquee = () => import('@/components/sections/BrandMarqueeSection');
 const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection');
+const lazyRSE = () => import('@/components/sections/RSESection');
+const lazyRangeRationalization = () => import('@/components/sections/RangeRationalizationSection');
 const lazyTwoWays = () => import('@/components/sections/TwoWaysSection');
 const lazyFAQ = () => import('@/components/sections/FAQSection');
 const lazyContact = () => import('@/components/sections/ContactSection');
@@ -78,10 +80,19 @@ const Index: React.FC = () => {
       {/* 10. Why Innobiz (Act 5, credibility moat) */}
       <LazySection factory={lazyWhyInnobiz} fallbackHeight="700px" />
 
-      {/* Why Innobiz (dark) → Two Ways (light) */}
+      {/* Why Innobiz (dark) → RSE (light) */}
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="200px" />
 
-      {/* 11. Two Ways to Work with Tolia */}
+      {/* 11. RSE / Réparabilité */}
+      <LazySection factory={lazyRSE} fallbackHeight="800px" />
+
+      {/* 12. Rationalisation de gamme */}
+      <LazySection factory={lazyRangeRationalization} fallbackHeight="900px" />
+
+      {/* Rationalization (light) → Two Ways (light) */}
+      <SectionGradient from="hsl(33 35% 94%)" to="hsl(35 30% 96%)" height="120px" />
+
+      {/* 13. Two Ways to Work with Tolia */}
       <LazySection factory={lazyTwoWays} fallbackHeight="900px" />
 
       {/* Two Ways (light) → FAQ (neutral) */}
