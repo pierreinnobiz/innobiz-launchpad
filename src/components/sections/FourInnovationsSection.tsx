@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BatteryFull, VolumeX, RefreshCw, Droplets } from 'lucide-react';
+import { BatteryFull, VolumeX, RefreshCw, Droplets, FlaskConical } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import TiltCard from '@/components/TiltCard';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,6 +10,24 @@ const FourInnovationsSection: React.FC = () => {
   const { language } = useLanguage();
 
   const cards = [
+    {
+      icon: FlaskConical,
+      title: t3(language, 'Compatibilité universelle — une première mondiale', 'Universal compatibility — a world first', 'Compatibilidad universal — una primicia mundial'),
+      desc: t3(language,
+        "Tolia est le seul diffuseur capable de nébuliser des huiles essentielles, des synergies, des hydrolats et des parfums d'intérieur. Testé et validé sur des centaines de formulations. Un seul appareil pour couvrir 100 % de votre gamme — aucun autre diffuseur ne peut en dire autant.",
+        "Tolia is the only diffuser capable of nebulising essential oils, blends, hydrosols, and home fragrances. Tested and validated on hundreds of formulations. One device to cover 100% of your range — no other diffuser can make that claim.",
+        'Tolia es el único difusor capaz de nebulizar aceites esenciales, mezclas, hidrolatos y fragancias para el hogar. Probado y validado en cientos de formulaciones. Un dispositivo para cubrir el 100 % de su gama — ningún otro difusor puede afirmar lo mismo.'
+      ),
+    },
+    {
+      icon: RefreshCw,
+      title: t3(language, 'Changement de flacon en 1 seconde', 'Bottle switch in 1 second', 'Cambio de frasco en 1 segundo'),
+      desc: t3(language,
+        "Dévissez un flacon, vissez-en un autre — fait en 1 seconde. Pas de nettoyage entre les synergies, zéro huile gaspillée. C'est ce qui rend les routines multi-synergies possibles — et ce qui génère les rachats d'huile.",
+        "Unscrew one bottle, screw on another — done in 1 second. No cleaning between blends, zero oil wasted. This is what makes multi-blend routines possible — and what drives repeat oil purchases.",
+        'Desenrosque un frasco, enrosque otro — hecho en 1 segundo. Sin limpieza entre mezclas, cero aceite desperdiciado. Esto es lo que hace posibles las rutinas multi-mezcla — y lo que impulsa las recompras de aceite.'
+      ),
+    },
     {
       icon: BatteryFull,
       title: t3(language, "8 heures d'autonomie sans fil", '8 hours of wireless autonomy', '8 horas de autonomía inalámbrica'),
@@ -26,15 +44,6 @@ const FourInnovationsSection: React.FC = () => {
         "Pas de pompe, pas de ventilateur, pas de vibration. Tolia est le seul diffuseur assez silencieux pour la méditation, le sommeil, le travail concentré et le yoga. Le silence supprime la dernière raison de ne pas l'allumer.",
         "No pump, no fan, no vibration. Tolia is the only diffuser quiet enough for meditation, sleep, deep work, and yoga. Silence removes the last reason not to turn it on.",
         'Sin bomba, sin ventilador, sin vibración. Tolia es el único difusor lo suficientemente silencioso para la meditación, el sueño, el trabajo concentrado y el yoga. El silencio elimina la última razón para no encenderlo.'
-      ),
-    },
-    {
-      icon: RefreshCw,
-      title: t3(language, 'Changement de synergie instantané', 'Instant blend switching', 'Cambio de mezcla instantáneo'),
-      desc: t3(language,
-        "Dévissez un flacon, vissez-en un autre — fait en moins de 3 secondes. Pas de nettoyage entre les synergies, zéro huile gaspillée. C'est ce qui rend les routines multi-synergies possibles — et ce qui génère les rachats d'huile.",
-        "Unscrew one bottle, screw on another — done in under 3 seconds. No cleaning between blends, zero oil wasted. This is what makes multi-blend routines possible — and what drives repeat oil purchases.",
-        'Desenrosque un frasco, enrosque otro — hecho en menos de 3 segundos. Sin limpieza entre mezclas, cero aceite desperdiciado. Esto es lo que hace posibles las rutinas multi-mezcla — y lo que impulsa las recompras de aceite.'
       ),
     },
     {
@@ -59,7 +68,7 @@ const FourInnovationsSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, 'Quatre ruptures. Zéro compromis.', 'Four breakthroughs. Zero compromise.', 'Cuatro avances. Cero compromisos.')}
+            {t3(language, 'Cinq ruptures. Zéro compromis.', 'Five breakthroughs. Zero compromise.', 'Cinco avances. Cero compromisos.')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
