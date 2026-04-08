@@ -19,34 +19,34 @@ interface TechRow {
 
 const rows: TechRow[] = [
   {
-    name: 'Ultrasonic (water)',
-    how: 'Oil diluted in water, vibrated into mist',
-    friction: 'Daily cleaning, mold risk, water alters the active compounds',
-    closet: 'Used 1–2× per week, then abandoned',
+    name: 'Ultrasonic (water-based)',
+    how: 'Essential oil diluted in water, vibrated into cool mist',
+    friction: 'Requires daily tank filling and cleaning. Water breeds mold and bacteria. Dilution weakens aromatic compounds by up to 80%.',
+    closet: 'Used 1–2× per week → abandoned within 3 months',
   },
   {
     name: 'Heat diffusion',
-    how: 'Oil warmed to release fragrance',
-    friction: 'Destroys heat-sensitive therapeutic compounds, weak results',
-    closet: 'Disappointment → closet',
+    how: 'Oil heated on a plate or in a lamp to release fragrance',
+    friction: 'Heat above 40°C destroys sensitive terpenes and therapeutic molecules. Output is weak, unpredictable, and short-lived.',
+    closet: 'Customer disappointment → closet within weeks',
   },
   {
-    name: 'Passive (reed, stone)',
-    how: 'Slow natural evaporation',
-    friction: 'No control, weak output, no ritual',
-    closet: 'Forgotten on a shelf',
+    name: 'Passive (reed sticks, stone)',
+    how: 'Oil slowly evaporates through natural capillary action',
+    friction: 'No intensity control, negligible output in rooms over 10m². No engagement, no ritual possible.',
+    closet: 'Becomes invisible decoration → never triggers oil reorders',
   },
   {
-    name: 'Classic nebulizer',
-    how: 'High-pressure air through glassware',
-    friction: 'Noisy, fragile, high oil waste, complex cleaning',
-    closet: 'Gift that ends in a drawer',
+    name: 'Classic nebulizer (glass)',
+    how: 'Compressed air pushes oil through a glass venturi',
+    friction: 'Loud pump noise (45–60 dB), fragile glassware, oil waste up to 40%. Complex disassembly for cleaning between each blend.',
+    closet: 'Impressive gift → drawer within 6 months',
   },
   {
-    name: 'Tolia Twist & Mist ✅',
-    how: 'Sealed bottle + patented cold dry-air nebulization',
-    friction: 'None — screw, clip, press. No water, no cleaning, no waste',
-    closet: 'Daily gesture, all year long',
+    name: 'Tolia — Twist & Mist ✅',
+    how: 'Sealed bottle screws directly into patented cold dry-air nebulization module',
+    friction: 'Zero friction — screw the bottle, clip in, press the button. No water, no cleaning, no waste, no noise.',
+    closet: 'Daily ritual, 365 days a year — measured and proven',
     isTolia: true,
   },
 ];
@@ -59,14 +59,15 @@ const FrictionByTechSection: React.FC = () => {
         {/* Header */}
         <motion.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Why every other diffuser ends up in the closet
+            The root cause — technology
           </span>
           <h2 className="heading-section mb-4">
-            Every diffusion technology forces a compromise. Tolia is the only one that doesn't.
+            It's not your marketing. It's the diffuser. Every existing technology creates a friction that kills daily use.
           </h2>
           <p className="text-body-lg max-w-4xl mx-auto">
-            Until now, buyers had to choose: silent OR powerful, portable OR effective, flexible OR simple.
-            The resulting friction is exactly what kills daily use.
+            Your customer wants to diffuse essential oils every day. But every diffuser on the market forces them to choose:
+            silent <em>or</em> powerful? Portable <em>or</em> effective? Simple <em>or</em> flexible?
+            That forced compromise is the reason 60% of diffusers end up unused. Until Tolia.
           </p>
         </motion.div>
 
@@ -160,8 +161,8 @@ const FrictionByTechSection: React.FC = () => {
           initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center">
-            Remove the friction and you remove the closet effect.
-            Remove the closet effect and you unlock year-round oil repurchase.
+            The equation is simple: remove the friction → remove the closet effect → unlock year-round oil repurchase.
+            That's exactly what Twist & Mist does — and why brands using Tolia see oil consumption multiply by 4× to 6×.
           </p>
         </motion.div>
       </div>
