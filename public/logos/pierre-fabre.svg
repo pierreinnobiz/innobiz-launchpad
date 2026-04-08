@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <g>
+    <!-- Stylized serpent/caduceus icon -->
+    <circle cx="120" cy="12" r="6" fill="#0072CE" opacity="0.9"/>
+    <path d="M117 12 C117 8, 123 8, 123 12 C123 16, 117 16, 117 12" stroke="#0072CE" stroke-width="1.2" fill="none"/>
+    <!-- LABORATOIRES text -->
+    <text x="120" y="30" text-anchor="middle" font-family="'Garamond', 'Georgia', serif" font-size="7" font-weight="400" letter-spacing="3" fill="#0072CE">LABORATOIRES</text>
+    <!-- Pierre Fabre main text -->
+    <text x="120" y="46" text-anchor="middle" font-family="'Garamond', 'Georgia', serif" font-size="18" font-weight="400" letter-spacing="1" fill="#0072CE">Pierre Fabre</text>
+  </g>
+</svg>

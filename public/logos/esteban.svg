@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" fill="none">
+  <g>
+    <text x="110" y="30" text-anchor="middle" font-family="'Didot', 'Bodoni MT', 'Georgia', serif" font-size="28" font-weight="400" letter-spacing="6" fill="#1a1a1a">ESTEBAN</text>
+    <text x="110" y="46" text-anchor="middle" font-family="'Didot', 'Bodoni MT', 'Georgia', serif" font-size="8" font-weight="400" letter-spacing="4" fill="#8c8c8c">PARIS PARFUMS</text>
+    <line x1="40" y1="50" x2="180" y2="50" stroke="#c4a87c" stroke-width="0.5"/>
+  </g>
+</svg>

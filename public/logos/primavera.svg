@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <g>
+    <!-- Stylized P with botanical element -->
+    <circle cx="42" cy="24" r="10" stroke="#6A994E" stroke-width="1.2" fill="none"/>
+    <path d="M42 14 Q46 10, 48 14" stroke="#6A994E" stroke-width="0.8" fill="none"/>
+    <text x="140" y="30" text-anchor="middle" font-family="'Optima', 'Gill Sans', sans-serif" font-size="22" font-weight="600" letter-spacing="3" fill="#386641">PRIMAVERA</text>
+    <text x="140" y="46" text-anchor="middle" font-family="'Optima', 'Gill Sans', sans-serif" font-size="8" font-weight="400" letter-spacing="3" fill="#6A994E">LIFE</text>
+  </g>
+</svg>

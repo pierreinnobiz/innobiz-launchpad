@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://www.innobiz-tolia.com/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.innobiz-tolia.com/faq</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://www.innobiz-tolia.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.innobiz-tolia.com/legal</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.innobiz-tolia.com/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.innobiz-tolia.com/cookies</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <g>
+    <!-- Leaf icon -->
+    <path d="M56 28 Q64 16, 72 28 Q64 22, 56 28Z" fill="#6B8F3C" opacity="0.8"/>
+    <text x="140" y="32" text-anchor="middle" font-family="'Gill Sans', 'Trebuchet MS', sans-serif" font-size="20" font-weight="600" letter-spacing="2" fill="#2C4A1E">TISSERAND</text>
+    <text x="140" y="46" text-anchor="middle" font-family="'Gill Sans', 'Trebuchet MS', sans-serif" font-size="8" font-weight="400" letter-spacing="3" fill="#6B8F3C">AROMATHERAPY</text>
+  </g>
+</svg>

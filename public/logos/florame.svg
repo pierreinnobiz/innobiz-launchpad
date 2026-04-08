@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <g>
+    <!-- Flower/botanical accent -->
+    <circle cx="100" cy="10" r="3" fill="#B8860B" opacity="0.6"/>
+    <path d="M97 10 Q100 4, 103 10 Q100 6, 97 10" stroke="#6B8E23" stroke-width="0.8" fill="none"/>
+    <text x="100" y="36" text-anchor="middle" font-family="'Garamond', 'Georgia', serif" font-size="26" font-weight="400" letter-spacing="3" fill="#4A6741">FLORAME</text>
+    <text x="100" y="50" text-anchor="middle" font-family="'Garamond', 'Georgia', serif" font-size="7" font-weight="400" letter-spacing="2" fill="#8B7D3C">DISTILLATEUR EN PROVENCE DEPUIS 1990</text>
+  </g>
+</svg>

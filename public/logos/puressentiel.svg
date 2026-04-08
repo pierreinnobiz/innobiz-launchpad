@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 60" fill="none">
+  <g>
+    <!-- Leaf accent -->
+    <path d="M58 8 Q62 4, 66 8 Q64 14, 58 12 Z" fill="#7AB648"/>
+    <text x="120" y="38" text-anchor="middle" font-family="'Trebuchet MS', 'Arial', sans-serif" font-size="22" font-weight="700" letter-spacing="0.5" fill="#005C3A">puressentiel</text>
+    <text x="120" y="50" text-anchor="middle" font-family="'Trebuchet MS', 'Arial', sans-serif" font-size="7" font-weight="400" letter-spacing="2" fill="#7AB648">LABORATOIRE</text>
+  </g>
+</svg>

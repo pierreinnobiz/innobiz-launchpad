@@ -1,0 +1,1 @@
+ALTER TABLE public.chat_contacts ADD COLUMN slack_thread_ts text DEFAULT NULL;
