@@ -1,4 +1,3 @@
-// TODO: extend Supabase schema to accept new fields (path, conditional fields)
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
@@ -10,23 +9,20 @@ import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowRight, CheckCircle2, Paintbrush, Package } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { trackCTAClick, trackEvent } from '@/lib/tracking';
-import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
 import { fadeBlurUp } from '@/lib/animations';
 
 type Path = 'white-label' | 'stock';
 
-const roles = ['CEO', 'Innovation', 'Marketing', 'Category', 'Procurement', 'R&D', 'Other'];
+const roles = ['CEO', 'Innovation', 'Marketing', 'Category', 'Purchasing', 'R&D', 'Other'];
 const wlWindows = ['Q2 this year', 'Q3 this year', 'Q4 this year', 'Next year', 'Exploring'];
 const wlVolumes = ['3K–5K', '5K–10K', '10K–25K', '25K+'];
-const wlCustomOptions = ['Unit color', 'Logo', 'Capsule blends', 'Packaging', 'Full bespoke'];
+const wlCustomOptions = ['Unit color', 'Finish', 'Logo', 'Capsule blends', 'Packaging', 'Full bespoke'];
 const stockQtys = ['300', '500', '1000', '1500+'];
 const stockTimings = ['Within 1 month', '1–3 months', 'Exploring'];
 
 const ContactSection: React.FC = () => {
   const { toast } = useToast();
-  const { language } = useLanguage();
-  const en = language === 'en';
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -53,9 +49,8 @@ const ContactSection: React.FC = () => {
       else setPath('white-label');
     };
     readParam();
-    const handler = () => readParam();
-    window.addEventListener('tolia:pathchange', handler);
-    return () => window.removeEventListener('tolia:pathchange', handler);
+    window.addEventListener('tolia:pathchange', readParam);
+    return () => window.removeEventListener('tolia:pathchange', readParam);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -78,14 +73,14 @@ const ContactSection: React.FC = () => {
       setIsSubmitted(true);
       trackEvent('generate_lead', { method: 'contact_form', segment: path });
       toast({
-        title: en ? 'Request sent!' : 'Demande envoyée !',
-        description: en ? "We'll get back to you within one business day." : 'Nous vous recontactons sous 24h ouvrées.',
+        title: 'Request sent!',
+        description: "We'll get back to you within one business day.",
       });
     } catch (err) {
       console.error('Contact form error:', err);
       toast({
-        title: en ? 'Error' : 'Erreur',
-        description: en ? 'An error occurred. Please try again.' : 'Une erreur est survenue. Veuillez réessayer.',
+        title: 'Error',
+        description: 'An error occurred. Please try again.',
         variant: 'destructive',
       });
     } finally {
@@ -104,17 +99,16 @@ const ContactSection: React.FC = () => {
           <motion.div initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }} transition={{ duration: 0.7 }}>
             <motion.div
               className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-8"
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
+              initial={{ scale: 0 }} animate={{ scale: 1 }}
               transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
             >
               <CheckCircle2 className="w-10 h-10 text-primary" />
             </motion.div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-              {en ? 'Thank you for your request!' : 'Merci pour votre demande !'}
+              Thank you for your request!
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              {en ? "Our team will get back to you within one business day with a tailored proposal." : "Notre équipe vous recontactera sous 24h ouvrées avec une proposition sur-mesure."}
+              Our team will get back to you within one business day with a tailored proposal.
             </p>
           </motion.div>
         </div>
@@ -124,7 +118,6 @@ const ContactSection: React.FC = () => {
 
   return (
     <section id="contact" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
-      {/* Subtle ambient decoration */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <motion.div
           className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.03]"
@@ -138,21 +131,18 @@ const ContactSection: React.FC = () => {
         {/* Header */}
         <motion.div
           className="text-center mb-12"
-          initial="hidden"
-          whileInView="visible"
+          initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {en ? 'Start the conversation' : 'Démarrer la conversation'}
+            Start the conversation
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {en ? 'Tell us how you want to work with Tolia.' : 'Dites-nous comment vous souhaitez travailler avec Tolia.'}
+            Tell us how you want to work with Tolia.
           </h2>
           <p className="text-base text-muted-foreground font-light max-w-2xl mx-auto">
-            {en
-              ? "One form. Two paths. We'll come back within one business day with a tailored proposal — and a free sample shipped to your office."
-              : "Un formulaire. Deux parcours. Nous reviendrons sous 24h ouvrées avec une proposition sur-mesure — et un échantillon gratuit envoyé à votre bureau."}
+            One form. Two paths. Response within one business day — plus a free sample shipped to your office.
           </p>
         </motion.div>
 
@@ -229,7 +219,7 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            {/* White-label conditional fields */}
+            {/* White-label fields */}
             {path === 'white-label' && (
               <motion.div
                 className="space-y-4 p-5 rounded-2xl border border-border/40 bg-muted/30"
@@ -272,7 +262,7 @@ const ContactSection: React.FC = () => {
               </motion.div>
             )}
 
-            {/* Stock conditional fields */}
+            {/* Stock fields */}
             {path === 'stock' && (
               <motion.div
                 className="space-y-4 p-5 rounded-2xl border border-border/40 bg-muted/30"

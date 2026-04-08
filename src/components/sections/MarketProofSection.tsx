@@ -3,16 +3,13 @@ import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { t3 } from '@/lib/t3';
-import MagneticButton from '@/components/MagneticButton';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
-import TiltCard from '@/components/TiltCard';
+import MagneticButton from '@/components/MagneticButton';
 
 const AnimatedStat: React.FC<{ value: string; label: string; desc: string }> = ({ value, label, desc }) => {
   const numericPart = value.replace(/[^0-9.]/g, '');
   const prefix = value.match(/^[^0-9]*/)?.[0] || '';
-  const suffix = value.match(/[^0-9.]*$/)?.[0] || '';
+  const suffix = value.match(/[0-9.][^0-9]*$/)?.[0]?.replace(/[0-9.]/g, '') || '';
 
   const [display, setDisplay] = useState('0');
   const ref = useRef<HTMLDivElement>(null);
@@ -21,31 +18,26 @@ const AnimatedStat: React.FC<{ value: string; label: string; desc: string }> = (
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-
     const observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting && !hasAnimated.current) {
         hasAnimated.current = true;
         const target = parseFloat(numericPart);
         const duration = 1800;
         const start = performance.now();
-
         const tick = (now: number) => {
           const elapsed = now - start;
           const progress = Math.min(elapsed / duration, 1);
           const eased = 1 - Math.pow(1 - progress, 4);
           const current = eased * target;
-
           if (target >= 100) setDisplay(Math.round(current).toLocaleString());
           else if (target >= 10) setDisplay(Math.round(current).toString());
           else setDisplay(current.toFixed(1));
-
           if (progress < 1) requestAnimationFrame(tick);
           else setDisplay(target >= 100 ? target.toLocaleString() : target.toString());
         };
         requestAnimationFrame(tick);
       }
     }, { threshold: 0.5 });
-
     observer.observe(el);
     return () => observer.disconnect();
   }, [numericPart]);
@@ -63,25 +55,11 @@ const AnimatedStat: React.FC<{ value: string; label: string; desc: string }> = (
 };
 
 const MarketProofSection: React.FC = () => {
-  const { language: l } = useLanguage();
-
-  const eyebrow = t3(l, 'TODO FR', 'Proven in market', 'TODO ES');
-  const headline = t3(l, 'TODO FR', 'Already in 100,000+ homes. Already driving 3.8× oil sales.', 'TODO ES');
-  const subheadline = t3(l, 'TODO FR', "Tolia is not a concept — it's a product your competitors may already be selling.", 'TODO ES');
-
   const stats = [
-    { value: '100K+', label: t3(l, 'TODO FR', 'units sold in 7 months', 'TODO ES'), desc: t3(l, 'TODO FR', 'Market validation, not a beta.', 'TODO ES') },
-    { value: '3.8×', label: t3(l, 'TODO FR', 'more oil sales per customer', 'TODO ES'), desc: t3(l, 'TODO FR', 'Measured vs. traditional diffusers in the same category.', 'TODO ES') },
-    { value: '75%', label: t3(l, 'TODO FR', 'lower after-sales costs', 'TODO ES'), desc: t3(l, 'TODO FR', 'Vs. ultrasonic, Innobiz field data across 10+ brand deployments.', 'TODO ES') },
+    { value: '100K+', label: 'units sold in 7 months', desc: 'Fastest launch in Innobiz\'s 20-year history.' },
+    { value: '3.8×', label: 'oil sales vs. traditional diffusers', desc: 'Measured in the same category.' },
+    { value: '100%', label: 'purchase transfer confirmed', desc: 'Customers are abandoning their old diffusers to switch to Twist & Mist.' },
   ];
-
-  const scenario = t3(l,
-    'TODO FR',
-    'A leading European aromatherapy brand replaced its ultrasonic range with Tolia and restructured its oil offering around Twist & Mist capsules. Within 12 months: essential oil revenue per customer grew from €46/year to €164/year, diffuser returns dropped by 72%, and the brand reallocated three diffuser SKUs into a premium gift-set lineup around Tolia.',
-    'TODO ES'
-  );
-
-  const ctaText = t3(l, 'TODO FR', 'See how this could apply to your brand', 'TODO ES');
 
   return (
     <section id="market-proof" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
@@ -89,27 +67,25 @@ const MarketProofSection: React.FC = () => {
         {/* Header */}
         <motion.div
           className="text-center mb-16 max-w-3xl mx-auto"
-          initial="hidden"
-          whileInView="visible"
+          initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {eyebrow}
+            Proven in market
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            {headline}
+            100,000+ units sold in 7 months. Your competitors may already be selling it.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
-            {subheadline}
+            Tolia is not a concept or a Kickstarter. Consumers have already validated the technology with the fastest launch curve in our history.
           </p>
         </motion.div>
 
-        {/* 3 proof stats with counter animation */}
+        {/* 3 proof stats */}
         <motion.div
           className="grid md:grid-cols-3 gap-6 mb-16"
-          initial="hidden"
-          whileInView="visible"
+          initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
         >
@@ -120,24 +96,16 @@ const MarketProofSection: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Customer scenario — with slide-in effect */}
-        <motion.div
-          className="max-w-3xl mx-auto mb-12 rounded-2xl p-8 md:p-10 border-l-4 relative"
-          style={{
-            background: 'hsl(28 45% 48% / 0.06)',
-            borderLeftColor: 'hsl(28 45% 48%)',
-          }}
-          initial={{ opacity: 0, x: -40, filter: 'blur(6px)' }}
-          whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
+        {/* Closing line */}
+        <motion.p
+          className="text-center text-base md:text-lg font-semibold text-foreground max-w-3xl mx-auto mb-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Decorative quote mark */}
-          <span className="absolute top-4 right-6 text-6xl font-serif opacity-[0.08] leading-none" style={{ color: 'hsl(28 45% 48%)' }}>"</span>
-          <p className="text-sm md:text-base text-foreground/90 leading-relaxed italic relative z-10">
-            {scenario}
-          </p>
-        </motion.div>
+          The technology shift has already happened on the consumer side. The only question is which brands will capture it.
+        </motion.p>
 
         {/* CTA */}
         <motion.div
@@ -150,7 +118,7 @@ const MarketProofSection: React.FC = () => {
           <MagneticButton>
             <a href="#contact" onClick={() => trackCTAClick('market_proof_cta', 'market-proof')}>
               <Button className="btn-hero-primary group">
-                {ctaText}
+                See how this could apply to your brand
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>

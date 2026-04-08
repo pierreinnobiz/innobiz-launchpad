@@ -1,7 +1,5 @@
 import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useLanguage } from '@/contexts/LanguageContext';
-import { t3 } from '@/lib/t3';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 
@@ -108,7 +106,6 @@ const handleCTA = (type: 'white-label' | 'stock', label: string) => {
 };
 
 const HeroSection: React.FC = () => {
-  const { language: l } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -117,35 +114,11 @@ const HeroSection: React.FC = () => {
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 0.7]);
 
-  const eyebrow = t3(l,
-    'TODO FR — eyebrow',
-    'For aromatherapy, essential oil and natural wellness brands',
-    'TODO ES — eyebrow'
-  );
-  const title = t3(l,
-    'TODO FR — headline',
-    'The premium diffuser built for repeat oil consumption',
-    'TODO ES — headline'
-  );
-  const subtitle = t3(l,
-    'TODO FR — subheadline',
-    'Tolia makes essential oil use so simple that end-users reach for it every day — driving 3.8× more oil sales per customer, every year.',
-    'TODO ES — subheadline'
-  );
-  const trustLine = t3(l,
-    'TODO FR — trust',
-    'Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ leading brands since 2005',
-    'TODO ES — trust'
-  );
-
   const stats = [
-    { value: '100K+', label: t3(l, 'unités vendues en 7 mois', 'units sold in 7 months', 'unidades vendidas en 7 meses') },
-    { value: '3.8×', label: t3(l, 'ventes d\'HE vs diffuseurs classiques', 'essential oil sales vs. traditional diffusers', 'ventas de AE vs. difusores tradicionales') },
-    { value: '24+', label: t3(l, 'flacons consommés / utilisateur / an', 'bottles consumed per user per year', 'frascos consumidos por usuario al año') },
+    { value: '100K+', label: 'units sold in 7 months' },
+    { value: '×4 to ×6', label: 'oil consumption per customer' },
+    { value: '€22 → €82', label: 'recurring margin per customer / year' },
   ];
-
-  const ctaWhiteLabel = t3(l, 'TODO FR', 'Launch your white-label diffuser', 'TODO ES');
-  const ctaStock = t3(l, 'TODO FR', 'Order from stock — 300+ units', 'TODO ES');
 
   return (
     <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden bg-black">
@@ -168,11 +141,11 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            {eyebrow}
+            For aromatherapy, essential oil and natural wellness brands
           </motion.span>
 
           {/* Headline */}
-          <AnimatedTitle text={title} delay={0.5} />
+          <AnimatedTitle text="Turn your diffuser from a one-time sale into a recurring revenue stream." delay={0.5} />
 
           {/* Subheadline */}
           <motion.p
@@ -181,7 +154,7 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            {subtitle}
+            Tolia is the only diffuser simple enough to become a daily gesture — unlocking 4× to 6× more essential oil consumption per customer, every year.
           </motion.p>
 
           {/* Stat strip */}
@@ -210,25 +183,25 @@ const HeroSection: React.FC = () => {
               className="h-12 px-8 text-sm font-semibold rounded-full bg-white text-black hover:bg-white/90"
               onClick={() => handleCTA('white-label', 'hero_cta_whitelabel')}
             >
-              {ctaWhiteLabel}
+              Launch your white-label program
             </Button>
             <Button
               variant="outline"
               className="h-12 px-8 text-sm font-semibold rounded-full border-white/40 text-white hover:bg-white/10 bg-transparent"
               onClick={() => handleCTA('stock', 'hero_cta_stock')}
             >
-              {ctaStock}
+              Order branded Tolia — from 300 units
             </Button>
           </motion.div>
 
-          {/* Trust microline */}
+          {/* Micro-trust line */}
           <motion.p
             className="text-xs text-white/35 font-light pt-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2.5 }}
           >
-            {trustLine}
+            20 years of R&D · Made in France · Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ leading brands
           </motion.p>
         </div>
       </div>
