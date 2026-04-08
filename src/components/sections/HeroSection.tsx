@@ -115,9 +115,9 @@ const HeroSection: React.FC = () => {
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 0.7]);
 
   const stats = [
-    { value: '100K+', label: 'units sold in 7 months' },
-    { value: '×4 to ×6', label: 'oil consumption per customer' },
-    { value: '€22 → €82', label: 'recurring margin per customer / year' },
+    { value: '100K+', label: 'units sold in just 7 months' },
+    { value: '×4 to ×6', label: 'more oil purchased per customer' },
+    { value: '€22 → €82', label: 'annual margin per customer' },
   ];
 
   return (
@@ -141,11 +141,11 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            For aromatherapy, essential oil and natural wellness brands
+            For directors of aromatherapy, essential oil &amp; natural wellness brands
           </motion.span>
 
           {/* Headline */}
-          <AnimatedTitle text="Turn your diffuser from a one-time sale into a recurring revenue stream." delay={0.5} />
+          <AnimatedTitle text="Your customers buy a diffuser once — then never reorder oils. Tolia changes that." delay={0.5} />
 
           {/* Subheadline */}
           <motion.p
@@ -154,7 +154,7 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            Tolia is the only diffuser simple enough to become a daily gesture — unlocking 4× to 6× more essential oil consumption per customer, every year.
+            The patented Twist &amp; Mist system turns essential oil diffusion into a 10-second daily ritual — so simple that customers use it every day and reorder oils 4× to 6× more often. That's not a promise. It's already measured across 100,000+ units sold.
           </motion.p>
 
           {/* Stat strip */}
@@ -201,7 +201,7 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2.5 }}
           >
-            20 years of R&D · Made in France · Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ leading brands
+            20 years of proprietary diffusion R&D · Designed &amp; assembled in France · Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ industry leaders
           </motion.p>
         </div>
       </div>
