@@ -5,6 +5,8 @@ import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import MagneticButton from '@/components/MagneticButton';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { t3 } from '@/lib/t3';
 
 const AnimatedStat: React.FC<{ value: string; label: string; desc: string }> = ({ value, label, desc }) => {
   const numericPart = value.replace(/[^0-9.]/g, '');
@@ -55,16 +57,29 @@ const AnimatedStat: React.FC<{ value: string; label: string; desc: string }> = (
 };
 
 const MarketProofSection: React.FC = () => {
+  const { language } = useLanguage();
+
   const stats = [
-    { value: '100K+', label: 'units sold in just 7 months', desc: 'The fastest product launch in Innobiz\'s 20-year history. Consumer demand validated at scale.' },
-    { value: '3.8×', label: 'more essential oils sold per customer', desc: 'Measured head-to-head vs. traditional diffusers within the same brand and retail channel.' },
-    { value: '100%', label: 'purchase transfer from old diffusers', desc: 'Customers are actively abandoning their previous diffusers to switch to Twist & Mist — permanently.' },
+    {
+      value: '100K+',
+      label: t3(language, 'unités vendues en seulement 7 mois', 'units sold in just 7 months', 'unidades vendidas en solo 7 meses'),
+      desc: t3(language, "Le lancement produit le plus rapide des 20 ans d'histoire d'Innobiz. Demande consommateur validée à grande échelle.", "The fastest product launch in Innobiz's 20-year history. Consumer demand validated at scale.", 'El lanzamiento de producto más rápido en los 20 años de historia de Innobiz. Demanda del consumidor validada a escala.'),
+    },
+    {
+      value: '3.8×',
+      label: t3(language, "plus d'huiles essentielles vendues par client", 'more essential oils sold per customer', 'más aceites esenciales vendidos por cliente'),
+      desc: t3(language, 'Mesuré en comparaison directe avec les diffuseurs traditionnels au sein de la même marque et du même canal de distribution.', 'Measured head-to-head vs. traditional diffusers within the same brand and retail channel.', 'Medido en comparación directa con difusores tradicionales dentro de la misma marca y canal de distribución.'),
+    },
+    {
+      value: '100%',
+      label: t3(language, "transfert d'achat depuis les anciens diffuseurs", 'purchase transfer from old diffusers', 'transferencia de compra desde difusores anteriores'),
+      desc: t3(language, "Les clients abandonnent activement leurs anciens diffuseurs pour passer au Twist & Mist — de façon permanente.", 'Customers are actively abandoning their previous diffusers to switch to Twist & Mist — permanently.', 'Los clientes abandonan activamente sus difusores anteriores para cambiar al Twist & Mist — permanentemente.'),
+    },
   ];
 
   return (
     <section id="market-proof" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
-        {/* Header */}
         <motion.div
           className="text-center mb-16 max-w-3xl mx-auto"
           initial="hidden" whileInView="visible"
@@ -72,17 +87,24 @@ const MarketProofSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Not a prototype. Not a concept. Proven at scale.
+            {t3(language, 'Pas un prototype. Pas un concept. Prouvé à grande échelle.', 'Not a prototype. Not a concept. Proven at scale.', 'No es un prototipo. No es un concepto. Probado a escala.')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            100,000+ units already in consumers' hands — and your competitors may already be selling it.
+            {t3(language,
+              "100 000+ unités déjà entre les mains des consommateurs — et vos concurrents le vendent peut-être déjà.",
+              "100,000+ units already in consumers' hands — and your competitors may already be selling it.",
+              '100.000+ unidades ya en manos de los consumidores — y sus competidores quizás ya lo estén vendiendo.'
+            )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
-            Tolia isn't a crowdfunding campaign or a lab experiment. It's a market-validated product with the fastest adoption curve Innobiz has ever seen. The technology shift has already happened on the consumer side. The only question left is: will your brand capture it — or watch competitors do it first?
+            {t3(language,
+              "Tolia n'est pas une campagne de crowdfunding ni une expérience de laboratoire. C'est un produit validé par le marché avec la courbe d'adoption la plus rapide qu'Innobiz ait jamais connue. Le virage technologique a déjà eu lieu côté consommateur. La seule question qui reste : votre marque va-t-elle le capter — ou regarder ses concurrents le faire ?",
+              "Tolia isn't a crowdfunding campaign or a lab experiment. It's a market-validated product with the fastest adoption curve Innobiz has ever seen. The technology shift has already happened on the consumer side. The only question left is: will your brand capture it — or watch competitors do it first?",
+              'Tolia no es una campaña de crowdfunding ni un experimento de laboratorio. Es un producto validado por el mercado con la curva de adopción más rápida que Innobiz haya visto. El cambio tecnológico ya ocurrió del lado del consumidor. La única pregunta que queda es: ¿su marca lo capturará — o verá a los competidores hacerlo primero?'
+            )}
           </p>
         </motion.div>
 
-        {/* 3 proof stats */}
         <motion.div
           className="grid md:grid-cols-3 gap-6 mb-16"
           initial="hidden" whileInView="visible"
@@ -96,7 +118,6 @@ const MarketProofSection: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Closing line */}
         <motion.p
           className="text-center text-base md:text-lg font-semibold text-foreground max-w-3xl mx-auto mb-10"
           initial={{ opacity: 0, y: 20 }}
@@ -104,10 +125,13 @@ const MarketProofSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          The consumer shift to frictionless diffusion is already happening. Brands that move now will own the category. Those that wait will be catching up.
+          {t3(language,
+            "Le virage consommateur vers la diffusion sans friction est déjà en cours. Les marques qui bougent maintenant domineront la catégorie. Celles qui attendent devront rattraper leur retard.",
+            'The consumer shift to frictionless diffusion is already happening. Brands that move now will own the category. Those that wait will be catching up.',
+            'El cambio del consumidor hacia la difusión sin fricción ya está sucediendo. Las marcas que se muevan ahora dominarán la categoría. Las que esperen estarán alcanzando.'
+          )}
         </motion.p>
 
-        {/* CTA */}
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -118,7 +142,7 @@ const MarketProofSection: React.FC = () => {
           <MagneticButton>
             <a href="#contact" onClick={() => trackCTAClick('market_proof_cta', 'market-proof')}>
               <Button className="btn-hero-primary group">
-                See how this could apply to your brand
+                {t3(language, "Voir comment l'appliquer à votre marque", 'See how this could apply to your brand', 'Vea cómo esto podría aplicarse a su marca')}
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>

@@ -4,21 +4,13 @@ import { Paintbrush, Package, ArrowRight, Check } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 import MagneticButton from '@/components/MagneticButton';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { t3 } from '@/lib/t3';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30, filter: 'blur(6px)' },
   visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
-
-const comparisonRows = [
-  { label: 'Ideal for', wl: 'Brands building a signature diffuser line', stock: 'Brands adding Tolia to an existing range' },
-  { label: 'Branding', wl: 'Fully custom — unit, capsules, packaging', stock: 'Branded Tolia, co-branded sleeve option' },
-  { label: 'MOQ', wl: 'Project-based (typically 3,000+)', stock: 'From 300 units' },
-  { label: 'Customization', wl: 'Color (RAL/Pantone), finishes (matte, soft-touch, metallic), materials (wood, resin, blown glass), logo, capsule blends, full box', stock: 'Co-branded outer sleeve, neutral inner packaging' },
-  { label: 'Lead time', wl: '12 to 20 weeks', stock: '2 to 4 weeks (ships from France)' },
-  { label: 'Time to market', wl: '3 to 6 months', stock: 'Under 1 month' },
-  { label: 'Territorial exclusivity', wl: 'Negotiable (by volume & commitment)', stock: 'Non-exclusive' },
-];
 
 const handleCTA = (type: 'white-label' | 'stock', label: string) => {
   trackCTAClick(label, 'two-ways');
@@ -31,33 +23,45 @@ const handleCTA = (type: 'white-label' | 'stock', label: string) => {
 };
 
 const TwoWaysSection: React.FC = () => {
+  const { language } = useLanguage();
+
+  const comparisonRows = [
+    { label: t3(language, 'Idéal pour', 'Ideal for', 'Ideal para'), wl: t3(language, 'Les marques créant une ligne de diffuseurs signature', 'Brands building a signature diffuser line', 'Marcas que crean una línea de difusores propia'), stock: t3(language, "Les marques ajoutant Tolia à une gamme existante", 'Brands adding Tolia to an existing range', 'Marcas que añaden Tolia a una gama existente') },
+    { label: t3(language, 'Branding', 'Branding', 'Branding'), wl: t3(language, 'Entièrement personnalisé — appareil, capsules, packaging', 'Fully custom — unit, capsules, packaging', 'Totalmente personalizado — unidad, cápsulas, packaging'), stock: t3(language, 'Tolia brandé, option fourreau co-brandé', 'Branded Tolia, co-branded sleeve option', 'Tolia con marca, opción de funda co-brandada') },
+    { label: t3(language, 'MOQ', 'MOQ', 'MOQ'), wl: t3(language, 'Sur projet (généralement 3 000+)', 'Project-based (typically 3,000+)', 'Por proyecto (típicamente 3.000+)'), stock: t3(language, 'À partir de 300 unités', 'From 300 units', 'Desde 300 unidades') },
+    { label: t3(language, 'Personnalisation', 'Customization', 'Personalización'), wl: t3(language, 'Couleur (RAL/Pantone), finitions (mat, soft-touch, métallique), matériaux (bois, résine, verre soufflé), logo, synergies capsules, coffret complet', 'Color (RAL/Pantone), finishes (matte, soft-touch, metallic), materials (wood, resin, blown glass), logo, capsule blends, full box', 'Color (RAL/Pantone), acabados (mate, soft-touch, metálico), materiales (madera, resina, vidrio soplado), logo, mezclas de cápsulas, caja completa'), stock: t3(language, 'Fourreau extérieur co-brandé, packaging intérieur neutre', 'Co-branded outer sleeve, neutral inner packaging', 'Funda exterior co-brandada, packaging interior neutro') },
+    { label: t3(language, 'Délai de production', 'Lead time', 'Plazo de producción'), wl: t3(language, '12 à 20 semaines', '12 to 20 weeks', '12 a 20 semanas'), stock: t3(language, '2 à 4 semaines (expédition depuis la France)', '2 to 4 weeks (ships from France)', '2 a 4 semanas (envío desde Francia)') },
+    { label: t3(language, 'Time to market', 'Time to market', 'Time to market'), wl: t3(language, '3 à 6 mois', '3 to 6 months', '3 a 6 meses'), stock: t3(language, "Moins d'1 mois", 'Under 1 month', 'Menos de 1 mes') },
+    { label: t3(language, 'Exclusivité territoriale', 'Territorial exclusivity', 'Exclusividad territorial'), wl: t3(language, 'Négociable (par volume & engagement)', 'Negotiable (by volume & commitment)', 'Negociable (por volumen y compromiso)'), stock: t3(language, 'Non exclusive', 'Non-exclusive', 'No exclusiva') },
+  ];
+
   const cards = [
     {
       icon: Paintbrush,
-      title: 'Launch Tolia under your own brand',
-      subtitle: 'For brands that want a signature diffuser — fully customised, exclusively yours',
+      title: t3(language, 'Lancez Tolia sous votre propre marque', 'Launch Tolia under your own brand', 'Lance Tolia bajo su propia marca'),
+      subtitle: t3(language, 'Pour les marques qui veulent un diffuseur signature — entièrement personnalisé, exclusivement le vôtre', 'For brands that want a signature diffuser — fully customised, exclusively yours', 'Para marcas que quieren un difusor firma — totalmente personalizado, exclusivamente suyo'),
       bullets: [
-        'Your logo, your colors, your materials — a product that feels 100% yours',
-        'Co-developed essential oil blends tailored to your brand story',
-        'Full industrial, regulatory, and supply chain support from Innobiz',
-        'MOQ tailored to your launch plan — typically starting at 3,000 units',
+        t3(language, 'Votre logo, vos couleurs, vos matériaux — un produit qui est 100 % le vôtre', 'Your logo, your colors, your materials — a product that feels 100% yours', 'Su logo, sus colores, sus materiales — un producto que es 100 % suyo'),
+        t3(language, "Synergies d'huiles essentielles co-développées et adaptées à l'histoire de votre marque", 'Co-developed essential oil blends tailored to your brand story', 'Mezclas de aceites esenciales co-desarrolladas y adaptadas a la historia de su marca'),
+        t3(language, "Support industriel, réglementaire et supply chain complet d'Innobiz", 'Full industrial, regulatory, and supply chain support from Innobiz', 'Soporte industrial, regulatorio y de cadena de suministro completo de Innobiz'),
+        t3(language, 'MOQ adapté à votre plan de lancement — généralement à partir de 3 000 unités', 'MOQ tailored to your launch plan — typically starting at 3,000 units', 'MOQ adaptado a su plan de lanzamiento — típicamente desde 3.000 unidades'),
       ],
-      cta: 'Request a white-label consultation',
+      cta: t3(language, 'Demander une consultation marque blanche', 'Request a white-label consultation', 'Solicitar una consulta de marca blanca'),
       type: 'white-label' as const,
       trackLabel: 'twoways_cta_whitelabel',
       accent: 'hsl(28 45% 48%)',
     },
     {
       icon: Package,
-      title: 'Add Tolia to your catalog — ships in weeks',
-      subtitle: 'For brands that want to offer Tolia immediately, without a full white-label program',
+      title: t3(language, 'Ajoutez Tolia à votre catalogue — livré en semaines', 'Add Tolia to your catalog — ships in weeks', 'Añada Tolia a su catálogo — envío en semanas'),
+      subtitle: t3(language, "Pour les marques qui veulent proposer Tolia immédiatement, sans programme marque blanche complet", 'For brands that want to offer Tolia immediately, without a full white-label program', 'Para marcas que quieren ofrecer Tolia inmediatamente, sin un programa completo de marca blanca'),
       bullets: [
-        'Ready-to-ship inventory — minimum 300 units, from our French warehouse',
-        'Delivered as branded Tolia with full product documentation',
-        'Optional co-branded outer packaging to integrate with your range',
-        'Fastest time-to-market in the industry — products on shelf in under 1 month',
+        t3(language, 'Stock prêt à expédier — minimum 300 unités, depuis notre entrepôt français', 'Ready-to-ship inventory — minimum 300 units, from our French warehouse', 'Inventario listo para enviar — mínimo 300 unidades, desde nuestro almacén francés'),
+        t3(language, 'Livré en tant que Tolia brandé avec documentation produit complète', 'Delivered as branded Tolia with full product documentation', 'Entregado como Tolia con marca y documentación completa del producto'),
+        t3(language, 'Packaging extérieur co-brandé optionnel pour intégration à votre gamme', 'Optional co-branded outer packaging to integrate with your range', 'Packaging exterior co-brandado opcional para integración con su gama'),
+        t3(language, "Le time-to-market le plus rapide de l'industrie — produits en rayon en moins d'1 mois", 'Fastest time-to-market in the industry — products on shelf in under 1 month', 'El time-to-market más rápido del sector — productos en estantería en menos de 1 mes'),
       ],
-      cta: 'Request a stock-order quote',
+      cta: t3(language, 'Demander un devis stock', 'Request a stock-order quote', 'Solicitar un presupuesto de stock'),
       type: 'stock' as const,
       trackLabel: 'twoways_cta_stock',
       accent: 'hsl(220 40% 45%)',
@@ -70,17 +74,20 @@ const TwoWaysSection: React.FC = () => {
       <div className="section-container">
         <motion.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Your path to market — choose the one that fits
+            {t3(language, 'Votre accès au marché — choisissez celui qui vous convient', 'Your path to market — choose the one that fits', 'Su acceso al mercado — elija el que le convenga')}
           </span>
           <h2 className="heading-section mb-4">
-            Two ways to work with Tolia. Both lead to recurring revenue.
+            {t3(language, 'Deux façons de travailler avec Tolia. Les deux mènent au revenu récurrent.', 'Two ways to work with Tolia. Both lead to recurring revenue.', 'Dos formas de trabajar con Tolia. Ambas llevan a ingresos recurrentes.')}
           </h2>
           <p className="text-body-lg max-w-3xl mx-auto">
-            Whether you want a fully branded signature diffuser built around your identity — or a proven, market-validated product ready to ship this quarter — Tolia adapts to your strategy and your timeline.
+            {t3(language,
+              "Que vous souhaitiez un diffuseur signature entièrement brandé autour de votre identité — ou un produit éprouvé, validé par le marché, prêt à être expédié ce trimestre — Tolia s'adapte à votre stratégie et à votre calendrier.",
+              'Whether you want a fully branded signature diffuser built around your identity — or a proven, market-validated product ready to ship this quarter — Tolia adapts to your strategy and your timeline.',
+              'Ya sea que quiera un difusor firma totalmente brandado en torno a su identidad — o un producto probado, validado por el mercado, listo para enviar este trimestre — Tolia se adapta a su estrategia y su calendario.'
+            )}
           </p>
         </motion.div>
 
-        {/* Two cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
           {cards.map((card, i) => (
             <motion.div
@@ -131,8 +138,8 @@ const TwoWaysSection: React.FC = () => {
               <thead>
                 <tr className="border-b border-border/60">
                   <th className="text-left p-4 font-medium text-muted-foreground w-1/4"></th>
-                  <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(28 45% 48%)' }}>White-Label Program</th>
-                  <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(220 40% 45%)' }}>Stock Order</th>
+                  <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(28 45% 48%)' }}>{t3(language, 'Programme Marque Blanche', 'White-Label Program', 'Programa Marca Blanca')}</th>
+                  <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(220 40% 45%)' }}>{t3(language, 'Commande Stock', 'Stock Order', 'Pedido Stock')}</th>
                 </tr>
               </thead>
               <tbody>
@@ -157,8 +164,8 @@ const TwoWaysSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           {[
-            { title: 'White-Label Program', color: 'hsl(28 45% 48%)', key: 'wl' as const },
-            { title: 'Stock Order', color: 'hsl(220 40% 45%)', key: 'stock' as const },
+            { title: t3(language, 'Programme Marque Blanche', 'White-Label Program', 'Programa Marca Blanca'), color: 'hsl(28 45% 48%)', key: 'wl' as const },
+            { title: t3(language, 'Commande Stock', 'Stock Order', 'Pedido Stock'), color: 'hsl(220 40% 45%)', key: 'stock' as const },
           ].map((col) => (
             <div key={col.key} className="rounded-2xl border border-border/60 bg-card p-6">
               <h4 className="font-bold text-lg mb-4" style={{ color: col.color }}>{col.title}</h4>

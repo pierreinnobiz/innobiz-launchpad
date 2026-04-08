@@ -11,17 +11,13 @@ import { useToast } from '@/hooks/use-toast';
 import { trackCTAClick, trackEvent } from '@/lib/tracking';
 import { supabase } from '@/integrations/supabase/client';
 import { fadeBlurUp } from '@/lib/animations';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { t3 } from '@/lib/t3';
 
 type Path = 'white-label' | 'stock';
 
-const roles = ['CEO', 'Innovation', 'Marketing', 'Category', 'Purchasing', 'R&D', 'Other'];
-const wlWindows = ['Q2 this year', 'Q3 this year', 'Q4 this year', 'Next year', 'Exploring'];
-const wlVolumes = ['3K–5K', '5K–10K', '10K–25K', '25K+'];
-const wlCustomOptions = ['Unit color', 'Finish', 'Logo', 'Capsule blends', 'Packaging', 'Full bespoke'];
-const stockQtys = ['300', '500', '1000', '1500+'];
-const stockTimings = ['Within 1 month', '1–3 months', 'Exploring'];
-
 const ContactSection: React.FC = () => {
+  const { language } = useLanguage();
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -40,6 +36,38 @@ const ContactSection: React.FC = () => {
   const [stockQty, setStockQty] = useState('');
   const [stockCountry, setStockCountry] = useState('');
   const [stockTiming, setStockTiming] = useState('');
+
+  const roles = [
+    t3(language, 'PDG', 'CEO', 'CEO'),
+    t3(language, 'Innovation', 'Innovation', 'Innovación'),
+    t3(language, 'Marketing', 'Marketing', 'Marketing'),
+    t3(language, 'Catégorie', 'Category', 'Categoría'),
+    t3(language, 'Achats', 'Purchasing', 'Compras'),
+    t3(language, 'R&D', 'R&D', 'I+D'),
+    t3(language, 'Autre', 'Other', 'Otro'),
+  ];
+  const wlWindows = [
+    t3(language, 'T2 cette année', 'Q2 this year', 'T2 este año'),
+    t3(language, 'T3 cette année', 'Q3 this year', 'T3 este año'),
+    t3(language, 'T4 cette année', 'Q4 this year', 'T4 este año'),
+    t3(language, "L'année prochaine", 'Next year', 'El próximo año'),
+    t3(language, 'En exploration', 'Exploring', 'Explorando'),
+  ];
+  const wlVolumes = ['3K–5K', '5K–10K', '10K–25K', '25K+'];
+  const wlCustomOptions = [
+    t3(language, 'Couleur unité', 'Unit color', 'Color unidad'),
+    t3(language, 'Finition', 'Finish', 'Acabado'),
+    t3(language, 'Logo', 'Logo', 'Logo'),
+    t3(language, 'Synergies capsules', 'Capsule blends', 'Mezclas cápsulas'),
+    t3(language, 'Packaging', 'Packaging', 'Packaging'),
+    t3(language, 'Sur mesure complet', 'Full bespoke', 'Totalmente a medida'),
+  ];
+  const stockQtys = ['300', '500', '1000', '1500+'];
+  const stockTimings = [
+    t3(language, "Sous 1 mois", 'Within 1 month', 'En 1 mes'),
+    t3(language, '1–3 mois', '1–3 months', '1–3 meses'),
+    t3(language, 'En exploration', 'Exploring', 'Explorando'),
+  ];
 
   useEffect(() => {
     const readParam = () => {
@@ -73,14 +101,14 @@ const ContactSection: React.FC = () => {
       setIsSubmitted(true);
       trackEvent('generate_lead', { method: 'contact_form', segment: path });
       toast({
-        title: 'Request sent!',
-        description: "We'll get back to you within one business day.",
+        title: t3(language, 'Demande envoyée !', 'Request sent!', '¡Solicitud enviada!'),
+        description: t3(language, 'Nous vous répondrons sous un jour ouvré.', "We'll get back to you within one business day.", 'Le responderemos en un día laborable.'),
       });
     } catch (err) {
       console.error('Contact form error:', err);
       toast({
-        title: 'Error',
-        description: 'An error occurred. Please try again.',
+        title: t3(language, 'Erreur', 'Error', 'Error'),
+        description: t3(language, 'Une erreur est survenue. Veuillez réessayer.', 'An error occurred. Please try again.', 'Ocurrió un error. Por favor, inténtelo de nuevo.'),
         variant: 'destructive',
       });
     } finally {
@@ -105,10 +133,14 @@ const ContactSection: React.FC = () => {
               <CheckCircle2 className="w-10 h-10 text-primary" />
             </motion.div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Thank you for your request!
+              {t3(language, 'Merci pour votre demande !', 'Thank you for your request!', '¡Gracias por su solicitud!')}
             </h2>
             <p className="text-muted-foreground leading-relaxed">
-              Our team will get back to you within one business day with a tailored proposal.
+              {t3(language,
+                'Notre équipe vous répondra sous un jour ouvré avec une proposition sur mesure.',
+                'Our team will get back to you within one business day with a tailored proposal.',
+                'Nuestro equipo le responderá en un día laborable con una propuesta a medida.'
+              )}
             </p>
           </motion.div>
         </div>
@@ -128,7 +160,6 @@ const ContactSection: React.FC = () => {
       </div>
 
       <div className="max-w-3xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
-        {/* Header */}
         <motion.div
           className="text-center mb-12"
           initial="hidden" whileInView="visible"
@@ -136,13 +167,21 @@ const ContactSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Ready to transform your oil sales?
+            {t3(language, "Prêt à transformer vos ventes d'huiles ?", 'Ready to transform your oil sales?', '¿Listo para transformar sus ventas de aceites?')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Tell us about your brand — we'll build a proposal tailored to your market.
+            {t3(language,
+              'Parlez-nous de votre marque — nous construirons une proposition adaptée à votre marché.',
+              "Tell us about your brand — we'll build a proposal tailored to your market.",
+              'Háblenos de su marca — construiremos una propuesta adaptada a su mercado.'
+            )}
           </h2>
           <p className="text-base text-muted-foreground font-light max-w-2xl mx-auto">
-            One form. Two paths. You'll receive a personalized response within one business day — along with a free Tolia sample shipped directly to your office so you can experience the product firsthand.
+            {t3(language,
+              "Un formulaire. Deux parcours. Vous recevrez une réponse personnalisée sous un jour ouvré — accompagnée d'un échantillon Tolia gratuit expédié directement à votre bureau pour découvrir le produit par vous-même.",
+              "One form. Two paths. You'll receive a personalized response within one business day — along with a free Tolia sample shipped directly to your office so you can experience the product firsthand.",
+              'Un formulario. Dos caminos. Recibirá una respuesta personalizada en un día laborable — junto con una muestra gratuita de Tolia enviada directamente a su oficina para que pueda experimentar el producto de primera mano.'
+            )}
           </p>
         </motion.div>
 
@@ -157,8 +196,8 @@ const ContactSection: React.FC = () => {
             {/* Path selector */}
             <div className="grid sm:grid-cols-2 gap-4">
               {[
-                { key: 'white-label' as Path, icon: Paintbrush, label: 'White-label program', sub: 'Build your signature diffuser', color: 'hsl(28 45% 48%)' },
-                { key: 'stock' as Path, icon: Package, label: 'Stock order (300+ units)', sub: 'Add branded Tolia to your range', color: 'hsl(220 40% 45%)' },
+                { key: 'white-label' as Path, icon: Paintbrush, label: t3(language, 'Programme marque blanche', 'White-label program', 'Programa marca blanca'), sub: t3(language, 'Créez votre diffuseur signature', 'Build your signature diffuser', 'Cree su difusor firma'), color: 'hsl(28 45% 48%)' },
+                { key: 'stock' as Path, icon: Package, label: t3(language, 'Commande stock (300+ unités)', 'Stock order (300+ units)', 'Pedido stock (300+ unidades)'), sub: t3(language, 'Ajoutez Tolia brandé à votre gamme', 'Add branded Tolia to your range', 'Añada Tolia con marca a su gama'), color: 'hsl(220 40% 45%)' },
               ].map((p) => (
                 <motion.button
                   key={p.key}
@@ -185,37 +224,37 @@ const ContactSection: React.FC = () => {
             {/* Shared fields */}
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="name">Full name *</Label>
-                <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl" placeholder="Jane Smith" />
+                <Label htmlFor="name">{t3(language, 'Nom complet *', 'Full name *', 'Nombre completo *')}</Label>
+                <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl" placeholder={t3(language, 'Marie Dupont', 'Jane Smith', 'María García')} />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="company">Company *</Label>
-                <Input id="company" required value={company} onChange={(e) => setCompany(e.target.value)} className="rounded-xl" placeholder="Your company" />
+                <Label htmlFor="company">{t3(language, 'Entreprise *', 'Company *', 'Empresa *')}</Label>
+                <Input id="company" required value={company} onChange={(e) => setCompany(e.target.value)} className="rounded-xl" placeholder={t3(language, 'Votre entreprise', 'Your company', 'Su empresa')} />
               </div>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="role">Role *</Label>
+                <Label htmlFor="role">{t3(language, 'Fonction *', 'Role *', 'Cargo *')}</Label>
                 <Select value={role} onValueChange={setRole}>
-                  <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select your role" /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue placeholder={t3(language, 'Sélectionnez votre fonction', 'Select your role', 'Seleccione su cargo')} /></SelectTrigger>
                   <SelectContent className="bg-card">
-                    {roles.map((r) => <SelectItem key={r} value={r}>{r}</SelectItem>)}
+                    {roles.map((r) => <SelectItem key={String(r)} value={String(r)}>{r}</SelectItem>)}
                   </SelectContent>
                 </Select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="email">Professional email *</Label>
+                <Label htmlFor="email">{t3(language, 'Email professionnel *', 'Professional email *', 'Email profesional *')}</Label>
                 <Input id="email" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} className="rounded-xl" placeholder="jane@company.com" />
               </div>
             </div>
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="website">Company website</Label>
+                <Label htmlFor="website">{t3(language, 'Site web', 'Company website', 'Sitio web')}</Label>
                 <Input id="website" value={website} onChange={(e) => setWebsite(e.target.value)} className="rounded-xl" placeholder="https://..." />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="country">Country / region *</Label>
-                <Input id="country" required value={country} onChange={(e) => setCountry(e.target.value)} className="rounded-xl" placeholder="France" />
+                <Label htmlFor="country">{t3(language, 'Pays / région *', 'Country / region *', 'País / región *')}</Label>
+                <Input id="country" required value={country} onChange={(e) => setCountry(e.target.value)} className="rounded-xl" placeholder={t3(language, 'France', 'France', 'Francia')} />
               </div>
             </div>
 
@@ -227,21 +266,21 @@ const ContactSection: React.FC = () => {
                 animate={{ opacity: 1, height: 'auto' }}
                 transition={{ duration: 0.3 }}
               >
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">White-label details</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t3(language, 'Détails marque blanche', 'White-label details', 'Detalles marca blanca')}</p>
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label>Target launch window</Label>
+                    <Label>{t3(language, 'Fenêtre de lancement visée', 'Target launch window', 'Ventana de lanzamiento objetivo')}</Label>
                     <Select value={wlWindow} onValueChange={setWlWindow}>
-                      <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select..." /></SelectTrigger>
+                      <SelectTrigger className="rounded-xl"><SelectValue placeholder={t3(language, 'Sélectionner...', 'Select...', 'Seleccionar...')} /></SelectTrigger>
                       <SelectContent className="bg-card">
-                        {wlWindows.map((w) => <SelectItem key={w} value={w}>{w}</SelectItem>)}
+                        {wlWindows.map((w) => <SelectItem key={String(w)} value={String(w)}>{w}</SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label>Estimated first-year volume</Label>
+                    <Label>{t3(language, 'Volume estimé première année', 'Estimated first-year volume', 'Volumen estimado primer año')}</Label>
                     <Select value={wlVolume} onValueChange={setWlVolume}>
-                      <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select..." /></SelectTrigger>
+                      <SelectTrigger className="rounded-xl"><SelectValue placeholder={t3(language, 'Sélectionner...', 'Select...', 'Seleccionar...')} /></SelectTrigger>
                       <SelectContent className="bg-card">
                         {wlVolumes.map((v) => <SelectItem key={v} value={v}>{v}</SelectItem>)}
                       </SelectContent>
@@ -249,11 +288,11 @@ const ContactSection: React.FC = () => {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <Label>Level of customization needed</Label>
+                  <Label>{t3(language, 'Niveau de personnalisation souhaité', 'Level of customization needed', 'Nivel de personalización necesario')}</Label>
                   <div className="flex flex-wrap gap-3 pt-1">
                     {wlCustomOptions.map((opt) => (
-                      <label key={opt} className="flex items-center gap-2 text-sm cursor-pointer">
-                        <Checkbox checked={wlCustom.includes(opt)} onCheckedChange={() => toggleCustom(opt)} />
+                      <label key={String(opt)} className="flex items-center gap-2 text-sm cursor-pointer">
+                        <Checkbox checked={wlCustom.includes(String(opt))} onCheckedChange={() => toggleCustom(String(opt))} />
                         <span>{opt}</span>
                       </label>
                     ))}
@@ -270,27 +309,27 @@ const ContactSection: React.FC = () => {
                 animate={{ opacity: 1, height: 'auto' }}
                 transition={{ duration: 0.3 }}
               >
-                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">Stock order details</p>
+                <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">{t3(language, 'Détails commande stock', 'Stock order details', 'Detalles pedido stock')}</p>
                 <div className="grid sm:grid-cols-3 gap-4">
                   <div className="space-y-2">
-                    <Label>Desired quantity</Label>
+                    <Label>{t3(language, 'Quantité souhaitée', 'Desired quantity', 'Cantidad deseada')}</Label>
                     <Select value={stockQty} onValueChange={setStockQty}>
-                      <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select..." /></SelectTrigger>
+                      <SelectTrigger className="rounded-xl"><SelectValue placeholder={t3(language, 'Sélectionner...', 'Select...', 'Seleccionar...')} /></SelectTrigger>
                       <SelectContent className="bg-card">
                         {stockQtys.map((q) => <SelectItem key={q} value={q}>{q}</SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label>Ship-to country *</Label>
-                    <Input required={path === 'stock'} value={stockCountry} onChange={(e) => setStockCountry(e.target.value)} className="rounded-xl" placeholder="Country" />
+                    <Label>{t3(language, 'Pays de livraison *', 'Ship-to country *', 'País de envío *')}</Label>
+                    <Input required={path === 'stock'} value={stockCountry} onChange={(e) => setStockCountry(e.target.value)} className="rounded-xl" placeholder={t3(language, 'Pays', 'Country', 'País')} />
                   </div>
                   <div className="space-y-2">
-                    <Label>Launch timing</Label>
+                    <Label>{t3(language, 'Timing de lancement', 'Launch timing', 'Timing de lanzamiento')}</Label>
                     <Select value={stockTiming} onValueChange={setStockTiming}>
-                      <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select..." /></SelectTrigger>
+                      <SelectTrigger className="rounded-xl"><SelectValue placeholder={t3(language, 'Sélectionner...', 'Select...', 'Seleccionar...')} /></SelectTrigger>
                       <SelectContent className="bg-card">
-                        {stockTimings.map((t) => <SelectItem key={t} value={t}>{t}</SelectItem>)}
+                        {stockTimings.map((t) => <SelectItem key={String(t)} value={String(t)}>{t}</SelectItem>)}
                       </SelectContent>
                     </Select>
                   </div>
@@ -300,20 +339,29 @@ const ContactSection: React.FC = () => {
 
             {/* Notes */}
             <div className="space-y-2">
-              <Label htmlFor="notes">Anything else we should know?</Label>
-              <Textarea id="notes" rows={4} value={notes} onChange={(e) => setNotes(e.target.value)} className="rounded-xl" placeholder="Optional" />
+              <Label htmlFor="notes">{t3(language, "Autre chose que nous devrions savoir ?", 'Anything else we should know?', '¿Algo más que debamos saber?')}</Label>
+              <Textarea id="notes" rows={4} value={notes} onChange={(e) => setNotes(e.target.value)} className="rounded-xl" placeholder={t3(language, 'Facultatif', 'Optional', 'Opcional')} />
             </div>
 
             {/* Submit */}
             <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}>
               <Button type="submit" className="w-full btn-hero-primary group h-12 text-base" disabled={isSubmitting}>
-                {isSubmitting ? 'Sending...' : path === 'white-label' ? 'Request my white-label consultation' : 'Request my stock-order quote'}
+                {isSubmitting
+                  ? t3(language, 'Envoi en cours...', 'Sending...', 'Enviando...')
+                  : path === 'white-label'
+                    ? t3(language, 'Demander ma consultation marque blanche', 'Request my white-label consultation', 'Solicitar mi consulta de marca blanca')
+                    : t3(language, 'Demander mon devis stock', 'Request my stock-order quote', 'Solicitar mi presupuesto de stock')
+                }
                 {!isSubmitting && <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />}
               </Button>
             </motion.div>
 
             <p className="text-xs text-center text-muted-foreground pt-2">
-              We respond within one business day. Your information stays with Innobiz — no resale, no newsletter.
+              {t3(language,
+                'Nous répondons sous un jour ouvré. Vos informations restent chez Innobiz — pas de revente, pas de newsletter.',
+                'We respond within one business day. Your information stays with Innobiz — no resale, no newsletter.',
+                'Respondemos en un día laborable. Su información queda en Innobiz — sin reventa, sin newsletter.'
+              )}
             </p>
           </form>
         </motion.div>
