@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { Layers, Rocket, CheckCircle, ArrowRight, Gift } from 'lucide-react';
+import toliaOneForAll from '@/assets/tolia-one-for-all.jpg';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -91,6 +92,30 @@ const RangeRationalizationSection: React.FC = () => {
               'Hoy, las marcas de aromaterapia ofrecen 3, 5, a veces 10 difusores diferentes. Cada uno con sus limitaciones, sus consumibles, su discurso específico. ¿El resultado? Un catálogo confuso, inventarios pesados, un servicio postventa fragmentado, y clientes que ya no saben qué elegir. Tolia cambia esta ecuación. Un solo dispositivo compatible con todas las formulaciones, un gesto para cambiar de frasco, y una tecnología que se adapta a todos los contextos de uso.'
             )}
           </p>
+        </motion.div>
+
+        {/* Hero image */}
+        <motion.div
+          className="max-w-4xl mx-auto mb-20 rounded-2xl overflow-hidden"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, margin: '-100px' }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <img
+            src={toliaOneForAll}
+            alt={t3(l,
+              "Un diffuseur Tolia entouré de dizaines de flacons d'huiles essentielles, synergies, hydrolats et parfums d'intérieur",
+              "A Tolia diffuser surrounded by dozens of essential oil, blend, hydrosol and home fragrance bottles",
+              "Un difusor Tolia rodeado de decenas de frascos de aceites esenciales, mezclas, hidrolatos y fragancias para el hogar"
+            )}
+            className="w-full h-auto object-cover no-select"
+            draggable={false}
+            loading="lazy"
+            decoding="async"
+            width={1280}
+            height={720}
+          />
         </motion.div>
 
         {/* Benefits grid */}
