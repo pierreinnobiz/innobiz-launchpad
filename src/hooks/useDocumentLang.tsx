@@ -9,9 +9,9 @@ const langMap: Record<string, string> = {
 
 const seoContent: Record<string, { title: string; description: string; ogTitle: string; ogDescription: string }> = {
   fr: {
-    title: 'Tolia by Innobiz — Technologie de diffusion d\'huiles essentielles propriétaire',
+    title: 'Tolia by Innobiz | Technologie de diffusion d\'huiles essentielles propriétaire',
     description: 'Tolia : le diffuseur en marque blanche qui transforme l\'aromathérapie en routines quotidiennes et vos synergies en revenus récurrents. 20 ans de R&D Innobiz.',
-    ogTitle: 'Tolia by Innobiz — Technologie de diffusion d\'huiles essentielles',
+    ogTitle: 'Tolia by Innobiz | Technologie de diffusion d\'huiles essentielles',
     ogDescription: 'Le diffuseur en marque blanche qui transforme l\'aromathérapie en routines quotidiennes et vos synergies en revenus récurrents.',
   },
   en: {

@@ -7,7 +7,7 @@ import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import React, { Suspense } from "react";
 
-// Only Index is eagerly loaded — all other routes are lazy
+// Only Index is eagerly loaded; all other routes are lazy
 const Index = React.lazy(() => import("./pages/Index"));
 const FAQ = React.lazy(() => import("./pages/FAQ"));
 const Contact = React.lazy(() => import("./pages/Contact"));

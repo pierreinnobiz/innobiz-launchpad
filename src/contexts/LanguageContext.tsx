@@ -34,8 +34,8 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
   // Why brands choose
   'why.title': { fr: 'Pourquoi les marques choisissent Innobiz Lab', en: 'Why brands choose Innobiz Lab' },
   'why.intro': {
-    fr: 'Les consommateurs n\'achètent pas un diffuseur — ils adoptent une expérience d\'usage. Quand la diffusion devient simple, contrôlable et constante, la fréquence d\'usage augmente, ce qui génère directement des ventes récurrentes d\'huiles essentielles et de parfums d\'intérieur.',
-    en: 'Consumers do not buy a diffuser — they adopt a usage experience. When diffusion becomes effortless, controllable and consistent, usage frequency increases, directly driving repeat sales of essential oils and home fragrances.'
+    fr: 'Les consommateurs n\'achètent pas un diffuseur, ils adoptent une expérience d\'usage. Quand la diffusion devient simple, contrôlable et constante, la fréquence d\'usage augmente, ce qui génère directement des ventes récurrentes d\'huiles essentielles et de parfums d\'intérieur.',
+    en: 'Consumers do not buy a diffuser, they adopt a usage experience. When diffusion becomes effortless, controllable and consistent, usage frequency increases, directly driving repeat sales of essential oils and home fragrances.'
   },
   'why.business.title': { fr: 'Résultats business', en: 'Business outcomes' },
   'why.business.1': { fr: 'Augmentation des achats récurrents de consommables', en: 'Increased repeat purchase of consumables' },
@@ -63,7 +63,7 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
   'universal.desc': { fr: 'Innobiz Lab a développé une plateforme universelle de diffusion de fragrances adaptée aux huiles essentielles et aux applications home fragrance. Un module central propriétaire, intégré dans des designs de diffuseurs spécifiques à chaque marque, évite la multiplication des technologies et réduit la complexité du portefeuille produits.', en: 'Innobiz Lab developed a universal fragrance diffusion platform suitable for both essential oils and home fragrance applications. One proprietary core module, integrated into brand-specific diffuser designs, avoids technology multiplication and reduces product portfolio complexity.' },
   
   // How it works
-  'how.title': { fr: 'Comment ça fonctionne — vue simplifiée', en: 'How it works – simplified overview' },
+  'how.title': { fr: 'Comment ça fonctionne, vue simplifiée', en: 'How it works – simplified overview' },
   'how.step1.title': { fr: 'Définir', en: 'Define' },
   'how.step1.desc': { fr: 'Définissez le positionnement de votre marque et votre stratégie de diffusion', en: 'Define your brand positioning and diffusion strategy' },
   'how.step2.title': { fr: 'Concevoir', en: 'Design' },
@@ -71,7 +71,7 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
   'how.step3.title': { fr: 'Développer', en: 'Develop' },
   'how.step3.desc': { fr: 'Industrialisez, fabriquez et développez vos ventes récurrentes de consommables', en: 'Industrialise, manufacture and scale repeat consumable sales' },
   'how.technical': { fr: 'Voir les détails techniques', en: 'View technical details' },
-  'how.technical.desc': { fr: 'Fondations techniques basées sur la fluidique, la mécanique, les matériaux, l\'électronique et le logiciel — expliquées sans exposer le savoir-faire sensible.', en: 'Technical foundation based on fluidics, mechanics, materials, electronics and software — explained without exposing sensitive know-how.' },
+  'how.technical.desc': { fr: 'Fondations techniques basées sur la fluidique, la mécanique, les matériaux, l\'électronique et le logiciel, expliquées sans exposer le savoir-faire sensible.', en: 'Technical foundation based on fluidics, mechanics, materials, electronics and software, explained without exposing sensitive know-how.' },
   
   // Proof
   'proof.title': { fr: 'Ce qu\'ils en disent', en: 'What they say' },
