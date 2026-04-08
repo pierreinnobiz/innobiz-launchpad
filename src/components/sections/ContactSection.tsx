@@ -58,7 +58,7 @@ const ContactSection: React.FC = () => {
     t3(language, 'Couleur unité', 'Unit color', 'Color unidad'),
     t3(language, 'Finition', 'Finish', 'Acabado'),
     t3(language, 'Logo', 'Logo', 'Logo'),
-    t3(language, 'Synergies capsules', 'Capsule blends', 'Mezclas cápsulas'),
+    t3(language, 'Synergies personnalisées', 'Custom blends', 'Mezclas personalizadas'),
     t3(language, 'Packaging', 'Packaging', 'Packaging'),
     t3(language, 'Sur mesure complet', 'Full bespoke', 'Totalmente a medida'),
   ];

@@ -172,9 +172,9 @@ const TwistAndMistSection: React.FC = () => {
               <img
                 src={nespressoImg}
                 alt={t3(language,
-                  "Machine Nespresso avec des centaines de capsules consommées — la simplicité génère la consommation récurrente",
-                  'Nespresso machine with hundreds of consumed capsules — simplicity drives recurring consumption',
-                  'Máquina Nespresso con cientos de cápsulas consumidas — la simplicidad impulsa el consumo recurrente'
+                  "Machine Nespresso illustrant comment la simplicité génère la consommation récurrente",
+                  'Nespresso machine illustrating how simplicity drives recurring consumption',
+                  'Máquina Nespresso ilustrando cómo la simplicidad impulsa el consumo recurrente'
                 )}
                 className="w-full h-full object-cover"
                 loading="lazy"
@@ -185,28 +185,28 @@ const TwistAndMistSection: React.FC = () => {
             <div className="p-8 md:p-10 flex items-center md:w-3/5">
                <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
                  {t3(language,
-                   <>
-                     <strong>Tolia est à l'aromathérapie ce que Nespresso a été au café.</strong> Nespresso n'a pas inventé le café —
-                     il a supprimé chaque point de friction entre le désir et la consommation. Le résultat ? La consommation de café a triplé.
-                     Le revenu des capsules est devenu 10× supérieur au revenu de la machine. Tolia applique exactement la même stratégie aux huiles essentielles :
-                     vissez le flacon, appuyez sur le bouton, diffusez. Changez de synergie en 3 secondes. La complexité disparaît.
-                     Le rituel quotidien commence. Et à chaque rituel, votre client achète plus d'huile.
-                   </>,
-                   <>
-                     <strong>Tolia is to aromatherapy what Nespresso was to coffee.</strong> Nespresso didn't invent coffee —
-                     it removed every friction point between desire and consumption. The result? Coffee consumption tripled.
-                     Capsule revenue became 10× the machine revenue. Tolia applies exactly the same strategy to essential oils:
-                     screw the bottle, press the button, diffuse. Change blends in 3 seconds. The complexity disappears.
-                     The daily ritual begins. And with every ritual, your customer buys more oil.
-                   </>,
-                   <>
-                     <strong>Tolia es a la aromaterapia lo que Nespresso fue al café.</strong> Nespresso no inventó el café —
-                     eliminó cada punto de fricción entre el deseo y el consumo. ¿El resultado? El consumo de café se triplicó.
-                     Los ingresos de cápsulas se convirtieron en 10× los ingresos de la máquina. Tolia aplica exactamente la misma estrategia a los aceites esenciales:
-                     enrosque el frasco, presione el botón, difunda. Cambie de mezcla en 3 segundos. La complejidad desaparece.
-                     El ritual diario comienza. Y con cada ritual, su cliente compra más aceite.
-                   </>
-                 )}
+                    <>
+                      <strong>Tolia est à l'aromathérapie ce que Nespresso a été au café.</strong> Nespresso n'a pas inventé le café —
+                      il a supprimé chaque point de friction entre le désir et la consommation. Le résultat ? La consommation de café a triplé.
+                      Le revenu récurrent des consommables est devenu 10× supérieur au revenu de la machine. Tolia applique exactement la même stratégie aux huiles essentielles :
+                      vissez le flacon, appuyez sur le bouton, diffusez. Changez de synergie en 1 seconde. La complexité disparaît.
+                      Le rituel quotidien commence. Et à chaque rituel, votre client achète plus d'huile.
+                    </>,
+                    <>
+                      <strong>Tolia is to aromatherapy what Nespresso was to coffee.</strong> Nespresso didn't invent coffee —
+                      it removed every friction point between desire and consumption. The result? Coffee consumption tripled.
+                      Recurring consumable revenue became 10× the machine revenue. Tolia applies exactly the same strategy to essential oils:
+                      screw the bottle, press the button, diffuse. Change blends in 1 second. The complexity disappears.
+                      The daily ritual begins. And with every ritual, your customer buys more oil.
+                    </>,
+                    <>
+                      <strong>Tolia es a la aromaterapia lo que Nespresso fue al café.</strong> Nespresso no inventó el café —
+                      eliminó cada punto de fricción entre el deseo y el consumo. ¿El resultado? El consumo de café se triplicó.
+                      Los ingresos recurrentes de consumibles se convirtieron en 10× los ingresos de la máquina. Tolia aplica exactamente la misma estrategia a los aceites esenciales:
+                      enrosque el frasco, presione el botón, difunda. Cambie de mezcla en 1 segundo. La complejidad desaparece.
+                      El ritual diario comienza. Y con cada ritual, su cliente compra más aceite.
+                    </>
+                  )}
                </p>
             </div>
           </div>

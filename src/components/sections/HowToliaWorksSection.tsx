@@ -10,7 +10,7 @@ const HowToliaWorksSection: React.FC = () => {
 
   const eyebrow = t3(l, 'TODO FR', 'The Twist & Mist system', 'TODO ES');
   const headline = t3(l, 'TODO FR', 'One twist. One mist. Every day.', 'TODO ES');
-  const subheadline = t3(l, 'TODO FR', 'A patented capsule system designed so your end-users never have to think about their diffuser.', 'TODO ES');
+  const subheadline = t3(l, 'Un système breveté conçu pour que vos clients ne pensent plus jamais à leur diffuseur.', 'A patented bottle-based system designed so your end-users never have to think about their diffuser.', 'Un sistema patentado diseñado para que sus clientes nunca más piensen en su difusor.');
 
   const steps = [
     { num: '01', icon: RotateCw, title: t3(l, 'TODO FR', 'Twist', 'TODO ES'), desc: t3(l, 'TODO FR', 'Screw the bottle onto its diffusion module.', 'TODO ES') },
