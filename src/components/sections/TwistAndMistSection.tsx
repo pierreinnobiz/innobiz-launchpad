@@ -9,12 +9,37 @@ import step3Poster from '@/assets/twist-mist-step3.webp';
 import step4Poster from '@/assets/twist-mist-step4.webp';
 
 const steps = [
-  { icon: RotateCw, title: 'Twist', desc: 'Screw the essential oil bottle onto its Twist & Mist module.', video: '/videos/twist-step1.mp4', poster: step1Poster },
-  { icon: Layers, title: 'Clip', desc: 'Slide the module into Tolia in under a second.', video: '/videos/twist-step2.mp4', poster: step2Poster },
-  { icon: Power, title: 'Press', desc: 'One touch, cold dry-air diffusion begins instantly.', video: '/videos/twist-step3.mp4', poster: step3Poster },
-  { icon: RefreshCw, title: 'Switch', desc: 'Change blends in less than a second, no cleaning, no waste.', video: '/videos/twist-step4.mp4', poster: step4Poster },
+  {
+    icon: RotateCw,
+    title: 'Twist',
+    desc: 'Screw the essential oil bottle directly onto the Twist & Mist nebulisation module. That\'s it. No measuring, no filling, no fuss.',
+    video: '/videos/twist-step1.mp4',
+    poster: step1Poster,
+  },
+  {
+    icon: Layers,
+    title: 'Clip',
+    desc: 'Insert the module into the Tolia diffuser. The patented system clips in within a second — as simple as placing a cap.',
+    video: '/videos/twist-step2.mp4',
+    poster: step2Poster,
+  },
+  {
+    icon: Power,
+    title: 'Mist',
+    desc: 'Press the button. Cold dry-air nebulisation, with no water or heat, preserves 100% of the essential oil\'s active compounds. Pure, immediate diffusion.',
+    video: '/videos/twist-step3.mp4',
+    poster: step3Poster,
+  },
+  {
+    icon: RefreshCw,
+    title: 'Switch',
+    desc: 'Switch blends in an instant. Unscrew, screw on another bottle, and you\'re set. Energising morning, relaxing evening — one diffuser, all your oils.',
+    video: '/videos/twist-step4.mp4',
+    poster: step4Poster,
+  },
 ];
 
+/** Video clip that loops when scrolled into view, pauses when out */
 const StepVideo: React.FC<{ src: string; poster: string; alt: string }> = ({ src, poster, alt }) => {
   const ref = useRef<HTMLVideoElement>(null);
 
@@ -23,8 +48,12 @@ const StepVideo: React.FC<{ src: string; poster: string; alt: string }> = ({ src
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) { el.play().catch(() => {}); }
-        else { el.pause(); el.currentTime = 0; }
+        if (entry.isIntersecting) {
+          el.currentTime = 0;
+          el.play().catch(() => {});
+        } else {
+          el.pause();
+        }
       },
       { threshold: 0.4 },
     );
@@ -40,8 +69,8 @@ const StepVideo: React.FC<{ src: string; poster: string; alt: string }> = ({ src
       muted
       loop
       playsInline
-      preload="none"
-      className="w-full aspect-square object-cover rounded-xl"
+      preload="metadata"
+      className="w-full aspect-[4/3] object-cover"
       aria-label={alt}
     />
   );
@@ -66,7 +95,7 @@ const TwistAndMistSection: React.FC = () => {
             One twist. One mist. Every single day.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
-            A patented system so simple your end-user never thinks about the diffuser — only about the ritual.
+            A patented capsule system so simple your end-user never thinks about the diffuser — only about the ritual.
           </p>
         </motion.div>
 
@@ -82,22 +111,24 @@ const TwistAndMistSection: React.FC = () => {
               className="bg-card rounded-2xl border border-border/40 overflow-hidden
                 transition-all duration-500 hover:shadow-[0_12px_40px_-8px_hsl(28_45%_48%/0.12)] hover:-translate-y-1"
             >
-              {/* Video */}
+              {/* Video with step badge */}
               <div className="relative">
                 <StepVideo src={step.video} poster={step.poster} alt={`Step ${i + 1}: ${step.title}`} />
-                <div className="absolute top-3 left-3 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                <div className="absolute top-3 left-3 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white shadow-lg"
                   style={{ background: 'hsl(28 45% 48%)' }}>
-                  {i + 1}
+                  {String(i + 1).padStart(2, '0')}
                 </div>
               </div>
 
-              {/* Text */}
-              <div className="p-5 text-center">
-                <div className="w-10 h-10 rounded-xl mx-auto flex items-center justify-center mb-3"
-                  style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
-                  <step.icon className="w-5 h-5" style={{ color: 'hsl(28 45% 48%)' }} />
+              {/* Text content */}
+              <div className="p-5">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
+                    <step.icon className="w-4.5 h-4.5" style={{ color: 'hsl(28 45% 48%)' }} />
+                  </div>
+                  <h3 className="font-bold text-foreground text-lg">{step.title}</h3>
                 </div>
-                <h3 className="font-bold text-foreground text-lg mb-1">{step.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
               </div>
             </motion.div>
