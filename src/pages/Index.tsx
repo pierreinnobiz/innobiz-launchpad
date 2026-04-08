@@ -10,13 +10,13 @@ import { useDocumentLang } from '@/hooks/useDocumentLang';
 // Lazy factories
 const lazyProblem = () => import('@/components/sections/ProblemSection');
 const lazyTechComparison = () => import('@/components/sections/TechnologyComparisonSection');
-// const lazyHowToliaWorks = () => import('@/components/sections/BottleToRoutineSection'); // TODO Part 3
+const lazyHowToliaWorks = () => import('@/components/sections/HowToliaWorksSection');
 const lazyBusinessImpact = () => import('@/components/sections/BusinessImpactSection');
 const lazyTwoWays = () => import('@/components/sections/TwoWaysSection');
 const lazyMarketProof = () => import('@/components/sections/MarketProofSection');
 const lazyBrandMarquee = () => import('@/components/sections/BrandMarqueeSection');
 const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection');
-// const lazyFAQ = () => import('@/components/sections/FAQSection'); // TODO Part 3
+const lazyFAQ = () => import('@/components/sections/FAQSection');
 const lazyContact = () => import('@/components/sections/ContactSection');
 
 const Index: React.FC = () => {
@@ -43,10 +43,11 @@ const Index: React.FC = () => {
       {/* 3. Technology Comparison */}
       <LazySection factory={lazyTechComparison} fallbackHeight="1000px" />
 
-      {/* 4. How Tolia Works — TODO Part 3 */}
+      {/* 4. How Tolia Works */}
+      <LazySection factory={lazyHowToliaWorks} fallbackHeight="700px" />
 
-      {/* Tech (light) → Impact (dark) */}
-      <SectionGradient from="hsl(33 35% 94%)" to="hsl(25 20% 12%)" height="200px" />
+      {/* HowToliaWorks (light) → Impact (dark) */}
+      <SectionGradient from="hsl(35 30% 96%)" to="hsl(25 20% 12%)" height="200px" />
 
       {/* 5. Business Impact */}
       <LazySection factory={lazyBusinessImpact} fallbackHeight="800px" />
@@ -69,10 +70,11 @@ const Index: React.FC = () => {
       {/* 9. Why Innobiz */}
       <LazySection factory={lazyWhyInnobiz} fallbackHeight="600px" />
 
-      {/* 10. FAQ — TODO Part 3 */}
-
-      {/* WhyInnobiz (dark) → Contact (light) */}
+      {/* WhyInnobiz (dark) → FAQ (light) */}
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 97%)" height="200px" />
+
+      {/* 10. FAQ */}
+      <LazySection factory={lazyFAQ} fallbackHeight="1200px" />
 
       {/* 11. Contact */}
       <LazySection factory={lazyContact} fallbackHeight="800px" />
