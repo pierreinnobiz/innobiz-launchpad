@@ -43,11 +43,13 @@ const FourInnovationsSection: React.FC = () => {
             Four innovations in one diffuser
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            No more compromises.
+            Every existing diffuser forces a trade-off. Tolia eliminates all four.
           </h2>
-          <p className="text-base md:text-lg text-muted-foreground font-light">
-            Until now, every diffuser made you choose: portable OR powerful, silent OR effective, simple OR flexible.
-            Tolia is the first to deliver all four at once — thanks to 20 years of controlled-nebulization R&D.
+          <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
+            Portable but weak. Silent but inefficient. Simple but inflexible. Until now, brands had to pick which compromise
+            their customers would live with — and which one would eventually send the diffuser to the closet.
+            Tolia is the first diffuser that delivers autonomy, silence, simplicity and pure-oil efficacy in a single device,
+            thanks to 20 years of controlled-nebulization R&D by Innobiz.
           </p>
         </motion.div>
 
