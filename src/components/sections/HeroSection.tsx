@@ -103,6 +103,7 @@ const handleCTA = (type: 'white-label' | 'stock', label: string) => {
   url.searchParams.set('type', type);
   url.hash = '#contact';
   window.history.replaceState(null, '', url.toString());
+  window.dispatchEvent(new Event('tolia:pathchange'));
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 };
 

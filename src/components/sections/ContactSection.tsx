@@ -51,12 +51,20 @@ const ContactSection: React.FC = () => {
   const [stockCountry, setStockCountry] = useState('');
   const [stockTiming, setStockTiming] = useState('');
 
-  // Pre-fill from URL param
+  // Pre-fill from URL param — re-read whenever the URL changes (e.g. hero CTA replaceState)
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const type = params.get('type');
-    if (type === 'stock' || type === 'order') setPath('stock');
-    else setPath('white-label');
+    const readParam = () => {
+      const params = new URLSearchParams(window.location.search);
+      const type = params.get('type');
+      if (type === 'stock' || type === 'order') setPath('stock');
+      else setPath('white-label');
+    };
+    readParam();
+
+    // Listen for custom event dispatched by CTAs after replaceState
+    const handler = () => readParam();
+    window.addEventListener('tolia:pathchange', handler);
+    return () => window.removeEventListener('tolia:pathchange', handler);
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
