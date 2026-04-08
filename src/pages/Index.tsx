@@ -86,6 +86,9 @@ const Index: React.FC = () => {
       {/* 11. RSE / Réparabilité */}
       <LazySection factory={lazyRSE} fallbackHeight="800px" />
 
+      {/* RSE (warm sand) → Rationalization (light) */}
+      <SectionGradient from="hsl(30 25% 93%)" to="hsl(35 30% 96%)" height="120px" />
+
       {/* 12. Rationalisation de gamme */}
       <LazySection factory={lazyRangeRationalization} fallbackHeight="900px" />
 
