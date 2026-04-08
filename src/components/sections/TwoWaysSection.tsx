@@ -10,6 +10,15 @@ const fadeUp: Variants = {
   visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
+const comparisonRows = [
+  { label: 'Ideal for', wl: 'Brands building a signature diffuser line', stock: 'Brands adding Tolia to an existing range' },
+  { label: 'Branding', wl: 'Fully custom (unit, capsules, packaging)', stock: 'Branded Tolia, co-branded packaging option' },
+  { label: 'MOQ', wl: 'On request (project-based)', stock: '300 to 500 pieces' },
+  { label: 'Lead time', wl: '12 to 20 weeks', stock: 'Ships from stock, 2 to 4 weeks' },
+  { label: 'Customization', wl: 'Full — color, logo, capsule blends, box', stock: 'Co-branded sleeve, neutral inner packaging' },
+  { label: 'Time to launch', wl: '3 to 6 months', stock: 'Under 1 month' },
+];
+
 const TwoWaysSection: React.FC = () => {
   const cards = [
     {
@@ -59,7 +68,8 @@ const TwoWaysSection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* Two cards */}
+        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
           {cards.map((card, i) => (
             <motion.div
               key={i}
@@ -99,6 +109,62 @@ const TwoWaysSection: React.FC = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Comparison table — desktop */}
+        <motion.div
+          className="hidden md:block max-w-5xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <div className="rounded-2xl border border-border/60 overflow-hidden bg-card">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border/60">
+                  <th className="text-left p-4 font-medium text-muted-foreground w-1/4"></th>
+                  <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(28 45% 48%)' }}>White Label</th>
+                  <th className="text-left p-4 font-bold text-foreground w-[37.5%]" style={{ color: 'hsl(220 40% 45%)' }}>Stock Order</th>
+                </tr>
+              </thead>
+              <tbody>
+                {comparisonRows.map((row, i) => (
+                  <tr key={i} className={i < comparisonRows.length - 1 ? 'border-b border-border/40' : ''}>
+                    <td className="p-4 font-medium text-muted-foreground">{row.label}</td>
+                    <td className="p-4 text-foreground/90">{row.wl}</td>
+                    <td className="p-4 text-foreground/90">{row.stock}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
+
+        {/* Comparison table — mobile (stacked cards) */}
+        <motion.div
+          className="md:hidden space-y-6"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {[
+            { title: 'White Label', color: 'hsl(28 45% 48%)', key: 'wl' as const },
+            { title: 'Stock Order', color: 'hsl(220 40% 45%)', key: 'stock' as const },
+          ].map((col) => (
+            <div key={col.key} className="rounded-2xl border border-border/60 bg-card p-6">
+              <h4 className="font-bold text-lg mb-4" style={{ color: col.color }}>{col.title}</h4>
+              <dl className="space-y-3">
+                {comparisonRows.map((row, i) => (
+                  <div key={i}>
+                    <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wide">{row.label}</dt>
+                    <dd className="text-sm text-foreground/90 mt-0.5">{row[col.key]}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );
