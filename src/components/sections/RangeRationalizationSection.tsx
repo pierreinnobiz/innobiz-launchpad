@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { Layers, Rocket, CheckCircle, ArrowRight, Gift } from 'lucide-react';
+import toliaOneForAll from '@/assets/tolia-one-for-all.jpg';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 import { useLanguage } from '@/contexts/LanguageContext';
