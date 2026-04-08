@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { t3 } from '@/lib/t3';
 
 const HeroVideo: React.FC = () => {
   const [hasError, setHasError] = useState(false);
@@ -106,6 +108,7 @@ const handleCTA = (type: 'white-label' | 'stock', label: string) => {
 };
 
 const HeroSection: React.FC = () => {
+  const { language } = useLanguage();
   const sectionRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -115,49 +118,54 @@ const HeroSection: React.FC = () => {
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 0.7]);
 
   const stats = [
-    { value: '100K+', label: 'units sold in just 7 months' },
-    { value: '×4 to ×6', label: 'more oil purchased per customer' },
-    { value: '€22 → €82', label: 'annual margin per customer' },
+    { value: '100K+', label: t3(language, 'unités vendues en seulement 7 mois', 'units sold in just 7 months', 'unidades vendidas en solo 7 meses') },
+    { value: '×4 to ×6', label: t3(language, "plus d'huiles achetées par client", 'more oil purchased per customer', 'más aceites comprados por cliente') },
+    { value: '€22 → €82', label: t3(language, 'marge annuelle par client', 'annual margin per customer', 'margen anual por cliente') },
   ];
 
   return (
     <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Video with parallax zoom */}
       <motion.div className="absolute inset-0" style={{ scale: videoScale }}>
         <HeroVideo />
       </motion.div>
 
-      {/* Dynamic overlay */}
       <motion.div className="absolute inset-0 bg-black" style={{ opacity: overlayOpacity }} />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
-      {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-end pb-24 md:pb-32 px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl space-y-6">
-          {/* Eyebrow */}
           <motion.span
             className="text-xs sm:text-sm uppercase tracking-[0.15em] text-white/60 font-medium block"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            For directors of aromatherapy, essential oil &amp; natural wellness brands
+            {t3(language,
+              "Pour les directeurs de marques d'aromathérapie, d'huiles essentielles et de bien-être naturel",
+              'For directors of aromatherapy, essential oil & natural wellness brands',
+              'Para directores de marcas de aromaterapia, aceites esenciales y bienestar natural'
+            )}
           </motion.span>
 
-          {/* Headline */}
-          <AnimatedTitle text="Your customers buy a diffuser once — then never reorder oils. Tolia changes that." delay={0.5} />
+          <AnimatedTitle text={t3(language,
+            "Vos clients achètent un diffuseur une fois — puis ne recommandent plus jamais d'huiles. Tolia change la donne.",
+            'Your customers buy a diffuser once — then never reorder oils. Tolia changes that.',
+            'Sus clientes compran un difusor una vez — y nunca vuelven a pedir aceites. Tolia cambia eso.'
+          )} delay={0.5} />
 
-          {/* Subheadline */}
           <motion.p
             className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl font-light leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            The patented Twist &amp; Mist system turns essential oil diffusion into a 10-second daily ritual — so simple that customers use it every day and reorder oils 4× to 6× more often. That's not a promise. It's already measured across 100,000+ units sold.
+            {t3(language,
+              "Le système breveté Twist & Mist transforme la diffusion d'huiles essentielles en un rituel quotidien de 10 secondes — si simple que les clients l'utilisent chaque jour et recommandent des huiles 4× à 6× plus souvent. Ce n'est pas une promesse. C'est déjà mesuré sur plus de 100 000 unités vendues.",
+              "The patented Twist & Mist system turns essential oil diffusion into a 10-second daily ritual — so simple that customers use it every day and reorder oils 4× to 6× more often. That's not a promise. It's already measured across 100,000+ units sold.",
+              'El sistema patentado Twist & Mist convierte la difusión de aceites esenciales en un ritual diario de 10 segundos — tan simple que los clientes lo usan cada día y reordenan aceites 4× a 6× más seguido. No es una promesa. Ya está medido en más de 100.000 unidades vendidas.'
+            )}
           </motion.p>
 
-          {/* Stat strip */}
           <motion.div
             className="flex flex-wrap gap-8 md:gap-12 pt-2"
             initial={{ opacity: 0, y: 20 }}
@@ -172,7 +180,6 @@ const HeroSection: React.FC = () => {
             ))}
           </motion.div>
 
-          {/* Dual CTA */}
           <motion.div
             className="flex flex-wrap gap-4 pt-4"
             initial={{ opacity: 0, y: 20 }}
@@ -183,25 +190,28 @@ const HeroSection: React.FC = () => {
               className="h-12 px-8 text-sm font-semibold rounded-full bg-white text-black hover:bg-white/90"
               onClick={() => handleCTA('white-label', 'hero_cta_whitelabel')}
             >
-              Launch your white-label program
+              {t3(language, 'Lancez votre programme marque blanche', 'Launch your white-label program', 'Lance su programa de marca blanca')}
             </Button>
             <Button
               variant="outline"
               className="h-12 px-8 text-sm font-semibold rounded-full border-white/40 text-white hover:bg-white/10 bg-transparent"
               onClick={() => handleCTA('stock', 'hero_cta_stock')}
             >
-              Order branded Tolia — from 300 units
+              {t3(language, 'Commandez Tolia brandé — dès 300 unités', 'Order branded Tolia — from 300 units', 'Pida Tolia con su marca — desde 300 unidades')}
             </Button>
           </motion.div>
 
-          {/* Micro-trust line */}
           <motion.p
             className="text-xs text-white/35 font-light pt-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 2.5 }}
           >
-            20 years of proprietary diffusion R&D · Designed &amp; assembled in France · Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ industry leaders
+            {t3(language,
+              "20 ans de R&D propriétaire en diffusion · Conçu et assemblé en France · Utilisé par Pierre Fabre, Puressentiel, Arkopharma, Florame et 30+ leaders de l'industrie",
+              '20 years of proprietary diffusion R&D · Designed & assembled in France · Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ industry leaders',
+              '20 años de I+D propietaria en difusión · Diseñado y ensamblado en Francia · Usado por Pierre Fabre, Puressentiel, Arkopharma, Florame y 30+ líderes del sector'
+            )}
           </motion.p>
         </div>
       </div>
