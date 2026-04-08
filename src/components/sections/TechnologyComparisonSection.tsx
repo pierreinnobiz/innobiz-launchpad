@@ -7,10 +7,10 @@ import MagneticButton from '@/components/MagneticButton';
 import { trackCTAClick } from '@/lib/tracking';
 
 const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30, filter: 'blur(6px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
+  hidden: { opacity: 0, y: 30, filter: 'blur(10px)' },
+  visible: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
-const stagger: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.08 } } };
+const stagger: Variants = { hidden: {}, visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } } };
 
 interface TechRow {
   name: string;
@@ -93,10 +93,15 @@ const TechnologyComparisonSection: React.FC = () => {
               </thead>
               <tbody>
                 {rows.map((row, i) => (
-                  <tr
+                  <motion.tr
                     key={i}
                     className={`border-t border-border/40 ${row.isTolia ? 'font-semibold' : ''}`}
                     style={row.isTolia ? { background: 'hsl(28 45% 48% / 0.06)' } : undefined}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.08 }}
+                    whileHover={{ backgroundColor: row.isTolia ? undefined : 'hsl(28 45% 48% / 0.03)' }}
                   >
                     <td className="p-4 align-top font-medium">{row.name}</td>
                     <td className="p-4 align-top text-muted-foreground">{row.how}</td>
@@ -104,7 +109,7 @@ const TechnologyComparisonSection: React.FC = () => {
                     <td className="p-4 align-top" style={{ color: 'hsl(28 45% 42%)' }}>
                       {row.isTolia ? <strong>{row.advantage}</strong> : row.advantage}
                     </td>
-                  </tr>
+                  </motion.tr>
                 ))}
               </tbody>
             </table>
