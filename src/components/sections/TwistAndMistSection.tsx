@@ -1,14 +1,51 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { RotateCw, Layers, Power, RefreshCw } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 
+import step1Poster from '@/assets/twist-mist-step1.webp';
+import step2Poster from '@/assets/twist-mist-step2.webp';
+import step3Poster from '@/assets/twist-mist-step3.webp';
+import step4Poster from '@/assets/twist-mist-step4.webp';
+
 const steps = [
-  { icon: RotateCw, title: 'Twist', desc: 'Screw the essential oil bottle onto its Twist & Mist module.' },
-  { icon: Layers, title: 'Clip', desc: 'Slide the module into Tolia in under a second.' },
-  { icon: Power, title: 'Press', desc: 'One touch, cold dry-air diffusion begins instantly.' },
-  { icon: RefreshCw, title: 'Switch', desc: 'Change blends in less than a second, no cleaning, no waste.' },
+  { icon: RotateCw, title: 'Twist', desc: 'Screw the essential oil bottle onto its Twist & Mist module.', video: '/videos/twist-step1.mp4', poster: step1Poster },
+  { icon: Layers, title: 'Clip', desc: 'Slide the module into Tolia in under a second.', video: '/videos/twist-step2.mp4', poster: step2Poster },
+  { icon: Power, title: 'Press', desc: 'One touch, cold dry-air diffusion begins instantly.', video: '/videos/twist-step3.mp4', poster: step3Poster },
+  { icon: RefreshCw, title: 'Switch', desc: 'Change blends in less than a second, no cleaning, no waste.', video: '/videos/twist-step4.mp4', poster: step4Poster },
 ];
+
+const StepVideo: React.FC<{ src: string; poster: string; alt: string }> = ({ src, poster, alt }) => {
+  const ref = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) { el.play().catch(() => {}); }
+        else { el.pause(); el.currentTime = 0; }
+      },
+      { threshold: 0.4 },
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <video
+      ref={ref}
+      src={src}
+      poster={poster}
+      muted
+      loop
+      playsInline
+      preload="none"
+      className="w-full aspect-square object-cover rounded-xl"
+      aria-label={alt}
+    />
+  );
+};
 
 const TwistAndMistSection: React.FC = () => {
   return (
@@ -33,7 +70,7 @@ const TwistAndMistSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* 4 steps */}
+        {/* 4 steps with video */}
         <motion.div
           className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
           initial="hidden" whileInView="visible"
@@ -42,18 +79,27 @@ const TwistAndMistSection: React.FC = () => {
         >
           {steps.map((step, i) => (
             <motion.div key={i} variants={fadeBlurUp}
-              className="p-6 md:p-8 bg-card rounded-2xl border border-border/40 text-center
+              className="bg-card rounded-2xl border border-border/40 overflow-hidden
                 transition-all duration-500 hover:shadow-[0_12px_40px_-8px_hsl(28_45%_48%/0.12)] hover:-translate-y-1"
             >
-              <div className="w-14 h-14 rounded-2xl mx-auto flex items-center justify-center mb-4"
-                style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
-                <step.icon className="w-7 h-7" style={{ color: 'hsl(28 45% 48%)' }} />
+              {/* Video */}
+              <div className="relative">
+                <StepVideo src={step.video} poster={step.poster} alt={`Step ${i + 1}: ${step.title}`} />
+                <div className="absolute top-3 left-3 w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white"
+                  style={{ background: 'hsl(28 45% 48%)' }}>
+                  {i + 1}
+                </div>
               </div>
-              <span className="text-xs font-bold uppercase tracking-widest block mb-1" style={{ color: 'hsl(28 45% 48%)' }}>
-                Step {i + 1}
-              </span>
-              <h3 className="font-bold text-foreground text-lg mb-2">{step.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+
+              {/* Text */}
+              <div className="p-5 text-center">
+                <div className="w-10 h-10 rounded-xl mx-auto flex items-center justify-center mb-3"
+                  style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
+                  <step.icon className="w-5 h-5" style={{ color: 'hsl(28 45% 48%)' }} />
+                </div>
+                <h3 className="font-bold text-foreground text-lg mb-1">{step.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+              </div>
             </motion.div>
           ))}
         </motion.div>
