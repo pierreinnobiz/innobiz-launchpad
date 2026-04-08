@@ -2,6 +2,7 @@ import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { ShoppingCart, AlertTriangle, Archive } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
+import closetImg from '@/assets/closet-syndrome.jpg';
 
 const steps = [
   {
@@ -51,6 +52,24 @@ const ClosetSyndromeSection: React.FC = () => {
           <p className="text-base md:text-lg text-muted-foreground font-light">
             It's not a branding problem. It's a friction problem. And it's quietly killing your oil repurchase revenue.
           </p>
+        </motion.div>
+
+        {/* Hero image — abandoned diffusers */}
+        <motion.div
+          className="max-w-4xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-xl"
+          initial={{ opacity: 0, scale: 0.96, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
+          viewport={{ once: true, margin: '-80px' }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <img
+            src={closetImg}
+            alt="Abandoned diffusers collecting dust in a closet — the invisible revenue leak"
+            className="w-full h-auto"
+            loading="lazy"
+            width={1280}
+            height={720}
+          />
         </motion.div>
 
         {/* 3-step timeline */}
