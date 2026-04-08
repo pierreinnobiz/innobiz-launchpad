@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BatteryFull, VolumeX, RefreshCw, Droplets } from 'lucide-react';
+import { BatteryFull, VolumeX, RefreshCw, Droplets, FlaskConical } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import TiltCard from '@/components/TiltCard';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -10,6 +10,24 @@ const FourInnovationsSection: React.FC = () => {
   const { language } = useLanguage();
 
   const cards = [
+    {
+      icon: FlaskConical,
+      title: t3(language, 'Compatibilité universelle — une première mondiale', 'Universal compatibility — a world first', 'Compatibilidad universal — una primicia mundial'),
+      desc: t3(language,
+        "Tolia est le seul diffuseur capable de nébuliser des huiles essentielles, des synergies, des hydrolats et des parfums d'intérieur. Testé et validé sur des centaines de formulations. Un seul appareil pour couvrir 100 % de votre gamme — aucun autre diffuseur ne peut en dire autant.",
+        "Tolia is the only diffuser capable of nebulising essential oils, blends, hydrosols, and home fragrances. Tested and validated on hundreds of formulations. One device to cover 100% of your range — no other diffuser can make that claim.",
+        'Tolia es el único difusor capaz de nebulizar aceites esenciales, mezclas, hidrolatos y fragancias para el hogar. Probado y validado en cientos de formulaciones. Un dispositivo para cubrir el 100 % de su gama — ningún otro difusor puede afirmar lo mismo.'
+      ),
+    },
+    {
+      icon: RefreshCw,
+      title: t3(language, 'Changement de flacon en 1 seconde', 'Bottle switch in 1 second', 'Cambio de frasco en 1 segundo'),
+      desc: t3(language,
+        "Dévissez un flacon, vissez-en un autre — fait en 1 seconde. Pas de nettoyage entre les synergies, zéro huile gaspillée. C'est ce qui rend les routines multi-synergies possibles — et ce qui génère les rachats d'huile.",
+        "Unscrew one bottle, screw on another — done in 1 second. No cleaning between blends, zero oil wasted. This is what makes multi-blend routines possible — and what drives repeat oil purchases.",
+        'Desenrosque un frasco, enrosque otro — hecho en 1 segundo. Sin limpieza entre mezclas, cero aceite desperdiciado. Esto es lo que hace posibles las rutinas multi-mezcla — y lo que impulsa las recompras de aceite.'
+      ),
+    },
     {
       icon: BatteryFull,
       title: t3(language, "8 heures d'autonomie sans fil", '8 hours of wireless autonomy', '8 horas de autonomía inalámbrica'),
@@ -26,15 +44,6 @@ const FourInnovationsSection: React.FC = () => {
         "Pas de pompe, pas de ventilateur, pas de vibration. Tolia est le seul diffuseur assez silencieux pour la méditation, le sommeil, le travail concentré et le yoga. Le silence supprime la dernière raison de ne pas l'allumer.",
         "No pump, no fan, no vibration. Tolia is the only diffuser quiet enough for meditation, sleep, deep work, and yoga. Silence removes the last reason not to turn it on.",
         'Sin bomba, sin ventilador, sin vibración. Tolia es el único difusor lo suficientemente silencioso para la meditación, el sueño, el trabajo concentrado y el yoga. El silencio elimina la última razón para no encenderlo.'
-      ),
-    },
-    {
-      icon: RefreshCw,
-      title: t3(language, 'Changement de synergie instantané', 'Instant blend switching', 'Cambio de mezcla instantáneo'),
-      desc: t3(language,
-        "Dévissez un flacon, vissez-en un autre — fait en moins de 3 secondes. Pas de nettoyage entre les synergies, zéro huile gaspillée. C'est ce qui rend les routines multi-synergies possibles — et ce qui génère les rachats d'huile.",
-        "Unscrew one bottle, screw on another — done in under 3 seconds. No cleaning between blends, zero oil wasted. This is what makes multi-blend routines possible — and what drives repeat oil purchases.",
-        'Desenrosque un frasco, enrosque otro — hecho en menos de 3 segundos. Sin limpieza entre mezclas, cero aceite desperdiciado. Esto es lo que hace posibles las rutinas multi-mezcla — y lo que impulsa las recompras de aceite.'
       ),
     },
     {
@@ -59,7 +68,7 @@ const FourInnovationsSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, 'Quatre ruptures. Zéro compromis.', 'Four breakthroughs. Zero compromise.', 'Cuatro avances. Cero compromisos.')}
+            {t3(language, 'Cinq ruptures. Zéro compromis.', 'Five breakthroughs. Zero compromise.', 'Cinco avances. Cero compromisos.')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
@@ -70,15 +79,15 @@ const FourInnovationsSection: React.FC = () => {
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
             {t3(language,
-              "Portable mais faible ? Silencieux mais inefficace ? Simple mais rigide ? Jusqu'ici, vos clients devaient choisir leur compromis — et quel que soit leur choix, le diffuseur finissait au placard. Tolia combine autonomie sans fil, silence total, changement de synergie instantané et nébulisation d'huile pure dans un seul appareil. Le fruit de 20 ans de R&D en nébulisation contrôlée par Innobiz — et la raison pour laquelle Tolia reste sur la table de nuit, pas dans le tiroir.",
-              "Portable but weak? Silent but inefficient? Simple but inflexible? Until now, your customers had to pick their compromise — and whichever they chose eventually sent the diffuser to the closet. Tolia combines wireless autonomy, total silence, instant blend switching, and pure-oil nebulisation into a single device. The result of 20 years of controlled-nebulization R&D by Innobiz — and the reason Tolia stays on the nightstand, not in the drawer.",
-              '¿Portátil pero débil? ¿Silencioso pero ineficiente? ¿Simple pero inflexible? Hasta ahora, sus clientes tenían que elegir su compromiso — y cualquiera que eligieran, el difusor terminaba en el armario. Tolia combina autonomía inalámbrica, silencio total, cambio de mezcla instantáneo y nebulización de aceite puro en un solo dispositivo. El resultado de 20 años de I+D en nebulización controlada por Innobiz — y la razón por la que Tolia permanece en la mesilla de noche, no en el cajón.'
+              "Portable mais faible ? Silencieux mais inefficace ? Compatible avec les huiles mais pas les hydrolats ni les parfums ? Jusqu'ici, vos clients devaient choisir leur compromis — et quel que soit leur choix, le diffuseur finissait au placard. Tolia est le premier et seul diffuseur qui combine compatibilité universelle (huiles essentielles, synergies, hydrolats et parfums d'intérieur), autonomie sans fil, silence total, changement de flacon en 1 seconde et nébulisation d'huile pure. Le fruit de 20 ans de R&D et de tests sur des centaines de formulations par Innobiz.",
+              "Portable but weak? Silent but inefficient? Compatible with oils but not hydrosols or home fragrances? Until now, your customers had to pick their compromise — and whichever they chose eventually sent the diffuser to the closet. Tolia is the first and only diffuser combining universal compatibility (essential oils, blends, hydrosols, and home fragrances), wireless autonomy, total silence, 1-second bottle switching, and pure-oil nebulisation. The result of 20 years of R&D and testing on hundreds of formulations by Innobiz.",
+              '¿Portátil pero débil? ¿Silencioso pero ineficiente? ¿Compatible con aceites pero no con hidrolatos ni fragancias? Hasta ahora, sus clientes tenían que elegir su compromiso — y cualquiera que eligieran, el difusor terminaba en el armario. Tolia es el primer y único difusor que combina compatibilidad universal (aceites esenciales, mezclas, hidrolatos y fragancias para el hogar), autonomía inalámbrica, silencio total, cambio de frasco en 1 segundo y nebulización de aceite puro. El resultado de 20 años de I+D y pruebas en cientos de formulaciones por Innobiz.'
             )}
           </p>
         </motion.div>
 
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+          className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
