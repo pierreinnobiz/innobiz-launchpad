@@ -5,17 +5,17 @@ import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import TiltCard from '@/components/TiltCard';
 
 const disciplines = [
-  { icon: Microscope, title: 'Microfluidic mastery', desc: 'Every liquid diffused perfectly, from thick oils to light fragrances.' },
-  { icon: Volume2, title: 'Silent ultrasonics', desc: 'Perfect mist, no noise, no heat, no premature wear.' },
-  { icon: Crosshair, title: 'Precision laser engineering', desc: 'Diffusion validated on 500+ cycles without obstruction.' },
-  { icon: Cpu, title: 'Smart embedded electronics', desc: 'Millimetric control, high autonomy, minimal energy use.' },
+  { icon: Microscope, title: 'Microfluidic mastery', desc: 'We engineer diffusion systems that handle every liquid — from thick resinous oils to light citrus essences — with equal precision and zero clogging.' },
+  { icon: Volume2, title: 'Silent ultrasonics', desc: 'Our proprietary acoustic engineering delivers powerful mist with zero audible noise. No pump, no fan — just pure, silent diffusion.' },
+  { icon: Crosshair, title: 'Precision laser nebulisation', desc: 'Every nozzle is laser-validated to perform flawlessly across 500+ diffusion cycles without degradation or obstruction.' },
+  { icon: Cpu, title: 'Smart embedded electronics', desc: 'Millimetric flow control, intelligent power management, and 8-hour autonomy — all in a device that weighs less than a smartphone.' },
 ];
 
 const chips = [
-  { icon: Calendar, label: 'Founded 2005', desc: '20 years of continuous diffusion R&D' },
-  { icon: Shield, label: 'Patent owner', desc: 'Twist & Mist is a fully owned Innobiz patent' },
-  { icon: Flag, label: 'Made in France', desc: 'Design, engineering, final assembly in our French facility' },
-  { icon: Wrench, label: 'Repairable by design', desc: 'Replaceable battery and modular parts → aligns with your RSE commitments' },
+  { icon: Calendar, label: 'Founded 2005', desc: '20 years of uninterrupted R&D in essential oil diffusion technology' },
+  { icon: Shield, label: 'Patent holder', desc: 'Twist & Mist is a fully owned, internationally protected Innobiz patent' },
+  { icon: Flag, label: 'Designed & assembled in France', desc: 'Engineering, prototyping, and final assembly in our French facility' },
+  { icon: Wrench, label: 'Repairable by design', desc: 'User-replaceable battery, modular components — aligns with your sustainability commitments and reduces waste' },
 ];
 
 const WhyInnobizSection: React.FC = () => {
@@ -39,14 +39,14 @@ const WhyInnobizSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 50% 65%)' }}>
-            The company behind Tolia
+            Who builds Tolia — and why it matters
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
-            20 years of French R&D — and the only company in the world mastering all 4 disciplines of perfect diffusion.
+            20 years of French R&D. The only company in the world mastering all 4 disciplines of perfect diffusion.
           </h2>
           <p className="text-white/60 leading-relaxed">
-            Innobiz has been designing and manufacturing essential oil diffusers since 2005.
-            Tolia is our 7th generation and our most strategic innovation — built on a technological moat no competitor has crossed.
+            Innobiz has been designing and manufacturing essential oil diffusion systems since 2005 — for some of the most demanding brands in pharmacy, wellness, and luxury fragrance.
+            Tolia is our 7th generation product and our most strategic innovation. It's built on a technological moat that took two decades to develop — and that no competitor has been able to replicate.
           </p>
         </motion.div>
 
@@ -87,7 +87,7 @@ const WhyInnobizSection: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <p className="text-base md:text-lg font-semibold text-white">
-            This unique combination is a technological lead that is structurally impossible for competitors to catch up with.
+            This unique combination of expertise — microfluidics, acoustics, laser engineering, and embedded electronics — is a structural competitive advantage that cannot be reverse-engineered or acquired overnight.
           </p>
         </motion.div>
 

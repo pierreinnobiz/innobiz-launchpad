@@ -7,23 +7,23 @@ import TiltCard from '@/components/TiltCard';
 const cards = [
   {
     icon: BatteryFull,
-    title: '8-hour battery autonomy',
-    desc: 'True wireless use. Office, bedroom, car, travel — your customer\'s ritual follows them everywhere.',
+    title: '8 hours of wireless autonomy',
+    desc: 'Your customer\'s wellness ritual isn\'t tied to a power outlet. Bedroom, office, car, travel — Tolia goes wherever they go. More places = more usage moments = more oil consumed.',
   },
   {
     icon: VolumeX,
-    title: '0 dB measured silence',
-    desc: 'Perfect for meditation, deep work, sleep. The diffuser you forget is running.',
+    title: 'Absolute silence — 0 dB measured',
+    desc: 'No pump, no fan, no vibration. Tolia is the only diffuser quiet enough for meditation, sleep, deep work, and yoga. Silence removes the last reason not to turn it on.',
   },
   {
     icon: RefreshCw,
-    title: 'Twist & Mist modules',
-    desc: 'Blend change in under 1 second. No waiting, no cleaning, zero waste of precious oil.',
+    title: 'Instant blend switching',
+    desc: 'Unscrew one bottle, screw on another — done in under 3 seconds. No cleaning between blends, zero oil wasted. This is what makes multi-blend routines possible — and what drives repeat oil purchases.',
   },
   {
     icon: Droplets,
-    title: 'Pure oil diffusion',
-    desc: 'No water, no heat. Maximum therapeutic efficacy. Aromatic properties fully preserved. Visible mist.',
+    title: '100% pure oil, 100% therapeutic efficacy',
+    desc: 'Cold dry-air nebulisation preserves every terpene, every active compound. No water dilution, no heat degradation. Your customer gets the full therapeutic benefit — and a visible, satisfying mist.',
   },
 ];
 
@@ -40,16 +40,15 @@ const FourInnovationsSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Four innovations in one diffuser
+            Four breakthroughs. Zero compromise.
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            Every existing diffuser forces a trade-off. Tolia eliminates all four.
+            Every diffuser on the market forces your customer to accept a trade-off. Tolia is the first that doesn't.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light leading-relaxed">
-            Portable but weak. Silent but inefficient. Simple but inflexible. Until now, brands had to pick which compromise
-            their customers would live with — and which one would eventually send the diffuser to the closet.
-            Tolia is the first diffuser that delivers autonomy, silence, simplicity and pure-oil efficacy in a single device,
-            thanks to 20 years of controlled-nebulization R&D by Innobiz.
+            Portable but weak? Silent but inefficient? Simple but inflexible? Until now, your customers had to pick their compromise — and whichever they chose eventually sent the diffuser to the closet.
+            Tolia combines wireless autonomy, total silence, instant blend switching, and pure-oil nebulisation into a single device.
+            The result of 20 years of controlled-nebulization R&D by Innobiz — and the reason Tolia stays on the nightstand, not in the drawer.
           </p>
         </motion.div>
 

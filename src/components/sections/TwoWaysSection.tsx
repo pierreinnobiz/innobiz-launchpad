@@ -35,12 +35,12 @@ const TwoWaysSection: React.FC = () => {
     {
       icon: Paintbrush,
       title: 'Launch Tolia under your own brand',
-      subtitle: 'For brands building a signature diffuser line',
+      subtitle: 'For brands that want a signature diffuser — fully customised, exclusively yours',
       bullets: [
-        'Custom branding and packaging',
-        'Co-developed blend range',
-        'Full industrial and regulatory support',
-        'MOQ on request — tailored to your launch plan',
+        'Your logo, your colors, your materials — a product that feels 100% yours',
+        'Co-developed essential oil blends tailored to your brand story',
+        'Full industrial, regulatory, and supply chain support from Innobiz',
+        'MOQ tailored to your launch plan — typically starting at 3,000 units',
       ],
       cta: 'Request a white-label consultation',
       type: 'white-label' as const,
@@ -49,13 +49,13 @@ const TwoWaysSection: React.FC = () => {
     },
     {
       icon: Package,
-      title: 'Add Tolia to your catalog — ready to ship',
-      subtitle: 'For brands that want to offer Tolia without a white-label program',
+      title: 'Add Tolia to your catalog — ships in weeks',
+      subtitle: 'For brands that want to offer Tolia immediately, without a full white-label program',
       bullets: [
-        'Units available from stock — from 300 pieces',
-        'Delivered as branded Tolia',
-        'Co-branded outer packaging option',
-        'Fastest time-to-market — under 1 month',
+        'Ready-to-ship inventory — minimum 300 units, from our French warehouse',
+        'Delivered as branded Tolia with full product documentation',
+        'Optional co-branded outer packaging to integrate with your range',
+        'Fastest time-to-market in the industry — products on shelf in under 1 month',
       ],
       cta: 'Request a stock-order quote',
       type: 'stock' as const,
@@ -70,13 +70,13 @@ const TwoWaysSection: React.FC = () => {
       <div className="section-container">
         <motion.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Go-to-market options
+            Your path to market — choose the one that fits
           </span>
           <h2 className="heading-section mb-4">
-            Two ways to work with Tolia
+            Two ways to work with Tolia. Both lead to recurring revenue.
           </h2>
           <p className="text-body-lg max-w-3xl mx-auto">
-            Whether you want a fully branded signature diffuser or a proven product ready to add to your range this quarter — Tolia adapts to your go-to-market.
+            Whether you want a fully branded signature diffuser built around your identity — or a proven, market-validated product ready to ship this quarter — Tolia adapts to your strategy and your timeline.
           </p>
         </motion.div>
 

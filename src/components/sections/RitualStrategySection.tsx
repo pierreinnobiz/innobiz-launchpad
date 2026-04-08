@@ -24,14 +24,15 @@ const RitualStrategySection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            The Ritual Strategy
+            The Ritual Strategy — your new growth engine
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            From occasional purchase to daily habit — 12 built-in repurchase occasions per year.
+            Stop selling oils randomly. Create 12 built-in repurchase occasions per year — per customer.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
-            Structure your oil range around 4 seasons × 3 moments of the day.
-            You create 12 identified rituals = 12 mechanically predictable sales per customer per year.
+            Today, your customer buys essential oils when they remember — maybe 2 or 3 times a year, unpredictably.
+            With Tolia's ritual framework, you structure your oil range around <strong className="text-foreground">4 seasons × 3 daily moments</strong>,
+            creating 12 clearly identified wellness rituals. Each ritual = one oil synergy sold = one predictable, repeatable purchase.
           </p>
         </motion.div>
 
@@ -104,12 +105,12 @@ const RitualStrategySection: React.FC = () => {
           transition={{ duration: 0.8 }}
         >
           <p className="text-base md:text-lg leading-relaxed font-medium text-center text-foreground mb-4">
-            <strong>12 seasonal sets = 12 modules sold per customer per year.</strong>
+            <strong>12 seasonal rituals = 12 oil purchases per customer per year — mechanical and predictable.</strong>
           </p>
           <p className="text-sm text-muted-foreground text-center leading-relaxed">
-            Before Tolia: 2 to 3 bottles of oil per customer per year, random and unpredictable.<br />
-            With Tolia + Ritual Strategy: 12+ essential oil synergies per customer per year, mechanically repurchased.<br />
-            <strong className="text-foreground">Result: oil consumption × 4 to × 6.</strong>
+            <strong className="text-foreground">Without Tolia:</strong> 2–3 essential oil bottles purchased per customer per year. Random timing. No loyalty. No predictability.<br />
+            <strong className="text-foreground">With Tolia + Ritual Strategy:</strong> 12+ targeted oil synergies per customer per year. Season-driven. Habit-forming. Automatically recurring.<br />
+            <strong className="text-foreground">The result: oil consumption multiplied by 4× to 6× — without any increase in marketing spend.</strong>
           </p>
         </motion.div>
 
@@ -121,8 +122,7 @@ const RitualStrategySection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          With Tolia, changing essential oil becomes as natural as turning on the lights or switching a playlist.
-          That's how you convert a one-shot sale into a yearly consumable stream.
+          With Tolia, changing essential oils becomes as natural as switching a playlist. Morning energy, afternoon focus, evening calm — your customer builds a daily habit, and your brand captures the revenue that comes with it.
         </motion.p>
       </div>
     </section>

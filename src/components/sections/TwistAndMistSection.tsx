@@ -13,28 +13,28 @@ const steps = [
   {
     icon: RotateCw,
     title: 'Twist',
-    desc: 'Screw the essential oil bottle directly onto the Twist & Mist nebulisation module. That\'s it. No measuring, no filling, no fuss.',
+    desc: 'Your customer screws their essential oil bottle directly onto the Twist & Mist nebulisation module. No measuring, no filling, no drops to count. The bottle becomes the cartridge — ready in 2 seconds.',
     video: '/videos/twist-step1.mp4',
     poster: step1Poster,
   },
   {
     icon: Layers,
     title: 'Clip',
-    desc: 'Insert the module into the Tolia diffuser. The patented system clips in within a second — as simple as placing a cap.',
+    desc: 'The module clips into the Tolia diffuser with a single click — as intuitive as placing a phone on its charger. No alignment, no force, no instructions needed.',
     video: '/videos/twist-step2.mp4',
     poster: step2Poster,
   },
   {
     icon: Power,
     title: 'Mist',
-    desc: 'Press the button. Cold dry-air nebulisation, with no water or heat, preserves 100% of the essential oil\'s active compounds. Pure, immediate diffusion.',
+    desc: 'One press. Cold dry-air nebulisation begins instantly — no water, no heat. 100% of the essential oil\'s therapeutic compounds are preserved and diffused as a pure, visible mist. This is pharmaceutical-grade diffusion made effortless.',
     video: '/videos/twist-step3.mp4',
     poster: step3Poster,
   },
   {
     icon: RefreshCw,
     title: 'Switch',
-    desc: 'Switch blends in an instant. Unscrew, screw on another bottle, and you\'re set. Energising morning, relaxing evening — one diffuser, all your oils.',
+    desc: 'Changing blends takes under 3 seconds: unscrew, screw on another bottle, done. Energising peppermint in the morning, calming lavender at night — one diffuser, unlimited rituals, zero cleaning between blends.',
     video: '/videos/twist-step4.mp4',
     poster: step4Poster,
   },
@@ -90,13 +90,13 @@ const TwistAndMistSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            The Twist & Mist system
+            The Twist & Mist system — patented
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            One twist. One mist. Every single day.
+            One twist. One mist. Every single day. Here's exactly how it works.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
-            A patented capsule system so simple your end-user never thinks about the diffuser — only about the ritual.
+            Twist & Mist replaces the entire ritual of traditional diffusion — filling, cleaning, measuring — with a single 10-second gesture. The result? Your customer doesn't think about the diffuser anymore. They just think about which oil to use today. And <strong className="text-foreground">that's when they start reordering</strong>.
           </p>
         </motion.div>
 
@@ -157,12 +157,13 @@ const TwistAndMistSection: React.FC = () => {
               />
             </div>
             <div className="p-8 md:p-10 flex items-center md:w-3/5">
-              <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
-                <strong>Tolia is to aromatherapy what Nespresso is to coffee.</strong> Nespresso didn't invent coffee.
-                It eliminated friction. Result: coffee consumption multiplied by 3, recurring consumable revenue exploded.
-                Tolia applies the same strategy to essential oils. Screw the bottle, press, diffuse.
-                Change blend in under a second. The diffuser disappears. The ritual begins.
-              </p>
+               <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
+                 <strong>Tolia is to aromatherapy what Nespresso was to coffee.</strong> Nespresso didn't invent coffee —
+                 it removed every friction point between desire and consumption. The result? Coffee consumption tripled.
+                 Capsule revenue became 10× the machine revenue. Tolia applies exactly the same strategy to essential oils:
+                 screw the bottle, press the button, diffuse. Change blends in 3 seconds. The complexity disappears.
+                 The daily ritual begins. And with every ritual, your customer buys more oil.
+               </p>
             </div>
           </div>
         </motion.div>
@@ -175,7 +176,7 @@ const TwistAndMistSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          No water. No cleaning. No measuring. No learning curve. That's why Tolia gets used every single day — and why your oils finally sell on a recurring basis.
+          No water to fill. No tank to clean. No drops to measure. No instructions to read. That's why Tolia gets used every single day — and why, for the first time, your essential oils sell on a truly recurring basis.
         </motion.p>
       </div>
     </section>

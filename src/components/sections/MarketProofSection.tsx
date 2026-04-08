@@ -56,9 +56,9 @@ const AnimatedStat: React.FC<{ value: string; label: string; desc: string }> = (
 
 const MarketProofSection: React.FC = () => {
   const stats = [
-    { value: '100K+', label: 'units sold in 7 months', desc: 'Fastest launch in Innobiz\'s 20-year history.' },
-    { value: '3.8×', label: 'oil sales vs. traditional diffusers', desc: 'Measured in the same category.' },
-    { value: '100%', label: 'purchase transfer confirmed', desc: 'Customers are abandoning their old diffusers to switch to Twist & Mist.' },
+    { value: '100K+', label: 'units sold in just 7 months', desc: 'The fastest product launch in Innobiz\'s 20-year history. Consumer demand validated at scale.' },
+    { value: '3.8×', label: 'more essential oils sold per customer', desc: 'Measured head-to-head vs. traditional diffusers within the same brand and retail channel.' },
+    { value: '100%', label: 'purchase transfer from old diffusers', desc: 'Customers are actively abandoning their previous diffusers to switch to Twist & Mist — permanently.' },
   ];
 
   return (
@@ -72,13 +72,13 @@ const MarketProofSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Proven in market
+            Not a prototype. Not a concept. Proven at scale.
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            100,000+ units sold in 7 months. Your competitors may already be selling it.
+            100,000+ units already in consumers' hands — and your competitors may already be selling it.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
-            Tolia is not a concept or a Kickstarter. Consumers have already validated the technology with the fastest launch curve in our history.
+            Tolia isn't a crowdfunding campaign or a lab experiment. It's a market-validated product with the fastest adoption curve Innobiz has ever seen. The technology shift has already happened on the consumer side. The only question left is: will your brand capture it — or watch competitors do it first?
           </p>
         </motion.div>
 
@@ -104,7 +104,7 @@ const MarketProofSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          The technology shift has already happened on the consumer side. The only question is which brands will capture it.
+          The consumer shift to frictionless diffusion is already happening. Brands that move now will own the category. Those that wait will be catching up.
         </motion.p>
 
         {/* CTA */}

@@ -41,17 +41,17 @@ const AnimatedValue: React.FC<{ value: string }> = ({ value }) => {
 };
 
 const traditionalBullets = [
-  'Diffuser sold once → initial marketing investment',
-  '2 essential oil bottles sold per customer',
-  'To sell another diffuser → reinvest full marketing budget',
-  'Transactional, one-shot customer relationship',
+  'Diffuser sold once → all your marketing investment produces a single transaction',
+  'Customer buys 2 essential oil bottles, then stops — the diffuser is too complex to use daily',
+  'To acquire the next customer → reinvest the full marketing budget from scratch',
+  'No recurring relationship, no loyalty loop, no predictable revenue',
 ];
 
 const toliaBullets = [
-  'Diffuser sold once (full functionality from day 1)',
-  '12+ Twist & Mist modules / year (ritualized daily use)',
-  '4 seasonal gift sets / year (wellness routines)',
-  'Permanent customer relationship = mechanical recurrence',
+  'Diffuser sold once — but usage starts immediately and continues daily',
+  '12+ Twist & Mist oil synergies purchased per year through ritualized daily use',
+  '4 seasonal gift sets per year create natural upsell moments',
+  'Customer relationship becomes permanent = mechanical, predictable recurring revenue',
 ];
 
 const BusinessMathSection: React.FC = () => {
@@ -75,13 +75,14 @@ const BusinessMathSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 50% 65%)' }}>
-            The business math
+            The financial case — in black and white
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
-            €22 once, or €82 every year. You choose.
+            A traditional diffuser generates €22 of margin — once. Tolia generates €82 — every single year, per customer.
           </h2>
           <p className="text-white/60 leading-relaxed">
-            The real value of a diffuser is not the hardware margin. It's the oil repurchase stream it unlocks — year after year.
+            The real profitability of a diffuser isn't in the hardware sale. It's in the oil repurchase stream that follows — year after year, automatically.
+            Here's what changes when your diffuser is actually used every day.
           </p>
         </motion.div>
 
@@ -153,10 +154,10 @@ const BusinessMathSection: React.FC = () => {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <p className="text-xl md:text-2xl font-bold text-white mb-2">
-            €22 once → €82 every year = ×4 margin, year after year.
+            €22 once → €82 every year = your margin multiplied by 4×, compounding year after year.
           </p>
           <p className="text-xs text-white/40">
-            Plus 75% lower after-sales costs vs. ultrasonic (Innobiz field data across 10+ brand deployments).
+            Plus 75% lower after-sales costs compared to ultrasonic diffusers (measured across 10+ brand deployments by Innobiz).
           </p>
         </motion.div>
       </div>
