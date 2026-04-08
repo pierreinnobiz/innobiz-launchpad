@@ -2,7 +2,7 @@ import React from 'react';
 import { motion, type Variants } from 'framer-motion';
 import { ShoppingCart, AlertTriangle, Archive } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
-import closetImg from '@/assets/closet-syndrome.webp';
+import closetImg from '@/assets/closet-syndrome.jpg';
 
 const steps = [
   {
@@ -56,7 +56,7 @@ const ClosetSyndromeSection: React.FC = () => {
 
         {/* Hero image — abandoned diffusers */}
         <motion.div
-          className="max-w-4xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-xl"
+          className="max-w-2xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-xl"
           initial={{ opacity: 0, scale: 0.96, filter: 'blur(8px)' }}
           whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-80px' }}
@@ -67,8 +67,8 @@ const ClosetSyndromeSection: React.FC = () => {
             alt="Abandoned diffusers collecting dust in a closet — the invisible revenue leak"
             className="w-full h-auto"
             loading="lazy"
-            width={1280}
-            height={720}
+            width={1024}
+            height={576}
           />
         </motion.div>
 
