@@ -203,6 +203,7 @@ const BusinessImpactSection: React.FC = () => {
                     key={yr}
                     className="w-16 md:w-20 rounded-md"
                     style={{
+                      originX: 0,
                       height: '28px',
                       background: `hsl(28 50% ${45 + yr * 4}%)`,
                     }}
@@ -210,7 +211,6 @@ const BusinessImpactSection: React.FC = () => {
                     whileInView={{ scaleX: 1, opacity: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: 0.4 + yr * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                    style={{ originX: 0, height: '28px', background: `hsl(28 50% ${45 + yr * 4}%)` }}
                   />
                 ))}
               </div>
