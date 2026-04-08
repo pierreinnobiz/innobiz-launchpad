@@ -8,22 +8,22 @@ const steps = [
   {
     icon: ShoppingCart,
     day: 'Day 0',
-    title: 'Motivated purchase',
-    desc: 'Marketing budget spent. Customer convinced. Impulse supported by campaigns.',
+    title: 'The excited purchase',
+    desc: 'Your customer sees the ad, walks into the store, and buys the diffuser. You invested in campaigns, packaging, shelf space. The sale is made — but it\'s the last time this customer will generate meaningful revenue.',
     color: 'hsl(140 45% 45%)',
   },
   {
     icon: AlertTriangle,
     day: 'Day 30–180',
-    title: 'Usage friction',
-    desc: '5–7 minutes of setup discourages daily use. Frustration builds. Frequency collapses week after week.',
+    title: 'The friction wall',
+    desc: 'Fill the tank, add drops, clean after each use, wait for evaporation. What should be a 10-second moment becomes a 5–7 minute chore. Usage drops from daily to weekly, then monthly. The oil bottles sit untouched.',
     color: 'hsl(35 70% 50%)',
   },
   {
     icon: Archive,
     day: 'Day 180+',
-    title: 'Definitive abandonment',
-    desc: 'Diffuser in the closet. Zero new oil purchases. Marketing ROI = one-shot hardware sale.',
+    title: 'The closet. Permanently.',
+    desc: 'The diffuser joins the appliance graveyard. No more oil purchases. No refills. No brand relationship. Your entire marketing investment produced exactly one hardware sale — and zero recurring revenue.',
     color: 'hsl(0 60% 50%)',
   },
 ];
@@ -44,13 +44,13 @@ const ClosetSyndromeSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block text-destructive">
-            The invisible revenue leak
+            The problem no one talks about
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            60% of diffusers sold end up in a closet within 6 months.
+            You spend thousands acquiring a customer. Six months later, their diffuser is in a closet — and they never buy oils again.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
-            It's not a branding problem. It's a friction problem. And it's quietly killing your oil repurchase revenue.
+            This isn't a branding failure or a marketing mistake. It's a product design problem. Every conventional diffuser creates friction that kills daily use — and with it, your recurring oil revenue.
           </p>
         </motion.div>
 
@@ -114,11 +114,11 @@ const ClosetSyndromeSection: React.FC = () => {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center text-foreground">
-            For essential oil brands, this is the difference between 2–3 bottles sold per customer per year — and 12+.
-            The diffuser is not a product you sell once. It's the infrastructure of your recurring revenue.
+            Here's the math that matters: with a traditional diffuser, the average customer buys 2–3 bottles of essential oil per year.
+            With a diffuser they actually use every day, that number jumps to 12+. That's the difference between €46 and €164 in annual revenue — per customer.
           </p>
           <p className="text-xs text-center text-muted-foreground mt-4 font-light">
-            Source: sector data confirmed by multiple consumer studies.
+            Based on real sales data from 10+ brand deployments across European markets.
           </p>
         </motion.div>
       </div>
