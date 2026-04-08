@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { RotateCw, Layers, Power, RefreshCw } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
+import nespressoImg from '@/assets/nespresso-analogy.jpg';
 
 import step1Poster from '@/assets/twist-mist-step1.webp';
 import step2Poster from '@/assets/twist-mist-step2.webp';
