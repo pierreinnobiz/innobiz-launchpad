@@ -2,6 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { RotateCw, Layers, Power, RefreshCw } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
+import nespressoImg from '@/assets/nespresso-analogy.jpg';
 
 import step1Poster from '@/assets/twist-mist-step1.webp';
 import step2Poster from '@/assets/twist-mist-step2.webp';
@@ -137,19 +138,33 @@ const TwistAndMistSection: React.FC = () => {
 
         {/* Nespresso analogy */}
         <motion.div
-          className="max-w-4xl mx-auto rounded-2xl p-8 md:p-10 border-l-4 mb-10"
+          className="max-w-4xl mx-auto rounded-2xl overflow-hidden border-l-4 mb-10"
           style={{ background: 'hsl(28 45% 48% / 0.06)', borderLeftColor: 'hsl(28 45% 48%)' }}
           initial={{ opacity: 0, x: -40, filter: 'blur(6px)' }}
           whileInView={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         >
-          <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
-            <strong>Tolia is to aromatherapy what Nespresso is to coffee.</strong> Nespresso didn't invent coffee.
-            It eliminated friction. Result: coffee consumption multiplied by 3, recurring consumable revenue exploded.
-            Tolia applies the same strategy to essential oils. Screw the bottle, press, diffuse.
-            Change blend in under a second. The diffuser disappears. The ritual begins.
-          </p>
+          <div className="flex flex-col md:flex-row">
+            <div className="md:w-2/5 flex-shrink-0">
+              <img
+                src={nespressoImg}
+                alt="Nespresso machine with hundreds of consumed capsules — simplicity drives recurring consumption"
+                className="w-full h-full object-cover"
+                loading="lazy"
+                width={1280}
+                height={720}
+              />
+            </div>
+            <div className="p-8 md:p-10 flex items-center md:w-3/5">
+              <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
+                <strong>Tolia is to aromatherapy what Nespresso is to coffee.</strong> Nespresso didn't invent coffee.
+                It eliminated friction. Result: coffee consumption multiplied by 3, recurring consumable revenue exploded.
+                Tolia applies the same strategy to essential oils. Screw the bottle, press, diffuse.
+                Change blend in under a second. The diffuser disappears. The ritual begins.
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* Closing line */}
