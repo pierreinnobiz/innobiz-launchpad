@@ -29,7 +29,7 @@ const InnovationSection: React.FC = () => {
       <div className="section-container">
         <motion.div className="text-center mb-14" initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }} whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Innovation — Twist &amp; Mist
+            Innovation : Twist &amp; Mist
           </span>
           <h2 className="heading-section mb-4">
             {t3(l, 'Un diffuseur, un geste : changez d\'huile essentielle en une seconde', 'One diffuser, one gesture: switch essential oil in a second', 'Un difusor, un gesto: cambie de aceite esencial en un segundo')}
@@ -40,16 +40,16 @@ const InnovationSection: React.FC = () => {
           <motion.div className="flex-1 space-y-5" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
             <p className="text-base text-muted-foreground leading-relaxed">
               {t3(l,
-                'Grâce à son module de diffusion interchangeable et à la technologie Twist & Mist, Tolia permet de passer d\'une huile essentielle à une autre en une seconde — sans eau, sans nettoyage, en silence total. Compatible avec les flacons DIN 18 (5 à 50 ml), il remplace à lui seul la quasi‑totalité des diffuseurs du marché.',
-                'Thanks to its interchangeable diffusion module and Twist & Mist technology, Tolia lets you switch from one essential oil to another in a second — no water, no cleaning, in complete silence. Compatible with DIN 18 bottles (5 to 50 ml), it single-handedly replaces virtually every diffuser on the market.',
-                'Gracias a su módulo de difusión intercambiable y la tecnología Twist & Mist, Tolia permite cambiar de un aceite esencial a otro en un segundo — sin agua, sin limpieza, en completo silencio. Compatible con frascos DIN 18 (5 a 50 ml), reemplaza por sí solo prácticamente todos los difusores del mercado.'
+                'Grâce à son module de diffusion interchangeable et à la technologie Twist & Mist, Tolia permet de passer d\'une huile essentielle à une autre en une seconde, sans eau, sans nettoyage, en silence total. Compatible avec les flacons DIN 18 (5 à 50 ml), il remplace à lui seul la quasi‑totalité des diffuseurs du marché.',
+                'Thanks to its interchangeable diffusion module and Twist & Mist technology, Tolia lets you switch from one essential oil to another in a second. No water, no cleaning, in complete silence. Compatible with DIN 18 bottles (5 to 50 ml), it single-handedly replaces virtually every diffuser on the market.',
+                'Gracias a su módulo de difusión intercambiable y la tecnología Twist & Mist, Tolia permite cambiar de un aceite esencial a otro en un segundo. Sin agua, sin limpieza, en completo silencio. Compatible con frascos DIN 18 (5 a 50 ml), reemplaza por sí solo prácticamente todos los difusores del mercado.'
               )}
             </p>
             <p className="text-base text-muted-foreground leading-relaxed">
               {t3(l,
-                'Un seul appareil couvre 99,8 % des huiles essentielles, 100 % des synergies, les parfums d\'intérieur et les hydrolats compatibles — avec trois modes de diffusion, un minuteur 1 h / 2 h / 4 h et 50 h d\'autonomie sur batterie lithium remplaçable, rechargeable en USB‑C.',
-                'A single device covers 99.8% of essential oils, 100% of blends, home fragrances and compatible hydrosols — with three diffusion modes, a 1 h / 2 h / 4 h timer and 50 h battery life on a replaceable lithium battery, rechargeable via USB-C.',
-                'Un solo dispositivo cubre el 99,8 % de los aceites esenciales, el 100 % de las sinergias, las fragancias para el hogar y los hidrolatos compatibles — con tres modos de difusión, un temporizador de 1 h / 2 h / 4 h y 50 h de autonomía con batería de litio reemplazable, recargable por USB-C.'
+                'Un seul appareil couvre 99,8 % des huiles essentielles, 100 % des synergies, les parfums d\'intérieur et les hydrolats compatibles, avec trois modes de diffusion, un minuteur 1 h / 2 h / 4 h et 50 h d\'autonomie sur batterie lithium remplaçable, rechargeable en USB‑C.',
+                'A single device covers 99.8% of essential oils, 100% of blends, home fragrances and compatible hydrosols, with three diffusion modes, a 1 h / 2 h / 4 h timer and 50 h battery life on a replaceable lithium battery, rechargeable via USB-C.',
+                'Un solo dispositivo cubre el 99,8 % de los aceites esenciales, el 100 % de las sinergias, las fragancias para el hogar y los hidrolatos compatibles, con tres modos de difusión, un temporizador de 1 h / 2 h / 4 h y 50 h de autonomía con batería de litio reemplazable, recargable por USB-C.'
               )}
             </p>
             <p className="text-base text-muted-foreground leading-relaxed">

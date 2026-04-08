@@ -21,7 +21,7 @@ const HowToliaWorksSection: React.FC = () => {
 
   const closing = t3(l,
     'TODO FR',
-    "No water. No cleaning. No measuring. No learning curve. That's why Tolia gets used every single day — and why your oils sell.",
+    "No water. No cleaning. No measuring. No learning curve. That's why Tolia gets used every single day, and why your oils sell.",
     'TODO ES'
   );
 

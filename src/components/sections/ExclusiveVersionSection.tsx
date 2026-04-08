@@ -25,7 +25,7 @@ const ExclusiveVersionSection: React.FC = () => {
   ];
 
   const customBlocks = en ? [
-    { icon: Palette, title: "Product customisation", items: ["Colours: RAL, Pantone, bespoke creations.", "Materials: wood (oak, walnut, bamboo…), resin, glass, etc.", "Finishes: matt, gloss, soft-touch, metallic.", "Programming: diffusion durations, intensities, sequences tailored to your uses.", "Branding: logo, engraving, patterns, textures — so every Tolia carries your identity."] },
+    { icon: Palette, title: "Product customisation", items: ["Colours: RAL, Pantone, bespoke creations.", "Materials: wood (oak, walnut, bamboo…), resin, glass, etc.", "Finishes: matt, gloss, soft-touch, metallic.", "Programming: diffusion durations, intensities, sequences tailored to your uses.", "Branding: logo, engraving, patterns, textures, so every Tolia carries your identity."] },
     { icon: Package, title: "Packaging & unboxing experience", items: ["Gift box in your brand colours, refined interior design.", "Instructions and guides in your visual identity.", "Option to add cards, samples, QR codes linking to digital content."] },
     { icon: Camera, title: "Ready-to-use marketing kit", items: ["HD photos, videos, 3D animations, lifestyle visuals.", "Formats optimised for social media, website, newsletters and adverts.", "Goal: launch your version of Tolia quickly, with all communication assets already prepared."] },
   ] : [

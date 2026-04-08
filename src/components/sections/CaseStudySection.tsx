@@ -33,7 +33,7 @@ const CaseStudySection: React.FC = () => {
 
         <div className="grid lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
           <motion.div className="lg:col-span-2 rounded-3xl overflow-hidden" initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-            <img src={toliaCaseStudy} alt={t3(l, "Diffuseur Tolia en contexte professionnel – résultats clients avec ventes 3,8× supérieures aux diffuseurs traditionnels", "Tolia diffuser in professional context — client results with 3.8× higher sales than traditional diffusers", "Difusor Tolia en contexto profesional — resultados de clientes con ventas 3,8× superiores a los difusores tradicionales")} className="w-full h-full object-cover rounded-3xl no-select" draggable={false} loading="lazy" decoding="async" />
+            <img src={toliaCaseStudy} alt={t3(l, "Diffuseur Tolia en contexte professionnel – résultats clients avec ventes 3,8× supérieures aux diffuseurs traditionnels", "Tolia diffuser in professional context, client results with 3.8× higher sales than traditional diffusers", "Difusor Tolia en contexto profesional, resultados de clientes con ventas 3,8× superiores a los difusores tradicionales")} className="w-full h-full object-cover rounded-3xl no-select" draggable={false} loading="lazy" decoding="async" />
           </motion.div>
 
           <div className="lg:col-span-3">

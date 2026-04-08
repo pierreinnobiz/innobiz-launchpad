@@ -47,13 +47,13 @@ const BusinessMathSection: React.FC = () => {
 
   const traditionalBullets = [
     t3(language, "Diffuseur vendu une fois → tout votre investissement marketing produit une seule transaction", 'Diffuser sold once → all your marketing investment produces a single transaction', 'Difusor vendido una vez → toda su inversión de marketing produce una sola transacción'),
-    t3(language, "Le client achète 2 flacons d'huile essentielle, puis s'arrête — le diffuseur est trop complexe pour un usage quotidien", 'Customer buys 2 essential oil bottles, then stops — the diffuser is too complex to use daily', 'El cliente compra 2 frascos de aceite esencial, luego para — el difusor es demasiado complejo para uso diario'),
+    t3(language, "Le client achète 2 flacons d'huile essentielle, puis s'arrête. Le diffuseur est trop complexe pour un usage quotidien", 'Customer buys 2 essential oil bottles, then stops. The diffuser is too complex to use daily', 'El cliente compra 2 frascos de aceite esencial, luego para, el difusor es demasiado complejo para uso diario'),
     t3(language, "Pour acquérir le prochain client → réinvestir tout le budget marketing à zéro", 'To acquire the next customer → reinvest the full marketing budget from scratch', 'Para adquirir el siguiente cliente → reinvertir todo el presupuesto de marketing desde cero'),
     t3(language, "Aucune relation récurrente, aucune boucle de fidélité, aucun revenu prévisible", 'No recurring relationship, no loyalty loop, no predictable revenue', 'Sin relación recurrente, sin ciclo de fidelidad, sin ingresos predecibles'),
   ];
 
   const toliaBullets = [
-    t3(language, "Diffuseur vendu une fois — mais l'usage commence immédiatement et continue chaque jour", 'Diffuser sold once — but usage starts immediately and continues daily', 'Difusor vendido una vez — pero el uso comienza inmediatamente y continúa diariamente'),
+    t3(language, "Diffuseur vendu une fois, mais l'usage commence immédiatement et continue chaque jour", 'Diffuser sold once, but usage starts immediately and continues daily', 'Difusor vendido una vez, pero el uso comienza inmediatamente y continúa diariamente'),
     t3(language, "12+ synergies d'huile Twist & Mist achetées par an grâce à l'usage quotidien ritualisé", '12+ Twist & Mist oil synergies purchased per year through ritualized daily use', '12+ sinergias de aceite Twist & Mist compradas al año mediante uso diario ritualizado'),
     t3(language, "4 coffrets cadeaux saisonniers par an créent des opportunités naturelles d'upsell", '4 seasonal gift sets per year create natural upsell moments', '4 sets de regalo estacionales al año crean oportunidades naturales de upsell'),
     t3(language, "La relation client devient permanente = revenu récurrent mécanique et prévisible", 'Customer relationship becomes permanent = mechanical, predictable recurring revenue', 'La relación con el cliente se vuelve permanente = ingresos recurrentes mecánicos y predecibles'),
@@ -77,20 +77,20 @@ const BusinessMathSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 50% 65%)' }}>
-            {t3(language, 'Le cas financier — en noir et blanc', 'The financial case — in black and white', 'El caso financiero — en blanco y negro')}
+            {t3(language, 'Le cas financier : en noir et blanc', 'The financial case, in black and white', 'El caso financiero, en blanco y negro')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
             {t3(language,
-              'Un diffuseur traditionnel génère 22 € de marge — une seule fois. Tolia génère 82 € — chaque année, par client.',
-              'A traditional diffuser generates €22 of margin — once. Tolia generates €82 — every single year, per customer.',
-              'Un difusor tradicional genera 22 € de margen — una vez. Tolia genera 82 € — cada año, por cliente.'
+              'Un diffuseur traditionnel génère 22 € de marge. Une seule fois. Tolia génère 82 €. chaque année, par client.',
+              'A traditional diffuser generates €22 of margin, once. Tolia generates €82, every single year, per customer.',
+              'Un difusor tradicional genera 22 € de margen, una vez. Tolia genera 82 €. cada año, por cliente.'
             )}
           </h2>
           <p className="text-white/60 leading-relaxed">
             {t3(language,
-              "La vraie rentabilité d'un diffuseur n'est pas dans la vente du matériel. C'est dans le flux de rachat d'huiles qui suit — année après année, automatiquement. Voici ce qui change quand votre diffuseur est réellement utilisé chaque jour.",
-              "The real profitability of a diffuser isn't in the hardware sale. It's in the oil repurchase stream that follows — year after year, automatically. Here's what changes when your diffuser is actually used every day.",
-              'La verdadera rentabilidad de un difusor no está en la venta del hardware. Está en el flujo de recompra de aceites que sigue — año tras año, automáticamente. Esto es lo que cambia cuando su difusor se usa realmente cada día.'
+              "La vraie rentabilité d'un diffuseur n'est pas dans la vente du matériel. C'est dans le flux de rachat d'huiles qui suit, année après année, automatiquement. Voici ce qui change quand votre diffuseur est réellement utilisé chaque jour.",
+              "The real profitability of a diffuser isn't in the hardware sale. It's in the oil repurchase stream that follows, year after year, automatically. Here's what changes when your diffuser is actually used every day.",
+              'La verdadera rentabilidad de un difusor no está en la venta del hardware. Está en el flujo de recompra de aceites que sigue, año tras año, automáticamente. Esto es lo que cambia cuando su difusor se usa realmente cada día.'
             )}
           </p>
         </motion.div>
@@ -122,7 +122,7 @@ const BusinessMathSection: React.FC = () => {
             </ul>
             <div className="rounded-xl p-4 text-center" style={{ background: 'hsl(0 0% 100% / 0.05)' }}>
               <span className="text-3xl font-bold text-white/40">€<AnimatedValue value="22" /></span>
-              <span className="text-sm text-white/30 block mt-1">{t3(language, 'marge brute — une seule fois', 'gross margin — one time only', 'margen bruto — una sola vez')}</span>
+              <span className="text-sm text-white/30 block mt-1">{t3(language, 'marge brute. Une seule fois', 'gross margin, one time only', 'margen bruto, una sola vez')}</span>
             </div>
           </motion.div>
 
@@ -147,7 +147,7 @@ const BusinessMathSection: React.FC = () => {
             </ul>
             <div className="rounded-xl p-4 text-center" style={{ background: 'hsl(28 50% 65% / 0.15)' }}>
               <span className="text-3xl font-bold" style={{ color: 'hsl(28 50% 65%)' }}>€<AnimatedValue value="82" /></span>
-              <span className="text-sm block mt-1" style={{ color: 'hsl(28 50% 65% / 0.7)' }}>{t3(language, 'marge brute — récurrente chaque année', 'gross margin — recurring every year', 'margen bruto — recurrente cada año')}</span>
+              <span className="text-sm block mt-1" style={{ color: 'hsl(28 50% 65% / 0.7)' }}>{t3(language, 'marge brute, récurrente chaque année', 'gross margin, recurring every year', 'margen bruto, recurrente cada año')}</span>
             </div>
           </motion.div>
         </motion.div>

@@ -27,7 +27,7 @@ const TwoWaysSection: React.FC = () => {
 
   const comparisonRows = [
     { label: t3(language, 'Idéal pour', 'Ideal for', 'Ideal para'), wl: t3(language, 'Les marques créant une ligne de diffuseurs signature', 'Brands building a signature diffuser line', 'Marcas que crean una línea de difusores propia'), stock: t3(language, "Les marques ajoutant Tolia à une gamme existante", 'Brands adding Tolia to an existing range', 'Marcas que añaden Tolia a una gama existente') },
-    { label: t3(language, 'Branding', 'Branding', 'Branding'), wl: t3(language, 'Entièrement personnalisé — diffuseur, synergies, packaging', 'Fully custom — diffuser, blends, packaging', 'Totalmente personalizado — difusor, mezclas, packaging'), stock: t3(language, 'Tolia brandé, option fourreau co-brandé', 'Branded Tolia, co-branded sleeve option', 'Tolia con marca, opción de funda co-brandada') },
+    { label: t3(language, 'Branding', 'Branding', 'Branding'), wl: t3(language, 'Entièrement personnalisé, diffuseur, synergies, packaging', 'Fully custom, diffuser, blends, packaging', 'Totalmente personalizado, difusor, mezclas, packaging'), stock: t3(language, 'Tolia brandé, option fourreau co-brandé', 'Branded Tolia, co-branded sleeve option', 'Tolia con marca, opción de funda co-brandada') },
     { label: t3(language, 'MOQ', 'MOQ', 'MOQ'), wl: t3(language, 'Sur projet (généralement 3 000+)', 'Project-based (typically 3,000+)', 'Por proyecto (típicamente 3.000+)'), stock: t3(language, 'À partir de 300 unités', 'From 300 units', 'Desde 300 unidades') },
     { label: t3(language, 'Personnalisation', 'Customization', 'Personalización'), wl: t3(language, 'Couleur (RAL/Pantone), finitions (mat, soft-touch, métallique), matériaux (bois, résine, verre soufflé), logo, synergies personnalisées, coffret complet', 'Color (RAL/Pantone), finishes (matte, soft-touch, metallic), materials (wood, resin, blown glass), logo, custom blends, full box', 'Color (RAL/Pantone), acabados (mate, soft-touch, metálico), materiales (madera, resina, vidrio soplado), logo, mezclas personalizadas, caja completa'), stock: t3(language, 'Fourreau extérieur co-brandé, packaging intérieur neutre', 'Co-branded outer sleeve, neutral inner packaging', 'Funda exterior co-brandada, packaging interior neutro') },
     { label: t3(language, 'Délai de production', 'Lead time', 'Plazo de producción'), wl: t3(language, '12 à 20 semaines', '12 to 20 weeks', '12 a 20 semanas'), stock: t3(language, '2 à 4 semaines (expédition depuis la France)', '2 to 4 weeks (ships from France)', '2 a 4 semanas (envío desde Francia)') },
@@ -39,12 +39,12 @@ const TwoWaysSection: React.FC = () => {
     {
       icon: Paintbrush,
       title: t3(language, 'Lancez Tolia sous votre propre marque', 'Launch Tolia under your own brand', 'Lance Tolia bajo su propia marca'),
-      subtitle: t3(language, 'Pour les marques qui veulent un diffuseur signature — entièrement personnalisé, exclusivement le vôtre', 'For brands that want a signature diffuser — fully customised, exclusively yours', 'Para marcas que quieren un difusor firma — totalmente personalizado, exclusivamente suyo'),
+      subtitle: t3(language, 'Pour les marques qui veulent un diffuseur signature, entièrement personnalisé, exclusivement le vôtre', 'For brands that want a signature diffuser, fully customised, exclusively yours', 'Para marcas que quieren un difusor firma, totalmente personalizado, exclusivamente suyo'),
       bullets: [
-        t3(language, 'Votre logo, vos couleurs, vos matériaux — un produit qui est 100 % le vôtre', 'Your logo, your colors, your materials — a product that feels 100% yours', 'Su logo, sus colores, sus materiales — un producto que es 100 % suyo'),
+        t3(language, 'Votre logo, vos couleurs, vos matériaux. Un produit qui est 100 % le vôtre', 'Your logo, your colors, your materials, a product that feels 100% yours', 'Su logo, sus colores, sus materiales. Un producto que es 100 % suyo'),
         t3(language, "Synergies d'huiles essentielles co-développées et adaptées à l'histoire de votre marque", 'Co-developed essential oil blends tailored to your brand story', 'Mezclas de aceites esenciales co-desarrolladas y adaptadas a la historia de su marca'),
         t3(language, "Support industriel, réglementaire et supply chain complet d'Innobiz", 'Full industrial, regulatory, and supply chain support from Innobiz', 'Soporte industrial, regulatorio y de cadena de suministro completo de Innobiz'),
-        t3(language, 'MOQ adapté à votre plan de lancement — généralement à partir de 3 000 unités', 'MOQ tailored to your launch plan — typically starting at 3,000 units', 'MOQ adaptado a su plan de lanzamiento — típicamente desde 3.000 unidades'),
+        t3(language, 'MOQ adapté à votre plan de lancement, généralement à partir de 3 000 unités', 'MOQ tailored to your launch plan, typically starting at 3,000 units', 'MOQ adaptado a su plan de lanzamiento, típicamente desde 3.000 unidades'),
       ],
       cta: t3(language, 'Demander une consultation marque blanche', 'Request a white-label consultation', 'Solicitar una consulta de marca blanca'),
       type: 'white-label' as const,
@@ -53,13 +53,13 @@ const TwoWaysSection: React.FC = () => {
     },
     {
       icon: Package,
-      title: t3(language, 'Ajoutez Tolia à votre catalogue — livré en semaines', 'Add Tolia to your catalog — ships in weeks', 'Añada Tolia a su catálogo — envío en semanas'),
+      title: t3(language, 'Ajoutez Tolia à votre catalogue, livré en semaines', 'Add Tolia to your catalog, ships in weeks', 'Añada Tolia a su catálogo, envío en semanas'),
       subtitle: t3(language, "Pour les marques qui veulent proposer Tolia immédiatement, sans programme marque blanche complet", 'For brands that want to offer Tolia immediately, without a full white-label program', 'Para marcas que quieren ofrecer Tolia inmediatamente, sin un programa completo de marca blanca'),
       bullets: [
-        t3(language, 'Stock prêt à expédier — minimum 300 unités, depuis notre entrepôt français', 'Ready-to-ship inventory — minimum 300 units, from our French warehouse', 'Inventario listo para enviar — mínimo 300 unidades, desde nuestro almacén francés'),
+        t3(language, 'Stock prêt à expédier, minimum 300 unités, depuis notre entrepôt français', 'Ready-to-ship inventory, minimum 300 units, from our French warehouse', 'Inventario listo para enviar, mínimo 300 unidades, desde nuestro almacén francés'),
         t3(language, 'Livré en tant que Tolia brandé avec documentation produit complète', 'Delivered as branded Tolia with full product documentation', 'Entregado como Tolia con marca y documentación completa del producto'),
         t3(language, 'Packaging extérieur co-brandé optionnel pour intégration à votre gamme', 'Optional co-branded outer packaging to integrate with your range', 'Packaging exterior co-brandado opcional para integración con su gama'),
-        t3(language, "Le time-to-market le plus rapide de l'industrie — produits en rayon en moins d'1 mois", 'Fastest time-to-market in the industry — products on shelf in under 1 month', 'El time-to-market más rápido del sector — productos en estantería en menos de 1 mes'),
+        t3(language, "Le time-to-market le plus rapide de l'industrie, produits en rayon en moins d'1 mois", 'Fastest time-to-market in the industry, products on shelf in under 1 month', 'El time-to-market más rápido del sector, productos en estantería en menos de 1 mes'),
       ],
       cta: t3(language, 'Demander un devis stock', 'Request a stock-order quote', 'Solicitar un presupuesto de stock'),
       type: 'stock' as const,
@@ -74,16 +74,16 @@ const TwoWaysSection: React.FC = () => {
       <div className="section-container">
         <motion.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, 'Votre accès au marché — choisissez celui qui vous convient', 'Your path to market — choose the one that fits', 'Su acceso al mercado — elija el que le convenga')}
+            {t3(language, 'Votre accès au marché, choisissez celui qui vous convient', 'Your path to market, choose the one that fits', 'Su acceso al mercado, elija el que le convenga')}
           </span>
           <h2 className="heading-section mb-4">
             {t3(language, 'Deux façons de travailler avec Tolia. Les deux mènent au revenu récurrent.', 'Two ways to work with Tolia. Both lead to recurring revenue.', 'Dos formas de trabajar con Tolia. Ambas llevan a ingresos recurrentes.')}
           </h2>
           <p className="text-body-lg max-w-3xl mx-auto">
             {t3(language,
-              "Que vous souhaitiez un diffuseur signature entièrement brandé autour de votre identité — ou un produit éprouvé, validé par le marché, prêt à être expédié ce trimestre — Tolia s'adapte à votre stratégie et à votre calendrier.",
-              'Whether you want a fully branded signature diffuser built around your identity — or a proven, market-validated product ready to ship this quarter — Tolia adapts to your strategy and your timeline.',
-              'Ya sea que quiera un difusor firma totalmente brandado en torno a su identidad — o un producto probado, validado por el mercado, listo para enviar este trimestre — Tolia se adapta a su estrategia y su calendario.'
+              "Que vous souhaitiez un diffuseur signature entièrement brandé autour de votre identité, ou un produit éprouvé, validé par le marché, prêt à être expédié ce trimestre, Tolia s'adapte à votre stratégie et à votre calendrier.",
+              'Whether you want a fully branded signature diffuser built around your identity, or a proven, market-validated product ready to ship this quarter, Tolia adapts to your strategy and your timeline.',
+              'Ya sea que quiera un difusor firma totalmente brandado en torno a su identidad, o un producto probado, validado por el mercado, listo para enviar este trimestre, Tolia se adapta a su estrategia y su calendario.'
             )}
           </p>
         </motion.div>
@@ -125,7 +125,7 @@ const TwoWaysSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Comparison table — desktop */}
+        {/* Comparison table : desktop */}
         <motion.div
           className="hidden md:block max-w-5xl mx-auto"
           initial={{ opacity: 0, y: 20 }}

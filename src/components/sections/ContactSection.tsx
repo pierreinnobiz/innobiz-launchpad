@@ -171,16 +171,16 @@ const ContactSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
             {t3(language,
-              'Parlez-nous de votre marque — nous construirons une proposition adaptée à votre marché.',
-              "Tell us about your brand — we'll build a proposal tailored to your market.",
-              'Háblenos de su marca — construiremos una propuesta adaptada a su mercado.'
+              'Parlez-nous de votre marque : nous construirons une proposition adaptée à votre marché.',
+              "Tell us about your brand, we'll build a proposal tailored to your market.",
+              'Háblenos de su marca : construiremos una propuesta adaptada a su mercado.'
             )}
           </h2>
           <p className="text-base text-muted-foreground font-light max-w-2xl mx-auto">
             {t3(language,
-              "Un formulaire. Deux parcours. Vous recevrez une réponse personnalisée sous un jour ouvré — accompagnée d'un échantillon Tolia gratuit expédié directement à votre bureau pour découvrir le produit par vous-même.",
-              "One form. Two paths. You'll receive a personalized response within one business day — along with a free Tolia sample shipped directly to your office so you can experience the product firsthand.",
-              'Un formulario. Dos caminos. Recibirá una respuesta personalizada en un día laborable — junto con una muestra gratuita de Tolia enviada directamente a su oficina para que pueda experimentar el producto de primera mano.'
+              "Un formulaire. Deux parcours. Vous recevrez une réponse personnalisée sous un jour ouvré, accompagnée d'un échantillon Tolia gratuit expédié directement à votre bureau pour découvrir le produit par vous-même.",
+              "One form. Two paths. You'll receive a personalized response within one business day, along with a free Tolia sample shipped directly to your office so you can experience the product firsthand.",
+              'Un formulario. Dos caminos. Recibirá una respuesta personalizada en un día laborable, junto con una muestra gratuita de Tolia enviada directamente a su oficina para que pueda experimentar el producto de primera mano.'
             )}
           </p>
         </motion.div>
@@ -358,9 +358,9 @@ const ContactSection: React.FC = () => {
 
             <p className="text-xs text-center text-muted-foreground pt-2">
               {t3(language,
-                'Nous répondons sous un jour ouvré. Vos informations restent chez Innobiz — pas de revente, pas de newsletter.',
-                'We respond within one business day. Your information stays with Innobiz — no resale, no newsletter.',
-                'Respondemos en un día laborable. Su información queda en Innobiz — sin reventa, sin newsletter.'
+                'Nous répondons sous un jour ouvré. Vos informations restent chez Innobiz. Pas de revente, pas de newsletter.',
+                'We respond within one business day. Your information stays with Innobiz. No resale, no newsletter.',
+                'Respondemos en un día laborable. Su información queda en Innobiz. Sin reventa, sin newsletter.'
               )}
             </p>
           </form>

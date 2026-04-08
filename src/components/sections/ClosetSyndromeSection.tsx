@@ -15,9 +15,9 @@ const ClosetSyndromeSection: React.FC = () => {
       day: t3(language, 'Jour 0', 'Day 0', 'Día 0'),
       title: t3(language, "L'achat enthousiaste", 'The excited purchase', 'La compra entusiasta'),
       desc: t3(language,
-        "Votre client voit la pub, entre en magasin et achète le diffuseur. Vous avez investi en campagnes, packaging, espace en rayon. La vente est faite — mais c'est la dernière fois que ce client génèrera un revenu significatif.",
-        "Your customer sees the ad, walks into the store, and buys the diffuser. You invested in campaigns, packaging, shelf space. The sale is made — but it's the last time this customer will generate meaningful revenue.",
-        'Su cliente ve el anuncio, entra en la tienda y compra el difusor. Usted invirtió en campañas, packaging, espacio en estantería. La venta se hizo — pero es la última vez que este cliente generará ingresos significativos.'
+        "Votre client voit la pub, entre en magasin et achète le diffuseur. Vous avez investi en campagnes, packaging, espace en rayon. La vente est faite, mais c'est la dernière fois que ce client génèrera un revenu significatif.",
+        "Your customer sees the ad, walks into the store, and buys the diffuser. You invested in campaigns, packaging, shelf space. The sale is made, but it's the last time this customer will generate meaningful revenue.",
+        'Su cliente ve el anuncio, entra en la tienda y compra el difusor. Usted invirtió en campañas, packaging, espacio en estantería. La venta se hizo, pero es la última vez que este cliente generará ingresos significativos.'
       ),
       color: 'hsl(140 45% 45%)',
     },
@@ -37,9 +37,9 @@ const ClosetSyndromeSection: React.FC = () => {
       day: t3(language, 'Jour 180+', 'Day 180+', 'Día 180+'),
       title: t3(language, 'Le placard. Définitivement.', 'The closet. Permanently.', 'El armario. Permanentemente.'),
       desc: t3(language,
-        "Le diffuseur rejoint le cimetière des appareils. Plus d'achats d'huiles. Plus de recharges. Plus de relation de marque. Tout votre investissement marketing a produit exactement une seule vente de matériel — et zéro revenu récurrent.",
-        "The diffuser joins the appliance graveyard. No more oil purchases. No refills. No brand relationship. Your entire marketing investment produced exactly one hardware sale — and zero recurring revenue.",
-        'El difusor se une al cementerio de aparatos. No más compras de aceites. No más recargas. No más relación de marca. Toda su inversión de marketing produjo exactamente una venta de hardware — y cero ingresos recurrentes.'
+        "Le diffuseur rejoint le cimetière des appareils. Plus d'achats d'huiles. Plus de recharges. Plus de relation de marque. Tout votre investissement marketing a produit exactement une seule vente de matériel, et zéro revenu récurrent.",
+        "The diffuser joins the appliance graveyard. No more oil purchases. No refills. No brand relationship. Your entire marketing investment produced exactly one hardware sale, and zero recurring revenue.",
+        'El difusor se une al cementerio de aparatos. No más compras de aceites. No más recargas. No más relación de marca. Toda su inversión de marketing produjo exactamente una venta de hardware, y cero ingresos recurrentes.'
       ),
       color: 'hsl(0 60% 50%)',
     },
@@ -62,16 +62,16 @@ const ClosetSyndromeSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "Vous dépensez des milliers pour acquérir un client. Six mois plus tard, son diffuseur est au placard — et il ne rachète plus jamais d'huiles.",
-              "You spend thousands acquiring a customer. Six months later, their diffuser is in a closet — and they never buy oils again.",
-              'Gasta miles en adquirir un cliente. Seis meses después, su difusor está en un armario — y nunca vuelve a comprar aceites.'
+              "Vous dépensez des milliers pour acquérir un client. Six mois plus tard, son diffuseur est au placard, et il ne rachète plus jamais d'huiles.",
+              "You spend thousands acquiring a customer. Six months later, their diffuser is in a closet, and they never buy oils again.",
+              'Gasta miles en adquirir un cliente. Seis meses después, su difusor está en un armario, y nunca vuelve a comprar aceites.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              "Ce n'est pas un échec de branding ni une erreur marketing. C'est un problème de conception produit. Chaque diffuseur conventionnel crée une friction qui tue l'usage quotidien — et avec lui, votre revenu récurrent en huiles.",
-              "This isn't a branding failure or a marketing mistake. It's a product design problem. Every conventional diffuser creates friction that kills daily use — and with it, your recurring oil revenue.",
-              'No es un fallo de branding ni un error de marketing. Es un problema de diseño de producto. Cada difusor convencional crea una fricción que mata el uso diario — y con él, sus ingresos recurrentes de aceites.'
+              "Ce n'est pas un échec de branding ni une erreur marketing. C'est un problème de conception produit. Chaque diffuseur conventionnel crée une friction qui tue l'usage quotidien, et avec lui, votre revenu récurrent en huiles.",
+              "This isn't a branding failure or a marketing mistake. It's a product design problem. Every conventional diffuser creates friction that kills daily use, and with it, your recurring oil revenue.",
+              'No es un fallo de branding ni un error de marketing. Es un problema de diseño de producto. Cada difusor convencional crea una fricción que mata el uso diario, y con él, sus ingresos recurrentes de aceites.'
             )}
           </p>
         </motion.div>
@@ -86,9 +86,9 @@ const ClosetSyndromeSection: React.FC = () => {
           <img
             src={closetImg}
             alt={t3(language,
-              'Diffuseurs abandonnés dans un placard — la fuite de revenus invisible',
-              'Abandoned diffusers collecting dust in a closet — the invisible revenue leak',
-              'Difusores abandonados en un armario — la fuga de ingresos invisible'
+              'Diffuseurs abandonnés dans un placard. La fuite de revenus invisible',
+              'Abandoned diffusers collecting dust in a closet. The invisible revenue leak',
+              'Difusores abandonados en un armario. La fuga de ingresos invisible'
             )}
             className="w-full h-auto"
             loading="lazy"
@@ -136,9 +136,9 @@ const ClosetSyndromeSection: React.FC = () => {
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center text-foreground">
             {t3(language,
-              "Voici le calcul qui compte : avec un diffuseur traditionnel, le client moyen achète 2 à 3 flacons d'huile essentielle par an. Avec un diffuseur qu'il utilise vraiment chaque jour, ce chiffre passe à 12+. C'est la différence entre 46 € et 164 € de revenu annuel — par client.",
-              "Here's the math that matters: with a traditional diffuser, the average customer buys 2–3 bottles of essential oil per year. With a diffuser they actually use every day, that number jumps to 12+. That's the difference between €46 and €164 in annual revenue — per customer.",
-              'Aquí está el cálculo que importa: con un difusor tradicional, el cliente promedio compra 2–3 frascos de aceite esencial al año. Con un difusor que realmente usa cada día, ese número sube a 12+. Es la diferencia entre 46 € y 164 € de ingresos anuales — por cliente.'
+              "Voici le calcul qui compte : avec un diffuseur traditionnel, le client moyen achète 2 à 3 flacons d'huile essentielle par an. Avec un diffuseur qu'il utilise vraiment chaque jour, ce chiffre passe à 12+. C'est la différence entre 46 € et 164 € de revenu annuel, par client.",
+              "Here's the math that matters: with a traditional diffuser, the average customer buys 2–3 bottles of essential oil per year. With a diffuser they actually use every day, that number jumps to 12+. That's the difference between €46 and €164 in annual revenue, per customer.",
+              'Aquí está el cálculo que importa: con un difusor tradicional, el cliente promedio compra 2–3 frascos de aceite esencial al año. Con un difusor que realmente usa cada día, ese número sube a 12+. Es la diferencia entre 46 € y 164 € de ingresos anuales, por cliente.'
             )}
           </p>
           <p className="text-xs text-center text-muted-foreground mt-4 font-light">
