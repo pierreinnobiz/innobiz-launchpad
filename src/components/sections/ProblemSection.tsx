@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { Droplets, Flame, Volume2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
+import { fadeBlurUp, staggerContainer } from '@/lib/animations';
+import TiltCard from '@/components/TiltCard';
 
 const ProblemSection: React.FC = () => {
   const { language: l } = useLanguage();
@@ -16,16 +18,19 @@ const ProblemSection: React.FC = () => {
       icon: Droplets,
       title: t3(l, 'TODO FR', 'Ultrasonic diffusers', 'TODO ES'),
       desc: t3(l, 'TODO FR', 'Water, daily cleaning, oil alteration. Result: occasional use only.', 'TODO ES'),
+      color: 'hsl(200 60% 50%)',
     },
     {
       icon: Flame,
       title: t3(l, 'TODO FR', 'Heat-based diffusers', 'TODO ES'),
       desc: t3(l, 'TODO FR', 'Destroys active compounds. Result: poor experience, low repurchase.', 'TODO ES'),
+      color: 'hsl(15 70% 55%)',
     },
     {
       icon: Volume2,
       title: t3(l, 'TODO FR', 'Nebulizers', 'TODO ES'),
       desc: t3(l, 'TODO FR', 'Noisy, fragile, complex. Result: gifts that end up in a drawer.', 'TODO ES'),
+      color: 'hsl(270 40% 55%)',
     },
   ];
 
@@ -38,14 +43,18 @@ const ProblemSection: React.FC = () => {
 
   return (
     <section id="probleme" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
+      {/* Subtle decorative elements */}
+      <div className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full opacity-[0.03]"
+        style={{ background: 'radial-gradient(circle, hsl(0 65% 55%), transparent 70%)' }} />
+
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         {/* Eyebrow + Headline */}
         <motion.div
           className="text-center mb-16 max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block text-destructive">
             {eyebrow}
@@ -58,40 +67,53 @@ const ProblemSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Friction cards */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        {/* Friction cards with tilt + stagger */}
+        <motion.div
+          className="grid md:grid-cols-3 gap-6 mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+          variants={staggerContainer}
+        >
           {frictions.map((f, i) => (
-            <motion.div
-              key={i}
-              className="p-6 md:p-8 bg-card rounded-2xl border border-border/40"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <div className="w-12 h-12 rounded-xl bg-muted flex items-center justify-center mb-4">
-                <f.icon className="w-6 h-6 text-muted-foreground" />
-              </div>
-              <h3 className="font-semibold text-foreground mb-2">{f.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+            <motion.div key={i} variants={fadeBlurUp}>
+              <TiltCard className="h-full" maxTilt={6}>
+                <div className="p-6 md:p-8 bg-card rounded-2xl border border-border/40 h-full
+                  transition-shadow duration-500 hover:shadow-[0_12px_40px_-8px_hsl(25_15%_18%/0.12)]">
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-transform duration-300"
+                    style={{ background: `${f.color} / 0.1` }}
+                  >
+                    <f.icon className="w-6 h-6" style={{ color: f.color }} />
+                  </div>
+                  <h3 className="font-semibold text-foreground mb-2">{f.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{f.desc}</p>
+                </div>
+              </TiltCard>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Takeaway */}
+        {/* Takeaway with dramatic entrance */}
         <motion.div
           className="text-center space-y-8"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(12px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
         >
           <p className="text-lg md:text-xl font-semibold text-foreground max-w-3xl mx-auto leading-relaxed">
             {takeaway}
           </p>
-          <p className="text-2xl md:text-3xl font-light italic text-primary">
+          <motion.p
+            className="text-2xl md:text-3xl font-light italic text-primary"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          >
             {bridge}
-          </p>
+          </motion.p>
         </motion.div>
       </div>
     </section>

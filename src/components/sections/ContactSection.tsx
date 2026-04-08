@@ -12,6 +12,7 @@ import { useToast } from '@/hooks/use-toast';
 import { trackCTAClick, trackEvent } from '@/lib/tracking';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { supabase } from '@/integrations/supabase/client';
+import { fadeBlurUp } from '@/lib/animations';
 
 type Path = 'white-label' | 'stock';
 
@@ -29,10 +30,7 @@ const ContactSection: React.FC = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Path selection
   const [path, setPath] = useState<Path>('white-label');
-
-  // Shared fields
   const [name, setName] = useState('');
   const [company, setCompany] = useState('');
   const [role, setRole] = useState('');
@@ -40,18 +38,13 @@ const ContactSection: React.FC = () => {
   const [website, setWebsite] = useState('');
   const [country, setCountry] = useState('');
   const [notes, setNotes] = useState('');
-
-  // White-label conditional
   const [wlWindow, setWlWindow] = useState('');
   const [wlVolume, setWlVolume] = useState('');
   const [wlCustom, setWlCustom] = useState<string[]>([]);
-
-  // Stock conditional
   const [stockQty, setStockQty] = useState('');
   const [stockCountry, setStockCountry] = useState('');
   const [stockTiming, setStockTiming] = useState('');
 
-  // Pre-fill from URL param — re-read whenever the URL changes (e.g. hero CTA replaceState)
   useEffect(() => {
     const readParam = () => {
       const params = new URLSearchParams(window.location.search);
@@ -60,8 +53,6 @@ const ContactSection: React.FC = () => {
       else setPath('white-label');
     };
     readParam();
-
-    // Listen for custom event dispatched by CTAs after replaceState
     const handler = () => readParam();
     window.addEventListener('tolia:pathchange', handler);
     return () => window.removeEventListener('tolia:pathchange', handler);
@@ -70,40 +61,20 @@ const ContactSection: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     const trackLabel = path === 'white-label' ? 'contact_submit_whitelabel' : 'contact_submit_stock';
     trackCTAClick(trackLabel, 'contact-form');
 
     const payload = {
-      path,
-      name,
-      company,
-      role,
-      email,
-      website,
-      country,
-      notes,
+      path, name, company, role, email, website, country, notes,
       ...(path === 'white-label' ? { wl_window: wlWindow, wl_volume: wlVolume, wl_customization: wlCustom } : {}),
       ...(path === 'stock' ? { stock_qty: stockQty, stock_country: stockCountry, stock_timing: stockTiming } : {}),
     };
 
-    console.log('Contact form payload:', payload);
-
     try {
       const { error } = await supabase.functions.invoke('send-contact-form', {
-        body: {
-          name,
-          company,
-          role,
-          email,
-          website,
-          segment: path,
-          ...payload,
-        },
+        body: { name, company, role, email, website, segment: path, ...payload },
       });
-
       if (error) throw error;
-
       setIsSubmitted(true);
       trackEvent('generate_lead', { method: 'contact_form', segment: path });
       toast({
@@ -130,10 +101,15 @@ const ContactSection: React.FC = () => {
     return (
       <section id="contact" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
-            <div className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-8">
+          <motion.div initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }} transition={{ duration: 0.7 }}>
+            <motion.div
+              className="w-20 h-20 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-8"
+              initial={{ scale: 0 }}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 15, delay: 0.2 }}
+            >
               <CheckCircle2 className="w-10 h-10 text-primary" />
-            </div>
+            </motion.div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
               {en ? 'Thank you for your request!' : 'Merci pour votre demande !'}
             </h2>
@@ -148,14 +124,24 @@ const ContactSection: React.FC = () => {
 
   return (
     <section id="contact" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
-      <div className="max-w-3xl mx-auto px-6 md:px-12 lg:px-20">
+      {/* Subtle ambient decoration */}
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+        <motion.div
+          className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.03]"
+          style={{ background: 'radial-gradient(circle, hsl(28 45% 48%), transparent 60%)' }}
+          animate={{ scale: [1, 1.1, 1] }}
+          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+        />
+      </div>
+
+      <div className="max-w-3xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
         {/* Header */}
         <motion.div
           className="text-center mb-12"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-100px' }}
+          variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
             {en ? 'Start the conversation' : 'Démarrer la conversation'}
@@ -172,50 +158,38 @@ const ContactSection: React.FC = () => {
 
         <motion.div
           className="bg-card rounded-3xl p-8 md:p-10 border border-border/50 shadow-lg"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
         >
           <form onSubmit={handleSubmit} className="space-y-8">
             {/* Path selector */}
             <div className="grid sm:grid-cols-2 gap-4">
-              <button
-                type="button"
-                className={`text-left p-5 rounded-2xl border-2 transition-all ${
-                  path === 'white-label'
-                    ? 'border-primary bg-primary/5'
-                    : 'border-border/50 hover:border-border'
-                }`}
-                onClick={() => setPath('white-label')}
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${path === 'white-label' ? 'border-primary' : 'border-muted-foreground/40'}`}>
-                    {path === 'white-label' && <div className="w-2 h-2 rounded-full bg-primary" />}
+              {[
+                { key: 'white-label' as Path, icon: Paintbrush, label: 'White-label program', sub: 'Build your signature diffuser', color: 'hsl(28 45% 48%)' },
+                { key: 'stock' as Path, icon: Package, label: 'Stock order (300+ units)', sub: 'Add branded Tolia to your range', color: 'hsl(220 40% 45%)' },
+              ].map((p) => (
+                <motion.button
+                  key={p.key}
+                  type="button"
+                  className={`text-left p-5 rounded-2xl border-2 transition-all ${
+                    path === p.key ? 'border-primary bg-primary/5' : 'border-border/50 hover:border-border'
+                  }`}
+                  onClick={() => setPath(p.key)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  <div className="flex items-center gap-3 mb-2">
+                    <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${path === p.key ? 'border-primary' : 'border-muted-foreground/40'}`}>
+                      {path === p.key && <motion.div className="w-2 h-2 rounded-full bg-primary" layoutId="path-dot" />}
+                    </div>
+                    <p.icon className="w-5 h-5" style={{ color: p.color }} />
                   </div>
-                  <Paintbrush className="w-5 h-5" style={{ color: 'hsl(28 45% 48%)' }} />
-                </div>
-                <h3 className="font-bold text-sm text-foreground">White-label program</h3>
-                <p className="text-xs text-muted-foreground mt-1">Build your signature diffuser</p>
-              </button>
-              <button
-                type="button"
-                className={`text-left p-5 rounded-2xl border-2 transition-all ${
-                  path === 'stock'
-                    ? 'border-primary bg-primary/5'
-                    : 'border-border/50 hover:border-border'
-                }`}
-                onClick={() => setPath('stock')}
-              >
-                <div className="flex items-center gap-3 mb-2">
-                  <div className={`w-4 h-4 rounded-full border-2 flex items-center justify-center ${path === 'stock' ? 'border-primary' : 'border-muted-foreground/40'}`}>
-                    {path === 'stock' && <div className="w-2 h-2 rounded-full bg-primary" />}
-                  </div>
-                  <Package className="w-5 h-5" style={{ color: 'hsl(220 40% 45%)' }} />
-                </div>
-                <h3 className="font-bold text-sm text-foreground">Stock order (300+ units)</h3>
-                <p className="text-xs text-muted-foreground mt-1">Add branded Tolia to your range</p>
-              </button>
+                  <h3 className="font-bold text-sm text-foreground">{p.label}</h3>
+                  <p className="text-xs text-muted-foreground mt-1">{p.sub}</p>
+                </motion.button>
+              ))}
             </div>
 
             {/* Shared fields */}
@@ -341,16 +315,13 @@ const ContactSection: React.FC = () => {
             </div>
 
             {/* Submit */}
-            <Button type="submit" className="w-full btn-hero-primary group h-12 text-base" disabled={isSubmitting}>
-              {isSubmitting
-                ? 'Sending...'
-                : path === 'white-label'
-                  ? 'Request my white-label consultation'
-                  : 'Request my stock-order quote'}
-              {!isSubmitting && <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />}
-            </Button>
+            <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.98 }}>
+              <Button type="submit" className="w-full btn-hero-primary group h-12 text-base" disabled={isSubmitting}>
+                {isSubmitting ? 'Sending...' : path === 'white-label' ? 'Request my white-label consultation' : 'Request my stock-order quote'}
+                {!isSubmitting && <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />}
+              </Button>
+            </motion.div>
 
-            {/* Reassurance */}
             <p className="text-xs text-center text-muted-foreground pt-2">
               We respond within one business day. Your information stays with Innobiz — no resale, no newsletter.
             </p>
