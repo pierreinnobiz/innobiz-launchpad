@@ -136,13 +136,13 @@ const ContactSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Start the conversation
+            Ready to transform your oil sales?
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Tell us how you want to work with Tolia.
+            Tell us about your brand — we'll build a proposal tailored to your market.
           </h2>
           <p className="text-base text-muted-foreground font-light max-w-2xl mx-auto">
-            One form. Two paths. Response within one business day — plus a free sample shipped to your office.
+            One form. Two paths. You'll receive a personalized response within one business day — along with a free Tolia sample shipped directly to your office so you can experience the product firsthand.
           </p>
         </motion.div>
 

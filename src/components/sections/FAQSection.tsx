@@ -3,16 +3,16 @@ import { motion } from 'framer-motion';
 import { fadeBlurUp } from '@/lib/animations';
 
 const faqs = [
-  { q: 'What is the MOQ for a white-label program?', a: "White-label MOQs are project-based. Typical first orders start at 3,000 units. Send us your volume and timing — we'll size a program that fits." },
-  { q: 'What is the MOQ for a stock order?', a: '300 units minimum, delivered as branded Tolia. Ships from our French warehouse in 2 to 4 weeks.' },
-  { q: 'Can I co-brand the stock-order packaging?', a: 'Yes — you can add a co-branded outer sleeve or gift box featuring your brand alongside Tolia. The unit itself stays branded Tolia.' },
-  { q: 'Can my brand use its own essential oils with Tolia?', a: "Yes. Twist & Mist capsules are manufactured by Innobiz and pre-filled with your brand's blends. You own the formulas, we handle the industrial side." },
-  { q: 'Do you offer territorial exclusivity?', a: 'On white-label programs — yes. Category and territory exclusivity is negotiable based on volume and commitment. Stock orders are non-exclusive.' },
-  { q: 'What about regulatory compliance?', a: 'Tolia is CE-marked, RoHS-compliant, and sold across regulated European markets. We handle all diffuser-side regulatory documentation. Oil compliance remains with the brand owner.' },
-  { q: 'How does Tolia support our RSE/sustainability story?', a: 'Tolia is designed to be repaired: modular components, user-replaceable battery, diagnostic questionnaire to identify the part to change. A product that is used every day never becomes dormant waste.' },
-  { q: 'What retail price should we plan for?', a: 'Typical retail is €79 to €129 depending on market and packaging. B2B pricing is shared during the first qualified conversation.' },
-  { q: 'Do you support launches with marketing content?', a: 'Yes — product photography, video assets, technical specs, usage content for catalog, e-commerce and trade materials.' },
-  { q: 'Who do I talk to to get started?', a: "The form below reaches our business development team directly. First response within one business day." },
+  { q: 'What is the MOQ for a white-label program?', a: "White-label MOQs are project-based. Typical first orders start at 3,000 units, but we tailor the program to your launch plan, timeline, and market. Share your vision — we'll build a proposal that fits." },
+  { q: 'What is the MOQ for a stock order?', a: 'Minimum 300 units, delivered as branded Tolia. Ships from our French warehouse within 2 to 4 weeks. Perfect for testing the market or complementing an existing range without long lead times.' },
+  { q: 'Can I co-brand the stock-order packaging?', a: 'Absolutely. You can add a co-branded outer sleeve or gift box featuring your brand alongside Tolia. The diffuser itself stays branded Tolia — giving you credibility while you test demand.' },
+  { q: 'Can my brand use its own essential oils with Tolia?', a: "Yes — that's the core of the model. Twist & Mist modules are manufactured by Innobiz and pre-filled with your proprietary blends. You own the formulas, we handle all industrial production and quality control." },
+  { q: 'Do you offer territorial exclusivity?', a: 'On white-label programs — yes. Category and territory exclusivity is negotiable based on volume commitment and strategic alignment. Stock orders are non-exclusive to maintain speed and flexibility.' },
+  { q: 'What about regulatory compliance?', a: 'Tolia is CE-marked, RoHS-compliant, and already sold across regulated European markets. We provide all diffuser-side regulatory documentation. Essential oil compliance remains with the brand owner, as per industry standard.' },
+  { q: 'How does Tolia support our sustainability commitments?', a: 'Tolia is designed for longevity: modular components, user-replaceable battery, and a diagnostic system to identify and replace individual parts. A product used daily for years never becomes dormant waste — which is the strongest RSE story you can tell.' },
+  { q: 'What retail price should we plan for?', a: 'Typical retail positioning is €79 to €129 depending on market, channel, and packaging tier. B2B pricing and margin structure are shared during your first qualified conversation with our team.' },
+  { q: 'Do you support product launches with marketing assets?', a: 'Yes — we provide professional product photography, video content, technical specifications, and ready-to-use copy for e-commerce, catalog, and trade presentations. Your launch starts with a complete toolkit.' },
+  { q: 'Who do I talk to to get started?', a: "Fill out the form below — it goes directly to our business development team (not a chatbot). You'll receive a personalized response within one business day, along with a proposal tailored to your specific situation." },
 ];
 
 const staggerSlow = {
@@ -32,13 +32,13 @@ const FAQSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            Questions brands ask us
+            Your questions, answered honestly
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
-            Everything you need to know before the first call.
+            Everything you need to know before your first call with our team.
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
-            If something isn't covered here, the form at the bottom of the page is the fastest way to get a precise answer.
+            We've compiled the questions that brand directors, category managers, and purchasing teams ask us most often. If yours isn't here, the form below is the fastest way to a precise, personalized answer.
           </p>
         </motion.div>
 

@@ -22,13 +22,13 @@ const BrandMarqueeSection: React.FC = () => {
       <div className="section-container text-center mb-10">
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            20 years of trust
+            Trusted by industry leaders for 20 years
           </span>
           <h2 className="heading-section mb-4">
-            Trusted by the brands that shape aromatherapy and natural wellness
+            The brands shaping aromatherapy and natural wellness already work with us
           </h2>
           <p className="text-body-lg max-w-3xl mx-auto">
-            For over 20 years, Innobiz has partnered with the industry's most respected names.
+            From pharmaceutical groups to premium wellness brands, Innobiz has been the trusted diffusion technology partner for over two decades. These relationships are built on proven performance, not promises.
           </p>
         </motion.div>
       </div>
