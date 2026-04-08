@@ -73,7 +73,7 @@ const MarketProofSection: React.FC = () => {
     {
       value: '100%',
       label: t3(language, "transfert d'achat depuis les anciens diffuseurs", 'purchase transfer from old diffusers', 'transferencia de compra desde difusores anteriores'),
-      desc: t3(language, "Les clients abandonnent activement leurs anciens diffuseurs pour passer au Twist & Mist — de façon permanente.", 'Customers are actively abandoning their previous diffusers to switch to Twist & Mist — permanently.', 'Los clientes abandonan activamente sus difusores anteriores para cambiar al Twist & Mist — permanentemente.'),
+      desc: t3(language, "Les clients abandonnent activement leurs anciens diffuseurs pour passer au Twist & Mist, de façon permanente.", 'Customers are actively abandoning their previous diffusers to switch to Twist & Mist, permanently.', 'Los clientes abandonan activamente sus difusores anteriores para cambiar al Twist & Mist, permanentemente.'),
     },
   ];
 
@@ -91,16 +91,16 @@ const MarketProofSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "100 000+ unités déjà entre les mains des consommateurs — et vos concurrents le vendent peut-être déjà.",
-              "100,000+ units already in consumers' hands — and your competitors may already be selling it.",
-              '100.000+ unidades ya en manos de los consumidores — y sus competidores quizás ya lo estén vendiendo.'
+              "100 000+ unités déjà entre les mains des consommateurs, et vos concurrents le vendent peut-être déjà.",
+              "100,000+ units already in consumers' hands, and your competitors may already be selling it.",
+              '100.000+ unidades ya en manos de los consumidores, y sus competidores quizás ya lo estén vendiendo.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              "Tolia n'est pas une campagne de crowdfunding ni une expérience de laboratoire. C'est un produit validé par le marché avec la courbe d'adoption la plus rapide qu'Innobiz ait jamais connue. Le virage technologique a déjà eu lieu côté consommateur. La seule question qui reste : votre marque va-t-elle le capter — ou regarder ses concurrents le faire ?",
-              "Tolia isn't a crowdfunding campaign or a lab experiment. It's a market-validated product with the fastest adoption curve Innobiz has ever seen. The technology shift has already happened on the consumer side. The only question left is: will your brand capture it — or watch competitors do it first?",
-              'Tolia no es una campaña de crowdfunding ni un experimento de laboratorio. Es un producto validado por el mercado con la curva de adopción más rápida que Innobiz haya visto. El cambio tecnológico ya ocurrió del lado del consumidor. La única pregunta que queda es: ¿su marca lo capturará — o verá a los competidores hacerlo primero?'
+              "Tolia n'est pas une campagne de crowdfunding ni une expérience de laboratoire. C'est un produit validé par le marché avec la courbe d'adoption la plus rapide qu'Innobiz ait jamais connue. Le virage technologique a déjà eu lieu côté consommateur. La seule question qui reste : votre marque va-t-elle le capter, ou regarder ses concurrents le faire ?",
+              "Tolia isn't a crowdfunding campaign or a lab experiment. It's a market-validated product with the fastest adoption curve Innobiz has ever seen. The technology shift has already happened on the consumer side. The only question left is: will your brand capture it, or watch competitors do it first?",
+              'Tolia no es una campaña de crowdfunding ni un experimento de laboratorio. Es un producto validado por el mercado con la curva de adopción más rápida que Innobiz haya visto. El cambio tecnológico ya ocurrió del lado del consumidor. La única pregunta que queda es: ¿su marca lo capturará, o verá a los competidores hacerlo primero?'
             )}
           </p>
         </motion.div>

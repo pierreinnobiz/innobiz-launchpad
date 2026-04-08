@@ -78,7 +78,7 @@ const OrderForm: React.FC = () => {
     setIsSubmitting(true);
     try {
       await supabase.functions.invoke('send-contact-form', {
-        body: { ...formData, segment: 'order-300', role: `Order inquiry — ${formData.quantity} units` },
+        body: { ...formData, segment: 'order-300', role: `Order inquiry, ${formData.quantity} units` },
       });
       toast({ title: 'Order request sent', description: 'We\'ll confirm availability and pricing shortly.' });
       setFormData({ name: '', company: '', email: '', quantity: '300', message: '' });
@@ -131,7 +131,7 @@ const Contact: React.FC = () => {
   const tabs = [
     { key: 'demo', icon: Calendar, label: 'Book a demo', desc: 'Schedule a 30-minute call to see Tolia in action' },
     { key: 'white-label', icon: Paintbrush, label: 'White-label quote', desc: 'Launch a custom diffuser under your own brand' },
-    { key: 'order', icon: Package, label: 'Order 300+ units', desc: 'Add branded Tolia to your catalog — ready to ship' },
+    { key: 'order', icon: Package, label: 'Order 300+ units', desc: 'Add branded Tolia to your catalog, ready to ship' },
     { key: 'info', icon: MessageSquare, label: 'General inquiry', desc: 'Have a question? We\'re here to help' },
   ];
 

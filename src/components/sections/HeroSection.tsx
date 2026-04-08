@@ -148,9 +148,9 @@ const HeroSection: React.FC = () => {
           </motion.span>
 
           <AnimatedTitle text={t3(language,
-            "Vos clients achètent un diffuseur une fois — puis ne recommandent plus jamais d'huiles. Tolia change la donne.",
-            'Your customers buy a diffuser once — then never reorder oils. Tolia changes that.',
-            'Sus clientes compran un difusor una vez — y nunca vuelven a pedir aceites. Tolia cambia eso.'
+            "Vos clients achètent un diffuseur une fois, puis ne recommandent plus jamais d'huiles. Tolia change la donne.",
+            'Your customers buy a diffuser once, then never reorder oils. Tolia changes that.',
+            'Sus clientes compran un difusor una vez, y nunca vuelven a pedir aceites. Tolia cambia eso.'
           )} delay={0.5} />
 
           <motion.p
@@ -160,9 +160,9 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             {t3(language,
-              "Le système breveté Twist & Mist transforme la diffusion d'huiles essentielles en un rituel quotidien de 10 secondes — si simple que les clients l'utilisent chaque jour et recommandent des huiles 4× à 6× plus souvent. Ce n'est pas une promesse. C'est déjà mesuré sur plus de 100 000 unités vendues.",
-              "The patented Twist & Mist system turns essential oil diffusion into a 10-second daily ritual — so simple that customers use it every day and reorder oils 4× to 6× more often. That's not a promise. It's already measured across 100,000+ units sold.",
-              'El sistema patentado Twist & Mist convierte la difusión de aceites esenciales en un ritual diario de 10 segundos — tan simple que los clientes lo usan cada día y reordenan aceites 4× a 6× más seguido. No es una promesa. Ya está medido en más de 100.000 unidades vendidas.'
+              "Le système breveté Twist & Mist transforme la diffusion d'huiles essentielles en un rituel quotidien de 10 secondes, si simple que les clients l'utilisent chaque jour et recommandent des huiles 4× à 6× plus souvent. Ce n'est pas une promesse. C'est déjà mesuré sur plus de 100 000 unités vendues.",
+              "The patented Twist & Mist system turns essential oil diffusion into a 10-second daily ritual, so simple that customers use it every day and reorder oils 4× to 6× more often. That's not a promise. It's already measured across 100,000+ units sold.",
+              'El sistema patentado Twist & Mist convierte la difusión de aceites esenciales en un ritual diario de 10 segundos, tan simple que los clientes lo usan cada día y reordenan aceites 4× a 6× más seguido. No es una promesa. Ya está medido en más de 100.000 unidades vendidas.'
             )}
           </motion.p>
 
@@ -197,7 +197,7 @@ const HeroSection: React.FC = () => {
               className="h-12 px-8 text-sm font-semibold rounded-full border-white/40 text-white hover:bg-white/10 bg-transparent"
               onClick={() => handleCTA('stock', 'hero_cta_stock')}
             >
-              {t3(language, 'Commandez Tolia brandé — dès 300 unités', 'Order branded Tolia — from 300 units', 'Pida Tolia con su marca — desde 300 unidades')}
+              {t3(language, 'Commandez Tolia brandé, dès 300 unités', 'Order branded Tolia, from 300 units', 'Pida Tolia con su marca, desde 300 unidades')}
             </Button>
           </motion.div>
 

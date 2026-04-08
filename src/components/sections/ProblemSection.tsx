@@ -11,7 +11,7 @@ const ProblemSection: React.FC = () => {
 
   const eyebrow = t3(l, 'TODO FR', 'The category problem', 'TODO ES');
   const headline = t3(l, 'TODO FR', 'Most aromatherapy brands sell only 2 to 3 bottles of oil per customer per year.', 'TODO ES');
-  const subheadline = t3(l, 'TODO FR', "Not because their oils aren't good — but because their diffusers create friction.", 'TODO ES');
+  const subheadline = t3(l, 'TODO FR', "Not because their oils aren't good, but because their diffusers create friction.", 'TODO ES');
 
   const frictions = [
     {
@@ -36,7 +36,7 @@ const ProblemSection: React.FC = () => {
 
   const takeaway = t3(l,
     'TODO FR',
-    'When the diffuser creates friction, oil consumption collapses — and so does your recurring revenue.',
+    'When the diffuser creates friction, oil consumption collapses, and so does your recurring revenue.',
     'TODO ES'
   );
   const bridge = t3(l, 'TODO FR', "There's a better way.", 'TODO ES');

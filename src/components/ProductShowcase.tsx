@@ -40,7 +40,7 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({ className = '' }) => 
           {/* Main product image */}
           <img
             src={toliaVariation1}
-            alt="Tolia — diffuseur d'huiles essentielles sans eau, silencieux et 100% réparable, design scandinave en blanc pur"
+            alt="Tolia, diffuseur d'huiles essentielles sans eau, silencieux et 100% réparable, design scandinave en blanc pur"
             className="relative z-10 w-full h-full object-contain drop-shadow-2xl no-select"
             draggable={false}
           />

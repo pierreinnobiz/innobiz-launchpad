@@ -76,7 +76,7 @@ const QualificationForm: React.FC = () => {
     },
     2: {
       title: language === 'fr' ? 'Votre marché' : 'Your market',
-      subtitle: language === 'fr' ? 'Pas de bonne ou mauvaise réponse — on veut juste comprendre votre contexte.' : 'No right or wrong answer — we just want to understand your context.'
+      subtitle: language === 'fr' ? 'Pas de bonne ou mauvaise réponse, on veut juste comprendre votre contexte.' : 'No right or wrong answer, we just want to understand your context.'
     },
     3: {
       title: language === 'fr' ? 'Potentiel projet' : 'Project potential',
@@ -84,7 +84,7 @@ const QualificationForm: React.FC = () => {
     },
     4: {
       title: language === 'fr' ? 'Votre objectif' : 'Your objective',
-      subtitle: language === 'fr' ? 'Pas besoin de brief formel — une idée générale suffit.' : 'No formal brief needed — a general idea is enough.'
+      subtitle: language === 'fr' ? 'Pas besoin de brief formel. Une idée générale suffit.' : 'No formal brief needed, a general idea is enough.'
     }
   };
 
@@ -230,7 +230,7 @@ const QualificationForm: React.FC = () => {
               className="h-12"
             />
             <p className="text-xs text-muted-foreground">
-              {language === 'fr' ? 'Facultatif — nous aide à mieux vous connaître' : 'Optional — helps us know you better'}
+              {language === 'fr' ? 'Facultatif, nous aide à mieux vous connaître' : 'Optional, helps us know you better'}
             </p>
           </div>
 
@@ -316,8 +316,8 @@ const QualificationForm: React.FC = () => {
             </div>
             <p className="text-xs text-muted-foreground">
               {language === 'fr'
-                ? 'Ça nous aide à calibrer les volumes — sans engagement de votre part.'
-                : 'Helps us gauge volumes — no commitment from you.'}
+                ? 'Ça nous aide à calibrer les volumes, sans engagement de votre part.'
+                : 'Helps us gauge volumes, no commitment from you.'}
             </p>
           </div>
         </div>
@@ -435,8 +435,8 @@ const QualificationForm: React.FC = () => {
             <Sparkles className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
             <p className="text-xs text-muted-foreground">
               {language === 'fr'
-                ? 'Pas de brief formel nécessaire — on discute et on adapte ensemble.'
-                : "No formal brief needed — we'll discuss and adapt together."}
+                ? 'Pas de brief formel nécessaire, on discute et on adapte ensemble.'
+                : "No formal brief needed, we'll discuss and adapt together."}
             </p>
           </div>
         </div>

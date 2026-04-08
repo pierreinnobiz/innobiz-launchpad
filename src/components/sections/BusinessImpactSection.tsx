@@ -64,7 +64,7 @@ const BusinessImpactSection: React.FC = () => {
   const { language: l } = useLanguage();
 
   const eyebrow = t3(l, 'TODO FR', 'The business math', 'TODO ES');
-  const headline = t3(l, 'TODO FR', 'From €22 one-time to €82 recurring — every year, per customer.', 'TODO ES');
+  const headline = t3(l, 'TODO FR', 'From €22 one-time to €82 recurring, every year, per customer.', 'TODO ES');
   const subheadline = t3(l, 'TODO FR', "The real value of a diffuser isn't the hardware margin. It's the oil repurchase stream it unlocks.", 'TODO ES');
 
   const pillars = [
@@ -155,7 +155,7 @@ const BusinessImpactSection: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Before / After visual — animated bars */}
+        {/* Before / After visual, animated bars */}
         <motion.div
           className="max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
@@ -195,7 +195,7 @@ const BusinessImpactSection: React.FC = () => {
               <span className="text-white/30 text-xs uppercase tracking-widest">vs.</span>
             </motion.div>
 
-            {/* After — 5 stacked bars with stagger animation */}
+            {/* After : 5 stacked bars with stagger animation */}
             <div className="flex flex-col items-center gap-3">
               <div className="flex flex-col gap-1">
                 {[1, 2, 3, 4, 5].map((yr) => (

@@ -48,10 +48,10 @@ const FrictionByTechSection: React.FC = () => {
       closet: t3(language, 'Cadeau impressionnant → tiroir en 6 mois', 'Impressive gift → drawer within 6 months', 'Regalo impresionante → cajón en 6 meses'),
     },
     {
-      name: 'Tolia — Twist & Mist ✅',
+      name: 'Tolia : Twist & Mist ✅',
       how: t3(language, "Le flacon scellé se visse directement dans le module de nébulisation breveté à air froid sec", 'Sealed bottle screws directly into patented cold dry-air nebulization module', 'El frasco sellado se enrosca directamente en el módulo de nebulización patentado de aire frío seco'),
-      friction: t3(language, "Zéro friction — vissez le flacon, clipsez, appuyez sur le bouton. Pas d'eau, pas de nettoyage, pas de gaspillage, pas de bruit.", 'Zero friction — screw the bottle, clip in, press the button. No water, no cleaning, no waste, no noise.', 'Cero fricción — enrosque el frasco, enganche, presione el botón. Sin agua, sin limpieza, sin desperdicio, sin ruido.'),
-      closet: t3(language, 'Rituel quotidien, 365 jours par an — mesuré et prouvé', 'Daily ritual, 365 days a year — measured and proven', 'Ritual diario, 365 días al año — medido y probado'),
+      friction: t3(language, "Zéro friction, vissez le flacon, clipsez, appuyez sur le bouton. Pas d'eau, pas de nettoyage, pas de gaspillage, pas de bruit.", 'Zero friction, screw the bottle, clip in, press the button. No water, no cleaning, no waste, no noise.', 'Cero fricción, enrosque el frasco, enganche, presione el botón. Sin agua, sin limpieza, sin desperdicio, sin ruido.'),
+      closet: t3(language, 'Rituel quotidien, 365 jours par an, mesuré et prouvé', 'Daily ritual, 365 days a year, measured and proven', 'Ritual diario, 365 días al año, medido y probado'),
       isTolia: true,
     },
   ];
@@ -67,7 +67,7 @@ const FrictionByTechSection: React.FC = () => {
       <div className="section-container">
         <motion.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, 'La cause profonde — la technologie', 'The root cause — technology', 'La causa raíz — la tecnología')}
+            {t3(language, 'La cause profonde. La technologie', 'The root cause, technology', 'La causa raíz. La tecnología')}
           </span>
           <h2 className="heading-section mb-4">
             {t3(language,
@@ -174,9 +174,9 @@ const FrictionByTechSection: React.FC = () => {
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center">
             {t3(language,
-              "L'équation est simple : supprimez la friction → supprimez l'effet placard → débloquez le rachat d'huiles toute l'année. C'est exactement ce que fait Twist & Mist — et pourquoi les marques utilisant Tolia voient la consommation d'huiles multipliée par 4× à 6×.",
-              "The equation is simple: remove the friction → remove the closet effect → unlock year-round oil repurchase. That's exactly what Twist & Mist does — and why brands using Tolia see oil consumption multiply by 4× to 6×.",
-              'La ecuación es simple: elimine la fricción → elimine el efecto armario → desbloquee la recompra de aceites durante todo el año. Eso es exactamente lo que hace Twist & Mist — y por qué las marcas que usan Tolia ven el consumo de aceites multiplicarse por 4× a 6×.'
+              "L'équation est simple : supprimez la friction → supprimez l'effet placard → débloquez le rachat d'huiles toute l'année. C'est exactement ce que fait Twist & Mist, et pourquoi les marques utilisant Tolia voient la consommation d'huiles multipliée par 4× à 6×.",
+              "The equation is simple: remove the friction → remove the closet effect → unlock year-round oil repurchase. That's exactly what Twist & Mist does, and why brands using Tolia see oil consumption multiply by 4× to 6×.",
+              'La ecuación es simple: elimine la fricción → elimine el efecto armario → desbloquee la recompra de aceites durante todo el año. Eso es exactamente lo que hace Twist & Mist, y por qué las marcas que usan Tolia ven el consumo de aceites multiplicarse por 4× a 6×.'
             )}
           </p>
         </motion.div>

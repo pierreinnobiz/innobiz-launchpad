@@ -58,10 +58,10 @@ const DailyRoutineSection: React.FC = () => {
   const moments = [
     {
       icon: Sun,
-      title: t3(l, "Matin — Salle de bains", "Morning — Bathroom", "Mañana — Baño"),
+      title: t3(l, "Matin : Salle de bains", "Morning, Bathroom", "Mañana, Baño"),
       text: t3(l,
         "Le matin, Tolia est posé dans la salle de bains, près du miroir. En un geste, votre client clipse une synergie énergisante, appuie sur le bouton et profite d'une diffusion courte pendant sa routine (douche, brossage de dents, préparation). Ce geste répétitif installe une association claire : \"je commence ma journée avec ma synergie\", sans eau, sans dosage, sans préparation.",
-        "In the morning, Tolia sits in the bathroom, near the mirror. With a single gesture, your customer clips in an energising blend, presses the button and enjoys a short diffusion during their routine (shower, brushing teeth, getting ready). This repeated action creates a clear association: 'I start my day with my blend' — no water, no measuring, no preparation.",
+        "In the morning, Tolia sits in the bathroom, near the mirror. With a single gesture, your customer clips in an energising blend, presses the button and enjoys a short diffusion during their routine (shower, brushing teeth, getting ready). This repeated action creates a clear association: 'I start my day with my blend'. No water, no measuring, no preparation.",
         "Por la mañana, Tolia se coloca en el baño, cerca del espejo. Con un solo gesto, su cliente engancha una sinergia energizante, pulsa el botón y disfruta de una difusión corta durante su rutina (ducha, cepillado de dientes, preparación). Este gesto repetitivo crea una asociación clara: \"empiezo mi día con mi sinergia\", sin agua, sin dosificación, sin preparación."
       ),
       accent: 'hsl(40 60% 55%)',
@@ -70,7 +70,7 @@ const DailyRoutineSection: React.FC = () => {
     },
     {
       icon: Cloud,
-      title: t3(l, "Journée — Salon ou espace de vie", "Daytime — Living room or workspace", "Día — Salón o espacio de vida"),
+      title: t3(l, "Journée : Salon ou espace de vie", "Daytime, Living room or workspace", "Día, Salón o espacio de vida"),
       text: t3(l,
         "Une fois la matinée lancée, Tolia migre dans le salon ou l'espace de vie. Le consommateur retire la synergie du matin et clipse une synergie composée d'huiles essentielles de citron et d'orange pour transformer la pièce en jardin lumineux. Que l'on travaille depuis la maison ou que l'on reçoive, la diffusion se déclenche en une seconde, sans eau ni nettoyage, et devient un fond olfactif naturel, facile à réactiver tous les jours.",
         "Once the morning is underway, Tolia moves to the living room or workspace. The consumer removes the morning blend and clips in a lemon-and-orange essential oil blend to transform the room into a bright, fragrant space. Whether working from home or hosting guests, diffusion starts in a second, with no water or cleaning, becoming a natural olfactory backdrop that's easy to reactivate every day.",
@@ -82,10 +82,10 @@ const DailyRoutineSection: React.FC = () => {
     },
     {
       icon: Moon,
-      title: t3(l, "Soir — Chambre", "Evening — Bedroom", "Noche — Dormitorio"),
+      title: t3(l, "Soir : Chambre", "Evening, Bedroom", "Noche, Dormitorio"),
       text: t3(l,
         "Le soir, Tolia accompagne votre client dans la chambre. Il clipse une synergie dédiée au sommeil, lance une diffusion douce et répétée avant le coucher. Ce geste se répète soir après soir, jusqu'à devenir une routine d'endormissement aussi ancrée que fermer les volets. L'aromathérapie n'est plus un \"plus\", elle devient un automatisme.",
-        "In the evening, Tolia accompanies your customer to the bedroom. They clip in a sleep-dedicated blend and start a gentle, repeated diffusion before bedtime. This ritual repeats night after night, until it becomes a bedtime routine as ingrained as closing the shutters. Aromatherapy is no longer an 'extra' — it becomes second nature.",
+        "In the evening, Tolia accompanies your customer to the bedroom. They clip in a sleep-dedicated blend and start a gentle, repeated diffusion before bedtime. This ritual repeats night after night, until it becomes a bedtime routine as ingrained as closing the shutters. Aromatherapy is no longer an 'extra', it becomes second nature.",
         "Por la noche, Tolia acompaña a su cliente al dormitorio. Engancha una sinergia dedicada al sueño, inicia una difusión suave y repetida antes de acostarse. Este gesto se repite noche tras noche, hasta convertirse en una rutina de sueño tan arraigada como cerrar las persianas. La aromaterapia ya no es un \"extra\", se convierte en un automatismo."
       ),
       accent: 'hsl(250 30% 55%)',
@@ -112,9 +112,9 @@ const DailyRoutineSection: React.FC = () => {
       number: '02',
       title: t3(l, 'Clip', 'Clip', 'Clip'),
       desc: t3(l,
-        'Insérez le module dans le diffuseur Tolia. Le système breveté se clipse en une seconde — un geste aussi simple que poser un bouchon.',
-        'Insert the module into the Tolia diffuser. The patented system clips in within a second — as simple as placing a cap.',
-        'Inserte el módulo en el difusor Tolia. El sistema patentado se engancha en un segundo — tan simple como colocar una tapa.'
+        'Insérez le module dans le diffuseur Tolia. Le système breveté se clipse en une seconde. Un geste aussi simple que poser un bouchon.',
+        'Insert the module into the Tolia diffuser. The patented system clips in within a second, as simple as placing a cap.',
+        'Inserte el módulo en el difusor Tolia. El sistema patentado se engancha en un segundo, tan simple como colocar una tapa.'
       ),
     },
     {
@@ -134,9 +134,9 @@ const DailyRoutineSection: React.FC = () => {
       number: '04',
       title: t3(l, 'Switch', 'Switch', 'Switch'),
       desc: t3(l,
-        'Changez de synergie en un instant. Dévissez, revissez un autre flacon, et c\'est reparti. Matin énergisant, soir relaxant — un diffuseur, toutes vos huiles.',
-        'Switch blends in an instant. Unscrew, screw on another bottle, and you\'re set. Energising morning, relaxing evening — one diffuser, all your oils.',
-        'Cambie de sinergia en un instante. Desenrosque, enrosque otro frasco, y listo. Mañana energizante, noche relajante — un difusor, todos sus aceites.'
+        'Changez de synergie en un instant. Dévissez, revissez un autre flacon, et c\'est reparti. Matin énergisant, soir relaxant. Un diffuseur, toutes vos huiles.',
+        'Switch blends in an instant. Unscrew, screw on another bottle, and you\'re set. Energising morning, relaxing evening, one diffuser, all your oils.',
+        'Cambie de sinergia en un instante. Desenrosque, enrosque otro frasco, y listo. Mañana energizante, noche relajante. Un difusor, todos sus aceites.'
       ),
     },
   ];
@@ -146,7 +146,7 @@ const DailyRoutineSection: React.FC = () => {
       <div className="section-container">
         <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }} whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }} viewport={{ once: true }} transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(l, 'Usage concret — pièce par pièce', 'Real-world usage — room by room', 'Uso concreto — habitación por habitación')}
+            {t3(l, 'Usage concret : pièce par pièce', 'Real-world usage, room by room', 'Uso concreto, habitación por habitación')}
           </span>
           <h2 className="heading-section mb-4">
             {t3(l, 'Une journée type avec Tolia chez vos clients', 'A typical day with Tolia in your customers\' homes', 'Un día típico con Tolia en el hogar de sus clientes')}
@@ -186,13 +186,13 @@ const DailyRoutineSection: React.FC = () => {
               {t3(l, 'Technologie brevetée', 'Patented technology', 'Tecnología patentada')}
             </span>
             <h3 className="text-2xl md:text-3xl font-bold mb-3">
-              {t3(l, 'Twist & Mist — Le geste qui change tout', 'Twist & Mist — The gesture that changes everything', 'Twist & Mist — El gesto que lo cambia todo')}
+              {t3(l, 'Twist & Mist. Le geste qui change tout', 'Twist & Mist. The gesture that changes everything', 'Twist & Mist, El gesto que lo cambia todo')}
             </h3>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               {t3(l,
-                'Quatre gestes, zéro complexité. C\'est la raison pour laquelle vos clients utiliseront Tolia chaque jour — et rachèteront vos huiles.',
-                'Four steps, zero complexity. This is why your customers will use Tolia every day — and repurchase your oils.',
-                'Cuatro pasos, cero complejidad. Esta es la razón por la que sus clientes usarán Tolia cada día — y recomprarán sus aceites.'
+                'Quatre gestes, zéro complexité. C\'est la raison pour laquelle vos clients utiliseront Tolia chaque jour, et rachèteront vos huiles.',
+                'Four steps, zero complexity. This is why your customers will use Tolia every day, and repurchase your oils.',
+                'Cuatro pasos, cero complejidad. Esta es la razón por la que sus clientes usarán Tolia cada día, y recomprarán sus aceites.'
               )}
             </p>
           </div>
@@ -211,7 +211,7 @@ const DailyRoutineSection: React.FC = () => {
                   <ScrollVideo
                     src={step.video}
                     poster={step.image}
-                    alt={`${step.title} — Twist & Mist step ${step.number}`}
+                    alt={`${step.title} : Twist & Mist step ${step.number}`}
                   />
                 </div>
                 <div className="p-4 md:p-5">
@@ -230,9 +230,9 @@ const DailyRoutineSection: React.FC = () => {
         <motion.div className="rounded-3xl p-8 md:p-10 border max-w-5xl mx-auto" style={{ background: 'hsl(28 45% 48% / 0.06)', borderColor: 'hsl(28 45% 48% / 0.2)' }} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}>
           <p className="text-muted-foreground leading-relaxed text-center max-w-3xl mx-auto">
             {t3(l,
-              <>En permettant à vos clients de déplacer Tolia et de changer de synergie en une seconde selon la pièce et le moment de la journée, vous multipliez les occasions d'usage sans ajouter de complexité. Ce sont ces usages répétés — matin, journée, soir — qui, au fil des semaines, <strong className="text-foreground">augmentent naturellement la consommation d'huiles essentielles</strong> et la fidélité à votre marque.</>,
-              <>By enabling your customers to move Tolia and switch blends in a second depending on the room and the time of day, you multiply usage occasions without adding complexity. It is these repeated uses — morning, daytime, evening — that, week after week, <strong className="text-foreground">naturally increase essential oil consumption</strong> and loyalty to your brand.</>,
-              <>Al permitir a sus clientes mover Tolia y cambiar de sinergia en un segundo según la habitación y el momento del día, multiplica las ocasiones de uso sin añadir complejidad. Son estos usos repetidos — mañana, día, noche — los que, semana tras semana, <strong className="text-foreground">aumentan naturalmente el consumo de aceites esenciales</strong> y la fidelidad a su marca.</>
+              <>En permettant à vos clients de déplacer Tolia et de changer de synergie en une seconde selon la pièce et le moment de la journée, vous multipliez les occasions d'usage sans ajouter de complexité. Ce sont ces usages répétés, matin, journée, soir, qui, au fil des semaines, <strong className="text-foreground">augmentent naturellement la consommation d'huiles essentielles</strong> et la fidélité à votre marque.</>,
+              <>By enabling your customers to move Tolia and switch blends in a second depending on the room and the time of day, you multiply usage occasions without adding complexity. It is these repeated uses, morning, daytime, evening, that, week after week, <strong className="text-foreground">naturally increase essential oil consumption</strong> and loyalty to your brand.</>,
+              <>Al permitir a sus clientes mover Tolia y cambiar de sinergia en un segundo según la habitación y el momento del día, multiplica las ocasiones de uso sin añadir complejidad. Son estos usos repetidos, mañana, día, noche, los que, semana tras semana, <strong className="text-foreground">aumentan naturalmente el consumo de aceites esenciales</strong> y la fidelidad a su marca.</>
             )}
           </p>
         </motion.div>

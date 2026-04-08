@@ -36,7 +36,7 @@ const PartnershipSection: React.FC = () => {
         </motion.div>
 
         <motion.div className="rounded-3xl overflow-hidden mb-14 max-w-4xl mx-auto aspect-[16/7]" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
-          <img src={toliaMoodboard} alt={t3(l, "Tolia moodboard – personnalisation couleurs, matériaux et finitions", "Tolia moodboard — colour, material and finish customisation", "Tolia moodboard — personalización de colores, materiales y acabados")} className="w-full h-full object-cover no-select" draggable={false} loading="lazy" decoding="async" />
+          <img src={toliaMoodboard} alt={t3(l, "Tolia moodboard – personnalisation couleurs, matériaux et finitions", "Tolia moodboard, colour, material and finish customisation", "Tolia moodboard, personalización de colores, materiales y acabados")} className="w-full h-full object-cover no-select" draggable={false} loading="lazy" decoding="async" />
         </motion.div>
 
         <motion.div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto mb-14" variants={stagger} initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-60px' }}>

@@ -7,7 +7,7 @@ import LazySection from '@/components/LazySection';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
 
-// Lazy factories — new 5-act narrative structure
+// Lazy factories : new 5-act narrative structure
 const lazyClosetSyndrome = () => import('@/components/sections/ClosetSyndromeSection');
 const lazyFrictionByTech = () => import('@/components/sections/FrictionByTechSection');
 const lazyTwistAndMist = () => import('@/components/sections/TwistAndMistSection');
@@ -48,25 +48,25 @@ const Index: React.FC = () => {
       {/* 3. Friction by Technology (Act 2) */}
       <LazySection factory={lazyFrictionByTech} fallbackHeight="1000px" />
 
-      {/* 4. Twist & Mist (Act 3 — mechanism) */}
+      {/* 4. Twist & Mist (Act 3, mechanism) */}
       <LazySection factory={lazyTwistAndMist} fallbackHeight="800px" />
 
-      {/* 5. Four Innovations (Act 3 — proofs) */}
+      {/* 5. Four Innovations (Act 3, proofs) */}
       <LazySection factory={lazyFourInnovations} fallbackHeight="600px" />
 
-      {/* 6. Ritual Strategy (Act 4 — 12 rituals) */}
+      {/* 6. Ritual Strategy (Act 4, 12 rituals) */}
       <LazySection factory={lazyRitualStrategy} fallbackHeight="900px" />
 
       {/* Ritual (light) → Business Math (dark) */}
       <SectionGradient from="hsl(35 28% 95%)" to="hsl(25 20% 12%)" height="200px" />
 
-      {/* 7. Business Math (Act 4 — €22 → €82) */}
+      {/* 7. Business Math (Act 4, €22 → €82) */}
       <LazySection factory={lazyBusinessMath} fallbackHeight="800px" />
 
       {/* Business Math (dark) → Market Proof (light) */}
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 93%)" height="200px" />
 
-      {/* 8. Market Proof (Act 5 — traction) */}
+      {/* 8. Market Proof (Act 5, traction) */}
       <LazySection factory={lazyMarketProof} fallbackHeight="700px" />
 
       {/* 9. Brand Marquee */}
@@ -75,7 +75,7 @@ const Index: React.FC = () => {
       {/* Marquee (light) → Why Innobiz (dark) */}
       <SectionGradient from="hsl(35 30% 97%)" to="hsl(25 20% 12%)" height="200px" />
 
-      {/* 10. Why Innobiz (Act 5 — credibility moat) */}
+      {/* 10. Why Innobiz (Act 5, credibility moat) */}
       <LazySection factory={lazyWhyInnobiz} fallbackHeight="700px" />
 
       {/* Why Innobiz (dark) → Two Ways (light) */}

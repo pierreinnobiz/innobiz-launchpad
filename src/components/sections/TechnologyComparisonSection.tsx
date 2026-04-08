@@ -34,7 +34,7 @@ const TechnologyComparisonSection: React.FC = () => {
       name: 'Heat diffusion',
       how: 'Warms the oil to release fragrance',
       limitations: 'Destroys heat-sensitive active compounds, weak therapeutic value',
-      advantage: 'Zero heat — preserves the full integrity of every oil',
+      advantage: 'Zero heat : preserves the full integrity of every oil',
     },
     {
       name: 'Passive (reed, stone, ceramic)',
@@ -51,7 +51,7 @@ const TechnologyComparisonSection: React.FC = () => {
     {
       name: 'Tolia',
       how: 'Patented cold dry-air nebulization with Twist & Mist bottle system',
-      limitations: '—',
+      limitations: 'None',
       advantage: 'Plug-and-play, 30-second bottle swap, consistent dosage, premium object',
       isTolia: true,
     },
@@ -75,7 +75,7 @@ const TechnologyComparisonSection: React.FC = () => {
             Tolia vs. every other diffusion technology on the market
           </h2>
           <p className="text-body-lg max-w-4xl mx-auto">
-            Aromatherapy brands choose their diffusion technology once. Here's why Tolia is the only one built for frequency of use — and therefore for repeat oil consumption.
+            Aromatherapy brands choose their diffusion technology once. Here's why Tolia is the only one built for frequency of use, and therefore for repeat oil consumption.
           </p>
         </motion.div>
 
@@ -134,7 +134,7 @@ const TechnologyComparisonSection: React.FC = () => {
                   <span className="font-medium text-foreground/80">How it works: </span>
                   <span className="text-muted-foreground">{row.how}</span>
                 </div>
-                {row.limitations !== '—' && (
+                {row.limitations !== 'None' && (
                   <div>
                     <span className="font-medium text-foreground/80">Limitations: </span>
                     <span className="text-muted-foreground">{row.limitations}</span>
