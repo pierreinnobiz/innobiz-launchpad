@@ -51,7 +51,7 @@ const TechnologyComparisonSection: React.FC = () => {
     {
       name: 'Tolia',
       how: 'Patented cold dry-air nebulization with Twist & Mist bottle system',
-      limitations: '—',
+      limitations: 'None',
       advantage: 'Plug-and-play, 30-second bottle swap, consistent dosage, premium object',
       isTolia: true,
     },
@@ -134,7 +134,7 @@ const TechnologyComparisonSection: React.FC = () => {
                   <span className="font-medium text-foreground/80">How it works: </span>
                   <span className="text-muted-foreground">{row.how}</span>
                 </div>
-                {row.limitations !== '—' && (
+                {row.limitations !== 'None' && (
                   <div>
                     <span className="font-medium text-foreground/80">Limitations: </span>
                     <span className="text-muted-foreground">{row.limitations}</span>
