@@ -56,7 +56,7 @@ const ClosetSyndromeSection: React.FC = () => {
 
         {/* Hero image — abandoned diffusers */}
         <motion.div
-          className="max-w-2xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-xl"
+          className="max-w-xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-lg"
           initial={{ opacity: 0, scale: 0.96, filter: 'blur(8px)' }}
           whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
           viewport={{ once: true, margin: '-80px' }}
