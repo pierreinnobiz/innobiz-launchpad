@@ -90,8 +90,14 @@ const Index: React.FC = () => {
       {/* 10. Why Innobiz (Act 5, credibility moat) */}
       <LazySection factory={lazyWhyInnobiz} fallbackHeight="700px" />
 
-      {/* Why Innobiz (dark) → Two Ways (light) */}
+      {/* Why Innobiz (dark) → RSE (light) */}
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="200px" />
+
+      {/* 10.5 RSE: durability & repairability */}
+      <LazySection factory={lazyRSE} fallbackHeight="600px" />
+
+      {/* RSE (light) → Two Ways (light) */}
+      <SectionGradient from="hsl(30 25% 93%)" to="hsl(35 30% 96%)" height="80px" />
 
       {/* 11. Two Ways to Work with Tolia */}
       <LazySection factory={lazyTwoWays} fallbackHeight="900px" />
