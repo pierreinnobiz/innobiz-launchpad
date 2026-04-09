@@ -77,19 +77,19 @@ const BusinessMathSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 50% 65%)' }}>
-            {t3(language, 'Le cas financier : en noir et blanc', 'The financial case, in black and white', 'El caso financiero, en blanco y negro')}
+            {t3(language, 'Le cas financier, noir sur blanc', 'The financial case, in black and white', 'El caso financiero, en blanco y negro')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
             {t3(language,
-              'Un diffuseur traditionnel génère 22 € de marge. Une seule fois. Tolia génère 82 €. chaque année, par client.',
-              'A traditional diffuser generates €22 of margin, once. Tolia generates €82, every single year, per customer.',
-              'Un difusor tradicional genera 22 € de margen, una vez. Tolia genera 82 €. cada año, por cliente.'
+              'Un diffuseur traditionnel génère 22 € de marge, une seule fois. Tolia en génère 82 €, chaque année, par client.',
+              'A traditional diffuser generates €22 in margin, once. Tolia generates €82, every single year, per customer.',
+              'Un difusor tradicional genera 22 € de margen, una vez. Tolia genera 82 €, cada año, por cliente.'
             )}
           </h2>
           <p className="text-white/60 leading-relaxed">
             {t3(language,
-              "La vraie rentabilité d'un diffuseur n'est pas dans la vente du matériel. C'est dans le flux de rachat d'huiles qui suit, année après année, automatiquement. Voici ce qui change quand votre diffuseur est réellement utilisé chaque jour.",
-              "The real profitability of a diffuser isn't in the hardware sale. It's in the oil repurchase stream that follows, year after year, automatically. Here's what changes when your diffuser is actually used every day.",
+              "La vraie rentabilité d'un diffuseur ne réside pas dans la vente du matériel, mais dans le flux de rachat d'huiles qui suit, année après année, automatiquement. Voici ce qui change quand votre diffuseur est réellement utilisé chaque jour.",
+              "The real profitability of a diffuser does not lie in the hardware sale. It lies in the oil repurchase stream that follows, year after year, automatically. Here is what changes when your diffuser is actually used every day.",
               'La verdadera rentabilidad de un difusor no está en la venta del hardware. Está en el flujo de recompra de aceites que sigue, año tras año, automáticamente. Esto es lo que cambia cuando su difusor se usa realmente cada día.'
             )}
           </p>
@@ -162,15 +162,15 @@ const BusinessMathSection: React.FC = () => {
         >
           <p className="text-xl md:text-2xl font-bold text-white mb-2">
             {t3(language,
-              '22 € une fois → 82 € chaque année = votre marge multipliée par 4×, cumulée année après année.',
-              '€22 once → €82 every year = your margin multiplied by 4×, compounding year after year.',
-              '22 € una vez → 82 € cada año = su margen multiplicado por 4×, acumulado año tras año.'
+              '22 € une seule fois, contre 82 € chaque année : votre marge multipliée par 4, cumulée année après année.',
+              '€22 once versus €82 every year: your margin multiplied by 4, compounding year after year.',
+              '22 € una vez contra 82 € cada año: su margen multiplicado por 4, acumulado año tras año.'
             )}
           </p>
           <p className="text-xs text-white/40">
             {t3(language,
-              "Plus 75 % de coûts après-vente en moins par rapport aux diffuseurs ultrasoniques (mesuré sur plus de 10 déploiements de marques par Innobiz).",
-              'Plus 75% lower after-sales costs compared to ultrasonic diffusers (measured across 10+ brand deployments by Innobiz).',
+              "Avec en prime 75 % de coûts SAV en moins par rapport aux diffuseurs ultrasoniques (mesuré sur plus de 10 déploiements de marques par Innobiz).",
+              'Plus 75% lower after-sales costs compared with ultrasonic diffusers (measured across 10+ brand deployments by Innobiz).',
               'Además, 75 % menos de costes posventa en comparación con difusores ultrasónicos (medido en más de 10 despliegues de marcas por Innobiz).'
             )}
           </p>

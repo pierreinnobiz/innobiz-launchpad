@@ -35,16 +35,16 @@ const RitualStrategySection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "Arrêtez de vendre des huiles au hasard. Créez 12 occasions de rachat intégrées par an, par client.",
-              "Stop selling oils randomly. Create 12 built-in repurchase occasions per year, per customer.",
-              'Deje de vender aceites al azar. Cree 12 ocasiones de recompra integradas al año, por cliente.'
+              "Cessez de vendre des huiles au hasard. Structurez 12 occasions de rachat par an et par client.",
+              "Stop selling oils at random. Structure 12 repurchase occasions per year, per customer.",
+              'Deje de vender aceites al azar. Estructure 12 ocasiones de recompra al año, por cliente.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              <>Aujourd'hui, votre client achète des huiles essentielles quand il y pense, peut-être 2 ou 3 fois par an, de manière imprévisible. Avec le cadre rituel de Tolia, vous structurez votre gamme d'huiles autour de <strong className="text-foreground">4 saisons × 3 moments quotidiens</strong>, créant 12 rituels bien-être clairement identifiés. Chaque rituel = une synergie d'huile vendue = un achat prévisible et répétable.</>,
-              <>Today, your customer buys essential oils when they remember, maybe 2 or 3 times a year, unpredictably. With Tolia's ritual framework, you structure your oil range around <strong className="text-foreground">4 seasons × 3 daily moments</strong>, creating 12 clearly identified wellness rituals. Each ritual = one oil synergy sold = one predictable, repeatable purchase.</>,
-              <>Hoy, su cliente compra aceites esenciales cuando se acuerda, quizás 2 o 3 veces al año, de forma impredecible. Con el marco ritual de Tolia, estructura su gama de aceites en torno a <strong className="text-foreground">4 estaciones × 3 momentos diarios</strong>, creando 12 rituales de bienestar claramente identificados. Cada ritual = una sinergia de aceite vendida = una compra predecible y repetible.</>
+              <>Aujourd'hui, votre client achète des huiles essentielles quand il y pense, peut-être 2 ou 3 fois par an, de manière imprévisible. Avec le cadre rituel de Tolia, vous structurez votre gamme d'huiles autour de <strong className="text-foreground">4 saisons et 3 moments quotidiens</strong>, soit 12 rituels bien-être clairement identifiés. Chaque rituel correspond à une synergie vendue, donc à un achat prévisible et répétable.</>,
+              <>Today, your customer buys essential oils when they remember, perhaps 2 or 3 times a year, unpredictably. With Tolia's ritual framework, you structure your oil range around <strong className="text-foreground">4 seasons and 3 daily moments</strong>, creating 12 clearly identified wellness rituals. Each ritual equals one oil blend sold, which means one predictable, repeatable purchase.</>,
+              <>Hoy, su cliente compra aceites esenciales cuando se acuerda, quizás 2 o 3 veces al año, de forma impredecible. Con el marco ritual de Tolia, estructura su gama de aceites en torno a <strong className="text-foreground">4 estaciones y 3 momentos diarios</strong>, creando 12 rituales de bienestar claramente identificados. Cada ritual equivale a una mezcla de aceite vendida, es decir, una compra predecible y repetible.</>
             )}
           </p>
         </motion.div>
@@ -119,26 +119,26 @@ const RitualStrategySection: React.FC = () => {
         >
           <p className="text-base md:text-lg leading-relaxed font-medium text-center text-foreground mb-4">
             <strong>{t3(language,
-              "12 rituels saisonniers = 12 achats d'huile par client par an, mécanique et prévisible.",
-              '12 seasonal rituals = 12 oil purchases per customer per year, mechanical and predictable.',
-              '12 rituales estacionales = 12 compras de aceite por cliente al año, mecánico y predecible.'
+              "12 rituels saisonniers, c'est 12 achats d'huile par client par an, de façon mécanique et prévisible.",
+              '12 seasonal rituals means 12 oil purchases per customer per year, mechanically and predictably.',
+              '12 rituales estacionales significa 12 compras de aceite por cliente al año, de forma mecánica y predecible.'
             )}</strong>
           </p>
           <p className="text-sm text-muted-foreground text-center leading-relaxed">
             <strong className="text-foreground">{t3(language, 'Sans Tolia :', 'Without Tolia:', 'Sin Tolia:')}</strong> {t3(language,
-              "2 à 3 flacons d'huile essentielle achetés par client par an. Timing aléatoire. Pas de fidélité. Pas de prévisibilité.",
-              '2–3 essential oil bottles purchased per customer per year. Random timing. No loyalty. No predictability.',
-              '2–3 frascos de aceite esencial comprados por cliente al año. Timing aleatorio. Sin fidelidad. Sin previsibilidad.'
+              "2 à 3 flacons d'huile essentielle achetés par client par an. Timing aléatoire. Aucune fidélité. Aucune prévisibilité.",
+              '2 to 3 essential oil bottles purchased per customer per year. Random timing. No loyalty. No predictability.',
+              '2 a 3 frascos de aceite esencial comprados por cliente al año. Timing aleatorio. Sin fidelidad. Sin previsibilidad.'
             )}<br />
-            <strong className="text-foreground">{t3(language, 'Avec Tolia + Stratégie Rituel :', 'With Tolia + Ritual Strategy:', 'Con Tolia + Estrategia Ritual:')}</strong> {t3(language,
-              "12+ synergies d'huile ciblées par client par an. Guidé par les saisons. Créateur d'habitude. Automatiquement récurrent.",
-              '12+ targeted oil synergies per customer per year. Season-driven. Habit-forming. Automatically recurring.',
-              '12+ sinergias de aceite dirigidas por cliente al año. Guiado por estaciones. Creador de hábitos. Automáticamente recurrente.'
+            <strong className="text-foreground">{t3(language, 'Avec Tolia et la Stratégie Rituel :', 'With Tolia and Ritual Strategy:', 'Con Tolia y la Estrategia Ritual:')}</strong> {t3(language,
+              "12 synergies ciblées ou plus par client par an. Guidées par les saisons. Créatrices d'habitude. Automatiquement récurrentes.",
+              '12 or more targeted oil blends per customer per year. Season-driven. Habit-forming. Automatically recurring.',
+              '12 o más mezclas de aceite dirigidas por cliente al año. Guiadas por estaciones. Creadoras de hábito. Automáticamente recurrentes.'
             )}<br />
             <strong className="text-foreground">{t3(language,
-              "Le résultat : consommation d'huile multipliée par 4× à 6×. sans aucune augmentation de budget marketing.",
-              'The result: oil consumption multiplied by 4× to 6×. without any increase in marketing spend.',
-              'El resultado: consumo de aceite multiplicado por 4× a 6×. sin aumento de gasto en marketing.'
+              "Le résultat : la consommation d'huile multipliée par 4 à 6, sans aucune augmentation du budget marketing.",
+              'The result: oil consumption multiplied by 4 to 6, with no increase in marketing spend.',
+              'El resultado: consumo de aceite multiplicado por 4 a 6, sin aumento de gasto en marketing.'
             )}</strong>
           </p>
         </motion.div>

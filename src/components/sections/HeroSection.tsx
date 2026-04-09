@@ -118,8 +118,8 @@ const HeroSection: React.FC = () => {
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 0.7]);
 
   const stats = [
-    { value: '100K+', label: t3(language, 'unités vendues en seulement 7 mois', 'units sold in just 7 months', 'unidades vendidas en solo 7 meses') },
-    { value: '×4 to ×6', label: t3(language, "plus d'huiles achetées par client", 'more oil purchased per customer', 'más aceites comprados por cliente') },
+    { value: '100K+', label: t3(language, 'unités vendues en 7 mois', 'units sold in 7 months', 'unidades vendidas en 7 meses') },
+    { value: '×4 à ×6', label: t3(language, "plus d'huiles rachetées par client", 'more oils repurchased per customer', 'más aceites recomprados por cliente') },
     { value: '€22 → €82', label: t3(language, 'marge annuelle par client', 'annual margin per customer', 'margen anual por cliente') },
   ];
 
@@ -142,13 +142,13 @@ const HeroSection: React.FC = () => {
           >
             {t3(language,
               "Pour les directeurs de marques d'aromathérapie, d'huiles essentielles et de bien-être naturel",
-              'For directors of aromatherapy, essential oil & natural wellness brands',
+              'For aromatherapy, essential oil and natural wellness brand directors',
               'Para directores de marcas de aromaterapia, aceites esenciales y bienestar natural'
             )}
           </motion.span>
 
           <AnimatedTitle text={t3(language,
-            "Vos clients achètent un diffuseur une fois, puis ne recommandent plus jamais d'huiles. Tolia change la donne.",
+            "Vos clients achètent un diffuseur une fois, puis ne rachètent plus jamais d'huiles. Tolia change la donne.",
             'Your customers buy a diffuser once, then never reorder oils. Tolia changes that.',
             'Sus clientes compran un difusor una vez, y nunca vuelven a pedir aceites. Tolia cambia eso.'
           )} delay={0.5} />
@@ -160,9 +160,9 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             {t3(language,
-              "Le système breveté Twist & Mist transforme la diffusion d'huiles essentielles en un rituel quotidien de 10 secondes, si simple que les clients l'utilisent chaque jour et recommandent des huiles 4× à 6× plus souvent. Ce n'est pas une promesse. C'est déjà mesuré sur plus de 100 000 unités vendues.",
-              "The patented Twist & Mist system turns essential oil diffusion into a 10-second daily ritual, so simple that customers use it every day and reorder oils 4× to 6× more often. That's not a promise. It's already measured across 100,000+ units sold.",
-              'El sistema patentado Twist & Mist convierte la difusión de aceites esenciales en un ritual diario de 10 segundos, tan simple que los clientes lo usan cada día y reordenan aceites 4× a 6× más seguido. No es una promesa. Ya está medido en más de 100.000 unidades vendidas.'
+              "Le système breveté Twist & Mist transforme la diffusion d'huiles essentielles en un rituel quotidien de 10 secondes, si simple que les clients l'utilisent chaque jour et rachètent des huiles 4 à 6 fois plus souvent. Ce n'est pas une promesse : c'est déjà mesuré sur plus de 100 000 unités vendues.",
+              "The patented Twist & Mist system turns essential oil diffusion into a 10-second daily ritual so simple that customers use it every day and reorder oils 4 to 6 times more often. This is not a promise: it is already measured across 100,000+ units sold.",
+              'El sistema patentado Twist & Mist convierte la difusión de aceites esenciales en un ritual diario de 10 segundos, tan simple que los clientes lo usan cada día y recompran aceites de 4 a 6 veces más. No es una promesa: ya está medido en más de 100.000 unidades vendidas.'
             )}
           </motion.p>
 
@@ -208,9 +208,9 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 1, delay: 2.5 }}
           >
             {t3(language,
-              "20 ans de R&D propriétaire en diffusion · Conçu et assemblé en France · Utilisé par Pierre Fabre, Puressentiel, Arkopharma, Florame et 30+ leaders de l'industrie",
-              '20 years of proprietary diffusion R&D · Designed & assembled in France · Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ industry leaders',
-              '20 años de I+D propietaria en difusión · Diseñado y ensamblado en Francia · Usado por Pierre Fabre, Puressentiel, Arkopharma, Florame y 30+ líderes del sector'
+              "20 ans de R&D propriétaire en diffusion · Conçu et assemblé en France · Adopté par Pierre Fabre, Puressentiel, Arkopharma, Florame et plus de 30 leaders du secteur",
+              '20 years of proprietary diffusion R&D · Designed and assembled in France · Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ industry leaders',
+              '20 años de I+D propietaria en difusión · Diseñado y ensamblado en Francia · Adoptado por Pierre Fabre, Puressentiel, Arkopharma, Florame y más de 30 líderes del sector'
             )}
           </motion.p>
         </div>

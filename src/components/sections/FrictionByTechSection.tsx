@@ -67,19 +67,19 @@ const FrictionByTechSection: React.FC = () => {
       <div className="section-container">
         <motion.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, 'La cause profonde. La technologie', 'The root cause, technology', 'La causa raíz. La tecnología')}
+            {t3(language, 'La cause profonde : la technologie', 'The root cause: technology', 'La causa raíz: la tecnología')}
           </span>
           <h2 className="heading-section mb-4">
             {t3(language,
-              "Ce n'est pas votre marketing. C'est le diffuseur. Chaque technologie existante crée une friction qui tue l'usage quotidien.",
-              "It's not your marketing. It's the diffuser. Every existing technology creates a friction that kills daily use.",
-              'No es su marketing. Es el difusor. Cada tecnología existente crea una fricción que mata el uso diario.'
+              "Le problème ne vient pas de votre marketing. Il vient du diffuseur. Chaque technologie existante crée une friction qui tue l'usage quotidien.",
+              "The problem is not your marketing. It is the diffuser. Every existing technology creates friction that kills daily use.",
+              'El problema no es su marketing. Es el difusor. Cada tecnología existente crea una fricción que mata el uso diario.'
             )}
           </h2>
           <p className="text-body-lg max-w-4xl mx-auto">
             {t3(language,
               <>Votre client veut diffuser des huiles essentielles chaque jour. Mais chaque diffuseur du marché le force à choisir : silencieux <em>ou</em> puissant ? Portable <em>ou</em> efficace ? Simple <em>ou</em> flexible ? Ce compromis forcé est la raison pour laquelle 60 % des diffuseurs finissent inutilisés. Jusqu'à Tolia.</>,
-              <>Your customer wants to diffuse essential oils every day. But every diffuser on the market forces them to choose: silent <em>or</em> powerful? Portable <em>or</em> effective? Simple <em>or</em> flexible? That forced compromise is the reason 60% of diffusers end up unused. Until Tolia.</>,
+              <>Your customer wants to diffuse essential oils every day. But every diffuser on the market forces a choice: silent <em>or</em> powerful? Portable <em>or</em> effective? Simple <em>or</em> flexible? That forced compromise is why 60% of diffusers end up unused. Until Tolia.</>,
               <>Su cliente quiere difundir aceites esenciales cada día. Pero cada difusor del mercado le obliga a elegir: ¿silencioso <em>o</em> potente? ¿Portátil <em>o</em> eficaz? ¿Simple <em>o</em> flexible? Ese compromiso forzado es la razón por la que el 60 % de los difusores terminan sin usarse. Hasta Tolia.</>
             )}
           </p>
@@ -174,9 +174,9 @@ const FrictionByTechSection: React.FC = () => {
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center">
             {t3(language,
-              "L'équation est simple : supprimez la friction → supprimez l'effet placard → débloquez le rachat d'huiles toute l'année. C'est exactement ce que fait Twist & Mist, et pourquoi les marques utilisant Tolia voient la consommation d'huiles multipliée par 4× à 6×.",
-              "The equation is simple: remove the friction → remove the closet effect → unlock year-round oil repurchase. That's exactly what Twist & Mist does, and why brands using Tolia see oil consumption multiply by 4× to 6×.",
-              'La ecuación es simple: elimine la fricción → elimine el efecto armario → desbloquee la recompra de aceites durante todo el año. Eso es exactamente lo que hace Twist & Mist, y por qué las marcas que usan Tolia ven el consumo de aceites multiplicarse por 4× a 6×.'
+              "L'équation est limpide : supprimez la friction, supprimez l'effet placard, débloquez le rachat d'huiles toute l'année. C'est exactement ce que fait Twist & Mist, et c'est pourquoi les marques qui utilisent Tolia voient la consommation d'huiles multipliée par 4 à 6.",
+              "The equation is straightforward: remove friction, remove the cupboard effect, unlock year-round oil repurchase. That is exactly what Twist & Mist does, and why brands using Tolia see oil consumption multiply by 4 to 6 times.",
+              'La ecuación es clara: elimine la fricción, elimine el efecto armario, desbloquee la recompra de aceites durante todo el año. Eso es exactamente lo que hace Twist & Mist, y por qué las marcas que usan Tolia ven el consumo de aceites multiplicarse por 4 a 6 veces.'
             )}
           </p>
         </motion.div>
