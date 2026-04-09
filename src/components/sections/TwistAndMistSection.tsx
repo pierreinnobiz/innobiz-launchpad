@@ -88,9 +88,9 @@ const TwistAndMistSection: React.FC = () => {
       icon: RefreshCw,
       title: t3(language, 'Changez', 'Switch', 'Cambie'),
       desc: t3(language,
-        "Changer de synergie prend moins de 3 secondes : dévissez, vissez un autre flacon, c'est fait. Menthe poivrée énergisante le matin, lavande apaisante le soir. Un seul diffuseur, des rituels illimités, zéro nettoyage entre les synergies.",
-        "Changing blends takes under 3 seconds: unscrew, screw on another bottle, done. Energising peppermint in the morning, calming lavender at night, one diffuser, unlimited rituals, zero cleaning between blends.",
-        'Cambiar de mezcla toma menos de 3 segundos: desenrosque, enrosque otro frasco, listo. Menta energizante por la mañana, lavanda calmante por la noche. Un difusor, rituales ilimitados, cero limpieza entre mezclas.'
+        "Changer de synergie prend moins de 3 secondes : dévissez, vissez un autre flacon, c'est fait. Menthe poivrée énergisante le matin, lavande apaisante le soir. Un seul diffuseur, des rituels illimités et zéro nettoyage entre les synergies.",
+        "Switching blends takes under 3 seconds: unscrew, screw on another bottle, done. Energising peppermint in the morning, calming lavender at night. One diffuser, unlimited rituals and zero cleaning between blends.",
+        'Cambiar de mezcla toma menos de 3 segundos: desenrosque, enrosque otro frasco, listo. Menta energizante por la mañana, lavanda calmante por la noche. Un difusor, rituales ilimitados y cero limpieza entre mezclas.'
       ),
       video: '/videos/twist-step4.mp4',
       poster: step4Poster,
@@ -220,8 +220,8 @@ const TwistAndMistSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           {t3(language,
-            "Pas d'eau à remplir. Pas de réservoir à nettoyer. Pas de gouttes à mesurer. Pas de notice à lire. C'est pourquoi Tolia est utilisé chaque jour, et pourquoi, pour la première fois, vos huiles essentielles se vendent sur une base véritablement récurrente.",
-            "No water to fill. No tank to clean. No drops to measure. No instructions to read. That's why Tolia gets used every single day, and why, for the first time, your essential oils sell on a truly recurring basis.",
+            "Pas d'eau à remplir. Pas de réservoir à nettoyer. Pas de gouttes à mesurer. Pas de notice à lire. Voilà pourquoi Tolia est utilisé chaque jour, et pourquoi, pour la première fois, vos huiles essentielles se vendent sur une base véritablement récurrente.",
+            "No water to fill. No tank to clean. No drops to measure. No instructions to read. That is why Tolia gets used every single day, and why, for the first time, your essential oils sell on a truly recurring basis.",
             'Sin agua que llenar. Sin depósito que limpiar. Sin gotas que medir. Sin instrucciones que leer. Por eso Tolia se usa cada día, y por qué, por primera vez, sus aceites esenciales se venden de forma verdaderamente recurrente.'
           )}
         </motion.p>
