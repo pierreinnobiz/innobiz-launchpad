@@ -179,7 +179,7 @@ const TechnologyExplained: React.FC = () => {
         {
           number: "06",
           title: "Protection et exclusivité",
-          description: "Dépôts de brevets en cours. Partenariats industriels exclusifs. Cette technologie n'est accessible qu'aux marques sélectionnées, dans le cadre d'un co-développement avec nos équipes.",
+          description: "Technologie propriétaire. Partenariats industriels exclusifs. Cette technologie n'est accessible qu'aux marques sélectionnées, dans le cadre d'un co-développement avec nos équipes.",
           icon: <Shield className="w-6 h-6" />,
         },
       ],
@@ -243,7 +243,7 @@ const TechnologyExplained: React.FC = () => {
         {
           number: "06",
           title: "Protection and exclusivity",
-          description: "Patent filings in progress. Exclusive industrial partnerships. This technology is only accessible to selected brands, through co-development with our teams.",
+          description: "Proprietary technology. Exclusive industrial partnerships. This technology is only accessible to selected brands, through co-development with our teams.",
           icon: <Shield className="w-6 h-6" />,
         },
       ],

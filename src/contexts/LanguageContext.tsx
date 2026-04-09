@@ -112,7 +112,7 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
   'tech.technical.3': { fr: 'Matériaux durables sélectionnés pour la performance long terme', en: 'Durable materials selected for long-term performance' },
   'tech.technical.4': { fr: 'Électronique et logiciel embarqués permettant la programmabilité', en: 'Embedded electronics and software enabling programmability' },
   'tech.ip.title': { fr: 'Propriété intellectuelle et exclusivité', en: 'Intellectual property and exclusivity' },
-  'tech.ip.desc': { fr: 'Innobiz Lab opère avec des partenaires industriels exclusifs et des dépôts de brevets en cours. Les démonstrations expliquent les principes de performance tout en préservant les avantages propriétaires.', en: 'Innobiz Lab operates with exclusive industrial partners and ongoing patent filings. Demonstrations explain performance principles while preserving proprietary advantages.' },
+  'tech.ip.desc': { fr: 'Innobiz Lab opère avec des partenaires industriels exclusifs. Les démonstrations expliquent les principes de performance tout en préservant les avantages propriétaires.', en: 'Innobiz Lab operates with exclusive industrial partners. Demonstrations explain performance principles while preserving proprietary advantages.' },
   
   // Outcomes page
   'outcomes.page.title': { fr: 'Augmentez les achats récurrents grâce à une diffusion simplifiée', en: 'Increase repeat purchase through simplified fragrance diffusion' },

@@ -160,9 +160,9 @@ const HeroSection: React.FC = () => {
             transition={{ duration: 0.8, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
             {t3(language,
-              "Le système breveté Twist & Mist transforme la diffusion d'huiles essentielles en un rituel quotidien de 10 secondes, si simple que les clients l'utilisent chaque jour et rachètent des huiles 4 à 6 fois plus souvent. Ce n'est pas une promesse : c'est déjà mesuré sur plus de 100 000 unités vendues.",
-              "The patented Twist & Mist system turns essential oil diffusion into a 10-second daily ritual so simple that customers use it every day and reorder oils 4 to 6 times more often. This is not a promise: it is already measured across 100,000+ units sold.",
-              'El sistema patentado Twist & Mist convierte la difusión de aceites esenciales en un ritual diario de 10 segundos, tan simple que los clientes lo usan cada día y recompran aceites de 4 a 6 veces más. No es una promesa: ya está medido en más de 100.000 unidades vendidas.'
+              "Le système Twist & Mist transforme la diffusion d'huiles essentielles en un rituel quotidien de 10 secondes, si simple que les clients l'utilisent chaque jour et rachètent des huiles 4 à 6 fois plus souvent. Ce n'est pas une promesse : c'est déjà mesuré sur plus de 100 000 unités vendues.",
+              "The Twist & Mist system turns essential oil diffusion into a 10-second daily ritual so simple that customers use it every day and reorder oils 4 to 6 times more often. This is not a promise: it is already measured across 100,000+ units sold.",
+              'El sistema Twist & Mist convierte la difusión de aceites esenciales en un ritual diario de 10 segundos, tan simple que los clientes lo usan cada día y recompran aceites de 4 a 6 veces más. No es una promesa: ya está medido en más de 100.000 unidades vendidas.'
             )}
           </motion.p>
 
