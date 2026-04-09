@@ -108,7 +108,7 @@ const TwistAndMistSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, 'Le système Twist & Mist, breveté', 'The Twist & Mist system, patented', 'El sistema Twist & Mist, patentado')}
+            {t3(language, 'Le système Twist & Mist', 'The Twist & Mist system', 'El sistema Twist & Mist')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,

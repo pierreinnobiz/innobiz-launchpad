@@ -113,10 +113,10 @@ const FAQ: React.FC = () => {
       title: t('faq.cat.ip'),
       questions: [
         { 
-          q: language === 'fr' ? 'La technologie est-elle brevetée ?' : 'Is the technology patented?', 
+          q: language === 'fr' ? 'La technologie est-elle protégée ?' : 'Is the technology protected?', 
           a: language === 'fr' 
-            ? 'Oui, technologie propriétaire avec dépôts de brevets en cours. Nous opérons avec des partenaires industriels exclusifs.' 
-            : 'Yes, proprietary technology with ongoing patent filings. We operate with exclusive industrial partners.' 
+            ? 'Oui, Twist & Mist est une technologie propriétaire développée en exclusivité par Innobiz. Nous opérons avec des partenaires industriels sélectionnés.' 
+            : 'Yes, Twist & Mist is a proprietary technology developed exclusively by Innobiz. We operate with selected industrial partners.' 
         },
         { 
           q: language === 'fr' ? 'Puis-je revendre les modules à d\'autres marques ?' : 'Can I resell modules to other brands?', 

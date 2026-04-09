@@ -49,7 +49,7 @@ const FrictionByTechSection: React.FC = () => {
     },
     {
       name: 'Tolia : Twist & Mist ✅',
-      how: t3(language, "Le flacon scellé se visse directement dans le module de nébulisation breveté à air froid sec", 'Sealed bottle screws directly into patented cold dry-air nebulization module', 'El frasco sellado se enrosca directamente en el módulo de nebulización patentado de aire frío seco'),
+      how: t3(language, "Le flacon scellé se visse directement dans le module de nébulisation à air froid sec", 'Sealed bottle screws directly into cold dry-air nebulization module', 'El frasco sellado se enrosca directamente en el módulo de nebulización de aire frío seco'),
       friction: t3(language, "Zéro friction, vissez le flacon, clipsez, appuyez sur le bouton. Pas d'eau, pas de nettoyage, pas de gaspillage, pas de bruit.", 'Zero friction, screw the bottle, clip in, press the button. No water, no cleaning, no waste, no noise.', 'Cero fricción, enrosque el frasco, enganche, presione el botón. Sin agua, sin limpieza, sin desperdicio, sin ruido.'),
       closet: t3(language, 'Rituel quotidien, 365 jours par an, mesuré et prouvé', 'Daily ritual, 365 days a year, measured and proven', 'Ritual diario, 365 días al año, medido y probado'),
       isTolia: true,

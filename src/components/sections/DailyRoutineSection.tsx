@@ -112,9 +112,9 @@ const DailyRoutineSection: React.FC = () => {
       number: '02',
       title: t3(l, 'Clip', 'Clip', 'Clip'),
       desc: t3(l,
-        'Insérez le module dans le diffuseur Tolia. Le système breveté se clipse en une seconde. Un geste aussi simple que poser un bouchon.',
-        'Insert the module into the Tolia diffuser. The patented system clips in within a second, as simple as placing a cap.',
-        'Inserte el módulo en el difusor Tolia. El sistema patentado se engancha en un segundo, tan simple como colocar una tapa.'
+        'Insérez le module dans le diffuseur Tolia. Le système se clipse en une seconde. Un geste aussi simple que poser un bouchon.',
+        'Insert the module into the Tolia diffuser. The system clips in within a second, as simple as placing a cap.',
+        'Inserte el módulo en el difusor Tolia. El sistema se engancha en un segundo, tan simple como colocar una tapa.'
       ),
     },
     {
@@ -183,7 +183,7 @@ const DailyRoutineSection: React.FC = () => {
         <motion.div className="max-w-5xl mx-auto mb-12" initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.7 }}>
           <div className="text-center mb-10">
             <span className="font-semibold text-sm tracking-wide uppercase mb-3 block" style={{ color: 'hsl(28 45% 48%)' }}>
-              {t3(l, 'Technologie brevetée', 'Patented technology', 'Tecnología patentada')}
+              {t3(l, 'Technologie propriétaire', 'Proprietary technology', 'Tecnología propietaria')}
             </span>
             <h3 className="text-2xl md:text-3xl font-bold mb-3">
               {t3(l, 'Twist & Mist. Le geste qui change tout', 'Twist & Mist. The gesture that changes everything', 'Twist & Mist, El gesto que lo cambia todo')}

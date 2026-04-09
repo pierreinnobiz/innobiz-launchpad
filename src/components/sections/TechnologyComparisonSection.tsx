@@ -50,7 +50,7 @@ const TechnologyComparisonSection: React.FC = () => {
     },
     {
       name: 'Tolia',
-      how: 'Patented cold dry-air nebulization with Twist & Mist bottle system',
+      how: 'Cold dry-air nebulization with Twist & Mist bottle system',
       limitations: 'None',
       advantage: 'Plug-and-play, 30-second bottle swap, consistent dosage, premium object',
       isTolia: true,
