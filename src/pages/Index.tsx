@@ -13,11 +13,13 @@ const lazyClosetSyndrome = () => import('@/components/sections/ClosetSyndromeSec
 const lazyFrictionByTech = () => import('@/components/sections/FrictionByTechSection');
 const lazyTwistAndMist = () => import('@/components/sections/TwistAndMistSection');
 const lazyFourInnovations = () => import('@/components/sections/FourInnovationsSection');
+const lazyRangeRationalization = () => import('@/components/sections/RangeRationalizationSection');
 const lazyRitualStrategy = () => import('@/components/sections/RitualStrategySection');
 const lazyBusinessMath = () => import('@/components/sections/BusinessMathSection');
 const lazyMarketProof = () => import('@/components/sections/MarketProofSection');
 const lazyBrandMarquee = () => import('@/components/sections/BrandMarqueeSection');
 const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection');
+const lazyRSE = () => import('@/components/sections/RSESection');
 const lazyTwoWays = () => import('@/components/sections/TwoWaysSection');
 const lazyFAQ = () => import('@/components/sections/FAQSection');
 const lazyContact = () => import('@/components/sections/ContactSection');
