@@ -1,46 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { X, Check } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
-
-const AnimatedValue: React.FC<{ value: string }> = ({ value }) => {
-  const numericPart = value.replace(/[^0-9.]/g, '');
-  const prefix = value.match(/^[^0-9]*/)?.[0] || '';
-  const suffix = value.match(/[0-9.][^0-9]*$/)?.[0]?.replace(/[0-9.]/g, '') || '';
-
-  const [display, setDisplay] = useState('0');
-  const ref = useRef<HTMLSpanElement>(null);
-  const hasAnimated = useRef(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (entry.isIntersecting && !hasAnimated.current) {
-        hasAnimated.current = true;
-        const target = parseFloat(numericPart);
-        const duration = 1500;
-        const start = performance.now();
-        const tick = (now: number) => {
-          const elapsed = now - start;
-          const progress = Math.min(elapsed / duration, 1);
-          const eased = 1 - Math.pow(1 - progress, 3);
-          const current = eased * target;
-          setDisplay(target >= 100 ? Math.round(current).toLocaleString() : current.toFixed(0));
-          if (progress < 1) requestAnimationFrame(tick);
-          else setDisplay(target >= 100 ? target.toLocaleString() : target.toString());
-        };
-        requestAnimationFrame(tick);
-      }
-    }, { threshold: 0.5 });
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [numericPart]);
-
-  return <span ref={ref}>{prefix}{display}{suffix}</span>;
-};
 
 const BusinessMathSection: React.FC = () => {
   const { language } = useLanguage();
@@ -81,9 +44,9 @@ const BusinessMathSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
             {t3(language,
-              'Un diffuseur traditionnel génère 22 € de marge, une seule fois. Tolia en génère 82 €, chaque année, par client.',
-              'A traditional diffuser generates €22 in margin, once. Tolia generates €82, every single year, per customer.',
-              'Un difusor tradicional genera 22 € de margen, una vez. Tolia genera 82 €, cada año, por cliente.'
+              'Un diffuseur traditionnel génère un seul achat. Tolia multiplie le revenu par client par 4, chaque année.',
+              'A traditional diffuser generates a single purchase. Tolia multiplies per-customer revenue by 4, every year.',
+              'Un difusor tradicional genera una sola compra. Tolia multiplica los ingresos por cliente por 4, cada año.'
             )}
           </h2>
           <p className="text-white/60 leading-relaxed">
@@ -121,8 +84,8 @@ const BusinessMathSection: React.FC = () => {
               ))}
             </ul>
             <div className="rounded-xl p-4 text-center" style={{ background: 'hsl(0 0% 100% / 0.05)' }}>
-              <span className="text-3xl font-bold text-white/40">€<AnimatedValue value="22" /></span>
-              <span className="text-sm text-white/30 block mt-1">{t3(language, 'marge brute. Une seule fois', 'gross margin, one time only', 'margen bruto, una sola vez')}</span>
+              <span className="text-3xl font-bold text-white/40">×1</span>
+              <span className="text-sm text-white/30 block mt-1">{t3(language, 'revenu par client. Une seule fois', 'revenue per customer. One time only', 'ingresos por cliente. Una sola vez')}</span>
             </div>
           </motion.div>
 
@@ -146,8 +109,8 @@ const BusinessMathSection: React.FC = () => {
               ))}
             </ul>
             <div className="rounded-xl p-4 text-center" style={{ background: 'hsl(28 50% 65% / 0.15)' }}>
-              <span className="text-3xl font-bold" style={{ color: 'hsl(28 50% 65%)' }}>€<AnimatedValue value="82" /></span>
-              <span className="text-sm block mt-1" style={{ color: 'hsl(28 50% 65% / 0.7)' }}>{t3(language, 'marge brute, récurrente chaque année', 'gross margin, recurring every year', 'margen bruto, recurrente cada año')}</span>
+              <span className="text-3xl font-bold" style={{ color: 'hsl(28 50% 65%)' }}>×4</span>
+              <span className="text-sm block mt-1" style={{ color: 'hsl(28 50% 65% / 0.7)' }}>{t3(language, 'revenu par client, récurrent chaque année', 'revenue per customer, recurring every year', 'ingresos por cliente, recurrente cada año')}</span>
             </div>
           </motion.div>
         </motion.div>
@@ -162,9 +125,9 @@ const BusinessMathSection: React.FC = () => {
         >
           <p className="text-xl md:text-2xl font-bold text-white mb-2">
             {t3(language,
-              '22 € une seule fois, contre 82 € chaque année : votre marge multipliée par 4, cumulée année après année.',
-              '€22 once versus €82 every year: your margin multiplied by 4, compounding year after year.',
-              '22 € una vez contra 82 € cada año: su margen multiplicado por 4, acumulado año tras año.'
+              'Un seul achat contre un revenu multiplié par 4, cumulé année après année, par client.',
+              'A single purchase versus 4× more revenue, compounding year after year, per customer.',
+              'Una sola compra frente a ingresos multiplicados por 4, acumulados año tras año, por cliente.'
             )}
           </p>
           <p className="text-xs text-white/40">

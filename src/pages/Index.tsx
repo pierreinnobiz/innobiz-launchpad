@@ -67,7 +67,7 @@ const Index: React.FC = () => {
       {/* Ritual (light) → Business Math (dark) */}
       <SectionGradient from="hsl(35 28% 95%)" to="hsl(25 20% 12%)" height="200px" />
 
-      {/* 7. Business Math (Act 4, €22 → €82) */}
+      {/* 7. Business Math (Act 4, ×1 → ×4) */}
       <LazySection factory={lazyBusinessMath} fallbackHeight="800px" />
 
       {/* Business Math (dark) → Market Proof (light) */}

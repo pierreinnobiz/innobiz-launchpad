@@ -136,9 +136,9 @@ const ClosetSyndromeSection: React.FC = () => {
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center text-foreground">
             {t3(language,
-              "Le calcul est implacable : avec un diffuseur traditionnel, le client moyen achète 2 à 3 flacons d'huile essentielle par an. Avec un diffuseur qu'il utilise vraiment chaque jour, ce chiffre passe à 12 ou plus. C'est la différence entre 46 € et 164 € de revenu annuel par client.",
-              "Here is the arithmetic that matters: with a traditional diffuser, the average customer buys 2 to 3 bottles of essential oil per year. With a diffuser they actually use every day, that number jumps to 12 or more. That is the difference between €46 and €164 in annual revenue per customer.",
-              'Este es el cálculo que importa: con un difusor tradicional, el cliente promedio compra 2 a 3 frascos de aceite esencial al año. Con un difusor que realmente usa cada día, ese número sube a 12 o más. Es la diferencia entre 46 € y 164 € de ingresos anuales por cliente.'
+              "Le calcul est implacable : avec un diffuseur traditionnel, le client moyen achète 2 à 3 flacons d'huile essentielle par an. Avec un diffuseur qu'il utilise vraiment chaque jour, ce chiffre passe à 12 ou plus. Cela signifie un revenu par client multiplié par 4 à 6, chaque année.",
+              "Here is the arithmetic that matters: with a traditional diffuser, the average customer buys 2 to 3 bottles of essential oil per year. With a diffuser they actually use every day, that number jumps to 12 or more. That means 4× to 6× more revenue per customer, every single year.",
+              'Este es el cálculo que importa: con un difusor tradicional, el cliente promedio compra 2 a 3 frascos de aceite esencial al año. Con un difusor que realmente usa cada día, ese número sube a 12 o más. Eso significa multiplicar por 4 a 6 los ingresos por cliente, cada año.'
             )}
           </p>
           <p className="text-xs text-center text-muted-foreground mt-4 font-light">
