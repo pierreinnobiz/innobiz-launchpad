@@ -52,9 +52,9 @@ const WhyInnobizSection: React.FC = () => {
           </h2>
           <p className="text-white/60 leading-relaxed">
             {t3(language,
-              "Innobiz conçoit et fabrique des systèmes de diffusion d'huiles essentielles depuis 2005, pour certaines des marques les plus exigeantes en pharmacie, bien-être et parfumerie de luxe. Tolia est notre produit de 7e génération et notre innovation la plus stratégique. Il repose sur un avantage technologique qui a nécessité deux décennies de développement, et qu'aucun concurrent n'a pu reproduire.",
-              "Innobiz has been designing and manufacturing essential oil diffusion systems since 2005, for some of the most demanding brands in pharmacy, wellness, and luxury fragrance. Tolia is our 7th generation product and our most strategic innovation. It's built on a technological moat that took two decades to develop, and that no competitor has been able to replicate.",
-              'Innobiz ha diseñado y fabricado sistemas de difusión de aceites esenciales desde 2005, para algunas de las marcas más exigentes en farmacia, bienestar y perfumería de lujo. Tolia es nuestro producto de 7ª generación y nuestra innovación más estratégica. Está construido sobre un foso tecnológico que tomó dos décadas desarrollar, y que ningún competidor ha podido replicar.'
+              "Innobiz conçoit et fabrique des systèmes de diffusion d'huiles essentielles depuis 2005, pour certaines des marques les plus exigeantes en pharmacie, bien-être et parfumerie de luxe. Tolia est notre produit de 7e génération, notre innovation la plus stratégique. Il repose sur un avantage technologique qui a nécessité deux décennies de développement et qu'aucun concurrent n'a pu reproduire.",
+              "Innobiz has been designing and manufacturing essential oil diffusion systems since 2005, for some of the most demanding brands in pharmacy, wellness and luxury fragrance. Tolia is our 7th-generation product and our most strategic innovation. It is built on a technological advantage that took two decades to develop and that no competitor has been able to replicate.",
+              'Innobiz ha diseñado y fabricado sistemas de difusión de aceites esenciales desde 2005, para algunas de las marcas más exigentes en farmacia, bienestar y perfumería de lujo. Tolia es nuestro producto de 7ª generación y nuestra innovación más estratégica. Está construido sobre una ventaja tecnológica que tomó dos décadas desarrollar y que ningún competidor ha podido replicar.'
             )}
           </p>
         </motion.div>
@@ -95,9 +95,9 @@ const WhyInnobizSection: React.FC = () => {
         >
           <p className="text-base md:text-lg font-semibold text-white">
             {t3(language,
-              "Cette combinaison unique d'expertises : microfluidique, acoustique, ingénierie laser et électronique embarquée, est un avantage concurrentiel structurel qui ne peut être ni copié ni acquis du jour au lendemain.",
-              'This unique combination of expertise, microfluidics, acoustics, laser engineering, and embedded electronics, is a structural competitive advantage that cannot be reverse-engineered or acquired overnight.',
-              'Esta combinación única de expertise, microfluídica, acústica, ingeniería láser y electrónica embebida. Es una ventaja competitiva estructural que no puede ser replicada ni adquirida de la noche a la mañana.'
+              "Cette combinaison unique d'expertises (microfluidique, acoustique, ingénierie laser et électronique embarquée) constitue un avantage concurrentiel structurel qui ne peut être ni copié ni acquis du jour au lendemain.",
+              'This unique combination of expertise (microfluidics, acoustics, laser engineering and embedded electronics) is a structural competitive advantage that cannot be reverse-engineered or acquired overnight.',
+              'Esta combinación única de expertise (microfluídica, acústica, ingeniería láser y electrónica embebida) es una ventaja competitiva estructural que no puede ser replicada ni adquirida de la noche a la mañana.'
             )}
           </p>
         </motion.div>

@@ -98,8 +98,8 @@ const MarketProofSection: React.FC = () => {
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              "Tolia n'est pas une campagne de crowdfunding ni une expérience de laboratoire. C'est un produit validé par le marché avec la courbe d'adoption la plus rapide qu'Innobiz ait jamais connue. Le virage technologique a déjà eu lieu côté consommateur. La seule question qui reste : votre marque va-t-elle le capter, ou regarder ses concurrents le faire ?",
-              "Tolia isn't a crowdfunding campaign or a lab experiment. It's a market-validated product with the fastest adoption curve Innobiz has ever seen. The technology shift has already happened on the consumer side. The only question left is: will your brand capture it, or watch competitors do it first?",
+              "Tolia n'est ni une campagne de crowdfunding ni une expérience de laboratoire. C'est un produit validé par le marché, avec la courbe d'adoption la plus rapide qu'Innobiz ait jamais connue. Le virage technologique a déjà eu lieu côté consommateur. La seule question qui reste : votre marque va-t-elle le capter, ou regarder ses concurrents le faire ?",
+              "Tolia is not a crowdfunding campaign or a lab experiment. It is a market-validated product with the fastest adoption curve Innobiz has ever seen. The technology shift has already happened on the consumer side. The only question remaining is whether your brand will capture it or watch competitors do so first.",
               'Tolia no es una campaña de crowdfunding ni un experimento de laboratorio. Es un producto validado por el mercado con la curva de adopción más rápida que Innobiz haya visto. El cambio tecnológico ya ocurrió del lado del consumidor. La única pregunta que queda es: ¿su marca lo capturará, o verá a los competidores hacerlo primero?'
             )}
           </p>
@@ -126,9 +126,9 @@ const MarketProofSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           {t3(language,
-            "Le virage consommateur vers la diffusion sans friction est déjà en cours. Les marques qui bougent maintenant domineront la catégorie. Celles qui attendent devront rattraper leur retard.",
-            'The consumer shift to frictionless diffusion is already happening. Brands that move now will own the category. Those that wait will be catching up.',
-            'El cambio del consumidor hacia la difusión sin fricción ya está sucediendo. Las marcas que se muevan ahora dominarán la categoría. Las que esperen estarán alcanzando.'
+            "Le virage consommateur vers la diffusion sans friction est déjà en marche. Les marques qui bougent maintenant domineront la catégorie. Celles qui attendent devront rattraper leur retard.",
+            'The consumer shift toward frictionless diffusion is already underway. Brands that move now will own the category. Those that wait will be playing catch-up.',
+            'El cambio del consumidor hacia la difusión sin fricción ya está en marcha. Las marcas que se muevan ahora dominarán la categoría. Las que esperen estarán jugando a alcanzar.'
           )}
         </motion.p>
 
