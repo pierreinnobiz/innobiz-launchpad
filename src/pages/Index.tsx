@@ -63,6 +63,9 @@ const Index: React.FC = () => {
       {/* 5. Four Innovations (Act 3, proofs) */}
       <LazySection factory={lazyFourInnovations} fallbackHeight="600px" />
 
+      {/* 5.5 Range Rationalization: one diffuser replaces all */}
+      <LazySection factory={lazyRangeRationalization} fallbackHeight="800px" />
+
       {/* 6. Ritual Strategy (Act 4, 12 rituals) */}
       <LazySection factory={lazyRitualStrategy} fallbackHeight="900px" />
 
