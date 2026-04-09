@@ -64,8 +64,8 @@ const BusinessImpactSection: React.FC = () => {
   const { language: l } = useLanguage();
 
   const eyebrow = t3(l, 'TODO FR', 'The business math', 'TODO ES');
-  const headline = t3(l, 'TODO FR', 'From €22 one-time to €82 recurring, every year, per customer.', 'TODO ES');
-  const subheadline = t3(l, 'TODO FR', "The real value of a diffuser isn't the hardware margin. It's the oil repurchase stream it unlocks.", 'TODO ES');
+  const headline = t3(l, 'TODO FR', 'From a single purchase to 4× more revenue per customer, every year.', 'TODO ES');
+  const subheadline = t3(l, 'TODO FR', "The real value of a diffuser is not the hardware sale. It is the oil repurchase stream it unlocks, year after year.", 'TODO ES');
 
   const pillars = [
     {
@@ -89,7 +89,7 @@ const BusinessImpactSection: React.FC = () => {
       icon: TrendingUp,
       title: t3(l, 'TODO FR', 'Margin growth per customer', 'TODO ES'),
       lines: [
-        t3(l, 'TODO FR', 'From a one-time €22 hardware margin to €82/year recurring margin on consumables.', 'TODO ES'),
+        t3(l, 'TODO FR', 'From a one-time hardware sale to 4× recurring revenue on consumables, per customer, per year.', 'TODO ES'),
         t3(l, 'TODO FR', '75% lower after-sales costs vs. ultrasonic (Innobiz field data).', 'TODO ES'),
       ],
     },
@@ -181,7 +181,7 @@ const BusinessImpactSection: React.FC = () => {
                   border: '1px solid hsl(35 20% 72% / 0.2)',
                 }}
               />
-              <span className="text-xs md:text-sm font-medium text-white/50 text-center">€22<br />one-time</span>
+              <span className="text-xs md:text-sm font-medium text-white/50 text-center">×1<br />one-time</span>
             </motion.div>
 
             {/* Arrow */}
@@ -215,7 +215,7 @@ const BusinessImpactSection: React.FC = () => {
                 ))}
               </div>
               <span className="text-xs md:text-sm font-medium text-center" style={{ color: 'hsl(28 50% 65%)' }}>
-                €82 × year<br />after year
+                ×4 × year<br />after year
               </span>
             </div>
           </div>
