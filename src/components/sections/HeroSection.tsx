@@ -117,7 +117,7 @@ const HeroSection: React.FC = () => {
   const stats = [
     { value: '100K+', label: 'units sold in 7 months' },
     { value: '×4 to ×6', label: 'oil consumption per customer' },
-    { value: '€22 → €82', label: 'recurring margin per customer / year' },
+    { value: '×4', label: 'revenue per customer per year' },
   ];
 
   return (
