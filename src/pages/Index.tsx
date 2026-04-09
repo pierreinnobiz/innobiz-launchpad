@@ -8,18 +8,16 @@ import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
 
 // Lazy factories: 5-act narrative structure
-const lazyFoundersLetter = () => import('@/components/sections/FoundersLetterSection');
+const lazyFounderStatement = () => import('@/components/sections/FounderStatementSection');
 const lazyClosetSyndrome = () => import('@/components/sections/ClosetSyndromeSection');
 const lazyFrictionByTech = () => import('@/components/sections/FrictionByTechSection');
 const lazyTwistAndMist = () => import('@/components/sections/TwistAndMistSection');
 const lazyFourInnovations = () => import('@/components/sections/FourInnovationsSection');
-const lazyRangeRationalization = () => import('@/components/sections/RangeRationalizationSection');
 const lazyRitualStrategy = () => import('@/components/sections/RitualStrategySection');
 const lazyBusinessMath = () => import('@/components/sections/BusinessMathSection');
 const lazyMarketProof = () => import('@/components/sections/MarketProofSection');
 const lazyBrandMarquee = () => import('@/components/sections/BrandMarqueeSection');
 const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection');
-const lazyRSE = () => import('@/components/sections/RSESection');
 const lazyTwoWays = () => import('@/components/sections/TwoWaysSection');
 const lazyFAQ = () => import('@/components/sections/FAQSection');
 const lazyContact = () => import('@/components/sections/ContactSection');
@@ -39,14 +37,14 @@ const Index: React.FC = () => {
       {/* 1. Hero (Act opener) */}
       <HeroSection />
 
-      {/* Hero (black) → Founder's Letter (warm cream) */}
-      <SectionGradient from="hsl(0 0% 0%)" to="hsl(35 30% 93%)" height="200px" />
+      {/* Hero (black) → Founder Statement (dark) — seamless dark-to-dark */}
+      <SectionGradient from="hsl(0 0% 0%)" to="hsl(25 20% 10%)" height="120px" />
 
-      {/* 1.5. Founder's Letter (emotional bridge) */}
-      <LazySection factory={lazyFoundersLetter} fallbackHeight="600px" />
+      {/* 1.5. Founder Statement (emotional bridge) */}
+      <LazySection factory={lazyFounderStatement} fallbackHeight="500px" />
 
-      {/* Founder's Letter (warm cream) → Closet Syndrome (warm sand) */}
-      <SectionGradient from="hsl(35 35% 95%)" to="hsl(35 30% 93%)" height="80px" />
+      {/* Founder Statement (dark) → Closet Syndrome (warm sand) */}
+      <SectionGradient from="hsl(25 18% 14%)" to="hsl(35 30% 93%)" height="200px" />
 
       {/* 2. The Closet Syndrome (Act 1) */}
       <LazySection factory={lazyClosetSyndrome} fallbackHeight="800px" />
@@ -62,9 +60,6 @@ const Index: React.FC = () => {
 
       {/* 5. Four Innovations (Act 3, proofs) */}
       <LazySection factory={lazyFourInnovations} fallbackHeight="600px" />
-
-      {/* 5.5 Range Rationalization: one diffuser replaces all */}
-      <LazySection factory={lazyRangeRationalization} fallbackHeight="800px" />
 
       {/* 6. Ritual Strategy (Act 4, 12 rituals) */}
       <LazySection factory={lazyRitualStrategy} fallbackHeight="900px" />
@@ -90,14 +85,8 @@ const Index: React.FC = () => {
       {/* 10. Why Innobiz (Act 5, credibility moat) */}
       <LazySection factory={lazyWhyInnobiz} fallbackHeight="700px" />
 
-      {/* Why Innobiz (dark) → RSE (light) */}
+      {/* Why Innobiz (dark) → Two Ways (light) */}
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="200px" />
-
-      {/* 10.5 RSE: durability & repairability */}
-      <LazySection factory={lazyRSE} fallbackHeight="600px" />
-
-      {/* RSE (light) → Two Ways (light) */}
-      <SectionGradient from="hsl(30 25% 93%)" to="hsl(35 30% 96%)" height="80px" />
 
       {/* 11. Two Ways to Work with Tolia */}
       <LazySection factory={lazyTwoWays} fallbackHeight="900px" />
