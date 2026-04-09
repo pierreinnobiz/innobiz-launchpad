@@ -9,7 +9,7 @@ const statements = [
   "Aromatherapy brands invest heavily to win customers, but without daily rituals, repurchase erodes. Tolia turns occasional users into daily consumers. That changes everything.",
 ];
 
-const CHAR_DELAY = 11; // ms per character
+const CHAR_DELAY = 7; // ms per character (~5s total)
 const STATEMENT_PAUSE = 400; // ms pause between statements
 
 const TypewriterText: React.FC<{
