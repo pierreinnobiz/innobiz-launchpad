@@ -7,7 +7,8 @@ import LazySection from '@/components/LazySection';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
 
-// Lazy factories : new 5-act narrative structure
+// Lazy factories: 5-act narrative structure
+const lazyFoundersLetter = () => import('@/components/sections/FoundersLetterSection');
 const lazyClosetSyndrome = () => import('@/components/sections/ClosetSyndromeSection');
 const lazyFrictionByTech = () => import('@/components/sections/FrictionByTechSection');
 const lazyTwistAndMist = () => import('@/components/sections/TwistAndMistSection');
@@ -17,8 +18,6 @@ const lazyBusinessMath = () => import('@/components/sections/BusinessMathSection
 const lazyMarketProof = () => import('@/components/sections/MarketProofSection');
 const lazyBrandMarquee = () => import('@/components/sections/BrandMarqueeSection');
 const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection');
-const lazyRSE = () => import('@/components/sections/RSESection');
-const lazyRangeRationalization = () => import('@/components/sections/RangeRationalizationSection');
 const lazyTwoWays = () => import('@/components/sections/TwoWaysSection');
 const lazyFAQ = () => import('@/components/sections/FAQSection');
 const lazyContact = () => import('@/components/sections/ContactSection');
@@ -38,8 +37,14 @@ const Index: React.FC = () => {
       {/* 1. Hero (Act opener) */}
       <HeroSection />
 
-      {/* Hero (black) → Closet Syndrome (warm sand) */}
+      {/* Hero (black) → Founder's Letter (warm cream) */}
       <SectionGradient from="hsl(0 0% 0%)" to="hsl(35 30% 93%)" height="200px" />
+
+      {/* 1.5. Founder's Letter (emotional bridge) */}
+      <LazySection factory={lazyFoundersLetter} fallbackHeight="600px" />
+
+      {/* Founder's Letter (warm cream) → Closet Syndrome (warm sand) */}
+      <SectionGradient from="hsl(35 35% 95%)" to="hsl(35 30% 93%)" height="80px" />
 
       {/* 2. The Closet Syndrome (Act 1) */}
       <LazySection factory={lazyClosetSyndrome} fallbackHeight="800px" />
@@ -80,22 +85,10 @@ const Index: React.FC = () => {
       {/* 10. Why Innobiz (Act 5, credibility moat) */}
       <LazySection factory={lazyWhyInnobiz} fallbackHeight="700px" />
 
-      {/* Why Innobiz (dark) → RSE (light) */}
+      {/* Why Innobiz (dark) → Two Ways (light) */}
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="200px" />
 
-      {/* 11. RSE / Réparabilité */}
-      <LazySection factory={lazyRSE} fallbackHeight="800px" />
-
-      {/* RSE (warm sand) → Rationalization (light) */}
-      <SectionGradient from="hsl(30 25% 93%)" to="hsl(35 30% 96%)" height="120px" />
-
-      {/* 12. Rationalisation de gamme */}
-      <LazySection factory={lazyRangeRationalization} fallbackHeight="900px" />
-
-      {/* Rationalization (light) → Two Ways (light) */}
-      <SectionGradient from="hsl(33 35% 94%)" to="hsl(35 30% 96%)" height="120px" />
-
-      {/* 13. Two Ways to Work with Tolia */}
+      {/* 11. Two Ways to Work with Tolia */}
       <LazySection factory={lazyTwoWays} fallbackHeight="900px" />
 
       {/* Two Ways (light) → FAQ (neutral) */}
