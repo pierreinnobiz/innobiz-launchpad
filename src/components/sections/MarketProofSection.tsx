@@ -78,10 +78,10 @@ const MarketProofSection: React.FC = () => {
   ];
 
   return (
-    <section id="market-proof" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
+    <section id="market-proof" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-12 max-w-3xl mx-auto"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
@@ -106,7 +106,7 @@ const MarketProofSection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-6 mb-16"
+          className="grid md:grid-cols-3 gap-6 mb-12"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}

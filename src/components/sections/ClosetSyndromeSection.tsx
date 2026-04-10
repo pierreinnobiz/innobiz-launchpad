@@ -32,27 +32,16 @@ const ClosetSyndromeSection: React.FC = () => {
       ),
       color: 'hsl(35 70% 50%)',
     },
-    {
-      icon: Archive,
-      day: t3(language, 'Jour 180+', 'Day 180+', 'Día 180+'),
-      title: t3(language, 'Le placard. Définitivement.', 'The closet. Permanently.', 'El armario. Permanentemente.'),
-      desc: t3(language,
-        "Le diffuseur rejoint le cimetière des appareils. Plus d'achat d'huiles. Plus de recharges. Plus de relation de marque. L'ensemble de votre investissement marketing a produit une seule vente de matériel, et zéro revenu récurrent.",
-        "The diffuser joins the appliance graveyard. No more oil purchases. No refills. No brand relationship. All of your marketing investment produced exactly one hardware sale and zero recurring revenue.",
-        'El difusor se une al cementerio de aparatos. No más compras de aceites. No más recargas. No más relación de marca. Toda su inversión de marketing produjo exactamente una venta de hardware y cero ingresos recurrentes.'
-      ),
-      color: 'hsl(0 60% 50%)',
-    },
   ];
 
   return (
-    <section id="closet-syndrome" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
+    <section id="closet-syndrome" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
       <div className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full opacity-[0.03] pointer-events-none"
         style={{ background: 'radial-gradient(circle, hsl(0 65% 55%), transparent 70%)' }} />
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-12 max-w-3xl mx-auto"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
@@ -60,7 +49,7 @@ const ClosetSyndromeSection: React.FC = () => {
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block text-destructive">
             {t3(language, 'Le problème dont personne ne parle', 'The problem no one talks about', 'El problema del que nadie habla')}
           </span>
-           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
               "Vous investissez des milliers d'euros pour acquérir un client. Six mois plus tard, son diffuseur est au placard et il ne rachète plus jamais d'huiles.",
               "You invest thousands to acquire a customer. Six months later, their diffuser is in a cupboard and they never buy oils again.",
@@ -69,43 +58,20 @@ const ClosetSyndromeSection: React.FC = () => {
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              "Ce n'est ni un échec de branding ni une erreur marketing. C'est un problème de conception produit. Chaque diffuseur conventionnel crée une friction qui tue l'usage quotidien et, avec lui, votre revenu récurrent en huiles.",
-              "This is not a branding failure or a marketing mistake. It is a product design problem. Every conventional diffuser creates friction that kills daily use and, with it, your recurring oil revenue.",
-              'No es un fallo de branding ni un error de marketing. Es un problema de diseño de producto. Cada difusor convencional crea una fricción que mata el uso diario y, con él, sus ingresos recurrentes de aceites.'
+              "Ce n'est ni un échec de branding ni une erreur marketing. C'est un problème de conception produit.",
+              "This is not a branding failure or a marketing mistake. It is a product design problem.",
+              'No es un fallo de branding ni un error de marketing. Es un problema de diseño de producto.'
             )}
           </p>
         </motion.div>
 
+        {/* Day 0 and Day 30-180 cards */}
         <motion.div
-          className="max-w-xl mx-auto mb-16 rounded-2xl overflow-hidden shadow-lg"
-          initial={{ opacity: 0, scale: 0.96, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, scale: 1, filter: 'blur(0px)' }}
-          viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <img
-            src={closetImg}
-            alt={t3(language,
-              'Diffuseurs abandonnés dans un placard. La fuite de revenus invisible',
-              'Abandoned diffusers collecting dust in a closet. The invisible revenue leak',
-              'Difusores abandonados en un armario. La fuga de ingresos invisible'
-            )}
-            className="w-full h-auto"
-            loading="lazy"
-            width={1024}
-            height={576}
-          />
-        </motion.div>
-
-        <motion.div
-          className="grid md:grid-cols-3 gap-6 mb-16 relative"
+          className="grid md:grid-cols-2 gap-6 mb-6 relative"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
         >
-          <div className="hidden md:block absolute top-14 left-[16.67%] right-[16.67%] h-[2px]"
-            style={{ background: 'linear-gradient(90deg, hsl(140 45% 45% / 0.3), hsl(35 70% 50% / 0.3), hsl(0 60% 50% / 0.3))' }} />
-
           {steps.map((step, i) => (
             <motion.div key={i} variants={fadeBlurUp} className="relative">
               <div className="p-6 md:p-8 bg-card rounded-2xl border border-border/40 h-full
@@ -126,6 +92,56 @@ const ClosetSyndromeSection: React.FC = () => {
           ))}
         </motion.div>
 
+        {/* Day 180+ card with image on right */}
+        <motion.div
+          className="mb-10"
+          variants={fadeBlurUp}
+          initial="hidden" whileInView="visible"
+          viewport={{ once: true, margin: '-50px' }}
+        >
+          <div className="bg-card rounded-2xl border border-border/40 overflow-hidden
+            transition-all duration-500 hover:shadow-[0_12px_40px_-8px_hsl(25_15%_18%/0.12)]">
+            <div className="flex flex-col md:flex-row">
+              <div className="p-6 md:p-8 md:w-3/5 flex flex-col justify-center">
+                <div
+                  className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
+                  style={{ background: 'hsl(0 60% 50% / 0.1)' }}
+                >
+                  <Archive className="w-6 h-6" style={{ color: 'hsl(0 60% 50%)' }} />
+                </div>
+                <span className="text-xs font-bold uppercase tracking-widest block mb-1" style={{ color: 'hsl(0 60% 50%)' }}>
+                  {t3(language, 'Jour 180+', 'Day 180+', 'Día 180+')}
+                </span>
+                <h3 className="font-bold text-foreground text-lg mb-2">
+                  {t3(language, 'Le placard. Définitivement.', 'The closet. Permanently.', 'El armario. Permanentemente.')}
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t3(language,
+                    "Le diffuseur rejoint le cimetière des appareils. Plus d'achat d'huiles. Plus de recharges. Plus de relation de marque. L'ensemble de votre investissement marketing a produit une seule vente de matériel, et zéro revenu récurrent.",
+                    "The diffuser joins the appliance graveyard. No more oil purchases. No refills. No brand relationship. All of your marketing investment produced exactly one hardware sale and zero recurring revenue.",
+                    'El difusor se une al cementerio de aparatos. No más compras de aceites. No más recargas. No más relación de marca. Toda su inversión de marketing produjo exactamente una venta de hardware y cero ingresos recurrentes.'
+                  )}
+                </p>
+              </div>
+              <div className="md:w-2/5 flex-shrink-0">
+                <img
+                  src={closetImg}
+                  alt={t3(language,
+                    'Diffuseurs abandonnés dans un placard',
+                    'Abandoned diffusers collecting dust in a closet',
+                    'Difusores abandonados en un armario'
+                  )}
+                  className="w-full h-full object-cover min-h-[200px]"
+                  loading="lazy"
+                  width={1024}
+                  height={576}
+                />
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Takeaway */}
         <motion.div
           className="max-w-4xl mx-auto rounded-2xl p-6 md:p-8 border"
           style={{ background: 'hsl(28 45% 48% / 0.06)', borderColor: 'hsl(28 45% 48% / 0.2)' }}

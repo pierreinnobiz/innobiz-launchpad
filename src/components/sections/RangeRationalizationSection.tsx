@@ -55,7 +55,7 @@ const RangeRationalizationSection: React.FC = () => {
   ];
 
   return (
-    <section id="range-rationalization" className="py-24 md:py-32 relative overflow-hidden"
+    <section id="range-rationalization" className="py-14 md:py-20 relative overflow-hidden"
       style={{ background: 'linear-gradient(180deg, hsl(35 30% 96%) 0%, hsl(33 35% 94%) 100%)' }}>
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         <motion.div

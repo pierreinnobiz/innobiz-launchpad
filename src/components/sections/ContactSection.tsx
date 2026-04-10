@@ -122,7 +122,7 @@ const ContactSection: React.FC = () => {
 
   if (isSubmitted) {
     return (
-      <section id="contact" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
+      <section id="contact" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <motion.div initial={{ opacity: 0, scale: 0.9, filter: 'blur(10px)' }} animate={{ opacity: 1, scale: 1, filter: 'blur(0px)' }} transition={{ duration: 0.7 }}>
             <motion.div
@@ -149,7 +149,7 @@ const ContactSection: React.FC = () => {
   }
 
   return (
-    <section id="contact" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
+    <section id="contact" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
         <motion.div
           className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.03]"

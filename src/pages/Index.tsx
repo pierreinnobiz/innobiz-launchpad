@@ -34,71 +34,71 @@ const Index: React.FC = () => {
     <div className="min-h-screen bg-background">
       <Navigation />
 
-      {/* 1. Hero (Act opener) */}
+      {/* 1. Hero */}
       <HeroSection />
 
-      {/* Hero (black) → Founder Statement (dark) — seamless dark-to-dark */}
-      <SectionGradient from="hsl(0 0% 0%)" to="hsl(25 20% 10%)" height="120px" />
+      {/* Hero → Founder Statement */}
+      <SectionGradient from="hsl(0 0% 0%)" to="hsl(25 20% 10%)" height="80px" />
 
-      {/* 1.5. Founder Statement (emotional bridge) */}
-      <LazySection factory={lazyFounderStatement} fallbackHeight="500px" />
+      {/* 1.5. Founder Statement */}
+      <LazySection factory={lazyFounderStatement} fallbackHeight="400px" />
 
-      {/* Founder Statement (dark) → Closet Syndrome (warm sand) */}
-      <SectionGradient from="hsl(25 18% 14%)" to="hsl(35 30% 93%)" height="200px" />
+      {/* Founder Statement → Closet Syndrome */}
+      <SectionGradient from="hsl(25 18% 14%)" to="hsl(35 30% 93%)" height="100px" />
 
-      {/* 2. The Closet Syndrome (Act 1) */}
-      <LazySection factory={lazyClosetSyndrome} fallbackHeight="800px" />
+      {/* 2. Closet Syndrome */}
+      <LazySection factory={lazyClosetSyndrome} fallbackHeight="700px" />
 
-      {/* Closet (warm sand) → Friction by Tech (light warm) */}
-      <SectionGradient from="hsl(35 30% 93%)" to="hsl(30 25% 93%)" height="120px" />
+      {/* Closet → Friction by Tech */}
+      <SectionGradient from="hsl(35 30% 93%)" to="hsl(30 25% 93%)" height="60px" />
 
-      {/* 3. Friction by Technology (Act 2) */}
-      <LazySection factory={lazyFrictionByTech} fallbackHeight="1000px" />
+      {/* 3. Friction by Technology */}
+      <LazySection factory={lazyFrictionByTech} fallbackHeight="800px" />
 
-      {/* 4. Twist & Mist (Act 3, mechanism) */}
-      <LazySection factory={lazyTwistAndMist} fallbackHeight="800px" />
+      {/* 4. Twist & Mist */}
+      <LazySection factory={lazyTwistAndMist} fallbackHeight="700px" />
 
-      {/* 5. Four Innovations (Act 3, proofs) */}
-      <LazySection factory={lazyFourInnovations} fallbackHeight="600px" />
+      {/* 5. Six Innovations */}
+      <LazySection factory={lazyFourInnovations} fallbackHeight="500px" />
 
-      {/* 6. Ritual Strategy (Act 4, 12 rituals) */}
-      <LazySection factory={lazyRitualStrategy} fallbackHeight="900px" />
+      {/* 6. Ritual Strategy */}
+      <LazySection factory={lazyRitualStrategy} fallbackHeight="800px" />
 
-      {/* Ritual (light) → Business Math (dark) */}
-      <SectionGradient from="hsl(35 28% 95%)" to="hsl(25 20% 12%)" height="200px" />
+      {/* Ritual → Business Math */}
+      <SectionGradient from="hsl(35 28% 95%)" to="hsl(25 20% 12%)" height="120px" />
 
-      {/* 7. Business Math (Act 4, ×1 → ×4) */}
-      <LazySection factory={lazyBusinessMath} fallbackHeight="800px" />
+      {/* 7. Business Math */}
+      <LazySection factory={lazyBusinessMath} fallbackHeight="600px" />
 
-      {/* Business Math (dark) → Market Proof (light) */}
-      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 93%)" height="200px" />
+      {/* Business Math → Market Proof */}
+      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 93%)" height="120px" />
 
-      {/* 8. Market Proof (Act 5, traction) */}
-      <LazySection factory={lazyMarketProof} fallbackHeight="700px" />
+      {/* 8. Market Proof */}
+      <LazySection factory={lazyMarketProof} fallbackHeight="500px" />
 
       {/* 9. Brand Marquee */}
-      <LazySection factory={lazyBrandMarquee} fallbackHeight="300px" />
+      <LazySection factory={lazyBrandMarquee} fallbackHeight="200px" />
 
-      {/* Marquee (light) → Why Innobiz (dark) */}
-      <SectionGradient from="hsl(35 30% 97%)" to="hsl(25 20% 12%)" height="200px" />
+      {/* Marquee → Why Innobiz */}
+      <SectionGradient from="hsl(35 30% 97%)" to="hsl(25 20% 12%)" height="120px" />
 
-      {/* 10. Why Innobiz (Act 5, credibility moat) */}
-      <LazySection factory={lazyWhyInnobiz} fallbackHeight="700px" />
+      {/* 10. Why Innobiz */}
+      <LazySection factory={lazyWhyInnobiz} fallbackHeight="500px" />
 
-      {/* Why Innobiz (dark) → Two Ways (light) */}
-      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="200px" />
+      {/* Why Innobiz → Two Ways */}
+      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="120px" />
 
-      {/* 11. Two Ways to Work with Tolia */}
-      <LazySection factory={lazyTwoWays} fallbackHeight="900px" />
+      {/* 11. Two Ways */}
+      <LazySection factory={lazyTwoWays} fallbackHeight="700px" />
 
-      {/* Two Ways (light) → FAQ (neutral) */}
-      <SectionGradient from="hsl(33 35% 94%)" to="hsl(35 30% 97%)" height="120px" />
+      {/* Two Ways → FAQ */}
+      <SectionGradient from="hsl(33 35% 94%)" to="hsl(35 30% 97%)" height="60px" />
 
       {/* 12. FAQ */}
-      <LazySection factory={lazyFAQ} fallbackHeight="1200px" />
+      <LazySection factory={lazyFAQ} fallbackHeight="800px" />
 
       {/* 13. Contact */}
-      <LazySection factory={lazyContact} fallbackHeight="800px" />
+      <LazySection factory={lazyContact} fallbackHeight="600px" />
 
       {/* 14. Footer */}
       <Footer />

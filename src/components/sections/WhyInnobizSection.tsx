@@ -24,7 +24,7 @@ const WhyInnobizSection: React.FC = () => {
   ];
 
   return (
-    <section id="why-innobiz" className="py-24 md:py-32 relative overflow-hidden"
+    <section id="why-innobiz" className="py-14 md:py-20 relative overflow-hidden"
       style={{ background: 'linear-gradient(180deg, hsl(25 20% 12%) 0%, hsl(25 18% 16%) 100%)' }}>
       <motion.div
         className="absolute bottom-0 left-1/3 w-[500px] h-[500px] rounded-full opacity-[0.05] pointer-events-none"
@@ -35,7 +35,7 @@ const WhyInnobizSection: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 text-white relative z-10">
         <motion.div
-          className="text-center mb-16 max-w-4xl mx-auto"
+          className="text-center mb-12 max-w-4xl mx-auto"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
@@ -60,7 +60,7 @@ const WhyInnobizSection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
