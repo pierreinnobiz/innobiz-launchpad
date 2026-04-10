@@ -18,6 +18,8 @@ const lazyBusinessMath = () => import('@/components/sections/BusinessMathSection
 const lazyMarketProof = () => import('@/components/sections/MarketProofSection');
 const lazyBrandMarquee = () => import('@/components/sections/BrandMarqueeSection');
 const lazyWhyInnobiz = () => import('@/components/sections/WhyInnobizSection');
+const lazyRangeRationalization = () => import('@/components/sections/RangeRationalizationSection');
+const lazyRSE = () => import('@/components/sections/RSESection');
 const lazyTwoWays = () => import('@/components/sections/TwoWaysSection');
 const lazyFAQ = () => import('@/components/sections/FAQSection');
 const lazyContact = () => import('@/components/sections/ContactSection');
@@ -85,8 +87,20 @@ const Index: React.FC = () => {
       {/* 10. Why Innobiz */}
       <LazySection factory={lazyWhyInnobiz} fallbackHeight="500px" />
 
-      {/* Why Innobiz → Two Ways */}
+      {/* Why Innobiz → Range Rationalization */}
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="120px" />
+
+      {/* 10b. Range Rationalization */}
+      <LazySection factory={lazyRangeRationalization} fallbackHeight="700px" />
+
+      {/* Range Rationalization → RSE */}
+      <SectionGradient from="hsl(33 35% 94%)" to="hsl(35 30% 96%)" height="80px" />
+
+      {/* 10c. RSE */}
+      <LazySection factory={lazyRSE} fallbackHeight="600px" />
+
+      {/* RSE → Two Ways */}
+      <SectionGradient from="hsl(30 25% 93%)" to="hsl(35 30% 96%)" height="120px" />
 
       {/* 11. Two Ways */}
       <LazySection factory={lazyTwoWays} fallbackHeight="700px" />
