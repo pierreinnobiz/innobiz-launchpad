@@ -35,7 +35,7 @@ const WhyInnobizSection: React.FC = () => {
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 text-white relative z-10">
         <motion.div
-          className="text-center mb-16 max-w-4xl mx-auto"
+          className="text-center mb-12 max-w-4xl mx-auto"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
@@ -60,7 +60,7 @@ const WhyInnobizSection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}

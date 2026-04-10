@@ -29,7 +29,7 @@ const FAQSection: React.FC = () => {
     <section id="faq" className="py-14 md:py-20 bg-background relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-12 max-w-3xl mx-auto"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
