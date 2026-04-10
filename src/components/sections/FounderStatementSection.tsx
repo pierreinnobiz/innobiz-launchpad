@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
+import innobizLogo from '@/assets/innobiz-logo.png';
 import '@fontsource/caveat/500.css';
 import '@fontsource/caveat/700.css';
 
