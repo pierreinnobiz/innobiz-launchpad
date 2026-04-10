@@ -87,8 +87,20 @@ const Index: React.FC = () => {
       {/* 10. Why Innobiz */}
       <LazySection factory={lazyWhyInnobiz} fallbackHeight="500px" />
 
-      {/* Why Innobiz → Two Ways */}
+      {/* Why Innobiz → Range Rationalization */}
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="120px" />
+
+      {/* 10b. Range Rationalization */}
+      <LazySection factory={lazyRangeRationalization} fallbackHeight="700px" />
+
+      {/* Range Rationalization → RSE */}
+      <SectionGradient from="hsl(33 35% 94%)" to="hsl(35 30% 96%)" height="80px" />
+
+      {/* 10c. RSE */}
+      <LazySection factory={lazyRSE} fallbackHeight="600px" />
+
+      {/* RSE → Two Ways */}
+      <SectionGradient from="hsl(30 25% 93%)" to="hsl(35 30% 96%)" height="120px" />
 
       {/* 11. Two Ways */}
       <LazySection factory={lazyTwoWays} fallbackHeight="700px" />
