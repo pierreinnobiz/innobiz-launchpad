@@ -20,7 +20,7 @@ const HeroVideo: React.FC = () => {
       />
       {!hasError && (
         <iframe
-          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=auto"
+          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=auto#t=1s"
           className="absolute inset-0 w-full h-full border-0"
           style={{
             transform: 'scale(1.2)',

@@ -26,7 +26,7 @@ const HowToliaWorksSection: React.FC = () => {
   );
 
   return (
-    <section id="how-it-works" className="py-24 md:py-32 relative overflow-hidden" style={{ background: 'hsl(35 30% 96%)' }}>
+    <section id="how-it-works" className="py-14 md:py-20 relative overflow-hidden" style={{ background: 'hsl(35 30% 96%)' }}>
       {/* Subtle floating orb */}
       <motion.div
         className="absolute top-1/3 left-0 w-[300px] h-[300px] rounded-full opacity-[0.04] pointer-events-none"

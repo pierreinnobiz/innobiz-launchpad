@@ -78,7 +78,7 @@ const MarketProofSection: React.FC = () => {
   ];
 
   return (
-    <section id="market-proof" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
+    <section id="market-proof" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
         <motion.div
           className="text-center mb-16 max-w-3xl mx-auto"

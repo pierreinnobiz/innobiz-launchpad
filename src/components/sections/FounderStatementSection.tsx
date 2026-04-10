@@ -9,8 +9,8 @@ const statements = [
   "Aromatherapy brands invest heavily to win customers, but without daily rituals, repurchase erodes. Tolia turns occasional users into daily consumers. That changes everything.",
 ];
 
-const CHAR_DELAY = 7; // ms per character (~5s total)
-const STATEMENT_PAUSE = 400; // ms pause between statements
+const CHAR_DELAY = 5;
+const STATEMENT_PAUSE = 250;
 
 const TypewriterText: React.FC<{
   text: string;
@@ -72,76 +72,106 @@ const FounderStatementSection: React.FC = () => {
     if (index < statements.length - 1) {
       setTimeout(() => setActiveStatement(index + 1), STATEMENT_PAUSE);
     } else {
-      setTimeout(() => setShowSignature(true), 600);
+      setTimeout(() => setShowSignature(true), 400);
     }
   }, []);
 
   return (
     <section
-      className="py-24 md:py-32 relative overflow-hidden"
+      className="py-10 md:py-14 relative overflow-hidden"
       style={{ background: 'linear-gradient(180deg, hsl(25 20% 10%) 0%, hsl(25 18% 14%) 100%)' }}
     >
-      <div ref={ref} className="max-w-[800px] mx-auto px-6 md:px-12 relative">
-        {/* Decorative quotation mark */}
+      <div ref={ref} className="max-w-[860px] mx-auto px-6 md:px-12 relative">
+        {/* Correspondence card */}
         <motion.div
-          className="absolute -top-4 -left-2 md:left-0 text-[8rem] md:text-[10rem] leading-none select-none pointer-events-none"
-          style={{ color: 'hsl(28 50% 65% / 0.12)', fontFamily: "'Caveat', cursive" }}
-          aria-hidden="true"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={isInView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 0.8, ease: 'easeOut' }}
+          className="relative rounded-xl overflow-hidden"
+          style={{
+            background: 'linear-gradient(135deg, hsl(38 30% 96%) 0%, hsl(35 25% 93%) 100%)',
+            boxShadow: '0 8px 40px -12px hsl(25 30% 10% / 0.5), 0 2px 8px -2px hsl(25 30% 10% / 0.3)',
+          }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
-          "
-        </motion.div>
-
-        <div className="space-y-8 relative z-10">
-          {statements.map((text, i) => (
-            <p
-              key={i}
-              className="text-xl sm:text-2xl md:text-[1.75rem] leading-[1.6] min-h-[1.6em]"
-              style={{
-                fontFamily: "'Caveat', cursive",
-                fontWeight: 500,
-                color: completedStatements.has(i)
-                  ? 'hsl(35 25% 88%)'
-                  : activeStatement === i
-                  ? 'hsl(35 25% 88%)'
-                  : 'transparent',
-                transition: 'color 0.3s ease',
-              }}
-            >
-              {activeStatement >= i ? (
-                <TypewriterText
-                  text={`"${text}"`}
-                  startDelay={0}
-                  onComplete={() => handleComplete(i)}
-                  isActive={activeStatement === i}
-                />
-              ) : null}
-            </p>
-          ))}
-
-          {/* Signature */}
-          <motion.div
-            className="pt-8 text-right"
-            initial={{ opacity: 0, y: 10 }}
-            animate={showSignature ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
-            <div className="inline-block">
-              <div className="w-10 h-px mb-4 ml-auto" style={{ background: 'hsl(28 50% 65% / 0.3)' }} />
-              <p
-                className="text-2xl md:text-3xl"
-                style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, color: 'hsl(35 25% 92%)' }}
-              >
-                Pierre-Emmanuel Thuret
-              </p>
-              <p className="text-sm font-light mt-1" style={{ color: 'hsl(35 20% 60%)' }}>
-                Founder, Innobiz &mdash; 20 years of diffusion R&D
-              </p>
+          {/* Card header with logo */}
+          <div className="px-8 pt-6 pb-3 flex items-center justify-between border-b" style={{ borderColor: 'hsl(28 30% 85% / 0.5)' }}>
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: 'hsl(28 45% 48%)' }}>
+                <span className="text-white text-xs font-bold">IB</span>
+              </div>
+              <div>
+                <span className="text-sm font-semibold tracking-wide" style={{ color: 'hsl(25 15% 25%)' }}>INNOBIZ</span>
+                <span className="text-[10px] text-muted-foreground block leading-tight">Diffusion Technology</span>
+              </div>
             </div>
-          </motion.div>
-        </div>
+            <span className="text-[10px] uppercase tracking-widest font-medium" style={{ color: 'hsl(28 30% 65%)' }}>Private note</span>
+          </div>
+
+          {/* Card body */}
+          <div className="px-8 py-6 space-y-5">
+            {statements.map((text, i) => (
+              <p
+                key={i}
+                className="text-lg sm:text-xl md:text-[1.4rem] leading-[1.6] min-h-[1.4em]"
+                style={{
+                  fontFamily: "'Caveat', cursive",
+                  fontWeight: 500,
+                  color: completedStatements.has(i) || activeStatement === i
+                    ? 'hsl(25 20% 22%)'
+                    : 'transparent',
+                  transition: 'color 0.3s ease',
+                }}
+              >
+                {activeStatement >= i ? (
+                  <TypewriterText
+                    text={`"${text}"`}
+                    startDelay={0}
+                    onComplete={() => handleComplete(i)}
+                    isActive={activeStatement === i}
+                  />
+                ) : null}
+              </p>
+            ))}
+
+            {/* Signature area */}
+            <motion.div
+              className="pt-4 flex items-end justify-between"
+              initial={{ opacity: 0 }}
+              animate={showSignature ? { opacity: 1 } : {}}
+              transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <div>
+                <div className="w-8 h-px mb-3" style={{ background: 'hsl(28 30% 70%)' }} />
+                <p
+                  className="text-2xl md:text-3xl"
+                  style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, color: 'hsl(25 20% 20%)' }}
+                >
+                  Pierre-Emmanuel Thuret
+                </p>
+                <p className="text-xs font-light mt-0.5" style={{ color: 'hsl(25 15% 50%)' }}>
+                  Founder, Innobiz &mdash; 20 years of diffusion R&D
+                </p>
+              </div>
+              {/* Fake handwritten signature */}
+              <svg width="120" height="50" viewBox="0 0 120 50" className="opacity-60 mb-1" aria-hidden="true">
+                <path
+                  d="M5 35 C15 10, 25 45, 35 25 C45 5, 50 40, 60 20 C70 0, 75 35, 85 15 C90 5, 95 30, 105 20 C110 15, 115 25, 118 22"
+                  fill="none"
+                  stroke="hsl(25 20% 30%)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M30 38 C50 42, 80 38, 100 40"
+                  fill="none"
+                  stroke="hsl(25 20% 30%)"
+                  strokeWidth="1"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

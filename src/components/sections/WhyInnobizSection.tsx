@@ -24,7 +24,7 @@ const WhyInnobizSection: React.FC = () => {
   ];
 
   return (
-    <section id="why-innobiz" className="py-24 md:py-32 relative overflow-hidden"
+    <section id="why-innobiz" className="py-14 md:py-20 relative overflow-hidden"
       style={{ background: 'linear-gradient(180deg, hsl(25 20% 12%) 0%, hsl(25 18% 16%) 100%)' }}>
       <motion.div
         className="absolute bottom-0 left-1/3 w-[500px] h-[500px] rounded-full opacity-[0.05] pointer-events-none"

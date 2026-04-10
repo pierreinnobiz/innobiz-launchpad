@@ -42,7 +42,7 @@ const ProblemSection: React.FC = () => {
   const bridge = t3(l, 'TODO FR', "There's a better way.", 'TODO ES');
 
   return (
-    <section id="probleme" className="py-24 md:py-32 bg-secondary relative overflow-hidden">
+    <section id="probleme" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
       {/* Subtle decorative elements */}
       <div className="absolute top-20 right-0 w-[400px] h-[400px] rounded-full opacity-[0.03]"
         style={{ background: 'radial-gradient(circle, hsl(0 65% 55%), transparent 70%)' }} />
