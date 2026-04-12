@@ -15,9 +15,18 @@ const languages: { code: LangCode; label: string; available: boolean }[] = [
   { code: 'de' as LangCode, label: 'DE', available: false },
 ];
 
+const navLinks = [
+  { label: { en: 'Problem', fr: 'Problème', es: 'Problema' }, href: '#closet-syndrome' },
+  { label: { en: 'Solution', fr: 'Solution', es: 'Solución' }, href: '#twist-and-mist' },
+  { label: { en: 'Business case', fr: 'Business case', es: 'Caso de negocio' }, href: '#business-math' },
+  { label: { en: 'Partners', fr: 'Partenaires', es: 'Socios' }, href: '#market-proof' },
+  { label: { en: 'FAQ', fr: 'FAQ', es: 'FAQ' }, href: '#faq' },
+];
+
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const location = useLocation();
   const { language, setLanguage } = useLanguage();
 
@@ -27,7 +36,36 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const ctaLabel = language === 'es' ? 'Reserve su demo' : language === 'en' ? 'Book your demo' : 'Réservez votre démo';
+  // IntersectionObserver for active section
+  useEffect(() => {
+    const sectionIds = navLinks.map(l => l.href.replace('#', ''));
+    const observers: IntersectionObserver[] = [];
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) setActiveSection(id);
+        },
+        { rootMargin: '-30% 0px -60% 0px' }
+      );
+      observer.observe(el);
+      observers.push(observer);
+    });
+
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
+  const ctaLabel = language === 'es' ? 'Iniciar una conversación' : language === 'en' ? 'Start a conversation' : 'Démarrer une conversation';
+
+  const handleNavClick = (href: string) => {
+    setIsMobileMenuOpen(false);
+    const el = document.querySelector(href);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const LanguageSwitcher = ({ className = '' }: { className?: string }) => (
     <div className={`flex items-center gap-1 ${className}`}>
@@ -63,6 +101,25 @@ const Navigation: React.FC = () => {
               <img src={innobizLogo} alt="Innobiz" className="h-7 hidden sm:inline opacity-70 group-hover:opacity-100 transition-opacity" />
             </Link>
 
+            {/* Desktop nav links */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
+                    activeSection === link.href.replace('#', '')
+                      ? 'bg-primary/10 text-primary'
+                      : isScrolled
+                        ? 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                        : 'text-white/60 hover:text-white hover:bg-white/10'
+                  }`}
+                >
+                  {link.label[language as keyof typeof link.label] || link.label.en}
+                </button>
+              ))}
+            </div>
+
             <div className="hidden lg:flex items-center gap-3">
               <LanguageSwitcher />
               <a href="#contact" onClick={() => trackCTAClick(ctaLabel, 'nav')}>
@@ -84,9 +141,22 @@ const Navigation: React.FC = () => {
 
         {isMobileMenuOpen && (
           <div className="lg:hidden bg-background/98 backdrop-blur-xl border-t border-border/40 animate-fade-in">
-            <div className="section-container py-6">
+            <div className="section-container py-4 space-y-2">
+              {navLinks.map((link) => (
+                <button
+                  key={link.href}
+                  onClick={() => handleNavClick(link.href)}
+                  className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
+                    activeSection === link.href.replace('#', '')
+                      ? 'bg-primary/10 text-primary'
+                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
+                  }`}
+                >
+                  {link.label[language as keyof typeof link.label] || link.label.en}
+                </button>
+              ))}
               <a href="#contact" onClick={() => { setIsMobileMenuOpen(false); trackCTAClick(ctaLabel, 'nav-mobile'); }}>
-                <Button className="w-full bg-primary text-primary-foreground font-semibold rounded-xl py-3.5 group">
+                <Button className="w-full bg-primary text-primary-foreground font-semibold rounded-xl py-3.5 mt-2 group">
                   {ctaLabel}
                   <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" />
                 </Button>
@@ -96,11 +166,49 @@ const Navigation: React.FC = () => {
         )}
       </header>
 
-      <a href="#contact" onClick={() => trackCTAClick(ctaLabel, 'sticky-mobile')} className="lg:hidden sticky-cta text-sm flex items-center gap-1.5">
-        {ctaLabel}
-        <ArrowRight className="w-3.5 h-3.5" />
-      </a>
+      {/* Sticky mobile CTA - appears after hero, hides near contact */}
+      <StickyMobileCTA label={ctaLabel} />
     </>
+  );
+};
+
+/** FIX 6 — Sticky mobile CTA bar */
+const StickyMobileCTA: React.FC<{ label: string }> = ({ label }) => {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const hero = document.getElementById('hero');
+    const contact = document.getElementById('contact');
+    if (!hero || !contact) return;
+
+    const observers: IntersectionObserver[] = [];
+    let heroVisible = true;
+    let contactVisible = false;
+
+    const update = () => setVisible(!heroVisible && !contactVisible);
+
+    const heroObs = new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; update(); }, { threshold: 0.1 });
+    heroObs.observe(hero);
+    observers.push(heroObs);
+
+    const contactObs = new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; update(); }, { threshold: 0.1 });
+    contactObs.observe(contact);
+    observers.push(contactObs);
+
+    return () => observers.forEach(o => o.disconnect());
+  }, []);
+
+  return (
+    <a
+      href="#contact"
+      onClick={() => trackCTAClick(label, 'sticky-mobile')}
+      className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-primary text-primary-foreground h-14 flex items-center justify-center gap-2 text-sm font-semibold shadow-lg transition-transform duration-300 ${
+        visible ? 'translate-y-0' : 'translate-y-full'
+      }`}
+    >
+      {label}
+      <ArrowRight className="w-3.5 h-3.5" />
+    </a>
   );
 };
 
