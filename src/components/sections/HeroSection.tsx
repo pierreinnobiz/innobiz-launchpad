@@ -1,13 +1,13 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
+import { ArrowRight } from 'lucide-react';
 import { trackCTAClick } from '@/lib/tracking';
 
 const HeroVideo: React.FC = () => {
   const [showIframe, setShowIframe] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
-  // Defer Vimeo iframe load to avoid blocking page idle/scroll
   useEffect(() => {
     const timer = setTimeout(() => setShowIframe(true), 2000);
     return () => clearTimeout(timer);
@@ -64,40 +64,13 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
   );
 };
 
-const ScrollIndicator: React.FC = () => (
-  <motion.div
-    className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer z-20"
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ delay: 3, duration: 1 }}
-    onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })}
-  >
-    <motion.div className="w-6 h-10 rounded-full border-2 border-white/40 flex items-start justify-center p-1.5">
-      <motion.div
-        className="w-1.5 h-1.5 rounded-full bg-white/80"
-        animate={{ y: [0, 16, 0] }}
-        transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-      />
-    </motion.div>
-    <motion.span
-      className="text-xs text-white/40 uppercase tracking-[0.2em] font-light"
-      animate={{ opacity: [0.4, 0.8, 0.4] }}
-      transition={{ duration: 2, repeat: Infinity }}
-    >
-      Scroll
-    </motion.span>
-  </motion.div>
-);
-
-const handleCTA = (type: 'white-label' | 'stock', label: string) => {
-  trackCTAClick(label, 'hero');
-  const url = new URL(window.location.href);
-  url.searchParams.set('type', type);
-  url.hash = '#contact';
-  window.history.replaceState(null, '', url.toString());
-  window.dispatchEvent(new Event('tolia:pathchange'));
-  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-};
+const brandLogos = [
+  { src: '/logos/pierre-fabre.svg', alt: 'Pierre Fabre' },
+  { src: '/logos/puressentiel.svg', alt: 'Puressentiel' },
+  { src: '/logos/arkopharma.svg', alt: 'Arkopharma' },
+  { src: '/logos/florame.svg', alt: 'Florame' },
+  { src: '/logos/nature-et-decouvertes.svg', alt: 'Nature & Découvertes' },
+];
 
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -107,12 +80,6 @@ const HeroSection: React.FC = () => {
   });
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 0.7]);
-
-  const stats = [
-    { value: '100K+', label: 'units sold in 7 months' },
-    { value: '×4 to ×6', label: 'oil consumption per customer' },
-    { value: '×4', label: 'revenue per customer per year' },
-  ];
 
   return (
     <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden bg-black">
@@ -145,56 +112,68 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            Tolia is the only diffuser simple enough to become a daily gesture, unlocking 4× to 6× more essential oil consumption per customer, every year.
+            Tolia is the only diffuser simple enough to become a daily gesture — unlocking predictable, year-round essential oil repurchase for your brand.
           </motion.p>
 
           <motion.div
-            className="flex flex-wrap gap-8 md:gap-12 pt-2"
+            className="flex flex-wrap items-center gap-4 pt-4"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.8 }}
           >
-            {stats.map((s, i) => (
-              <div key={i} className="flex items-baseline gap-2">
-                <span className="text-2xl md:text-3xl font-bold text-white">{s.value}</span>
-                <span className="text-xs md:text-sm text-white/50 font-light">{s.label}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="flex flex-wrap gap-4 pt-4"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 2.1 }}
-          >
-            <Button
-              className="h-12 px-8 text-sm font-semibold rounded-full bg-white text-black hover:bg-white/90"
-              onClick={() => handleCTA('white-label', 'hero_cta_whitelabel')}
+            <a href="#contact" onClick={() => trackCTAClick('hero_primary_cta', 'hero')}>
+              <Button className="h-12 px-8 text-sm font-semibold rounded-full bg-white text-black hover:bg-white/90 group">
+                Request your free evaluation kit
+                <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
+              </Button>
+            </a>
+            <a
+              href="#contact"
+              onClick={() => {
+                trackCTAClick('hero_secondary_cta', 'hero');
+                const url = new URL(window.location.href);
+                url.searchParams.set('type', 'stock');
+                url.hash = '#contact';
+                window.history.replaceState(null, '', url.toString());
+                window.dispatchEvent(new Event('tolia:pathchange'));
+              }}
+              className="text-sm text-white/60 hover:text-white transition-colors underline underline-offset-4 decoration-white/30 hover:decoration-white/60"
             >
-              Launch your white-label program
-            </Button>
-            <Button
-              variant="outline"
-              className="h-12 px-8 text-sm font-semibold rounded-full border-white/40 text-white hover:bg-white/10 bg-transparent"
-              onClick={() => handleCTA('stock', 'hero_cta_stock')}
-            >
-              Order branded Tolia, from 300 units
-            </Button>
+              Or get a custom quote for 300+ units →
+            </a>
           </motion.div>
 
           <motion.p
             className="text-xs text-white/35 font-light pt-1"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 2.5 }}
+            transition={{ duration: 1, delay: 2.1 }}
           >
-            20 years of proprietary diffusion R&D · Designed and assembled in France · Trusted by Pierre Fabre, Puressentiel, Arkopharma, Florame and 30+ leading brands
+            No commitment required · Response within 24 hours
           </motion.p>
+
+          {/* Mini logo strip */}
+          <motion.div
+            className="flex items-center gap-6 pt-4"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 2.4 }}
+          >
+            <span className="text-xs text-white/35 font-light whitespace-nowrap">Trusted by 30+ leading brands</span>
+            <div className="flex items-center gap-4">
+              {brandLogos.map((logo) => (
+                <img
+                  key={logo.alt}
+                  src={logo.src}
+                  alt={logo.alt}
+                  className="h-5 md:h-6 opacity-40 brightness-0 invert"
+                  loading="lazy"
+                />
+              ))}
+            </div>
+          </motion.div>
         </div>
       </div>
-
-      <ScrollIndicator />
     </section>
   );
 };

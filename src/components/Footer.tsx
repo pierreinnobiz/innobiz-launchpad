@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Gift } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import innobizLogo from '@/assets/innobiz-logo.png';
 import { trackCTAClick } from '@/lib/tracking';
@@ -16,9 +16,10 @@ const Footer: React.FC = () => {
         <p className="text-sm text-primary-foreground/80 max-w-3xl mx-auto mb-4 leading-relaxed">
           {t3(language, 'Tolia vous permet de transformer votre offre d\'huiles essentielles en un véritable programme de routines d\'aromathérapie, vécu chaque jour par vos clients.', 'Tolia enables you to transform your essential oils range into a genuine aromatherapy routine programme, experienced daily by your customers.', 'Tolia le permite transformar su oferta de aceites esenciales en un verdadero programa de rutinas de aromaterapia, vivido cada día por sus clientes.')}
         </p>
-        <a href="#contact" onClick={() => trackCTAClick(t3(language, 'Planifiez votre démo et recevez votre échantillon', 'Book your demo and get your free sample', 'Reserve su demo y reciba su muestra gratis'), 'footer')}>
+        <a href="#contact" onClick={() => trackCTAClick('footer_cta', 'footer')}>
           <Button className="bg-primary-foreground text-primary font-semibold rounded-2xl px-6 py-3 text-sm hover:brightness-95 transition-all group">
-            {t3(language, 'Planifiez votre démo et recevez votre échantillon', 'Book your demo and get your free sample', 'Reserve su demo y reciba su muestra gratis')}
+            <Gift className="w-4 h-4 mr-2" />
+            {t3(language, 'Recevez votre échantillon + deck partenaires', 'Get your free sample + brand deck', 'Reciba su muestra gratis + deck de socios')}
             <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
           </Button>
         </a>
