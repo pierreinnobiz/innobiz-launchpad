@@ -9,15 +9,6 @@ const HeroVideo: React.FC = () => {
 
   return (
     <>
-      <img
-        src="/images/hero-poster.jpg"
-        alt="Tolia premium essential oil diffuser"
-        className="absolute inset-0 w-full h-full object-cover"
-        style={{ opacity: iframeLoaded ? 0 : 1, transition: 'opacity 0.8s ease' }}
-        fetchPriority="high"
-        width={1920}
-        height={1080}
-      />
       {!hasError && (
         <iframe
           src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=auto#t=1s"
