@@ -167,22 +167,25 @@ const ContactSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, "Prêt à transformer vos ventes d'huiles ?", 'Ready to transform your oil sales?', '¿Listo para transformar sus ventas de aceites?')}
+            {t3(language, 'Démarrez la conversation', 'Start the conversation', 'Inicie la conversación')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
             {t3(language,
-              'Parlez-nous de votre marque : nous construirons une proposition adaptée à votre marché.',
-              "Tell us about your brand, we'll build a proposal tailored to your market.",
-              'Háblenos de su marca : construiremos una propuesta adaptada a su mercado.'
+              "Parlez-nous de votre marque. Nous vous montrerons comment Tolia s'intègre.",
+              "Tell us about your brand. We'll show you how Tolia fits.",
+              'Háblenos de su marca. Le mostraremos cómo encaja Tolia.'
             )}
           </h2>
-          <p className="text-base text-muted-foreground font-light max-w-2xl mx-auto">
+          <p className="text-base text-muted-foreground font-light max-w-2xl mx-auto mb-3">
             {t3(language,
-              "Un formulaire. Deux parcours. Vous recevrez une réponse personnalisée sous un jour ouvré, accompagnée d'un échantillon Tolia gratuit expédié directement à votre bureau pour découvrir le produit par vous-même.",
-              "One form. Two paths. You'll receive a personalized response within one business day, along with a free Tolia sample shipped directly to your office so you can experience the product firsthand.",
-              'Un formulario. Dos caminos. Recibirá una respuesta personalizada en un día laborable, junto con una muestra gratuita de Tolia enviada directamente a su oficina para que pueda experimentar el producto de primera mano.'
+              "Un formulaire. Deux parcours. Échantillon gratuit expédié à votre bureau. Réponse sous 24h.",
+              "One form, two paths. Free sample shipped to your office. Response within 24 hours.",
+              'Un formulario. Dos caminos. Muestra gratuita enviada a su oficina. Respuesta en 24 horas.'
             )}
           </p>
+          <span className="inline-block text-xs font-medium px-3 py-1 rounded-full" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }}>
+            {t3(language, 'Traitement prioritaire pour les demandes reçues ce mois-ci', 'Priority processing for requests received this month', 'Procesamiento prioritario para solicitudes recibidas este mes')}
+          </span>
         </motion.div>
 
         <motion.div
@@ -349,8 +352,8 @@ const ContactSection: React.FC = () => {
                 {isSubmitting
                   ? t3(language, 'Envoi en cours...', 'Sending...', 'Enviando...')
                   : path === 'white-label'
-                    ? t3(language, 'Demander ma consultation marque blanche', 'Request my white-label consultation', 'Solicitar mi consulta de marca blanca')
-                    : t3(language, 'Demander mon devis stock', 'Request my stock-order quote', 'Solicitar mi presupuesto de stock')
+                    ? t3(language, "Envoyer ma demande d'évaluation", 'Send my evaluation request', 'Enviar mi solicitud de evaluación')
+                    : t3(language, 'Demander mon devis stock', 'Request my stock quote', 'Solicitar mi presupuesto de stock')
                 }
                 {!isSubmitting && <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />}
               </Button>
@@ -358,9 +361,9 @@ const ContactSection: React.FC = () => {
 
             <p className="text-xs text-center text-muted-foreground pt-2">
               {t3(language,
-                'Nous répondons sous un jour ouvré. Vos informations restent chez Innobiz. Pas de revente, pas de newsletter.',
-                'We respond within one business day. Your information stays with Innobiz. No resale, no newsletter.',
-                'Respondemos en un día laborable. Su información queda en Innobiz. Sin reventa, sin newsletter.'
+                'Sans engagement. Pas de newsletter. Nous répondons sous 24h.',
+                'No commitment. No newsletter. We respond within 24 hours.',
+                'Sin compromiso. Sin newsletter. Respondemos en 24 horas.'
               )}
             </p>
           </form>
