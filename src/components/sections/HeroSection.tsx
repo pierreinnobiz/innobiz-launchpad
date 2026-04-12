@@ -1,32 +1,35 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 
 const HeroVideo: React.FC = () => {
-  const [hasError, setHasError] = useState(false);
+  const [showIframe, setShowIframe] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
+  // Defer Vimeo iframe load to avoid blocking page idle/scroll
+  useEffect(() => {
+    const timer = setTimeout(() => setShowIframe(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!showIframe) return null;
+
   return (
-    <>
-      {!hasError && (
-        <iframe
-          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=auto#t=1s"
-          className="absolute inset-0 w-full h-full border-0"
-          style={{
-            transform: 'scale(1.2)',
-            transformOrigin: 'center center',
-            opacity: iframeLoaded ? 1 : 0,
-            transition: 'opacity 0.8s ease',
-          }}
-          allow="autoplay; fullscreen"
-          loading="eager"
-          onLoad={() => setIframeLoaded(true)}
-          onError={() => setHasError(true)}
-          title="Tolia diffuser hero video"
-        />
-      )}
-    </>
+    <iframe
+      src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=1&muted=1&autopause=0&quality=auto#t=1s"
+      className="absolute inset-0 w-full h-full border-0"
+      style={{
+        transform: 'scale(1.2)',
+        transformOrigin: 'center center',
+        opacity: iframeLoaded ? 1 : 0,
+        transition: 'opacity 0.8s ease',
+      }}
+      allow="autoplay; fullscreen"
+      loading="lazy"
+      onLoad={() => setIframeLoaded(true)}
+      title="Tolia diffuser hero video"
+    />
   );
 };
 
