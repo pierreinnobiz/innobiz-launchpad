@@ -37,6 +37,8 @@ const Index: React.FC = () => {
 
       <SectionGradient from="hsl(0 0% 0%)" to="hsl(25 20% 10%)" height="80px" />
 
+      <div style={{ background: 'red', padding: '40px', color: 'white', fontSize: '24px' }}>DEBUG: This div should be visible between Hero and sections</div>
+
       <FounderStatementSection />
 
       <SectionGradient from="hsl(25 18% 14%)" to="hsl(35 30% 93%)" height="100px" />
