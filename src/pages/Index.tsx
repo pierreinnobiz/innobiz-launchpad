@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import HeroSection from '@/components/sections/HeroSection';
+import SocialProofBar from '@/components/sections/SocialProofBar';
 import FounderStatementSection from '@/components/sections/FounderStatementSection';
 import ClosetSyndromeSection from '@/components/sections/ClosetSyndromeSection';
 import FrictionByTechSection from '@/components/sections/FrictionByTechSection';
@@ -9,7 +10,9 @@ import TwistAndMistSection from '@/components/sections/TwistAndMistSection';
 import FourInnovationsSection from '@/components/sections/FourInnovationsSection';
 import RitualStrategySection from '@/components/sections/RitualStrategySection';
 import BusinessMathSection from '@/components/sections/BusinessMathSection';
+import ROICalculatorSection from '@/components/sections/ROICalculatorSection';
 import MarketProofSection from '@/components/sections/MarketProofSection';
+import LeadMagnetSection from '@/components/sections/LeadMagnetSection';
 import BrandMarqueeSection from '@/components/sections/BrandMarqueeSection';
 import WhyInnobizSection from '@/components/sections/WhyInnobizSection';
 import RangeRationalizationSection from '@/components/sections/RangeRationalizationSection';
@@ -17,6 +20,7 @@ import RSESection from '@/components/sections/RSESection';
 import TwoWaysSection from '@/components/sections/TwoWaysSection';
 import FAQSection from '@/components/sections/FAQSection';
 import ContactSection from '@/components/sections/ContactSection';
+import SlideInCTA from '@/components/SlideInCTA';
 import SectionGradient from '@/components/SectionGradient';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
@@ -35,7 +39,9 @@ const Index: React.FC = () => {
 
       <HeroSection />
 
-      <SectionGradient from="hsl(0 0% 0%)" to="hsl(25 20% 10%)" height="80px" />
+      <SocialProofBar />
+
+      <SectionGradient from="hsl(25 18% 14%)" to="hsl(25 20% 10%)" height="40px" />
 
       <FounderStatementSection />
 
@@ -59,7 +65,11 @@ const Index: React.FC = () => {
 
       <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 93%)" height="120px" />
 
+      <ROICalculatorSection />
+
       <MarketProofSection />
+
+      <LeadMagnetSection />
 
       <BrandMarqueeSection />
 
@@ -86,6 +96,8 @@ const Index: React.FC = () => {
       <ContactSection />
 
       <Footer />
+
+      <SlideInCTA />
     </div>
   );
 };
