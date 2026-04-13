@@ -25,33 +25,33 @@ const FrictionByTechSection: React.FC = () => {
   const rows: TechRow[] = [
     {
       name: t3(language, 'Ultrasonique (à eau)', 'Ultrasonic (water-based)', 'Ultrasónico (con agua)'),
-      how: t3(language, "Huile essentielle diluée dans l'eau, vibrée en brume fraîche", 'Essential oil diluted in water, vibrated into cool mist', 'Aceite esencial diluido en agua, vibrado en niebla fría'),
-      friction: t3(language, "Nécessite un remplissage et nettoyage quotidien du réservoir. L'eau favorise moisissures et bactéries. La dilution affaiblit les composés aromatiques jusqu'à 80 %.", 'Requires daily tank filling and cleaning. Water breeds mold and bacteria. Dilution weakens aromatic compounds by up to 80%.', 'Requiere llenado y limpieza diaria del depósito. El agua favorece moho y bacterias. La dilución debilita los compuestos aromáticos hasta un 80 %.'),
-      closet: t3(language, 'Utilisé 1–2× par semaine → abandonné en 3 mois', 'Used 1–2× per week → abandoned within 3 months', 'Usado 1–2× por semana → abandonado en 3 meses'),
+      how: t3(language, "Huile diluée dans l'eau, vibrée en brume fraîche", 'Oil diluted in water, vibrated into cool mist', 'Aceite diluido en agua, vibrado en niebla fría'),
+      friction: t3(language, "Remplissage et nettoyage quotidien obligatoires. L'eau stagnante provoque moisissures et bactéries. Dilution des composés aromatiques jusqu'à 80 %. Votre client perd confiance dans le produit.", 'Daily filling and cleaning mandatory. Stagnant water breeds mold and bacteria. Aromatic compounds diluted by up to 80%. Your customer loses trust in the product.', 'Llenado y limpieza diaria obligatorios. El agua estancada genera moho y bacterias. Compuestos aromáticos diluidos hasta un 80 %. Su cliente pierde confianza en el producto.'),
+      closet: t3(language, '1–2 utilisations par semaine → placard en 3 mois', 'Used 1–2× per week → cupboard within 3 months', 'Usado 1–2× por semana → armario en 3 meses'),
     },
     {
       name: t3(language, 'Diffusion par chaleur', 'Heat diffusion', 'Difusión por calor'),
-      how: t3(language, "Huile chauffée sur une plaque ou dans une lampe pour libérer le parfum", 'Oil heated on a plate or in a lamp to release fragrance', 'Aceite calentado en una placa o lámpara para liberar fragancia'),
-      friction: t3(language, "La chaleur au-dessus de 40 °C détruit les terpènes sensibles et les molécules thérapeutiques. Le rendu est faible, imprévisible et de courte durée.", 'Heat above 40°C destroys sensitive terpenes and therapeutic molecules. Output is weak, unpredictable, and short-lived.', 'El calor por encima de 40 °C destruye terpenos sensibles y moléculas terapéuticas. El rendimiento es débil, impredecible y de corta duración.'),
-      closet: t3(language, 'Déception du client → placard en quelques semaines', 'Customer disappointment → closet within weeks', 'Decepción del cliente → armario en semanas'),
+      how: t3(language, "Huile chauffée sur une plaque ou dans une lampe", 'Oil heated on a plate or in a lamp', 'Aceite calentado en una placa o lámpara'),
+      friction: t3(language, "Au-dessus de 40 °C, les terpènes et molécules thérapeutiques sont détruits. Le rendu olfactif est faible et de courte durée. Votre client ne ressent aucun bénéfice et ne rachète plus.", 'Above 40°C, terpenes and therapeutic molecules are destroyed. Scent output is weak and short-lived. Your customer feels no benefit and stops reordering.', 'Por encima de 40 °C, los terpenos y moléculas terapéuticas se destruyen. El rendimiento olfativo es débil y de corta duración. Su cliente no percibe ningún beneficio y deja de recomprar.'),
+      closet: t3(language, 'Déception immédiate → placard en quelques semaines', 'Immediate disappointment → cupboard within weeks', 'Decepción inmediata → armario en semanas'),
     },
     {
       name: t3(language, 'Passif (bâtonnets, pierre)', 'Passive (reed sticks, stone)', 'Pasivo (varillas, piedra)'),
-      how: t3(language, "L'huile s'évapore lentement par capillarité naturelle", 'Oil slowly evaporates through natural capillary action', 'El aceite se evapora lentamente por acción capilar natural'),
-      friction: t3(language, "Aucun contrôle d'intensité, rendement négligeable dans les pièces de plus de 10 m². Aucun engagement, aucun rituel possible.", 'No intensity control, negligible output in rooms over 10m². No engagement, no ritual possible.', 'Sin control de intensidad, rendimiento insignificante en habitaciones de más de 10 m². Sin compromiso, sin ritual posible.'),
-      closet: t3(language, "Devient une décoration invisible → ne déclenche jamais de rachat d'huiles", 'Becomes invisible decoration → never triggers oil reorders', 'Se convierte en decoración invisible → nunca genera recompras de aceites'),
+      how: t3(language, "Évaporation lente par capillarité naturelle", 'Slow evaporation through natural capillary action', 'Evaporación lenta por acción capilar natural'),
+      friction: t3(language, "Aucun contrôle d'intensité ni de durée. Rendement insignifiant au-delà de 10 m². Aucun engagement possible, aucune routine ne se crée.", 'No control over intensity or duration. Negligible output beyond 10m². No engagement possible, no routine forms.', 'Sin control de intensidad ni duración. Rendimiento insignificante más allá de 10 m². Sin posibilidad de compromiso, ninguna rutina se forma.'),
+      closet: t3(language, "Décoration oubliée → aucun rachat d'huiles, jamais", 'Forgotten decoration → no oil reorders, ever', 'Decoración olvidada → ninguna recompra de aceites, nunca'),
     },
     {
       name: t3(language, 'Nébuliseur classique (verre)', 'Classic nebulizer (glass)', 'Nebulizador clásico (vidrio)'),
-      how: t3(language, "L'air comprimé pousse l'huile à travers un venturi en verre", 'Compressed air pushes oil through a glass venturi', 'El aire comprimido empuja el aceite a través de un venturi de vidrio'),
-      friction: t3(language, "Bruit de pompe fort (45–60 dB), verrerie fragile, gaspillage d'huile jusqu'à 40 %. Démontage complexe pour le nettoyage entre chaque synergie.", 'Loud pump noise (45–60 dB), fragile glassware, oil waste up to 40%. Complex disassembly for cleaning between each blend.', 'Ruido de bomba fuerte (45–60 dB), cristalería frágil, desperdicio de aceite hasta 40 %. Desmontaje complejo para limpiar entre cada mezcla.'),
+      how: t3(language, "Air comprimé poussant l'huile à travers un venturi en verre", 'Compressed air pushes oil through a glass venturi', 'Aire comprimido empuja el aceite a través de un venturi de vidrio'),
+      friction: t3(language, "Bruit de pompe gênant (45–60 dB), verrerie fragile qui se casse, gaspillage d'huile jusqu'à 40 %. Démontage et nettoyage complexe entre chaque utilisation.", 'Disruptive pump noise (45–60 dB), fragile glassware that breaks, oil waste up to 40%. Complex disassembly and cleaning between each use.', 'Ruido de bomba molesto (45–60 dB), cristalería frágil que se rompe, desperdicio de aceite hasta 40 %. Desmontaje y limpieza complejos entre cada uso.'),
       closet: t3(language, 'Cadeau impressionnant → tiroir en 6 mois', 'Impressive gift → drawer within 6 months', 'Regalo impresionante → cajón en 6 meses'),
     },
     {
       name: 'Tolia : Twist & Mist ✅',
-      how: t3(language, "Le flacon scellé se visse directement dans le module de nébulisation à air froid sec", 'Sealed bottle screws directly into cold dry-air nebulization module', 'El frasco sellado se enrosca directamente en el módulo de nebulización de aire frío seco'),
-      friction: t3(language, "Zéro friction, vissez le flacon, clipsez, appuyez sur le bouton. Pas d'eau, pas de nettoyage, pas de gaspillage, pas de bruit.", 'Zero friction, screw the bottle, clip in, press the button. No water, no cleaning, no waste, no noise.', 'Cero fricción, enrosque el frasco, enganche, presione el botón. Sin agua, sin limpieza, sin desperdicio, sin ruido.'),
-      closet: t3(language, 'Rituel quotidien, 365 jours par an, mesuré et prouvé', 'Daily ritual, 365 days a year, measured and proven', 'Ritual diario, 365 días al año, medido y probado'),
+      how: t3(language, "Le flacon se visse directement dans le module de nébulisation à air froid sec", 'Sealed bottle screws directly into cold dry-air nebulisation module', 'El frasco se enrosca directamente en el módulo de nebulización de aire frío seco'),
+      friction: t3(language, "Zéro friction. Vissez, clipsez, appuyez. Pas d'eau, pas de nettoyage, pas de gaspillage, pas de bruit. Changez d'huile en 1 seconde.", 'Zero friction. Screw, clip, press. No water, no cleaning, no waste, no noise. Switch oils in 1 second.', 'Cero fricción. Enrosque, enganche, presione. Sin agua, sin limpieza, sin desperdicio, sin ruido. Cambie de aceite en 1 segundo.'),
+      closet: t3(language, 'Utilisé chaque jour, 365 jours par an — mesuré et prouvé', 'Used every day, 365 days a year — measured and proven', 'Usado cada día, 365 días al año — medido y probado'),
       isTolia: true,
     },
   ];
@@ -67,20 +67,20 @@ const FrictionByTechSection: React.FC = () => {
       <div className="section-container">
         <motion.div className="text-center mb-14" initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, 'La cause profonde : la technologie', 'The root cause: technology', 'La causa raíz: la tecnología')}
+            {t3(language, 'Pourquoi les diffuseurs échouent', 'Why diffusers fail', 'Por qué los difusores fallan')}
           </span>
           <h2 className="heading-section mb-4">
             {t3(language,
-              "Le problème ne vient pas de votre marketing. Il vient du diffuseur. Chaque technologie existante crée une friction qui tue l'usage quotidien.",
-              "The problem is not your marketing. It is the diffuser. Every existing technology creates friction that kills daily use.",
-              'El problema no es su marketing. Es el difusor. Cada tecnología existente crea una fricción que mata el uso diario.'
+              "Chaque technologie de diffusion existante porte en elle une friction qui condamne le diffuseur au placard. Et avec lui, vos ventes d'huiles.",
+              "Every existing diffusion technology carries a built-in friction that condemns the diffuser to the cupboard. And with it, your oil sales.",
+              'Cada tecnología de difusión existente lleva una fricción incorporada que condena al difusor al armario. Y con él, sus ventas de aceites.'
             )}
           </h2>
           <p className="text-body-lg max-w-4xl mx-auto">
             {t3(language,
-              <>Votre client veut diffuser des huiles essentielles chaque jour. Mais chaque diffuseur du marché le force à choisir : silencieux <em>ou</em> puissant ? Portable <em>ou</em> efficace ? Simple <em>ou</em> flexible ? Ce compromis forcé est la raison pour laquelle 60 % des diffuseurs finissent inutilisés. Jusqu'à Tolia.</>,
-              <>Your customer wants to diffuse essential oils every day. But every diffuser on the market forces a choice: silent <em>or</em> powerful? Portable <em>or</em> effective? Simple <em>or</em> flexible? That forced compromise is why 60% of diffusers end up unused. Until Tolia.</>,
-              <>Su cliente quiere difundir aceites esenciales cada día. Pero cada difusor del mercado le obliga a elegir: ¿silencioso <em>o</em> potente? ¿Portátil <em>o</em> eficaz? ¿Simple <em>o</em> flexible? Ese compromiso forzado es la razón por la que el 60 % de los difusores terminan sin usarse. Hasta Tolia.</>
+              <>Votre client veut diffuser chaque jour. Mais chaque diffuseur du marché l'oblige à choisir : silencieux <em>ou</em> puissant ? Portable <em>ou</em> efficace ? Simple <em>ou</em> thérapeutique ? Ce compromis forcé est la raison pour laquelle <strong>60 % des diffuseurs finissent inutilisés</strong>. Un seul diffuseur élimine ce compromis.</>,
+              <>Your customer wants to diffuse every day. But every diffuser on the market forces a trade-off: silent <em>or</em> powerful? Portable <em>or</em> effective? Simple <em>or</em> therapeutic? That forced compromise is why <strong>60% of diffusers end up unused</strong>. Only one diffuser eliminates this trade-off.</>,
+              <>Su cliente quiere difundir cada día. Pero cada difusor del mercado le obliga a elegir: ¿silencioso <em>o</em> potente? ¿Portátil <em>o</em> eficaz? ¿Simple <em>o</em> terapéutico? Ese compromiso forzado es la razón por la que <strong>el 60 % de los difusores terminan sin usarse</strong>. Solo un difusor elimina este compromiso.</>
             )}
           </p>
         </motion.div>
@@ -174,9 +174,9 @@ const FrictionByTechSection: React.FC = () => {
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center">
             {t3(language,
-              "L'équation est limpide : supprimez la friction, supprimez l'effet placard, débloquez le rachat d'huiles toute l'année. C'est exactement ce que fait Twist & Mist, et c'est pourquoi les marques qui utilisent Tolia voient la consommation d'huiles multipliée par 4 à 6.",
-              "The equation is straightforward: remove friction, remove the cupboard effect, unlock year-round oil repurchase. That is exactly what Twist & Mist does, and why brands using Tolia see oil consumption multiply by 4 to 6 times.",
-              'La ecuación es clara: elimine la fricción, elimine el efecto armario, desbloquee la recompra de aceites durante todo el año. Eso es exactamente lo que hace Twist & Mist, y por qué las marcas que usan Tolia ven el consumo de aceites multiplicarse por 4 a 6 veces.'
+              <>Supprimez la friction → supprimez l'effet placard → débloquez le rachat d'huiles toute l'année. Les marques qui utilisent Tolia mesurent une <strong>consommation d'huiles multipliée par 4 à 6</strong>. Le diffuseur n'est plus un produit, c'est une infrastructure de revenu récurrent.</>,
+              <>Remove friction → remove the cupboard effect → unlock year-round oil repurchase. Brands using Tolia measure <strong>oil consumption multiplied by 4 to 6</strong>. The diffuser is no longer a product, it is a recurring revenue infrastructure.</>,
+              <>Elimine la fricción → elimine el efecto armario → desbloquee la recompra de aceites durante todo el año. Las marcas que usan Tolia miden un <strong>consumo de aceites multiplicado por 4 a 6</strong>. El difusor ya no es un producto, es una infraestructura de ingresos recurrentes.</>
             )}
           </p>
         </motion.div>
