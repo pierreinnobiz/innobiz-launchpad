@@ -10,7 +10,7 @@ import TwistAndMistSection from '@/components/sections/TwistAndMistSection';
 import FourInnovationsSection from '@/components/sections/FourInnovationsSection';
 import RitualStrategySection from '@/components/sections/RitualStrategySection';
 import BusinessMathSection from '@/components/sections/BusinessMathSection';
-import ROICalculatorSection from '@/components/sections/ROICalculatorSection';
+
 import MarketProofSection from '@/components/sections/MarketProofSection';
 import LeadMagnetSection from '@/components/sections/LeadMagnetSection';
 import BrandMarqueeSection from '@/components/sections/BrandMarqueeSection';
@@ -63,9 +63,8 @@ const Index: React.FC = () => {
 
       <BusinessMathSection />
 
-      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 93%)" height="120px" />
 
-      <ROICalculatorSection />
+      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 93%)" height="120px" />
 
       <MarketProofSection />
 
