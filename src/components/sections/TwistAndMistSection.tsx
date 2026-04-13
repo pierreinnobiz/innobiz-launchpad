@@ -89,9 +89,9 @@ const TwistAndMistSection: React.FC = () => {
       icon: RotateCw,
       title: t3(language, 'Vissez', 'Twist', 'Enrosque'),
       desc: t3(language,
-        "Votre client visse son flacon d'huile essentielle directement sur le module de nébulisation Twist & Mist. Pas de mesure, pas de remplissage, pas de gouttes à compter. Le flacon devient la cartouche, prêt en 2 secondes.",
-        "Your customer screws their essential oil bottle directly onto the Twist & Mist nebulisation module. No measuring, no filling, no drops to count. The bottle becomes the cartridge, ready in 2 seconds.",
-        'Su cliente enrosca su frasco de aceite esencial directamente en el módulo de nebulización Twist & Mist. Sin medir, sin llenar, sin gotas que contar. El frasco se convierte en el cartucho, listo en 2 segundos.'
+        "Le flacon d'huile essentielle se visse directement sur le module Twist & Mist. Zéro manipulation : pas de mesure, pas de remplissage, pas de gouttes. Le flacon devient la cartouche. Prêt en 2 secondes. C'est cette simplicité qui transforme un achat ponctuel en geste quotidien.",
+        "The essential oil bottle screws directly onto the Twist & Mist module. Zero handling: no measuring, no filling, no drops. The bottle becomes the cartridge. Ready in 2 seconds. This simplicity is what turns a one-time purchase into a daily habit.",
+        'El frasco de aceite esencial se enrosca directamente en el módulo Twist & Mist. Cero manipulación: sin medir, sin llenar, sin gotas. El frasco se convierte en el cartucho. Listo en 2 segundos. Esta simplicidad es lo que convierte una compra puntual en un gesto diario.'
       ),
       video: '/videos/twist-step1.mp4',
       poster: step1Poster,
@@ -100,9 +100,9 @@ const TwistAndMistSection: React.FC = () => {
       icon: Layers,
       title: t3(language, 'Clipsez', 'Clip', 'Enganche'),
       desc: t3(language,
-        "Le module se clipse dans le diffuseur Tolia d'un simple clic, aussi intuitif que poser un téléphone sur son chargeur.",
-        "The module clips into the Tolia diffuser with a single click, as intuitive as placing a phone on its charger.",
-        'El módulo se engancha en el difusor Tolia con un solo clic, tan intuitivo como colocar un teléfono en su cargador.'
+        "Un clic. Le module se fixe dans le diffuseur Tolia aussi naturellement qu'un téléphone sur son chargeur. Aucune notice nécessaire : votre client comprend le geste dès la première utilisation.",
+        "One click. The module locks into the Tolia diffuser as naturally as a phone on its charger. No manual needed: your customer gets it from the very first use.",
+        'Un clic. El módulo se fija en el difusor Tolia tan naturalmente como un teléfono en su cargador. Sin manual necesario: su cliente lo entiende desde el primer uso.'
       ),
       video: '/videos/twist-step2.mp4',
       poster: step2Poster,
@@ -111,9 +111,9 @@ const TwistAndMistSection: React.FC = () => {
       icon: Power,
       title: t3(language, 'Diffusez', 'Mist', 'Difunda'),
       desc: t3(language,
-        "Un appui. La nébulisation à air froid sec démarre instantanément. 100 % des composés thérapeutiques préservés.",
-        "One press. Cold dry-air nebulisation begins instantly. 100% of therapeutic compounds preserved.",
-        'Un toque. La nebulización de aire frío seco comienza al instante. 100 % de los compuestos terapéuticos preservados.'
+        "Un appui. La nébulisation à air froid sec démarre instantanément. Aucune chaleur, aucune eau : 100 % des terpènes et composés actifs préservés. Votre client perçoit la différence dès la première brume.",
+        "One press. Cold dry-air nebulisation starts instantly. No heat, no water: 100% of terpenes and active compounds preserved. Your customer feels the difference from the very first mist.",
+        'Un toque. La nebulización de aire frío seco comienza al instante. Sin calor, sin agua: 100 % de los terpenos y compuestos activos preservados. Su cliente percibe la diferencia desde la primera bruma.'
       ),
       video: '/videos/twist-step3.mp4',
       poster: step3Poster,
@@ -122,9 +122,9 @@ const TwistAndMistSection: React.FC = () => {
       icon: RefreshCw,
       title: t3(language, 'Changez', 'Switch', 'Cambie'),
       desc: t3(language,
-        "Changer de synergie prend moins de 3 secondes : dévissez, vissez un autre flacon, c'est fait. Un seul diffuseur, des rituels illimités.",
-        "Switching blends takes under 3 seconds: unscrew, screw on another bottle, done. One diffuser, unlimited rituals.",
-        'Cambiar de mezcla toma menos de 3 segundos: desenrosque, enrosque otro frasco, listo. Un difusor, rituales ilimitados.'
+        "Dévissez, vissez un autre flacon : 3 secondes. Pas de nettoyage, zéro huile perdue. Un diffuseur, des rituels illimités. C'est ce mécanisme qui multiplie la consommation d'huiles par 4 à 6.",
+        "Unscrew, screw on another bottle: 3 seconds. No cleaning, zero oil wasted. One diffuser, unlimited rituals. This mechanism is what multiplies oil consumption by 4 to 6.",
+        'Desenrosque, enrosque otro frasco: 3 segundos. Sin limpieza, cero aceite desperdiciado. Un difusor, rituales ilimitados. Este mecanismo es lo que multiplica el consumo de aceites por 4 a 6.'
       ),
       video: '/videos/twist-step4.mp4',
       poster: step4Poster,
@@ -146,16 +146,16 @@ const TwistAndMistSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "Un geste. Une brume. Chaque jour.",
-              "One twist. One mist. Every single day.",
-              'Un giro. Una niebla. Cada día.'
+              "Un geste. Une brume. Chaque jour, sans y penser.",
+              "One twist. One mist. Every single day, without thinking.",
+              'Un giro. Una niebla. Cada día, sin pensarlo.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              <>Twist & Mist remplace tout le rituel de la diffusion traditionnelle par un seul geste de 10 secondes. Le résultat ? Votre client ne pense plus au diffuseur. Il pense juste à quelle huile utiliser. Et <strong className="text-foreground">c'est là qu'il commence à recommander</strong>.</>,
-              <>Twist & Mist replaces the entire ritual of traditional diffusion with a single 10-second gesture. The result? Your customer stops thinking about the diffuser. They just think about which oil to use. And <strong className="text-foreground">that is when they start reordering</strong>.</>,
-              <>Twist & Mist reemplaza todo el ritual de la difusión tradicional con un solo gesto de 10 segundos. ¿El resultado? Su cliente deja de pensar en el difusor. Solo piensa en qué aceite usar. Y <strong className="text-foreground">ahí es cuando empieza a reordenar</strong>.</>
+              <>Twist & Mist compresse tout le rituel de la diffusion traditionnelle en un geste unique de 10 secondes. Le diffuseur disparaît de l'esprit de votre client. Seul reste le choix de l'huile. Et <strong className="text-foreground">c'est précisément à ce moment que le rachat devient automatique</strong>.</>,
+              <>Twist & Mist compresses the entire ritual of traditional diffusion into a single 10-second gesture. The diffuser vanishes from your customer's mind. Only the choice of oil remains. And <strong className="text-foreground">that is precisely when repurchase becomes automatic</strong>.</>,
+              <>Twist & Mist comprime todo el ritual de la difusión tradicional en un solo gesto de 10 segundos. El difusor desaparece de la mente de su cliente. Solo queda la elección del aceite. Y <strong className="text-foreground">es precisamente en ese momento cuando la recompra se vuelve automática</strong>.</>
             )}
           </p>
         </motion.div>
@@ -225,19 +225,13 @@ const TwistAndMistSection: React.FC = () => {
               <p className="text-sm md:text-base text-foreground/90 leading-relaxed">
                 {t3(language,
                   <>
-                    <strong>Tolia est à l'aromathérapie ce que Nespresso a été au café.</strong> Nespresso n'a pas inventé le café.
-                    Il a supprimé chaque point de friction entre le désir et la consommation. Tolia applique exactement la même stratégie aux huiles essentielles :
-                    vissez le flacon, appuyez sur le bouton, diffusez. Changez de synergie en 1 seconde.
+                    <strong>Tolia est à l'aromathérapie ce que Nespresso a été au café.</strong> Nespresso n'a pas inventé le café, il a supprimé la friction entre le désir et la tasse. Résultat : une capsule par jour, un revenu récurrent prévisible. Tolia reproduit ce modèle pour les huiles essentielles. Vissez, appuyez, diffusez. Changez de synergie en 1 seconde. La simplicité crée l'habitude, l'habitude crée le rachat.
                   </>,
                   <>
-                    <strong>Tolia is to aromatherapy what Nespresso was to coffee.</strong> Nespresso did not invent coffee.
-                    It removed every friction point between desire and consumption. Tolia applies exactly the same strategy to essential oils:
-                    screw the bottle, press the button, diffuse. Change blends in 1 second.
+                    <strong>Tolia is to aromatherapy what Nespresso was to coffee.</strong> Nespresso did not invent coffee, it removed the friction between desire and the cup. Result: one capsule a day, predictable recurring revenue. Tolia replicates this model for essential oils. Screw, press, diffuse. Switch blends in 1 second. Simplicity creates the habit, and the habit creates the repurchase.
                   </>,
                   <>
-                    <strong>Tolia es a la aromaterapia lo que Nespresso fue al café.</strong> Nespresso no inventó el café.
-                    Eliminó cada punto de fricción entre el deseo y el consumo. Tolia aplica exactamente la misma estrategia a los aceites esenciales:
-                    enrosque el frasco, presione el botón, difunda. Cambie de mezcla en 1 segundo.
+                    <strong>Tolia es a la aromaterapia lo que Nespresso fue al café.</strong> Nespresso no inventó el café, eliminó la fricción entre el deseo y la taza. Resultado: una cápsula al día, ingresos recurrentes predecibles. Tolia replica este modelo para los aceites esenciales. Enrosque, presione, difunda. Cambie de mezcla en 1 segundo. La simplicidad crea el hábito, y el hábito crea la recompra.
                   </>
                 )}
               </p>
@@ -253,9 +247,9 @@ const TwistAndMistSection: React.FC = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           {t3(language,
-            "Pas d'eau à remplir. Pas de réservoir à nettoyer. Pas de gouttes à mesurer. Voilà pourquoi Tolia est utilisé chaque jour.",
-            "No water to fill. No tank to clean. No drops to measure. That is why Tolia gets used every single day.",
-            'Sin agua que llenar. Sin depósito que limpiar. Sin gotas que medir. Por eso Tolia se usa cada día.'
+            "Zéro eau. Zéro nettoyage. Zéro mesure. Zéro excuse pour ne pas diffuser. Voilà pourquoi les clients Tolia consomment 4 à 6 fois plus d'huiles que la moyenne du marché.",
+            "Zero water. Zero cleaning. Zero measuring. Zero excuses not to diffuse. That is why Tolia customers consume 4 to 6 times more oil than the market average.",
+            'Cero agua. Cero limpieza. Cero medición. Cero excusas para no difundir. Por eso los clientes Tolia consumen de 4 a 6 veces más aceite que el promedio del mercado.'
           )}
         </motion.p>
       </div>
