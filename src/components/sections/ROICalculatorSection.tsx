@@ -21,37 +21,7 @@ const ROICalculatorSection: React.FC = () => {
   const withoutRevenue = units * BASELINE_BOTTLES * AVG_BOTTLE_PRICE;
   const withRevenue = units * TOLIA_BOTTLES * AVG_BOTTLE_PRICE;
   const additionalRevenue = withRevenue - withoutRevenue;
-  const threeYearUplift = additionalRevenue * 3;
-
-  const rows = [
-    {
-      label: t3(language, 'Flacons vendus par client / an', 'Oil bottles sold per customer / year', 'Frascos vendidos por cliente / año'),
-      without: BASELINE_BOTTLES.toString(),
-      withTolia: TOLIA_BOTTLES.toString(),
-    },
-    {
-      label: t3(language, 'Revenu par client / an (huiles)', 'Revenue per customer / year (oils)', 'Ingresos por cliente / año (aceites)'),
-      without: fmt(BASELINE_BOTTLES * AVG_BOTTLE_PRICE),
-      withTolia: fmt(TOLIA_BOTTLES * AVG_BOTTLE_PRICE),
-    },
-    {
-      label: t3(language, "Revenu annuel total (huiles)", 'Total annual oil revenue', 'Ingresos anuales totales (aceites)'),
-      without: fmt(withoutRevenue),
-      withTolia: fmt(withRevenue),
-    },
-    {
-      label: t3(language, 'Revenu récurrent additionnel', 'Additional recurring revenue', 'Ingresos recurrentes adicionales'),
-      without: '—',
-      withTolia: fmt(additionalRevenue),
-      highlight: true,
-    },
-    {
-      label: t3(language, 'Uplift cumulé sur 3 ans', '3-year cumulative uplift', 'Incremento acumulado a 3 años'),
-      without: '—',
-      withTolia: fmt(threeYearUplift),
-      highlight: true,
-    },
-  ];
+  const multiplier = (TOLIA_BOTTLES / BASELINE_BOTTLES).toFixed(1);
 
   return (
     <section id="roi-calculator" className="section-padding relative overflow-hidden"
@@ -65,7 +35,7 @@ const ROICalculatorSection: React.FC = () => {
             </span>
           </div>
           <h2 className="heading-section mb-4">
-            {t3(language, 'Que représenterait Tolia pour votre marque ?', 'What would Tolia mean for your brand? Run the numbers.', '¿Qué significaría Tolia para su marca?')}
+            {t3(language, 'Que représenterait Tolia pour votre marque ?', 'What would Tolia mean for your brand?', '¿Qué significaría Tolia para su marca?')}
           </h2>
         </motion.div>
 
@@ -93,32 +63,29 @@ const ROICalculatorSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-border/60 overflow-hidden">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border/60 bg-muted/30">
-                  <th className="text-left p-3 md:p-4 font-medium text-muted-foreground w-2/5"></th>
-                  <th className="text-center p-3 md:p-4 font-bold text-muted-foreground/60 w-[30%]">
-                    {t3(language, 'Sans Tolia', 'Without Tolia', 'Sin Tolia')}
-                  </th>
-                  <th className="text-center p-3 md:p-4 font-bold w-[30%]" style={{ color: 'hsl(28 45% 48%)' }}>
-                    {t3(language, 'Avec Tolia', 'With Tolia', 'Con Tolia')}
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((row, i) => (
-                  <tr key={i} className={i < rows.length - 1 ? 'border-b border-border/40' : ''}>
-                    <td className="p-3 md:p-4 font-medium text-muted-foreground text-xs md:text-sm">{row.label}</td>
-                    <td className="p-3 md:p-4 text-center text-muted-foreground/60">{row.without}</td>
-                    <td className={`p-3 md:p-4 text-center font-bold ${row.highlight ? 'text-lg' : ''}`}
-                      style={row.highlight ? { color: 'hsl(28 45% 48%)' } : {}}>
-                      {row.withTolia}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          {/* Visual results instead of table */}
+          <div className="grid sm:grid-cols-3 gap-4 mb-6">
+            <div className="text-center p-4 rounded-xl" style={{ background: 'hsl(28 45% 48% / 0.06)' }}>
+              <p className="text-xs text-muted-foreground mb-1">
+                {t3(language, 'Sans Tolia', 'Without Tolia', 'Sin Tolia')}
+              </p>
+              <p className="text-xl font-bold text-muted-foreground/60">{fmt(withoutRevenue)}</p>
+              <p className="text-[10px] text-muted-foreground mt-1">{BASELINE_BOTTLES} {t3(language, 'flacons/client/an', 'bottles/customer/year', 'frascos/cliente/año')}</p>
+            </div>
+            <div className="text-center p-4 rounded-xl border-2" style={{ borderColor: 'hsl(28 45% 48%)', background: 'hsl(28 45% 48% / 0.08)' }}>
+              <p className="text-xs font-semibold mb-1" style={{ color: 'hsl(28 45% 48%)' }}>
+                {t3(language, 'Avec Tolia', 'With Tolia', 'Con Tolia')}
+              </p>
+              <p className="text-2xl font-bold" style={{ color: 'hsl(28 45% 48%)' }}>{fmt(withRevenue)}</p>
+              <p className="text-[10px] text-muted-foreground mt-1">{TOLIA_BOTTLES} {t3(language, 'flacons/client/an', 'bottles/customer/year', 'frascos/cliente/año')}</p>
+            </div>
+            <div className="text-center p-4 rounded-xl" style={{ background: 'hsl(140 40% 50% / 0.08)' }}>
+              <p className="text-xs text-muted-foreground mb-1">
+                {t3(language, 'Revenu additionnel', 'Additional revenue', 'Ingresos adicionales')}
+              </p>
+              <p className="text-2xl font-bold" style={{ color: 'hsl(140 40% 45%)' }}>+{fmt(additionalRevenue)}</p>
+              <p className="text-[10px] font-semibold mt-1" style={{ color: 'hsl(140 40% 45%)' }}>×{multiplier}</p>
+            </div>
           </div>
 
           <div className="mt-8 text-center">

@@ -10,8 +10,8 @@ const statements = [
   "Aromatherapy brands invest heavily to win customers, but without daily rituals, repurchase erodes. Tolia turns occasional users into daily consumers. That changes everything.",
 ];
 
-const CHAR_DELAY = 5;
-const STATEMENT_PAUSE = 250;
+const CHAR_DELAY = 2.5;
+const STATEMENT_PAUSE = 150;
 
 const TypewriterText: React.FC<{
   text: string;
@@ -60,7 +60,6 @@ const FounderStatementSection: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [activeStatement, setActiveStatement] = useState(-1);
   const [completedStatements, setCompletedStatements] = useState<Set<number>>(new Set());
-  const [showSignature, setShowSignature] = useState(false);
 
   useEffect(() => {
     if (isInView && activeStatement === -1) {
@@ -72,8 +71,6 @@ const FounderStatementSection: React.FC = () => {
     setCompletedStatements(prev => new Set(prev).add(index));
     if (index < statements.length - 1) {
       setTimeout(() => setActiveStatement(index + 1), STATEMENT_PAUSE);
-    } else {
-      setTimeout(() => setShowSignature(true), 400);
     }
   }, []);
 
@@ -83,7 +80,6 @@ const FounderStatementSection: React.FC = () => {
       style={{ background: 'linear-gradient(180deg, hsl(25 20% 10%) 0%, hsl(25 18% 14%) 100%)' }}
     >
       <div ref={ref} className="max-w-[860px] mx-auto px-6 md:px-12 relative">
-        {/* Correspondence card */}
         <motion.div
           className="relative rounded-xl overflow-hidden"
           style={{
@@ -98,10 +94,6 @@ const FounderStatementSection: React.FC = () => {
           <div className="px-8 pt-6 pb-3 flex items-center justify-between border-b" style={{ borderColor: 'hsl(28 30% 85% / 0.5)' }}>
             <div className="flex items-center gap-3">
               <img src={innobizLogo} alt="Innobiz" className="h-7 w-auto" />
-              <div>
-                <span className="text-sm font-semibold tracking-wide" style={{ color: 'hsl(25 15% 25%)' }}>INNOBIZ</span>
-                <span className="text-[10px] text-muted-foreground block leading-tight">Diffusion Technology</span>
-              </div>
             </div>
             <span className="text-[10px] uppercase tracking-widest font-medium" style={{ color: 'hsl(28 30% 65%)' }}>Private note</span>
           </div>
@@ -132,42 +124,23 @@ const FounderStatementSection: React.FC = () => {
               </p>
             ))}
 
-            {/* Signature area */}
+            {/* Simple signature line - no SVG */}
             <motion.div
-              className="pt-4 flex items-end justify-between"
+              className="pt-4"
               initial={{ opacity: 0 }}
-              animate={showSignature ? { opacity: 1 } : {}}
+              animate={completedStatements.has(2) ? { opacity: 1 } : {}}
               transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              <div>
-                <div className="w-8 h-px mb-3" style={{ background: 'hsl(28 30% 70%)' }} />
-                <p
-                  className="text-2xl md:text-3xl"
-                  style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, color: 'hsl(25 20% 20%)' }}
-                >
-                  Pierre-Emmanuel Thuret
-                </p>
-                <p className="text-xs font-light mt-0.5" style={{ color: 'hsl(25 15% 50%)' }}>
-                  Founder, Innobiz &mdash; 20 years of diffusion R&D
-                </p>
-              </div>
-              {/* Fake handwritten signature */}
-              <svg width="120" height="50" viewBox="0 0 120 50" className="opacity-60 mb-1" aria-hidden="true">
-                <path
-                  d="M5 35 C15 10, 25 45, 35 25 C45 5, 50 40, 60 20 C70 0, 75 35, 85 15 C90 5, 95 30, 105 20 C110 15, 115 25, 118 22"
-                  fill="none"
-                  stroke="hsl(25 20% 30%)"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M30 38 C50 42, 80 38, 100 40"
-                  fill="none"
-                  stroke="hsl(25 20% 30%)"
-                  strokeWidth="1"
-                  strokeLinecap="round"
-                />
-              </svg>
+              <div className="w-8 h-px mb-3" style={{ background: 'hsl(28 30% 70%)' }} />
+              <p
+                className="text-2xl md:text-3xl"
+                style={{ fontFamily: "'Caveat', cursive", fontWeight: 700, color: 'hsl(25 20% 20%)' }}
+              >
+                Pierre-Emmanuel Thuret
+              </p>
+              <p className="text-xs font-light mt-0.5" style={{ color: 'hsl(25 15% 50%)' }}>
+                Founder, Innobiz
+              </p>
             </motion.div>
           </div>
         </motion.div>
