@@ -4,9 +4,9 @@ import { Sun, Sunset, Moon, TrendingUp, Shield, RefreshCw } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
-import bathroomImg from '@/assets/ritual-bathroom.jpg';
-import livingRoomImg from '@/assets/ritual-living-room.jpg';
-import bedroomImg from '@/assets/ritual-bedroom.jpg';
+import bathroomImg from '@/assets/ritual-bathroom.webp';
+import livingRoomImg from '@/assets/ritual-living-room.webp';
+import bedroomImg from '@/assets/ritual-bedroom.webp';
 
 const RitualStrategySection: React.FC = () => {
   const { language } = useLanguage();
