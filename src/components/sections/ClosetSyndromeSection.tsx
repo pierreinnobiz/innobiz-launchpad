@@ -13,22 +13,22 @@ const ClosetSyndromeSection: React.FC = () => {
     {
       icon: ShoppingCart,
       day: t3(language, 'Jour 0', 'Day 0', 'Día 0'),
-      title: t3(language, "L'achat enthousiaste", 'The excited purchase', 'La compra entusiasta'),
+      title: t3(language, "La vente parfaite", 'The perfect sale', 'La venta perfecta'),
       desc: t3(language,
-        "Votre client voit la pub, entre en magasin et achète le diffuseur. Vous avez investi en campagnes, packaging et espace en rayon. La vente est faite, mais c'est la dernière fois que ce client génère un revenu significatif.",
-        "Your customer sees the ad, walks into the store and buys the diffuser. You invested in campaigns, packaging, shelf space. The sale goes through, but it is the last time this customer will generate meaningful revenue.",
-        'Su cliente ve el anuncio, entra en la tienda y compra el difusor. Usted invirtió en campañas, packaging, espacio en estantería. La venta se hizo, pero es la última vez que este cliente generará ingresos significativos.'
+        "Votre client achète le diffuseur. Budget marketing dépensé, espace en rayon occupé, la vente est conclue. Mais posez-vous cette question : combien de flacons d'huiles ce client va-t-il acheter dans les 12 prochains mois ? La réponse vous coûte des millions.",
+        "Your customer buys the diffuser. Marketing budget spent, shelf space allocated, sale closed. But ask yourself this: how many oil bottles will this customer buy in the next 12 months? The answer is costing you millions.",
+        'Su cliente compra el difusor. Presupuesto de marketing gastado, espacio en estantería asignado, venta cerrada. Pero hágase esta pregunta: ¿cuántos frascos de aceite comprará este cliente en los próximos 12 meses? La respuesta le está costando millones.'
       ),
       color: 'hsl(140 45% 45%)',
     },
     {
       icon: AlertTriangle,
       day: t3(language, 'Jour 30–180', 'Day 30–180', 'Día 30–180'),
-      title: t3(language, 'Le mur de friction', 'The friction wall', 'El muro de fricción'),
+      title: t3(language, "L'abandon silencieux", 'The silent drop-off', 'El abandono silencioso'),
       desc: t3(language,
-        "Remplir le réservoir, ajouter des gouttes, nettoyer après chaque utilisation, attendre l'évaporation. Ce qui devrait être un geste de 10 secondes devient une corvée de 5 à 7 minutes. L'usage passe de quotidien à hebdomadaire, puis mensuel. Les flacons d'huile restent intouchés.",
-        "Fill the tank, add drops, clean after each use, wait for evaporation. What should be a 10-second gesture becomes a 5 to 7 minute chore. Usage drops from daily to weekly, then monthly. The oil bottles sit untouched.",
-        'Llenar el depósito, añadir gotas, limpiar después de cada uso, esperar la evaporación. Lo que debería ser un gesto de 10 segundos se convierte en una tarea de 5 a 7 minutos. El uso baja de diario a semanal, luego mensual. Los frascos de aceite quedan intactos.'
+        "Remplir le réservoir, doser les gouttes, nettoyer après chaque utilisation. Un geste de 10 secondes se transforme en corvée de 5 minutes. L'usage passe de quotidien à hebdomadaire, puis mensuel. Les flacons d'huile prennent la poussière. Votre flux de revenus récurrents s'assèche sans que vous le sachiez.",
+        "Fill the tank, measure the drops, clean after every use. A 10-second gesture becomes a 5-minute chore. Usage drops from daily to weekly, then monthly. Oil bottles gather dust. Your recurring revenue stream dries up and you never even notice.",
+        'Llenar el depósito, dosificar las gotas, limpiar después de cada uso. Un gesto de 10 segundos se convierte en una tarea de 5 minutos. El uso baja de diario a semanal, luego mensual. Los frascos de aceite acumulan polvo. Su flujo de ingresos recurrentes se seca sin que usted lo note.'
       ),
       color: 'hsl(35 70% 50%)',
     },
@@ -47,20 +47,20 @@ const ClosetSyndromeSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block text-destructive">
-            {t3(language, 'Le problème dont personne ne parle', 'The problem no one talks about', 'El problema del que nadie habla')}
+            {t3(language, 'Le syndrome du placard', 'The closet syndrome', 'El síndrome del armario')}
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "Vous investissez des milliers d'euros pour acquérir un client. Six mois plus tard, son diffuseur est au placard et il ne rachète plus jamais d'huiles.",
-              "You invest thousands to acquire a customer. Six months later, their diffuser is in a cupboard and they never buy oils again.",
-              'Invierte miles en adquirir un cliente. Seis meses después, su difusor está en un armario y nunca vuelve a comprar aceites.'
+              "60 % des diffuseurs vendus finissent dans un placard en moins de 6 mois. Chacun d'eux emporte avec lui des années de rachats d'huiles.",
+              "60% of diffusers sold end up in a cupboard within 6 months. Each one takes years of oil repurchases with it.",
+              'El 60 % de los difusores vendidos terminan en un armario en menos de 6 meses. Cada uno se lleva consigo años de recompras de aceites.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              "Ce n'est ni un échec de branding ni une erreur marketing. C'est un problème de conception produit.",
-              "This is not a branding failure or a marketing mistake. It is a product design problem.",
-              'No es un fallo de branding ni un error de marketing. Es un problema de diseño de producto.'
+              "Le problème n'est ni votre marque, ni votre marketing, ni vos huiles. C'est le diffuseur lui-même qui est conçu pour échouer.",
+              "The problem is not your brand, your marketing, or your oils. The diffuser itself is designed to fail.",
+              'El problema no es su marca, ni su marketing, ni sus aceites. El difusor mismo está diseñado para fallar.'
             )}
           </p>
         </motion.div>
@@ -117,9 +117,9 @@ const ClosetSyndromeSection: React.FC = () => {
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {t3(language,
-                    "Le diffuseur rejoint le cimetière des appareils. Plus d'achat d'huiles. Plus de recharges. Plus de relation de marque. L'ensemble de votre investissement marketing a produit une seule vente de matériel, et zéro revenu récurrent.",
-                    "The diffuser joins the appliance graveyard. No more oil purchases. No refills. No brand relationship. All of your marketing investment produced exactly one hardware sale and zero recurring revenue.",
-                    'El difusor se une al cementerio de aparatos. No más compras de aceites. No más recargas. No más relación de marca. Toda su inversión de marketing produjo exactamente una venta de hardware y cero ingresos recurrentes.'
+                    "Le diffuseur rejoint le cimetière des appareils. Plus d'achat d'huiles. Plus de recharges. Plus aucun lien avec votre marque. Votre coût d'acquisition client a produit une seule vente de matériel — et zéro euro de revenu récurrent. Multipliez par le nombre de clients et vous mesurez l'ampleur de la fuite.",
+                    "The diffuser joins the appliance graveyard. No more oil purchases. No refills. No brand connection. Your customer acquisition cost produced exactly one hardware sale — and zero recurring revenue. Multiply by your customer base and the scale of the leak becomes clear.",
+                    'El difusor se une al cementerio de aparatos. No más compras de aceites. No más recargas. No más conexión con su marca. Su coste de adquisición de clientes produjo exactamente una venta de hardware — y cero ingresos recurrentes. Multiplique por su base de clientes y la magnitud de la fuga se hace evidente.'
                   )}
                 </p>
               </div>
@@ -152,16 +152,16 @@ const ClosetSyndromeSection: React.FC = () => {
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center text-foreground">
             {t3(language,
-              "Le calcul est implacable : avec un diffuseur traditionnel, le client moyen achète 2 à 3 flacons d'huile essentielle par an. Avec un diffuseur qu'il utilise vraiment chaque jour, ce chiffre passe à 12 ou plus. Cela signifie un revenu par client multiplié par 4 à 6, chaque année.",
-              "Here is the arithmetic that matters: with a traditional diffuser, the average customer buys 2 to 3 bottles of essential oil per year. With a diffuser they actually use every day, that number jumps to 12 or more. That means 4× to 6× more revenue per customer, every single year.",
-              'Este es el cálculo que importa: con un difusor tradicional, el cliente promedio compra 2 a 3 frascos de aceite esencial al año. Con un difusor que realmente usa cada día, ese número sube a 12 o más. Eso significa multiplicar por 4 a 6 los ingresos por cliente, cada año.'
+              <>Diffuseur traditionnel : <strong>2 à 3 flacons</strong> achetés par an. Diffuseur utilisé chaque jour : <strong>12 flacons ou plus</strong>. C'est un revenu par client <strong>multiplié par 4 à 6</strong>, chaque année, sans augmenter vos dépenses marketing d'un seul euro.</>,
+              <>Traditional diffuser: <strong>2 to 3 bottles</strong> purchased per year. Diffuser used daily: <strong>12 bottles or more</strong>. That is per-customer revenue <strong>multiplied by 4 to 6</strong>, every year, without spending a single extra marketing euro.</>,
+              <>Difusor tradicional: <strong>2 a 3 frascos</strong> comprados al año. Difusor usado a diario: <strong>12 frascos o más</strong>. Eso es un ingreso por cliente <strong>multiplicado por 4 a 6</strong>, cada año, sin gastar un solo euro extra en marketing.</>
             )}
           </p>
           <p className="text-xs text-center text-muted-foreground mt-4 font-light">
             {t3(language,
-              "Données issues de ventes réelles sur plus de 10 déploiements de marques à travers les marchés européens.",
-              'Based on actual sales data from over 10 brand deployments across European markets.',
-              'Basado en datos reales de ventas de más de 10 despliegues de marcas en mercados europeos.'
+              "Données mesurées sur plus de 10 déploiements de marques en Europe.",
+              'Measured across 10+ brand deployments in European markets.',
+              'Medido en más de 10 despliegues de marcas en mercados europeos.'
             )}
           </p>
         </motion.div>
