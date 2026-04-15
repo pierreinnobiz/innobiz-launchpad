@@ -155,22 +155,35 @@ const RitualStrategySection: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Key insight */}
+        {/* Key insight with image */}
         <motion.div
-          className="max-w-4xl mx-auto rounded-2xl p-6 md:p-8 border mb-12"
+          className="max-w-4xl mx-auto rounded-2xl border overflow-hidden mb-12"
           style={{ background: 'hsl(28 45% 48% / 0.06)', borderColor: 'hsl(28 45% 48% / 0.2)' }}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <p className="text-base md:text-lg leading-relaxed font-semibold text-center text-foreground">
-            {t3(language,
-              "Seul Tolia rend cette journée possible. Changement de flacon instantané, zéro nettoyage. L'usage ponctuel devient une habitude quotidienne.",
-              "Only Tolia makes this day possible. Instant bottle switch, zero cleaning. Occasional use becomes a daily habit.",
-              'Solo Tolia hace posible esta jornada. Cambio de frasco instantáneo, cero limpieza. El uso puntual se convierte en hábito diario.'
-            )}
-          </p>
+          <div className="relative w-full overflow-hidden" style={{ maxHeight: '360px' }}>
+            <img
+              src={dailyBottlesImg}
+              alt={t3(language, 'Flacons Twist & Mist pour chaque moment de la journée', 'Twist & Mist bottles for every moment of the day', 'Frascos Twist & Mist para cada momento del día')}
+              className="w-full h-full object-cover object-center"
+              loading="lazy"
+              width={1200}
+              height={360}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
+          </div>
+          <div className="p-6 md:p-8">
+            <p className="text-base md:text-lg leading-relaxed font-semibold text-center text-foreground">
+              {t3(language,
+                "Seul Tolia rend cette journée possible. Changement de flacon instantané, zéro nettoyage. L'usage ponctuel devient une habitude quotidienne.",
+                "Only Tolia makes this day possible. Instant bottle switch, zero cleaning. Occasional use becomes a daily habit.",
+                'Solo Tolia hace posible esta jornada. Cambio de frasco instantáneo, cero limpieza. El uso puntual se convierte en hábito diario.'
+              )}
+            </p>
+          </div>
         </motion.div>
 
         {/* Business benefits */}
