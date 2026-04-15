@@ -62,18 +62,18 @@ const MarketProofSection: React.FC = () => {
   const stats = [
     {
       value: '100K+',
-      label: t3(language, 'unités vendues en seulement 7 mois', 'units sold in just 7 months', 'unidades vendidas en solo 7 meses'),
-      desc: t3(language, "Le lancement produit le plus rapide des 20 ans d'histoire d'Innobiz. Demande consommateur validée à grande échelle.", "The fastest product launch in Innobiz's 20-year history. Consumer demand validated at scale.", 'El lanzamiento de producto más rápido en los 20 años de historia de Innobiz. Demanda del consumidor validada a escala.'),
+      label: t3(language, 'unités vendues en 7 mois', 'units sold in 7 months', 'unidades vendidas en 7 meses'),
+      desc: t3(language, "Le lancement le plus rapide en 20 ans d'Innobiz. Demande validée à grande échelle.", "The fastest launch in Innobiz's 20-year history. Demand validated at scale.", 'El lanzamiento más rápido en 20 años de Innobiz. Demanda validada a escala.'),
     },
     {
       value: '3.8×',
-      label: t3(language, "plus d'huiles essentielles vendues par client", 'more essential oils sold per customer', 'más aceites esenciales vendidos por cliente'),
-      desc: t3(language, 'Mesuré en comparaison directe avec les diffuseurs traditionnels au sein de la même marque et du même canal de distribution.', 'Measured head-to-head vs. traditional diffusers within the same brand and retail channel.', 'Medido en comparación directa con difusores tradicionales dentro de la misma marca y canal de distribución.'),
+      label: t3(language, "plus d'huiles vendues par client", 'more oils sold per customer', 'más aceites vendidos por cliente'),
+      desc: t3(language, 'Comparaison directe avec les diffuseurs traditionnels, même marque, même canal.', 'Head-to-head vs. traditional diffusers, same brand, same channel.', 'Comparación directa con difusores tradicionales, misma marca, mismo canal.'),
     },
     {
       value: '100%',
-      label: t3(language, "transfert d'achat depuis les anciens diffuseurs", 'purchase transfer from old diffusers', 'transferencia de compra desde difusores anteriores'),
-      desc: t3(language, "Les clients abandonnent activement leurs anciens diffuseurs pour passer au Twist & Mist, de façon permanente.", 'Customers are actively abandoning their previous diffusers to switch to Twist & Mist, permanently.', 'Los clientes abandonan activamente sus difusores anteriores para cambiar al Twist & Mist, permanentemente.'),
+      label: t3(language, "de transfert vers Twist & Mist", 'transfer to Twist & Mist', 'transferencia hacia Twist & Mist'),
+      desc: t3(language, "Les clients abandonnent leur ancien diffuseur pour Tolia. Définitivement.", 'Customers abandon their old diffuser for Tolia. Permanently.', 'Los clientes abandonan su antiguo difusor por Tolia. Permanentemente.'),
     },
   ];
 
@@ -98,9 +98,9 @@ const MarketProofSection: React.FC = () => {
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              "Tolia n'est ni une campagne de crowdfunding ni une expérience de laboratoire. C'est un produit validé par le marché, avec la courbe d'adoption la plus rapide qu'Innobiz ait jamais connue. Le virage technologique a déjà eu lieu côté consommateur. La seule question qui reste : votre marque va-t-elle le capter, ou regarder ses concurrents le faire ?",
-              "Tolia is not a crowdfunding campaign or a lab experiment. It is a market-validated product with the fastest adoption curve Innobiz has ever seen. The technology shift has already happened on the consumer side. The only question remaining is whether your brand will capture it or watch competitors do so first.",
-              'Tolia no es una campaña de crowdfunding ni un experimento de laboratorio. Es un producto validado por el mercado con la curva de adopción más rápida que Innobiz haya visto. El cambio tecnológico ya ocurrió del lado del consumidor. La única pregunta que queda es: ¿su marca lo capturará, o verá a los competidores hacerlo primero?'
+              "Ni crowdfunding, ni prototype. Un produit validé par le marché, avec la courbe d'adoption la plus rapide qu'Innobiz ait connue. Le virage consommateur a déjà eu lieu. Reste à savoir si votre marque le capte, ou regarde ses concurrents le faire.",
+              "Not a crowdfunding campaign. Not a prototype. A market-validated product with the fastest adoption curve Innobiz has ever seen. The consumer shift has already happened. The question is whether your brand captures it, or watches competitors do so.",
+              'Ni crowdfunding, ni prototipo. Un producto validado por el mercado con la curva de adopción más rápida que Innobiz haya visto. El cambio del consumidor ya ocurrió. La pregunta es si su marca lo captura, o mira a sus competidores hacerlo.'
             )}
           </p>
         </motion.div>
@@ -126,9 +126,9 @@ const MarketProofSection: React.FC = () => {
           transition={{ duration: 0.6 }}
         >
           {t3(language,
-            "Le virage consommateur vers la diffusion sans friction est déjà en marche. Les marques qui bougent maintenant domineront la catégorie. Celles qui attendent devront rattraper leur retard.",
-            'The consumer shift toward frictionless diffusion is already underway. Brands that move now will own the category. Those that wait will be playing catch-up.',
-            'El cambio del consumidor hacia la difusión sin fricción ya está en marcha. Las marcas que se muevan ahora dominarán la categoría. Las que esperen estarán jugando a alcanzar.'
+            "Le virage vers la diffusion sans friction est en cours. Les marques qui bougent maintenant domineront la catégorie.",
+            'The shift to frictionless diffusion is underway. Brands that move now will own the category.',
+            'El cambio hacia la difusión sin fricción está en marcha. Las marcas que se muevan ahora dominarán la categoría.'
           )}
         </motion.p>
 
