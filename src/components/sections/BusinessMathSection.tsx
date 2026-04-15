@@ -9,17 +9,17 @@ const BusinessMathSection: React.FC = () => {
   const { language } = useLanguage();
 
   const traditionalBullets = [
-    t3(language, "Diffuseur vendu une fois → tout votre investissement marketing produit une seule transaction", 'Diffuser sold once → all your marketing investment produces a single transaction', 'Difusor vendido una vez → toda su inversión de marketing produce una sola transacción'),
-    t3(language, "Le client achète 2 flacons d'huile essentielle, puis s'arrête. Le diffuseur est trop complexe pour un usage quotidien", 'Customer buys 2 essential oil bottles, then stops. The diffuser is too complex to use daily', 'El cliente compra 2 frascos de aceite esencial, luego para, el difusor es demasiado complejo para uso diario'),
-    t3(language, "Pour acquérir le prochain client → réinvestir tout le budget marketing à zéro", 'To acquire the next customer → reinvest the full marketing budget from scratch', 'Para adquirir el siguiente cliente → reinvertir todo el presupuesto de marketing desde cero'),
-    t3(language, "Aucune relation récurrente, aucune boucle de fidélité, aucun revenu prévisible", 'No recurring relationship, no loyalty loop, no predictable revenue', 'Sin relación recurrente, sin ciclo de fidelidad, sin ingresos predecibles'),
+    t3(language, "Un diffuseur vendu = une seule transaction. Tout le budget marketing pour un achat unique.", 'One diffuser sold = one transaction. Your entire marketing budget for a single purchase.', 'Un difusor vendido = una sola transacción. Todo el presupuesto de marketing para una compra única.'),
+    t3(language, "Le client achète 2 flacons, puis arrête. Le diffuseur est trop contraignant pour un usage quotidien.", 'The customer buys 2 bottles, then stops. The diffuser is too cumbersome for daily use.', 'El cliente compra 2 frascos, luego para. El difusor es demasiado engorroso para uso diario.'),
+    t3(language, "Pour chaque nouveau client, il faut réinvestir de zéro.", 'Every new customer requires reinvesting from scratch.', 'Cada nuevo cliente requiere reinvertir desde cero.'),
+    t3(language, "Aucune récurrence. Aucune fidélité. Aucun revenu prévisible.", 'No recurrence. No loyalty. No predictable revenue.', 'Sin recurrencia. Sin fidelidad. Sin ingresos predecibles.'),
   ];
 
   const toliaBullets = [
-    t3(language, "Diffuseur vendu une fois, mais l'usage commence immédiatement et continue chaque jour", 'Diffuser sold once, but usage starts immediately and continues daily', 'Difusor vendido una vez, pero el uso comienza inmediatamente y continúa diariamente'),
-    t3(language, "12+ synergies d'huile Twist & Mist achetées par an grâce à l'usage quotidien ritualisé", '12+ Twist & Mist oil synergies purchased per year through ritualized daily use', '12+ sinergias de aceite Twist & Mist compradas al año mediante uso diario ritualizado'),
-    t3(language, "4 coffrets cadeaux saisonniers par an créent des opportunités naturelles d'upsell", '4 seasonal gift sets per year create natural upsell moments', '4 sets de regalo estacionales al año crean oportunidades naturales de upsell'),
-    t3(language, "La relation client devient permanente = revenu récurrent mécanique et prévisible", 'Customer relationship becomes permanent = mechanical, predictable recurring revenue', 'La relación con el cliente se vuelve permanente = ingresos recurrentes mecánicos y predecibles'),
+    t3(language, "Usage immédiat, quotidien, automatique.", 'Immediate, daily, automatic usage.', 'Uso inmediato, diario, automático.'),
+    t3(language, "12+ synergies Twist & Mist rachetées par an grâce à la routine installée.", '12+ Twist & Mist synergies reordered per year through the established routine.', '12+ sinergias Twist & Mist recompradas al año gracias a la rutina instalada.'),
+    t3(language, "4 coffrets saisonniers par an = upsell naturel intégré au calendrier.", '4 seasonal gift sets per year = natural upsell built into the calendar.', '4 sets estacionales al año = upsell natural integrado en el calendario.'),
+    t3(language, "Relation client permanente. Revenu récurrent mécanique.", 'Permanent customer relationship. Mechanical recurring revenue.', 'Relación permanente con el cliente. Ingresos recurrentes mecánicos.'),
   ];
 
   return (
@@ -44,16 +44,16 @@ const BusinessMathSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
             {t3(language,
-              'Un diffuseur traditionnel génère un seul achat. Tolia multiplie le revenu par client par 4, chaque année.',
-              'A traditional diffuser generates a single purchase. Tolia multiplies per-customer revenue by 4, every year.',
-              'Un difusor tradicional genera una sola compra. Tolia multiplica los ingresos por cliente por 4, cada año.'
+              'Un achat unique contre un revenu ×4, chaque année.',
+              'A single purchase versus ×4 revenue, every year.',
+              'Una compra única frente a ingresos ×4, cada año.'
             )}
           </h2>
           <p className="text-white/60 leading-relaxed">
             {t3(language,
-              "La vraie rentabilité d'un diffuseur ne réside pas dans la vente du matériel, mais dans le flux de rachat d'huiles qui suit, année après année, automatiquement. Voici ce qui change quand votre diffuseur est réellement utilisé chaque jour.",
-              "The real profitability of a diffuser does not lie in the hardware sale. It lies in the oil repurchase stream that follows, year after year, automatically. Here is what changes when your diffuser is actually used every day.",
-              'La verdadera rentabilidad de un difusor no está en la venta del hardware. Está en el flujo de recompra de aceites que sigue, año tras año, automáticamente. Esto es lo que cambia cuando su difusor se usa realmente cada día.'
+              "La rentabilité d'un diffuseur ne vient pas du matériel. Elle vient du flux de rachat d'huiles qui suit, année après année.",
+              "A diffuser's profitability does not come from the hardware. It comes from the oil repurchase stream that follows, year after year.",
+              'La rentabilidad de un difusor no viene del hardware. Viene del flujo de recompra de aceites que sigue, año tras año.'
             )}
           </p>
         </motion.div>
@@ -125,16 +125,16 @@ const BusinessMathSection: React.FC = () => {
         >
           <p className="text-xl md:text-2xl font-bold text-white mb-2">
             {t3(language,
-              'Un seul achat contre un revenu multiplié par 4, cumulé année après année, par client.',
-              'A single purchase versus 4× more revenue, compounding year after year, per customer.',
-              'Una sola compra frente a ingresos multiplicados por 4, acumulados año tras año, por cliente.'
+              'Revenu ×4 par client, cumulé année après année.',
+              '×4 revenue per customer, compounding year after year.',
+              'Ingresos ×4 por cliente, acumulados año tras año.'
             )}
           </p>
           <p className="text-xs text-white/40">
             {t3(language,
-              "Avec en prime 75 % de coûts SAV en moins par rapport aux diffuseurs ultrasoniques (mesuré sur plus de 10 déploiements de marques par Innobiz).",
-              'Plus 75% lower after-sales costs compared with ultrasonic diffusers (measured across 10+ brand deployments by Innobiz).',
-              'Además, 75 % menos de costes posventa en comparación con difusores ultrasónicos (medido en más de 10 despliegues de marcas por Innobiz).'
+              "75 % de coûts SAV en moins vs. ultrasoniques (mesuré sur 10+ déploiements de marques).",
+              '75% lower after-sales costs vs. ultrasonic diffusers (measured across 10+ brand deployments).',
+              '75 % menos de costes posventa vs. ultrasónicos (medido en 10+ despliegues de marcas).'
             )}
           </p>
         </motion.div>
