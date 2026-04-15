@@ -7,6 +7,7 @@ import { t3 } from '@/lib/t3';
 import bathroomImg from '@/assets/ritual-bathroom.webp';
 import livingRoomImg from '@/assets/ritual-living-room.webp';
 import bedroomImg from '@/assets/ritual-bedroom.webp';
+import dailyBottlesImg from '@/assets/ritual-daily-bottles.png';
 
 const RitualStrategySection: React.FC = () => {
   const { language } = useLanguage();
