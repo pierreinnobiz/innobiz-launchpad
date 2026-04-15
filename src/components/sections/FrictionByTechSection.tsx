@@ -71,9 +71,9 @@ const FrictionByTechSection: React.FC = () => {
           </span>
           <h2 className="heading-section mb-4">
             {t3(language,
-              "Chaque technologie de diffusion existante porte en elle une friction qui condamne le diffuseur au placard. Et avec lui, vos ventes d'huiles.",
-              "Every existing diffusion technology carries a built-in friction that condemns the diffuser to the cupboard. And with it, your oil sales.",
-              'Cada tecnología de difusión existente lleva una fricción incorporada que condena al difusor al armario. Y con él, sus ventas de aceites.'
+              "La friction tue l'usage. L'usage tue vos ventes.",
+              "Friction kills usage. Usage kills your sales.",
+              'La fricción mata el uso. El uso mata sus ventas.'
             )}
           </h2>
           <p className="text-body-lg max-w-4xl mx-auto">
