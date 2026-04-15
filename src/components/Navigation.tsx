@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import innobizLogo from '@/assets/innobiz-logo.png';
 import { trackCTAClick } from '@/lib/tracking';
@@ -15,18 +15,10 @@ const languages: { code: LangCode; label: string; available: boolean }[] = [
   { code: 'de' as LangCode, label: 'DE', available: false },
 ];
 
-const navLinks = [
-  { label: { en: 'Problem', fr: 'Problème', es: 'Problema' }, href: '#closet-syndrome' },
-  { label: { en: 'Solution', fr: 'Solution', es: 'Solución' }, href: '#twist-and-mist' },
-  { label: { en: 'Business case', fr: 'Business case', es: 'Caso de negocio' }, href: '#business-math' },
-  { label: { en: 'Partners', fr: 'Partenaires', es: 'Socios' }, href: '#market-proof' },
-  { label: { en: 'FAQ', fr: 'FAQ', es: 'FAQ' }, href: '#faq' },
-];
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('');
+  const location = useLocation();
   const location = useLocation();
   const { language, setLanguage } = useLanguage();
 
@@ -36,36 +28,9 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // IntersectionObserver for active section
-  useEffect(() => {
-    const sectionIds = navLinks.map(l => l.href.replace('#', ''));
-    const observers: IntersectionObserver[] = [];
-
-    sectionIds.forEach(id => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting) setActiveSection(id);
-        },
-        { rootMargin: '-30% 0px -60% 0px' }
-      );
-      observer.observe(el);
-      observers.push(observer);
-    });
-
-    return () => observers.forEach(o => o.disconnect());
-  }, []);
 
   const ctaLabel = language === 'es' ? 'Iniciar una conversación' : language === 'en' ? 'Start a conversation' : 'Démarrer une conversation';
 
-  const handleNavClick = (href: string) => {
-    setIsMobileMenuOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   const LanguageSwitcher = ({ className = '' }: { className?: string }) => (
     <div className={`flex items-center gap-1 ${className}`}>
