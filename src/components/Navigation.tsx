@@ -18,8 +18,6 @@ const languages: { code: LangCode; label: string; available: boolean }[] = [
 
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const location = useLocation();
-  const location = useLocation();
   const { language, setLanguage } = useLanguage();
 
   useEffect(() => {
@@ -28,9 +26,7 @@ const Navigation: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-
   const ctaLabel = language === 'es' ? 'Iniciar una conversación' : language === 'en' ? 'Start a conversation' : 'Démarrer une conversation';
-
 
   const LanguageSwitcher = ({ className = '' }: { className?: string }) => (
     <div className={`flex items-center gap-1 ${className}`}>
@@ -66,72 +62,13 @@ const Navigation: React.FC = () => {
               <img src={innobizLogo} alt="Innobiz" className="h-7 hidden sm:inline opacity-70 group-hover:opacity-100 transition-opacity" />
             </Link>
 
-            {/* Desktop nav links */}
-            <div className="hidden lg:flex items-center gap-1">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
-                    activeSection === link.href.replace('#', '')
-                      ? 'bg-primary/10 text-primary'
-                      : isScrolled
-                        ? 'text-muted-foreground hover:text-foreground hover:bg-secondary'
-                        : 'text-white/60 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {link.label[language as keyof typeof link.label] || link.label.en}
-                </button>
-              ))}
-            </div>
-
-            <div className="hidden lg:flex items-center gap-3">
+            <div className="flex items-center gap-3">
               <LanguageSwitcher />
-              <a href="#contact" onClick={() => trackCTAClick(ctaLabel, 'nav')}>
-                <Button className="bg-primary text-primary-foreground font-semibold rounded-full px-6 py-2.5 hover:brightness-110 transition-all shadow-md hover:shadow-lg group">
-                  {ctaLabel}
-                  <ArrowRight className="w-4 h-4 ml-1.5 transition-transform group-hover:translate-x-0.5" />
-                </Button>
-              </a>
-            </div>
-
-            <div className="flex items-center gap-2 lg:hidden">
-              <LanguageSwitcher />
-              <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2.5 rounded-xl hover:bg-secondary transition-colors">
-                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-              </button>
             </div>
           </nav>
         </div>
-
-        {isMobileMenuOpen && (
-          <div className="lg:hidden bg-background/98 backdrop-blur-xl border-t border-border/40 animate-fade-in">
-            <div className="section-container py-4 space-y-2">
-              {navLinks.map((link) => (
-                <button
-                  key={link.href}
-                  onClick={() => handleNavClick(link.href)}
-                  className={`block w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${
-                    activeSection === link.href.replace('#', '')
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
-                  }`}
-                >
-                  {link.label[language as keyof typeof link.label] || link.label.en}
-                </button>
-              ))}
-              <a href="#contact" onClick={() => { setIsMobileMenuOpen(false); trackCTAClick(ctaLabel, 'nav-mobile'); }}>
-                <Button className="w-full bg-primary text-primary-foreground font-semibold rounded-xl py-3.5 mt-2 group">
-                  {ctaLabel}
-                  <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-0.5" />
-                </Button>
-              </a>
-            </div>
-          </div>
-        )}
       </header>
 
-      {/* Sticky mobile CTA - appears after hero, hides near contact */}
       <StickyMobileCTA label={ctaLabel} />
     </>
   );
