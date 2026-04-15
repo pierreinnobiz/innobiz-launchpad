@@ -91,9 +91,9 @@ const MarketProofSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "100 000+ unités déjà entre les mains des consommateurs, et vos concurrents le vendent peut-être déjà.",
-              "100,000+ units already in consumers' hands, and your competitors may already be selling it.",
-              '100.000+ unidades ya en manos de los consumidores, y sus competidores quizás ya lo estén vendiendo.'
+              "100 000+ unités vendues. Vos concurrents n'ont pas attendu.",
+              "100,000+ units sold. Your competitors did not wait.",
+              '100.000+ unidades vendidas. Sus competidores no esperaron.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">

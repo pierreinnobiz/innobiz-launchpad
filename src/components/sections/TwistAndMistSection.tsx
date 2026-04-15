@@ -146,9 +146,9 @@ const TwistAndMistSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "Un geste. Une brume. Chaque jour, sans y penser.",
-              "One twist. One mist. Every single day, without thinking.",
-              'Un giro. Una niebla. Cada día, sin pensarlo.'
+              "Vissez. Diffusez. C'est tout.",
+              "Twist. Mist. Done.",
+              'Enrosque. Difunda. Listo.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">

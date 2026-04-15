@@ -45,9 +45,9 @@ const WhyInnobizSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-4">
             {t3(language,
-              "20 ans de R&D française. La seule entreprise au monde maîtrisant les 4 disciplines de la diffusion parfaite.",
-              '20 years of French R&D. The only company in the world mastering all 4 disciplines of perfect diffusion.',
-              '20 años de I+D francesa. La única empresa del mundo que domina las 4 disciplinas de la difusión perfecta.'
+              "20 ans de R&D. Un savoir-faire unique au monde.",
+              '20 years of R&D. A unique expertise worldwide.',
+              '20 años de I+D. Una experiencia única en el mundo.'
             )}
           </h2>
           <p className="text-white/60 leading-relaxed">

@@ -81,9 +81,9 @@ const FourInnovationsSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "Chaque diffuseur du marché force un compromis. Tolia les élimine tous. Voici les 6 raisons techniques.",
-              "Every diffuser on the market forces a trade-off. Tolia eliminates all of them. Here are the 6 technical reasons.",
-              'Cada difusor del mercado fuerza un compromiso. Tolia los elimina todos. Estas son las 6 razones técnicas.'
+              "Zéro compromis. 6 ruptures technologiques.",
+              "Zero trade-offs. 6 technological breakthroughs.",
+              'Cero compromisos. 6 rupturas tecnológicas.'
             )}
           </h2>
         </motion.div>
