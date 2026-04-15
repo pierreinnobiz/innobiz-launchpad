@@ -77,7 +77,7 @@ const TwoWaysSection: React.FC = () => {
             {t3(language, 'Votre accès au marché, choisissez celui qui vous convient', 'Your path to market, choose the one that fits', 'Su acceso al mercado, elija el que le convenga')}
           </span>
           <h2 className="heading-section mb-4">
-            {t3(language, 'Deux façons de travailler avec Tolia. Les deux mènent au revenu récurrent.', 'Two ways to work with Tolia. Both lead to recurring revenue.', 'Dos formas de trabajar con Tolia. Ambas llevan a ingresos recurrentes.')}
+            {t3(language, 'Deux modèles. Un seul objectif : le revenu récurrent.', 'Two models. One goal: recurring revenue.', 'Dos modelos. Un objetivo: ingresos recurrentes.')}
           </h2>
           <p className="text-body-lg max-w-3xl mx-auto">
             {t3(language,
