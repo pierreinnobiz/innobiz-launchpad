@@ -18,9 +18,9 @@ const RitualStrategySection: React.FC = () => {
       room: t3(language, 'Salle de bains', 'Bathroom', 'Baño'),
       blend: t3(language, 'Menthe poivrée + Eucalyptus', 'Peppermint + Eucalyptus', 'Menta + Eucalipto'),
       benefit: t3(language,
-        "Commencez la journée avec énergie. Un coup de boost respiratoire pendant la routine matinale.",
-        "Start the day energised. A respiratory boost during the morning routine.",
-        'Comience el día con energía. Un impulso respiratorio durante la rutina matutina.'
+        "Coup de boost respiratoire dès le réveil. L'énergie s'installe avant même le café.",
+        "A respiratory boost at dawn. Energy kicks in before the coffee.",
+        'Impulso respiratorio al despertar. La energía llega antes que el café.'
       ),
       image: bathroomImg,
       color: 'hsl(45 80% 55%)',
@@ -31,9 +31,9 @@ const RitualStrategySection: React.FC = () => {
       room: t3(language, 'Salon', 'Living room', 'Salón'),
       blend: t3(language, 'Orange douce + Ylang-ylang', 'Sweet Orange + Ylang-ylang', 'Naranja dulce + Ylang-ylang'),
       benefit: t3(language,
-        "Détente et bien-être en continu. L'aromathérapie accompagne les moments de vie.",
-        "Continuous relaxation and well-being. Aromatherapy accompanies every moment.",
-        'Relajación y bienestar continuo. La aromaterapia acompaña cada momento.'
+        "Ambiance apaisante en continu. Le bien-être devient un réflexe, pas un effort.",
+        "Continuous calming ambiance. Well-being becomes a reflex, not an effort.",
+        'Ambiente relajante continuo. El bienestar se convierte en reflejo, no en esfuerzo.'
       ),
       image: livingRoomImg,
       color: 'hsl(25 60% 55%)',
@@ -44,9 +44,9 @@ const RitualStrategySection: React.FC = () => {
       room: t3(language, 'Chambre', 'Bedroom', 'Dormitorio'),
       blend: t3(language, 'Lavande + Camomille', 'Lavender + Chamomile', 'Lavanda + Manzanilla'),
       benefit: t3(language,
-        "Préparez le sommeil naturellement. Un rituel apaisant qui s'installe en quelques secondes.",
-        "Prepare for sleep naturally. A soothing ritual set up in seconds.",
-        'Prepárese para dormir de forma natural. Un ritual relajante en segundos.'
+        "Endormissement naturel en quelques secondes. Le sommeil s'améliore, la routine s'ancre.",
+        "Natural sleep onset in seconds. Sleep improves, the routine sticks.",
+        'Conciliación natural del sueño en segundos. El sueño mejora, la rutina se consolida.'
       ),
       image: bedroomImg,
       color: 'hsl(260 40% 55%)',
@@ -56,29 +56,29 @@ const RitualStrategySection: React.FC = () => {
   const benefits = [
     {
       icon: TrendingUp,
-      title: t3(language, 'Fréquence d\'achat multipliée', 'Purchase frequency multiplied', 'Frecuencia de compra multiplicada'),
+      title: t3(language, 'Fréquence d\'achat ×4', 'Purchase frequency ×4', 'Frecuencia de compra ×4'),
       desc: t3(language,
-        "3 moments par jour = 3 huiles qui se vident régulièrement. Votre client passe de 2 achats par an à 8 ou plus.",
-        "3 moments per day = 3 oils being used regularly. Your customer goes from 2 purchases per year to 8 or more.",
-        '3 momentos al día = 3 aceites que se usan regularmente. Su cliente pasa de 2 compras al año a 8 o más.'
+        "3 moments par jour = 3 flacons qui se vident. Votre client passe de 2 achats par an à 8+.",
+        "3 moments per day = 3 bottles emptying. Your customer goes from 2 purchases per year to 8+.",
+        '3 momentos al día = 3 frascos que se vacían. Su cliente pasa de 2 compras al año a 8+.'
       ),
     },
     {
       icon: Shield,
-      title: t3(language, 'Fidélisation naturelle', 'Natural loyalty', 'Fidelización natural'),
+      title: t3(language, 'Fidélisation verrouillée', 'Loyalty locked in', 'Fidelización blindada'),
       desc: t3(language,
-        "Quand votre diffuseur fait partie de la routine quotidienne, il devient indispensable. Un concurrent ne peut plus s'intercaler.",
-        "When your diffuser becomes part of the daily routine, it becomes essential. A competitor cannot insert themselves.",
-        'Cuando su difusor se convierte en parte de la rutina diaria, se vuelve indispensable. Un competidor no puede insertarse.'
+        "Un diffuseur ancré dans la routine quotidienne devient irremplaçable. Aucun concurrent ne peut s'intercaler.",
+        "A diffuser embedded in the daily routine becomes irreplaceable. No competitor can wedge in.",
+        'Un difusor integrado en la rutina diaria se vuelve irremplazable. Ningún competidor puede interponerse.'
       ),
     },
     {
       icon: RefreshCw,
-      title: t3(language, 'Toute la gamme valorisée', 'Full range monetised', 'Toda la gama valorizada'),
+      title: t3(language, 'Toute la gamme activée', 'Full range activated', 'Toda la gama activada'),
       desc: t3(language,
-        "Le changement instantané de flacon permet d'utiliser toute votre gamme avec un seul diffuseur. Chaque référence trouve sa place dans la journée.",
-        "Instant bottle switching lets customers use your entire range with one diffuser. Every SKU finds its place in the day.",
-        'El cambio instantáneo de frasco permite usar toda su gama con un solo difusor. Cada referencia encuentra su lugar en el día.'
+        "Changement de flacon en 1 seconde. Chaque référence de votre catalogue trouve sa place dans la journée.",
+        "Bottle switch in 1 second. Every SKU in your catalogue finds its moment in the day.",
+        'Cambio de frasco en 1 segundo. Cada referencia de su catálogo encuentra su momento en el día.'
       ),
     },
   ];
@@ -105,9 +105,9 @@ const RitualStrategySection: React.FC = () => {
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
             {t3(language,
-              <>Tolia se déplace de pièce en pièce et change d'huile en 1 seconde. Résultat : votre client utilise ses huiles au quotidien, et <strong className="text-foreground">il en rachète naturellement</strong>.</>,
-              <>Tolia moves room to room and switches oils in 1 second. Result: your customer uses their oils daily, and <strong className="text-foreground">they reorder naturally</strong>.</>,
-              <>Tolia se mueve de habitación en habitación y cambia de aceite en 1 segundo. Resultado: su cliente usa sus aceites a diario, y <strong className="text-foreground">reordena de forma natural</strong>.</>
+              <>Tolia change d'huile en 1 seconde, sans nettoyage. Résultat : votre client diffuse chaque jour et <strong className="text-foreground">rachète naturellement</strong>.</>,
+              <>Tolia switches oils in 1 second, no cleaning. Result: your customer diffuses daily and <strong className="text-foreground">reorders naturally</strong>.</>,
+              <>Tolia cambia de aceite en 1 segundo, sin limpieza. Resultado: su cliente difunde cada día y <strong className="text-foreground">recompra de forma natural</strong>.</>
             )}
           </p>
         </motion.div>
@@ -165,9 +165,9 @@ const RitualStrategySection: React.FC = () => {
         >
           <p className="text-base md:text-lg leading-relaxed font-semibold text-center text-foreground">
             {t3(language,
-              "Seul Tolia rend cette journée possible. Le changement instantané de flacon permet de passer d'une huile à l'autre sans nettoyage, sans manipulation. C'est ce qui transforme un usage ponctuel en habitude quotidienne.",
-              "Only Tolia makes this day possible. Instant bottle switching lets the user move from one oil to another with no cleaning, no manipulation. This is what transforms occasional use into a daily habit.",
-              'Solo Tolia hace posible esta jornada. El cambio instantáneo de frasco permite pasar de un aceite a otro sin limpieza, sin manipulación. Esto es lo que transforma el uso puntual en un hábito diario.'
+              "Seul Tolia rend cette journée possible. Changement de flacon instantané, zéro nettoyage. L'usage ponctuel devient une habitude quotidienne.",
+              "Only Tolia makes this day possible. Instant bottle switch, zero cleaning. Occasional use becomes a daily habit.",
+              'Solo Tolia hace posible esta jornada. Cambio de frasco instantáneo, cero limpieza. El uso puntual se convierte en hábito diario.'
             )}
           </p>
         </motion.div>
