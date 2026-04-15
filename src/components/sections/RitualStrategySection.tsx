@@ -164,14 +164,13 @@ const RitualStrategySection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="relative w-full overflow-hidden" style={{ maxHeight: '360px' }}>
+          <div className="relative w-full overflow-hidden" style={{ height: '320px' }}>
             <img
               src={dailyBottlesImg}
               alt={t3(language, 'Flacons Twist & Mist pour chaque moment de la journée', 'Twist & Mist bottles for every moment of the day', 'Frascos Twist & Mist para cada momento del día')}
-              className="w-full h-full object-cover object-center"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 55%' }}
               loading="lazy"
-              width={1200}
-              height={360}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background/40 to-transparent" />
           </div>
