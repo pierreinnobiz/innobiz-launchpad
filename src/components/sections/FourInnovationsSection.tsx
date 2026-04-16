@@ -30,7 +30,7 @@ const FourInnovationsSection: React.FC = () => {
     },
     {
       icon: BatteryFull,
-      title: t3(language, "8 heures d'autonomie sans fil", '8 hours of wireless autonomy', '8 horas de autonomía inalámbrica'),
+      title: t3(language, "50 heures d'autonomie sans fil", '50 hours of wireless autonomy', '50 horas de autonomía inalámbrica'),
       desc: t3(language,
         "Chambre, bureau, voiture, spa, salle de yoga. Le diffuseur voyage avec votre client, pas l'inverse. Chaque nouveau lieu d'usage est un nouveau moment de consommation d'huile. Plus de lieux, plus de rituels, plus de rachats.",
         "Bedroom, office, car, spa, yoga room. The diffuser travels with your customer, not the other way around. Each new usage location is a new oil consumption moment. More places, more rituals, more repurchases.",
