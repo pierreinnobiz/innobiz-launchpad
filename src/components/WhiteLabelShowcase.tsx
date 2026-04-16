@@ -209,19 +209,17 @@ const WhiteLabelShowcase: React.FC = () => {
       </motion.div>
 
       {/* Text-only pillars for accessories, packaging, documentation */}
-      <motion.div
-        className="grid md:grid-cols-3 gap-6"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-60px' }}
-        transition={{ duration: 0.6, delay: 0.1 }}
-      >
-        {textPillars.map((pillar) => {
+      <div className="grid md:grid-cols-3 gap-6">
+        {textPillars.map((pillar, index) => {
           const Icon = pillar.icon;
           return (
-            <div
+            <motion.div
               key={pillar.title.en}
               className="p-6 md:p-7 bg-card rounded-2xl border border-border/40 hover:border-border/60 transition-all duration-500 hover:shadow-[0_12px_40px_-8px_hsl(28_45%_48%/0.12)]"
+              initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
+              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
@@ -245,10 +243,10 @@ const WhiteLabelShowcase: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </div>
+            </motion.div>
           );
         })}
-      </motion.div>
+      </div>
     </div>
   );
 };
