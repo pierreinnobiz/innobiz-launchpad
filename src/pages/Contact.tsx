@@ -166,31 +166,7 @@ const Contact: React.FC = () => {
               {type === 'demo' && <QualificationForm />}
               {type === 'white-label' && <WhiteLabelForm />}
               {type === 'order' && <OrderForm />}
-              {type === 'info' && (
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">{t('form.name')} *</Label>
-                      <Input id="name" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">{t('form.email')} *</Label>
-                      <Input id="email" type="email" required />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="company">{t('form.company')}</Label>
-                    <Input id="company" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">{t('form.message')} *</Label>
-                    <Textarea id="message" rows={5} required />
-                  </div>
-                  <Button type="submit" className="btn-hero-primary w-full md:w-auto">
-                    {language === 'fr' ? 'Envoyer' : 'Send'}
-                  </Button>
-                </form>
-              )}
+              {type === 'info' && <GeneralInquiryForm />}
             </div>
           </ScrollReveal>
         </div>
