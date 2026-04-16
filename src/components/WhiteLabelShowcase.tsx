@@ -117,14 +117,15 @@ const WhiteLabelShowcase: React.FC = () => {
   const { language: l } = useLanguage();
 
   return (
-    <motion.div
-      className="max-w-6xl mx-auto"
-      initial="hidden" whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      variants={staggerContainer}
-    >
+    <div className="max-w-6xl mx-auto">
       {/* Header */}
-      <motion.div className="text-center mb-10" variants={fadeBlurUp}>
+      <motion.div
+        className="text-center mb-10"
+        initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5"
           style={{ background: 'hsl(28 45% 48% / 0.08)' }}>
           <Sparkles className="w-4 h-4" style={{ color: 'hsl(28 45% 48%)' }} />
@@ -151,7 +152,10 @@ const WhiteLabelShowcase: React.FC = () => {
       {/* Diffuser section with image */}
       <motion.div
         className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-14"
-        variants={fadeBlurUp}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6 }}
       >
         <div className="relative rounded-2xl overflow-hidden group">
           <img
@@ -175,7 +179,7 @@ const WhiteLabelShowcase: React.FC = () => {
         <div>
           <div className="flex items-center gap-3 mb-4">
             <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
-              <Paintbrush className="w-4.5 h-4.5" style={{ color: 'hsl(28 45% 48%)' }} />
+              <Paintbrush className="w-4 h-4" style={{ color: 'hsl(28 45% 48%)' }} />
             </div>
             <h4 className="text-xl md:text-2xl font-bold text-foreground">
               {t3(l, 'Le diffuseur', 'The diffuser', 'El difusor')}
@@ -207,19 +211,21 @@ const WhiteLabelShowcase: React.FC = () => {
       {/* Text-only pillars for accessories, packaging, documentation */}
       <motion.div
         className="grid md:grid-cols-3 gap-6"
-        variants={staggerContainer}
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, delay: 0.1 }}
       >
         {textPillars.map((pillar) => {
           const Icon = pillar.icon;
           return (
-            <motion.div
+            <div
               key={pillar.title.en}
-              variants={fadeBlurUp}
               className="p-6 md:p-7 bg-card rounded-2xl border border-border/40 hover:border-border/60 transition-all duration-500 hover:shadow-[0_12px_40px_-8px_hsl(28_45%_48%/0.12)]"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
-                  <Icon className="w-4.5 h-4.5" style={{ color: 'hsl(28 45% 48%)' }} />
+                  <Icon className="w-4 h-4" style={{ color: 'hsl(28 45% 48%)' }} />
                 </div>
                 <h4 className="text-lg font-bold text-foreground">
                   {t3(l, pillar.title.fr, pillar.title.en, pillar.title.es)}
@@ -239,11 +245,11 @@ const WhiteLabelShowcase: React.FC = () => {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           );
         })}
       </motion.div>
-    </motion.div>
+    </div>
   );
 };
 
