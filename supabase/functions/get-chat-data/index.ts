@@ -175,41 +175,6 @@ serve(async (req) => {
       return jsonResponse({ data: data || [] });
     }
 
-    // === SEND WELCOME (admin message) ===
-    if (type === "send-welcome") {
-      const { contactId, secretToken, message } = body;
-
-      if (!contactId || !uuidRegex.test(contactId)) {
-        return jsonResponse({ error: "Invalid contact ID" }, 400);
-      }
-      if (!secretToken || !uuidRegex.test(secretToken)) {
-        return jsonResponse({ error: "Invalid token" }, 400);
-      }
-      if (!message || typeof message !== "string" || message.length > 5000) {
-        return jsonResponse({ error: "Invalid message" }, 400);
-      }
-
-      // Verify ownership
-      const { data: contact } = await supabaseAdmin
-        .from("chat_contacts")
-        .select("id")
-        .eq("id", contactId)
-        .eq("secret_token", secretToken)
-        .maybeSingle();
-
-      if (!contact) {
-        return jsonResponse({ error: "Unauthorized" }, 403);
-      }
-
-      await supabaseAdmin.from("chat_messages").insert({
-        contact_id: contactId,
-        sender: "admin",
-        message: message.trim(),
-      });
-
-      return jsonResponse({ success: true });
-    }
-
     return jsonResponse({ error: "Invalid type" }, 400);
   } catch {
     return jsonResponse({ error: "An unexpected error occurred." }, 500);
