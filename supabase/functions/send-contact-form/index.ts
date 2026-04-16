@@ -71,7 +71,7 @@ const handler = async (req: Request): Promise<Response> => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        from: "Tolia Contact <onboarding@resend.dev>",
+        from: "Tolia Contact <noreply@innobiz-tolia.com>",
         to: ["pierre.innobiz@gmail.com"],
         subject: `📅 Nouvelle demande de présentation – ${safeName} (${safeCompany})`,
         html: `
