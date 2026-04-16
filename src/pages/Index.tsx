@@ -20,7 +20,7 @@ import RSESection from '@/components/sections/RSESection';
 import TwoWaysSection from '@/components/sections/TwoWaysSection';
 import FAQSection from '@/components/sections/FAQSection';
 import ContactSection from '@/components/sections/ContactSection';
-import SlideInCTA from '@/components/SlideInCTA';
+
 import SectionGradient from '@/components/SectionGradient';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
@@ -96,7 +96,7 @@ const Index: React.FC = () => {
 
       <Footer />
 
-      <SlideInCTA />
+      
     </div>
   );
 };

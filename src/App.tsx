@@ -16,7 +16,7 @@ const Cookies = React.lazy(() => import("./pages/Legal").then(m => ({ default: m
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Admin = React.lazy(() => import("./pages/Admin"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
-const ChatWidget = React.lazy(() => import("./components/ChatWidget"));
+
 
 const queryClient = new QueryClient();
 
@@ -46,9 +46,6 @@ const App = () => (
                 <Route path="/admin" element={<Admin />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
-            </Suspense>
-            <Suspense fallback={null}>
-              <ChatWidget />
             </Suspense>
           </BrowserRouter>
         </TooltipProvider>
