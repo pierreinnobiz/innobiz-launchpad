@@ -1,70 +1,23 @@
-import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Paintbrush, Package, Puzzle, FileText, Sparkles } from 'lucide-react';
+import React from 'react';
+import { motion } from 'framer-motion';
+import { Paintbrush, Puzzle, Package, FileText, Sparkles } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
-import { fadeBlurUp } from '@/lib/animations';
+import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 
-import wlDiffuserImg from '@/assets/wl-diffuser-colors.jpg';
-import wlPackagingImg from '@/assets/wl-packaging.jpg';
-import wlAccessoriesImg from '@/assets/wl-accessories.jpg';
-import wlDocumentationImg from '@/assets/wl-documentation.jpg';
+import wlDiffuserImg from '@/assets/tolia-moodboard.png';
 
-interface Pillar {
-  id: string;
+interface TextPillar {
   icon: React.ElementType;
   title: { fr: string; en: string; es: string };
   subtitle: { fr: string; en: string; es: string };
   points: { fr: string; en: string; es: string }[];
-  image: string;
-  stat: { value: string; label: { fr: string; en: string; es: string } };
 }
 
-const pillars: Pillar[] = [
+const textPillars: TextPillar[] = [
   {
-    id: 'diffuser',
-    icon: Paintbrush,
-    title: {
-      fr: 'Le diffuseur',
-      en: 'The diffuser',
-      es: 'El difusor',
-    },
-    subtitle: {
-      fr: 'Couleurs, finitions et gravures sur mesure',
-      en: 'Custom colours, finishes and engravings',
-      es: 'Colores, acabados y grabados a medida',
-    },
-    points: [
-      {
-        fr: 'Palette illimitée : choisissez parmi nos teintes ou créez un Pantone exclusif',
-        en: 'Unlimited palette: choose from our shades or create an exclusive Pantone',
-        es: 'Paleta ilimitada: elija entre nuestras tonalidades o cree un Pantone exclusivo',
-      },
-      {
-        fr: 'Gravure laser, sérigraphie ou impression UV de votre logo sur coque et socle',
-        en: 'Laser engraving, screen printing or UV printing of your logo on shell and base',
-        es: 'Grabado láser, serigrafía o impresión UV de su logo en carcasa y base',
-      },
-      {
-        fr: 'Finitions mat, brillant, soft-touch ou texturée selon votre positionnement',
-        en: 'Matte, gloss, soft-touch or textured finishes to match your positioning',
-        es: 'Acabados mate, brillante, soft-touch o texturizado según su posicionamiento',
-      },
-    ],
-    image: wlDiffuserImg,
-    stat: {
-      value: '∞',
-      label: { fr: 'combinaisons de couleurs', en: 'colour combinations', es: 'combinaciones de colores' },
-    },
-  },
-  {
-    id: 'accessories',
     icon: Puzzle,
-    title: {
-      fr: 'Les accessoires',
-      en: 'Accessories',
-      es: 'Los accesorios',
-    },
+    title: { fr: 'Les accessoires', en: 'Accessories', es: 'Los accesorios' },
     subtitle: {
       fr: 'Modules de nébulisation et câbles aux couleurs de votre gamme',
       en: 'Nebulisation modules and cables in your range colours',
@@ -87,20 +40,10 @@ const pillars: Pillar[] = [
         es: 'Modos de difusión preprogramados según sus recomendaciones',
       },
     ],
-    image: wlAccessoriesImg,
-    stat: {
-      value: '100%',
-      label: { fr: 'alignement visuel', en: 'visual alignment', es: 'alineación visual' },
-    },
   },
   {
-    id: 'packaging',
     icon: Package,
-    title: {
-      fr: 'Le packaging',
-      en: 'Packaging',
-      es: 'El empaque',
-    },
+    title: { fr: 'Le packaging', en: 'Packaging', es: 'El empaque' },
     subtitle: {
       fr: "Un unboxing premium qui porte l'identité de votre marque",
       en: 'A premium unboxing that carries your brand identity',
@@ -123,20 +66,10 @@ const pillars: Pillar[] = [
         es: 'Código QR integrado vinculado a su programa de fidelización o aplicación',
       },
     ],
-    image: wlPackagingImg,
-    stat: {
-      value: 'A-Z',
-      label: { fr: 'personnalisation complète', en: 'full customisation', es: 'personalización completa' },
-    },
   },
   {
-    id: 'documentation',
     icon: FileText,
-    title: {
-      fr: 'Les notices',
-      en: 'Documentation',
-      es: 'La documentación',
-    },
+    title: { fr: 'Les notices', en: 'Documentation', es: 'La documentación' },
     subtitle: {
       fr: "Guides d'utilisation et supports marketing clé en main",
       en: 'User guides and turnkey marketing materials',
@@ -159,28 +92,40 @@ const pillars: Pillar[] = [
         es: 'Displays PLV y fichas de producto en tienda listos para imprimir',
       },
     ],
-    image: wlDocumentationImg,
-    stat: {
-      value: '0',
-      label: { fr: "effort de création pour vous", en: 'design effort for you', es: 'esfuerzo de diseño para usted' },
-    },
+  },
+];
+
+const diffuserPoints = [
+  {
+    fr: 'Palette illimitée : choisissez parmi nos teintes ou créez un Pantone exclusif',
+    en: 'Unlimited palette: choose from our shades or create an exclusive Pantone',
+    es: 'Paleta ilimitada: elija entre nuestras tonalidades o cree un Pantone exclusivo',
+  },
+  {
+    fr: 'Gravure laser, sérigraphie ou impression UV de votre logo sur coque et socle',
+    en: 'Laser engraving, screen printing or UV printing of your logo on shell and base',
+    es: 'Grabado láser, serigrafía o impresión UV de su logo en carcasa y base',
+  },
+  {
+    fr: 'Finitions mat, brillant, soft-touch ou texturée selon votre positionnement',
+    en: 'Matte, gloss, soft-touch or textured finishes to match your positioning',
+    es: 'Acabados mate, brillante, soft-touch o texturizado según su posicionamiento',
   },
 ];
 
 const WhiteLabelShowcase: React.FC = () => {
   const { language: l } = useLanguage();
-  const [activeIndex, setActiveIndex] = useState(0);
-  const active = pillars[activeIndex];
 
   return (
-    <motion.div
-      className="max-w-6xl mx-auto"
-      initial="hidden" whileInView="visible"
-      viewport={{ once: true, margin: '-80px' }}
-      variants={fadeBlurUp}
-    >
+    <div className="max-w-6xl mx-auto">
       {/* Header */}
-      <div className="text-center mb-10">
+      <motion.div
+        className="text-center mb-10"
+        initial={{ opacity: 0, y: 30, filter: 'blur(6px)' }}
+        whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+        viewport={{ once: true, margin: '-80px' }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-5"
           style={{ background: 'hsl(28 45% 48% / 0.08)' }}>
           <Sparkles className="w-4 h-4" style={{ color: 'hsl(28 45% 48%)' }} />
@@ -202,92 +147,109 @@ const WhiteLabelShowcase: React.FC = () => {
             "Innobiz personaliza cada componente de su difusor. Miles de combinaciones posibles para un producto que solo se parece a usted."
           )}
         </p>
-      </div>
+      </motion.div>
 
-      {/* Tab navigation */}
-      <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-10">
-        {pillars.map((p, i) => {
-          const Icon = p.icon;
-          const isActive = i === activeIndex;
-          return (
-            <button
-              key={p.id}
-              onClick={() => setActiveIndex(i)}
-              className={`flex items-center gap-2 px-4 md:px-6 py-3 rounded-xl text-sm font-medium transition-all duration-300 border ${
-                isActive
-                  ? 'bg-card shadow-lg border-border/60 scale-105'
-                  : 'bg-transparent border-transparent hover:bg-card/60 hover:border-border/30'
-              }`}
-              style={isActive ? { boxShadow: '0 8px 30px -6px hsl(28 45% 48% / 0.15)' } : {}}
-            >
-              <Icon className="w-4 h-4" style={{ color: isActive ? 'hsl(28 45% 48%)' : 'hsl(28 45% 48% / 0.5)' }} />
-              <span className={isActive ? 'text-foreground' : 'text-muted-foreground'}>
-                {t3(l, p.title.fr, p.title.en, p.title.es)}
+      {/* Diffuser section with image */}
+      <motion.div
+        className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-14"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="relative rounded-2xl overflow-hidden group">
+          <img
+            src={wlDiffuserImg}
+            alt={t3(l, 'Le diffuseur Tolia personnalisable', 'The customisable Tolia diffuser', 'El difusor Tolia personalizable')}
+            className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
+            loading="lazy"
+            width={800}
+            height={800}
+          />
+          <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
+            <div className="flex items-end gap-3">
+              <span className="text-3xl md:text-4xl font-bold text-white">∞</span>
+              <span className="text-sm text-white/80 pb-1">
+                {t3(l, 'combinaisons de couleurs', 'colour combinations', 'combinaciones de colores')}
               </span>
-            </button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
+              <Paintbrush className="w-4 h-4" style={{ color: 'hsl(28 45% 48%)' }} />
+            </div>
+            <h4 className="text-xl md:text-2xl font-bold text-foreground">
+              {t3(l, 'Le diffuseur', 'The diffuser', 'El difusor')}
+            </h4>
+          </div>
+          <p className="text-sm text-muted-foreground mb-5">
+            {t3(l,
+              'Couleurs, finitions et gravures sur mesure',
+              'Custom colours, finishes and engravings',
+              'Colores, acabados y grabados a medida'
+            )}
+          </p>
+          <div className="space-y-3">
+            {diffuserPoints.map((point, i) => (
+              <div key={i} className="flex gap-3 items-start p-3.5 rounded-xl bg-card border border-border/30">
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
+                  style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
+                  <span className="text-xs font-bold" style={{ color: 'hsl(28 45% 48%)' }}>{i + 1}</span>
+                </div>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  {t3(l, point.fr, point.en, point.es)}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Text-only pillars for accessories, packaging, documentation */}
+      <motion.div
+        className="grid md:grid-cols-3 gap-6"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-60px' }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+      >
+        {textPillars.map((pillar) => {
+          const Icon = pillar.icon;
+          return (
+            <div
+              key={pillar.title.en}
+              className="p-6 md:p-7 bg-card rounded-2xl border border-border/40 hover:border-border/60 transition-all duration-500 hover:shadow-[0_12px_40px_-8px_hsl(28_45%_48%/0.12)]"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
+                  <Icon className="w-4 h-4" style={{ color: 'hsl(28 45% 48%)' }} />
+                </div>
+                <h4 className="text-lg font-bold text-foreground">
+                  {t3(l, pillar.title.fr, pillar.title.en, pillar.title.es)}
+                </h4>
+              </div>
+              <p className="text-sm font-medium text-foreground/80 mb-4">
+                {t3(l, pillar.subtitle.fr, pillar.subtitle.en, pillar.subtitle.es)}
+              </p>
+              <ul className="space-y-2.5">
+                {pillar.points.map((point, i) => (
+                  <li key={i} className="flex gap-2.5 items-start text-sm text-muted-foreground leading-relaxed">
+                    <span className="w-5 h-5 rounded flex items-center justify-center flex-shrink-0 mt-0.5 text-xs font-bold"
+                      style={{ background: 'hsl(28 45% 48% / 0.08)', color: 'hsl(28 45% 48%)' }}>
+                      {i + 1}
+                    </span>
+                    {t3(l, point.fr, point.en, point.es)}
+                  </li>
+                ))}
+              </ul>
+            </div>
           );
         })}
-      </div>
-
-      {/* Active pillar content */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={active.id}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-          className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"
-        >
-          {/* Image */}
-          <div className="relative rounded-2xl overflow-hidden group order-2 md:order-1">
-            <img
-              src={active.image}
-              alt={t3(l, active.title.fr, active.title.en, active.title.es)}
-              className="w-full aspect-square object-cover transition-transform duration-700 group-hover:scale-105"
-              loading="lazy"
-              width={800}
-              height={800}
-            />
-            {/* Stat overlay */}
-            <div className="absolute bottom-0 left-0 right-0 p-5 bg-gradient-to-t from-black/80 via-black/40 to-transparent">
-              <div className="flex items-end gap-3">
-                <span className="text-3xl md:text-4xl font-bold text-white">{active.stat.value}</span>
-                <span className="text-sm text-white/80 pb-1">
-                  {t3(l, active.stat.label.fr, active.stat.label.en, active.stat.label.es)}
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Content */}
-          <div className="order-1 md:order-2">
-            <h4 className="text-xl md:text-2xl font-bold text-foreground mb-3">
-              {t3(l, active.subtitle.fr, active.subtitle.en, active.subtitle.es)}
-            </h4>
-            <div className="space-y-4 mt-6">
-              {active.points.map((point, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1, duration: 0.4 }}
-                  className="flex gap-4 items-start p-4 rounded-xl bg-card border border-border/30 hover:border-border/60 transition-colors duration-300"
-                >
-                  <div className="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5"
-                    style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
-                    <span className="text-xs font-bold" style={{ color: 'hsl(28 45% 48%)' }}>{i + 1}</span>
-                  </div>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t3(l, point.fr, point.en, point.es)}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-      </AnimatePresence>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
