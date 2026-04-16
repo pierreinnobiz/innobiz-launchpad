@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Layers, Rocket, CheckCircle, ArrowRight, Gift, Palette } from 'lucide-react';
-import rangeSimplificationImg from '@/assets/range-simplification.jpg';
+import rangeSimplificationImg from '@/assets/tolia-diffuser-straight.png';
 import customizationImg from '@/assets/customization-options.png';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
@@ -123,10 +123,10 @@ const RangeRationalizationSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Hero image - range simplification */}
+        {/* Hero image - Tolia diffuser */}
         <motion.div
-          className="max-w-4xl mx-auto mb-20 rounded-2xl overflow-hidden"
-          initial={{ opacity: 0, scale: 0.95 }}
+          className="max-w-md mx-auto mb-20 flex items-center justify-center"
+          initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -134,16 +134,16 @@ const RangeRationalizationSection: React.FC = () => {
           <img
             src={rangeSimplificationImg}
             alt={t3(l,
-              "Comparaison visuelle : de multiples diffuseurs différents à un seul diffuseur Tolia entouré de flacons d'huiles essentielles",
-              "Visual comparison: from multiple different diffusers to one single Tolia diffuser surrounded by essential oil bottles",
-              "Comparación visual: de múltiples difusores diferentes a un solo difusor Tolia rodeado de frascos de aceites esenciales"
+              "Diffuseur Tolia avec brume, le seul diffuseur universel",
+              "Tolia diffuser with mist, the one universal diffuser",
+              "Difusor Tolia con bruma, el único difusor universal"
             )}
-            className="w-full h-auto object-cover no-select"
+            className="w-full h-auto no-select drop-shadow-2xl"
             draggable={false}
             loading="lazy"
             decoding="async"
-            width={1280}
-            height={720}
+            width={512}
+            height={512}
           />
         </motion.div>
 
