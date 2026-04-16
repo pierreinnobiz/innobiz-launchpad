@@ -123,6 +123,54 @@ const OrderForm: React.FC = () => {
   );
 };
 
+const GeneralInquiryForm: React.FC = () => {
+  const { t, language } = useLanguage();
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await supabase.functions.invoke('send-contact-form', {
+        body: { ...formData, segment: 'info', role: 'General inquiry' },
+      });
+      toast({ title: language === 'fr' ? 'Message envoyé' : 'Message sent', description: language === 'fr' ? 'Nous reviendrons vers vous rapidement.' : 'We\'ll get back to you soon.' });
+      setFormData({ name: '', email: '', company: '', message: '' });
+    } catch {
+      toast({ title: 'Error', description: language === 'fr' ? 'Veuillez réessayer.' : 'Please try again.', variant: 'destructive' });
+    }
+    setIsSubmitting(false);
+  };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label htmlFor="info-name">{t('form.name')} *</Label>
+          <Input id="info-name" required value={formData.name} onChange={e => setFormData(p => ({ ...p, name: e.target.value }))} />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="info-email">{t('form.email')} *</Label>
+          <Input id="info-email" type="email" required value={formData.email} onChange={e => setFormData(p => ({ ...p, email: e.target.value }))} />
+        </div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="info-company">{t('form.company')}</Label>
+        <Input id="info-company" value={formData.company} onChange={e => setFormData(p => ({ ...p, company: e.target.value }))} />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="info-message">{t('form.message')} *</Label>
+        <Textarea id="info-message" rows={5} required value={formData.message} onChange={e => setFormData(p => ({ ...p, message: e.target.value }))} />
+      </div>
+      <Button type="submit" className="btn-hero-primary w-full md:w-auto" disabled={isSubmitting}>
+        {isSubmitting ? (language === 'fr' ? 'Envoi…' : 'Sending…') : (language === 'fr' ? 'Envoyer' : 'Send')}
+      </Button>
+    </form>
+  );
+};
+
 const Contact: React.FC = () => {
   const { t, language } = useLanguage();
   const [searchParams] = useSearchParams();
@@ -166,31 +214,7 @@ const Contact: React.FC = () => {
               {type === 'demo' && <QualificationForm />}
               {type === 'white-label' && <WhiteLabelForm />}
               {type === 'order' && <OrderForm />}
-              {type === 'info' && (
-                <form className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name">{t('form.name')} *</Label>
-                      <Input id="name" required />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">{t('form.email')} *</Label>
-                      <Input id="email" type="email" required />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="company">{t('form.company')}</Label>
-                    <Input id="company" />
-                  </div>
-                  <div className="space-y-2">
-                    <Label htmlFor="message">{t('form.message')} *</Label>
-                    <Textarea id="message" rows={5} required />
-                  </div>
-                  <Button type="submit" className="btn-hero-primary w-full md:w-auto">
-                    {language === 'fr' ? 'Envoyer' : 'Send'}
-                  </Button>
-                </form>
-              )}
+              {type === 'info' && <GeneralInquiryForm />}
             </div>
           </ScrollReveal>
         </div>
