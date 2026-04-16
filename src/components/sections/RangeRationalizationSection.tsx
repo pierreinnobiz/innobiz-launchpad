@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Layers, Rocket, CheckCircle, ArrowRight, Gift, Palette } from 'lucide-react';
+import { Layers, Rocket, CheckCircle, ArrowRight, Gift } from 'lucide-react';
 import rangeSimplificationImg from '@/assets/tolia-replaces-all.png';
-import customizationImg from '@/assets/customization-options.png';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import MagneticButton from '@/components/MagneticButton';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
+import WhiteLabelShowcase from '@/components/WhiteLabelShowcase';
 
 const RangeRationalizationSection: React.FC = () => {
   const { language: l } = useLanguage();
@@ -55,40 +55,13 @@ const RangeRationalizationSection: React.FC = () => {
     },
   ];
 
-  const customizationOptions = [
-    {
-      fr: 'Couleur de la coque : choisissez parmi notre palette ou créez une couleur sur mesure à votre charte graphique.',
-      en: 'Shell colour: choose from our palette or create a custom colour matching your brand guidelines.',
-      es: 'Color de la carcasa: elija de nuestra paleta o cree un color personalizado según su identidad de marca.',
-    },
-    {
-      fr: 'Logo et gravure : apposez votre logo en gravure laser, sérigraphie ou impression UV sur la coque et le socle.',
-      en: 'Logo and engraving: add your logo via laser engraving, screen printing or UV printing on the shell and base.',
-      es: 'Logo y grabado: añada su logo mediante grabado láser, serigrafía o impresión UV en la carcasa y la base.',
-    },
-    {
-      fr: 'Packaging personnalisé : boîte individuelle aux couleurs de votre marque, insert explicatif, QR code pour votre programme de fidélité.',
-      en: 'Custom packaging: individual box in your brand colours, explanatory insert, QR code for your loyalty programme.',
-      es: 'Empaque personalizado: caja individual con los colores de su marca, inserto explicativo, código QR para su programa de fidelización.',
-    },
-    {
-      fr: 'Module de nébulisation aux couleurs de votre gamme pour un alignement visuel complet.',
-      en: 'Nebulisation module in your range colours for complete visual alignment.',
-      es: 'Módulo de nebulización con los colores de su gama para una alineación visual completa.',
-    },
-    {
-      fr: 'Sélection de diffusion préprogrammée : configurez les modes de diffusion (durée, intensité) selon vos recommandations d\'usage.',
-      en: 'Pre-programmed diffusion modes: configure duration and intensity settings based on your usage recommendations.',
-      es: 'Modos de difusión preprogramados: configure la duración e intensidad según sus recomendaciones de uso.',
-    },
-  ];
-
   return (
     <section id="range-rationalization" className="py-14 md:py-20 relative overflow-hidden"
       style={{ background: 'linear-gradient(180deg, hsl(35 30% 96%) 0%, hsl(33 35% 94%) 100%)' }}>
       <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20">
+        {/* Header + intro */}
         <motion.div
-          className="text-center mb-16 max-w-3xl mx-auto"
+          className="text-center mb-12 max-w-3xl mx-auto"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
@@ -123,9 +96,9 @@ const RangeRationalizationSection: React.FC = () => {
           </p>
         </motion.div>
 
-        {/* Hero image - Tolia diffuser */}
+        {/* Illustration - reduced size, balanced */}
         <motion.div
-          className="max-w-4xl mx-auto mb-20"
+          className="max-w-2xl mx-auto mb-16"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-100px' }}
@@ -149,7 +122,7 @@ const RangeRationalizationSection: React.FC = () => {
 
         {/* Benefits grid */}
         <motion.div
-          className="grid md:grid-cols-3 gap-6 mb-20"
+          className="grid md:grid-cols-3 gap-6 mb-24"
           initial="hidden" whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
           variants={staggerContainer}
@@ -165,68 +138,10 @@ const RangeRationalizationSection: React.FC = () => {
           ))}
         </motion.div>
 
-        {/* Customization section */}
-        <motion.div
-          className="max-w-5xl mx-auto mb-20"
-          initial="hidden" whileInView="visible"
-          viewport={{ once: true, margin: '-100px' }}
-          variants={fadeBlurUp}
-        >
-          <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: 'hsl(28 45% 48% / 0.1)' }}>
-              <Palette className="w-5 h-5" style={{ color: 'hsl(28 45% 48%)' }} />
-            </div>
-            <h3 className="text-xl md:text-2xl font-bold text-foreground">
-              {t3(l,
-                'Faites de Tolia le diffuseur de votre marque',
-                'Make Tolia your brand\'s own diffuser',
-                'Haga de Tolia el difusor de su marca'
-              )}
-            </h3>
-          </div>
-
-          <p className="text-base text-muted-foreground mb-8 max-w-3xl leading-relaxed">
-            {t3(l,
-              "Chaque détail peut être personnalisé pour que Tolia porte l'identité de votre marque. Nos clients ne voient pas un produit générique : ils voient votre diffuseur, conçu pour votre univers.",
-              "Every detail can be customised so Tolia carries your brand identity. Your customers do not see a generic product: they see your diffuser, designed for your world.",
-              "Cada detalle puede personalizarse para que Tolia lleve la identidad de su marca. Sus clientes no ven un producto genérico: ven su difusor, diseñado para su universo."
-            )}
-          </p>
-
-          <div className="grid md:grid-cols-2 gap-8 items-start">
-            <div className="space-y-3">
-              {customizationOptions.map((opt, i) => (
-                <motion.div key={i} variants={fadeBlurUp}
-                  className="flex gap-3 items-start p-4 rounded-xl bg-card border border-border/30">
-                  <CheckCircle className="w-5 h-5 mt-0.5 flex-shrink-0" style={{ color: 'hsl(28 45% 48%)' }} />
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {t3(l, opt.fr, opt.en, opt.es)}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-            <motion.div
-              className="rounded-2xl overflow-hidden"
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <img
-                src={customizationImg}
-                alt={t3(l,
-                  "Table de design avec des diffuseurs Tolia en différentes couleurs et personnalisations, entourés de carnets et échantillons",
-                  "Design table with Tolia diffusers in different colours and customisations, surrounded by notebooks and samples",
-                  "Mesa de diseño con difusores Tolia en diferentes colores y personalizaciones, rodeados de cuadernos y muestras"
-                )}
-                className="w-full h-auto object-cover"
-                loading="lazy"
-                width={1280}
-                height={720}
-              />
-            </motion.div>
-          </div>
-        </motion.div>
+        {/* White-label showcase */}
+        <div className="mb-24">
+          <WhiteLabelShowcase />
+        </div>
 
         {/* Roadmap */}
         <motion.div
