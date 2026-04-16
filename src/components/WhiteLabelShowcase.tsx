@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import { fadeBlurUp } from '@/lib/animations';
 
-import wlDiffuserImg from '@/assets/wl-diffuser-colors.jpg';
+import wlDiffuserImg from '@/assets/tolia-moodboard.png';
 import wlPackagingImg from '@/assets/wl-packaging.jpg';
 import wlAccessoriesImg from '@/assets/wl-accessories.jpg';
 import wlDocumentationImg from '@/assets/wl-documentation.jpg';
