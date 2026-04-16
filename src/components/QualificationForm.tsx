@@ -55,7 +55,15 @@ const QualificationForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    try {
+      const { supabase } = await import('@/integrations/supabase/client');
+      const { error } = await supabase.functions.invoke('send-qualification-form', {
+        body: formData,
+      });
+      if (error) console.error('Qualification form email error:', error);
+    } catch (err) {
+      console.error('Qualification form submit error:', err);
+    }
     setIsSubmitted(true);
   };
 
