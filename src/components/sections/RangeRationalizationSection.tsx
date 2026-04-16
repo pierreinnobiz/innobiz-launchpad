@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Layers, Rocket, CheckCircle, ArrowRight, Gift, Palette } from 'lucide-react';
-import rangeSimplificationImg from '@/assets/tolia-diffuser-clean.png';
+import rangeSimplificationImg from '@/assets/tolia-replaces-all.png';
 import customizationImg from '@/assets/customization-options.png';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
@@ -125,8 +125,8 @@ const RangeRationalizationSection: React.FC = () => {
 
         {/* Hero image - Tolia diffuser */}
         <motion.div
-          className="max-w-md mx-auto mb-20 flex items-center justify-center"
-          initial={{ opacity: 0, scale: 0.9 }}
+          className="max-w-4xl mx-auto mb-20"
+          initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, margin: '-100px' }}
           transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
@@ -134,16 +134,16 @@ const RangeRationalizationSection: React.FC = () => {
           <img
             src={rangeSimplificationImg}
             alt={t3(l,
-              "Diffuseur Tolia avec brume, le seul diffuseur universel",
-              "Tolia diffuser with mist, the one universal diffuser",
-              "Difusor Tolia con bruma, el único difusor universal"
+              "Illustration montrant plusieurs diffuseurs obsolètes remplacés par le Tolia universel",
+              "Illustration showing multiple obsolete diffusers replaced by the universal Tolia",
+              "Ilustración que muestra múltiples difusores obsoletos reemplazados por el Tolia universal"
             )}
-            className="w-full h-auto no-select drop-shadow-2xl"
+            className="w-full h-auto no-select rounded-2xl"
             draggable={false}
             loading="lazy"
             decoding="async"
-            width={512}
-            height={512}
+            width={1408}
+            height={768}
           />
         </motion.div>
 
