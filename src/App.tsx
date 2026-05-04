@@ -8,6 +8,7 @@ import { AuthProvider } from "@/hooks/useAuth";
 import React, { Suspense } from "react";
 
 import Index from "./pages/Index";
+import ProspectTracker from "./components/ProspectTracker";
 const FAQ = React.lazy(() => import("./pages/FAQ"));
 const Contact = React.lazy(() => import("./pages/Contact"));
 const Legal = React.lazy(() => import("./pages/Legal").then(m => ({ default: m.default })));
@@ -34,6 +35,7 @@ const App = () => (
           <Toaster />
           <Sonner />
           <BrowserRouter>
+            <ProspectTracker />
             <Suspense fallback={<PageFallback />}>
               <Routes>
                 <Route path="/" element={<Index />} />
