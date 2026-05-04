@@ -90,17 +90,17 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) — deferred until browser is idle -->
+    <!-- Google tag (gtag.js) - deferred until browser is idle -->
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      window.gtag = function(){ window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-S2MPVHYM8L');
       (window.requestIdleCallback || function(cb){setTimeout(cb,2000)})(function(){
         var s=document.createElement('script');
         s.src='https://www.googletagmanager.com/gtag/js?id=G-S2MPVHYM8L';
         s.async=true;
         document.head.appendChild(s);
-        gtag('js', new Date());
-        gtag('config', 'G-S2MPVHYM8L');
       });
     </script>
     <meta property="og:title" content="Tolia by Innobiz — Proprietary Essential Oil Diffusion Technology">
