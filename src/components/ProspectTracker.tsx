@@ -159,6 +159,7 @@ const ProspectTracker = () => {
       window.removeEventListener('scroll', handleScroll);
       timeouts.forEach((t) => clearTimeout(t));
       document.removeEventListener('click', handleClick);
+      if (flushTimer !== null) window.clearInterval(flushTimer);
     };
   }, []);
 
