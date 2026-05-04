@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
   }
 }
 
@@ -15,8 +16,55 @@ const ProspectTracker = () => {
     const utmContent = params.get('utm_content') || '';
     const prospectEmail = ref || '(anonymous)';
 
+    // Local queue for events fired before gtag.js finishes loading.
+    const pendingEvents: unknown[][] = [];
+    let flushTimer: number | null = null;
+
+    const flushPending = () => {
+      if (typeof window.gtag !== 'function') return;
+      while (pendingEvents.length > 0) {
+        const args = pendingEvents.shift()!;
+        try {
+          (window.gtag as (...a: unknown[]) => void)(...args);
+        } catch {
+          // swallow to keep tracking non-blocking
+        }
+      }
+      if (flushTimer !== null) {
+        window.clearInterval(flushTimer);
+        flushTimer = null;
+      }
+    };
+
+    const scheduleFlush = () => {
+      if (flushTimer !== null) return;
+      flushTimer = window.setInterval(() => {
+        if (typeof window.gtag === 'function') flushPending();
+      }, 500);
+    };
+
     const gtag = (...args: unknown[]) => {
-      if (typeof window.gtag === 'function') window.gtag(...args);
+      // Preferred path: gtag is exposed on window (see index.html).
+      if (typeof window.gtag === 'function') {
+        try {
+          window.gtag(...args);
+          return;
+        } catch {
+          // fall through to dataLayer / queue
+        }
+      }
+      // Fallback 1: push directly to dataLayer so gtag.js consumes it on load.
+      if (Array.isArray(window.dataLayer)) {
+        try {
+          window.dataLayer.push(args);
+          return;
+        } catch {
+          // fall through to queue
+        }
+      }
+      // Fallback 2: queue locally and retry until gtag becomes available.
+      pendingEvents.push(args);
+      scheduleFlush();
     };
 
     // BEHAVIOR 1 - PROSPECT VISIT
