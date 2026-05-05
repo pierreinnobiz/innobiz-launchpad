@@ -68,8 +68,9 @@ const ProspectTracker = () => {
       scheduleFlush();
     };
 
-    // BEHAVIOR 1 - PROSPECT VISIT
-    if (ref) {
+    // BEHAVIOR 1 - PROSPECT VISIT (once per page load)
+    if (ref && !window.__prospectVisitSent) {
+      window.__prospectVisitSent = true;
       gtag('event', 'prospect_visit', {
         prospect_email: ref,
         utm_source: utmSource,
