@@ -261,6 +261,22 @@ const LanguageAudit: React.FC = () => {
                   </div>
                 )}
 
+                {r.deResidues.length > 0 && (
+                  <div className="px-4 py-3 border-t border-border">
+                    <h3 className="text-xs uppercase tracking-wider text-red-700 mb-2">
+                      Résidus DE à supprimer
+                    </h3>
+                    <ul className="space-y-1 text-xs">
+                      {r.deResidues.map((d, i) => (
+                        <li key={i} className="flex gap-3">
+                          <span className="text-muted-foreground w-12">L.{d.line}</span>
+                          <span className="font-mono">{d.text}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+
                 {!r.usesUseLanguage && r.t3Entries.length === 0 && (
                   <div className="px-4 py-3 text-xs text-muted-foreground">
                     Ce fichier n'utilise pas useLanguage et ne contient pas d'appels t3(). Vérifier
