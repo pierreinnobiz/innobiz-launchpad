@@ -94,6 +94,24 @@ function analyze(path: string, src: string): FileReport {
     hardcoded.push({ text: raw, line: lineOf(src, h.index) });
   }
 
+  // 3) DE residue scan — should be empty after DE removal.
+  const deResidues: DeHit[] = [];
+  const DE_PATTERNS: RegExp[] = [
+    /['"`]de['"`]\s*[,)\]]/g,      // 'de' as a value in arrays/args
+    /\blang\s*===?\s*['"`]de['"`]/g,
+    /\blanguage\s*===?\s*['"`]de['"`]/g,
+    /\bcode\s*:\s*['"`]de['"`]/g,
+    /lang=de\b/g,
+    /\bt4\s*\(/g,
+    />\s*DE\s*</g,                  // a "DE" button label
+  ];
+  for (const re of DE_PATTERNS) {
+    let d: RegExpExecArray | null;
+    while ((d = re.exec(src))) {
+      deResidues.push({ text: d[0], line: lineOf(src, d.index) });
+    }
+  }
+
   return {
     path,
     name: path.split('/').pop()!.replace('.tsx', ''),
@@ -102,6 +120,7 @@ function analyze(path: string, src: string): FileReport {
     t3Entries,
     hardcoded,
     partial,
+    deResidues,
   };
 }
 
