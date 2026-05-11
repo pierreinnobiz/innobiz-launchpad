@@ -154,7 +154,8 @@ const LanguageAudit: React.FC = () => {
           </Link>
           <h1 className="text-3xl font-bold">Language Audit</h1>
           <p className="text-sm text-muted-foreground">
-            Audit statique des chaînes traduites et des textes encore en dur dans les sections du site.
+            Audit statique limité aux trois langues officielles : <strong>FR</strong>, <strong>EN</strong>, <strong>ES</strong>.
+            Détecte aussi tout résidu lié à la langue DE (retirée du site).
           </p>
           <div className="flex flex-wrap gap-3 pt-2 text-xs">
             <Stat label="Fichiers analysés" value={reports.length} />
@@ -162,6 +163,7 @@ const LanguageAudit: React.FC = () => {
             <Stat label="Entrées partielles" value={totals.partial} tone={totals.partial ? 'warn' : 'ok'} />
             <Stat label="Textes en dur suspects" value={totals.hardcoded} tone={totals.hardcoded ? 'warn' : 'ok'} />
             <Stat label="Sans useLanguage" value={totals.noLang} tone={totals.noLang ? 'warn' : 'ok'} />
+            <Stat label="Résidus DE" value={totals.deResidues} tone={totals.deResidues ? 'warn' : 'ok'} />
           </div>
         </header>
 
@@ -170,7 +172,7 @@ const LanguageAudit: React.FC = () => {
             const status =
               !r.usesUseLanguage && r.t3Entries.length === 0
                 ? 'no-i18n'
-                : r.partial.length || r.hardcoded.length
+                : r.partial.length || r.hardcoded.length || r.deResidues.length
                   ? 'warn'
                   : 'ok';
             return (
