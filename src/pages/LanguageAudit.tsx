@@ -175,6 +175,48 @@ const LanguageAudit: React.FC = () => {
           </div>
         </header>
 
+        {totals.deResidues > 0 && (
+          <section className="border border-red-300 bg-red-50/60 rounded-lg p-4">
+            <h2 className="text-sm font-semibold text-red-800 mb-2">
+              Résidus DE détectés — triés par fichier / ligne
+            </h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead className="text-muted-foreground">
+                  <tr className="text-left">
+                    <th className="py-1 pr-3">Fichier</th>
+                    <th className="py-1 pr-3 w-12">L.</th>
+                    <th className="py-1 pr-3">Type</th>
+                    <th className="py-1 pr-3">Texte</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reports
+                    .flatMap((r) =>
+                      r.deResidues.map((d) => ({ file: r.name, path: r.path, ...d }))
+                    )
+                    .sort((a, b) =>
+                      a.file === b.file ? a.line - b.line : a.file.localeCompare(b.file)
+                    )
+                    .map((h, i) => (
+                      <tr key={i} className="border-t border-red-200/60">
+                        <td className="py-1 pr-3 font-medium">{h.file}</td>
+                        <td className="py-1 pr-3 text-muted-foreground">{h.line}</td>
+                        <td className="py-1 pr-3 text-amber-700">{h.kind}</td>
+                        <td className="py-1 pr-3 font-mono">{h.text}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-2">
+              Patterns retenus : <code>t4(</code>, label <code>&gt;DE&lt;</code>, <code>lang/language === 'de'</code>,
+              <code> code: 'de'</code>, <code>?lang=de</code>, casts <code>'de' as LangCode/SupportedLang</code>.
+              Motif générique <code>'de'</code> en valeur d'array retiré (faux positifs avec le français).
+            </p>
+          </section>
+        )}
+
         <div className="space-y-6">
           {reports.map((r) => {
             const status =
