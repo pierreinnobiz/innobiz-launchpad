@@ -25,7 +25,7 @@ const sources = import.meta.glob(
 
 type T3Entry = { fr: string; en: string; es: string; line: number; issues: string[] };
 type HardcodedHit = { text: string; line: number };
-type DeHit = { text: string; line: number };
+type DeHit = { text: string; line: number; kind: string };
 
 interface FileReport {
   path: string;
