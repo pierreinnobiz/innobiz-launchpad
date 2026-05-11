@@ -17,6 +17,7 @@ const Cookies = React.lazy(() => import("./pages/Legal").then(m => ({ default: m
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Admin = React.lazy(() => import("./pages/Admin"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
+const LanguageAudit = React.lazy(() => import("./pages/LanguageAudit"));
 
 
 const queryClient = new QueryClient();
@@ -46,6 +47,7 @@ const App = () => (
                 <Route path="/cookies" element={<Cookies />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/admin" element={<Admin />} />
+                <Route path="/language-audit" element={<LanguageAudit />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
