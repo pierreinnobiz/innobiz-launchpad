@@ -1,21 +1,43 @@
 import { useEffect } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
     dataLayer?: unknown[];
     __prospectVisitSent?: boolean;
+    __prospectEmail?: string;
   }
 }
 
+const SUPPORTED_LANGS = ['fr', 'en', 'es'] as const;
+type SupportedLang = typeof SUPPORTED_LANGS[number];
+
 const ProspectTracker = () => {
+  const { setLanguage } = useLanguage();
+
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+
+    // BUG 1 — Apply ?lang=XX on mount (does not modify URL).
+    const langParam = (params.get('lang') || '').toLowerCase();
+    if (['fr', 'en', 'es', 'de'].includes(langParam)) {
+      if ((SUPPORTED_LANGS as readonly string[]).includes(langParam)) {
+        setLanguage(langParam as SupportedLang);
+      }
+      document.documentElement.lang = langParam;
+    }
+
     const ref = params.get('ref');
+    // BUG 2 — Capture ?prospect_email= and expose globally for tracking.
+    const prospectEmailParam = (params.get('prospect_email') || '').trim();
+    if (prospectEmailParam) {
+      window.__prospectEmail = prospectEmailParam;
+    }
     const utmSource = params.get('utm_source') || '(direct)';
     const utmCampaign = params.get('utm_campaign') || '';
     const utmContent = params.get('utm_content') || '';
-    const prospectEmail = ref || '(anonymous)';
+    const prospectEmail = window.__prospectEmail || ref || '(anonymous)';
 
     // Local queue for events fired before gtag.js finishes loading.
     const pendingEvents: unknown[][] = [];
