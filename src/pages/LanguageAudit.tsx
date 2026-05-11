@@ -278,6 +278,7 @@ const LanguageAudit: React.FC = () => {
                       {r.deResidues.map((d, i) => (
                         <li key={i} className="flex gap-3">
                           <span className="text-muted-foreground w-12">L.{d.line}</span>
+                          <span className="text-amber-700 w-32 shrink-0">[{d.kind}]</span>
                           <span className="font-mono">{d.text}</span>
                         </li>
                       ))}
