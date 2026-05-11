@@ -25,7 +25,7 @@ const sources = import.meta.glob(
 
 type T3Entry = { fr: string; en: string; es: string; line: number; issues: string[] };
 type HardcodedHit = { text: string; line: number };
-type DeHit = { text: string; line: number };
+type DeHit = { text: string; line: number; kind: string };
 
 interface FileReport {
   path: string;
@@ -94,23 +94,31 @@ function analyze(path: string, src: string): FileReport {
     hardcoded.push({ text: raw, line: lineOf(src, h.index) });
   }
 
-  // 3) DE residue scan — should be empty after DE removal.
+  // 3) DE residue scan — only high-confidence patterns to avoid false positives
+  // (the bare 'de' value pattern was dropped: too noisy with French words).
   const deResidues: DeHit[] = [];
-  const DE_PATTERNS: RegExp[] = [
-    /['"`]de['"`]\s*[,)\]]/g,      // 'de' as a value in arrays/args
-    /\blang\s*===?\s*['"`]de['"`]/g,
-    /\blanguage\s*===?\s*['"`]de['"`]/g,
-    /\bcode\s*:\s*['"`]de['"`]/g,
-    /lang=de\b/g,
-    /\bt4\s*\(/g,
-    />\s*DE\s*</g,                  // a "DE" button label
+  const DE_PATTERNS: { kind: string; re: RegExp }[] = [
+    { kind: "lang === 'de'", re: /\blang\s*===?\s*['"`]de['"`]/g },
+    { kind: "language === 'de'", re: /\blanguage\s*===?\s*['"`]de['"`]/g },
+    { kind: "code: 'de'", re: /\bcode\s*:\s*['"`]de['"`]/g },
+    { kind: 'URL ?lang=de', re: /\blang=de\b/g },
+    { kind: 't4() call', re: /\bt4\s*\(/g },
+    { kind: '>DE< label', re: />\s*DE\s*</g },
+    { kind: "LangCode 'de'", re: /['"`]de['"`]\s+as\s+LangCode\b/g },
+    { kind: "SupportedLang 'de'", re: /['"`]de['"`]\s+as\s+SupportedLang\b/g },
   ];
-  for (const re of DE_PATTERNS) {
+  const seen = new Set<string>();
+  for (const { kind, re } of DE_PATTERNS) {
     let d: RegExpExecArray | null;
     while ((d = re.exec(src))) {
-      deResidues.push({ text: d[0], line: lineOf(src, d.index) });
+      const line = lineOf(src, d.index);
+      const key = `${line}:${d.index}:${kind}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      deResidues.push({ text: d[0], line, kind });
     }
   }
+  deResidues.sort((a, b) => a.line - b.line);
 
   return {
     path,
@@ -166,6 +174,48 @@ const LanguageAudit: React.FC = () => {
             <Stat label="Résidus DE" value={totals.deResidues} tone={totals.deResidues ? 'warn' : 'ok'} />
           </div>
         </header>
+
+        {totals.deResidues > 0 && (
+          <section className="border border-red-300 bg-red-50/60 rounded-lg p-4">
+            <h2 className="text-sm font-semibold text-red-800 mb-2">
+              Résidus DE détectés — triés par fichier / ligne
+            </h2>
+            <div className="overflow-x-auto">
+              <table className="w-full text-xs">
+                <thead className="text-muted-foreground">
+                  <tr className="text-left">
+                    <th className="py-1 pr-3">Fichier</th>
+                    <th className="py-1 pr-3 w-12">L.</th>
+                    <th className="py-1 pr-3">Type</th>
+                    <th className="py-1 pr-3">Texte</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {reports
+                    .flatMap((r) =>
+                      r.deResidues.map((d) => ({ file: r.name, path: r.path, ...d }))
+                    )
+                    .sort((a, b) =>
+                      a.file === b.file ? a.line - b.line : a.file.localeCompare(b.file)
+                    )
+                    .map((h, i) => (
+                      <tr key={i} className="border-t border-red-200/60">
+                        <td className="py-1 pr-3 font-medium">{h.file}</td>
+                        <td className="py-1 pr-3 text-muted-foreground">{h.line}</td>
+                        <td className="py-1 pr-3 text-amber-700">{h.kind}</td>
+                        <td className="py-1 pr-3 font-mono">{h.text}</td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-[10px] text-muted-foreground mt-2">
+              Patterns retenus : <code>t4(</code>, label <code>&gt;DE&lt;</code>, <code>lang/language === 'de'</code>,
+              <code> code: 'de'</code>, <code>?lang=de</code>, casts <code>'de' as LangCode/SupportedLang</code>.
+              Motif générique <code>'de'</code> en valeur d'array retiré (faux positifs avec le français).
+            </p>
+          </section>
+        )}
 
         <div className="space-y-6">
           {reports.map((r) => {
@@ -270,6 +320,7 @@ const LanguageAudit: React.FC = () => {
                       {r.deResidues.map((d, i) => (
                         <li key={i} className="flex gap-3">
                           <span className="text-muted-foreground w-12">L.{d.line}</span>
+                          <span className="text-amber-700 w-32 shrink-0">[{d.kind}]</span>
                           <span className="font-mono">{d.text}</span>
                         </li>
                       ))}
