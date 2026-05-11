@@ -74,6 +74,10 @@ const FounderStatementSection: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [activeStatement, setActiveStatement] = useState(-1);
   const [completedStatements, setCompletedStatements] = useState<Set<number>>(new Set());
+  const { language } = useLanguage();
+  const statements = STATEMENTS_BY_LANG[(language as 'fr' | 'en' | 'es')] || STATEMENTS_BY_LANG.en;
+  const privateNoteLabel = t3(language, 'Note privée', 'Private note', 'Nota privada');
+  const founderRole = t3(language, 'Fondateur, Innobiz', 'Founder, Innobiz', 'Fundador, Innobiz');
 
   useEffect(() => {
     if (isInView && activeStatement === -1) {
@@ -86,7 +90,7 @@ const FounderStatementSection: React.FC = () => {
     if (index < statements.length - 1) {
       setTimeout(() => setActiveStatement(index + 1), STATEMENT_PAUSE);
     }
-  }, []);
+  }, [statements.length]);
 
   return (
     <section
