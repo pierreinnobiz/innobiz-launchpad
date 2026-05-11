@@ -196,6 +196,9 @@ const LanguageAudit: React.FC = () => {
                     <span className={r.hardcoded.length ? 'text-red-600' : ''}>
                       {r.hardcoded.length} en dur
                     </span>
+                    <span className={r.deResidues.length ? 'text-red-600' : ''}>
+                      {r.deResidues.length} résidu DE
+                    </span>
                   </div>
                 </div>
 
