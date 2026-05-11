@@ -27,7 +27,7 @@ function deResidueGuard() {
     }
     return out;
   };
-  return {
+  const plugin = {
     name: "de-residue-guard",
     apply: "build" as const,
     buildStart() {
@@ -45,12 +45,13 @@ function deResidueGuard() {
         }
       }
       if (hits.length) {
-        this.error(
+        throw new Error(
           `DE residue check failed — remove the following before building:\n${hits.join("\n")}\n\n${hits.length} residue(s) found.`
         );
       }
     },
   };
+  return plugin;
 }
 
 // https://vitejs.dev/config/
