@@ -117,7 +117,7 @@ const FounderStatementSection: React.FC = () => {
           </div>
 
           {/* Card body */}
-          <div className="px-8 py-6 space-y-5">
+          <div key={language} className="px-8 py-6 space-y-5">
             {statements.map((text, i) => (
               <p
                 key={i}
@@ -157,7 +157,7 @@ const FounderStatementSection: React.FC = () => {
                 Pierre-Emmanuel Thuret
               </p>
               <p className="text-xs font-light mt-0.5" style={{ color: 'hsl(25 15% 50%)' }}>
-                Founder, Innobiz
+                {founderRole}
               </p>
             </motion.div>
           </div>
