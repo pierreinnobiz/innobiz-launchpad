@@ -25,6 +25,7 @@ const sources = import.meta.glob(
 
 type T3Entry = { fr: string; en: string; es: string; line: number; issues: string[] };
 type HardcodedHit = { text: string; line: number };
+type DeHit = { text: string; line: number };
 
 interface FileReport {
   path: string;
@@ -34,6 +35,7 @@ interface FileReport {
   t3Entries: T3Entry[];
   hardcoded: HardcodedHit[];
   partial: T3Entry[];
+  deResidues: DeHit[];
 }
 
 const T3_REGEX =
@@ -92,6 +94,24 @@ function analyze(path: string, src: string): FileReport {
     hardcoded.push({ text: raw, line: lineOf(src, h.index) });
   }
 
+  // 3) DE residue scan — should be empty after DE removal.
+  const deResidues: DeHit[] = [];
+  const DE_PATTERNS: RegExp[] = [
+    /['"`]de['"`]\s*[,)\]]/g,      // 'de' as a value in arrays/args
+    /\blang\s*===?\s*['"`]de['"`]/g,
+    /\blanguage\s*===?\s*['"`]de['"`]/g,
+    /\bcode\s*:\s*['"`]de['"`]/g,
+    /lang=de\b/g,
+    /\bt4\s*\(/g,
+    />\s*DE\s*</g,                  // a "DE" button label
+  ];
+  for (const re of DE_PATTERNS) {
+    let d: RegExpExecArray | null;
+    while ((d = re.exec(src))) {
+      deResidues.push({ text: d[0], line: lineOf(src, d.index) });
+    }
+  }
+
   return {
     path,
     name: path.split('/').pop()!.replace('.tsx', ''),
@@ -100,6 +120,7 @@ function analyze(path: string, src: string): FileReport {
     t3Entries,
     hardcoded,
     partial,
+    deResidues,
   };
 }
 
@@ -116,10 +137,11 @@ const LanguageAudit: React.FC = () => {
         acc.t3 += r.t3Entries.length;
         acc.partial += r.partial.length;
         acc.hardcoded += r.hardcoded.length;
+        acc.deResidues += r.deResidues.length;
         if (!r.usesUseLanguage) acc.noLang += 1;
         return acc;
       },
-      { t3: 0, partial: 0, hardcoded: 0, noLang: 0 }
+      { t3: 0, partial: 0, hardcoded: 0, noLang: 0, deResidues: 0 }
     );
   }, [reports]);
 
@@ -132,7 +154,8 @@ const LanguageAudit: React.FC = () => {
           </Link>
           <h1 className="text-3xl font-bold">Language Audit</h1>
           <p className="text-sm text-muted-foreground">
-            Audit statique des chaînes traduites et des textes encore en dur dans les sections du site.
+            Audit statique limité aux trois langues officielles : <strong>FR</strong>, <strong>EN</strong>, <strong>ES</strong>.
+            Détecte aussi tout résidu lié à la langue DE (retirée du site).
           </p>
           <div className="flex flex-wrap gap-3 pt-2 text-xs">
             <Stat label="Fichiers analysés" value={reports.length} />
@@ -140,6 +163,7 @@ const LanguageAudit: React.FC = () => {
             <Stat label="Entrées partielles" value={totals.partial} tone={totals.partial ? 'warn' : 'ok'} />
             <Stat label="Textes en dur suspects" value={totals.hardcoded} tone={totals.hardcoded ? 'warn' : 'ok'} />
             <Stat label="Sans useLanguage" value={totals.noLang} tone={totals.noLang ? 'warn' : 'ok'} />
+            <Stat label="Résidus DE" value={totals.deResidues} tone={totals.deResidues ? 'warn' : 'ok'} />
           </div>
         </header>
 
@@ -148,7 +172,7 @@ const LanguageAudit: React.FC = () => {
             const status =
               !r.usesUseLanguage && r.t3Entries.length === 0
                 ? 'no-i18n'
-                : r.partial.length || r.hardcoded.length
+                : r.partial.length || r.hardcoded.length || r.deResidues.length
                   ? 'warn'
                   : 'ok';
             return (
@@ -171,6 +195,9 @@ const LanguageAudit: React.FC = () => {
                     </span>
                     <span className={r.hardcoded.length ? 'text-red-600' : ''}>
                       {r.hardcoded.length} en dur
+                    </span>
+                    <span className={r.deResidues.length ? 'text-red-600' : ''}>
+                      {r.deResidues.length} résidu DE
                     </span>
                   </div>
                 </div>
@@ -231,6 +258,22 @@ const LanguageAudit: React.FC = () => {
                       Heuristique : texte JSX &gt; 15 caractères avec espaces, hors t3(). Faux positifs possibles
                       (icônes, attributs alt déjà traduits via variables, etc.).
                     </p>
+                  </div>
+                )}
+
+                {r.deResidues.length > 0 && (
+                  <div className="px-4 py-3 border-t border-border">
+                    <h3 className="text-xs uppercase tracking-wider text-red-700 mb-2">
+                      Résidus DE à supprimer
+                    </h3>
+                    <ul className="space-y-1 text-xs">
+                      {r.deResidues.map((d, i) => (
+                        <li key={i} className="flex gap-3">
+                          <span className="text-muted-foreground w-12">L.{d.line}</span>
+                          <span className="font-mono">{d.text}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 )}
 
