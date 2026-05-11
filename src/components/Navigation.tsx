@@ -12,7 +12,6 @@ const languages: { code: LangCode; label: string; available: boolean }[] = [
   { code: 'fr', label: 'FR', available: true },
   { code: 'en', label: 'EN', available: true },
   { code: 'es', label: 'ES', available: true },
-  { code: 'de' as LangCode, label: 'DE', available: false },
 ];
 
 
