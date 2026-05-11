@@ -137,10 +137,11 @@ const LanguageAudit: React.FC = () => {
         acc.t3 += r.t3Entries.length;
         acc.partial += r.partial.length;
         acc.hardcoded += r.hardcoded.length;
+        acc.deResidues += r.deResidues.length;
         if (!r.usesUseLanguage) acc.noLang += 1;
         return acc;
       },
-      { t3: 0, partial: 0, hardcoded: 0, noLang: 0 }
+      { t3: 0, partial: 0, hardcoded: 0, noLang: 0, deResidues: 0 }
     );
   }, [reports]);
 
