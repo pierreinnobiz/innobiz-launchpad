@@ -113,7 +113,7 @@ const FounderStatementSection: React.FC = () => {
             <div className="flex items-center gap-3">
               <img src={innobizLogo} alt="Innobiz" className="h-7 w-auto" />
             </div>
-            <span className="text-[10px] uppercase tracking-widest font-medium" style={{ color: 'hsl(28 30% 65%)' }}>Private note</span>
+            <span className="text-[10px] uppercase tracking-widest font-medium" style={{ color: 'hsl(28 30% 65%)' }}>{privateNoteLabel}</span>
           </div>
 
           {/* Card body */}
