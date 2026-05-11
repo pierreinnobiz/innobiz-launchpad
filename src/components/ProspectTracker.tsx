@@ -21,7 +21,7 @@ const ProspectTracker = () => {
 
     // BUG 1 — Apply ?lang=XX on mount (does not modify URL).
     const langParam = (params.get('lang') || '').toLowerCase();
-    if (['fr', 'en', 'es', 'de'].includes(langParam)) {
+    if (['fr', 'en', 'es'].includes(langParam)) {
       if ((SUPPORTED_LANGS as readonly string[]).includes(langParam)) {
         setLanguage(langParam as SupportedLang);
       }
