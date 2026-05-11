@@ -134,7 +134,7 @@ const ProspectTracker = () => {
       window.setTimeout(() => {
         gtag('event', 'time_on_page', {
           seconds,
-          prospect_email: prospectEmail,
+          prospect_email: window.__prospectEmail || prospectEmail,
           utm_source: utmSource,
         });
       }, ms)
