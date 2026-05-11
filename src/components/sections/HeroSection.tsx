@@ -1,5 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { t3 } from '@/lib/t3';
 
 const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -75,12 +77,38 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const [videoEnded, setVideoEnded] = useState(false);
+  const { language } = useLanguage();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 0.7]);
+
+  const title = t3(
+    language,
+    "Transformez votre diffuseur, d'une vente unique à un revenu récurrent.",
+    "Turn your diffuser from a one-time sale into a recurring revenue stream.",
+    "Convierta su difusor, de una venta única a un ingreso recurrente."
+  );
+  const eyebrow = t3(
+    language,
+    "Pour les marques d'aromathérapie, d'huiles essentielles et de bien-être naturel",
+    "For aromatherapy, essential oil and natural wellness brands",
+    "Para marcas de aromaterapia, aceites esenciales y bienestar natural"
+  );
+  const subtitle = t3(
+    language,
+    "Tolia est le seul diffuseur assez simple pour devenir un geste quotidien, déclenchant un réachat d'huiles essentielles prévisible et continu pour votre marque.",
+    "Tolia is the only diffuser simple enough to become a daily gesture, unlocking predictable, year-round essential oil repurchase for your brand.",
+    "Tolia es el único difusor lo bastante simple para convertirse en un gesto diario, generando una recompra de aceites esenciales predecible y continua para su marca."
+  );
+  const microcopy = t3(
+    language,
+    "Sans engagement · Réponse sous 24 heures",
+    "No commitment required · Response within 24 hours",
+    "Sin compromiso · Respuesta en menos de 24 horas"
+  );
 
   return (
     <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden bg-black">
@@ -93,10 +121,7 @@ const HeroSection: React.FC = () => {
 
       <div className="relative z-10 h-full flex flex-col justify-end pb-24 md:pb-32 px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl space-y-6">
-          <AnimatedTitle
-            text="Turn your diffuser from a one-time sale into a recurring revenue stream."
-            delay={0.3}
-          />
+          <AnimatedTitle key={language} text={title} delay={0.3} />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -106,13 +131,13 @@ const HeroSection: React.FC = () => {
             <motion.span
               className="text-xs sm:text-sm uppercase tracking-[0.15em] text-white/60 font-medium block mb-4"
             >
-              For aromatherapy, essential oil and natural wellness brands
+              {eyebrow}
             </motion.span>
 
             <motion.p
               className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl font-light leading-relaxed"
             >
-              Tolia is the only diffuser simple enough to become a daily gesture, unlocking predictable, year-round essential oil repurchase for your brand.
+              {subtitle}
             </motion.p>
           </motion.div>
 
@@ -122,7 +147,7 @@ const HeroSection: React.FC = () => {
             animate={videoEnded ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.3 }}
           >
-            No commitment required · Response within 24 hours
+            {microcopy}
           </motion.p>
         </div>
       </div>

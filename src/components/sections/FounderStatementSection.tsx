@@ -1,14 +1,28 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
 import innobizLogo from '@/assets/innobiz-logo.png';
+import { useLanguage } from '@/contexts/LanguageContext';
+import { t3 } from '@/lib/t3';
 import '@fontsource/caveat/500.css';
 import '@fontsource/caveat/700.css';
 
-const statements = [
-  "Every consumer searching for a diffuser faces the same impossible choice: silent or powerful, portable or effective, simple or flexible. No technology delivers it all. That's why we built Tolia.",
-  "When a diffuser is complicated, usage fades. Within months, it's in a closet. And the oils stop being purchased.",
-  "Aromatherapy brands invest heavily to win customers, but without daily rituals, repurchase erodes. Tolia turns occasional users into daily consumers. That changes everything.",
-];
+const STATEMENTS_BY_LANG: Record<'fr' | 'en' | 'es', string[]> = {
+  fr: [
+    "Chaque consommateur qui cherche un diffuseur fait face au même choix impossible : silencieux ou puissant, nomade ou efficace, simple ou flexible. Aucune technologie ne réunit tout. C'est pour cela que nous avons créé Tolia.",
+    "Quand un diffuseur est compliqué, l'usage s'éteint. En quelques mois, il finit dans un placard. Et les huiles cessent d'être achetées.",
+    "Les marques d'aromathérapie investissent énormément pour conquérir leurs clients, mais sans rituel quotidien, le réachat s'érode. Tolia transforme les utilisateurs occasionnels en consommateurs quotidiens. Cela change tout.",
+  ],
+  en: [
+    "Every consumer searching for a diffuser faces the same impossible choice: silent or powerful, portable or effective, simple or flexible. No technology delivers it all. That's why we built Tolia.",
+    "When a diffuser is complicated, usage fades. Within months, it's in a closet. And the oils stop being purchased.",
+    "Aromatherapy brands invest heavily to win customers, but without daily rituals, repurchase erodes. Tolia turns occasional users into daily consumers. That changes everything.",
+  ],
+  es: [
+    "Cada consumidor que busca un difusor se enfrenta al mismo dilema imposible: silencioso o potente, portátil o eficaz, simple o flexible. Ninguna tecnología lo reúne todo. Por eso creamos Tolia.",
+    "Cuando un difusor es complicado, el uso se apaga. En pocos meses, acaba en un armario. Y los aceites dejan de comprarse.",
+    "Las marcas de aromaterapia invierten mucho para conquistar a sus clientes, pero sin rituales diarios, la recompra se erosiona. Tolia convierte a usuarios ocasionales en consumidores diarios. Eso lo cambia todo.",
+  ],
+};
 
 const CHAR_DELAY = 2.5;
 const STATEMENT_PAUSE = 150;
@@ -60,6 +74,10 @@ const FounderStatementSection: React.FC = () => {
   const isInView = useInView(ref, { once: true, amount: 0.3 });
   const [activeStatement, setActiveStatement] = useState(-1);
   const [completedStatements, setCompletedStatements] = useState<Set<number>>(new Set());
+  const { language } = useLanguage();
+  const statements = STATEMENTS_BY_LANG[(language as 'fr' | 'en' | 'es')] || STATEMENTS_BY_LANG.en;
+  const privateNoteLabel = t3(language, 'Note privée', 'Private note', 'Nota privada');
+  const founderRole = t3(language, 'Fondateur, Innobiz', 'Founder, Innobiz', 'Fundador, Innobiz');
 
   useEffect(() => {
     if (isInView && activeStatement === -1) {
@@ -72,7 +90,7 @@ const FounderStatementSection: React.FC = () => {
     if (index < statements.length - 1) {
       setTimeout(() => setActiveStatement(index + 1), STATEMENT_PAUSE);
     }
-  }, []);
+  }, [statements.length]);
 
   return (
     <section
@@ -95,11 +113,11 @@ const FounderStatementSection: React.FC = () => {
             <div className="flex items-center gap-3">
               <img src={innobizLogo} alt="Innobiz" className="h-7 w-auto" />
             </div>
-            <span className="text-[10px] uppercase tracking-widest font-medium" style={{ color: 'hsl(28 30% 65%)' }}>Private note</span>
+            <span className="text-[10px] uppercase tracking-widest font-medium" style={{ color: 'hsl(28 30% 65%)' }}>{privateNoteLabel}</span>
           </div>
 
           {/* Card body */}
-          <div className="px-8 py-6 space-y-5">
+          <div key={language} className="px-8 py-6 space-y-5">
             {statements.map((text, i) => (
               <p
                 key={i}
@@ -139,7 +157,7 @@ const FounderStatementSection: React.FC = () => {
                 Pierre-Emmanuel Thuret
               </p>
               <p className="text-xs font-light mt-0.5" style={{ color: 'hsl(25 15% 50%)' }}>
-                Founder, Innobiz
+                {founderRole}
               </p>
             </motion.div>
           </div>
