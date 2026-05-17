@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
+import { useWave2Tracking } from "@/hooks/useWave2Tracking";
 import React, { Suspense } from "react";
 
 import Index from "./pages/Index";
