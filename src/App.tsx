@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
+import { useWave2Tracking } from "@/hooks/useWave2Tracking";
 import React, { Suspense } from "react";
 
 import Index from "./pages/Index";
@@ -28,6 +29,29 @@ const PageFallback = () => (
   </div>
 );
 
+const AppRoutes = () => {
+  useWave2Tracking();
+  return (
+    <BrowserRouter>
+      <ProspectTracker />
+      <Suspense fallback={<PageFallback />}>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/faq" element={<FAQ />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/legal" element={<Legal />} />
+          <Route path="/privacy" element={<Privacy />} />
+          <Route path="/cookies" element={<Cookies />} />
+          <Route path="/auth" element={<Auth />} />
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/language-audit" element={<LanguageAudit />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Suspense>
+    </BrowserRouter>
+  );
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <LanguageProvider>
@@ -35,23 +59,7 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <BrowserRouter>
-            <ProspectTracker />
-            <Suspense fallback={<PageFallback />}>
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/legal" element={<Legal />} />
-                <Route path="/privacy" element={<Privacy />} />
-                <Route path="/cookies" element={<Cookies />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/admin" element={<Admin />} />
-                <Route path="/language-audit" element={<LanguageAudit />} />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </Suspense>
-          </BrowserRouter>
+          <AppRoutes />
         </TooltipProvider>
       </AuthProvider>
     </LanguageProvider>
