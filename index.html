@@ -90,12 +90,29 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) - deferred until browser is idle -->
+    <!-- Google tag (gtag.js) - deferred until browser is idle, Consent Mode v2 default denied -->
     <script>
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(){ window.dataLayer.push(arguments); };
+      // Consent Mode v2 — default denied BEFORE any GA load
+      window.gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+      // Apply previously stored consent (if any) so returning visitors keep their choice
+      try {
+        var stored = localStorage.getItem('tolia_cookie_consent');
+        if (stored === 'granted') {
+          window.gtag('consent', 'update', { analytics_storage: 'granted' });
+        }
+      } catch (e) { /* storage blocked */ }
       window.gtag('js', new Date());
-      window.gtag('config', 'G-S2MPVHYM8L');
+      window.gtag('config', 'G-S2MPVHYM8L', { anonymize_ip: true });
       (window.requestIdleCallback || function(cb){setTimeout(cb,2000)})(function(){
         var s=document.createElement('script');
         s.src='https://www.googletagmanager.com/gtag/js?id=G-S2MPVHYM8L';
