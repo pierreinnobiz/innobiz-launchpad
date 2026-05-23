@@ -10,6 +10,7 @@ import React, { Suspense } from "react";
 
 import Index from "./pages/Index";
 import ProspectTracker from "./components/ProspectTracker";
+import CookieConsent from "./components/CookieConsent";
 const FAQ = React.lazy(() => import("./pages/FAQ"));
 const Contact = React.lazy(() => import("./pages/Contact"));
 const Legal = React.lazy(() => import("./pages/Legal").then(m => ({ default: m.default })));
