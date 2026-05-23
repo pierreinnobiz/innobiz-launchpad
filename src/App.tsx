@@ -49,6 +49,7 @@ const AppRoutes = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>
+      <CookieConsent />
     </BrowserRouter>
   );
 };
@@ -61,7 +62,6 @@ const App = () => (
           <Toaster />
           <Sonner />
           <AppRoutes />
-          <CookieConsent />
         </TooltipProvider>
       </AuthProvider>
     </LanguageProvider>
