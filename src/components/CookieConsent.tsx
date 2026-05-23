@@ -12,6 +12,7 @@ const S = (lang: string, fr: string, en: string, es: string) =>
 declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
+    loadGtagScript?: () => void;
   }
 }
 
@@ -48,6 +49,10 @@ const CookieConsent = () => {
       window.gtag('consent', 'update', {
         analytics_storage: choice === 'granted' ? 'granted' : 'denied',
       });
+    }
+    // Lazy-load gtag.js ONLY after explicit consent. Until then, no GA cookie is set.
+    if (choice === 'granted' && typeof window.loadGtagScript === 'function') {
+      window.loadGtagScript();
     }
   };
 

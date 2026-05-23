@@ -90,11 +90,12 @@
     }
     </script>
 
-    <!-- Google tag (gtag.js) - deferred until browser is idle, Consent Mode v2 default denied -->
+    <!-- GA4 Consent Mode v2 — default DENIED. gtag.js is NOT loaded until the
+         visitor explicitly grants consent (handled by CookieConsent.tsx).
+         No GA cookie (_ga, _gid, _ga_*) is set before consent. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(){ window.dataLayer.push(arguments); };
-      // Consent Mode v2 — default denied BEFORE any GA load
       window.gtag('consent', 'default', {
         ad_storage: 'denied',
         ad_user_data: 'denied',
@@ -104,21 +105,23 @@
         security_storage: 'granted',
         wait_for_update: 500
       });
-      // Apply previously stored consent (if any) so returning visitors keep their choice
-      try {
-        var stored = localStorage.getItem('tolia_cookie_consent');
-        if (stored === 'granted') {
-          window.gtag('consent', 'update', { analytics_storage: 'granted' });
-        }
-      } catch (e) { /* storage blocked */ }
-      window.gtag('js', new Date());
-      window.gtag('config', 'G-S2MPVHYM8L', { anonymize_ip: true });
-      (window.requestIdleCallback || function(cb){setTimeout(cb,2000)})(function(){
-        var s=document.createElement('script');
-        s.src='https://www.googletagmanager.com/gtag/js?id=G-S2MPVHYM8L';
-        s.async=true;
+      window.GA_MEASUREMENT_ID = 'G-S2MPVHYM8L';
+      window.loadGtagScript = function () {
+        if (window.__gtagLoaded) return;
+        window.__gtagLoaded = true;
+        window.gtag('js', new Date());
+        window.gtag('config', window.GA_MEASUREMENT_ID, { anonymize_ip: true });
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
+        s.async = true;
         document.head.appendChild(s);
-      });
+      };
+      try {
+        if (localStorage.getItem('tolia_cookie_consent') === 'granted') {
+          window.gtag('consent', 'update', { analytics_storage: 'granted' });
+          (window.requestIdleCallback || function(cb){setTimeout(cb,1500)})(window.loadGtagScript);
+        }
+      } catch (e) { /* storage blocked — stay denied, no GA load */ }
     </script>
     <meta property="og:title" content="Tolia by Innobiz — Proprietary Essential Oil Diffusion Technology">
   <meta name="twitter:title" content="Tolia by Innobiz — Proprietary Essential Oil Diffusion Technology">
