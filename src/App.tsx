@@ -62,7 +62,6 @@ const App = () => (
           <Toaster />
           <Sonner />
           <AppRoutes />
-          <CookieConsent />
         </TooltipProvider>
       </AuthProvider>
     </LanguageProvider>
