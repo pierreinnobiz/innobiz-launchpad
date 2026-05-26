@@ -62,9 +62,11 @@ const handler = async (req: Request): Promise<Response> => {
       "diffuseur-home": "Diffuseurs & Home Fragrance",
       dnvb: "DNVB / E-commerce Aroma",
       autre: "Autre",
+      "deck-request": "Demande de présentation (fast-track)",
     };
 
-    const emailResponse = await fetch("https://api.resend.com/emails", {
+    // 1. Internal notification email
+    const internalEmailPromise = fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
         "Authorization": `Bearer ${RESEND_API_KEY}`,
@@ -98,11 +100,62 @@ const handler = async (req: Request): Promise<Response> => {
       }),
     });
 
-    if (!emailResponse.ok) {
-      const errorBody = await emailResponse.text();
-      console.error("Resend API error:", errorBody);
+    // 2. Deck email to user (only for deck-request segment)
+    const userEmailPromise = segment === "deck-request"
+      ? fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: {
+            "Authorization": `Bearer ${RESEND_API_KEY}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            from: "Tolia by INNOBIZ <noreply@innobiz-tolia.com>",
+            to: [email],
+            subject: "Your Tolia brand deck",
+            html: `
+              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; color: #1e293b;">
+                <div style="background: #faf8f5; padding: 32px 24px; border-radius: 8px 8px 0 0; text-align: center;">
+                  <h1 style="margin: 0; font-size: 26px; color: #1a365d; font-weight: 700;">Tolia</h1>
+                  <p style="margin: 8px 0 0; font-size: 14px; color: #64748b;">by INNOBIZ</p>
+                </div>
+                <div style="background: #ffffff; padding: 32px 24px; border: 1px solid #e2e8f0; border-top: none;">
+                  <p style="font-size: 16px; line-height: 1.6; margin: 0 0 20px;">Hello,</p>
+                  <p style="font-size: 16px; line-height: 1.6; margin: 0 0 20px;">Thank you for your interest in Tolia. Here is your brand deck with everything you need to evaluate the programme:</p>
 
-      if (emailResponse.status === 401 && errorBody.includes("API key is invalid")) {
+                  <div style="background: #f8fafc; border-radius: 8px; padding: 20px; margin: 24px 0;">
+                    <h2 style="font-size: 18px; color: #1a365d; margin: 0 0 16px;">What is inside</h2>
+                    <ul style="padding-left: 20px; margin: 0; line-height: 1.8;">
+                      <li>Product overview & key differentiators</li>
+                      <li>White-label programme terms</li>
+                      <li>Stock order pricing (300+ units)</li>
+                      <li>Case studies & market proof</li>
+                      <li>Next steps to get started</li>
+                    </ul>
+                  </div>
+
+                  <div style="text-align: center; margin: 32px 0;">
+                    <a href="https://www.innobiz-tolia.com" style="display: inline-block; background: #1a365d; color: #ffffff; text-decoration: none; padding: 14px 28px; border-radius: 6px; font-size: 15px; font-weight: 600;">Visit the Tolia website</a>
+                  </div>
+
+                  <p style="font-size: 14px; line-height: 1.6; color: #64748b; margin: 24px 0 0;">If you have any questions or would like to schedule a personalised demo, simply reply to this email.</p>
+                </div>
+                <div style="background: #f8fafc; padding: 20px; border-radius: 0 0 8px 8px; border: 1px solid #e2e8f0; border-top: none; text-align: center;">
+                  <p style="margin: 0; font-size: 12px; color: #94a3b8;">INNOBIZ SARL · 8 rue Louis Breguet, 34830 Jacou, France</p>
+                  <p style="margin: 4px 0 0; font-size: 12px; color: #94a3b8;"><a href="https://www.innobiz-tolia.com" style="color: #3b82f6;">www.innobiz-tolia.com</a></p>
+                </div>
+              </div>
+            `,
+          }),
+        })
+      : Promise.resolve(new Response(JSON.stringify({ skipped: true }), { status: 200 }));
+
+    const [internalResponse, userResponse] = await Promise.all([internalEmailPromise, userEmailPromise]);
+
+    if (!internalResponse.ok) {
+      const errorBody = await internalResponse.text();
+      console.error("Resend API error (internal):", errorBody);
+
+      if (internalResponse.status === 401 && errorBody.includes("API key is invalid")) {
         return new Response(
           JSON.stringify({ success: false, warning: "Email provider API key is invalid." }),
           { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
@@ -113,6 +166,11 @@ const handler = async (req: Request): Promise<Response> => {
         JSON.stringify({ error: "Failed to send notification." }),
         { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
+    }
+
+    if (segment === "deck-request" && !userResponse.ok) {
+      const errorBody = await userResponse.text();
+      console.error("Resend API error (user deck):", errorBody);
     }
 
     return new Response(JSON.stringify({ success: true }), {

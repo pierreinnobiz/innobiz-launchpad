@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import QualificationForm from '@/components/QualificationForm';
+import FastTrackDeckForm from '@/components/FastTrackDeckForm';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -210,8 +211,24 @@ const Contact: React.FC = () => {
           </div>
 
           <ScrollReveal>
-            <div className="card-premium">
-              {type === 'demo' && <QualificationForm />}
+            <div className="space-y-8">
+              {type === 'demo' && (
+                <>
+                  <FastTrackDeckForm />
+                  <div className="text-center">
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'fr'
+                        ? 'Ou dites-nous en plus sur votre projet →'
+                        : language === 'es'
+                        ? 'O cuéntenos más sobre su proyecto →'
+                        : 'Or tell us more about your project →'}
+                    </p>
+                  </div>
+                  <div className="card-premium">
+                    <QualificationForm />
+                  </div>
+                </>
+              )}
               {type === 'white-label' && <WhiteLabelForm />}
               {type === 'order' && <OrderForm />}
               {type === 'info' && <GeneralInquiryForm />}

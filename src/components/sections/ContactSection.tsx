@@ -13,6 +13,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { fadeBlurUp } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
+import FastTrackDeckForm from '@/components/FastTrackDeckForm';
 
 type Path = 'white-label' | 'stock';
 
@@ -191,6 +192,19 @@ const ContactSection: React.FC = () => {
             {t3(language, 'Traitement prioritaire pour les demandes reçues ce mois-ci', 'Priority processing for requests received this month', 'Procesamiento prioritario para solicitudes recibidas este mes')}
           </span>
         </motion.div>
+
+        <FastTrackDeckForm />
+
+        <div className="text-center my-8">
+          <p className="text-sm text-muted-foreground">
+            {t3(
+              language,
+              'Ou dites-nous en plus sur votre projet →',
+              'Or tell us more about your project →',
+              'O cuéntenos más sobre su proyecto →'
+            )}
+          </p>
+        </div>
 
         <motion.div
           className="bg-card rounded-3xl p-8 md:p-10 border border-border/50 shadow-lg"

@@ -1,0 +1,1 @@
+CREATE TABLE IF NOT EXISTS public.documents_bucket_placeholder (id uuid PRIMARY KEY DEFAULT gen_random_uuid(), created_at timestamp with time zone DEFAULT now())
