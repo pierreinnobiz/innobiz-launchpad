@@ -211,8 +211,24 @@ const Contact: React.FC = () => {
           </div>
 
           <ScrollReveal>
-            <div className="card-premium">
-              {type === 'demo' && <QualificationForm />}
+            <div className="space-y-8">
+              {type === 'demo' && (
+                <>
+                  <FastTrackDeckForm />
+                  <div className="text-center">
+                    <p className="text-sm text-muted-foreground">
+                      {language === 'fr'
+                        ? 'Ou dites-nous en plus sur votre projet →'
+                        : language === 'es'
+                        ? 'O cuéntenos más sobre su proyecto →'
+                        : 'Or tell us more about your project →'}
+                    </p>
+                  </div>
+                  <div className="card-premium">
+                    <QualificationForm />
+                  </div>
+                </>
+              )}
               {type === 'white-label' && <WhiteLabelForm />}
               {type === 'order' && <OrderForm />}
               {type === 'info' && <GeneralInquiryForm />}
