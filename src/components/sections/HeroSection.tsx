@@ -87,9 +87,9 @@ const HeroSection: React.FC = () => {
 
   const title = t3(
     language,
-    "Transformez votre diffuseur, d'une vente unique à un revenu récurrent.",
-    "Turn your diffuser from a one-time sale into a recurring revenue stream.",
-    "Convierta su difusor, de una venta única a un ingreso recurrente."
+    "Chaque diffuseur vendu est le début d'un revenu récurrent.",
+    "Every diffuser sold is the start of recurring revenue.",
+    "Cada difusor vendido es el inicio de un ingreso recurrente."
   );
   const eyebrow = t3(
     language,
