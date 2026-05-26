@@ -116,12 +116,28 @@
         s.async = true;
         document.head.appendChild(s);
       };
-      try {
-        if (localStorage.getItem('tolia_cookie_consent') === 'granted') {
-          window.gtag('consent', 'update', { analytics_storage: 'granted' });
-          (window.requestIdleCallback || function(cb){setTimeout(cb,1500)})(window.loadGtagScript);
+      // Read prior consent from any available layer (sessionStorage → cookie → localStorage).
+      // Keeps GA4 state coherent even when localStorage is blocked (Safari ITP, private mode).
+      (function () {
+        var c = null;
+        try { var s = sessionStorage.getItem('tolia_cookie_consent'); if (s === 'granted' || s === 'denied') c = s; } catch (e) {}
+        if (!c) {
+          try {
+            var m = document.cookie.match(/(?:^|; )tolia_cookie_consent=([^;]*)/);
+            if (m && (m[1] === 'granted' || m[1] === 'denied')) c = m[1];
+          } catch (e) {}
         }
-      } catch (e) { /* storage blocked — stay denied, no GA load */ }
+        if (!c) {
+          try { var l = localStorage.getItem('tolia_cookie_consent'); if (l === 'granted' || l === 'denied') c = l; } catch (e) {}
+        }
+        if (c) {
+          window.__toliaConsent = c;
+          if (c === 'granted') {
+            window.gtag('consent', 'update', { analytics_storage: 'granted' });
+            (window.requestIdleCallback || function(cb){setTimeout(cb,1500)})(window.loadGtagScript);
+          }
+        }
+      })();
     </script>
     <meta property="og:title" content="Tolia by Innobiz — Proprietary Essential Oil Diffusion Technology">
   <meta name="twitter:title" content="Tolia by Innobiz — Proprietary Essential Oil Diffusion Technology">
