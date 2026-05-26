@@ -14,6 +14,7 @@ declare global {
 }
 
 interface FormData {
+  email: string;
   company: string;
   website: string;
   country: string;
@@ -31,6 +32,7 @@ const QualificationForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const formStartedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
+    email: '',
     company: '',
     website: '',
     country: '',
@@ -79,8 +81,8 @@ const QualificationForm: React.FC = () => {
 
   const canProceed = () => {
     switch (step) {
-      case 1: return formData.company.trim() && formData.country.trim();
-      case 2: return formData.market;
+      case 1: return formData.email.trim();
+      case 2: return formData.country.trim() && formData.market;
       case 3: return formData.salesRange && formData.timing;
       case 4: return formData.objective;
       default: return true;
@@ -225,13 +227,14 @@ const QualificationForm: React.FC = () => {
       {step === 1 && (
         <div className="space-y-5 animate-fade-in">
           <div className="space-y-2">
-            <Label htmlFor="company">
-              {language === 'fr' ? 'Nom de la marque / société' : 'Brand / Company name'} *
+            <Label htmlFor="email">
+              {language === 'fr' ? 'Email professionnel' : 'Professional email'} *
             </Label>
             <Input
-              id="company"
-              value={formData.company}
-              onChange={(e) => updateField('company', e.target.value)}
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => updateField('email', e.target.value)}
               onFocus={() => {
                 if (!formStartedRef.current) {
                   formStartedRef.current = true;
@@ -240,6 +243,20 @@ const QualificationForm: React.FC = () => {
                   }
                 }
               }}
+              placeholder={language === 'fr' ? 'prenom.nom@entreprise.com' : 'first.last@company.com'}
+              className="h-12"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="company">
+              {language === 'fr' ? 'Nom de la marque / société' : 'Brand / Company name'}
+            </Label>
+            <Input
+              id="company"
+              value={formData.company}
+              onChange={(e) => updateField('company', e.target.value)}
               placeholder={language === 'fr' ? 'Ex: Ma Belle Marque' : 'Ex: My Beautiful Brand'}
               className="h-12"
             />
@@ -260,19 +277,6 @@ const QualificationForm: React.FC = () => {
             </p>
           </div>
 
-          <div className="space-y-2">
-            <Label htmlFor="country">
-              {language === 'fr' ? "Pays principal d'activité" : 'Primary country of operation'} *
-            </Label>
-            <Input
-              id="country"
-              value={formData.country}
-              onChange={(e) => updateField('country', e.target.value)}
-              placeholder={language === 'fr' ? 'France, Belgique, UAE...' : 'France, Belgium, UAE...'}
-              className="h-12"
-            />
-          </div>
-
           <div className="flex items-start gap-2 p-3 bg-secondary/50 rounded-lg border border-border mt-4">
             <Shield className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
             <p className="text-xs text-muted-foreground">
@@ -287,6 +291,19 @@ const QualificationForm: React.FC = () => {
       {/* Step 2: Market */}
       {step === 2 && (
         <div className="space-y-5 animate-fade-in">
+          <div className="space-y-2">
+            <Label htmlFor="country">
+              {language === 'fr' ? "Pays principal d'activité" : 'Primary country of operation'} *
+            </Label>
+            <Input
+              id="country"
+              value={formData.country}
+              onChange={(e) => updateField('country', e.target.value)}
+              placeholder={language === 'fr' ? 'France, Belgique, UAE...' : 'France, Belgium, UAE...'}
+              className="h-12"
+            />
+          </div>
+
           <div className="space-y-2">
             <Label>{language === 'fr' ? 'Activité principale' : 'Main activity'} *</Label>
             <div className="grid grid-cols-1 gap-2">

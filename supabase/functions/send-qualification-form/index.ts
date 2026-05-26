@@ -7,7 +7,8 @@ const corsHeaders = {
 };
 
 interface QualificationFormRequest {
-  company: string;
+  email: string;
+  company?: string;
   website?: string;
   country: string;
   market: string;
@@ -29,11 +30,11 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const body: QualificationFormRequest = await req.json();
     const {
-      company, website, country, market, channels,
+      email, company, website, country, market, channels,
       salesRange, timing, objective, message,
     } = body;
 
-    if (!company || !country || !market || !salesRange || !timing || !objective) {
+    if (!email || !country || !market || !salesRange || !timing || !objective) {
       return new Response(
         JSON.stringify({ error: "Missing required fields." }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
@@ -41,7 +42,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     if (
-      company.length > 200 || country.length > 100 ||
+      email.length > 320 || (company && company.length > 200) || country.length > 100 ||
       (website && website.length > 500) ||
       (message && message.length > 5000)
     ) {
@@ -77,16 +78,17 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: FROM_ADDRESS,
         to: [TO_ADDRESS],
-        subject: `🎯 Nouveau lead qualifié – ${sanitize(company)} (${sanitize(country)})`,
+        subject: `🎯 Nouveau lead qualifié – ${sanitize(company || email)} (${sanitize(country)})`,
         html: `
           <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;">
             <div style="background:#1a365d;color:white;padding:20px;border-radius:8px 8px 0 0;">
               <h1 style="margin:0;font-size:22px;">🎯 Nouveau lead qualifié – Tolia</h1>
             </div>
             <div style="background:#f8fafc;padding:24px;border:1px solid #e2e8f0;border-top:none;">
-              <h2 style="color:#1a365d;margin-top:0;font-size:16px;">Société</h2>
+              <h2 style="color:#1a365d;margin-top:0;font-size:16px;">Contact</h2>
               <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
-                ${row("Société", sanitize(company))}
+                ${row("Email", `<a href="mailto:${sanitize(email)}" style="color:#3b82f6;">${sanitize(email)}</a>`)}
+                ${company ? row("Société", sanitize(company)) : ""}
                 ${website ? row("Site web", `<a href="${sanitize(website)}" style="color:#3b82f6;">${sanitize(website)}</a>`) : ""}
                 ${row("Pays", sanitize(country))}
               </table>
