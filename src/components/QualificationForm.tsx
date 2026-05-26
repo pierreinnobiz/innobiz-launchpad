@@ -214,10 +214,12 @@ const QualificationForm: React.FC = () => {
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 text-xs text-muted-foreground mb-2">
           <span className="bg-primary/10 text-primary px-2 py-0.5 rounded-full font-medium">
-            {step}/{totalSteps}
+            {language === 'fr'
+              ? 'Formulaire rapide — moins de 60 secondes'
+              : language === 'es'
+              ? 'Formulario rápido — menos de 60 segundos'
+              : 'Quick form — under 60 seconds'}
           </span>
-          <span>•</span>
-          <span>≈ 2 minutes</span>
         </div>
         <h3 className="text-xl font-semibold text-foreground mb-1">{currentStep.title}</h3>
         <p className="text-sm text-muted-foreground">{currentStep.subtitle}</p>
