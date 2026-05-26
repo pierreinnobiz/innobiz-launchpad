@@ -178,10 +178,46 @@ const Contact: React.FC = () => {
   const type = searchParams.get('type') || 'demo';
 
   const tabs = [
-    { key: 'demo', icon: Calendar, label: 'Book a demo', desc: 'Schedule a 30-minute call to see Tolia in action' },
-    { key: 'white-label', icon: Paintbrush, label: 'White-label quote', desc: 'Launch a custom diffuser under your own brand' },
-    { key: 'order', icon: Package, label: 'Order 300+ units', desc: 'Add branded Tolia to your catalog, ready to ship' },
-    { key: 'info', icon: MessageSquare, label: 'General inquiry', desc: 'Have a question? We\'re here to help' },
+    {
+      key: 'demo',
+      icon: Calendar,
+      label: language === 'fr' ? 'Réserver une démo' : language === 'es' ? 'Reservar una demo' : 'Book a demo',
+      desc: language === 'fr'
+        ? 'Réservez un appel de 30 min pour voir Tolia en action'
+        : language === 'es'
+        ? 'Reserve una llamada de 30 min para ver Tolia en acción'
+        : 'Schedule a 30-minute call to see Tolia in action',
+    },
+    {
+      key: 'white-label',
+      icon: Paintbrush,
+      label: language === 'fr' ? 'Devis marque blanche' : language === 'es' ? 'Presupuesto marca blanca' : 'White-label quote',
+      desc: language === 'fr'
+        ? 'Lancez un diffuseur personnalisé à votre marque'
+        : language === 'es'
+        ? 'Lance un difusor personalizado con su marca'
+        : 'Launch a custom diffuser under your own brand',
+    },
+    {
+      key: 'order',
+      icon: Package,
+      label: language === 'fr' ? 'Commander 300+ unités' : language === 'es' ? 'Pedir 300+ unidades' : 'Order 300+ units',
+      desc: language === 'fr'
+        ? 'Ajoutez Tolia à votre gamme'
+        : language === 'es'
+        ? 'Añada Tolia a su gama'
+        : 'Add branded Tolia to your range',
+    },
+    {
+      key: 'info',
+      icon: MessageSquare,
+      label: language === 'fr' ? 'Demande générale' : language === 'es' ? 'Consulta general' : 'General inquiry',
+      desc: language === 'fr'
+        ? 'Une question ? Nous sommes là pour vous aider'
+        : language === 'es'
+        ? '¿Una pregunta? Estamos aquí para ayudar'
+        : "Have a question? We're here to help",
+    },
   ];
 
   return (
@@ -190,8 +226,20 @@ const Contact: React.FC = () => {
       <section className="pt-32 pb-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="section-container">
           <ScrollReveal>
-            <h1 className="heading-display text-center mb-6">Let's talk</h1>
-            <p className="text-body-lg text-center max-w-2xl mx-auto">Choose the option that best fits your needs.</p>
+            <h1 className="heading-display text-center mb-6">
+              {language === 'fr'
+                ? 'Recevez votre échantillon Tolia gratuit'
+                : language === 'es'
+                ? 'Reciba su muestra Tolia gratis'
+                : 'Get your free Tolia sample'}
+            </h1>
+            <p className="text-body-lg text-center max-w-2xl mx-auto">
+              {language === 'fr'
+                ? "Choisissez l'option qui vous correspond le mieux."
+                : language === 'es'
+                ? 'Elija la opción que mejor se adapte a sus necesidades.'
+                : 'Choose the option that best fits your needs.'}
+            </p>
           </ScrollReveal>
         </div>
       </section>
