@@ -123,7 +123,7 @@ const handler = async (req: Request): Promise<Response> => {
       const errorBody = await emailResponse.text();
       console.error("Resend API error:", errorBody);
       return new Response(
-        JSON.stringify({ error: "Failed to send notification.", details: errorBody }),
+        JSON.stringify({ error: "Failed to send notification." }),
         { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
