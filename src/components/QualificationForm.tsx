@@ -68,22 +68,34 @@ const QualificationForm: React.FC = () => {
 
   const validate = (): boolean => {
     const next: Partial<Record<keyof FormState, string>> = {};
-    if (!data.name.trim()) next.name = t3(language, 'Requis', 'Required', 'Requerido');
-    if (!data.company.trim()) next.company = t3(language, 'Requis', 'Required', 'Requerido');
-    if (!data.email.trim()) next.email = t3(language, 'Requis', 'Required', 'Requerido');
+    const requiredMsg = t3(language, 'Ce champ est obligatoire', 'This field is required', 'Este campo es obligatorio');
+    if (!data.name.trim()) next.name = requiredMsg;
+    if (!data.company.trim()) next.company = requiredMsg;
+    if (!data.email.trim()) next.email = requiredMsg;
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
       next.email = t3(language, 'Email invalide', 'Invalid email', 'Email no válido');
-    if (!data.country) next.country = t3(language, 'Requis', 'Required', 'Requerido');
-    if (!data.address.trim()) next.address = t3(language, 'Requis', 'Required', 'Requerido');
+    if (!data.country) next.country = requiredMsg;
+    if (!data.address.trim()) next.address = requiredMsg;
     setErrors(next);
     return Object.keys(next).length === 0;
+  };
+
+  const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
+    stock_order: 'Stock order',
+    white_label: 'White-label production',
+    exploring: 'Just exploring for now',
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setIsSubmitting(true);
-    window.gtag?.('event', 'form_submit', { form_id: 'sample_request_main' });
+
+    window.gtag?.('event', 'form_submit', {
+      form_id: 'sample_request_main',
+      project_type: data.projectType,
+      country: data.country,
+    });
 
     try {
       await supabase.functions.invoke('send-qualification-form', {
@@ -96,6 +108,7 @@ const QualificationForm: React.FC = () => {
           role: data.role,
           phone: data.phone,
           project_type: data.projectType,
+          project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
         },
       });
       setIsSubmitted(true);
@@ -180,6 +193,7 @@ const QualificationForm: React.FC = () => {
           <Label htmlFor="qf-name">{t3(language, 'Votre nom', 'Your name', 'Su nombre')} *</Label>
           <Input
             id="qf-name"
+            required
             value={data.name}
             onChange={(e) => update('name', e.target.value)}
             onFocus={handleFormStart}
@@ -187,20 +201,21 @@ const QualificationForm: React.FC = () => {
             className="h-11 rounded-xl"
             aria-invalid={!!errors.name}
           />
-          {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+          {errors.name && <p className="text-[13px] text-destructive">{errors.name}</p>}
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="qf-company">{t3(language, 'Société', 'Company', 'Empresa')} *</Label>
           <Input
             id="qf-company"
+            required
             value={data.company}
             onChange={(e) => update('company', e.target.value)}
             onFocus={handleFormStart}
-            placeholder="Acme Aromatherapy"
+            placeholder={t3(language, 'Acme Aromathérapie', 'Acme Aromatherapy', 'Acme Aromaterapia')}
             className="h-11 rounded-xl"
             aria-invalid={!!errors.company}
           />
-          {errors.company && <p className="text-xs text-destructive">{errors.company}</p>}
+          {errors.company && <p className="text-[13px] text-destructive">{errors.company}</p>}
         </div>
       </div>
 
@@ -210,6 +225,7 @@ const QualificationForm: React.FC = () => {
         <Input
           id="qf-email"
           type="email"
+          required
           value={data.email}
           onChange={(e) => update('email', e.target.value)}
           onFocus={handleFormStart}
@@ -217,15 +233,15 @@ const QualificationForm: React.FC = () => {
           className="h-11 rounded-xl"
           aria-invalid={!!errors.email}
         />
-        {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
+        {errors.email && <p className="text-[13px] text-destructive">{errors.email}</p>}
       </div>
 
       {/* Row 3: country (1fr) + address (2fr) */}
       <div className="grid sm:grid-cols-3 gap-4">
         <div className="space-y-1.5 sm:col-span-1">
           <Label htmlFor="qf-country">{t3(language, 'Pays', 'Country', 'País')} *</Label>
-          <Select value={data.country} onValueChange={(v) => update('country', v)}>
-            <SelectTrigger id="qf-country" className="h-11 rounded-xl" aria-invalid={!!errors.country}>
+          <Select value={data.country} onValueChange={(v) => update('country', v)} required>
+            <SelectTrigger id="qf-country" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true">
               <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
             </SelectTrigger>
             <SelectContent className="bg-card max-h-72">
@@ -234,12 +250,13 @@ const QualificationForm: React.FC = () => {
               ))}
             </SelectContent>
           </Select>
-          {errors.country && <p className="text-xs text-destructive">{errors.country}</p>}
+          {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
         </div>
         <div className="space-y-1.5 sm:col-span-2">
           <Label htmlFor="qf-address">{t3(language, 'Adresse de livraison', 'Shipping address', 'Dirección de envío')} *</Label>
           <Input
             id="qf-address"
+            required
             value={data.address}
             onChange={(e) => update('address', e.target.value)}
             onFocus={handleFormStart}
@@ -247,7 +264,7 @@ const QualificationForm: React.FC = () => {
             className="h-11 rounded-xl"
             aria-invalid={!!errors.address}
           />
-          {errors.address && <p className="text-xs text-destructive">{errors.address}</p>}
+          {errors.address && <p className="text-[13px] text-destructive">{errors.address}</p>}
         </div>
       </div>
 
