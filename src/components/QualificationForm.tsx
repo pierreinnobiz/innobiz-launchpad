@@ -227,13 +227,14 @@ const QualificationForm: React.FC = () => {
       {step === 1 && (
         <div className="space-y-5 animate-fade-in">
           <div className="space-y-2">
-            <Label htmlFor="company">
-              {language === 'fr' ? 'Nom de la marque / société' : 'Brand / Company name'} *
+            <Label htmlFor="email">
+              {language === 'fr' ? 'Email professionnel' : 'Professional email'} *
             </Label>
             <Input
-              id="company"
-              value={formData.company}
-              onChange={(e) => updateField('company', e.target.value)}
+              id="email"
+              type="email"
+              value={formData.email}
+              onChange={(e) => updateField('email', e.target.value)}
               onFocus={() => {
                 if (!formStartedRef.current) {
                   formStartedRef.current = true;
@@ -242,6 +243,20 @@ const QualificationForm: React.FC = () => {
                   }
                 }
               }}
+              placeholder={language === 'fr' ? 'prenom.nom@entreprise.com' : 'first.last@company.com'}
+              className="h-12"
+              required
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label htmlFor="company">
+              {language === 'fr' ? 'Nom de la marque / société' : 'Brand / Company name'}
+            </Label>
+            <Input
+              id="company"
+              value={formData.company}
+              onChange={(e) => updateField('company', e.target.value)}
               placeholder={language === 'fr' ? 'Ex: Ma Belle Marque' : 'Ex: My Beautiful Brand'}
               className="h-12"
             />
@@ -260,19 +275,6 @@ const QualificationForm: React.FC = () => {
             <p className="text-xs text-muted-foreground">
               {language === 'fr' ? 'Facultatif, nous aide à mieux vous connaître' : 'Optional, helps us know you better'}
             </p>
-          </div>
-
-          <div className="space-y-2">
-            <Label htmlFor="country">
-              {language === 'fr' ? "Pays principal d'activité" : 'Primary country of operation'} *
-            </Label>
-            <Input
-              id="country"
-              value={formData.country}
-              onChange={(e) => updateField('country', e.target.value)}
-              placeholder={language === 'fr' ? 'France, Belgique, UAE...' : 'France, Belgium, UAE...'}
-              className="h-12"
-            />
           </div>
 
           <div className="flex items-start gap-2 p-3 bg-secondary/50 rounded-lg border border-border mt-4">
