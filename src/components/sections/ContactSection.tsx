@@ -13,6 +13,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { fadeBlurUp } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
+import FastTrackDeckForm from '@/components/FastTrackDeckForm';
 
 type Path = 'white-label' | 'stock';
 
