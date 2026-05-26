@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -36,6 +36,7 @@ const ContactSection: React.FC = () => {
   const [stockQty, setStockQty] = useState('');
   const [stockCountry, setStockCountry] = useState('');
   const [stockTiming, setStockTiming] = useState('');
+  const formStartedRef = useRef(false);
 
   const roles = [
     t3(language, 'PDG', 'CEO', 'CEO'),
@@ -86,6 +87,9 @@ const ContactSection: React.FC = () => {
     setIsSubmitting(true);
     const trackLabel = path === 'white-label' ? 'contact_submit_whitelabel' : 'contact_submit_stock';
     trackCTAClick(trackLabel, 'contact-form');
+    if (window.gtag) {
+      window.gtag('event', 'form_submit', { form_id: 'contact_main' });
+    }
 
     const payload = {
       path, name, company, role, email, website, country, notes,
@@ -228,7 +232,7 @@ const ContactSection: React.FC = () => {
             <div className="grid sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="name">{t3(language, 'Nom complet *', 'Full name *', 'Nombre completo *')}</Label>
-                <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} className="rounded-xl" placeholder={t3(language, 'Marie Dupont', 'Jane Smith', 'María García')} />
+                <Input id="name" required value={name} onChange={(e) => setName(e.target.value)} onFocus={() => { if (!formStartedRef.current) { formStartedRef.current = true; if (window.gtag) { window.gtag('event', 'form_start', { form_id: 'contact_main' }); } } }} className="rounded-xl" placeholder={t3(language, 'Marie Dupont', 'Jane Smith', 'María García')} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="company">{t3(language, 'Entreprise *', 'Company *', 'Empresa *')}</Label>

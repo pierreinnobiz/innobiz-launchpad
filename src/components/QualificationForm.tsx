@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,6 +6,12 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowRight, ArrowLeft, CheckCircle2, Shield, Sparkles, Check, Calendar } from 'lucide-react';
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
 
 interface FormData {
   company: string;
@@ -23,6 +29,7 @@ const QualificationForm: React.FC = () => {
   const { language } = useLanguage();
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const formStartedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
     company: '',
     website: '',
@@ -55,6 +62,9 @@ const QualificationForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (window.gtag) {
+      window.gtag('event', 'form_submit', { form_id: 'contact_main' });
+    }
     try {
       const { supabase } = await import('@/integrations/supabase/client');
       const { error } = await supabase.functions.invoke('send-qualification-form', {
@@ -222,6 +232,14 @@ const QualificationForm: React.FC = () => {
               id="company"
               value={formData.company}
               onChange={(e) => updateField('company', e.target.value)}
+              onFocus={() => {
+                if (!formStartedRef.current) {
+                  formStartedRef.current = true;
+                  if (window.gtag) {
+                    window.gtag('event', 'form_start', { form_id: 'contact_main' });
+                  }
+                }
+              }}
               placeholder={language === 'fr' ? 'Ex: Ma Belle Marque' : 'Ex: My Beautiful Brand'}
               className="h-12"
             />
@@ -466,7 +484,12 @@ const QualificationForm: React.FC = () => {
         {step < totalSteps ? (
           <Button
             type="button"
-            onClick={() => setStep(step + 1)}
+            onClick={() => {
+              if (window.gtag) {
+                window.gtag('event', 'form_step_complete', { step_number: step });
+              }
+              setStep(step + 1);
+            }}
             disabled={!canProceed()}
             className="flex-1 h-12 bg-primary hover:bg-primary/90"
           >
