@@ -32,6 +32,7 @@ const QualificationForm: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const formStartedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
+    email: '',
     company: '',
     website: '',
     country: '',
