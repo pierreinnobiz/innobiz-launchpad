@@ -193,6 +193,19 @@ const ContactSection: React.FC = () => {
           </span>
         </motion.div>
 
+        <FastTrackDeckForm />
+
+        <div className="text-center my-8">
+          <p className="text-sm text-muted-foreground">
+            {t3(
+              language,
+              'Ou dites-nous en plus sur votre projet →',
+              'Or tell us more about your project →',
+              'O cuéntenos más sobre su proyecto →'
+            )}
+          </p>
+        </div>
+
         <motion.div
           className="bg-card rounded-3xl p-8 md:p-10 border border-border/50 shadow-lg"
           initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
