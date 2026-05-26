@@ -484,7 +484,12 @@ const QualificationForm: React.FC = () => {
         {step < totalSteps ? (
           <Button
             type="button"
-            onClick={() => setStep(step + 1)}
+            onClick={() => {
+              if (window.gtag) {
+                window.gtag('event', 'form_step_complete', { step_number: step });
+              }
+              setStep(step + 1);
+            }}
             disabled={!canProceed()}
             className="flex-1 h-12 bg-primary hover:bg-primary/90"
           >
