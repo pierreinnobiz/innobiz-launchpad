@@ -14,6 +14,7 @@ declare global {
 }
 
 interface FormData {
+  email: string;
   company: string;
   website: string;
   country: string;
