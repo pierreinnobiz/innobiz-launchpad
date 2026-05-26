@@ -232,6 +232,14 @@ const QualificationForm: React.FC = () => {
               id="company"
               value={formData.company}
               onChange={(e) => updateField('company', e.target.value)}
+              onFocus={() => {
+                if (!formStartedRef.current) {
+                  formStartedRef.current = true;
+                  if (window.gtag) {
+                    window.gtag('event', 'form_start', { form_id: 'contact_main' });
+                  }
+                }
+              }}
               placeholder={language === 'fr' ? 'Ex: Ma Belle Marque' : 'Ex: My Beautiful Brand'}
               className="h-12"
             />
