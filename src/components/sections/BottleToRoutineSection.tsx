@@ -16,7 +16,7 @@ const BottleToRoutineSection: React.FC = () => {
     { title: t3(l, "Des synergies saisonnières pour un diffuseur utilisé toute l'année", "Seasonal blends that keep your diffuser in use all year", "Sinergias estacionales para un difusor usado todo el año"), text: t3(l, "Proposez des coffrets de trois synergies adaptées aux saisons : confort en hiver, fraîcheur en été, focus à la rentrée. Chaque nouveau coffret relance l'intérêt, nourrit la relation client et maintient Tolia au cœur du quotidien.", "Offer three-blend gift sets tailored to the seasons: comfort in winter, freshness in summer, focus at back-to-school. Each new set reignites interest, nurtures the customer relationship and keeps Tolia at the heart of daily life.", "Ofrezca estuches de tres sinergias adaptadas a las estaciones: confort en invierno, frescura en verano, concentración en la vuelta al cole. Cada nuevo estuche reaviva el interés, nutre la relación con el cliente y mantiene Tolia en el centro de la vida diaria.") },
   ];
 
-  const ctaText = t3(l, 'Planifiez votre démo et recevez votre échantillon', 'Book your demo and get your free sample', 'Reserve su demo y reciba su muestra gratis');
+  const ctaText = t3(l, 'Recevez votre échantillon Tolia gratuit', 'Get your free Tolia sample', 'Reciba su muestra Tolia gratis');
 
   return (
     <section id="routine" className="section-padding relative overflow-hidden" style={{ background: 'hsl(35 30% 96%)' }}>

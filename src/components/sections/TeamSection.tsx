@@ -9,7 +9,7 @@ import MagneticButton from '@/components/MagneticButton';
 
 const TeamSection: React.FC = () => {
   const { language: l } = useLanguage();
-  const ctaText = t3(l, 'Planifiez votre démo et recevez votre échantillon', 'Book your demo and get your free sample', 'Reserve su demo y reciba su muestra gratis');
+  const ctaText = t3(l, 'Recevez votre échantillon Tolia gratuit', 'Get your free Tolia sample', 'Reciba su muestra Tolia gratis');
 
   return (
     <section className="section-padding bg-background relative overflow-hidden">

@@ -16,7 +16,7 @@ const fadeUp: Variants = {
 const RSESection: React.FC = () => {
   const { language: l } = useLanguage();
 
-  const ctaText = t3(l, 'Planifiez votre démo et recevez votre échantillon', 'Book your demo and get your free sample', 'Reserve su demo y reciba su muestra gratis');
+  const ctaText = t3(l, 'Recevez votre échantillon Tolia gratuit', 'Get your free Tolia sample', 'Reciba su muestra Tolia gratis');
 
   return (
     <section id="rse" className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(35 30% 96%) 0%, hsl(30 25% 93%) 100%)' }}>
