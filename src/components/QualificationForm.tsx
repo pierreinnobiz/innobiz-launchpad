@@ -292,6 +292,19 @@ const QualificationForm: React.FC = () => {
       {step === 2 && (
         <div className="space-y-5 animate-fade-in">
           <div className="space-y-2">
+            <Label htmlFor="country">
+              {language === 'fr' ? "Pays principal d'activité" : 'Primary country of operation'} *
+            </Label>
+            <Input
+              id="country"
+              value={formData.country}
+              onChange={(e) => updateField('country', e.target.value)}
+              placeholder={language === 'fr' ? 'France, Belgique, UAE...' : 'France, Belgium, UAE...'}
+              className="h-12"
+            />
+          </div>
+
+          <div className="space-y-2">
             <Label>{language === 'fr' ? 'Activité principale' : 'Main activity'} *</Label>
             <div className="grid grid-cols-1 gap-2">
               {marketOptions.map((m) => (
