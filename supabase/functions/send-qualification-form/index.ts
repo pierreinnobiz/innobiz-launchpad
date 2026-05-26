@@ -6,21 +6,25 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version",
 };
 
-interface QualificationFormRequest {
-  email: string;
+interface SampleRequest {
+  name?: string;
   company?: string;
-  website?: string;
+  email: string;
   country: string;
-  market: string;
-  channels: string[];
-  salesRange: string;
-  timing: string;
-  objective: string;
-  message?: string;
+  address?: string;
+  role?: string;
+  phone?: string;
+  project_type?: "stock_order" | "white_label" | "exploring";
 }
 
-const FROM_ADDRESS = "Tolia Qualification <noreply@innobiz-tolia.com>";
+const FROM_ADDRESS = "Tolia Sample <noreply@innobiz-tolia.com>";
 const TO_ADDRESS = "pierre.innobiz@gmail.com";
+
+const PROJECT_LABEL: Record<string, string> = {
+  stock_order: "Stock order (300+ units)",
+  white_label: "White-label production (3,000+ units)",
+  exploring: "Just exploring",
+};
 
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
@@ -28,13 +32,10 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const body: QualificationFormRequest = await req.json();
-    const {
-      email, company, website, country, market, channels,
-      salesRange, timing, objective, message,
-    } = body;
+    const body: SampleRequest = await req.json();
+    const { name, company, email, country, address, role, phone, project_type } = body;
 
-    if (!email || !country || !market || !salesRange || !timing || !objective) {
+    if (!email || !country) {
       return new Response(
         JSON.stringify({ error: "Missing required fields." }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
@@ -42,9 +43,13 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     if (
-      email.length > 320 || (company && company.length > 200) || country.length > 100 ||
-      (website && website.length > 500) ||
-      (message && message.length > 5000)
+      email.length > 320 ||
+      (name && name.length > 200) ||
+      (company && company.length > 200) ||
+      country.length > 100 ||
+      (address && address.length > 500) ||
+      (role && role.length > 200) ||
+      (phone && phone.length > 50)
     ) {
       return new Response(
         JSON.stringify({ error: "Input exceeds maximum length." }),
@@ -67,7 +72,7 @@ const handler = async (req: Request): Promise<Response> => {
     const row = (label: string, value: string) =>
       `<tr><td style="padding:8px 0;color:#64748b;width:180px;vertical-align:top;">${label}</td><td style="padding:8px 0;color:#1e293b;font-weight:500;">${value}</td></tr>`;
 
-    const channelsStr = channels && channels.length ? channels.join(", ") : "—";
+    const projectLabel = project_type ? (PROJECT_LABEL[project_type] || project_type) : "—";
 
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
@@ -78,41 +83,35 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: FROM_ADDRESS,
         to: [TO_ADDRESS],
-        subject: `🎯 Nouveau lead qualifié – ${sanitize(company || email)} (${sanitize(country)})`,
+        subject: `📦 Nouvelle demande d'échantillon – ${sanitize(company || name || email)} (${sanitize(country)})`,
         html: `
           <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;">
-            <div style="background:#1a365d;color:white;padding:20px;border-radius:8px 8px 0 0;">
-              <h1 style="margin:0;font-size:22px;">🎯 Nouveau lead qualifié – Tolia</h1>
+            <div style="background:#B17743;color:white;padding:20px;border-radius:8px 8px 0 0;">
+              <h1 style="margin:0;font-size:22px;">📦 Nouvelle demande d'échantillon Tolia</h1>
             </div>
             <div style="background:#f8fafc;padding:24px;border:1px solid #e2e8f0;border-top:none;">
-              <h2 style="color:#1a365d;margin-top:0;font-size:16px;">Contact</h2>
+              <h2 style="color:#B17743;margin-top:0;font-size:16px;">Contact</h2>
               <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
-                ${row("Email", `<a href="mailto:${sanitize(email)}" style="color:#3b82f6;">${sanitize(email)}</a>`)}
+                ${name ? row("Nom", sanitize(name)) : ""}
                 ${company ? row("Société", sanitize(company)) : ""}
-                ${website ? row("Site web", `<a href="${sanitize(website)}" style="color:#3b82f6;">${sanitize(website)}</a>`) : ""}
+                ${role ? row("Poste", sanitize(role)) : ""}
+                ${row("Email", `<a href="mailto:${sanitize(email)}" style="color:#3b82f6;">${sanitize(email)}</a>`)}
+                ${phone ? row("Téléphone", sanitize(phone)) : ""}
+              </table>
+
+              <h2 style="color:#B17743;font-size:16px;">Livraison</h2>
+              <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
                 ${row("Pays", sanitize(country))}
+                ${address ? row("Adresse", sanitize(address)) : ""}
               </table>
 
-              <h2 style="color:#1a365d;font-size:16px;">Marché</h2>
+              <h2 style="color:#B17743;font-size:16px;">Intérêt projet</h2>
               <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
-                ${row("Activité", sanitize(market))}
-                ${row("Canaux", sanitize(channelsStr))}
+                ${row("Type", sanitize(projectLabel))}
               </table>
-
-              <h2 style="color:#1a365d;font-size:16px;">Potentiel projet</h2>
-              <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
-                ${row("Volume annuel", sanitize(salesRange))}
-                ${row("Timing", sanitize(timing))}
-                ${row("Objectif", sanitize(objective))}
-              </table>
-
-              ${message ? `
-                <h2 style="color:#1a365d;font-size:16px;">Message</h2>
-                <div style="background:white;padding:12px;border:1px solid #e2e8f0;border-radius:6px;color:#1e293b;white-space:pre-wrap;">${sanitize(message)}</div>
-              ` : ""}
             </div>
-            <div style="background:#1a365d;color:white;padding:14px;border-radius:0 0 8px 8px;text-align:center;">
-              <p style="margin:0;font-size:13px;">Tolia by INNOBIZ – Formulaire de qualification</p>
+            <div style="background:#B17743;color:white;padding:14px;border-radius:0 0 8px 8px;text-align:center;">
+              <p style="margin:0;font-size:13px;">Tolia by INNOBIZ – Demande d'échantillon</p>
             </div>
           </div>
         `,
