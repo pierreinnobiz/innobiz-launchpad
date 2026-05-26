@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const STORAGE_KEY = 'tolia_cookie_consent';
+const COOKIE_MAX_AGE_DAYS = 180;
 
 type Choice = 'granted' | 'denied' | null;
 
@@ -13,25 +14,74 @@ declare global {
   interface Window {
     gtag?: (...args: unknown[]) => void;
     loadGtagScript?: () => void;
+    __toliaConsent?: 'granted' | 'denied';
   }
 }
 
-const readChoice = (): Choice => {
+// Layered persistence: in-memory (window) → sessionStorage → cookie → localStorage.
+// Even if one layer is blocked (Safari ITP, private mode, strict browsers, iframe
+// sandboxes), the choice stays consistent for the whole session without reloading GA4.
+const isValid = (v: unknown): v is 'granted' | 'denied' =>
+  v === 'granted' || v === 'denied';
+
+const readCookie = (): Choice => {
   try {
-    const v = localStorage.getItem(STORAGE_KEY);
-    if (v === 'granted' || v === 'denied') return v;
+    const match = document.cookie.match(
+      new RegExp('(?:^|; )' + STORAGE_KEY + '=([^;]*)')
+    );
+    if (match && isValid(match[1])) return match[1];
   } catch {
-    /* storage blocked */
+    /* cookies blocked */
   }
   return null;
 };
 
-const writeChoice = (choice: 'granted' | 'denied') => {
+const writeCookie = (choice: 'granted' | 'denied') => {
   try {
-    localStorage.setItem(STORAGE_KEY, choice);
+    const maxAge = COOKIE_MAX_AGE_DAYS * 24 * 60 * 60;
+    const secure = location.protocol === 'https:' ? '; Secure' : '';
+    document.cookie = `${STORAGE_KEY}=${choice}; Max-Age=${maxAge}; Path=/; SameSite=Lax${secure}`;
   } catch {
-    /* storage blocked — choice kept in memory via state */
+    /* cookies blocked */
   }
+};
+
+const readChoice = (): Choice => {
+  // 1. In-memory (always available within the tab)
+  if (typeof window !== 'undefined' && isValid(window.__toliaConsent)) {
+    return window.__toliaConsent;
+  }
+  // 2. sessionStorage (survives SPA navigation, cleared on tab close)
+  try {
+    const v = sessionStorage.getItem(STORAGE_KEY);
+    if (isValid(v)) {
+      window.__toliaConsent = v;
+      return v;
+    }
+  } catch { /* blocked */ }
+  // 3. Cookie (survives sessions, works when storage APIs are blocked)
+  const c = readCookie();
+  if (c) {
+    window.__toliaConsent = c;
+    return c;
+  }
+  // 4. localStorage (long-term, may be blocked first)
+  try {
+    const v = localStorage.getItem(STORAGE_KEY);
+    if (isValid(v)) {
+      window.__toliaConsent = v;
+      return v;
+    }
+  } catch { /* blocked */ }
+  return null;
+};
+
+const writeChoice = (choice: 'granted' | 'denied') => {
+  // Always set in-memory first — guarantees session consistency.
+  if (typeof window !== 'undefined') window.__toliaConsent = choice;
+  try { sessionStorage.setItem(STORAGE_KEY, choice); } catch { /* blocked */ }
+  writeCookie(choice);
+  try { localStorage.setItem(STORAGE_KEY, choice); } catch { /* blocked */ }
 };
 
 const CookieConsent = () => {
@@ -39,7 +89,19 @@ const CookieConsent = () => {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    if (readChoice() === null) setVisible(true);
+    const current = readChoice();
+    if (current === null) {
+      setVisible(true);
+    } else if (window.gtag) {
+      // Re-assert GA4 consent state from persistence on every mount.
+      // No reload, no duplicate gtag.js — loadGtagScript is idempotent via __gtagLoaded.
+      window.gtag('consent', 'update', {
+        analytics_storage: current === 'granted' ? 'granted' : 'denied',
+      });
+      if (current === 'granted' && typeof window.loadGtagScript === 'function') {
+        window.loadGtagScript();
+      }
+    }
   }, []);
 
   const decide = (choice: 'granted' | 'denied') => {
@@ -50,7 +112,7 @@ const CookieConsent = () => {
         analytics_storage: choice === 'granted' ? 'granted' : 'denied',
       });
     }
-    // Lazy-load gtag.js ONLY after explicit consent. Until then, no GA cookie is set.
+    // Lazy-load gtag.js ONLY after explicit consent. Idempotent: safe on re-call.
     if (choice === 'granted' && typeof window.loadGtagScript === 'function') {
       window.loadGtagScript();
     }
