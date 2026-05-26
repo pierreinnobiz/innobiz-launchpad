@@ -68,22 +68,34 @@ const QualificationForm: React.FC = () => {
 
   const validate = (): boolean => {
     const next: Partial<Record<keyof FormState, string>> = {};
-    if (!data.name.trim()) next.name = t3(language, 'Requis', 'Required', 'Requerido');
-    if (!data.company.trim()) next.company = t3(language, 'Requis', 'Required', 'Requerido');
-    if (!data.email.trim()) next.email = t3(language, 'Requis', 'Required', 'Requerido');
+    const requiredMsg = t3(language, 'Ce champ est obligatoire', 'This field is required', 'Este campo es obligatorio');
+    if (!data.name.trim()) next.name = requiredMsg;
+    if (!data.company.trim()) next.company = requiredMsg;
+    if (!data.email.trim()) next.email = requiredMsg;
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
       next.email = t3(language, 'Email invalide', 'Invalid email', 'Email no válido');
-    if (!data.country) next.country = t3(language, 'Requis', 'Required', 'Requerido');
-    if (!data.address.trim()) next.address = t3(language, 'Requis', 'Required', 'Requerido');
+    if (!data.country) next.country = requiredMsg;
+    if (!data.address.trim()) next.address = requiredMsg;
     setErrors(next);
     return Object.keys(next).length === 0;
+  };
+
+  const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
+    stock_order: 'Stock order',
+    white_label: 'White-label production',
+    exploring: 'Just exploring for now',
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) return;
     setIsSubmitting(true);
-    window.gtag?.('event', 'form_submit', { form_id: 'sample_request_main' });
+
+    window.gtag?.('event', 'form_submit', {
+      form_id: 'sample_request_main',
+      project_type: data.projectType,
+      country: data.country,
+    });
 
     try {
       await supabase.functions.invoke('send-qualification-form', {
@@ -96,6 +108,7 @@ const QualificationForm: React.FC = () => {
           role: data.role,
           phone: data.phone,
           project_type: data.projectType,
+          project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
         },
       });
       setIsSubmitted(true);
