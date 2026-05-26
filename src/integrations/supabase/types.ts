@@ -82,21 +82,6 @@ export type Database = {
           },
         ]
       }
-      documents_bucket_placeholder: {
-        Row: {
-          created_at: string | null
-          id: string
-        }
-        Insert: {
-          created_at?: string | null
-          id?: string
-        }
-        Update: {
-          created_at?: string | null
-          id?: string
-        }
-        Relationships: []
-      }
       user_roles: {
         Row: {
           created_at: string | null
