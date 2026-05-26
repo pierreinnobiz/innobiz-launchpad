@@ -81,8 +81,8 @@ const QualificationForm: React.FC = () => {
 
   const canProceed = () => {
     switch (step) {
-      case 1: return formData.company.trim() && formData.country.trim();
-      case 2: return formData.market;
+      case 1: return formData.email.trim();
+      case 2: return formData.country.trim() && formData.market;
       case 3: return formData.salesRange && formData.timing;
       case 4: return formData.objective;
       default: return true;
