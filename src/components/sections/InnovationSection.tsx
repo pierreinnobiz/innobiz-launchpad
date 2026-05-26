@@ -22,7 +22,7 @@ const InnovationSection: React.FC = () => {
     { icon: Volume2, label: t3(l, 'Totalement silencieux', 'Completely silent', 'Totalmente silencioso') },
   ];
 
-  const ctaText = t3(l, 'Planifiez votre démo et recevez votre échantillon', 'Book your demo and get your free sample', 'Reserve su demo y reciba su muestra gratis');
+  const ctaText = t3(l, 'Recevez votre échantillon Tolia gratuit', 'Get your free Tolia sample', 'Reciba su muestra Tolia gratis');
 
   return (
     <section className="section-padding relative overflow-hidden" style={{ background: 'linear-gradient(180deg, hsl(30 25% 93%) 0%, hsl(30 40% 94%) 100%)' }}>

@@ -15,7 +15,7 @@ const fadeUp: Variants = { hidden: { opacity: 0, y: 30, filter: 'blur(4px)' }, v
 
 const PartnershipSection: React.FC = () => {
   const { language: l } = useLanguage();
-  const ctaText = t3(l, 'Planifiez votre démo et recevez votre échantillon', 'Book your demo and get your free sample', 'Reserve su demo y reciba su muestra gratis');
+  const ctaText = t3(l, 'Recevez votre échantillon Tolia gratuit', 'Get your free Tolia sample', 'Reciba su muestra Tolia gratis');
 
   const steps = [
     { icon: Search, step: "01", title: t3(l, "Exploration & définition", "Exploration & definition", "Exploración y definición"), text: t3(l, "Définition de votre programme de routines : cibles, usages, moments de vie. Nous identifions ensemble les leviers de croissance les plus adaptés à votre marque.", "Defining your routine programme: targets, uses, life moments. Together, we identify the growth levers best suited to your brand.", "Definición de su programa de rutinas: objetivos, usos, momentos de vida. Juntos, identificamos las palancas de crecimiento más adecuadas para su marca.") },

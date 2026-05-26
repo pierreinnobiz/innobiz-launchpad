@@ -14,9 +14,9 @@ const RangeRationalizationSection: React.FC = () => {
   const { language: l } = useLanguage();
 
   const ctaText = t3(l,
-    'Planifiez votre démo et recevez votre échantillon',
-    'Book your demo and get your free sample',
-    'Reserve su demo y reciba su muestra gratis'
+    'Recevez votre échantillon Tolia gratuit',
+    'Get your free Tolia sample',
+    'Reciba su muestra Tolia gratis'
   );
 
   const benefits = [

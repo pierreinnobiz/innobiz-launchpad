@@ -19,7 +19,7 @@ const Footer: React.FC = () => {
         <a href="#contact" onClick={() => trackCTAClick('footer_cta', 'footer')}>
           <Button className="bg-primary-foreground text-primary font-semibold rounded-2xl px-6 py-3 text-sm hover:brightness-95 transition-all group">
             <Gift className="w-4 h-4 mr-2" />
-            {t3(language, 'Recevez votre échantillon + deck partenaires', 'Get your free sample + brand deck', 'Reciba su muestra gratis + deck de socios')}
+            {t3(language, 'Recevez votre échantillon Tolia gratuit', 'Get your free Tolia sample', 'Reciba su muestra Tolia gratis')}
             <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
           </Button>
         </a>

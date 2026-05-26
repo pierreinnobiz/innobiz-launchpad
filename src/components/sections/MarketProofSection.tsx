@@ -142,7 +142,7 @@ const MarketProofSection: React.FC = () => {
           <MagneticButton>
             <a href="#contact" onClick={() => trackCTAClick('market_proof_cta', 'market-proof')}>
               <Button className="btn-hero-primary group">
-                {t3(language, "Voir comment l'appliquer à votre marque", 'See how this could apply to your brand', 'Vea cómo esto podría aplicarse a su marca')}
+                {t3(language, "Recevez un échantillon et jugez par vous-même", 'Get a sample and see for yourself', 'Reciba una muestra y juzgue usted mismo')}
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>
             </a>
