@@ -1,4 +1,10 @@
-import React, { createContext, useContext, useState, ReactNode, useMemo } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useMemo, useEffect } from 'react';
+
+const HTML_LANG_MAP: Record<'fr' | 'en' | 'es', string> = {
+  fr: 'fr-FR',
+  en: 'en-GB',
+  es: 'es-ES',
+};
 
 type Language = 'fr' | 'en' | 'es';
 
@@ -217,6 +223,12 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   const t = (key: string): string => {
     return translations[key]?.[language] || translations[key]?.['en'] || key;
   };
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = HTML_LANG_MAP[language] || 'en-GB';
+    }
+  }, [language]);
 
   const value = useMemo(() => ({ language, setLanguage, t }), [language]);
 
