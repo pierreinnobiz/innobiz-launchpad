@@ -7,7 +7,8 @@ const corsHeaders = {
 };
 
 interface QualificationFormRequest {
-  company: string;
+  email: string;
+  company?: string;
   website?: string;
   country: string;
   market: string;
