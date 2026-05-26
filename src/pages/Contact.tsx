@@ -5,6 +5,7 @@ import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import QualificationForm from '@/components/QualificationForm';
+import FastTrackDeckForm from '@/components/FastTrackDeckForm';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
