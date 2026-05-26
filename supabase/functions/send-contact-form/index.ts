@@ -38,6 +38,21 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    const isValidUrl = (url: string) => {
+      try {
+        const parsed = new URL(url);
+        return ["https:", "http:"].includes(parsed.protocol);
+      } catch {
+        return false;
+      }
+    };
+    if (website && !isValidUrl(website)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid website URL." }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     if (!RESEND_API_KEY) {
       console.error("Missing RESEND_API_KEY");
