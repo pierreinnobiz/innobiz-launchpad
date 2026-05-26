@@ -62,6 +62,9 @@ const QualificationForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (window.gtag) {
+      window.gtag('event', 'form_submit', { form_id: 'contact_main' });
+    }
     try {
       const { supabase } = await import('@/integrations/supabase/client');
       const { error } = await supabase.functions.invoke('send-qualification-form', {
