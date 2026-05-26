@@ -30,11 +30,11 @@ const handler = async (req: Request): Promise<Response> => {
   try {
     const body: QualificationFormRequest = await req.json();
     const {
-      company, website, country, market, channels,
+      email, company, website, country, market, channels,
       salesRange, timing, objective, message,
     } = body;
 
-    if (!company || !country || !market || !salesRange || !timing || !objective) {
+    if (!email || !country || !market || !salesRange || !timing || !objective) {
       return new Response(
         JSON.stringify({ error: "Missing required fields." }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
@@ -42,7 +42,7 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     if (
-      company.length > 200 || country.length > 100 ||
+      email.length > 320 || (company && company.length > 200) || country.length > 100 ||
       (website && website.length > 500) ||
       (message && message.length > 5000)
     ) {
