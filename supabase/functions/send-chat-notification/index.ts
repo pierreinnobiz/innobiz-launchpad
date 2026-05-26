@@ -8,12 +8,9 @@ const corsHeaders = {
 };
 
 interface ChatNotificationRequest {
-  firstName: string;
-  lastName: string;
-  email: string;
-  phone: string;
   message: string;
   contactId: string;
+  secretToken: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -23,24 +20,24 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const body: ChatNotificationRequest = await req.json();
-    const { firstName, lastName, email, phone, message, contactId } = body;
+    const { message, contactId, secretToken } = body;
 
     // Input validation
-    if (!firstName || !lastName || !email || !contactId || !message) {
+    if (!contactId || !secretToken || !message) {
       return new Response(
         JSON.stringify({ error: "Missing required fields." }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
 
-    if (message.length > 5000 || firstName.length > 200 || lastName.length > 200 || email.length > 320) {
+    if (message.length > 5000) {
       return new Response(
         JSON.stringify({ error: "Input exceeds maximum length." }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
 
-    // Verify the contact exists in the database
+    // Verify the contact exists and the secret token matches
     const supabaseAdmin = createClient(
       Deno.env.get("SUPABASE_URL")!,
       Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!
@@ -48,18 +45,24 @@ const handler = async (req: Request): Promise<Response> => {
 
     const { data: contact, error: contactError } = await supabaseAdmin
       .from("chat_contacts")
-      .select("id")
+      .select("id, first_name, last_name, email, phone")
       .eq("id", contactId)
+      .eq("secret_token", secretToken)
       .maybeSingle();
 
     if (contactError || !contact) {
       // Return success to prevent contact ID enumeration
-      console.warn('[Security] Notification attempt to non-existent contact:', contactId);
+      console.warn('[Security] Notification attempt with invalid contact/token:', contactId);
       return new Response(
         JSON.stringify({ success: true }),
         { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
+
+    const firstName = contact.first_name;
+    const lastName = contact.last_name;
+    const email = contact.email;
+    const phone = contact.phone;
 
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
     if (!RESEND_API_KEY) {
