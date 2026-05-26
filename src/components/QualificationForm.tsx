@@ -29,6 +29,7 @@ const QualificationForm: React.FC = () => {
   const { language } = useLanguage();
   const [step, setStep] = useState(1);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const formStartedRef = useRef(false);
   const [formData, setFormData] = useState<FormData>({
     company: '',
     website: '',
