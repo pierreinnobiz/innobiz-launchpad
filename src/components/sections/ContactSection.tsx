@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -36,6 +36,7 @@ const ContactSection: React.FC = () => {
   const [stockQty, setStockQty] = useState('');
   const [stockCountry, setStockCountry] = useState('');
   const [stockTiming, setStockTiming] = useState('');
+  const formStartedRef = useRef(false);
 
   const roles = [
     t3(language, 'PDG', 'CEO', 'CEO'),
