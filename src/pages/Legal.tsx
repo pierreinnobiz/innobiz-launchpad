@@ -19,6 +19,11 @@ const Legal: React.FC = () => {
   const { language } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
+      <SeoHead
+        path="/legal"
+        title={language === 'fr' ? 'Mentions légales | Tolia by Innobiz' : 'Legal Notice | Tolia by Innobiz'}
+        description={language === 'fr' ? 'Mentions légales du site Tolia by Innobiz: éditeur, hébergement, propriété intellectuelle.' : 'Legal notice for the Tolia by Innobiz site: publisher, hosting, intellectual property.'}
+      />
       <Navigation />
       <section className="pt-32 pb-20">
         <div className="section-container max-w-3xl">
