@@ -35,7 +35,7 @@ const SocialProofBar: React.FC = () => {
           {stats.map((s, i) => (
             <div key={i} className="flex items-baseline gap-2 text-center sm:text-left">
               <span className="text-2xl md:text-3xl font-bold" style={{ color: 'hsl(28 50% 60%)' }}>{s.value}</span>
-              <span className="text-xs md:text-sm text-white/50 font-light">{s.label}</span>
+              <span className="text-xs md:text-sm text-white/75 font-light">{s.label}</span>
             </div>
           ))}
         </motion.div>

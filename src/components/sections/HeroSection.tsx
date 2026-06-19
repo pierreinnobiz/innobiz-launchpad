@@ -142,7 +142,7 @@ const HeroSection: React.FC = () => {
           </motion.div>
 
           <motion.p
-            className="text-xs text-white/35 font-light pt-1"
+            className="text-xs text-white/75 font-light pt-1"
             initial={{ opacity: 0 }}
             animate={videoEnded ? { opacity: 1 } : {}}
             transition={{ duration: 1, delay: 0.3 }}

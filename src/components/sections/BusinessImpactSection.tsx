@@ -181,7 +181,7 @@ const BusinessImpactSection: React.FC = () => {
                   border: '1px solid hsl(35 20% 72% / 0.2)',
                 }}
               />
-              <span className="text-xs md:text-sm font-medium text-white/50 text-center">×1<br />one-time</span>
+              <span className="text-xs md:text-sm font-medium text-white/80 text-center">×1<br />one-time</span>
             </motion.div>
 
             {/* Arrow */}
@@ -192,7 +192,7 @@ const BusinessImpactSection: React.FC = () => {
               viewport={{ once: true }}
               transition={{ delay: 0.6 }}
             >
-              <span className="text-white/30 text-xs uppercase tracking-widest">vs.</span>
+              <span className="text-white/70 text-xs uppercase tracking-widest">vs.</span>
             </motion.div>
 
             {/* After : 5 stacked bars with stagger animation */}

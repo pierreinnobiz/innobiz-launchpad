@@ -84,8 +84,8 @@ const BusinessMathSection: React.FC = () => {
               ))}
             </ul>
             <div className="rounded-xl p-4 text-center" style={{ background: 'hsl(0 0% 100% / 0.05)' }}>
-              <span className="text-3xl font-bold text-white/40">×1</span>
-              <span className="text-sm text-white/30 block mt-1">{t3(language, 'revenu par client. Une seule fois', 'revenue per customer. One time only', 'ingresos por cliente. Una sola vez')}</span>
+              <span className="text-3xl font-bold text-white/80">×1</span>
+              <span className="text-sm text-white/75 block mt-1">{t3(language, 'revenu par client. Une seule fois', 'revenue per customer. One time only', 'ingresos por cliente. Una sola vez')}</span>
             </div>
           </motion.div>
 
@@ -130,7 +130,7 @@ const BusinessMathSection: React.FC = () => {
               'Ingresos ×4 por cliente, acumulados año tras año.'
             )}
           </p>
-          <p className="text-xs text-white/40">
+          <p className="text-xs text-white/75">
             {t3(language,
               "75 % de coûts SAV en moins vs. ultrasoniques (mesuré sur 10+ déploiements de marques).",
               '75% lower after-sales costs vs. ultrasonic diffusers (measured across 10+ brand deployments).',
