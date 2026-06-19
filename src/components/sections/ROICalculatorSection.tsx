@@ -89,7 +89,7 @@ const ROICalculatorSection: React.FC = () => {
           </div>
 
           <div className="mt-8 text-center">
-            <a href="#contact" onClick={() => trackCTAClick('roi_calculator_cta', 'roi-calculator')}>
+            <a href="#contact" onClick={() => trackCTAClick('roi_calculator_cta', 'roi-calculator', 'sample_pricing')}>
               <Button className="btn-hero-primary group">
                 {t3(language, 'Demander un business case personnalisé', 'Request a custom business case', 'Solicitar un caso de negocio personalizado')}
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />

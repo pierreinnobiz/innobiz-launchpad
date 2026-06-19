@@ -56,7 +56,7 @@ const PartnershipSection: React.FC = () => {
 
         <motion.div className="text-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.3 }}>
           <MagneticButton>
-            <a href="#contact" onClick={() => trackCTAClick(ctaText, 'partenariat')}>
+            <a href="#contact" onClick={() => trackCTAClick(ctaText, 'partenariat', 'start_conversation')}>
               <Button className="font-semibold text-base px-8 py-4 rounded-2xl group" style={{ background: 'hsl(28 45% 52%)', color: 'hsl(35 30% 97%)' }}>
                 {ctaText}
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
