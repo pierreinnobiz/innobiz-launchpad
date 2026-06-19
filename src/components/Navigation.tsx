@@ -26,6 +26,7 @@ const Navigation: React.FC = () => {
   }, []);
 
   const ctaLabel = language === 'es' ? 'Iniciar una conversación' : language === 'en' ? 'Start a conversation' : 'Démarrer une conversation';
+  const sampleLabel = language === 'es' ? 'Solicitar una muestra' : language === 'en' ? 'Request a sample' : 'Demander un échantillon';
 
   const LanguageSwitcher = ({ className = '' }: { className?: string }) => (
     <div className={`flex items-center gap-1 ${className}`}>
