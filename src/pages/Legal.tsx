@@ -110,6 +110,11 @@ export const Privacy: React.FC = () => {
   const { language } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
+      <SeoHead
+        path="/privacy"
+        title={language === 'fr' ? 'Politique de confidentialité | Tolia by Innobiz' : 'Privacy Policy | Tolia by Innobiz'}
+        description={language === 'fr' ? 'Politique de confidentialité Tolia by Innobiz: données collectées, finalités, durée et droits RGPD.' : 'Tolia by Innobiz privacy policy: data collected, purposes, retention and GDPR rights.'}
+      />
       <Navigation />
       <section className="pt-32 pb-20">
         <div className="section-container max-w-3xl">
