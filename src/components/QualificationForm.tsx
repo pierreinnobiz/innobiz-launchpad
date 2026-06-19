@@ -141,10 +141,32 @@ const QualificationForm: React.FC = () => {
     if (!validateStep1()) return;
     setIsSubmitting(true);
 
-    if (!leadFiredRef.current) {
+    const intent = intentForGtag(data.projectType);
+    const utms = getUtmParams();
+    let leadSaved = false;
+
+    // Persist the lead first — only count the conversion if the backend confirms.
+    try {
+      const { error } = await supabase.functions.invoke('send-qualification-form', {
+        body: {
+          stage: 'lead',
+          name: data.name,
+          company: data.company,
+          email: data.email,
+          project_type: data.projectType,
+          project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
+          ...utms,
+        },
+      });
+      if (error) throw error;
+      leadSaved = true;
+    } catch (err) {
+      console.error('Lead save error (step 1):', err);
+    }
+
+    // Fire GA4 conversion events only after a confirmed save, and only once.
+    if (leadSaved && !leadFiredRef.current) {
       leadFiredRef.current = true;
-      const intent = intentForGtag(data.projectType);
-      const utms = getUtmParams();
       window.gtag?.('event', 'form_submit', {
         form_id: 'sample_request_main',
         step: 1,
@@ -164,25 +186,10 @@ const QualificationForm: React.FC = () => {
       });
     }
 
-    // Save the lead immediately, even if step 2 is abandoned
-    try {
-      await supabase.functions.invoke('send-qualification-form', {
-        body: {
-          stage: 'lead',
-          name: data.name,
-          company: data.company,
-          email: data.email,
-          project_type: data.projectType,
-          project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
-          ...getUtmParams(),
-        },
-      });
-    } catch (err) {
-      console.error('Lead save error (step 1):', err);
-    } finally {
-      setIsSubmitting(false);
-      setStep(2);
-    }
+    setIsSubmitting(false);
+    // Advance to step 2 regardless: user can still complete shipping; if the
+    // lead failed to save, step 2's submit will resend full data anyway.
+    setStep(2);
   };
 
   const handleStep2Submit = async (e: React.FormEvent) => {
