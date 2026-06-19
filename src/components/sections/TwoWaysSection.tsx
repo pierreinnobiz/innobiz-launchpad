@@ -13,7 +13,8 @@ const fadeUp: Variants = {
 };
 
 const handleCTA = (type: 'white-label' | 'stock', label: string) => {
-  trackCTAClick(label, 'two-ways');
+  const ctaType = type === 'white-label' ? 'whitelabel' : 'quote_stock';
+  trackCTAClick(label, 'two-ways', ctaType);
   const url = new URL(window.location.href);
   url.searchParams.set('type', type);
   url.hash = '#contact';

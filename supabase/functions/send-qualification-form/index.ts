@@ -7,14 +7,20 @@ const corsHeaders = {
 };
 
 interface SampleRequest {
+  stage?: "lead" | "shipping";
   name?: string;
   company?: string;
   email: string;
-  country: string;
+  country?: string;
   address?: string;
   role?: string;
   phone?: string;
-  project_type?: "stock_order" | "white_label" | "exploring";
+  project_type?: "stock_order" | "white_label" | "exploring" | "unset";
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_term?: string;
+  utm_content?: string;
 }
 
 const FROM_ADDRESS = "Tolia Sample <noreply@innobiz-tolia.com>";
@@ -24,6 +30,7 @@ const PROJECT_LABEL: Record<string, string> = {
   stock_order: "Stock order (300+ units)",
   white_label: "White-label production (3,000+ units)",
   exploring: "Just exploring",
+  unset: "Unspecified",
 };
 
 const handler = async (req: Request): Promise<Response> => {
@@ -33,11 +40,22 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const body: SampleRequest = await req.json();
-    const { name, company, email, country, address, role, phone, project_type } = body;
+    const {
+      stage = "shipping",
+      name, company, email, country, address, role, phone, project_type,
+      utm_source, utm_medium, utm_campaign, utm_term, utm_content,
+    } = body;
 
-    if (!email || !country) {
+    if (!email) {
       return new Response(
         JSON.stringify({ error: "Missing required fields." }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
+    if (stage === "shipping" && (!country || !address)) {
+      return new Response(
+        JSON.stringify({ error: "Missing required fields for shipping." }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
     }
@@ -46,7 +64,7 @@ const handler = async (req: Request): Promise<Response> => {
       email.length > 320 ||
       (name && name.length > 200) ||
       (company && company.length > 200) ||
-      country.length > 100 ||
+      (country && country.length > 100) ||
       (address && address.length > 500) ||
       (role && role.length > 200) ||
       (phone && phone.length > 50)
@@ -74,6 +92,21 @@ const handler = async (req: Request): Promise<Response> => {
 
     const projectLabel = project_type ? (PROJECT_LABEL[project_type] || project_type) : "—";
 
+    const isLead = stage === "lead";
+    const subjectPrefix = isLead ? "🆕 Nouveau lead échantillon" : "📦 Adresse échantillon confirmée";
+    const headerTitle = isLead ? "🆕 Nouveau lead (étape 1)" : "📦 Adresse de livraison (étape 2)";
+
+    const utmsHtml = [utm_source, utm_medium, utm_campaign, utm_term, utm_content].some(Boolean)
+      ? `<h2 style="color:#B17743;font-size:16px;">UTM</h2>
+         <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
+           ${utm_source ? row("Source", sanitize(utm_source)) : ""}
+           ${utm_medium ? row("Medium", sanitize(utm_medium)) : ""}
+           ${utm_campaign ? row("Campaign", sanitize(utm_campaign)) : ""}
+           ${utm_term ? row("Term", sanitize(utm_term)) : ""}
+           ${utm_content ? row("Content", sanitize(utm_content)) : ""}
+         </table>`
+      : "";
+
     const emailResponse = await fetch("https://api.resend.com/emails", {
       method: "POST",
       headers: {
@@ -83,11 +116,11 @@ const handler = async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         from: FROM_ADDRESS,
         to: [TO_ADDRESS],
-        subject: `📦 Nouvelle demande d'échantillon – ${sanitize(company || name || email)} (${sanitize(country)})`,
+        subject: `${subjectPrefix} – ${sanitize(company || name || email)}${country ? ` (${sanitize(country)})` : ""}`,
         html: `
           <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;">
             <div style="background:#B17743;color:white;padding:20px;border-radius:8px 8px 0 0;">
-              <h1 style="margin:0;font-size:22px;">📦 Nouvelle demande d'échantillon Tolia</h1>
+              <h1 style="margin:0;font-size:22px;">${headerTitle}</h1>
             </div>
             <div style="background:#f8fafc;padding:24px;border:1px solid #e2e8f0;border-top:none;">
               <h2 style="color:#B17743;margin-top:0;font-size:16px;">Contact</h2>
@@ -99,19 +132,21 @@ const handler = async (req: Request): Promise<Response> => {
                 ${phone ? row("Téléphone", sanitize(phone)) : ""}
               </table>
 
-              <h2 style="color:#B17743;font-size:16px;">Livraison</h2>
+              ${(country || address) ? `<h2 style="color:#B17743;font-size:16px;">Livraison</h2>
               <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
-                ${row("Pays", sanitize(country))}
+                ${country ? row("Pays", sanitize(country)) : ""}
                 ${address ? row("Adresse", sanitize(address)) : ""}
-              </table>
+              </table>` : ""}
 
               <h2 style="color:#B17743;font-size:16px;">Intérêt projet</h2>
               <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
                 ${row("Type", sanitize(projectLabel))}
               </table>
+
+              ${utmsHtml}
             </div>
             <div style="background:#B17743;color:white;padding:14px;border-radius:0 0 8px 8px;text-align:center;">
-              <p style="margin:0;font-size:13px;">Tolia by INNOBIZ – Demande d'échantillon</p>
+              <p style="margin:0;font-size:13px;">Tolia by INNOBIZ – ${isLead ? "Lead étape 1" : "Confirmation livraison"}</p>
             </div>
           </div>
         `,
@@ -127,7 +162,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    return new Response(JSON.stringify({ success: true }), {
+    return new Response(JSON.stringify({ success: true, stage }), {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },
     });

@@ -102,7 +102,7 @@ const StickyMobileCTA: React.FC<{ label: string }> = ({ label }) => {
   return (
     <a
       href="#contact"
-      onClick={() => trackCTAClick(label, 'sticky-mobile')}
+      onClick={() => trackCTAClick(label, 'sticky-mobile', 'sample_hero')}
       className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-primary text-primary-foreground h-14 flex items-center justify-center gap-2 text-sm font-semibold shadow-lg transition-transform duration-300 ${
         visible ? 'translate-y-0' : 'translate-y-full'
       }`}

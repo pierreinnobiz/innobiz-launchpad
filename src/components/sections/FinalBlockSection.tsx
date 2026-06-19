@@ -22,7 +22,7 @@ const FinalBlockSection: React.FC = () => {
             {t3(l, 'C\'est une nouvelle façon de penser votre offre d\'huiles essentielles : moins de complexité dans votre gamme, plus de récurrence dans vos ventes, et une relation continue avec vos clients.', 'It\'s a new way of thinking about your essential oils offering: less complexity in your range, more recurring revenue from your sales, and a continuous relationship with your customers.', 'Es una nueva forma de pensar su oferta de aceites esenciales: menos complejidad en su gama, más recurrencia en sus ventas, y una relación continua con sus clientes.')}
           </p>
           <MagneticButton>
-            <a href="#contact" onClick={() => trackCTAClick(ctaText, 'final-block')}>
+            <a href="#contact" onClick={() => trackCTAClick(ctaText, 'final-block', 'sample_final')}>
               <Button className="font-semibold text-base px-8 py-4 rounded-2xl group" style={{ background: 'hsl(28 45% 52%)', color: 'hsl(35 30% 97%)' }}>
                 {ctaText}
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />

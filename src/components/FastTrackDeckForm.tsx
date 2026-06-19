@@ -27,6 +27,7 @@ const FastTrackDeckForm: React.FC = () => {
 
     if (window.gtag) {
       window.gtag('event', 'fast_track_submit', { form_id: 'deck_request' });
+      window.gtag('event', 'cta_click', { label: 'deck_submit', section: 'deck', cta_type: 'deck' });
     }
 
     setIsSubmitting(true);
