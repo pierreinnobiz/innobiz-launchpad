@@ -111,7 +111,7 @@ const FounderStatementSection: React.FC = () => {
           {/* Card header with logo */}
           <div className="px-8 pt-6 pb-3 flex items-center justify-between border-b" style={{ borderColor: 'hsl(28 30% 85% / 0.5)' }}>
             <div className="flex items-center gap-3">
-              <img src={innobizLogo} alt="Innobiz" className="h-7 w-auto" />
+              <img src={innobizLogo} alt="Innobiz logo" className="h-7 w-auto" />
             </div>
             <span className="text-[10px] uppercase tracking-widest font-medium" style={{ color: 'hsl(28 30% 65%)' }}>{privateNoteLabel}</span>
           </div>
