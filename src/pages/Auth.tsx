@@ -15,14 +15,13 @@ const authSchema = z.object({
 });
 
 const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-  
-  const { user, signIn, signUp } = useAuth();
+
+  const { user, signIn } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,36 +54,18 @@ const Auth = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setIsLoading(true);
-    
+
     try {
-      if (isLogin) {
-        const { error } = await signIn(email, password);
-        if (error) {
-          if (error.message.includes('Invalid login credentials')) {
-            toast.error('Email ou mot de passe incorrect');
-          } else {
-            toast.error(error.message);
-          }
-        } else {
-          toast.success('Connexion réussie');
-          navigate('/admin');
-        }
+      const { error } = await signIn(email, password);
+      if (error) {
+        toast.error('Email ou mot de passe incorrect');
       } else {
-        const { error } = await signUp(email, password);
-        if (error) {
-          if (error.message.includes('already registered')) {
-            toast.error('Cet email est déjà utilisé');
-          } else {
-            toast.error(error.message);
-          }
-        } else {
-          toast.success('Compte créé avec succès ! Vous pouvez maintenant vous connecter.');
-          setIsLogin(true);
-        }
+        toast.success('Connexion réussie');
+        navigate('/admin');
       }
     } catch (err) {
       toast.error('Une erreur est survenue');
@@ -98,13 +79,9 @@ const Auth = () => {
       <h1 className="sr-only">Admin Login</h1>
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-semibold">
-            {isLogin ? 'Connexion Admin' : 'Créer un compte'}
-          </CardTitle>
+          <CardTitle className="text-2xl font-semibold">Connexion Admin</CardTitle>
           <CardDescription>
-            {isLogin 
-              ? 'Connectez-vous pour accéder à l\'interface admin' 
-              : 'Créez un compte pour accéder à l\'interface admin'}
+            Connectez-vous pour accéder à l'interface admin
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -124,7 +101,7 @@ const Auth = () => {
                 <p className="text-sm text-destructive">{errors.email}</p>
               )}
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="password">Mot de passe</Label>
               <div className="relative">
@@ -153,24 +130,9 @@ const Auth = () => {
 
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isLogin ? 'Se connecter' : 'Créer le compte'}
+              Se connecter
             </Button>
           </form>
-
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => {
-                setIsLogin(!isLogin);
-                setErrors({});
-              }}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {isLogin 
-                ? "Pas encore de compte ? S'inscrire" 
-                : 'Déjà un compte ? Se connecter'}
-            </button>
-          </div>
         </CardContent>
       </Card>
     </div>
