@@ -15,14 +15,13 @@ const authSchema = z.object({
 });
 
 const Auth = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [errors, setErrors] = useState<{ email?: string; password?: string }>({});
-  
-  const { user, signIn, signUp } = useAuth();
+
+  const { user, signIn } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,36 +54,18 @@ const Auth = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) return;
-    
+
     setIsLoading(true);
-    
+
     try {
-      if (isLogin) {
-        const { error } = await signIn(email, password);
-        if (error) {
-          if (error.message.includes('Invalid login credentials')) {
-            toast.error('Email ou mot de passe incorrect');
-          } else {
-            toast.error(error.message);
-          }
-        } else {
-          toast.success('Connexion réussie');
-          navigate('/admin');
-        }
+      const { error } = await signIn(email, password);
+      if (error) {
+        toast.error('Email ou mot de passe incorrect');
       } else {
-        const { error } = await signUp(email, password);
-        if (error) {
-          if (error.message.includes('already registered')) {
-            toast.error('Cet email est déjà utilisé');
-          } else {
-            toast.error(error.message);
-          }
-        } else {
-          toast.success('Compte créé avec succès ! Vous pouvez maintenant vous connecter.');
-          setIsLogin(true);
-        }
+        toast.success('Connexion réussie');
+        navigate('/admin');
       }
     } catch (err) {
       toast.error('Une erreur est survenue');
