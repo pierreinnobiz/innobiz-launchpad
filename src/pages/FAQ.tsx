@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
@@ -128,8 +129,40 @@ const FAQ: React.FC = () => {
     },
   ];
 
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqCategories.flatMap(cat =>
+      cat.questions.map(q => ({
+        '@type': 'Question',
+        name: q.q,
+        acceptedAnswer: { '@type': 'Answer', text: q.a },
+      }))
+    ),
+  };
+
+  const faqTitle = language === 'fr'
+    ? 'FAQ Tolia: technologie, MOQ, branding, conformité'
+    : language === 'es'
+    ? 'FAQ Tolia: tecnología, MOQ, branding, conformidad'
+    : 'Tolia FAQ: technology, MOQ, branding, compliance';
+  const faqDesc = language === 'fr'
+    ? 'Réponses aux questions fréquentes sur la technologie Tolia, les délais, le MOQ, le branding et la conformité.'
+    : language === 'es'
+    ? 'Respuestas a las preguntas frecuentes sobre la tecnología Tolia, plazos, MOQ, branding y conformidad.'
+    : 'Answers to frequent questions on Tolia technology, timelines, MOQ, branding and compliance.';
+
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{faqTitle}</title>
+        <meta name="description" content={faqDesc} />
+        <link rel="canonical" href="https://www.innobiz-tolia.com/faq" />
+        <meta property="og:title" content={faqTitle} />
+        <meta property="og:description" content={faqDesc} />
+        <meta property="og:url" content="https://www.innobiz-tolia.com/faq" />
+        <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+      </Helmet>
       <Navigation />
       <section className="pt-32 pb-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="section-container">

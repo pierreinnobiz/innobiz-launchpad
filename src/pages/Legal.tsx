@@ -1,12 +1,29 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+
+const SeoHead: React.FC<{ title: string; description: string; path: string }> = ({ title, description, path }) => (
+  <Helmet>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={`https://www.innobiz-tolia.com${path}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`https://www.innobiz-tolia.com${path}`} />
+  </Helmet>
+);
 
 const Legal: React.FC = () => {
   const { language } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
+      <SeoHead
+        path="/legal"
+        title={language === 'fr' ? 'Mentions légales | Tolia by Innobiz' : 'Legal Notice | Tolia by Innobiz'}
+        description={language === 'fr' ? 'Mentions légales du site Tolia by Innobiz: éditeur, hébergement, propriété intellectuelle.' : 'Legal notice for the Tolia by Innobiz site: publisher, hosting, intellectual property.'}
+      />
       <Navigation />
       <section className="pt-32 pb-20">
         <div className="section-container max-w-3xl">
@@ -93,6 +110,11 @@ export const Privacy: React.FC = () => {
   const { language } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
+      <SeoHead
+        path="/privacy"
+        title={language === 'fr' ? 'Politique de confidentialité | Tolia by Innobiz' : 'Privacy Policy | Tolia by Innobiz'}
+        description={language === 'fr' ? 'Politique de confidentialité Tolia by Innobiz: données collectées, finalités, durée et droits RGPD.' : 'Tolia by Innobiz privacy policy: data collected, purposes, retention and GDPR rights.'}
+      />
       <Navigation />
       <section className="pt-32 pb-20">
         <div className="section-container max-w-3xl">
@@ -161,6 +183,11 @@ export const Cookies: React.FC = () => {
   const { language } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
+      <SeoHead
+        path="/cookies"
+        title={language === 'fr' ? 'Politique cookies | Tolia by Innobiz' : 'Cookie Policy | Tolia by Innobiz'}
+        description={language === 'fr' ? 'Politique cookies Tolia by Innobiz: cookies utilisés, finalités et gestion du consentement.' : 'Tolia by Innobiz cookie policy: cookies used, purposes and consent management.'}
+      />
       <Navigation />
       <section className="pt-32 pb-20">
         <div className="section-container max-w-3xl">

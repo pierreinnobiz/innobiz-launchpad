@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useSearchParams } from 'react-router-dom';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
@@ -220,8 +221,27 @@ const Contact: React.FC = () => {
     },
   ];
 
+  const contactTitle = language === 'fr'
+    ? 'Contact Tolia: échantillon, démo, white-label, commande'
+    : language === 'es'
+    ? 'Contacto Tolia: muestra, demo, white-label, pedido'
+    : 'Contact Tolia: sample, demo, white-label, order';
+  const contactDesc = language === 'fr'
+    ? 'Recevez un échantillon Tolia, réservez une démonstration ou demandez un devis white-label.'
+    : language === 'es'
+    ? 'Reciba una muestra Tolia, reserve una demostración o solicite un presupuesto white-label.'
+    : 'Get a Tolia sample, book a live demo, or request a white-label quote.';
+
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{contactTitle}</title>
+        <meta name="description" content={contactDesc} />
+        <link rel="canonical" href="https://www.innobiz-tolia.com/contact" />
+        <meta property="og:title" content={contactTitle} />
+        <meta property="og:description" content={contactDesc} />
+        <meta property="og:url" content="https://www.innobiz-tolia.com/contact" />
+      </Helmet>
       <Navigation />
       <section className="pt-32 pb-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="section-container">
@@ -251,7 +271,7 @@ const Contact: React.FC = () => {
               <ScrollReveal key={tab.key} delay={i * 60}>
                 <a href={`?type=${tab.key}`} className={`card-premium h-full block text-center ${type === tab.key ? 'ring-2 ring-primary' : ''}`}>
                   <tab.icon className="w-8 h-8 mx-auto mb-3" style={{ color: 'hsl(28 45% 48%)' }} />
-                  <h3 className="font-bold text-sm mb-1">{tab.label}</h3>
+                  <h2 className="font-bold text-sm mb-1">{tab.label}</h2>
                   <p className="text-xs text-muted-foreground">{tab.desc}</p>
                 </a>
               </ScrollReveal>
