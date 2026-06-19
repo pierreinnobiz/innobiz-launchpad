@@ -65,9 +65,13 @@ export function useDocumentLang() {
     setMeta('meta[property="og:title"]', 'content', content.ogTitle);
     setMeta('meta[property="og:description"]', 'content', content.ogDescription);
     setMeta('meta[property="og:locale"]', 'content', locale);
+    setMeta('meta[property="og:image"]', 'content', content.ogImage);
+    setMeta('meta[property="og:image:alt"]', 'content', content.ogImageAlt);
 
     // Twitter Card
     setMeta('meta[name="twitter:title"]', 'content', content.ogTitle);
     setMeta('meta[name="twitter:description"]', 'content', content.ogDescription);
+    setMeta('meta[name="twitter:image"]', 'content', content.ogImage);
+    setMeta('meta[name="twitter:image:alt"]', 'content', content.ogImageAlt);
   }, [language]);
 }
