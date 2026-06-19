@@ -64,6 +64,19 @@ const Navigation: React.FC = () => {
 
             <div className="flex items-center gap-3">
               <LanguageSwitcher />
+              <a
+                href="#contact"
+                onClick={() => trackCTAClick(sampleLabel, 'nav', 'sample_nav')}
+                className="hidden lg:inline-flex"
+              >
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="rounded-full border-border/60 text-foreground hover:bg-secondary hover:text-secondary-foreground font-medium"
+                >
+                  {sampleLabel}
+                </Button>
+              </a>
             </div>
           </nav>
         </div>
