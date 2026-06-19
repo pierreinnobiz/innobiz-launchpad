@@ -221,8 +221,27 @@ const Contact: React.FC = () => {
     },
   ];
 
+  const contactTitle = language === 'fr'
+    ? 'Contact Tolia: échantillon, démo, white-label, commande'
+    : language === 'es'
+    ? 'Contacto Tolia: muestra, demo, white-label, pedido'
+    : 'Contact Tolia: sample, demo, white-label, order';
+  const contactDesc = language === 'fr'
+    ? 'Recevez un échantillon Tolia, réservez une démonstration ou demandez un devis white-label.'
+    : language === 'es'
+    ? 'Reciba una muestra Tolia, reserve una demostración o solicite un presupuesto white-label.'
+    : 'Get a Tolia sample, book a live demo, or request a white-label quote.';
+
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <title>{contactTitle}</title>
+        <meta name="description" content={contactDesc} />
+        <link rel="canonical" href="https://www.innobiz-tolia.com/contact" />
+        <meta property="og:title" content={contactTitle} />
+        <meta property="og:description" content={contactDesc} />
+        <meta property="og:url" content="https://www.innobiz-tolia.com/contact" />
+      </Helmet>
       <Navigation />
       <section className="pt-32 pb-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="section-container">
