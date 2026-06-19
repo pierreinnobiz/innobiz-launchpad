@@ -183,6 +183,11 @@ export const Cookies: React.FC = () => {
   const { language } = useLanguage();
   return (
     <div className="min-h-screen bg-background">
+      <SeoHead
+        path="/cookies"
+        title={language === 'fr' ? 'Politique cookies | Tolia by Innobiz' : 'Cookie Policy | Tolia by Innobiz'}
+        description={language === 'fr' ? 'Politique cookies Tolia by Innobiz: cookies utilisés, finalités et gestion du consentement.' : 'Tolia by Innobiz cookie policy: cookies used, purposes and consent management.'}
+      />
       <Navigation />
       <section className="pt-32 pb-20">
         <div className="section-container max-w-3xl">
