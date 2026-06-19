@@ -251,7 +251,7 @@ const Contact: React.FC = () => {
               <ScrollReveal key={tab.key} delay={i * 60}>
                 <a href={`?type=${tab.key}`} className={`card-premium h-full block text-center ${type === tab.key ? 'ring-2 ring-primary' : ''}`}>
                   <tab.icon className="w-8 h-8 mx-auto mb-3" style={{ color: 'hsl(28 45% 48%)' }} />
-                  <h3 className="font-bold text-sm mb-1">{tab.label}</h3>
+                  <h2 className="font-bold text-sm mb-1">{tab.label}</h2>
                   <p className="text-xs text-muted-foreground">{tab.desc}</p>
                 </a>
               </ScrollReveal>
