@@ -1,7 +1,19 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useLanguage } from '@/contexts/LanguageContext';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
+
+const SeoHead: React.FC<{ title: string; description: string; path: string }> = ({ title, description, path }) => (
+  <Helmet>
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={`https://www.innobiz-tolia.com${path}`} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={`https://www.innobiz-tolia.com${path}`} />
+  </Helmet>
+);
 
 const Legal: React.FC = () => {
   const { language } = useLanguage();
