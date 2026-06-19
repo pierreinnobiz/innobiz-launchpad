@@ -7,24 +7,32 @@ const langMap: Record<string, string> = {
   es: 'es-ES',
 };
 
-const seoContent: Record<string, { title: string; description: string; ogTitle: string; ogDescription: string }> = {
+const SITE_URL = 'https://www.innobiz-tolia.com';
+
+const seoContent: Record<string, { title: string; description: string; ogTitle: string; ogDescription: string; ogImage: string; ogImageAlt: string }> = {
   fr: {
     title: 'Tolia by Innobiz | Technologie de diffusion d\'huiles essentielles propriétaire',
     description: 'Tolia : le diffuseur en marque blanche qui transforme l\'aromathérapie en routines quotidiennes et vos synergies en revenus récurrents. 20 ans de R&D Innobiz.',
     ogTitle: 'Tolia by Innobiz | Technologie de diffusion d\'huiles essentielles',
     ogDescription: 'Le diffuseur en marque blanche qui transforme l\'aromathérapie en routines quotidiennes et vos synergies en revenus récurrents.',
+    ogImage: `${SITE_URL}/og-image-fr.jpg`,
+    ogImageAlt: 'Tolia by Innobiz : diffuseur d\'huiles essentielles sans eau avec recharges Twist & Mist pour l\'hôtellerie premium',
   },
   en: {
     title: 'Tolia by Innobiz | Proprietary Essential Oil Diffusion Technology',
     description: 'Tolia: the white-label diffuser that transforms aromatherapy into daily routines and your blends into recurring revenue. 20 years of Innobiz R&D.',
     ogTitle: 'Tolia by Innobiz | Essential Oil Diffusion Technology',
     ogDescription: 'The white-label diffuser that transforms aromatherapy into daily routines and your blends into recurring revenue.',
+    ogImage: `${SITE_URL}/og-image-en.jpg`,
+    ogImageAlt: 'Tolia by Innobiz: waterless essential oil diffuser with Twist & Mist refills for premium hospitality',
   },
   es: {
     title: 'Tolia by Innobiz | Tecnología de difusión de aceites esenciales propietaria',
     description: 'Tolia: el difusor de marca blanca que transforma la aromaterapia en rutinas diarias y sus sinergias en ingresos recurrentes. 20 años de I+D de Innobiz.',
     ogTitle: 'Tolia by Innobiz | Tecnología de difusión de aceites esenciales',
     ogDescription: 'El difusor de marca blanca que transforma la aromaterapia en rutinas diarias y sus sinergias en ingresos recurrentes.',
+    ogImage: `${SITE_URL}/og-image-es.jpg`,
+    ogImageAlt: 'Tolia by Innobiz: difusor de aceites esenciales sin agua con recargas Twist & Mist para hostelería premium',
   },
 };
 
@@ -57,9 +65,13 @@ export function useDocumentLang() {
     setMeta('meta[property="og:title"]', 'content', content.ogTitle);
     setMeta('meta[property="og:description"]', 'content', content.ogDescription);
     setMeta('meta[property="og:locale"]', 'content', locale);
+    setMeta('meta[property="og:image"]', 'content', content.ogImage);
+    setMeta('meta[property="og:image:alt"]', 'content', content.ogImageAlt);
 
     // Twitter Card
     setMeta('meta[name="twitter:title"]', 'content', content.ogTitle);
     setMeta('meta[name="twitter:description"]', 'content', content.ogDescription);
+    setMeta('meta[name="twitter:image"]', 'content', content.ogImage);
+    setMeta('meta[name="twitter:image:alt"]', 'content', content.ogImageAlt);
   }, [language]);
 }
