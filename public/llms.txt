@@ -1,0 +1,12 @@
+# Tolia by Innobiz
+
+> Tolia is a premium B2B refillable diffuser system for fragrance, aromatherapy and wellness brands. It turns a one-time diffuser sale into recurring revenue through patented Twist & Mist refill technology.
+
+## Pages
+
+- [Home](/): Product overview, business impact and free sample request for fragrance and wellness brands.
+- [FAQ](/faq): Common questions about Tolia technology, stock orders, white-label production and samples.
+- [Contact](/contact): Request a free Tolia sample or send a message to the Innobiz team.
+- [Legal Notice](/legal): Company information, terms and legal disclosures.
+- [Privacy Policy](/privacy): How Innobiz collects, uses and protects personal data.
+- [Cookie Policy](/cookies): Information about cookies and tracking technologies on this site.
