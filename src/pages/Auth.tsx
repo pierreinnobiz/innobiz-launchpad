@@ -79,13 +79,9 @@ const Auth = () => {
       <h1 className="sr-only">Admin Login</h1>
       <Card className="w-full max-w-md">
         <CardHeader className="text-center">
-          <CardTitle className="text-2xl font-semibold">
-            {isLogin ? 'Connexion Admin' : 'Créer un compte'}
-          </CardTitle>
+          <CardTitle className="text-2xl font-semibold">Connexion Admin</CardTitle>
           <CardDescription>
-            {isLogin 
-              ? 'Connectez-vous pour accéder à l\'interface admin' 
-              : 'Créez un compte pour accéder à l\'interface admin'}
+            Connectez-vous pour accéder à l'interface admin
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -105,7 +101,7 @@ const Auth = () => {
                 <p className="text-sm text-destructive">{errors.email}</p>
               )}
             </div>
-            
+
             <div className="space-y-2">
               <Label htmlFor="password">Mot de passe</Label>
               <div className="relative">
@@ -134,24 +130,9 @@ const Auth = () => {
 
             <Button type="submit" className="w-full" disabled={isLoading}>
               {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-              {isLogin ? 'Se connecter' : 'Créer le compte'}
+              Se connecter
             </Button>
           </form>
-
-          <div className="mt-6 text-center">
-            <button
-              type="button"
-              onClick={() => {
-                setIsLogin(!isLogin);
-                setErrors({});
-              }}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {isLogin 
-                ? "Pas encore de compte ? S'inscrire" 
-                : 'Déjà un compte ? Se connecter'}
-            </button>
-          </div>
         </CardContent>
       </Card>
     </div>
