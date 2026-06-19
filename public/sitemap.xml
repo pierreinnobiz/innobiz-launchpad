@@ -12,26 +12,46 @@
   </url>
   <url>
     <loc>https://www.innobiz-tolia.com/faq</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/faq" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/faq" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/faq" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
     <loc>https://www.innobiz-tolia.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/contact" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/contact" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/contact" />
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.innobiz-tolia.com/legal</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/legal" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/legal" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/legal" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/legal" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.innobiz-tolia.com/privacy</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/privacy" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.innobiz-tolia.com/cookies</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/cookies" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/cookies" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/cookies" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/cookies" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
