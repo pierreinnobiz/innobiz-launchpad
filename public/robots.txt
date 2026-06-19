@@ -12,5 +12,8 @@ Allow: /
 
 User-agent: *
 Allow: /
+Disallow: /auth
+Disallow: /admin
+Disallow: /language-audit
 
 Sitemap: https://www.innobiz-tolia.com/sitemap.xml
