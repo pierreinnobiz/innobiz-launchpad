@@ -59,7 +59,7 @@ const Navigation: React.FC = () => {
             <Link to="/" className="flex items-center gap-2.5 group">
               <span className="text-xl lg:text-2xl font-bold text-primary transition-colors group-hover:text-primary/80">Tolia</span>
               <span className="text-muted-foreground text-xs hidden sm:inline">by</span>
-              <img src={innobizLogo} alt="Innobiz logo" className="h-7 hidden sm:inline opacity-70 group-hover:opacity-100 transition-opacity" />
+              <img src={innobizLogo} alt="Innobiz - Aromatherapy and wellness experts" className="h-7 hidden sm:inline opacity-70 group-hover:opacity-100 transition-opacity" />
             </Link>
 
             <div className="flex items-center gap-3">
