@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-3 mb-4">
               <span className="text-2xl font-bold">Tolia</span>
               <span className="text-primary-foreground/50">by</span>
-              <img src={innobizLogo} alt="Innobiz" className="h-7 brightness-0 invert opacity-80" />
+              <img src={innobizLogo} alt="Innobiz - Aromatherapy and wellness experts" className="h-7 brightness-0 invert opacity-80" />
             </div>
             <p className="text-primary-foreground/70 max-w-md leading-relaxed mb-4 text-sm">
               {t3(language, 'Le diffuseur qui transforme l\'aromathérapie en routines quotidiennes et vos synergies en revenus récurrents.', 'The diffuser that transforms aromatherapy into daily routines and your blends into recurring revenue.', 'El difusor que transforma la aromaterapia en rutinas diarias y sus sinergias en ingresos recurrentes.')}
