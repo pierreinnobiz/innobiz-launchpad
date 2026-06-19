@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useRef } from 'react';
+import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-type ProjectType = 'stock_order' | 'white_label' | 'exploring';
+type ProjectType = 'stock_order' | 'white_label' | 'exploring' | 'unset';
 
 interface FormState {
   name: string;
@@ -37,11 +37,39 @@ const COUNTRIES = [
   'New Zealand', 'Morocco', 'Tunisia', 'South Africa', 'Other',
 ];
 
+const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
+  stock_order: 'Stock order',
+  white_label: 'White-label production',
+  exploring: 'Just exploring for now',
+  unset: 'Unspecified',
+};
+
+const intentForGtag = (p: ProjectType): string => {
+  if (p === 'stock_order') return 'stock';
+  if (p === 'white_label') return 'whitelabel';
+  if (p === 'exploring') return 'exploring';
+  return 'unset';
+};
+
+const getUtmParams = (): Record<string, string> => {
+  try {
+    const sp = new URLSearchParams(window.location.search);
+    const out: Record<string, string> = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'].forEach((k) => {
+      const v = sp.get(k);
+      if (v) out[k] = v;
+    });
+    return out;
+  } catch { return {}; }
+};
+
 const QualificationForm: React.FC = () => {
   const { language } = useLanguage();
   const formStartedRef = useRef(false);
+  const leadFiredRef = useRef(false);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const [step, setStep] = useState<1 | 2 | 3>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [data, setData] = useState<FormState>({
     name: '',
@@ -51,13 +79,34 @@ const QualificationForm: React.FC = () => {
     address: '',
     role: '',
     phone: '',
-    projectType: 'exploring',
+    projectType: 'unset',
   });
 
   const update = useCallback(<K extends keyof FormState>(field: K, value: FormState[K]) => {
     setData((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   }, []);
+
+  // Auto-focus email on mount + when hash points to #contact
+  useEffect(() => {
+    if (step !== 1) return;
+    const focusEmail = () => {
+      // Small delay to allow scroll-into-view to settle
+      setTimeout(() => emailInputRef.current?.focus({ preventScroll: true }), 350);
+    };
+
+    if (window.location.hash === '#contact') focusEmail();
+
+    const onHash = () => {
+      if (window.location.hash === '#contact') focusEmail();
+    };
+    window.addEventListener('hashchange', onHash);
+    window.addEventListener('tolia:pathchange', onHash as EventListener);
+    return () => {
+      window.removeEventListener('hashchange', onHash);
+      window.removeEventListener('tolia:pathchange', onHash as EventListener);
+    };
+  }, [step]);
 
   const handleFormStart = () => {
     if (!formStartedRef.current) {
@@ -66,40 +115,85 @@ const QualificationForm: React.FC = () => {
     }
   };
 
-  const validate = (): boolean => {
+  const requiredMsg = t3(language, 'Ce champ est obligatoire', 'This field is required', 'Este campo es obligatorio');
+
+  const validateStep1 = (): boolean => {
     const next: Partial<Record<keyof FormState, string>> = {};
-    const requiredMsg = t3(language, 'Ce champ est obligatoire', 'This field is required', 'Este campo es obligatorio');
-    if (!data.name.trim()) next.name = requiredMsg;
-    if (!data.company.trim()) next.company = requiredMsg;
     if (!data.email.trim()) next.email = requiredMsg;
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email))
       next.email = t3(language, 'Email invalide', 'Invalid email', 'Email no válido');
+    if (!data.name.trim()) next.name = requiredMsg;
+    if (!data.company.trim()) next.company = requiredMsg;
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
+
+  const validateStep2 = (): boolean => {
+    const next: Partial<Record<keyof FormState, string>> = {};
     if (!data.country) next.country = requiredMsg;
     if (!data.address.trim()) next.address = requiredMsg;
     setErrors(next);
     return Object.keys(next).length === 0;
   };
 
-  const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
-    stock_order: 'Stock order',
-    white_label: 'White-label production',
-    exploring: 'Just exploring for now',
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleStep1Submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!validate()) return;
+    if (!validateStep1()) return;
     setIsSubmitting(true);
 
-    window.gtag?.('event', 'form_submit', {
-      form_id: 'sample_request_main',
-      project_type: data.projectType,
-      country: data.country,
-    });
+    if (!leadFiredRef.current) {
+      leadFiredRef.current = true;
+      const intent = intentForGtag(data.projectType);
+      const utms = getUtmParams();
+      window.gtag?.('event', 'form_submit', {
+        form_id: 'sample_request_main',
+        step: 1,
+        intent,
+        ...utms,
+      });
+      window.gtag?.('event', 'generate_lead', {
+        form_id: 'sample_request_main',
+        prospect_email: data.email,
+        intent,
+        ...utms,
+      });
+      window.gtag?.('event', 'sample_requested', {
+        prospect_email: data.email,
+        intent,
+        ...utms,
+      });
+    }
+
+    // Save the lead immediately, even if step 2 is abandoned
+    try {
+      await supabase.functions.invoke('send-qualification-form', {
+        body: {
+          stage: 'lead',
+          name: data.name,
+          company: data.company,
+          email: data.email,
+          project_type: data.projectType,
+          project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
+          ...getUtmParams(),
+        },
+      });
+    } catch (err) {
+      console.error('Lead save error (step 1):', err);
+    } finally {
+      setIsSubmitting(false);
+      setStep(2);
+    }
+  };
+
+  const handleStep2Submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!validateStep2()) return;
+    setIsSubmitting(true);
 
     try {
       await supabase.functions.invoke('send-qualification-form', {
         body: {
+          stage: 'shipping',
           name: data.name,
           company: data.company,
           email: data.email,
@@ -109,18 +203,18 @@ const QualificationForm: React.FC = () => {
           phone: data.phone,
           project_type: data.projectType,
           project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
+          ...getUtmParams(),
         },
       });
-      setIsSubmitted(true);
     } catch (err) {
-      console.error('Sample request submit error:', err);
-      setIsSubmitted(true);
+      console.error('Shipping submit error (step 2):', err);
     } finally {
       setIsSubmitting(false);
+      setStep(3);
     }
   };
 
-  if (isSubmitted) {
+  if (step === 3) {
     const firstName = data.name.trim().split(' ')[0] || '';
     return (
       <div className="text-center py-10">
@@ -166,13 +260,117 @@ const QualificationForm: React.FC = () => {
     },
   ];
 
+  if (step === 2) {
+    return (
+      <form onSubmit={handleStep2Submit} className="space-y-6" noValidate>
+        <div className="text-center mb-2">
+          <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full" style={{ background: 'hsl(28 45% 48% / 0.12)', color: 'hsl(28 45% 38%)' }}>
+            <Truck className="w-3.5 h-3.5" />
+            {t3(language, 'Étape 2/2 · Livraison', 'Step 2/2 · Shipping', 'Paso 2/2 · Envío')}
+          </span>
+          <h3 className="text-2xl md:text-3xl font-bold text-foreground mt-4">
+            {t3(
+              language,
+              'Parfait ! Où envoyons-nous votre échantillon ?',
+              'Perfect! Where should we send your sample?',
+              '¡Perfecto! ¿A dónde enviamos su muestra?'
+            )}
+          </h3>
+          <p className="text-sm text-muted-foreground mt-2">
+            {t3(
+              language,
+              'Pays et adresse pour la livraison. Rôle et téléphone facultatifs.',
+              'Country and address for delivery. Role and phone optional.',
+              'País y dirección para la entrega. Rol y teléfono opcionales.'
+            )}
+          </p>
+        </div>
+
+        <div className="grid sm:grid-cols-3 gap-4">
+          <div className="space-y-1.5 sm:col-span-1">
+            <Label htmlFor="qf-country">{t3(language, 'Pays', 'Country', 'País')} *</Label>
+            <Select value={data.country} onValueChange={(v) => update('country', v)} required>
+              <SelectTrigger id="qf-country" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true">
+                <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
+              </SelectTrigger>
+              <SelectContent className="bg-card max-h-72">
+                {COUNTRIES.map((c) => (
+                  <SelectItem key={c} value={c}>{c}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
+          </div>
+          <div className="space-y-1.5 sm:col-span-2">
+            <Label htmlFor="qf-address">{t3(language, 'Adresse de livraison', 'Shipping address', 'Dirección de envío')} *</Label>
+            <Input
+              id="qf-address"
+              required
+              value={data.address}
+              onChange={(e) => update('address', e.target.value)}
+              placeholder="42 Rue de Rivoli, 75001 Paris"
+              className="h-11 rounded-xl"
+              aria-invalid={!!errors.address}
+            />
+            {errors.address && <p className="text-[13px] text-destructive">{errors.address}</p>}
+          </div>
+        </div>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="qf-role">{t3(language, 'Votre poste (optionnel)', 'Your role (optional)', 'Su cargo (opcional)')}</Label>
+            <Input
+              id="qf-role"
+              value={data.role}
+              onChange={(e) => update('role', e.target.value)}
+              placeholder={t3(language, 'Fondateur, CMO, Acheteur...', 'Founder, CMO, Buyer...', 'Fundador, CMO, Comprador...')}
+              className="h-11 rounded-xl"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="qf-phone">{t3(language, 'Téléphone (optionnel)', 'Phone (optional)', 'Teléfono (opcional)')}</Label>
+            <Input
+              id="qf-phone"
+              type="tel"
+              value={data.phone}
+              onChange={(e) => update('phone', e.target.value)}
+              placeholder="+33 6 12 34 56 78"
+              className="h-11 rounded-xl"
+            />
+            <p className="flex items-start gap-1.5 text-[11px] text-muted-foreground">
+              <Truck className="w-3 h-3 mt-0.5 shrink-0" />
+              {t3(
+                language,
+                'Demandé par DHL et FedEx pour la livraison internationale',
+                'Required by DHL and FedEx for international delivery',
+                'Requerido por DHL y FedEx para la entrega internacional'
+              )}
+            </p>
+          </div>
+        </div>
+
+        <Button
+          type="submit"
+          disabled={isSubmitting}
+          className="w-full h-12 text-base rounded-xl text-white"
+          style={{ background: '#B17743' }}
+        >
+          {isSubmitting
+            ? t3(language, 'Envoi…', 'Sending…', 'Enviando…')
+            : t3(language, "Confirmer l'envoi", 'Confirm shipping', 'Confirmar el envío')}
+          <ArrowRight className="w-5 h-5 ml-2" />
+        </Button>
+      </form>
+    );
+  }
+
+  // step === 1
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
-      {/* Header */}
+    <form onSubmit={handleStep1Submit} className="space-y-6" noValidate>
       <div className="text-center mb-2">
         <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full" style={{ background: 'hsl(28 45% 48% / 0.12)', color: 'hsl(28 45% 38%)' }}>
           <Gift className="w-3.5 h-3.5" />
-          {t3(language, 'Échantillon gratuit', 'Free sample', 'Muestra gratis')}
+          {t3(language, 'Échantillon gratuit · Étape 1/2', 'Free sample · Step 1/2', 'Muestra gratuita · Paso 1/2')}
         </span>
         <h3 className="text-2xl md:text-3xl font-bold text-foreground mt-4">
           {t3(language, 'Recevez votre échantillon Tolia gratuit', 'Get your free Tolia sample', 'Reciba su muestra Tolia gratis')}
@@ -180,17 +378,34 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground mt-2">
           {t3(
             language,
-            'Expédié de France sous 5 jours ouvrés. Aucun appel requis.',
-            'Ships from France within 5 business days. No call required first.',
-            'Envío desde Francia en 5 días hábiles. No requiere llamada previa.'
+            'Email, nom et société suffisent. Nous demanderons l\'adresse juste après.',
+            'Email, name and company are all we need. We\'ll ask for the address right after.',
+            'Email, nombre y empresa. Pediremos la dirección justo después.'
           )}
         </p>
       </div>
 
-      {/* Row 1: name + company */}
+      <div className="space-y-1.5">
+        <Label htmlFor="qf-email">{t3(language, 'Email professionnel', 'Professional email', 'Email profesional')} *</Label>
+        <Input
+          ref={emailInputRef}
+          id="qf-email"
+          type="email"
+          required
+          autoFocus
+          value={data.email}
+          onChange={(e) => update('email', e.target.value)}
+          onFocus={handleFormStart}
+          placeholder="jane.doe@company.com"
+          className="h-11 rounded-xl"
+          aria-invalid={!!errors.email}
+        />
+        {errors.email && <p className="text-[13px] text-destructive">{errors.email}</p>}
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label htmlFor="qf-name">{t3(language, 'Votre nom', 'Your name', 'Su nombre')} *</Label>
+          <Label htmlFor="qf-name">{t3(language, 'Prénom et nom', 'First & last name', 'Nombre y apellidos')} *</Label>
           <Input
             id="qf-name"
             required
@@ -219,99 +434,14 @@ const QualificationForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Row 2: email full */}
-      <div className="space-y-1.5">
-        <Label htmlFor="qf-email">{t3(language, 'Email professionnel', 'Professional email', 'Email profesional')} *</Label>
-        <Input
-          id="qf-email"
-          type="email"
-          required
-          value={data.email}
-          onChange={(e) => update('email', e.target.value)}
-          onFocus={handleFormStart}
-          placeholder="jane.doe@company.com"
-          className="h-11 rounded-xl"
-          aria-invalid={!!errors.email}
-        />
-        {errors.email && <p className="text-[13px] text-destructive">{errors.email}</p>}
-      </div>
-
-      {/* Row 3: country (1fr) + address (2fr) */}
-      <div className="grid sm:grid-cols-3 gap-4">
-        <div className="space-y-1.5 sm:col-span-1">
-          <Label htmlFor="qf-country">{t3(language, 'Pays', 'Country', 'País')} *</Label>
-          <Select value={data.country} onValueChange={(v) => update('country', v)} required>
-            <SelectTrigger id="qf-country" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true">
-              <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
-            </SelectTrigger>
-            <SelectContent className="bg-card max-h-72">
-              {COUNTRIES.map((c) => (
-                <SelectItem key={c} value={c}>{c}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
-        </div>
-        <div className="space-y-1.5 sm:col-span-2">
-          <Label htmlFor="qf-address">{t3(language, 'Adresse de livraison', 'Shipping address', 'Dirección de envío')} *</Label>
-          <Input
-            id="qf-address"
-            required
-            value={data.address}
-            onChange={(e) => update('address', e.target.value)}
-            onFocus={handleFormStart}
-            placeholder="42 Rue de Rivoli, 75001 Paris"
-            className="h-11 rounded-xl"
-            aria-invalid={!!errors.address}
-          />
-          {errors.address && <p className="text-[13px] text-destructive">{errors.address}</p>}
-        </div>
-      </div>
-
-      {/* Row 4: role + phone */}
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div className="space-y-1.5">
-          <Label htmlFor="qf-role">{t3(language, 'Votre poste (optionnel)', 'Your role (optional)', 'Su cargo (opcional)')}</Label>
-          <Input
-            id="qf-role"
-            value={data.role}
-            onChange={(e) => update('role', e.target.value)}
-            onFocus={handleFormStart}
-            placeholder={t3(language, 'Fondateur, CMO, Acheteur...', 'Founder, CMO, Buyer...', 'Fundador, CMO, Comprador...')}
-            className="h-11 rounded-xl"
-          />
-        </div>
-        <div className="space-y-1.5">
-          <Label htmlFor="qf-phone">{t3(language, 'Téléphone (optionnel)', 'Phone (optional)', 'Teléfono (opcional)')}</Label>
-          <Input
-            id="qf-phone"
-            type="tel"
-            value={data.phone}
-            onChange={(e) => update('phone', e.target.value)}
-            onFocus={handleFormStart}
-            placeholder="+33 6 12 34 56 78"
-            className="h-11 rounded-xl"
-          />
-          <p className="flex items-start gap-1.5 text-[11px] text-muted-foreground">
-            <Truck className="w-3 h-3 mt-0.5 shrink-0" />
-            {t3(
-              language,
-              'Demandé par DHL et FedEx pour la livraison internationale',
-              'Required by DHL and FedEx for international delivery',
-              'Requerido por DHL y FedEx para la entrega internacional'
-            )}
-          </p>
-        </div>
-      </div>
-
       {/* Optional qualification */}
       <div className="p-5 rounded-2xl border border-border/60 bg-muted/30 space-y-3">
         <p className="text-sm font-medium text-foreground">
           {t3(
             language,
-            "Je m'intéresse aussi à (optionnel, nous aide à préparer l'appel après réception de l'échantillon)",
-            "I'm also exploring (optional, helps us tailor the call after you receive the sample)",
-            'También me interesa (opcional, nos ayuda a preparar la llamada tras recibir la muestra)'
+            "Je m'intéresse aussi à (optionnel)",
+            "I'm also exploring (optional)",
+            'También me interesa (opcional)'
           )}
         </p>
         <div className="grid gap-2">
@@ -339,7 +469,6 @@ const QualificationForm: React.FC = () => {
         </div>
       </div>
 
-      {/* Submit */}
       <Button
         type="submit"
         disabled={isSubmitting}
@@ -348,11 +477,10 @@ const QualificationForm: React.FC = () => {
       >
         {isSubmitting
           ? t3(language, 'Envoi…', 'Sending…', 'Enviando…')
-          : t3(language, 'Envoyez-moi mon échantillon Tolia gratuit', 'Send me my free Tolia sample', 'Envíenme mi muestra Tolia gratis')}
+          : t3(language, 'Recevoir mon échantillon', 'Get my sample', 'Recibir mi muestra')}
         <ArrowRight className="w-5 h-5 ml-2" />
       </Button>
 
-      {/* Triple reassurance */}
       <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] text-muted-foreground">
         <span className="inline-flex items-center gap-1.5">
           <Package className="w-3.5 h-3.5" />

@@ -19,8 +19,12 @@ export const trackEvent = (eventName: string, properties?: Record<string, string
   }));
 };
 
-export const trackCTAClick = (ctaLabel: string, section: string) => {
-  trackEvent('cta_click', { label: ctaLabel, section });
+export const trackCTAClick = (ctaLabel: string, section: string, ctaType?: string) => {
+  trackEvent('cta_click', {
+    label: ctaLabel,
+    section,
+    cta_type: ctaType || section,
+  });
 };
 
 // Scroll depth tracking - call once on mount
