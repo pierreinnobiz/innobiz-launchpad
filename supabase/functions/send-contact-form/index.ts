@@ -38,6 +38,14 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return new Response(
+        JSON.stringify({ error: "Invalid email format." }),
+        { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
+
     const isValidUrl = (url: string) => {
       try {
         const parsed = new URL(url);
