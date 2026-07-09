@@ -209,6 +209,50 @@ const handler = async (req: Request): Promise<Response> => {
       console.error("Resend API error (user deck):", errorBody);
     }
 
+    // --- CRM push (étape 2 uniquement : adresse confirmée) ---
+    // Non bloquant : toute erreur est loggée mais la réponse reste 200.
+    if (address && String(address).trim().length > 0) {
+      try {
+        const sampleSecret = Deno.env.get("SAMPLE_REQUEST_SECRET");
+        if (!sampleSecret) {
+          console.error("SAMPLE_REQUEST_SECRET is not set — skipping CRM push");
+        } else {
+          const crmResponse = await fetch(
+            "https://prospectiontolia.netlify.app/api/sample-request",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "x-sample-secret": sampleSecret,
+              },
+              body: JSON.stringify({
+                name,
+                email,
+                company,
+                country: country ?? "",
+                address,
+                role: role ?? "",
+                phone: phone ?? "",
+                project_type: project_type ?? segment ?? "",
+                source: "instantly",
+                utm_source: utm_source ?? "",
+                utm_medium: utm_medium ?? "",
+                utm_campaign: utm_campaign ?? "",
+                utm_content: utm_content ?? "",
+              }),
+            },
+          );
+          if (!crmResponse.ok) {
+            const errText = await crmResponse.text().catch(() => "");
+            console.error("CRM push non-OK:", crmResponse.status, errText);
+          }
+        }
+      } catch (crmError) {
+        console.error("CRM push failed (ignored):", crmError);
+      }
+    }
+    // --- fin CRM push ---
+
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },
