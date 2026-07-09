@@ -31,7 +31,11 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const body: ContactFormRequest = await req.json();
-    const { name, company, role, email, website, segment } = body;
+    const {
+      name, company, role, email, website, segment,
+      country, address, phone, project_type,
+      utm_source, utm_medium, utm_campaign, utm_content,
+    } = body;
 
     if (!name || !company || !email) {
       return new Response(
