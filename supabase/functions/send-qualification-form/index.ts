@@ -170,6 +170,51 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // --- CRM push (étape 2 uniquement : adresse confirmée) ---
+    // Non bloquant : toute erreur est loggée mais la réponse reste 200.
+    if (stage === "shipping" && address && String(address).trim().length > 0) {
+      try {
+        const sampleSecret = Deno.env.get("SAMPLE_REQUEST_SECRET");
+        if (!sampleSecret) {
+          console.error("SAMPLE_REQUEST_SECRET is not set — skipping CRM push");
+        } else {
+          const crmResponse = await fetch(
+            "https://prospectiontolia.netlify.app/api/sample-request",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "x-sample-secret": sampleSecret,
+              },
+              body: JSON.stringify({
+                name: name ?? "",
+                email,
+                company: company ?? "",
+                country: country ?? "",
+                address,
+                role: role ?? "",
+                phone: phone ?? "",
+                project_type: project_type ?? "",
+                source: "instantly",
+                utm_source: utm_source ?? "",
+                utm_medium: utm_medium ?? "",
+                utm_campaign: utm_campaign ?? "",
+                utm_content: utm_content ?? "",
+              }),
+            },
+          );
+          const crmText = await crmResponse.text().catch(() => "");
+          console.log("CRM push status:", crmResponse.status, "body:", crmText.slice(0, 500));
+          if (!crmResponse.ok) {
+            console.error("CRM push non-OK:", crmResponse.status, crmText);
+          }
+        }
+      } catch (crmError) {
+        console.error("CRM push failed (ignored):", crmError);
+      }
+    }
+    // --- fin CRM push ---
+
     return new Response(JSON.stringify({ success: true, stage }), {
       status: 200,
       headers: { "Content-Type": "application/json", ...corsHeaders },
