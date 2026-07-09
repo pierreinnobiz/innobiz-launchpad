@@ -13,6 +13,15 @@ interface ContactFormRequest {
   email: string;
   website?: string;
   segment?: string;
+  // Étape 2 (échantillon) — présence de `address` = déclencheur CRM
+  country?: string;
+  address?: string;
+  phone?: string;
+  project_type?: string;
+  utm_source?: string;
+  utm_medium?: string;
+  utm_campaign?: string;
+  utm_content?: string;
 }
 
 const handler = async (req: Request): Promise<Response> => {
