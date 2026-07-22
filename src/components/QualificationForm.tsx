@@ -82,7 +82,6 @@ const QualificationForm: React.FC = () => {
     email: '',
     country: '',
     street: '',
-    addressLine2: '',
     postalCode: '',
     city: '',
     role: '',
