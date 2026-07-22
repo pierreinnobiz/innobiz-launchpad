@@ -401,9 +401,9 @@ const QualificationForm: React.FC = () => {
           <p className="text-sm text-muted-foreground mt-2">
             {t3(
               language,
-              'Pays et adresse pour la livraison. Rôle et téléphone facultatifs.',
-              'Country and address for delivery. Role and phone optional.',
-              'País y dirección para la entrega. Rol y teléfono opcionales.'
+              'Adresse complète pour la livraison. Rôle et téléphone facultatifs.',
+              'Full delivery address. Role and phone optional.',
+              'Dirección completa para la entrega. Rol y teléfono opcionales.'
             )}
           </p>
         </div>
