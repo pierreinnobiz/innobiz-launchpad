@@ -186,9 +186,11 @@ const handler = async (req: Request): Promise<Response> => {
           const streetPart = (address_street ?? "").trim();
           const postalPart = (address_postal_code ?? "").trim();
           const cityPart = (address_city ?? "").trim();
+          const secondLine = [postalPart, cityPart].filter(Boolean).join(" ");
           const composedCrmAddress = (streetPart || postalPart || cityPart)
-            ? `${streetPart}\n${postalPart} ${cityPart}`.trim()
+            ? [streetPart, secondLine].filter(Boolean).join("\n")
             : (address ?? "");
+
 
           const crmResponse = await fetch(
             "https://prospectiontolia.netlify.app/api/sample-request",
