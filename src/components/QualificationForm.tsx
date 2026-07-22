@@ -42,6 +42,14 @@ const COUNTRIES = [
 // International postal code: 3–10 alphanumerics, optionally separated by space or hyphen.
 const POSTAL_CODE_PATTERN = /^[A-Za-z0-9][A-Za-z0-9\s-]{1,8}[A-Za-z0-9]$/;
 
+// Countries with no postal code system (or optional) — never block sample requests here.
+const POSTAL_OPTIONAL_COUNTRIES = new Set<string>([
+  'United Arab Emirates',
+  'Hong Kong',
+  'Other',
+]);
+
+
 const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
   stock_order: 'Stock order',
   white_label: 'White-label production',
@@ -158,13 +166,16 @@ const QualificationForm: React.FC = () => {
 
 
     const postal = data.postalCode.trim();
+    const postalOptional = POSTAL_OPTIONAL_COUNTRIES.has(data.country);
     if (!postal) {
-      next.postalCode = t3(
-        language,
-        'Merci d\'indiquer votre code postal',
-        'Please enter your postal code',
-        'Por favor, indique su código postal'
-      );
+      if (!postalOptional) {
+        next.postalCode = t3(
+          language,
+          'Merci d\'indiquer votre code postal',
+          'Please enter your postal code',
+          'Por favor, indique su código postal'
+        );
+      }
     } else if (!POSTAL_CODE_PATTERN.test(postal)) {
       next.postalCode = t3(
         language,
@@ -173,6 +184,7 @@ const QualificationForm: React.FC = () => {
         'Código postal no válido'
       );
     }
+
 
     const city = data.city.trim();
     if (!city) {
@@ -255,7 +267,10 @@ const QualificationForm: React.FC = () => {
     const street = data.street.trim();
     const postal = data.postalCode.trim();
     const city = data.city.trim();
-    const composedAddress = `${street}\n${postal} ${city}`.trim();
+    const composedAddress = postal
+      ? `${street}\n${postal} ${city}`
+      : `${street}\n${city}`;
+
 
     try {
       await supabase.functions.invoke('send-qualification-form', {
@@ -390,17 +405,30 @@ const QualificationForm: React.FC = () => {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="qf-postal">{t3(language, 'Code postal', 'Postal code', 'Código postal')} *</Label>
-            <Input
-              id="qf-postal"
-              required
-              autoComplete="postal-code"
-              value={data.postalCode}
-              onChange={(e) => update('postalCode', e.target.value)}
-              placeholder="00000"
-              className="h-11 rounded-xl"
-              aria-invalid={!!errors.postalCode}
-            />
+            {(() => {
+              const postalOptional = POSTAL_OPTIONAL_COUNTRIES.has(data.country);
+              return (
+                <>
+                  <Label htmlFor="qf-postal">
+                    {t3(language, 'Code postal', 'Postal code', 'Código postal')}
+                    {postalOptional
+                      ? ` (${t3(language, 'facultatif', 'optional', 'opcional')})`
+                      : ' *'}
+                  </Label>
+                  <Input
+                    id="qf-postal"
+                    required={!postalOptional}
+                    autoComplete="postal-code"
+                    value={data.postalCode}
+                    onChange={(e) => update('postalCode', e.target.value)}
+                    placeholder="00000"
+                    className="h-11 rounded-xl"
+                    aria-invalid={!!errors.postalCode}
+                  />
+                </>
+              );
+            })()}
+
             {errors.postalCode && <p className="text-[13px] text-destructive">{errors.postalCode}</p>}
           </div>
           <div className="space-y-1.5">
