@@ -143,18 +143,19 @@ const QualificationForm: React.FC = () => {
     if (!street) {
       next.street = t3(
         language,
-        "Merci d'indiquer votre adresse (rue et numéro)",
+        "Merci d'indiquer votre adresse",
         'Please enter your street address',
-        'Por favor, indique su dirección (calle y número)'
+        'Por favor, indique su dirección'
       );
     } else if (street.length < 5) {
       next.street = t3(
         language,
-        "Merci d'indiquer votre adresse (rue et numéro)",
-        'Please enter your street address',
-        'Por favor, indique su dirección (calle y número)'
+        "L'adresse doit comporter au moins 5 caractères",
+        'Street address must be at least 5 characters',
+        'La dirección debe tener al menos 5 caracteres'
       );
     }
+
 
     const postal = data.postalCode.trim();
     if (!postal) {
@@ -371,19 +372,20 @@ const QualificationForm: React.FC = () => {
             {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
           </div>
           <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="qf-street">{t3(language, 'Rue et numéro', 'Street and number', 'Calle y número')} *</Label>
+            <Label htmlFor="qf-street">{t3(language, 'Adresse', 'Street address', 'Dirección')} *</Label>
             <Input
               id="qf-street"
               required
               autoComplete="address-line1"
               value={data.street}
               onChange={(e) => update('street', e.target.value)}
-              placeholder={t3(language, '42 Rue de Rivoli', '42 Rivoli Street', '42 Calle de Rivoli')}
+              placeholder={t3(language, 'Rue de Rivoli', 'Rivoli Street', 'Calle de Rivoli')}
               className="h-11 rounded-xl"
               aria-invalid={!!errors.street}
             />
             {errors.street && <p className="text-[13px] text-destructive">{errors.street}</p>}
           </div>
+
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
