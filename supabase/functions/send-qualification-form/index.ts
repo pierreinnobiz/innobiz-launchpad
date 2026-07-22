@@ -13,6 +13,9 @@ interface SampleRequest {
   email: string;
   country?: string;
   address?: string;
+  address_street?: string;
+  address_postal_code?: string;
+  address_city?: string;
   role?: string;
   phone?: string;
   project_type?: "stock_order" | "white_label" | "exploring" | "unset";
@@ -42,7 +45,9 @@ const handler = async (req: Request): Promise<Response> => {
     const body: SampleRequest = await req.json();
     const {
       stage = "shipping",
-      name, company, email, country, address, role, phone, project_type,
+      name, company, email, country, address,
+      address_street, address_postal_code, address_city,
+      role, phone, project_type,
       utm_source, utm_medium, utm_campaign, utm_term, utm_content,
     } = body;
 
