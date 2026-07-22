@@ -195,7 +195,43 @@ const QualificationForm: React.FC = () => {
   const validateStep2 = (): boolean => {
     const next: Partial<Record<keyof FormState, string>> = {};
     if (!data.country) next.country = requiredMsg;
-    if (!data.address.trim()) next.address = requiredMsg;
+
+    const street = data.street.trim();
+    if (!street) {
+      next.street = requiredMsg;
+    } else if (street.length < 5) {
+      next.street = t3(language, 'Adresse trop courte', 'Address is too short', 'Dirección demasiado corta');
+    } else if (!/\d/.test(street)) {
+      next.street = t3(
+        language,
+        'Numéro de rue manquant',
+        'Street number is missing',
+        'Falta el número de la calle'
+      );
+    }
+
+    const postal = data.postalCode.trim();
+    if (!postal) {
+      next.postalCode = requiredMsg;
+    } else if (data.country) {
+      const pattern = POSTAL_PATTERNS[data.country] ?? /^[A-Za-z0-9][A-Za-z0-9\s-]{2,10}$/;
+      if (!pattern.test(postal)) {
+        next.postalCode = t3(
+          language,
+          'Code postal invalide pour ce pays',
+          'Invalid postal code for this country',
+          'Código postal no válido para este país'
+        );
+      }
+    }
+
+    const city = data.city.trim();
+    if (!city) {
+      next.city = requiredMsg;
+    } else if (city.length < 2) {
+      next.city = t3(language, 'Ville invalide', 'Invalid city', 'Ciudad no válida');
+    }
+
     setErrors(next);
     return Object.keys(next).length === 0;
   };
