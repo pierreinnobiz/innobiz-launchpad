@@ -21,7 +21,10 @@ interface FormState {
   company: string;
   email: string;
   country: string;
-  address: string;
+  street: string;
+  addressLine2: string;
+  postalCode: string;
+  city: string;
   role: string;
   phone: string;
   projectType: ProjectType;
@@ -36,6 +39,64 @@ const COUNTRIES = [
   'Japan', 'South Korea', 'China', 'Hong Kong', 'Singapore', 'Australia',
   'New Zealand', 'Morocco', 'Tunisia', 'South Africa', 'Other',
 ];
+
+// Per-country postal code patterns. Fallback: 3–10 alphanumerics for unlisted countries.
+const POSTAL_PATTERNS: Record<string, RegExp> = {
+  France: /^\d{5}$/,
+  Belgium: /^\d{4}$/,
+  Switzerland: /^\d{4}$/,
+  Luxembourg: /^\d{4}$/,
+  Germany: /^\d{5}$/,
+  Netherlands: /^\d{4}\s?[A-Za-z]{2}$/,
+  Spain: /^\d{5}$/,
+  Portugal: /^\d{4}-\d{3}$/,
+  Italy: /^\d{5}$/,
+  'United Kingdom': /^[A-Za-z]{1,2}\d[A-Za-z\d]?\s?\d[A-Za-z]{2}$/,
+  Ireland: /^[A-Za-z]\d{2}\s?[A-Za-z\d]{4}$/,
+  Austria: /^\d{4}$/,
+  Denmark: /^\d{4}$/,
+  Sweden: /^\d{3}\s?\d{2}$/,
+  Norway: /^\d{4}$/,
+  Finland: /^\d{5}$/,
+  Poland: /^\d{2}-\d{3}$/,
+  'Czech Republic': /^\d{3}\s?\d{2}$/,
+  'United States': /^\d{5}(-\d{4})?$/,
+  Canada: /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/,
+  Japan: /^\d{3}-\d{4}$/,
+  Australia: /^\d{4}$/,
+  'New Zealand': /^\d{4}$/,
+  Morocco: /^\d{5}$/,
+  Tunisia: /^\d{4}$/,
+};
+
+const postalPlaceholderFor = (country: string): string => {
+  switch (country) {
+    case 'France':
+    case 'Germany':
+    case 'Spain':
+    case 'Italy':
+    case 'Finland': return '75001';
+    case 'Belgium':
+    case 'Switzerland':
+    case 'Luxembourg':
+    case 'Austria':
+    case 'Denmark':
+    case 'Norway':
+    case 'Australia':
+    case 'New Zealand': return '1000';
+    case 'Netherlands': return '1011 AB';
+    case 'Portugal': return '1000-100';
+    case 'United Kingdom': return 'SW1A 1AA';
+    case 'Ireland': return 'D02 X285';
+    case 'Sweden':
+    case 'Czech Republic': return '110 00';
+    case 'Poland': return '00-001';
+    case 'United States': return '10001';
+    case 'Canada': return 'K1A 0B1';
+    case 'Japan': return '100-0001';
+    default: return '';
+  }
+};
 
 const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
   stock_order: 'Stock order',
@@ -76,7 +137,10 @@ const QualificationForm: React.FC = () => {
     company: '',
     email: '',
     country: '',
-    address: '',
+    street: '',
+    addressLine2: '',
+    postalCode: '',
+    city: '',
     role: '',
     phone: '',
     projectType: 'unset',
@@ -131,7 +195,43 @@ const QualificationForm: React.FC = () => {
   const validateStep2 = (): boolean => {
     const next: Partial<Record<keyof FormState, string>> = {};
     if (!data.country) next.country = requiredMsg;
-    if (!data.address.trim()) next.address = requiredMsg;
+
+    const street = data.street.trim();
+    if (!street) {
+      next.street = requiredMsg;
+    } else if (street.length < 5) {
+      next.street = t3(language, 'Adresse trop courte', 'Address is too short', 'Dirección demasiado corta');
+    } else if (!/\d/.test(street)) {
+      next.street = t3(
+        language,
+        'Numéro de rue manquant',
+        'Street number is missing',
+        'Falta el número de la calle'
+      );
+    }
+
+    const postal = data.postalCode.trim();
+    if (!postal) {
+      next.postalCode = requiredMsg;
+    } else if (data.country) {
+      const pattern = POSTAL_PATTERNS[data.country] ?? /^[A-Za-z0-9][A-Za-z0-9\s-]{2,10}$/;
+      if (!pattern.test(postal)) {
+        next.postalCode = t3(
+          language,
+          'Code postal invalide pour ce pays',
+          'Invalid postal code for this country',
+          'Código postal no válido para este país'
+        );
+      }
+    }
+
+    const city = data.city.trim();
+    if (!city) {
+      next.city = requiredMsg;
+    } else if (city.length < 2) {
+      next.city = t3(language, 'Ville invalide', 'Invalid city', 'Ciudad no válida');
+    }
+
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -197,6 +297,17 @@ const QualificationForm: React.FC = () => {
     if (!validateStep2()) return;
     setIsSubmitting(true);
 
+    const street = data.street.trim();
+    const line2 = data.addressLine2.trim();
+    const postal = data.postalCode.trim();
+    const city = data.city.trim();
+    const composedAddress = [
+      line2 ? `${street}, ${line2}` : street,
+      `${postal} ${city}`.trim(),
+    ]
+      .filter(Boolean)
+      .join(', ');
+
     try {
       await supabase.functions.invoke('send-qualification-form', {
         body: {
@@ -205,7 +316,11 @@ const QualificationForm: React.FC = () => {
           company: data.company,
           email: data.email,
           country: data.country,
-          address: data.address,
+          address: composedAddress,
+          address_street: street,
+          address_line2: line2,
+          address_postal_code: postal,
+          address_city: city,
           role: data.role,
           phone: data.phone,
           project_type: data.projectType,
@@ -286,9 +401,9 @@ const QualificationForm: React.FC = () => {
           <p className="text-sm text-muted-foreground mt-2">
             {t3(
               language,
-              'Pays et adresse pour la livraison. Rôle et téléphone facultatifs.',
-              'Country and address for delivery. Role and phone optional.',
-              'País y dirección para la entrega. Rol y teléfono opcionales.'
+              'Adresse complète pour la livraison. Rôle et téléphone facultatifs.',
+              'Full delivery address. Role and phone optional.',
+              'Dirección completa para la entrega. Rol y teléfono opcionales.'
             )}
           </p>
         </div>
@@ -309,19 +424,65 @@ const QualificationForm: React.FC = () => {
             {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
           </div>
           <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="qf-address">{t3(language, 'Adresse de livraison', 'Shipping address', 'Dirección de envío')} *</Label>
+            <Label htmlFor="qf-street">{t3(language, 'Rue et numéro', 'Street and number', 'Calle y número')} *</Label>
             <Input
-              id="qf-address"
+              id="qf-street"
               required
-              value={data.address}
-              onChange={(e) => update('address', e.target.value)}
-              placeholder="42 Rue de Rivoli, 75001 Paris"
+              autoComplete="address-line1"
+              value={data.street}
+              onChange={(e) => update('street', e.target.value)}
+              placeholder={t3(language, '42 Rue de Rivoli', '42 Rivoli Street', '42 Calle de Rivoli')}
               className="h-11 rounded-xl"
-              aria-invalid={!!errors.address}
+              aria-invalid={!!errors.street}
             />
-            {errors.address && <p className="text-[13px] text-destructive">{errors.address}</p>}
+            {errors.street && <p className="text-[13px] text-destructive">{errors.street}</p>}
           </div>
         </div>
+
+        <div className="grid sm:grid-cols-3 gap-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="qf-address2">
+              {t3(language, 'Complément (optionnel)', 'Apt / Suite (optional)', 'Complemento (opcional)')}
+            </Label>
+            <Input
+              id="qf-address2"
+              autoComplete="address-line2"
+              value={data.addressLine2}
+              onChange={(e) => update('addressLine2', e.target.value)}
+              placeholder={t3(language, 'Bâtiment, étage…', 'Building, floor…', 'Edificio, planta…')}
+              className="h-11 rounded-xl"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="qf-postal">{t3(language, 'Code postal', 'Postal code', 'Código postal')} *</Label>
+            <Input
+              id="qf-postal"
+              required
+              autoComplete="postal-code"
+              value={data.postalCode}
+              onChange={(e) => update('postalCode', e.target.value)}
+              placeholder={postalPlaceholderFor(data.country) || '00000'}
+              className="h-11 rounded-xl"
+              aria-invalid={!!errors.postalCode}
+            />
+            {errors.postalCode && <p className="text-[13px] text-destructive">{errors.postalCode}</p>}
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="qf-city">{t3(language, 'Ville', 'City', 'Ciudad')} *</Label>
+            <Input
+              id="qf-city"
+              required
+              autoComplete="address-level2"
+              value={data.city}
+              onChange={(e) => update('city', e.target.value)}
+              placeholder={t3(language, 'Paris', 'Paris', 'París')}
+              className="h-11 rounded-xl"
+              aria-invalid={!!errors.city}
+            />
+            {errors.city && <p className="text-[13px] text-destructive">{errors.city}</p>}
+          </div>
+        </div>
+
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
