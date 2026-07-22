@@ -183,6 +183,13 @@ const handler = async (req: Request): Promise<Response> => {
         if (!sampleSecret) {
           console.error("SAMPLE_REQUEST_SECRET is not set — skipping CRM push");
         } else {
+          const streetPart = (address_street ?? "").trim();
+          const postalPart = (address_postal_code ?? "").trim();
+          const cityPart = (address_city ?? "").trim();
+          const composedCrmAddress = (streetPart || postalPart || cityPart)
+            ? `${streetPart}\n${postalPart} ${cityPart}`.trim()
+            : (address ?? "");
+
           const crmResponse = await fetch(
             "https://prospectiontolia.netlify.app/api/sample-request",
             {
@@ -196,7 +203,7 @@ const handler = async (req: Request): Promise<Response> => {
                 email,
                 company: company ?? "",
                 country: country ?? "",
-                address,
+                address: composedCrmAddress,
                 role: role ?? "",
                 phone: phone ?? "",
                 project_type: project_type ?? "",
