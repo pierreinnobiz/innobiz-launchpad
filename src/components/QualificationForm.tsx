@@ -143,18 +143,19 @@ const QualificationForm: React.FC = () => {
     if (!street) {
       next.street = t3(
         language,
-        "Merci d'indiquer votre adresse (rue et numéro)",
+        "Merci d'indiquer votre adresse",
         'Please enter your street address',
-        'Por favor, indique su dirección (calle y número)'
+        'Por favor, indique su dirección'
       );
     } else if (street.length < 5) {
       next.street = t3(
         language,
-        "Merci d'indiquer votre adresse (rue et numéro)",
-        'Please enter your street address',
-        'Por favor, indique su dirección (calle y número)'
+        "L'adresse doit comporter au moins 5 caractères",
+        'Street address must be at least 5 characters',
+        'La dirección debe tener al menos 5 caracteres'
       );
     }
+
 
     const postal = data.postalCode.trim();
     if (!postal) {
