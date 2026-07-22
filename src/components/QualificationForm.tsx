@@ -405,17 +405,30 @@ const QualificationForm: React.FC = () => {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="qf-postal">{t3(language, 'Code postal', 'Postal code', 'Código postal')} *</Label>
-            <Input
-              id="qf-postal"
-              required
-              autoComplete="postal-code"
-              value={data.postalCode}
-              onChange={(e) => update('postalCode', e.target.value)}
-              placeholder="00000"
-              className="h-11 rounded-xl"
-              aria-invalid={!!errors.postalCode}
-            />
+            {(() => {
+              const postalOptional = POSTAL_OPTIONAL_COUNTRIES.has(data.country);
+              return (
+                <>
+                  <Label htmlFor="qf-postal">
+                    {t3(language, 'Code postal', 'Postal code', 'Código postal')}
+                    {postalOptional
+                      ? ` (${t3(language, 'facultatif', 'optional', 'opcional')})`
+                      : ' *'}
+                  </Label>
+                  <Input
+                    id="qf-postal"
+                    required={!postalOptional}
+                    autoComplete="postal-code"
+                    value={data.postalCode}
+                    onChange={(e) => update('postalCode', e.target.value)}
+                    placeholder="00000"
+                    className="h-11 rounded-xl"
+                    aria-invalid={!!errors.postalCode}
+                  />
+                </>
+              );
+            })()}
+
             {errors.postalCode && <p className="text-[13px] text-destructive">{errors.postalCode}</p>}
           </div>
           <div className="space-y-1.5">
