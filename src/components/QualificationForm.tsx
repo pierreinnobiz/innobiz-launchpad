@@ -22,7 +22,6 @@ interface FormState {
   email: string;
   country: string;
   street: string;
-  addressLine2: string;
   postalCode: string;
   city: string;
   role: string;
@@ -40,63 +39,8 @@ const COUNTRIES = [
   'New Zealand', 'Morocco', 'Tunisia', 'South Africa', 'Other',
 ];
 
-// Per-country postal code patterns. Fallback: 3–10 alphanumerics for unlisted countries.
-const POSTAL_PATTERNS: Record<string, RegExp> = {
-  France: /^\d{5}$/,
-  Belgium: /^\d{4}$/,
-  Switzerland: /^\d{4}$/,
-  Luxembourg: /^\d{4}$/,
-  Germany: /^\d{5}$/,
-  Netherlands: /^\d{4}\s?[A-Za-z]{2}$/,
-  Spain: /^\d{5}$/,
-  Portugal: /^\d{4}-\d{3}$/,
-  Italy: /^\d{5}$/,
-  'United Kingdom': /^[A-Za-z]{1,2}\d[A-Za-z\d]?\s?\d[A-Za-z]{2}$/,
-  Ireland: /^[A-Za-z]\d{2}\s?[A-Za-z\d]{4}$/,
-  Austria: /^\d{4}$/,
-  Denmark: /^\d{4}$/,
-  Sweden: /^\d{3}\s?\d{2}$/,
-  Norway: /^\d{4}$/,
-  Finland: /^\d{5}$/,
-  Poland: /^\d{2}-\d{3}$/,
-  'Czech Republic': /^\d{3}\s?\d{2}$/,
-  'United States': /^\d{5}(-\d{4})?$/,
-  Canada: /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/,
-  Japan: /^\d{3}-\d{4}$/,
-  Australia: /^\d{4}$/,
-  'New Zealand': /^\d{4}$/,
-  Morocco: /^\d{5}$/,
-  Tunisia: /^\d{4}$/,
-};
-
-const postalPlaceholderFor = (country: string): string => {
-  switch (country) {
-    case 'France':
-    case 'Germany':
-    case 'Spain':
-    case 'Italy':
-    case 'Finland': return '75001';
-    case 'Belgium':
-    case 'Switzerland':
-    case 'Luxembourg':
-    case 'Austria':
-    case 'Denmark':
-    case 'Norway':
-    case 'Australia':
-    case 'New Zealand': return '1000';
-    case 'Netherlands': return '1011 AB';
-    case 'Portugal': return '1000-100';
-    case 'United Kingdom': return 'SW1A 1AA';
-    case 'Ireland': return 'D02 X285';
-    case 'Sweden':
-    case 'Czech Republic': return '110 00';
-    case 'Poland': return '00-001';
-    case 'United States': return '10001';
-    case 'Canada': return 'K1A 0B1';
-    case 'Japan': return '100-0001';
-    default: return '';
-  }
-};
+// International postal code: 3–10 alphanumerics, optionally separated by space or hyphen.
+const POSTAL_CODE_PATTERN = /^[A-Za-z0-9][A-Za-z0-9\s-]{1,8}[A-Za-z0-9]$/;
 
 const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
   stock_order: 'Stock order',
