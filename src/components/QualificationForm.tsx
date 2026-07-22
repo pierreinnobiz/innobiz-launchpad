@@ -424,19 +424,65 @@ const QualificationForm: React.FC = () => {
             {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
           </div>
           <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="qf-address">{t3(language, 'Adresse de livraison', 'Shipping address', 'Dirección de envío')} *</Label>
+            <Label htmlFor="qf-street">{t3(language, 'Rue et numéro', 'Street and number', 'Calle y número')} *</Label>
             <Input
-              id="qf-address"
+              id="qf-street"
               required
-              value={data.address}
-              onChange={(e) => update('address', e.target.value)}
-              placeholder="42 Rue de Rivoli, 75001 Paris"
+              autoComplete="address-line1"
+              value={data.street}
+              onChange={(e) => update('street', e.target.value)}
+              placeholder={t3(language, '42 Rue de Rivoli', '42 Rivoli Street', '42 Calle de Rivoli')}
               className="h-11 rounded-xl"
-              aria-invalid={!!errors.address}
+              aria-invalid={!!errors.street}
             />
-            {errors.address && <p className="text-[13px] text-destructive">{errors.address}</p>}
+            {errors.street && <p className="text-[13px] text-destructive">{errors.street}</p>}
           </div>
         </div>
+
+        <div className="grid sm:grid-cols-3 gap-4">
+          <div className="space-y-1.5">
+            <Label htmlFor="qf-address2">
+              {t3(language, 'Complément (optionnel)', 'Apt / Suite (optional)', 'Complemento (opcional)')}
+            </Label>
+            <Input
+              id="qf-address2"
+              autoComplete="address-line2"
+              value={data.addressLine2}
+              onChange={(e) => update('addressLine2', e.target.value)}
+              placeholder={t3(language, 'Bâtiment, étage…', 'Building, floor…', 'Edificio, planta…')}
+              className="h-11 rounded-xl"
+            />
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="qf-postal">{t3(language, 'Code postal', 'Postal code', 'Código postal')} *</Label>
+            <Input
+              id="qf-postal"
+              required
+              autoComplete="postal-code"
+              value={data.postalCode}
+              onChange={(e) => update('postalCode', e.target.value)}
+              placeholder={postalPlaceholderFor(data.country) || '00000'}
+              className="h-11 rounded-xl"
+              aria-invalid={!!errors.postalCode}
+            />
+            {errors.postalCode && <p className="text-[13px] text-destructive">{errors.postalCode}</p>}
+          </div>
+          <div className="space-y-1.5">
+            <Label htmlFor="qf-city">{t3(language, 'Ville', 'City', 'Ciudad')} *</Label>
+            <Input
+              id="qf-city"
+              required
+              autoComplete="address-level2"
+              value={data.city}
+              onChange={(e) => update('city', e.target.value)}
+              placeholder={t3(language, 'Paris', 'Paris', 'París')}
+              className="h-11 rounded-xl"
+              aria-invalid={!!errors.city}
+            />
+            {errors.city && <p className="text-[13px] text-destructive">{errors.city}</p>}
+          </div>
+        </div>
+
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
