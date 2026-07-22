@@ -372,19 +372,20 @@ const QualificationForm: React.FC = () => {
             {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
           </div>
           <div className="space-y-1.5 sm:col-span-2">
-            <Label htmlFor="qf-street">{t3(language, 'Rue et numéro', 'Street and number', 'Calle y número')} *</Label>
+            <Label htmlFor="qf-street">{t3(language, 'Adresse', 'Street address', 'Dirección')} *</Label>
             <Input
               id="qf-street"
               required
               autoComplete="address-line1"
               value={data.street}
               onChange={(e) => update('street', e.target.value)}
-              placeholder={t3(language, '42 Rue de Rivoli', '42 Rivoli Street', '42 Calle de Rivoli')}
+              placeholder={t3(language, 'Rue de Rivoli', 'Rivoli Street', 'Calle de Rivoli')}
               className="h-11 rounded-xl"
               aria-invalid={!!errors.street}
             />
             {errors.street && <p className="text-[13px] text-destructive">{errors.street}</p>}
           </div>
+
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
