@@ -386,20 +386,7 @@ const QualificationForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4">
-          <div className="space-y-1.5">
-            <Label htmlFor="qf-address2">
-              {t3(language, 'Complément (optionnel)', 'Apt / Suite (optional)', 'Complemento (opcional)')}
-            </Label>
-            <Input
-              id="qf-address2"
-              autoComplete="address-line2"
-              value={data.addressLine2}
-              onChange={(e) => update('addressLine2', e.target.value)}
-              placeholder={t3(language, 'Bâtiment, étage…', 'Building, floor…', 'Edificio, planta…')}
-              className="h-11 rounded-xl"
-            />
-          </div>
+        <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
             <Label htmlFor="qf-postal">{t3(language, 'Code postal', 'Postal code', 'Código postal')} *</Label>
             <Input
@@ -408,7 +395,7 @@ const QualificationForm: React.FC = () => {
               autoComplete="postal-code"
               value={data.postalCode}
               onChange={(e) => update('postalCode', e.target.value)}
-              placeholder={postalPlaceholderFor(data.country) || '00000'}
+              placeholder="00000"
               className="h-11 rounded-xl"
               aria-invalid={!!errors.postalCode}
             />
@@ -429,6 +416,7 @@ const QualificationForm: React.FC = () => {
             {errors.city && <p className="text-[13px] text-destructive">{errors.city}</p>}
           </div>
         </div>
+
 
 
         <div className="grid sm:grid-cols-2 gap-4">
