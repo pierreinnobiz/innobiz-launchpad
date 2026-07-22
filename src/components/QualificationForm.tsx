@@ -22,7 +22,6 @@ interface FormState {
   email: string;
   country: string;
   street: string;
-  addressLine2: string;
   postalCode: string;
   city: string;
   role: string;
@@ -40,63 +39,8 @@ const COUNTRIES = [
   'New Zealand', 'Morocco', 'Tunisia', 'South Africa', 'Other',
 ];
 
-// Per-country postal code patterns. Fallback: 3–10 alphanumerics for unlisted countries.
-const POSTAL_PATTERNS: Record<string, RegExp> = {
-  France: /^\d{5}$/,
-  Belgium: /^\d{4}$/,
-  Switzerland: /^\d{4}$/,
-  Luxembourg: /^\d{4}$/,
-  Germany: /^\d{5}$/,
-  Netherlands: /^\d{4}\s?[A-Za-z]{2}$/,
-  Spain: /^\d{5}$/,
-  Portugal: /^\d{4}-\d{3}$/,
-  Italy: /^\d{5}$/,
-  'United Kingdom': /^[A-Za-z]{1,2}\d[A-Za-z\d]?\s?\d[A-Za-z]{2}$/,
-  Ireland: /^[A-Za-z]\d{2}\s?[A-Za-z\d]{4}$/,
-  Austria: /^\d{4}$/,
-  Denmark: /^\d{4}$/,
-  Sweden: /^\d{3}\s?\d{2}$/,
-  Norway: /^\d{4}$/,
-  Finland: /^\d{5}$/,
-  Poland: /^\d{2}-\d{3}$/,
-  'Czech Republic': /^\d{3}\s?\d{2}$/,
-  'United States': /^\d{5}(-\d{4})?$/,
-  Canada: /^[A-Za-z]\d[A-Za-z]\s?\d[A-Za-z]\d$/,
-  Japan: /^\d{3}-\d{4}$/,
-  Australia: /^\d{4}$/,
-  'New Zealand': /^\d{4}$/,
-  Morocco: /^\d{5}$/,
-  Tunisia: /^\d{4}$/,
-};
-
-const postalPlaceholderFor = (country: string): string => {
-  switch (country) {
-    case 'France':
-    case 'Germany':
-    case 'Spain':
-    case 'Italy':
-    case 'Finland': return '75001';
-    case 'Belgium':
-    case 'Switzerland':
-    case 'Luxembourg':
-    case 'Austria':
-    case 'Denmark':
-    case 'Norway':
-    case 'Australia':
-    case 'New Zealand': return '1000';
-    case 'Netherlands': return '1011 AB';
-    case 'Portugal': return '1000-100';
-    case 'United Kingdom': return 'SW1A 1AA';
-    case 'Ireland': return 'D02 X285';
-    case 'Sweden':
-    case 'Czech Republic': return '110 00';
-    case 'Poland': return '00-001';
-    case 'United States': return '10001';
-    case 'Canada': return 'K1A 0B1';
-    case 'Japan': return '100-0001';
-    default: return '';
-  }
-};
+// International postal code: 3–10 alphanumerics, optionally separated by space or hyphen.
+const POSTAL_CODE_PATTERN = /^[A-Za-z0-9][A-Za-z0-9\s-]{1,8}[A-Za-z0-9]$/;
 
 const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
   stock_order: 'Stock order',
@@ -138,7 +82,6 @@ const QualificationForm: React.FC = () => {
     email: '',
     country: '',
     street: '',
-    addressLine2: '',
     postalCode: '',
     city: '',
     role: '',
@@ -198,39 +141,50 @@ const QualificationForm: React.FC = () => {
 
     const street = data.street.trim();
     if (!street) {
-      next.street = requiredMsg;
-    } else if (street.length < 5) {
-      next.street = t3(language, 'Adresse trop courte', 'Address is too short', 'Dirección demasiado corta');
-    } else if (!/\d/.test(street)) {
       next.street = t3(
         language,
-        'Numéro de rue manquant',
-        'Street number is missing',
-        'Falta el número de la calle'
+        "Merci d'indiquer votre adresse (rue et numéro)",
+        'Please enter your street address',
+        'Por favor, indique su dirección (calle y número)'
+      );
+    } else if (street.length < 5) {
+      next.street = t3(
+        language,
+        "Merci d'indiquer votre adresse (rue et numéro)",
+        'Please enter your street address',
+        'Por favor, indique su dirección (calle y número)'
       );
     }
 
     const postal = data.postalCode.trim();
     if (!postal) {
-      next.postalCode = requiredMsg;
-    } else if (data.country) {
-      const pattern = POSTAL_PATTERNS[data.country] ?? /^[A-Za-z0-9][A-Za-z0-9\s-]{2,10}$/;
-      if (!pattern.test(postal)) {
-        next.postalCode = t3(
-          language,
-          'Code postal invalide pour ce pays',
-          'Invalid postal code for this country',
-          'Código postal no válido para este país'
-        );
-      }
+      next.postalCode = t3(
+        language,
+        'Merci d\'indiquer votre code postal',
+        'Please enter your postal code',
+        'Por favor, indique su código postal'
+      );
+    } else if (!POSTAL_CODE_PATTERN.test(postal)) {
+      next.postalCode = t3(
+        language,
+        'Code postal invalide',
+        'Invalid postal code',
+        'Código postal no válido'
+      );
     }
 
     const city = data.city.trim();
     if (!city) {
-      next.city = requiredMsg;
+      next.city = t3(
+        language,
+        'Merci d\'indiquer votre ville',
+        'Please enter your city',
+        'Por favor, indique su ciudad'
+      );
     } else if (city.length < 2) {
       next.city = t3(language, 'Ville invalide', 'Invalid city', 'Ciudad no válida');
     }
+
 
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -298,15 +252,9 @@ const QualificationForm: React.FC = () => {
     setIsSubmitting(true);
 
     const street = data.street.trim();
-    const line2 = data.addressLine2.trim();
     const postal = data.postalCode.trim();
     const city = data.city.trim();
-    const composedAddress = [
-      line2 ? `${street}, ${line2}` : street,
-      `${postal} ${city}`.trim(),
-    ]
-      .filter(Boolean)
-      .join(', ');
+    const composedAddress = `${street}\n${postal} ${city}`.trim();
 
     try {
       await supabase.functions.invoke('send-qualification-form', {
@@ -318,7 +266,6 @@ const QualificationForm: React.FC = () => {
           country: data.country,
           address: composedAddress,
           address_street: street,
-          address_line2: line2,
           address_postal_code: postal,
           address_city: city,
           role: data.role,
@@ -439,20 +386,7 @@ const QualificationForm: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4">
-          <div className="space-y-1.5">
-            <Label htmlFor="qf-address2">
-              {t3(language, 'Complément (optionnel)', 'Apt / Suite (optional)', 'Complemento (opcional)')}
-            </Label>
-            <Input
-              id="qf-address2"
-              autoComplete="address-line2"
-              value={data.addressLine2}
-              onChange={(e) => update('addressLine2', e.target.value)}
-              placeholder={t3(language, 'Bâtiment, étage…', 'Building, floor…', 'Edificio, planta…')}
-              className="h-11 rounded-xl"
-            />
-          </div>
+        <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
             <Label htmlFor="qf-postal">{t3(language, 'Code postal', 'Postal code', 'Código postal')} *</Label>
             <Input
@@ -461,7 +395,7 @@ const QualificationForm: React.FC = () => {
               autoComplete="postal-code"
               value={data.postalCode}
               onChange={(e) => update('postalCode', e.target.value)}
-              placeholder={postalPlaceholderFor(data.country) || '00000'}
+              placeholder="00000"
               className="h-11 rounded-xl"
               aria-invalid={!!errors.postalCode}
             />
@@ -482,6 +416,7 @@ const QualificationForm: React.FC = () => {
             {errors.city && <p className="text-[13px] text-destructive">{errors.city}</p>}
           </div>
         </div>
+
 
 
         <div className="grid sm:grid-cols-2 gap-4">
