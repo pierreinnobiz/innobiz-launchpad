@@ -42,6 +42,14 @@ const COUNTRIES = [
 // International postal code: 3–10 alphanumerics, optionally separated by space or hyphen.
 const POSTAL_CODE_PATTERN = /^[A-Za-z0-9][A-Za-z0-9\s-]{1,8}[A-Za-z0-9]$/;
 
+// Countries with no postal code system (or optional) — never block sample requests here.
+const POSTAL_OPTIONAL_COUNTRIES = new Set<string>([
+  'United Arab Emirates',
+  'Hong Kong',
+  'Other',
+]);
+
+
 const PROJECT_TYPE_TO_LABEL: Record<ProjectType, string> = {
   stock_order: 'Stock order',
   white_label: 'White-label production',
