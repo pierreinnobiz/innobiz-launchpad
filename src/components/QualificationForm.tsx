@@ -297,6 +297,17 @@ const QualificationForm: React.FC = () => {
     if (!validateStep2()) return;
     setIsSubmitting(true);
 
+    const street = data.street.trim();
+    const line2 = data.addressLine2.trim();
+    const postal = data.postalCode.trim();
+    const city = data.city.trim();
+    const composedAddress = [
+      line2 ? `${street}, ${line2}` : street,
+      `${postal} ${city}`.trim(),
+    ]
+      .filter(Boolean)
+      .join(', ');
+
     try {
       await supabase.functions.invoke('send-qualification-form', {
         body: {
@@ -305,7 +316,11 @@ const QualificationForm: React.FC = () => {
           company: data.company,
           email: data.email,
           country: data.country,
-          address: data.address,
+          address: composedAddress,
+          address_street: street,
+          address_line2: line2,
+          address_postal_code: postal,
+          address_city: city,
           role: data.role,
           phone: data.phone,
           project_type: data.projectType,
