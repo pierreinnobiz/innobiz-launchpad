@@ -267,7 +267,10 @@ const QualificationForm: React.FC = () => {
     const street = data.street.trim();
     const postal = data.postalCode.trim();
     const city = data.city.trim();
-    const composedAddress = `${street}\n${postal} ${city}`.trim();
+    const composedAddress = postal
+      ? `${street}\n${postal} ${city}`
+      : `${street}\n${city}`;
+
 
     try {
       await supabase.functions.invoke('send-qualification-form', {
