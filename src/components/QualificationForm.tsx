@@ -158,13 +158,16 @@ const QualificationForm: React.FC = () => {
 
 
     const postal = data.postalCode.trim();
+    const postalOptional = POSTAL_OPTIONAL_COUNTRIES.has(data.country);
     if (!postal) {
-      next.postalCode = t3(
-        language,
-        'Merci d\'indiquer votre code postal',
-        'Please enter your postal code',
-        'Por favor, indique su código postal'
-      );
+      if (!postalOptional) {
+        next.postalCode = t3(
+          language,
+          'Merci d\'indiquer votre code postal',
+          'Please enter your postal code',
+          'Por favor, indique su código postal'
+        );
+      }
     } else if (!POSTAL_CODE_PATTERN.test(postal)) {
       next.postalCode = t3(
         language,
@@ -173,6 +176,7 @@ const QualificationForm: React.FC = () => {
         'Código postal no válido'
       );
     }
+
 
     const city = data.city.trim();
     if (!city) {
