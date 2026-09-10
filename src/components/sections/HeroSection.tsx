@@ -30,8 +30,10 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
     <div className="absolute inset-0 overflow-hidden">
       <iframe
         src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=auto#t=1s"
-        className="absolute top-1/2 left-1/2 border-0 w-[177.78vh] h-[100vh] min-w-full min-h-full -translate-x-1/2 -translate-y-1/2"
+        className="absolute top-1/2 left-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
         style={{
+          width: 'max(100vw, 177.78vh)',
+          height: 'max(100vh, 56.25vw)',
           opacity: iframeLoaded ? 1 : 0,
           transition: 'opacity 0.8s ease',
         }}
