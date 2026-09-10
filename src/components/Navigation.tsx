@@ -88,30 +88,19 @@ const Navigation: React.FC = () => {
   );
 };
 
-/** FIX 6 — Sticky mobile CTA bar */
+/** Sticky mobile action bar — visible on arrival, hidden only over the contact form */
 const StickyMobileCTA: React.FC<{ label: string }> = ({ label }) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const hero = document.getElementById('hero');
     const contact = document.getElementById('contact');
-    if (!hero || !contact) return;
-
-    const observers: IntersectionObserver[] = [];
-    let heroVisible = true;
-    let contactVisible = false;
-
-    const update = () => setVisible(!heroVisible && !contactVisible);
-
-    const heroObs = new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; update(); }, { threshold: 0.1 });
-    heroObs.observe(hero);
-    observers.push(heroObs);
-
-    const contactObs = new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; update(); }, { threshold: 0.1 });
-    contactObs.observe(contact);
-    observers.push(contactObs);
-
-    return () => observers.forEach(o => o.disconnect());
+    if (!contact) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setVisible(!e.isIntersecting),
+      { threshold: 0.1 }
+    );
+    obs.observe(contact);
+    return () => obs.disconnect();
   }, []);
 
   return (
