@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { RotateCw, Layers, Power, RefreshCw } from 'lucide-react';
 import { fadeBlurUp } from '@/lib/animations';
-import nespressoImg from '@/assets/nespresso-analogy.jpg';
+import nespressoImg from '@/assets/nespresso-analogy.webp';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 

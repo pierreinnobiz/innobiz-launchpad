@@ -27,19 +27,21 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   }, [onVideoEnd]);
 
   return (
-    <iframe
-      src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=auto#t=1s"
-      className="absolute inset-0 w-full h-full border-0"
-      style={{
-        transform: 'scale(1.2)',
-        transformOrigin: 'center center',
-        opacity: iframeLoaded ? 1 : 0,
-        transition: 'opacity 0.8s ease',
-      }}
-      allow="autoplay; fullscreen"
-      onLoad={() => setIframeLoaded(true)}
-      title="Tolia diffuser hero video"
-    />
+    <div className="absolute inset-0 overflow-hidden">
+      <iframe
+        src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=auto#t=1s"
+        className="absolute top-1/2 left-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
+        style={{
+          width: 'max(100vw, 177.78vh)',
+          height: 'max(100vh, 56.25vw)',
+          opacity: iframeLoaded ? 1 : 0,
+          transition: 'opacity 0.8s ease',
+        }}
+        allow="autoplay; fullscreen"
+        onLoad={() => setIframeLoaded(true)}
+        title="Tolia diffuser hero video"
+      />
+    </div>
   );
 };
 

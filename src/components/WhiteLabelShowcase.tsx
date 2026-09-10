@@ -5,7 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 
-import wlDiffuserImg from '@/assets/tolia-moodboard.png';
+import wlDiffuserImg from '@/assets/tolia-moodboard.webp';
 
 interface TextPillar {
   icon: React.ElementType;

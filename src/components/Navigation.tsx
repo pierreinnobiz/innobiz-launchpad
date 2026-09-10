@@ -27,6 +27,7 @@ const Navigation: React.FC = () => {
 
   const ctaLabel = language === 'es' ? 'Iniciar una conversación' : language === 'en' ? 'Start a conversation' : 'Démarrer une conversation';
   const sampleLabel = language === 'es' ? 'Solicitar una muestra' : language === 'en' ? 'Request a sample' : 'Demander un échantillon';
+  const sampleLabelShort = language === 'es' ? 'Muestra' : language === 'en' ? 'Sample' : 'Échantillon';
 
   const LanguageSwitcher = ({ className = '' }: { className?: string }) => (
     <div className={`flex items-center gap-1 ${className}`}>
@@ -62,19 +63,19 @@ const Navigation: React.FC = () => {
               <img src={innobizLogo} alt="Innobiz - Aromatherapy and wellness experts" className="h-7 hidden sm:inline opacity-70 group-hover:opacity-100 transition-opacity" />
             </Link>
 
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               <LanguageSwitcher />
               <a
                 href="#contact"
                 onClick={() => trackCTAClick(sampleLabel, 'nav', 'sample_nav')}
-                className="hidden lg:inline-flex"
+                className="inline-flex shrink-0"
               >
                 <Button
-                  variant="outline"
                   size="sm"
-                  className="rounded-full border-border/60 text-foreground hover:bg-secondary hover:text-secondary-foreground font-medium"
+                  className="rounded-full font-semibold bg-primary text-primary-foreground hover:brightness-110 px-3 sm:px-4"
                 >
-                  {sampleLabel}
+                  <span className="lg:hidden whitespace-nowrap">{sampleLabelShort}</span>
+                  <span className="hidden lg:inline whitespace-nowrap">{sampleLabel}</span>
                 </Button>
               </a>
             </div>
@@ -82,35 +83,24 @@ const Navigation: React.FC = () => {
         </div>
       </header>
 
-      <StickyMobileCTA label={ctaLabel} />
+      <StickyMobileCTA label={sampleLabel} />
     </>
   );
 };
 
-/** FIX 6 — Sticky mobile CTA bar */
+/** Sticky mobile action bar — visible on arrival, hidden only over the contact form */
 const StickyMobileCTA: React.FC<{ label: string }> = ({ label }) => {
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const hero = document.getElementById('hero');
     const contact = document.getElementById('contact');
-    if (!hero || !contact) return;
-
-    const observers: IntersectionObserver[] = [];
-    let heroVisible = true;
-    let contactVisible = false;
-
-    const update = () => setVisible(!heroVisible && !contactVisible);
-
-    const heroObs = new IntersectionObserver(([e]) => { heroVisible = e.isIntersecting; update(); }, { threshold: 0.1 });
-    heroObs.observe(hero);
-    observers.push(heroObs);
-
-    const contactObs = new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; update(); }, { threshold: 0.1 });
-    contactObs.observe(contact);
-    observers.push(contactObs);
-
-    return () => observers.forEach(o => o.disconnect());
+    if (!contact) return;
+    const obs = new IntersectionObserver(
+      ([e]) => setVisible(!e.isIntersecting),
+      { threshold: 0.1 }
+    );
+    obs.observe(contact);
+    return () => obs.disconnect();
   }, []);
 
   return (

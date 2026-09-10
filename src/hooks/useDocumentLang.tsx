@@ -36,14 +36,58 @@ const seoContent: Record<string, { title: string; description: string; ogTitle: 
   },
 };
 
+const structuredData: Record<string, { org: string; product: string }> = {
+  fr: {
+    org: "Innobiz conçoit des diffuseurs d'huiles essentielles en marque blanche avec une technologie de diffusion sans eau propriétaire.",
+    product: "Diffuseur d'huiles essentielles en marque blanche avec la technologie brevetée Twist & Mist. Sans eau, silencieux (<35 dB), 100 % réparable.",
+  },
+  en: {
+    org: 'Innobiz designs white-label essential oil diffusers with proprietary waterless diffusion technology.',
+    product: 'White-label essential oil diffuser with patented Twist & Mist technology. Waterless, silent (<35dB), 100% repairable.',
+  },
+  es: {
+    org: 'Innobiz diseña difusores de aceites esenciales de marca blanca con tecnología de difusión sin agua propietaria.',
+    product: 'Difusor de aceites esenciales de marca blanca con tecnología patentada Twist & Mist. Sin agua, silencioso (<35 dB), 100 % reparable.',
+  },
+};
+
 function setMeta(selector: string, attribute: string, value: string) {
   const el = document.querySelector(selector);
   if (el) el.setAttribute(attribute, value);
 }
 
+function setCanonical(href: string) {
+  let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement | null;
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'canonical';
+    document.head.appendChild(link);
+  }
+  link.href = href;
+}
+
+function localizeJsonLd(language: string) {
+  const copy = structuredData[language] || structuredData.en;
+  const scripts = Array.from(
+    document.querySelectorAll('script[type="application/ld+json"]')
+  ) as HTMLScriptElement[];
+  scripts.forEach((script) => {
+    try {
+      const json = JSON.parse(script.textContent || '{}');
+      if (json['@type'] === 'Organization') json.description = copy.org;
+      else if (json['@type'] === 'Product') json.description = copy.product;
+      else return;
+      json.inLanguage = langMap[language] || 'en-GB';
+      script.textContent = JSON.stringify(json);
+    } catch {
+      /* leave untouched */
+    }
+  });
+}
+
 /**
- * Dynamically updates <html lang>, <title>, meta description,
- * OG and Twitter Card tags based on the currently selected language.
+ * Dynamically updates <html lang>, <title>, meta description, canonical,
+ * OG/Twitter Card tags and JSON-LD based on the currently selected language.
  */
 export function useDocumentLang() {
   const { language } = useLanguage();
@@ -61,6 +105,11 @@ export function useDocumentLang() {
     // Meta description
     setMeta('meta[name="description"]', 'content', content.description);
 
+    // Canonical — one URL per route, query strings and hashes excluded
+    const canonical = `${SITE_URL}${window.location.pathname.replace(/\/+$/, '') || '/'}`;
+    setCanonical(canonical);
+    setMeta('meta[property="og:url"]', 'content', canonical);
+
     // Open Graph
     setMeta('meta[property="og:title"]', 'content', content.ogTitle);
     setMeta('meta[property="og:description"]', 'content', content.ogDescription);
@@ -73,5 +122,8 @@ export function useDocumentLang() {
     setMeta('meta[name="twitter:description"]', 'content', content.ogDescription);
     setMeta('meta[name="twitter:image"]', 'content', content.ogImage);
     setMeta('meta[name="twitter:image:alt"]', 'content', content.ogImageAlt);
+
+    // Structured data in the active language
+    localizeJsonLd(language);
   }, [language]);
 }

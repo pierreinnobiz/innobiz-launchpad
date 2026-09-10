@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ShoppingCart, AlertTriangle, Archive } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
-import closetImg from '@/assets/closet-syndrome.jpg';
+import closetImg from '@/assets/closet-syndrome-opt.webp';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 

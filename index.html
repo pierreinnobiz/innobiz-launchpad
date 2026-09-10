@@ -7,10 +7,9 @@
     <meta name="description" content="Tolia: the white-label diffuser that transforms aromatherapy into daily routines and your blends into recurring revenue. 20 years of Innobiz R&amp;D.">
     <meta name="author" content="Innobiz" />
 
-    <!-- hreflang (default values, updated dynamically by React) -->
-    <link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/" />
-    <link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/" />
-    <link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/" />
+    <!-- Canonical (updated per route by React) -->
+    <link rel="canonical" href="https://www.innobiz-tolia.com/" />
+    <!-- Single URL serves all languages: only x-default is declared -->
     <link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/" />
 
     <!-- Open Graph -->
@@ -45,7 +44,7 @@
       "legalName": "INNOBIZ SARL",
       "url": "https://www.innobiz-tolia.com",
       "logo": "https://www.innobiz-tolia.com/og-image.jpg",
-      "description": "Innobiz conçoit des diffuseurs d'huiles essentielles en marque blanche avec une technologie de diffusion propriétaire.",
+      "description": "Innobiz designs white-label essential oil diffusers with proprietary waterless diffusion technology.",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "8 rue Louis Breguet",
@@ -90,9 +89,9 @@
     }
     </script>
 
-    <!-- GA4 Consent Mode v2 — default DENIED. gtag.js is NOT loaded until the
-         visitor explicitly grants consent (handled by CookieConsent.tsx).
-         No GA cookie (_ga, _gid, _ga_*) is set before consent. -->
+    <!-- GA4 with Consent Mode v2 — defaults DENIED before any measurement.
+         gtag.js is always loaded so consent updates apply immediately; no
+         analytics cookie is written while analytics_storage is 'denied'. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(){ window.dataLayer.push(arguments); };
@@ -106,18 +105,7 @@
         wait_for_update: 500
       });
       window.GA_MEASUREMENT_ID = 'G-S2MPVHYM8L';
-      window.loadGtagScript = function () {
-        if (window.__gtagLoaded) return;
-        window.__gtagLoaded = true;
-        window.gtag('js', new Date());
-        window.gtag('config', window.GA_MEASUREMENT_ID, { anonymize_ip: true });
-        var s = document.createElement('script');
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
-        s.async = true;
-        document.head.appendChild(s);
-      };
       // Read prior consent from any available layer (sessionStorage → cookie → localStorage).
-      // Keeps GA4 state coherent even when localStorage is blocked (Safari ITP, private mode).
       (function () {
         var c = null;
         try { var s = sessionStorage.getItem('tolia_cookie_consent'); if (s === 'granted' || s === 'denied') c = s; } catch (e) {}
@@ -133,11 +121,26 @@
         if (c) {
           window.__toliaConsent = c;
           if (c === 'granted') {
-            window.gtag('consent', 'update', { analytics_storage: 'granted' });
-            (window.requestIdleCallback || function(cb){setTimeout(cb,1500)})(window.loadGtagScript);
+            window.gtag('consent', 'update', {
+              ad_storage: 'granted',
+              ad_user_data: 'granted',
+              ad_personalization: 'granted',
+              analytics_storage: 'granted'
+            });
           }
         }
       })();
+      window.loadGtagScript = function () {
+        if (window.__gtagLoaded) return;
+        window.__gtagLoaded = true;
+        window.gtag('js', new Date());
+        window.gtag('config', window.GA_MEASUREMENT_ID, { anonymize_ip: true });
+        var s = document.createElement('script');
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + window.GA_MEASUREMENT_ID;
+        s.async = true;
+        document.head.appendChild(s);
+      };
+      (window.requestIdleCallback || function(cb){ setTimeout(cb, 1200); })(function(){ window.loadGtagScript(); });
     </script>
     <meta property="og:title" content="Tolia by Innobiz: Premium Refillable Diffuser System">
   <meta name="twitter:title" content="Tolia by Innobiz: Premium Refillable Diffuser System">

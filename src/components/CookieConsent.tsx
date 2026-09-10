@@ -93,29 +93,25 @@ const CookieConsent = () => {
     if (current === null) {
       setVisible(true);
     } else if (window.gtag) {
-      // Re-assert GA4 consent state from persistence on every mount.
-      // No reload, no duplicate gtag.js — loadGtagScript is idempotent via __gtagLoaded.
-      window.gtag('consent', 'update', {
-        analytics_storage: current === 'granted' ? 'granted' : 'denied',
-      });
-      if (current === 'granted' && typeof window.loadGtagScript === 'function') {
-        window.loadGtagScript();
-      }
+      // Re-assert consent state from persistence on every mount (no reload needed).
+      applyConsent(current);
     }
   }, []);
+
+  const applyConsent = (choice: 'granted' | 'denied') => {
+    if (!window.gtag) return;
+    window.gtag('consent', 'update', {
+      ad_storage: choice,
+      ad_user_data: choice,
+      ad_personalization: choice,
+      analytics_storage: choice,
+    });
+  };
 
   const decide = (choice: 'granted' | 'denied') => {
     writeChoice(choice);
     setVisible(false);
-    if (window.gtag) {
-      window.gtag('consent', 'update', {
-        analytics_storage: choice === 'granted' ? 'granted' : 'denied',
-      });
-    }
-    // Lazy-load gtag.js ONLY after explicit consent. Idempotent: safe on re-call.
-    if (choice === 'granted' && typeof window.loadGtagScript === 'function') {
-      window.loadGtagScript();
-    }
+    applyConsent(choice);
   };
 
   if (!visible) return null;

@@ -1,5 +1,5 @@
 import React from 'react';
-import toliaVariation1 from '@/assets/tolia-variation-1.jpg';
+import toliaVariation1 from '@/assets/tolia-variation-1.webp';
 
 interface ProductShowcaseProps {
   className?: string;

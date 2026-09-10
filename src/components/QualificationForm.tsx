@@ -21,6 +21,7 @@ interface FormState {
   company: string;
   email: string;
   country: string;
+  website: string;
   street: string;
   postalCode: string;
   city: string;
@@ -89,6 +90,7 @@ const QualificationForm: React.FC = () => {
     company: '',
     email: '',
     country: '',
+    website: '',
     street: '',
     postalCode: '',
     city: '',
@@ -139,6 +141,11 @@ const QualificationForm: React.FC = () => {
       next.email = t3(language, 'Email invalide', 'Invalid email', 'Email no válido');
     if (!data.name.trim()) next.name = requiredMsg;
     if (!data.company.trim()) next.company = requiredMsg;
+    if (!data.country) next.country = requiredMsg;
+    const site = data.website.trim();
+    if (!site) next.website = requiredMsg;
+    else if (!/^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/.*)?$/i.test(site))
+      next.website = t3(language, 'Site web invalide', 'Invalid website', 'Sitio web no válido');
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -220,6 +227,8 @@ const QualificationForm: React.FC = () => {
           name: data.name,
           company: data.company,
           email: data.email,
+          country: data.country,
+          website: data.website.trim(),
           project_type: data.projectType,
           project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
           ...utms,
@@ -280,6 +289,7 @@ const QualificationForm: React.FC = () => {
           company: data.company,
           email: data.email,
           country: data.country,
+          website: data.website.trim(),
           address: composedAddress,
           address_street: street,
           address_postal_code: postal,
@@ -331,7 +341,7 @@ const QualificationForm: React.FC = () => {
     {
       value: 'stock_order',
       label: t3(language, 'Commande sur stock', 'Stock order', 'Pedido de stock'),
-      sub: t3(language, 'à partir de 300 unités, expédition 72h', 'from 300 units, ships in 72h', 'desde 300 unidades, envío en 72h'),
+      sub: t3(language, 'à partir de 500 unités, expédition 72h', 'from 500 units, ships in 72h', 'desde 500 unidades, envío en 72h'),
     },
     {
       value: 'white_label',
@@ -371,22 +381,8 @@ const QualificationForm: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4">
-          <div className="space-y-1.5 sm:col-span-1">
-            <Label htmlFor="qf-country">{t3(language, 'Pays', 'Country', 'País')} *</Label>
-            <Select value={data.country} onValueChange={(v) => update('country', v)} required>
-              <SelectTrigger id="qf-country" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true">
-                <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
-              </SelectTrigger>
-              <SelectContent className="bg-card max-h-72">
-                {COUNTRIES.map((c) => (
-                  <SelectItem key={c} value={c}>{c}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
-          </div>
-          <div className="space-y-1.5 sm:col-span-2">
+        <div className="grid gap-4">
+          <div className="space-y-1.5">
             <Label htmlFor="qf-street">{t3(language, 'Adresse', 'Street address', 'Dirección')} *</Label>
             <Input
               id="qf-street"
@@ -399,8 +395,10 @@ const QualificationForm: React.FC = () => {
               aria-invalid={!!errors.street}
             />
             {errors.street && <p className="text-[13px] text-destructive">{errors.street}</p>}
+            <p className="text-[11px] text-muted-foreground">
+              {t3(language, 'Pays', 'Country', 'País')}: {data.country}
+            </p>
           </div>
-
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
@@ -511,9 +509,9 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground mt-2">
           {t3(
             language,
-            'Email, nom et société suffisent. Nous demanderons l\'adresse juste après.',
-            'Email, name and company are all we need. We\'ll ask for the address right after.',
-            'Email, nombre y empresa. Pediremos la dirección justo después.'
+            "Quelques informations sur votre société. Nous demanderons l'adresse juste après.",
+            "A few details about your company. We'll ask for the address right after.",
+            'Algunos datos de su empresa. Pediremos la dirección justo después.'
           )}
         </p>
       </div>
@@ -564,6 +562,39 @@ const QualificationForm: React.FC = () => {
             aria-invalid={!!errors.company}
           />
           {errors.company && <p className="text-[13px] text-destructive">{errors.company}</p>}
+        </div>
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="qf-country-1">{t3(language, 'Pays', 'Country', 'País')} *</Label>
+          <Select value={data.country} onValueChange={(v) => update('country', v)} required>
+            <SelectTrigger id="qf-country-1" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true" onFocus={handleFormStart}>
+              <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
+            </SelectTrigger>
+            <SelectContent className="bg-card max-h-72">
+              {COUNTRIES.map((c) => (
+                <SelectItem key={c} value={c}>{c}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
+        </div>
+        <div className="space-y-1.5">
+          <Label htmlFor="qf-website">{t3(language, 'Site web de la société', 'Company website', 'Sitio web de la empresa')} *</Label>
+          <Input
+            id="qf-website"
+            required
+            inputMode="url"
+            autoComplete="url"
+            value={data.website}
+            onChange={(e) => update('website', e.target.value)}
+            onFocus={handleFormStart}
+            placeholder="company.com"
+            className="h-11 rounded-xl"
+            aria-invalid={!!errors.website}
+          />
+          {errors.website && <p className="text-[13px] text-destructive">{errors.website}</p>}
         </div>
       </div>
 

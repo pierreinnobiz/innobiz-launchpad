@@ -12,6 +12,7 @@ interface SampleRequest {
   company?: string;
   email: string;
   country?: string;
+  website?: string;
   address?: string;
   address_street?: string;
   address_postal_code?: string;
@@ -30,7 +31,7 @@ const FROM_ADDRESS = "Tolia Sample <noreply@innobiz-tolia.com>";
 const TO_ADDRESS = "pierre.innobiz@gmail.com";
 
 const PROJECT_LABEL: Record<string, string> = {
-  stock_order: "Stock order (300+ units)",
+  stock_order: "Stock order (500+ units)",
   white_label: "White-label production (3,000+ units)",
   exploring: "Just exploring",
   unset: "Unspecified",
@@ -45,7 +46,7 @@ const handler = async (req: Request): Promise<Response> => {
     const body: SampleRequest = await req.json();
     const {
       stage = "shipping",
-      name, company, email, country, address,
+      name, company, email, country, website, address,
       address_street, address_postal_code, address_city,
       role, phone, project_type,
       utm_source, utm_medium, utm_campaign, utm_term, utm_content,
@@ -70,6 +71,7 @@ const handler = async (req: Request): Promise<Response> => {
       (name && name.length > 200) ||
       (company && company.length > 200) ||
       (country && country.length > 100) ||
+      (website && website.length > 300) ||
       (address && address.length > 500) ||
       (role && role.length > 200) ||
       (phone && phone.length > 50)
@@ -140,6 +142,7 @@ const handler = async (req: Request): Promise<Response> => {
               <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
                 ${name ? row("Nom", sanitize(name)) : ""}
                 ${company ? row("Société", sanitize(company)) : ""}
+                ${website ? row("Site web", sanitize(website)) : ""}
                 ${role ? row("Poste", sanitize(role)) : ""}
                 ${row("Email", `<a href="mailto:${sanitize(email)}" style="color:#3b82f6;">${sanitize(email)}</a>`)}
                 ${phone ? row("Téléphone", sanitize(phone)) : ""}
@@ -208,6 +211,7 @@ const handler = async (req: Request): Promise<Response> => {
                 address: composedCrmAddress,
                 role: role ?? "",
                 phone: phone ?? "",
+                website: website ?? "",
                 project_type: project_type ?? "",
                 source: "instantly",
                 utm_source: utm_source ?? "",

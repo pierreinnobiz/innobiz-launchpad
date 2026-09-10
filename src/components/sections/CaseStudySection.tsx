@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { ArrowRight, TrendingUp, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
-import toliaCaseStudy from '@/assets/tolia-case-study.jpg';
+import toliaCaseStudy from '@/assets/tolia-case-study.webp';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import MagneticButton from '@/components/MagneticButton';

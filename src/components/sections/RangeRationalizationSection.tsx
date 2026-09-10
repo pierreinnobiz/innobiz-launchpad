@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Layers, Rocket, CheckCircle, ArrowRight, Gift } from 'lucide-react';
-import rangeSimplificationImg from '@/assets/tolia-replaces-all.png';
+import rangeSimplificationImg from '@/assets/tolia-replaces-all.webp';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 import { useLanguage } from '@/contexts/LanguageContext';
