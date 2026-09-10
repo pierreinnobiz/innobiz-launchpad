@@ -112,10 +112,7 @@ const RangeRationalizationSection: React.FC = () => {
               "Ilustración que muestra múltiples difusores obsoletos reemplazados por el Tolia universal"
             )}
             className="w-full h-auto no-select rounded-2xl"
-            loading="lazy"
-            decoding="async"
-            width={1200}
-            height={800}
+
 
             draggable={false}
             loading="lazy"

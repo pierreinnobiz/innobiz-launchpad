@@ -132,10 +132,8 @@ const ClosetSyndromeSection: React.FC = () => {
                     'Difusores abandonados en un armario'
                   )}
                   className="w-full h-full object-cover min-h-[200px]"
-                  loading="lazy"
                   decoding="async"
-                  width={800}
-                  height={600}
+
 
                   loading="lazy"
                   width={1024}
