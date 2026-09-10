@@ -8,19 +8,19 @@ import {
 } from '@/components/ui/carousel';
 
 // Import all variation images
-import variation1 from '@/assets/tolia-variation-1.jpg';
-import variation2 from '@/assets/tolia-variation-2.jpg';
-import variation3 from '@/assets/tolia-variation-3.jpg';
-import variation4 from '@/assets/tolia-variation-4.jpg';
-import variation5 from '@/assets/tolia-variation-5.jpg';
-import variation6 from '@/assets/tolia-variation-6.jpg';
-import variation7 from '@/assets/tolia-variation-7.jpg';
-import variation8 from '@/assets/tolia-variation-8.jpg';
-import variation9 from '@/assets/tolia-variation-9.jpg';
-import variation10 from '@/assets/tolia-variation-10.jpg';
-import variation11 from '@/assets/tolia-variation-11.jpg';
-import variation12 from '@/assets/tolia-variation-12.jpg';
-import variation13 from '@/assets/tolia-variation-13.jpg';
+import variation1 from '@/assets/tolia-variation-1.webp';
+import variation2 from '@/assets/tolia-variation-2.webp';
+import variation3 from '@/assets/tolia-variation-3.webp';
+import variation4 from '@/assets/tolia-variation-4.webp';
+import variation5 from '@/assets/tolia-variation-5.webp';
+import variation6 from '@/assets/tolia-variation-6.webp';
+import variation7 from '@/assets/tolia-variation-7.webp';
+import variation8 from '@/assets/tolia-variation-8.webp';
+import variation9 from '@/assets/tolia-variation-9.webp';
+import variation10 from '@/assets/tolia-variation-10.webp';
+import variation11 from '@/assets/tolia-variation-11.webp';
+import variation12 from '@/assets/tolia-variation-12.webp';
+import variation13 from '@/assets/tolia-variation-13.webp';
 
 interface VariationItem {
   image: string;

@@ -4,7 +4,7 @@ import { ArrowRight, Search, Paintbrush, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
 import toliaPartnership from '@/assets/tolia-partnership.jpg';
-import toliaMoodboard from '@/assets/tolia-moodboard.png';
+import toliaMoodboard from '@/assets/tolia-moodboard.webp';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import TiltCard from '@/components/TiltCard';

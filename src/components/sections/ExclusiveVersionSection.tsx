@@ -9,9 +9,9 @@ const scaleBlur: Variants = {
 };
 import { Button } from '@/components/ui/button';
 import { trackCTAClick } from '@/lib/tracking';
-import toliaFrame03 from '@/assets/tolia-frame-03.png';
-import toliaFrame04 from '@/assets/tolia-frame-04.png';
-import toliaFrame05 from '@/assets/tolia-frame-05.png';
+import toliaFrame03 from '@/assets/tolia-frame-03.webp';
+import toliaFrame04 from '@/assets/tolia-frame-04.webp';
+import toliaFrame05 from '@/assets/tolia-frame-05.webp';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 const ExclusiveVersionSection: React.FC = () => {
