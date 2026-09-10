@@ -217,6 +217,11 @@ const TwistAndMistSection: React.FC = () => {
                 )}
                 className="w-full h-full object-cover"
                 loading="lazy"
+                decoding="async"
+                width={800}
+                height={600}
+
+                loading="lazy"
                 width={1280}
                 height={720}
               />

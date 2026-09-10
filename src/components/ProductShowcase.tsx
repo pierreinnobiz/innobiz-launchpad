@@ -43,7 +43,12 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({ className = '' }) => 
             alt="Tolia, diffuseur d'huiles essentielles sans eau, silencieux et 100% réparable, design scandinave en blanc pur"
             className="relative z-10 w-full h-full object-contain drop-shadow-2xl no-select"
             draggable={false}
+            loading="lazy"
+            decoding="async"
+            width={800}
+            height={800}
           />
+
         </div>
       </div>
 
