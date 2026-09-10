@@ -4,7 +4,8 @@
 
 /* Tolia Design System - Premium B2B Conversion Landing */
 /* Color palette extracted from HD product images: warm sand, terracotta amber, cream white */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Fonts are loaded from index.html (preconnect + non-blocking stylesheet) */
+
 
 @layer base {
   p, li {

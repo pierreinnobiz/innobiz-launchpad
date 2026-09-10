@@ -216,6 +216,9 @@ const TwistAndMistSection: React.FC = () => {
                   'Máquina Nespresso ilustrando cómo la simplicidad impulsa el consumo recurrente'
                 )}
                 className="w-full h-full object-cover"
+                decoding="async"
+
+
                 loading="lazy"
                 width={1280}
                 height={720}
