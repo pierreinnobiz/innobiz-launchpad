@@ -3,8 +3,30 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 
+const prefersReducedMotion = () =>
+  typeof window !== 'undefined' &&
+  window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
+
 const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  // Mount the player only after the first paint so it never competes with the
+  // hero text (LCP) for bandwidth on mobile connections.
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const idle = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
+    let id: number;
+    if (idle) {
+      id = idle(() => setMounted(true), { timeout: 1500 });
+    } else {
+      id = window.setTimeout(() => setMounted(true), 400);
+    }
+    return () => {
+      const cancelIdle = (window as unknown as { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback;
+      if (idle && cancelIdle) cancelIdle(id);
+      else clearTimeout(id);
+    };
+  }, []);
 
   useEffect(() => {
     // Listen for Vimeo postMessage events to detect video end
@@ -28,25 +50,37 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      <iframe
-        src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=auto#t=1s"
-        className="absolute top-1/2 left-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
-        style={{
-          width: 'max(100vw, 177.78vh)',
-          height: 'max(100vh, 56.25vw)',
-          opacity: iframeLoaded ? 1 : 0,
-          transition: 'opacity 0.8s ease',
-        }}
-        allow="autoplay; fullscreen"
-        onLoad={() => setIframeLoaded(true)}
-        title="Tolia diffuser hero video"
-      />
+      {mounted && (
+        <iframe
+          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=auto#t=1s"
+          className="absolute top-1/2 left-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
+          style={{
+            width: 'max(100vw, 177.78vh)',
+            height: 'max(100vh, 56.25vw)',
+            opacity: iframeLoaded ? 1 : 0,
+            transition: 'opacity 0.8s ease',
+          }}
+          allow="autoplay; fullscreen"
+          onLoad={() => setIframeLoaded(true)}
+          title="Tolia diffuser hero video"
+        />
+      )}
     </div>
   );
 };
 
 const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay = 0 }) => {
   const words = text.split(' ');
+  const [fast] = useState(
+    () =>
+      prefersReducedMotion() ||
+      (typeof window !== 'undefined' && window.innerWidth < 768)
+  );
+  // On mobile (and with reduced motion) the title paints almost immediately so
+  // the LCP is not delayed by the stagger. Same visual language, shorter timing.
+  const stagger = fast ? 0.03 : 0.12;
+  const delayChildren = fast ? 0 : delay;
+
   return (
     <motion.h1
       className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-tight"
@@ -54,7 +88,7 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
       animate="visible"
       variants={{
         hidden: {},
-        visible: { transition: { staggerChildren: 0.12, delayChildren: delay } },
+        visible: { transition: { staggerChildren: stagger, delayChildren } },
       }}
     >
       {words.map((word, i) => (
@@ -62,10 +96,10 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
           key={i}
           className="inline-block mr-[0.3em]"
           variants={{
-            hidden: { opacity: 0, y: 30 },
+            hidden: { opacity: 0, y: fast ? 8 : 30 },
             visible: {
               opacity: 1, y: 0,
-              transition: { duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+              transition: { duration: fast ? 0.25 : 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
             },
           }}
         >
@@ -75,6 +109,7 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
     </motion.h1>
   );
 };
+
 
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
