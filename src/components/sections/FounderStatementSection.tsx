@@ -121,7 +121,7 @@ const FounderStatementSection: React.FC = () => {
             {statements.map((text, i) => (
               <p
                 key={i}
-                className="text-lg sm:text-xl md:text-[1.4rem] leading-[1.6] min-h-[1.4em]"
+                className="text-lg sm:text-xl md:text-[1.4rem] leading-[1.6] min-h-[1.4em] relative"
                 style={{
                   fontFamily: "'Caveat', cursive",
                   fontWeight: 500,
@@ -131,16 +131,22 @@ const FounderStatementSection: React.FC = () => {
                   transition: 'color 0.3s ease',
                 }}
               >
-                {activeStatement >= i ? (
-                  <TypewriterText
-                    text={`"${text}"`}
-                    startDelay={0}
-                    onComplete={() => handleComplete(i)}
-                    isActive={activeStatement === i}
-                  />
-                ) : null}
+                {/* Ghost copy reserves the final height so the typewriter never
+                    reflows the page (avoids layout shift / CLS). */}
+                <span aria-hidden="true" className="invisible">{`"${text}"`}</span>
+                <span className="absolute inset-0">
+                  {activeStatement >= i ? (
+                    <TypewriterText
+                      text={`"${text}"`}
+                      startDelay={0}
+                      onComplete={() => handleComplete(i)}
+                      isActive={activeStatement === i}
+                    />
+                  ) : null}
+                </span>
               </p>
             ))}
+
 
             {/* Simple signature line - no SVG */}
             <motion.div
