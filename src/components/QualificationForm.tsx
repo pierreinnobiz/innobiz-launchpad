@@ -139,6 +139,11 @@ const QualificationForm: React.FC = () => {
       next.email = t3(language, 'Email invalide', 'Invalid email', 'Email no válido');
     if (!data.name.trim()) next.name = requiredMsg;
     if (!data.company.trim()) next.company = requiredMsg;
+    if (!data.country) next.country = requiredMsg;
+    const site = data.website.trim();
+    if (!site) next.website = requiredMsg;
+    else if (!/^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/.*)?$/i.test(site))
+      next.website = t3(language, 'Site web invalide', 'Invalid website', 'Sitio web no válido');
     setErrors(next);
     return Object.keys(next).length === 0;
   };
