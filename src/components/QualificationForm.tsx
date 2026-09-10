@@ -371,22 +371,8 @@ const QualificationForm: React.FC = () => {
           </p>
         </div>
 
-        <div className="grid sm:grid-cols-3 gap-4">
-          <div className="space-y-1.5 sm:col-span-1">
-            <Label htmlFor="qf-country">{t3(language, 'Pays', 'Country', 'País')} *</Label>
-            <Select value={data.country} onValueChange={(v) => update('country', v)} required>
-              <SelectTrigger id="qf-country" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true">
-                <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
-              </SelectTrigger>
-              <SelectContent className="bg-card max-h-72">
-                {COUNTRIES.map((c) => (
-                  <SelectItem key={c} value={c}>{c}</SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
-          </div>
-          <div className="space-y-1.5 sm:col-span-2">
+        <div className="grid gap-4">
+          <div className="space-y-1.5">
             <Label htmlFor="qf-street">{t3(language, 'Adresse', 'Street address', 'Dirección')} *</Label>
             <Input
               id="qf-street"
@@ -399,8 +385,10 @@ const QualificationForm: React.FC = () => {
               aria-invalid={!!errors.street}
             />
             {errors.street && <p className="text-[13px] text-destructive">{errors.street}</p>}
+            <p className="text-[11px] text-muted-foreground">
+              {t3(language, 'Pays', 'Country', 'País')}: {data.country}
+            </p>
           </div>
-
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4">
