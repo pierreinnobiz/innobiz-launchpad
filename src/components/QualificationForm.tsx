@@ -511,9 +511,9 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground mt-2">
           {t3(
             language,
-            'Email, nom et société suffisent. Nous demanderons l\'adresse juste après.',
-            'Email, name and company are all we need. We\'ll ask for the address right after.',
-            'Email, nombre y empresa. Pediremos la dirección justo después.'
+            "Quelques informations sur votre société. Nous demanderons l'adresse juste après.",
+            "A few details about your company. We'll ask for the address right after.",
+            'Algunos datos de su empresa. Pediremos la dirección justo después.'
           )}
         </p>
       </div>
