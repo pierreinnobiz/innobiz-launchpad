@@ -21,6 +21,7 @@ interface FormState {
   company: string;
   email: string;
   country: string;
+  website: string;
   street: string;
   postalCode: string;
   city: string;
@@ -89,6 +90,7 @@ const QualificationForm: React.FC = () => {
     company: '',
     email: '',
     country: '',
+    website: '',
     street: '',
     postalCode: '',
     city: '',
@@ -225,6 +227,8 @@ const QualificationForm: React.FC = () => {
           name: data.name,
           company: data.company,
           email: data.email,
+          country: data.country,
+          website: data.website.trim(),
           project_type: data.projectType,
           project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
           ...utms,
@@ -285,6 +289,7 @@ const QualificationForm: React.FC = () => {
           company: data.company,
           email: data.email,
           country: data.country,
+          website: data.website.trim(),
           address: composedAddress,
           address_street: street,
           address_postal_code: postal,
