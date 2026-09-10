@@ -163,7 +163,7 @@ const handler = async (req: Request): Promise<Response> => {
                     <ul style="padding-left: 20px; margin: 0; line-height: 1.8;">
                       <li>Product overview & key differentiators</li>
                       <li>White-label programme terms</li>
-                      <li>Stock order pricing (300+ units)</li>
+                      <li>Stock order pricing (500+ units)</li>
                       <li>Case studies & market proof</li>
                       <li>Next steps to get started</li>
                     </ul>

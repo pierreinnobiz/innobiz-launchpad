@@ -30,7 +30,7 @@ const FROM_ADDRESS = "Tolia Sample <noreply@innobiz-tolia.com>";
 const TO_ADDRESS = "pierre.innobiz@gmail.com";
 
 const PROJECT_LABEL: Record<string, string> = {
-  stock_order: "Stock order (300+ units)",
+  stock_order: "Stock order (500+ units)",
   white_label: "White-label production (3,000+ units)",
   exploring: "Just exploring",
   unset: "Unspecified",

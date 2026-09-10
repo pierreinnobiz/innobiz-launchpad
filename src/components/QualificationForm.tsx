@@ -331,7 +331,7 @@ const QualificationForm: React.FC = () => {
     {
       value: 'stock_order',
       label: t3(language, 'Commande sur stock', 'Stock order', 'Pedido de stock'),
-      sub: t3(language, 'à partir de 300 unités, expédition 72h', 'from 300 units, ships in 72h', 'desde 300 unidades, envío en 72h'),
+      sub: t3(language, 'à partir de 500 unités, expédition 72h', 'from 500 units, ships in 72h', 'desde 500 unidades, envío en 72h'),
     },
     {
       value: 'white_label',

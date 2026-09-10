@@ -73,17 +73,17 @@ const WhiteLabelForm: React.FC = () => {
 const OrderForm: React.FC = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formData, setFormData] = useState({ name: '', company: '', email: '', quantity: '300', message: '' });
+  const [formData, setFormData] = useState({ name: '', company: '', email: '', quantity: '500', message: '' });
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     try {
       await supabase.functions.invoke('send-contact-form', {
-        body: { ...formData, segment: 'order-300', role: `Order inquiry, ${formData.quantity} units` },
+        body: { ...formData, segment: 'order-500', role: `Order inquiry, ${formData.quantity} units` },
       });
       toast({ title: 'Order request sent', description: 'We\'ll confirm availability and pricing shortly.' });
-      setFormData({ name: '', company: '', email: '', quantity: '300', message: '' });
+      setFormData({ name: '', company: '', email: '', quantity: '500', message: '' });
     } catch {
       toast({ title: 'Error', description: 'Please try again.', variant: 'destructive' });
     }
@@ -93,7 +93,7 @@ const OrderForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       <h3 className="text-xl font-bold mb-2">Order branded Tolia units</h3>
-      <p className="text-sm text-muted-foreground mb-4">Minimum order: 300 pieces. Ready to ship as branded Tolia.</p>
+      <p className="text-sm text-muted-foreground mb-4">Minimum order: 500 pieces. Ready to ship as branded Tolia.</p>
       <div className="grid md:grid-cols-2 gap-6">
         <div className="space-y-2">
           <Label htmlFor="ord-name">Full name *</Label>
@@ -110,8 +110,8 @@ const OrderForm: React.FC = () => {
           <Input id="ord-company" required value={formData.company} onChange={e => setFormData(p => ({ ...p, company: e.target.value }))} />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="ord-quantity">Quantity (min. 300) *</Label>
-          <Input id="ord-quantity" type="number" min="300" required value={formData.quantity} onChange={e => setFormData(p => ({ ...p, quantity: e.target.value }))} />
+          <Label htmlFor="ord-quantity">Quantity (min. 500) *</Label>
+          <Input id="ord-quantity" type="number" min="500" required value={formData.quantity} onChange={e => setFormData(p => ({ ...p, quantity: e.target.value }))} />
         </div>
       </div>
       <div className="space-y-2">
@@ -202,7 +202,7 @@ const Contact: React.FC = () => {
     {
       key: 'order',
       icon: Package,
-      label: language === 'fr' ? 'Commander 300+ unités' : language === 'es' ? 'Pedir 300+ unidades' : 'Order 300+ units',
+      label: language === 'fr' ? 'Commander 500+ unités' : language === 'es' ? 'Pedir 500+ unidades' : 'Order 500+ units',
       desc: language === 'fr'
         ? 'Ajoutez Tolia à votre gamme'
         : language === 'es'
