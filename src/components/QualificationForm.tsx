@@ -567,6 +567,39 @@ const QualificationForm: React.FC = () => {
         </div>
       </div>
 
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div className="space-y-1.5">
+          <Label htmlFor="qf-country-1">{t3(language, 'Pays', 'Country', 'País')} *</Label>
+          <Select value={data.country} onValueChange={(v) => update('country', v)} required>
+            <SelectTrigger id="qf-country-1" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true" onFocus={handleFormStart}>
+              <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
+            </SelectTrigger>
+            <SelectContent className="bg-card max-h-72">
+              {COUNTRIES.map((c) => (
+                <SelectItem key={c} value={c}>{c}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
+        </div>
+        <div className="space-y-1.5">
+          <Label htmlFor="qf-website">{t3(language, 'Site web de la société', 'Company website', 'Sitio web de la empresa')} *</Label>
+          <Input
+            id="qf-website"
+            required
+            inputMode="url"
+            autoComplete="url"
+            value={data.website}
+            onChange={(e) => update('website', e.target.value)}
+            onFocus={handleFormStart}
+            placeholder="company.com"
+            className="h-11 rounded-xl"
+            aria-invalid={!!errors.website}
+          />
+          {errors.website && <p className="text-[13px] text-destructive">{errors.website}</p>}
+        </div>
+      </div>
+
       {/* Optional qualification */}
       <div className="p-5 rounded-2xl border border-border/60 bg-muted/30 space-y-3">
         <p className="text-sm font-medium text-foreground">
