@@ -82,7 +82,8 @@ export const useScrollToTop = () => {
     window.addEventListener('tolia:heroiframe:focus', restoreAnchor);
 
     return () => {
-      clearTimeout(timer);
+      clearInterval(poll);
+
       window.removeEventListener('tolia:heroiframe:focus', restoreAnchor);
     };
   }, [pathname, hash]);
