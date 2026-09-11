@@ -45,11 +45,11 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Tolia by Innobiz: Premium Refillable Diffuser System</title>
-        <meta name="description" content="White-label refillable diffuser by Innobiz. Turn aromatherapy into daily routines and your blends into recurring revenue." />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
         <link rel="canonical" href="https://www.innobiz-tolia.com/" />
-        <meta property="og:title" content="Tolia by Innobiz: Premium Refillable Diffuser System" />
-        <meta property="og:description" content="White-label refillable diffuser by Innobiz. Turn aromatherapy into daily routines and your blends into recurring revenue." />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
         <meta property="og:url" content="https://www.innobiz-tolia.com/" />
       </Helmet>
       <Navigation />
