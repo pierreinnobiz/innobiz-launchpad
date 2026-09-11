@@ -60,32 +60,30 @@ function checkRlsEnabled() {
 }
 
 function checkGrants() {
+  // has_table_privilege reflects effective privileges for a role, unlike
+  // information_schema views which only show grants visible to the caller.
   const rows = psql(`
-    SELECT table_name, grantee, string_agg(DISTINCT privilege_type, ',' ORDER BY privilege_type)
-      FROM information_schema.role_table_grants
-     WHERE table_schema = 'public'
-       AND grantee IN ('anon', 'authenticated', 'service_role')
-     GROUP BY 1, 2;
+    SELECT c.relname,
+           has_table_privilege('service_role', c.oid, 'SELECT'),
+           has_table_privilege('authenticated', c.oid, 'SELECT'),
+           has_table_privilege('anon', c.oid, 'SELECT')
+      FROM pg_class c
+      JOIN pg_namespace n ON n.oid = c.relnamespace
+     WHERE n.nspname = 'public' AND c.relkind = 'r'
+     ORDER BY 1;
   `);
-  const grants = new Map();
-  for (const [table, grantee, privs] of rows) {
-    grants.set(`${table}:${grantee}`, privs.split(','));
-  }
 
-  const tables = psql(`
-    SELECT c.relname FROM pg_class c JOIN pg_namespace n ON n.oid = c.relnamespace
-     WHERE n.nspname = 'public' AND c.relkind = 'r' ORDER BY 1;
-  `).map(([t]) => t);
-
-  for (const table of tables) {
-    const serviceRole = grants.get(`${table}:service_role`) ?? [];
-    if (serviceRole.includes('SELECT')) ok(`service_role can reach public.${table}`);
+  for (const [table, serviceRole, authenticated, anon] of rows) {
+    if (serviceRole === 't') ok(`service_role can reach public.${table}`);
     else fail(`public.${table} has no service_role GRANT — edge functions and admin code cannot reach it`);
 
-    // Private tables must not be readable by the anon role.
-    const anon = grants.get(`${table}:anon`) ?? [];
-    if (PRIVATE_TABLES.includes(table) && anon.includes('SELECT')) {
-      fail(`public.${table} grants SELECT to anon, but it holds private data`);
+    if (PRIVATE_TABLES.includes(table)) {
+      if (anon === 't') fail(`public.${table} grants SELECT to anon, but it holds private data`);
+      else ok(`public.${table} is not readable by anon at the GRANT level`);
+
+      if (authenticated !== 't') {
+        fail(`public.${table} has no authenticated GRANT — signed-in admins cannot read it`);
+      }
     }
   }
 }
