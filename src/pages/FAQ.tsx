@@ -158,8 +158,8 @@ const FAQ: React.FC = () => {
         <title>{faqTitle}</title>
         <meta name="description" content={faqDesc} />
         <link rel="canonical" href="https://www.innobiz-tolia.com/faq" />
-        <meta property="og:title" content={faqTitle} />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+
       </Helmet>
       <SeoOpenGraph title={faqTitle} description={faqDesc} path="/faq" />
 
