@@ -8,6 +8,7 @@ import ClosetSyndromeSection from '@/components/sections/ClosetSyndromeSection';
 import SectionGradient from '@/components/SectionGradient';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const IndexBelowFold = React.lazy(() => import('./IndexBelowFold'));
 
