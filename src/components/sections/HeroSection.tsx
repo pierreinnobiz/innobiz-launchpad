@@ -74,7 +74,11 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
     <div className="absolute inset-0 overflow-hidden">
       {/* Instant still frame so the hero is never black while the player loads */}
       <img
-        src="/images/hero-poster.jpg"
+        src="/images/hero-poster.webp"
+        srcSet="/images/hero-poster-768.webp 768w, /images/hero-poster.webp 1920w"
+        sizes="100vw"
+        width={1920}
+        height={1080}
         alt=""
         aria-hidden="true"
         fetchPriority="high"

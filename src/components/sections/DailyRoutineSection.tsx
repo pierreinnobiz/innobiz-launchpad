@@ -38,7 +38,7 @@ const ScrollVideo: React.FC<{ src: string; poster: string; alt: string }> = ({ s
       poster={poster}
       muted
       playsInline
-      preload="metadata"
+      preload="none"
       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
       aria-label={alt}
     />
