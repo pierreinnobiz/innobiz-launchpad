@@ -120,6 +120,27 @@ function checkPolicyRoles() {
     }
   }
 
+  // The signed-in admin UI reads and writes these tables from the browser, so
+  // a matching policy for the `authenticated` role must exist for each command.
+  const CLIENT_OPERATIONS = [
+    ['chat_contacts', 'SELECT'],
+    ['chat_messages', 'SELECT'],
+    ['chat_messages', 'INSERT'],
+    ['chat_messages', 'UPDATE'],
+    ['user_roles', 'SELECT'],
+  ];
+  for (const [table, cmd] of CLIENT_OPERATIONS) {
+    const covered = rows.some(
+      ([t, , c, roles]) =>
+        t === table &&
+        (c === cmd || c === 'ALL') &&
+        roles.split(',').map((r) => r.trim()).includes('authenticated')
+    );
+    if (covered) ok(`signed-in users have a ${cmd} policy on public.${table}`);
+    else fail(`the app performs ${cmd} on public.${table} from the browser, but no policy covers the authenticated role`);
+  }
+
+
   for (const table of PRIVATE_TABLES) {
     if (!tablesWithPolicies.has(table)) {
       fail(`private table public.${table} has no RLS policy at all — it is fully locked or unprotected`);
