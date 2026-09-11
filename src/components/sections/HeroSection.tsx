@@ -182,10 +182,11 @@ const HeroSection: React.FC = () => {
 
   const title = t3(
     language,
-    "Chaque diffuseur vendu est le début d'un revenu récurrent.",
-    "Every diffuser sold is the start of recurring revenue.",
-    "Cada difusor vendido es el inicio de un ingreso recurrente."
+    "Diffuseurs d'huiles essentielles : chaque diffuseur vendu est le début d'un revenu récurrent.",
+    "Essential oil diffusers: every diffuser sold is the start of recurring revenue.",
+    "Difusores de aceites esenciales: cada difusor vendido es el inicio de un ingreso recurrente."
   );
+
   const eyebrow = t3(
     language,
     "Pour les marques d'aromathérapie, d'huiles essentielles et de bien-être naturel",
