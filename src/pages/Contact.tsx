@@ -283,8 +283,9 @@ const Contact: React.FC = () => {
 
           <ScrollReveal>
             <div className="space-y-8">
-              {type === 'demo' && (
+              {type === 'sample' && (
                 <>
+                  <p className="text-center text-sm text-muted-foreground">{noCallLine}</p>
                   <FastTrackDeckForm />
                   <div className="text-center">
                     <p className="text-sm text-muted-foreground">
@@ -298,6 +299,15 @@ const Contact: React.FC = () => {
                   <div className="card-premium">
                     <QualificationForm />
                   </div>
+                  <p className="text-center text-xs text-muted-foreground">
+                    <a href="?type=info" className="underline hover:text-foreground">
+                      {language === 'fr'
+                        ? 'Vous préférez en parler de vive voix ?'
+                        : language === 'es'
+                        ? '¿Prefiere hablarlo por teléfono?'
+                        : 'Prefer to talk it through with us?'}
+                    </a>
+                  </p>
                 </>
               )}
               {type === 'white-label' && <WhiteLabelForm />}
