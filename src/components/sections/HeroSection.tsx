@@ -61,6 +61,9 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
         if (data.event === 'finish' || data.method === 'finish') {
           onVideoEnd?.();
         }
+        if (data.event === 'play' || data.event === 'playing' || data.event === 'timeupdate') {
+          setVideoVisible(true);
+        }
       } catch {}
     };
     window.addEventListener('message', handleMessage);
