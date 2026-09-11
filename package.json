@@ -9,7 +9,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview",
-    "check:rls": "node scripts/check-rls-policies.mjs"
+    "check:rls": "node scripts/check-rls-policies.mjs",
+    "test:e2e:anchors": "python3 scripts/e2e-anchors.py"
   },
   "dependencies": {
     "@fontsource/caveat": "^5.2.8",
