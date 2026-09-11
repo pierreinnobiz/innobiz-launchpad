@@ -33,6 +33,7 @@ const PageFallback = () => (
 
 const AppRoutes = () => {
   useWave2Tracking();
+  useScrollToTop();
   return (
     <BrowserRouter>
       <ProspectTracker />
