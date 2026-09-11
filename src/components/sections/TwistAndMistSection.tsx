@@ -55,7 +55,7 @@ const StepVideo: React.FC<{
       poster={poster}
       muted
       playsInline
-      preload="metadata"
+      preload="none"
       className="w-full aspect-[4/3] object-cover cursor-pointer"
       aria-label={alt}
       onMouseEnter={handleMouseEnter}

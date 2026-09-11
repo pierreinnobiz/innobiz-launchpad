@@ -10,6 +10,9 @@ const prefersReducedMotion = () =>
 const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  // The still frame stays visible until playback really starts, so a slow or
+  // failing player never leaves the hero empty.
+  const [videoVisible, setVideoVisible] = useState(false);
   // Mount the player only after the first paint so it never competes with the
   // hero text (LCP) for bandwidth on mobile connections.
   const [mounted, setMounted] = useState(false);
@@ -58,6 +61,9 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
         if (data.event === 'finish' || data.method === 'finish') {
           onVideoEnd?.();
         }
+        if (data.event === 'play' || data.event === 'playing' || data.event === 'timeupdate') {
+          setVideoVisible(true);
+        }
       } catch {}
     };
     window.addEventListener('message', handleMessage);
@@ -70,17 +76,33 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
     };
   }, [onVideoEnd]);
 
+  useEffect(() => {
+    // Ask the player to report playback, and keep a short fallback in case the
+    // background player stays silent.
+    if (!iframeLoaded) return;
+    const iframe = iframeRef.current;
+    ['play', 'playing', 'timeupdate'].forEach(event => {
+      iframe?.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: event }), '*');
+    });
+    const id = window.setTimeout(() => setVideoVisible(true), 1800);
+    return () => clearTimeout(id);
+  }, [iframeLoaded]);
+
   return (
     <div className="absolute inset-0 overflow-hidden">
       {/* Instant still frame so the hero is never black while the player loads */}
       <img
-        src="/images/hero-poster.jpg"
+        src="/images/hero-poster.webp"
+        srcSet="/images/hero-poster-768.webp 768w, /images/hero-poster.webp 1920w"
+        sizes="100vw"
+        width={1920}
+        height={1080}
         alt=""
         aria-hidden="true"
         fetchPriority="high"
         decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: iframeLoaded ? 0 : 1, transition: 'opacity 0.8s ease' }}
+        style={{ opacity: videoVisible ? 0 : 1, transition: 'opacity 0.8s ease' }}
       />
       {mounted && (
         <iframe

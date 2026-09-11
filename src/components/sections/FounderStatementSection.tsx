@@ -3,8 +3,14 @@ import { motion, useInView } from 'framer-motion';
 import innobizLogo from '@/assets/innobiz-logo.png';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
-import '@fontsource/caveat/500.css';
-import '@fontsource/caveat/700.css';
+// The decorative Caveat font is loaded after the first paint so its two woff2
+// files never compete with the hero for bandwidth (LCP on mobile).
+const loadCaveat = () => {
+  Promise.all([
+    import('@fontsource/caveat/500.css'),
+    import('@fontsource/caveat/700.css'),
+  ]).catch(() => {});
+};
 
 const STATEMENTS_BY_LANG: Record<'fr' | 'en' | 'es', string[]> = {
   fr: [
@@ -84,6 +90,12 @@ const FounderStatementSection: React.FC = () => {
       setActiveStatement(0);
     }
   }, [isInView, activeStatement]);
+
+  useEffect(() => {
+    const idle = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
+    if (idle) idle(() => loadCaveat(), { timeout: 2000 });
+    else setTimeout(loadCaveat, 600);
+  }, []);
 
   const handleComplete = useCallback((index: number) => {
     setCompletedStatements(prev => new Set(prev).add(index));
