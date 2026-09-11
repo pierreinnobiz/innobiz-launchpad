@@ -241,6 +241,13 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     if (typeof document !== 'undefined') {
       document.documentElement.lang = HTML_LANG_MAP[language] || 'en-GB';
     }
+    if (typeof window !== 'undefined') {
+      try {
+        window.localStorage?.setItem('tolia:lang', language);
+      } catch {
+        /* storage unavailable */
+      }
+    }
   }, [language]);
 
   const value = useMemo(() => ({ language, setLanguage, t }), [language]);
