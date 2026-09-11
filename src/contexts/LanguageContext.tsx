@@ -23,9 +23,13 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
   'nav.contact': { fr: 'Contact', en: 'Contact' },
   
   // CTAs
-  'cta.demo': { fr: 'Demander une démo', en: 'Request a demo' },
-  'cta.info': { fr: 'Demander des infos', en: 'Request information' },
-  'cta.demo.subtitle': { fr: 'Accès agenda après quelques questions (2 min)', en: 'Calendar access after a short qualification.' },
+  'cta.demo': { fr: 'Recevez votre échantillon gratuit', en: 'Get your free sample', es: 'Reciba su muestra gratuita' },
+  'cta.info': { fr: 'Demander des infos', en: 'Request information', es: 'Solicitar información' },
+  'cta.demo.subtitle': {
+    fr: 'Aucun appel requis. Échantillon expédié de France sous 5 jours ouvrés.',
+    en: 'No call required. Sample shipped from France within 5 business days.',
+    es: 'Sin llamada previa. Muestra enviada desde Francia en 5 días hábiles.',
+  },
   
   // Hero - Home
   'hero.title': { 
