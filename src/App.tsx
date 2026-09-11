@@ -22,7 +22,6 @@ const Admin = React.lazy(() => import("./pages/Admin"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 const LanguageAudit = React.lazy(() => import("./pages/LanguageAudit"));
 
-
 const queryClient = new QueryClient();
 
 const PageFallback = () => (
@@ -31,11 +30,16 @@ const PageFallback = () => (
   </div>
 );
 
+const ScrollToTop = () => {
+  useScrollToTop();
+  return null;
+};
+
 const AppRoutes = () => {
   useWave2Tracking();
-  useScrollToTop();
   return (
-    <BrowserRouter>
+    <>
+      <ScrollToTop />
       <ProspectTracker />
       <Suspense fallback={<PageFallback />}>
         <Routes>
@@ -52,7 +56,7 @@ const AppRoutes = () => {
         </Routes>
       </Suspense>
       <CookieConsent />
-    </BrowserRouter>
+    </>
   );
 };
 
@@ -63,7 +67,9 @@ const App = () => (
         <TooltipProvider>
           <Toaster />
           <Sonner />
-          <AppRoutes />
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
         </TooltipProvider>
       </AuthProvider>
     </LanguageProvider>

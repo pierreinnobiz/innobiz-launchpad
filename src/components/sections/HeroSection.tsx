@@ -8,6 +8,7 @@ const prefersReducedMotion = () =>
   window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
 
 const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
   // Mount the player only after the first paint so it never competes with the
   // hero text (LCP) for bandwidth on mobile connections.
@@ -27,6 +28,27 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
       else clearTimeout(id);
     };
   }, []);
+
+  useEffect(() => {
+    // The Vimeo player sometimes focuses its own iframe after load, which
+    // pulls the viewport back to the hero on deep links like /#contact.
+    // Because this is a decorative background video, immediately defocus it.
+    if (!mounted) return;
+    const iframe = iframeRef.current;
+    if (!iframe) return;
+    let attempts = 0;
+    const maxAttempts = 100;
+    const id = setInterval(() => {
+      attempts++;
+      if (document.activeElement === iframe) {
+        iframe.blur();
+      }
+      if (attempts >= maxAttempts) {
+        clearInterval(id);
+      }
+    }, 50);
+    return () => clearInterval(id);
+  }, [mounted]);
 
   useEffect(() => {
     // Listen for Vimeo postMessage events to detect video end
@@ -52,6 +74,7 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
     <div className="absolute inset-0 overflow-hidden">
       {mounted && (
         <iframe
+          ref={iframeRef}
           src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=auto#t=1s"
           className="absolute top-1/2 left-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
           style={{
@@ -59,10 +82,14 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
             height: 'max(100vh, 56.25vw)',
             opacity: iframeLoaded ? 1 : 0,
             transition: 'opacity 0.8s ease',
+            pointerEvents: 'none',
           }}
           allow="autoplay; fullscreen"
           onLoad={() => setIframeLoaded(true)}
           title="Tolia diffuser hero video"
+          tabIndex={-1}
+          aria-hidden="true"
+          inert="true"
         />
       )}
     </div>
