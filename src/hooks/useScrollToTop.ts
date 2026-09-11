@@ -46,10 +46,25 @@ export const useScrollToTop = () => {
       }
     };
 
-    // Run immediately and retry once after a short delay in case the layout
-    // is still settling (images, lazy components, fonts).
+    // The anchor target can live in a lazily loaded chunk, so poll until it
+    // exists and its position has stopped moving (max ~4 s), then give up.
+    let tries = 0;
+    let lastTop: number | null = null;
     scrollToAnchor();
-    const timer = setTimeout(scrollToAnchor, 300);
+    const poll = setInterval(() => {
+      const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
+      if (el) {
+        const top = Math.round(el.getBoundingClientRect().top + window.scrollY);
+        scrollToAnchor();
+        if (lastTop !== null && top === lastTop) {
+          clearInterval(poll);
+          return;
+        }
+        lastTop = top;
+      }
+      if (++tries > 40) clearInterval(poll);
+    }, 100);
+
 
     // The hero background video iframe sometimes grabs focus after load and
     // pulls the viewport back to the top. When that happens, restore the
@@ -67,7 +82,8 @@ export const useScrollToTop = () => {
     window.addEventListener('tolia:heroiframe:focus', restoreAnchor);
 
     return () => {
-      clearTimeout(timer);
+      clearInterval(poll);
+
       window.removeEventListener('tolia:heroiframe:focus', restoreAnchor);
     };
   }, [pathname, hash]);
