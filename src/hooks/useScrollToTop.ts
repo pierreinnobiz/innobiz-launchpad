@@ -50,6 +50,25 @@ export const useScrollToTop = () => {
     // is still settling (images, lazy components, fonts).
     scrollToAnchor();
     const timer = setTimeout(scrollToAnchor, 300);
-    return () => clearTimeout(timer);
+
+    // The hero background video iframe sometimes grabs focus after load and
+    // pulls the viewport back to the top. When that happens, restore the
+    // anchor position so deep links like /#contact still land on the form.
+    const restoreAnchor = () => {
+      if (!window.location.hash) return;
+      const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
+      if (!el) return;
+      // Only snap back if the page has been pulled well above the anchor.
+      const anchorTop = el.getBoundingClientRect().top + window.scrollY;
+      if (window.scrollY < anchorTop - window.innerHeight) {
+        scrollToAnchor();
+      }
+    };
+    window.addEventListener('tolia:heroiframe:focus', restoreAnchor);
+
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('tolia:heroiframe:focus', restoreAnchor);
+    };
   }, [pathname, hash]);
 };
