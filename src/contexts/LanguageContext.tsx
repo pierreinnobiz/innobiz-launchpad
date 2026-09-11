@@ -23,9 +23,13 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
   'nav.contact': { fr: 'Contact', en: 'Contact' },
   
   // CTAs
-  'cta.demo': { fr: 'Demander une démo', en: 'Request a demo' },
-  'cta.info': { fr: 'Demander des infos', en: 'Request information' },
-  'cta.demo.subtitle': { fr: 'Accès agenda après quelques questions (2 min)', en: 'Calendar access after a short qualification.' },
+  'cta.demo': { fr: 'Recevez votre échantillon gratuit', en: 'Get your free sample', es: 'Reciba su muestra gratuita' },
+  'cta.info': { fr: 'Demander des infos', en: 'Request information', es: 'Solicitar información' },
+  'cta.demo.subtitle': {
+    fr: 'Aucun appel requis. Échantillon expédié de France sous 5 jours ouvrés.',
+    en: 'No call required. Sample shipped from France within 5 business days.',
+    es: 'Sin llamada previa. Muestra enviada desde Francia en 5 días hábiles.',
+  },
   
   // Hero - Home
   'hero.title': { 
@@ -217,8 +221,17 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const getInitialLanguage = (): Language => {
+  if (typeof window === 'undefined') return 'en';
+  const param = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase();
+  if (param === 'fr' || param === 'en' || param === 'es') return param;
+  const stored = window.localStorage?.getItem('tolia:lang');
+  if (stored === 'fr' || stored === 'en' || stored === 'es') return stored;
+  return 'en';
+};
+
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(getInitialLanguage);
 
   const t = (key: string): string => {
     return translations[key]?.[language] || translations[key]?.['en'] || key;
@@ -227,6 +240,13 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
   useEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.lang = HTML_LANG_MAP[language] || 'en-GB';
+    }
+    if (typeof window !== 'undefined') {
+      try {
+        window.localStorage?.setItem('tolia:lang', language);
+      } catch {
+        /* storage unavailable */
+      }
     }
   }, [language]);
 

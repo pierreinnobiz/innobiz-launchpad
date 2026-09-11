@@ -39,9 +39,9 @@ const ContactSection: React.FC = () => {
           </h2>
           <p className="text-base text-muted-foreground font-light max-w-2xl mx-auto">
             {t3(language,
-              "Échantillon gratuit expédié de France sous 5 jours ouvrés. Aucun appel requis.",
-              "Free sample shipped from France within 5 business days. No call required first.",
-              'Muestra gratuita enviada desde Francia en 5 días hábiles. No se requiere llamada previa.'
+              'Aucun appel requis. Échantillon expédié de France sous 5 jours ouvrés.',
+              'No call required. Sample shipped from France within 5 business days.',
+              'Sin llamada previa. Muestra enviada desde Francia en 5 días hábiles.'
             )}
           </p>
         </motion.div>

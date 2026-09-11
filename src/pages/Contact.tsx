@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Calendar, MessageSquare, Paintbrush, Package } from 'lucide-react';
+import { MessageSquare, Paintbrush, Package } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
@@ -176,18 +176,21 @@ const GeneralInquiryForm: React.FC = () => {
 const Contact: React.FC = () => {
   const { t, language } = useLanguage();
   const [searchParams] = useSearchParams();
-  const type = searchParams.get('type') || 'demo';
+  const rawType = searchParams.get('type') || 'sample';
+  const type = rawType === 'demo' ? 'sample' : rawType;
+
+  const noCallLine = language === 'fr'
+    ? 'Aucun appel requis. Échantillon expédié de France sous 5 jours ouvrés.'
+    : language === 'es'
+    ? 'Sin llamada previa. Muestra enviada desde Francia en 5 días hábiles.'
+    : 'No call required. Sample shipped from France within 5 business days.';
 
   const tabs = [
     {
-      key: 'demo',
-      icon: Calendar,
-      label: language === 'fr' ? 'Réserver une démo' : language === 'es' ? 'Reservar una demo' : 'Book a demo',
-      desc: language === 'fr'
-        ? 'Réservez un appel de 30 min pour voir Tolia en action'
-        : language === 'es'
-        ? 'Reserve una llamada de 30 min para ver Tolia en acción'
-        : 'Schedule a 30-minute call to see Tolia in action',
+      key: 'sample',
+      icon: Package,
+      label: language === 'fr' ? 'Échantillon gratuit' : language === 'es' ? 'Muestra gratuita' : 'Free sample',
+      desc: noCallLine,
     },
     {
       key: 'white-label',
@@ -280,8 +283,9 @@ const Contact: React.FC = () => {
 
           <ScrollReveal>
             <div className="space-y-8">
-              {type === 'demo' && (
+              {type === 'sample' && (
                 <>
+                  <p className="text-center text-sm text-muted-foreground">{noCallLine}</p>
                   <FastTrackDeckForm />
                   <div className="text-center">
                     <p className="text-sm text-muted-foreground">
@@ -295,6 +299,15 @@ const Contact: React.FC = () => {
                   <div className="card-premium">
                     <QualificationForm />
                   </div>
+                  <p className="text-center text-xs text-muted-foreground">
+                    <a href="?type=info" className="underline hover:text-foreground">
+                      {language === 'fr'
+                        ? 'Vous préférez en parler de vive voix ?'
+                        : language === 'es'
+                        ? '¿Prefiere hablarlo por teléfono?'
+                        : 'Prefer to talk it through with us?'}
+                    </a>
+                  </p>
                 </>
               )}
               {type === 'white-label' && <WhiteLabelForm />}

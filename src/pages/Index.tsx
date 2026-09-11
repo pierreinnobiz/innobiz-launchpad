@@ -8,11 +8,29 @@ import ClosetSyndromeSection from '@/components/sections/ClosetSyndromeSection';
 import SectionGradient from '@/components/SectionGradient';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 const IndexBelowFold = React.lazy(() => import('./IndexBelowFold'));
 
+const HOME_SEO = {
+  fr: {
+    title: "Tolia by Innobiz | Technologie de diffusion d'huiles essentielles propriétaire",
+    description: "Diffuseur rechargeable en marque blanche par Innobiz. Transformez l'aromathérapie en routines quotidiennes et vos synergies en revenus récurrents.",
+  },
+  en: {
+    title: 'Tolia by Innobiz | Proprietary Essential Oil Diffusion Technology',
+    description: 'White-label refillable diffuser by Innobiz. Turn aromatherapy into daily routines and your blends into recurring revenue.',
+  },
+  es: {
+    title: 'Tolia by Innobiz | Tecnología de difusión de aceites esenciales propietaria',
+    description: 'Difusor recargable de marca blanca por Innobiz. Convierta la aromaterapia en rutinas diarias y sus sinergias en ingresos recurrentes.',
+  },
+} as const;
+
 const Index: React.FC = () => {
   useDocumentLang();
+  const { language } = useLanguage();
+  const seo = HOME_SEO[language] ?? HOME_SEO.en;
   // Below-the-fold sections are loaded in a separate chunk right after the
   // first paint, so the hero (LCP element on mobile) is not delayed by them.
   const [showBelowFold, setShowBelowFold] = useState(
@@ -45,11 +63,11 @@ const Index: React.FC = () => {
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <title>Tolia by Innobiz: Premium Refillable Diffuser System</title>
-        <meta name="description" content="White-label refillable diffuser by Innobiz. Turn aromatherapy into daily routines and your blends into recurring revenue." />
+        <title>{seo.title}</title>
+        <meta name="description" content={seo.description} />
         <link rel="canonical" href="https://www.innobiz-tolia.com/" />
-        <meta property="og:title" content="Tolia by Innobiz: Premium Refillable Diffuser System" />
-        <meta property="og:description" content="White-label refillable diffuser by Innobiz. Turn aromatherapy into daily routines and your blends into recurring revenue." />
+        <meta property="og:title" content={seo.title} />
+        <meta property="og:description" content={seo.description} />
         <meta property="og:url" content="https://www.innobiz-tolia.com/" />
       </Helmet>
       <Navigation />
