@@ -76,7 +76,7 @@ export const useScrollToTop = () => {
     // pulls the viewport back to the top. When that happens, restore the
     // anchor position so deep links like /#contact still land on the form.
     const restoreAnchor = () => {
-      if (!window.location.hash) return;
+      if (userScrolled || !window.location.hash) return;
       const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
       if (!el) return;
       // Only snap back if the page has been pulled well above the anchor.
@@ -89,7 +89,9 @@ export const useScrollToTop = () => {
 
     return () => {
       clearInterval(poll);
-
+      window.removeEventListener('wheel', onUserScroll);
+      window.removeEventListener('touchmove', onUserScroll);
+      window.removeEventListener('keydown', onUserScroll);
       window.removeEventListener('tolia:heroiframe:focus', restoreAnchor);
     };
   }, [pathname, hash]);
