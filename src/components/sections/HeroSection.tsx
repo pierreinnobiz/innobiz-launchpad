@@ -15,17 +15,15 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const idle = (window as unknown as { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }).requestIdleCallback;
-    let id: number;
-    if (idle) {
-      id = idle(() => setMounted(true), { timeout: 1500 });
-    } else {
-      id = window.setTimeout(() => setMounted(true), 400);
-    }
+    // Mount right after the first paint: the poster image already covers the
+    // hero, so the player can start loading immediately without hurting LCP.
+    let timer: number | undefined;
+    const raf = requestAnimationFrame(() => {
+      timer = window.setTimeout(() => setMounted(true), 120);
+    });
     return () => {
-      const cancelIdle = (window as unknown as { cancelIdleCallback?: (h: number) => void }).cancelIdleCallback;
-      if (idle && cancelIdle) cancelIdle(id);
-      else clearTimeout(id);
+      cancelAnimationFrame(raf);
+      if (timer) clearTimeout(timer);
     };
   }, []);
 
