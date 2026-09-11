@@ -3,54 +3,54 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.innobiz-tolia.com/</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://www.innobiz-tolia.com/contact</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/contact?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/contact?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/contact?lang=es" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/contact" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.innobiz-tolia.com/faq</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/faq" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/faq" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/faq" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/faq?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/faq?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/faq?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/faq" />
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://www.innobiz-tolia.com/contact</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/contact" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/contact" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/contact" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/contact" />
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
     <loc>https://www.innobiz-tolia.com/legal</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/legal" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/legal" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/legal" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/legal?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/legal?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/legal?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/legal" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.innobiz-tolia.com/privacy</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/privacy" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/privacy" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/privacy?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/privacy?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/privacy?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/privacy" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.innobiz-tolia.com/cookies</loc>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/cookies" />
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/cookies" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/cookies" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/cookies?lang=en" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/cookies?lang=fr" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/cookies?lang=es" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/cookies" />
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

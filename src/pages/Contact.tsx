@@ -7,6 +7,8 @@ import Footer from '@/components/Footer';
 import ScrollReveal from '@/components/ScrollReveal';
 import QualificationForm from '@/components/QualificationForm';
 import FastTrackDeckForm from '@/components/FastTrackDeckForm';
+import SeoOpenGraph from '@/components/SeoOpenGraph';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -241,10 +243,9 @@ const Contact: React.FC = () => {
         <title>{contactTitle}</title>
         <meta name="description" content={contactDesc} />
         <link rel="canonical" href="https://www.innobiz-tolia.com/contact" />
-        <meta property="og:title" content={contactTitle} />
-        <meta property="og:description" content={contactDesc} />
-        <meta property="og:url" content="https://www.innobiz-tolia.com/contact" />
       </Helmet>
+      <SeoOpenGraph title={contactTitle} description={contactDesc} path="/contact" />
+
       <Navigation />
       <section className="pt-32 pb-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="section-container">

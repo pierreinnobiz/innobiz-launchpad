@@ -8,6 +8,8 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { ArrowRight } from 'lucide-react';
+import SeoOpenGraph from '@/components/SeoOpenGraph';
+
 
 const FAQ: React.FC = () => {
   const { t, language } = useLanguage();
@@ -158,11 +160,11 @@ const FAQ: React.FC = () => {
         <title>{faqTitle}</title>
         <meta name="description" content={faqDesc} />
         <link rel="canonical" href="https://www.innobiz-tolia.com/faq" />
-        <meta property="og:title" content={faqTitle} />
-        <meta property="og:description" content={faqDesc} />
-        <meta property="og:url" content="https://www.innobiz-tolia.com/faq" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
+
       </Helmet>
+      <SeoOpenGraph title={faqTitle} description={faqDesc} path="/faq" />
+
       <Navigation />
       <section className="pt-32 pb-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="section-container">

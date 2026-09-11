@@ -9,6 +9,8 @@ import SectionGradient from '@/components/SectionGradient';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
 import { useLanguage } from '@/contexts/LanguageContext';
+import SeoOpenGraph from '@/components/SeoOpenGraph';
+
 
 const IndexBelowFold = React.lazy(() => import('./IndexBelowFold'));
 
@@ -70,12 +72,10 @@ const Index: React.FC = () => {
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta name="keywords" content={seo.keywords} />
-
         <link rel="canonical" href="https://www.innobiz-tolia.com/" />
-        <meta property="og:title" content={seo.title} />
-        <meta property="og:description" content={seo.description} />
-        <meta property="og:url" content="https://www.innobiz-tolia.com/" />
       </Helmet>
+      <SeoOpenGraph title={seo.title} description={seo.description} path="/" />
+
       <Navigation />
 
       <HeroSection />
