@@ -32,7 +32,8 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   useEffect(() => {
     // The Vimeo player sometimes focuses its own iframe after load, which
     // pulls the viewport back to the hero on deep links like /#contact.
-    // Because this is a decorative background video, immediately defocus it.
+    // Because this is a decorative background video, immediately defocus it and
+    // notify the rest of the app so it can restore the anchor position.
     if (!mounted) return;
     const iframe = iframeRef.current;
     if (!iframe) return;
@@ -42,6 +43,7 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
       attempts++;
       if (document.activeElement === iframe) {
         iframe.blur();
+        window.dispatchEvent(new CustomEvent('tolia:heroiframe:focus'));
       }
       if (attempts >= maxAttempts) {
         clearInterval(id);
