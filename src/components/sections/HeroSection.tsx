@@ -102,7 +102,7 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
         fetchPriority="high"
         decoding="async"
         className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity: iframeLoaded ? 0 : 1, transition: 'opacity 0.8s ease' }}
+        style={{ opacity: videoVisible ? 0 : 1, transition: 'opacity 0.8s ease' }}
       />
       {mounted && (
         <iframe
