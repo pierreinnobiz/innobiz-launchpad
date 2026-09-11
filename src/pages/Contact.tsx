@@ -176,18 +176,21 @@ const GeneralInquiryForm: React.FC = () => {
 const Contact: React.FC = () => {
   const { t, language } = useLanguage();
   const [searchParams] = useSearchParams();
-  const type = searchParams.get('type') || 'demo';
+  const rawType = searchParams.get('type') || 'sample';
+  const type = rawType === 'demo' ? 'sample' : rawType;
+
+  const noCallLine = language === 'fr'
+    ? 'Aucun appel requis. Échantillon expédié de France sous 5 jours ouvrés.'
+    : language === 'es'
+    ? 'Sin llamada previa. Muestra enviada desde Francia en 5 días hábiles.'
+    : 'No call required. Sample shipped from France within 5 business days.';
 
   const tabs = [
     {
-      key: 'demo',
-      icon: Calendar,
-      label: language === 'fr' ? 'Réserver une démo' : language === 'es' ? 'Reservar una demo' : 'Book a demo',
-      desc: language === 'fr'
-        ? 'Réservez un appel de 30 min pour voir Tolia en action'
-        : language === 'es'
-        ? 'Reserve una llamada de 30 min para ver Tolia en acción'
-        : 'Schedule a 30-minute call to see Tolia in action',
+      key: 'sample',
+      icon: Package,
+      label: language === 'fr' ? 'Échantillon gratuit' : language === 'es' ? 'Muestra gratuita' : 'Free sample',
+      desc: noCallLine,
     },
     {
       key: 'white-label',
