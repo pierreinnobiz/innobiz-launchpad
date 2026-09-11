@@ -10,6 +10,9 @@ const prefersReducedMotion = () =>
 const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
+  // The still frame stays visible until playback really starts, so a slow or
+  // failing player never leaves the hero empty.
+  const [videoVisible, setVideoVisible] = useState(false);
   // Mount the player only after the first paint so it never competes with the
   // hero text (LCP) for bandwidth on mobile connections.
   const [mounted, setMounted] = useState(false);
