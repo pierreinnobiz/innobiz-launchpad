@@ -25,7 +25,7 @@ const ProspectTracker = () => {
       if ((SUPPORTED_LANGS as readonly string[]).includes(langParam)) {
         setLanguage(langParam as SupportedLang);
       }
-      document.documentElement.lang = langParam;
+      // <html lang> is kept in sync by LanguageProvider / useDocumentLang.
     }
 
     const ref = params.get('ref');
