@@ -46,23 +46,29 @@ export const useScrollToTop = () => {
       }
     };
 
-    // The anchor target can live in a lazily loaded chunk, so poll until it
-    // exists and its position has stopped moving (max ~4 s), then give up.
+    // The anchor target can live in a lazily loaded chunk, and the hero video
+    // player can steal focus once it loads and drag the viewport back to the
+    // top. So keep re-asserting the anchor position for ~5 s, unless the
+    // visitor scrolls on their own.
     let tries = 0;
-    let lastTop: number | null = null;
+    let userScrolled = false;
+    const onUserScroll = () => {
+      userScrolled = true;
+    };
+    window.addEventListener('wheel', onUserScroll, { passive: true });
+    window.addEventListener('touchmove', onUserScroll, { passive: true });
+    window.addEventListener('keydown', onUserScroll);
+
     scrollToAnchor();
     const poll = setInterval(() => {
-      const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
-      if (el) {
-        const top = Math.round(el.getBoundingClientRect().top + window.scrollY);
-        scrollToAnchor();
-        if (lastTop !== null && top === lastTop) {
-          clearInterval(poll);
-          return;
-        }
-        lastTop = top;
+      if (userScrolled || ++tries > 50) {
+        clearInterval(poll);
+        return;
       }
-      if (++tries > 40) clearInterval(poll);
+      const el = document.getElementById(id) || document.querySelector(`[name="${id}"]`);
+      if (!el) return;
+      // Re-scroll only when the target has drifted away from the top of the viewport.
+      if (Math.abs(el.getBoundingClientRect().top) > 4) scrollToAnchor();
     }, 100);
 
 
