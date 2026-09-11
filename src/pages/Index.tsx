@@ -69,6 +69,8 @@ const Index: React.FC = () => {
       <Helmet>
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
+        <meta name="keywords" content={seo.keywords} />
+
         <link rel="canonical" href="https://www.innobiz-tolia.com/" />
         <meta property="og:title" content={seo.title} />
         <meta property="og:description" content={seo.description} />
