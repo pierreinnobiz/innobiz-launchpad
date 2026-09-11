@@ -8,6 +8,8 @@ import ScrollReveal from '@/components/ScrollReveal';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { ArrowRight } from 'lucide-react';
+import SeoOpenGraph from '@/components/SeoOpenGraph';
+
 
 const FAQ: React.FC = () => {
   const { t, language } = useLanguage();
