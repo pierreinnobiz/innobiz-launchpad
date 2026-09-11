@@ -104,26 +104,6 @@ const QualificationForm: React.FC = () => {
     setErrors((prev) => ({ ...prev, [field]: undefined }));
   }, []);
 
-  // Auto-focus email on mount + when hash points to #contact
-  useEffect(() => {
-    if (step !== 1) return;
-    const focusEmail = () => {
-      // Small delay to allow scroll-into-view to settle
-      setTimeout(() => emailInputRef.current?.focus({ preventScroll: true }), 350);
-    };
-
-    if (window.location.hash === '#contact') focusEmail();
-
-    const onHash = () => {
-      if (window.location.hash === '#contact') focusEmail();
-    };
-    window.addEventListener('hashchange', onHash);
-    window.addEventListener('tolia:pathchange', onHash as EventListener);
-    return () => {
-      window.removeEventListener('hashchange', onHash);
-      window.removeEventListener('tolia:pathchange', onHash as EventListener);
-    };
-  }, [step]);
 
   const handleFormStart = () => {
     if (!formStartedRef.current) {
@@ -523,7 +503,6 @@ const QualificationForm: React.FC = () => {
           id="qf-email"
           type="email"
           required
-          autoFocus
           value={data.email}
           onChange={(e) => update('email', e.target.value)}
           onFocus={handleFormStart}
