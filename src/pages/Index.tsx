@@ -14,18 +14,22 @@ const IndexBelowFold = React.lazy(() => import('./IndexBelowFold'));
 
 const HOME_SEO = {
   fr: {
-    title: "Tolia by Innobiz | Technologie de diffusion d'huiles essentielles propriétaire",
-    description: "Diffuseur rechargeable en marque blanche par Innobiz. Transformez l'aromathérapie en routines quotidiennes et vos synergies en revenus récurrents.",
+    title: "Diffuseurs d'huiles essentielles en marque blanche | Tolia by Innobiz",
+    description: "Diffuseur aromatique rechargeable pour marques d'aromathérapie. Diffusion d'huiles essentielles sans eau, arômes préservés, revenus récurrents de recharges.",
+    keywords: "diffuseurs d'huiles essentielles, diffusion huiles essentielles, diffuseur aromatique, arômes aromathérapie, diffuseur marque blanche, diffuseur sans eau",
   },
   en: {
-    title: 'Tolia by Innobiz | Proprietary Essential Oil Diffusion Technology',
-    description: 'White-label refillable diffuser by Innobiz. Turn aromatherapy into daily routines and your blends into recurring revenue.',
+    title: 'White-Label Essential Oil Diffusers | Tolia by Innobiz',
+    description: 'Refillable aromatic diffuser for aromatherapy brands. Waterless essential oil diffusion that protects aroma integrity and drives recurring refill revenue.',
+    keywords: 'essential oil diffusers, essential oil diffusion, aromatic diffuser, aromatherapy aromas, white label diffuser, waterless diffuser',
   },
   es: {
-    title: 'Tolia by Innobiz | Tecnología de difusión de aceites esenciales propietaria',
-    description: 'Difusor recargable de marca blanca por Innobiz. Convierta la aromaterapia en rutinas diarias y sus sinergias en ingresos recurrentes.',
+    title: 'Difusores de aceites esenciales de marca blanca | Tolia by Innobiz',
+    description: 'Difusor aromático recargable para marcas de aromaterapia. Difusión de aceites esenciales sin agua, aromas intactos e ingresos recurrentes por recargas.',
+    keywords: 'difusores de aceites esenciales, difusión de aceites esenciales, difusor aromático, aromas aromaterapia, difusor marca blanca',
   },
 } as const;
+
 
 const Index: React.FC = () => {
   useDocumentLang();
