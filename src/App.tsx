@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { useWave2Tracking } from "@/hooks/useWave2Tracking";
+import { useScrollToTop } from "@/hooks/useScrollToTop";
 import React, { Suspense } from "react";
 
 import Index from "./pages/Index";
@@ -32,6 +33,7 @@ const PageFallback = () => (
 
 const AppRoutes = () => {
   useWave2Tracking();
+  useScrollToTop();
   return (
     <BrowserRouter>
       <ProspectTracker />
