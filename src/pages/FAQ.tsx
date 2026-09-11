@@ -159,10 +159,10 @@ const FAQ: React.FC = () => {
         <meta name="description" content={faqDesc} />
         <link rel="canonical" href="https://www.innobiz-tolia.com/faq" />
         <meta property="og:title" content={faqTitle} />
-        <meta property="og:description" content={faqDesc} />
-        <meta property="og:url" content="https://www.innobiz-tolia.com/faq" />
         <script type="application/ld+json">{JSON.stringify(faqJsonLd)}</script>
       </Helmet>
+      <SeoOpenGraph title={faqTitle} description={faqDesc} path="/faq" />
+
       <Navigation />
       <section className="pt-32 pb-20 bg-gradient-to-b from-secondary/30 to-background">
         <div className="section-container">
