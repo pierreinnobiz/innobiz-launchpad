@@ -1,38 +1,46 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import HeroSection from '@/components/sections/HeroSection';
 import SocialProofBar from '@/components/sections/SocialProofBar';
 import FounderStatementSection from '@/components/sections/FounderStatementSection';
 import ClosetSyndromeSection from '@/components/sections/ClosetSyndromeSection';
-import FrictionByTechSection from '@/components/sections/FrictionByTechSection';
-import TwistAndMistSection from '@/components/sections/TwistAndMistSection';
-import FourInnovationsSection from '@/components/sections/FourInnovationsSection';
-import RitualStrategySection from '@/components/sections/RitualStrategySection';
-import BusinessMathSection from '@/components/sections/BusinessMathSection';
-
-import MarketProofSection from '@/components/sections/MarketProofSection';
-import LeadMagnetSection from '@/components/sections/LeadMagnetSection';
-import BrandMarqueeSection from '@/components/sections/BrandMarqueeSection';
-import WhyInnobizSection from '@/components/sections/WhyInnobizSection';
-import RangeRationalizationSection from '@/components/sections/RangeRationalizationSection';
-import RSESection from '@/components/sections/RSESection';
-import TwoWaysSection from '@/components/sections/TwoWaysSection';
-import FAQSection from '@/components/sections/FAQSection';
-import ContactSection from '@/components/sections/ContactSection';
-
 import SectionGradient from '@/components/SectionGradient';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
 
+const IndexBelowFold = React.lazy(() => import('./IndexBelowFold'));
+
 const Index: React.FC = () => {
   useDocumentLang();
+  // Below-the-fold sections are loaded in a separate chunk right after the
+  // first paint, so the hero (LCP element on mobile) is not delayed by them.
+  const [showBelowFold, setShowBelowFold] = useState(
+    typeof window !== 'undefined' && Boolean(window.location.hash)
+  );
 
   useEffect(() => {
     const cleanup = initScrollDepthTracking();
     return cleanup;
   }, []);
+
+  useEffect(() => {
+    if (showBelowFold) return;
+    let timer: number | undefined;
+    const reveal = () => setShowBelowFold(true);
+    // Wait for the first frame, then load as soon as the browser is idle.
+    const raf = requestAnimationFrame(() => {
+      const ric = (window as unknown as {
+        requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      }).requestIdleCallback;
+      if (ric) ric(reveal, { timeout: 1200 });
+      else timer = window.setTimeout(reveal, 200);
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      if (timer) clearTimeout(timer);
+    };
+  }, [showBelowFold]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -60,52 +68,13 @@ const Index: React.FC = () => {
 
       <SectionGradient from="hsl(35 30% 93%)" to="hsl(30 25% 93%)" height="60px" />
 
-      <FrictionByTechSection />
-
-      <TwistAndMistSection />
-
-      <FourInnovationsSection />
-
-      <RitualStrategySection />
-
-      <SectionGradient from="hsl(35 28% 95%)" to="hsl(25 20% 12%)" height="120px" />
-
-      <BusinessMathSection />
-
-
-      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 93%)" height="120px" />
-
-      <MarketProofSection />
-
-      <LeadMagnetSection />
-
-      <BrandMarqueeSection />
-
-      <SectionGradient from="hsl(35 30% 97%)" to="hsl(25 20% 12%)" height="120px" />
-
-      <WhyInnobizSection />
-
-      <SectionGradient from="hsl(25 18% 16%)" to="hsl(35 30% 96%)" height="120px" />
-
-      <RangeRationalizationSection />
-
-      <SectionGradient from="hsl(33 35% 94%)" to="hsl(35 30% 96%)" height="80px" />
-
-      <RSESection />
-
-      <SectionGradient from="hsl(30 25% 93%)" to="hsl(35 30% 96%)" height="120px" />
-
-      <TwoWaysSection />
-
-      <SectionGradient from="hsl(33 35% 94%)" to="hsl(35 30% 97%)" height="60px" />
-
-      <FAQSection />
-
-      <ContactSection />
-
-      <Footer />
-
-      
+      {showBelowFold ? (
+        <Suspense fallback={<div className="min-h-screen bg-background" aria-hidden="true" />}>
+          <IndexBelowFold />
+        </Suspense>
+      ) : (
+        <div className="min-h-screen bg-background" aria-hidden="true" />
+      )}
     </div>
   );
 };
