@@ -221,8 +221,17 @@ const translations: Record<string, Partial<Record<Language, string>>> = {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+const getInitialLanguage = (): Language => {
+  if (typeof window === 'undefined') return 'en';
+  const param = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase();
+  if (param === 'fr' || param === 'en' || param === 'es') return param;
+  const stored = window.localStorage?.getItem('tolia:lang');
+  if (stored === 'fr' || stored === 'en' || stored === 'es') return stored;
+  return 'en';
+};
+
 export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>('en');
+  const [language, setLanguage] = useState<Language>(getInitialLanguage);
 
   const t = (key: string): string => {
     return translations[key]?.[language] || translations[key]?.['en'] || key;
