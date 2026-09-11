@@ -71,15 +71,12 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   }, [onVideoEnd]);
 
   useEffect(() => {
-    // Ask the player to report playback, and keep a short fallback in case the
-    // background player stays silent.
+    // Ask the player to report playback events (used to detect the video end).
     if (!iframeLoaded) return;
     const iframe = iframeRef.current;
     ['play', 'playing', 'timeupdate'].forEach(event => {
       iframe?.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: event }), '*');
     });
-    const id = window.setTimeout(() => setVideoVisible(true), 1800);
-    return () => clearTimeout(id);
   }, [iframeLoaded]);
 
   return (
