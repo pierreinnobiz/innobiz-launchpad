@@ -91,7 +91,6 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
           title="Tolia diffuser hero video"
           tabIndex={-1}
           aria-hidden="true"
-          inert="true"
         />
       )}
     </div>
