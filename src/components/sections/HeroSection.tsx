@@ -72,6 +72,16 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
 
   return (
     <div className="absolute inset-0 overflow-hidden">
+      {/* Instant still frame so the hero is never black while the player loads */}
+      <img
+        src="/images/hero-poster.jpg"
+        alt=""
+        aria-hidden="true"
+        fetchPriority="high"
+        decoding="async"
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ opacity: iframeLoaded ? 0 : 1, transition: 'opacity 0.8s ease' }}
+      />
       {mounted && (
         <iframe
           ref={iframeRef}
