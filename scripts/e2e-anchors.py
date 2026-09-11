@@ -23,7 +23,7 @@ from playwright.async_api import async_playwright
 BASE_URL = (sys.argv[1] if len(sys.argv) > 1 else "http://localhost:8080").rstrip("/")
 MOBILE_VIEWPORT = {"width": 390, "height": 844}
 # Anchors reachable from the home page: the form plus lazily rendered sections.
-ANCHORS = ["contact", "faq", "rse", "two-ways", "market-proof", "roi-calculator"]
+ANCHORS = ["contact", "faq", "rse", "two-ways", "market-proof", "business-math", "closet-syndrome"]
 # How long the anchor may take to settle (deferred chunk + fonts + video).
 SETTLE_MS = 6000
 IGNORED_CONSOLE = (
