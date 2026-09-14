@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowRight, CheckCircle2, Gift, Truck, Package, ShieldCheck, Lock } from 'lucide-react';
 import { t3 } from '@/lib/t3';
+import { getSessionAttribution } from '@/lib/attribution';
 import { supabase } from '@/integrations/supabase/client';
 
 declare global {
@@ -197,6 +198,7 @@ const QualificationForm: React.FC = () => {
 
     const intent = intentForGtag(data.projectType);
     const utms = getUtmParams();
+    const attribution = getSessionAttribution();
     let leadSaved = false;
 
     // Persist the lead first — only count the conversion if the backend confirms.
@@ -212,6 +214,7 @@ const QualificationForm: React.FC = () => {
           project_type: data.projectType,
           project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
           ...utms,
+          ...attribution,
         },
       });
       if (error) throw error;
@@ -279,6 +282,7 @@ const QualificationForm: React.FC = () => {
           project_type: data.projectType,
           project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
           ...getUtmParams(),
+          ...getSessionAttribution(),
         },
       });
     } catch (err) {

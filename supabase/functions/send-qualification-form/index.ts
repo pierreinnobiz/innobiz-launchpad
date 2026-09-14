@@ -25,6 +25,8 @@ interface SampleRequest {
   utm_campaign?: string;
   utm_term?: string;
   utm_content?: string;
+  referrer?: string;
+  landing_page?: string;
 }
 
 const FROM_ADDRESS = "Tolia Sample <noreply@innobiz-tolia.com>";
@@ -50,6 +52,7 @@ const handler = async (req: Request): Promise<Response> => {
       address_street, address_postal_code, address_city,
       role, phone, project_type,
       utm_source, utm_medium, utm_campaign, utm_term, utm_content,
+      referrer, landing_page,
     } = body;
 
     if (!email) {
@@ -218,6 +221,8 @@ const handler = async (req: Request): Promise<Response> => {
                 utm_medium: utm_medium ?? "",
                 utm_campaign: utm_campaign ?? "",
                 utm_content: utm_content ?? "",
+                referrer: referrer ?? "",
+                landing_page: landing_page ?? "",
               }),
             },
           );
