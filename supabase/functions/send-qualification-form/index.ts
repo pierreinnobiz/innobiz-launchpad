@@ -216,7 +216,7 @@ const handler = async (req: Request): Promise<Response> => {
                 phone: phone ?? "",
                 website: website ?? "",
                 project_type: project_type ?? "",
-                source: "instantly",
+                source: utm_source ? "instantly" : "",
                 utm_source: utm_source ?? "",
                 utm_medium: utm_medium ?? "",
                 utm_campaign: utm_campaign ?? "",
