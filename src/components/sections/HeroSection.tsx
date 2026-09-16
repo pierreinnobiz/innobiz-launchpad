@@ -127,19 +127,21 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
       }}
     >
       {words.map((word, i) => (
-        <motion.span
-          key={i}
-          className="inline-block mr-[0.3em]"
-          variants={{
-            hidden: { opacity: 0, y: fast ? 8 : 30 },
-            visible: {
-              opacity: 1, y: 0,
-              transition: { duration: fast ? 0.25 : 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
-            },
-          }}
-        >
-          {word}
-        </motion.span>
+        <React.Fragment key={i}>
+          <motion.span
+            className="inline-block mr-[0.3em]"
+            variants={{
+              hidden: { opacity: 0, y: fast ? 8 : 30 },
+              visible: {
+                opacity: 1, y: 0,
+                transition: { duration: fast ? 0.25 : 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+              },
+            }}
+          >
+            {word}
+          </motion.span>
+          {i < words.length - 1 && <span className="text-[0px]"> </span>}
+        </React.Fragment>
       ))}
     </motion.h1>
   );

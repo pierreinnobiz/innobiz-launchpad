@@ -139,9 +139,9 @@ const MarketProofSection: React.FC = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <MagneticButton>
-            <a href="#contact" onClick={() => trackCTAClick('market_proof_cta', 'market-proof')}>
-              <Button className="btn-hero-primary group">
+          <MagneticButton className="w-full max-w-full md:w-auto">
+            <a className="block w-full max-w-full md:w-auto" href="#contact" onClick={() => trackCTAClick('market_proof_cta', 'market-proof')}>
+              <Button className="btn-hero-primary w-full min-w-0 max-w-full h-auto whitespace-normal text-center md:w-auto md:whitespace-nowrap group">
                 {t3(language, "Recevez un échantillon et jugez par vous-même", 'Get a sample and see for yourself', 'Reciba una muestra y juzgue usted mismo')}
                 <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
               </Button>

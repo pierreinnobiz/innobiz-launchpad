@@ -89,11 +89,11 @@ const TwoWaysSection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+        <div className="grid min-w-0 max-w-5xl mx-auto gap-8 mb-16 md:grid-cols-2">
           {cards.map((card, i) => (
             <motion.div
               key={i}
-              className="rounded-3xl p-8 md:p-10 border bg-card flex flex-col h-full"
+              className="min-w-0 max-w-full rounded-3xl p-8 md:p-10 border bg-card flex flex-col h-full"
               style={{ borderColor: `${card.accent} / 0.2` }}
               initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
               whileHover={{ y: -6, boxShadow: `0 20px 40px -12px ${card.accent.replace(')', ' / 0.15)')}` }}
@@ -112,9 +112,9 @@ const TwoWaysSection: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <MagneticButton>
+              <MagneticButton className="w-full max-w-full md:w-auto">
                 <Button
-                  className="w-full font-semibold text-base py-4 rounded-2xl group"
+                  className="w-full min-w-0 max-w-full h-auto whitespace-normal text-center font-semibold text-base py-4 rounded-2xl group md:h-10 md:whitespace-nowrap"
                   style={{ background: card.accent, color: 'hsl(0 0% 100%)' }}
                   onClick={() => handleCTA(card.type, card.trackLabel)}
                 >
@@ -168,7 +168,7 @@ const TwoWaysSection: React.FC = () => {
             { title: t3(language, 'Programme Marque Blanche', 'White-Label Program', 'Programa Marca Blanca'), color: 'hsl(28 45% 48%)', key: 'wl' as const },
             { title: t3(language, 'Commande Stock', 'Stock Order', 'Pedido Stock'), color: 'hsl(220 40% 45%)', key: 'stock' as const },
           ].map((col) => (
-            <div key={col.key} className="rounded-2xl border border-border/60 bg-card p-6">
+            <div key={col.key} className="min-w-0 max-w-full rounded-2xl border border-border/60 bg-card p-6">
               <h4 className="font-bold text-lg mb-4" style={{ color: col.color }}>{col.title}</h4>
               <dl className="space-y-3">
                 {comparisonRows.map((row, i) => (
