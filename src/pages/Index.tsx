@@ -12,7 +12,27 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import SeoOpenGraph from '@/components/SeoOpenGraph';
 
 
-const IndexBelowFold = React.lazy(() => import('./IndexBelowFold'));
+// A stale build (old chunk names) makes this dynamic import fail after a deploy.
+// Retry once, then reload the page once to pick up the new asset manifest.
+const RELOAD_FLAG = 'tolia:chunk-reload';
+
+const IndexBelowFold = React.lazy(() =>
+  import('./IndexBelowFold')
+    .then((mod) => {
+      try { sessionStorage.removeItem(RELOAD_FLAG); } catch { /* ignore */ }
+      return mod;
+    })
+    .catch(async (err) => {
+      try {
+        if (!sessionStorage.getItem(RELOAD_FLAG)) {
+          sessionStorage.setItem(RELOAD_FLAG, '1');
+          window.location.reload();
+          return await new Promise<never>(() => {});
+        }
+      } catch { /* ignore */ }
+      throw err;
+    })
+);
 
 const HOME_SEO = {
   fr: {
