@@ -16,8 +16,8 @@ const Footer: React.FC = () => {
         <p className="text-sm text-primary-foreground/80 max-w-3xl mx-auto mb-4 leading-relaxed">
           {t3(language, 'Tolia vous permet de transformer votre offre d\'huiles essentielles en un véritable programme de routines d\'aromathérapie, vécu chaque jour par vos clients.', 'Tolia enables you to transform your essential oils range into a genuine aromatherapy routine programme, experienced daily by your customers.', 'Tolia le permite transformar su oferta de aceites esenciales en un verdadero programa de rutinas de aromaterapia, vivido cada día por sus clientes.')}
         </p>
-        <a href="#contact" onClick={() => trackCTAClick('footer_cta', 'footer')}>
-          <Button className="bg-primary-foreground text-primary font-semibold rounded-2xl px-6 py-3 text-sm hover:brightness-95 transition-all group">
+        <a className="block w-full max-w-full md:inline-block md:w-auto" href="#contact" onClick={() => trackCTAClick('footer_cta', 'footer')}>
+          <Button className="w-full min-w-0 max-w-full h-auto whitespace-normal text-center bg-primary-foreground text-primary font-semibold rounded-2xl px-6 py-3 text-sm hover:brightness-95 transition-all group md:w-auto md:whitespace-nowrap">
             <Gift className="w-4 h-4 mr-2" />
             {t3(language, 'Recevez votre échantillon Tolia gratuit', 'Get your free Tolia sample', 'Reciba su muestra Tolia gratis')}
             <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
