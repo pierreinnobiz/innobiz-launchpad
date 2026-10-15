@@ -8,10 +8,8 @@
 
 
 @layer base {
-  p, li {
-    text-align: justify;
-  }
-
+  /* Texte aligné à gauche (ou centré là où la section le demande) : le texte justifié créait des « rivières »
+     de blancs sur les écrans étroits. */
   :root {
     /* Core palette - Warm Sand / Terracotta inspired by product photography */
     --background: 35 30% 97%;

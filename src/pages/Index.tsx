@@ -3,8 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/sections/HeroSection';
 import SocialProofBar from '@/components/sections/SocialProofBar';
-import FounderStatementSection from '@/components/sections/FounderStatementSection';
-import ClosetSyndromeSection from '@/components/sections/ClosetSyndromeSection';
+import HomeProblemSection from '@/components/sections/HomeProblemSection';
 import SectionGradient from '@/components/SectionGradient';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
@@ -102,15 +101,9 @@ const Index: React.FC = () => {
 
       <SocialProofBar />
 
-      <SectionGradient from="hsl(25 18% 14%)" to="hsl(25 20% 10%)" height="40px" />
+      <SectionGradient from="hsl(25 18% 14%)" to="hsl(35 30% 93%)" height="80px" />
 
-      <FounderStatementSection />
-
-      <SectionGradient from="hsl(25 18% 14%)" to="hsl(35 30% 93%)" height="100px" />
-
-      <ClosetSyndromeSection />
-
-      <SectionGradient from="hsl(35 30% 93%)" to="hsl(30 25% 93%)" height="60px" />
+      <HomeProblemSection />
 
       {showBelowFold ? (
         <Suspense fallback={<div className="min-h-screen bg-background" aria-hidden="true" />}>

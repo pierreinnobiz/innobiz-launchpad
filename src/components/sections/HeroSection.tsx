@@ -1,22 +1,34 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
+import { trackCTAClick } from '@/lib/tracking';
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
   window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
 
-const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
+// Le film dure 41 secondes. Sa dernière image (un Tolia avec sa brume à côté d'un vase) restait figée à l'écran
+// une fois le film terminé : on fait maintenant disparaître le film en fondu, il ne reste que le fond sombre.
+const FILM_SECONDS = 41;
+// Le lecteur envoie « playProgress » (avancement) et « finish » (fin) ; « timeupdate » et « ended » sont les noms de la nouvelle API.
+const VIMEO_EVENTS = ['play', 'playing', 'playProgress', 'timeupdate', 'finish', 'ended'];
+
+const HeroVideo: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
   // Mount the player only after the first paint so it never competes with the
   // hero text (LCP) for bandwidth on mobile connections.
   const [mounted, setMounted] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [showAnyway, setShowAnyway] = useState(false);
+  const [ended, setEnded] = useState(false);
+  const [gone, setGone] = useState(false);
 
   useEffect(() => {
-    // Mount right after the first paint: the poster image already covers the
-    // hero, so the player can start loading immediately without hurting LCP.
+    // Mount right after the first paint: the hero text is already on screen,
+    // so the player can start loading immediately without hurting LCP.
     let timer: number | undefined;
     const raf = requestAnimationFrame(() => {
       timer = window.setTimeout(() => setMounted(true), 120);
@@ -51,37 +63,68 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
   }, [mounted]);
 
   useEffect(() => {
-    // Listen for Vimeo postMessage events to detect video end
+    // Messages du lecteur Vimeo : début de lecture, avancement, fin.
+    // Le lecteur n'écoute nos demandes qu'une fois « ready » : c'est à ce moment qu'on s'abonne aux événements.
+    const subscribe = () => {
+      VIMEO_EVENTS.forEach((ev) => {
+        iframeRef.current?.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: ev }), '*');
+      });
+    };
     const handleMessage = (event: MessageEvent) => {
+      const frame = iframeRef.current;
+      if (!frame || event.source !== frame.contentWindow) return;
       try {
         const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        if (data.event === 'finish' || data.method === 'finish') {
-          onVideoEnd?.();
+        const name = data?.event || data?.method;
+        if (name === 'ready') subscribe();
+        if (name === 'play' || name === 'playing') setPlaying(true);
+        if (name === 'timeupdate' || name === 'playProgress') {
+          setPlaying(true);
+          const d = data.data || {};
+          if (typeof d.seconds === 'number' && typeof d.duration === 'number' && d.duration > 0 && d.seconds >= d.duration - 0.7) {
+            setEnded(true);
+          }
         }
-      } catch {}
+        if (name === 'ended' || name === 'finish') setEnded(true);
+      } catch { /* message sans rapport avec le lecteur */ }
     };
     window.addEventListener('message', handleMessage);
-
-    // Fallback: trigger after estimated video duration (30s)
-    const fallback = setTimeout(() => onVideoEnd?.(), 30000);
-    return () => {
-      window.removeEventListener('message', handleMessage);
-      clearTimeout(fallback);
-    };
-  }, [onVideoEnd]);
+    return () => window.removeEventListener('message', handleMessage);
+  }, []);
 
   useEffect(() => {
-    // Ask the player to report playback events (used to detect the video end).
+    // Demande au lecteur de signaler la lecture ; si le lecteur reste muet, on affiche quand même le film.
     if (!iframeLoaded) return;
     const iframe = iframeRef.current;
-    ['play', 'playing', 'timeupdate'].forEach(event => {
+    VIMEO_EVENTS.forEach((event) => {
       iframe?.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: event }), '*');
     });
+    const id = window.setTimeout(() => setShowAnyway(true), 3000);
+    return () => clearTimeout(id);
   }, [iframeLoaded]);
+
+  useEffect(() => {
+    // Filets de sécurité si le lecteur n'envoie jamais ses messages de lecture.
+    const afterPlay = playing ? window.setTimeout(() => setEnded(true), (FILM_SECONDS + 3) * 1000) : undefined;
+    const noPlay = window.setTimeout(() => setEnded(true), (FILM_SECONDS + 12) * 1000);
+    return () => {
+      if (afterPlay) clearTimeout(afterPlay);
+      clearTimeout(noPlay);
+    };
+  }, [playing]);
+
+  useEffect(() => {
+    // Une fois le fondu terminé, on retire complètement le lecteur.
+    if (!ended) return;
+    const id = window.setTimeout(() => setGone(true), 1800);
+    return () => clearTimeout(id);
+  }, [ended]);
+
+  const visible = (playing || showAnyway) && !ended;
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {mounted && (
+      {mounted && !gone && (
         <iframe
           ref={iframeRef}
           src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=auto#t=1s"
@@ -89,8 +132,8 @@ const HeroVideo: React.FC<{ onVideoEnd?: () => void }> = ({ onVideoEnd }) => {
           style={{
             width: 'max(100vw, 177.78vh)',
             height: 'max(100vh, 56.25vw)',
-            opacity: iframeLoaded ? 1 : 0,
-            transition: 'opacity 0.8s ease',
+            opacity: visible ? 1 : 0,
+            transition: 'opacity 1.4s ease',
             pointerEvents: 'none',
           }}
           allow="autoplay; fullscreen"
@@ -150,7 +193,6 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
 
 const HeroSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [videoEnded, setVideoEnded] = useState(false);
   const { language } = useLanguage();
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -161,34 +203,42 @@ const HeroSection: React.FC = () => {
 
   const title = t3(
     language,
-    "Diffuseurs d'huiles essentielles : chaque diffuseur vendu est le début d'un revenu récurrent.",
-    "Essential oil diffusers: every diffuser sold is the start of recurring revenue.",
-    "Difusores de aceites esenciales: cada difusor vendido es el inicio de un ingreso recurrente."
+    "Chaque diffuseur vendu est le début d'un revenu récurrent.",
+    'Every diffuser sold is the start of recurring revenue.',
+    'Cada difusor vendido es el inicio de un ingreso recurrente.'
   );
-
   const eyebrow = t3(
     language,
-    "Pour les marques d'aromathérapie, d'huiles essentielles et de bien-être naturel",
-    "For aromatherapy, essential oil and natural wellness brands",
-    "Para marcas de aromaterapia, aceites esenciales y bienestar natural"
+    "Diffuseurs d'huiles essentielles pour les marques",
+    'Essential oil diffusers for brands',
+    'Difusores de aceites esenciales para marcas'
   );
   const subtitle = t3(
     language,
-    "Tolia est le seul diffuseur assez simple pour devenir un geste quotidien, déclenchant un réachat d'huiles essentielles prévisible et continu pour votre marque.",
-    "Tolia is the only diffuser simple enough to become a daily gesture, unlocking predictable, year-round essential oil repurchase for your brand.",
-    "Tolia es el único difusor lo bastante simple para convertirse en un gesto diario, generando una recompra de aceites esenciales predecible y continua para su marca."
+    "Tolia est assez simple pour devenir un geste quotidien : vos clients diffusent plus, et rachètent vos huiles.",
+    'Tolia is simple enough to become a daily gesture: your customers diffuse more, and reorder your oils.',
+    'Tolia es tan sencillo que se convierte en un gesto diario: sus clientes difunden más y vuelven a comprar sus aceites.'
   );
   const microcopy = t3(
     language,
-    "Sans engagement · Réponse sous 24 heures",
-    "No commitment required · Response within 24 hours",
-    "Sin compromiso · Respuesta en menos de 24 horas"
+    'Sans engagement · Réponse sous 24 heures',
+    'No commitment · Reply within 24 hours',
+    'Sin compromiso · Respuesta en 24 horas'
   );
+  const cta = t3(language, 'Recevez votre échantillon gratuit', 'Get your free sample', 'Reciba su muestra gratuita');
 
   return (
-    <section ref={sectionRef} id="hero" className="relative h-screen w-full overflow-hidden bg-black">
+    <section
+      ref={sectionRef}
+      id="hero"
+      className="relative h-screen w-full overflow-hidden bg-black"
+      style={{
+        background:
+          'radial-gradient(70% 60% at 75% 25%, hsl(28 40% 20% / 0.55) 0%, transparent 70%), linear-gradient(165deg, hsl(25 18% 15%) 0%, hsl(25 20% 7%) 100%)',
+      }}
+    >
       <motion.div className="absolute inset-0" style={{ scale: videoScale }}>
-        <HeroVideo onVideoEnd={() => setVideoEnded(true)} />
+        <HeroVideo />
       </motion.div>
 
       <motion.div className="absolute inset-0 bg-black" style={{ opacity: overlayOpacity }} />
@@ -200,30 +250,29 @@ const HeroSection: React.FC = () => {
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={videoEnded ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: prefersReducedMotion() ? 0 : 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <motion.span
-              className="text-xs sm:text-sm uppercase tracking-[0.15em] text-white/60 font-medium block mb-4"
-            >
+            <span className="text-xs sm:text-sm uppercase tracking-[0.15em] text-white/70 font-medium block mb-4">
               {eyebrow}
-            </motion.span>
+            </span>
 
-            <motion.p
-              className="text-base sm:text-lg md:text-xl text-white/70 max-w-3xl font-light leading-relaxed"
-            >
+            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl font-light leading-relaxed">
               {subtitle}
-            </motion.p>
-          </motion.div>
+            </p>
 
-          <motion.p
-            className="text-xs text-white/75 font-light pt-1"
-            initial={{ opacity: 0 }}
-            animate={videoEnded ? { opacity: 1 } : {}}
-            transition={{ duration: 1, delay: 0.3 }}
-          >
-            {microcopy}
-          </motion.p>
+            <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3">
+              <a
+                href="#contact"
+                onClick={() => trackCTAClick(cta, 'hero', 'sample_hero')}
+                className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3.5 text-sm sm:text-base font-semibold text-primary-foreground shadow-lg transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              >
+                {cta}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </a>
+              <p className="text-xs text-white/75 font-light">{microcopy}</p>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
