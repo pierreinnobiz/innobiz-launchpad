@@ -225,8 +225,12 @@ const getInitialLanguage = (): Language => {
   if (typeof window === 'undefined') return 'en';
   const param = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase();
   if (param === 'fr' || param === 'en' || param === 'es') return param;
-  const stored = window.localStorage?.getItem('tolia:lang');
-  if (stored === 'fr' || stored === 'en' || stored === 'es') return stored;
+  try {
+    const stored = window.localStorage?.getItem('tolia:lang');
+    if (stored === 'fr' || stored === 'en' || stored === 'es') return stored;
+  } catch {
+    /* storage unavailable (private mode, sandboxed frame): fall back to the default language */
+  }
   return 'en';
 };
 

@@ -78,7 +78,8 @@ export function createJourneeEngine(
   let stopBtns: HTMLElement[] = [];
   let seqs: Record<string, any> = {};
   let cur = -1, fsNow = 0, raf = 0, SAFE_TOP = 0;
-  let story: HTMLElement, pin: HTMLElement, stage: HTMLElement, fill: HTMLElement, cursor: HTMLElement, stopsEl: HTMLElement;
+  const story = q('.story') as HTMLElement, pin = q('.pin') as HTMLElement, stage = q('.stage') as HTMLElement;
+  const fill = q('.fill') as HTMLElement, cursor = q('.cursor') as HTMLElement, stopsEl = q('.stops') as HTMLElement;
   let hint: HTMLElement | null = null;
   let prefetched = false, lastW = 0, lastH = 0, destroyed = false;
   let io: IntersectionObserver | null = null;
@@ -389,8 +390,6 @@ export function createJourneeEngine(
   };
 
   // ---------- démarrage
-  story = q('.story') as HTMLElement; pin = q('.pin') as HTMLElement; stage = q('.stage') as HTMLElement;
-  fill = q('.fill') as HTMLElement; cursor = q('.cursor') as HTMLElement; stopsEl = q('.stops') as HTMLElement;
   build();
   lastW = innerWidth; lastH = innerHeight;
   addEventListener('scroll', onScroll, { passive: true });

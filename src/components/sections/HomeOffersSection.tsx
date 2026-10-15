@@ -12,11 +12,15 @@ const BASE = `${import.meta.env.BASE_URL}journee/img/`;
 // Même comportement qu'avant : le bouton mémorise le type de projet puis fait défiler jusqu'au formulaire.
 const goToContact = (type: 'white-label' | 'stock', label: string) => {
   trackCTAClick(label, 'offers', type === 'white-label' ? 'whitelabel' : 'quote_stock');
-  const url = new URL(window.location.href);
-  url.searchParams.set('type', type);
-  url.hash = '#contact';
-  window.history.replaceState(null, '', url.toString());
-  window.dispatchEvent(new Event('tolia:pathchange'));
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.set('type', type);
+    url.hash = '#contact';
+    window.history.replaceState(null, '', url.toString());
+    window.dispatchEvent(new Event('tolia:pathchange'));
+  } catch {
+    /* adresse non modifiable (page intégrée dans un cadre) : on fait défiler quand même jusqu'au formulaire */
+  }
   document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
 };
 
