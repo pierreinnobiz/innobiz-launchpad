@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
@@ -47,6 +47,13 @@ const HomeOffersSection: React.FC = () => {
       ),
       facts: t3(language, 'Généralement dès 3 000 pièces · 12 à 20 semaines', 'Typically from 3,000 units · 12 to 20 weeks', 'Normalmente desde 3.000 unidades · 12 a 20 semanas'),
       cta: t3(language, 'Parler de mon projet', 'Discuss my project', 'Hablar de mi proyecto'),
+      // détails de l'ancien site (offres et tableau comparatif) qui n'apparaissaient plus
+      points: [
+        t3(language, 'Synergies d’huiles essentielles co-développées et adaptées à l’histoire de votre marque', 'Co-developed essential oil blends tailored to your brand story', 'Mezclas de aceites esenciales co-desarrolladas y adaptadas a la historia de su marca'),
+        t3(language, 'Support industriel, réglementaire et supply chain complet d’Innobiz', 'Full industrial, regulatory and supply chain support from Innobiz', 'Soporte industrial, regulatorio y de cadena de suministro completo de Innobiz'),
+        t3(language, 'Couleur (RAL/Pantone), finitions mat, soft-touch ou métallique, matériaux : bois, résine, verre soufflé', 'Colour (RAL/Pantone), matte, soft-touch or metallic finishes, materials: wood, resin, blown glass', 'Color (RAL/Pantone), acabados mate, soft-touch o metálico, materiales: madera, resina, vidrio soplado'),
+        t3(language, 'Exclusivité de catégorie et de territoire négociable (par volume et engagement)', 'Category and territory exclusivity negotiable (by volume and commitment)', 'Exclusividad de categoría y territorio negociable (por volumen y compromiso)'),
+      ],
     },
     {
       type: 'stock' as const,
@@ -66,6 +73,12 @@ const HomeOffersSection: React.FC = () => {
       ),
       facts: t3(language, 'Dès 500 pièces · 72 h si en stock', 'From 500 units · 72 h if in stock', 'Desde 500 unidades · 72 h si hay stock'),
       cta: t3(language, 'Demander un devis', 'Request a quote', 'Solicitar presupuesto'),
+      points: [
+        t3(language, 'Livré en Tolia brandé, avec documentation produit complète', 'Delivered as branded Tolia with full product documentation', 'Entregado como Tolia con marca y documentación completa del producto'),
+        t3(language, 'Fourreau extérieur co-brandé en option, pour l’intégrer à votre gamme', 'Optional co-branded outer sleeve to integrate with your range', 'Funda exterior co-brandada opcional para integrarlo en su gama'),
+        t3(language, 'Produits en rayon en moins d’un mois', 'Products on shelf in under 1 month', 'Productos en estantería en menos de 1 mes'),
+        t3(language, 'Commande non exclusive : rapidité et flexibilité', 'Non-exclusive order: speed and flexibility', 'Pedido no exclusivo: rapidez y flexibilidad'),
+      ],
     },
   ];
 
@@ -114,6 +127,14 @@ const HomeOffersSection: React.FC = () => {
                 <h3 className="text-2xl font-bold text-foreground">{o.title}</h3>
                 <p className="mt-2 text-base text-muted-foreground leading-relaxed">{o.text}</p>
                 <p className="mt-4 text-sm font-semibold text-foreground">{o.facts}</p>
+                <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+                  {o.points.map((pt, i) => (
+                    <li key={i} className="flex items-start gap-2">
+                      <Check className="mt-0.5 h-4 w-4 flex-none" style={{ color: 'hsl(28 45% 48%)' }} aria-hidden="true" />
+                      <span>{pt}</span>
+                    </li>
+                  ))}
+                </ul>
                 <button
                   type="button"
                   onClick={() => goToContact(o.type, o.cta)}
