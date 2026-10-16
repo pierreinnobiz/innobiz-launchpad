@@ -46,19 +46,8 @@ const ContactSection: React.FC = () => {
           </p>
         </motion.div>
 
-        <FastTrackDeckForm />
-
-        <div className="text-center my-8">
-          <p className="text-sm text-muted-foreground">
-            {t3(
-              language,
-              'Ou dites-nous en plus sur votre projet →',
-              'Or tell us more about your project →',
-              'O cuéntenos más sobre su proyecto →'
-            )}
-          </p>
-        </div>
-
+        {/* Le titre de la section promet un échantillon : c'est donc le formulaire d'échantillon qui vient en premier.
+            La présentation par email (un seul champ) reste juste dessous, pour ceux qui ne sont pas encore prêts. */}
         <motion.div
           className="bg-card rounded-3xl p-6 md:p-10 border border-border/50 shadow-lg"
           initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
@@ -68,6 +57,19 @@ const ContactSection: React.FC = () => {
         >
           <QualificationForm />
         </motion.div>
+
+        <div className="text-center my-8">
+          <p className="text-sm text-muted-foreground">
+            {t3(
+              language,
+              'Pas encore prêt pour un échantillon ?',
+              'Not ready for a sample yet?',
+              '¿Todavía no quiere una muestra?'
+            )}
+          </p>
+        </div>
+
+        <FastTrackDeckForm />
       </div>
     </section>
   );

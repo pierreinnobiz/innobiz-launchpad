@@ -229,7 +229,15 @@ const getInitialLanguage = (): Language => {
     const stored = window.localStorage?.getItem('tolia:lang');
     if (stored === 'fr' || stored === 'en' || stored === 'es') return stored;
   } catch {
-    /* storage unavailable (private mode, sandboxed frame): fall back to the default language */
+    /* storage unavailable (private mode, sandboxed frame): fall back to the browser language */
+  }
+  // Première visite : on parle la langue du navigateur (français, espagnol), sinon l'anglais.
+  // Un visiteur français arrivait avant sur une page anglaise, qu'il fallait changer à la main avec FR / EN / ES.
+  const preferred = (navigator.languages?.length ? navigator.languages : [navigator.language]).filter(Boolean);
+  for (const tag of preferred) {
+    const code = tag.slice(0, 2).toLowerCase();
+    if (code === 'fr' || code === 'es') return code;
+    if (code === 'en') return 'en';
   }
   return 'en';
 };

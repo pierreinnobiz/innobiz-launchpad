@@ -7,6 +7,7 @@ import { ArrowRight, Mail, CheckCircle2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { t3 } from '@/lib/t3';
+import { prospectEmailFromUrl } from '@/lib/prospect';
 
 declare global {
   interface Window {
@@ -17,7 +18,7 @@ declare global {
 const FastTrackDeckForm: React.FC = () => {
   const { language } = useLanguage();
   const { toast } = useToast();
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState(prospectEmailFromUrl);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -110,6 +111,10 @@ const FastTrackDeckForm: React.FC = () => {
             id="deck-email"
             type="email"
             required
+            autoComplete="email"
+            inputMode="email"
+            autoCapitalize="none"
+            spellCheck={false}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder={t3(

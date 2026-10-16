@@ -7,6 +7,9 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ArrowRight, CheckCircle2, Gift, Truck, Package, ShieldCheck, Lock } from 'lucide-react';
 import { t3 } from '@/lib/t3';
 import { getSessionAttribution } from '@/lib/attribution';
+import { prospectEmailFromUrl } from '@/lib/prospect';
+import { CALENDLY_15_MIN_URL } from '@/lib/links';
+import { trackCTAClick } from '@/lib/tracking';
 import { supabase } from '@/integrations/supabase/client';
 
 declare global {
@@ -66,6 +69,18 @@ const intentForGtag = (p: ProjectType): string => {
   return 'unset';
 };
 
+// Le type de projet choisi plus haut sur la page (boutons « Parler de mon projet » / « Demander un devis »)
+// est mémorisé dans l'adresse (?type=white-label ou ?type=stock) : on le présélectionne dans le formulaire.
+const projectTypeFromUrl = (): ProjectType | null => {
+  try {
+    const t = (new URLSearchParams(window.location.search).get('type') || '').toLowerCase();
+    if (t === 'white-label' || t === 'white_label') return 'white_label';
+    if (t === 'stock' || t === 'order' || t === 'stock_order') return 'stock_order';
+    if (t === 'exploring') return 'exploring';
+  } catch { /* adresse illisible : on ne présélectionne rien */ }
+  return null;
+};
+
 const getUtmParams = (): Record<string, string> => {
   try {
     const sp = new URLSearchParams(window.location.search);
@@ -86,10 +101,10 @@ const QualificationForm: React.FC = () => {
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-  const [data, setData] = useState<FormState>({
+  const [data, setData] = useState<FormState>(() => ({
     name: '',
     company: '',
-    email: '',
+    email: prospectEmailFromUrl(),
     country: '',
     website: '',
     street: '',
@@ -97,12 +112,22 @@ const QualificationForm: React.FC = () => {
     city: '',
     role: '',
     phone: '',
-    projectType: 'unset',
-  });
+    projectType: projectTypeFromUrl() ?? 'unset',
+  }));
 
   const update = useCallback(<K extends keyof FormState>(field: K, value: FormState[K]) => {
     setData((prev) => ({ ...prev, [field]: value }));
     setErrors((prev) => ({ ...prev, [field]: undefined }));
+  }, []);
+
+  // Un bouton de la page (« Parler de mon projet », « Demander un devis ») vient de choisir le type de projet.
+  useEffect(() => {
+    const sync = () => {
+      const t = projectTypeFromUrl();
+      if (t) setData((prev) => (prev.projectType === t ? prev : { ...prev, projectType: t }));
+    };
+    window.addEventListener('tolia:pathchange', sync);
+    return () => window.removeEventListener('tolia:pathchange', sync);
   }, []);
 
 
@@ -317,6 +342,27 @@ const QualificationForm: React.FC = () => {
             'Seguimiento por email en la dirección indicada.'
           )}
         </p>
+        {/* Facultatif : proposé après la demande, pour ceux qui préfèrent en parler. L'échantillon part de toute façon. */}
+        <div className="mt-8 border-t border-border/60 pt-6 max-w-md mx-auto">
+          <p className="text-sm text-muted-foreground">
+            {t3(
+              language,
+              "Envie d'en parler ? 15 minutes pour confirmer votre adresse, voir Tolia en direct et vérifier qu'il convient à votre gamme.",
+              'Prefer to talk it through? 15 minutes to confirm your address, see Tolia live and check it fits your range.',
+              '¿Prefiere hablarlo? 15 minutos para confirmar su dirección, ver Tolia en directo y comprobar que encaja con su gama.'
+            )}
+          </p>
+          <a
+            href={CALENDLY_15_MIN_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackCTAClick('Book a 15-min call', 'sample-thanks', 'call_booking')}
+            className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm font-semibold text-primary transition hover:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            {t3(language, 'Réserver 15 minutes', 'Book 15 minutes', 'Reservar 15 minutos')}
+            <ArrowRight className="w-4 h-4" aria-hidden="true" />
+          </a>
+        </div>
       </div>
     );
   }
@@ -436,6 +482,7 @@ const QualificationForm: React.FC = () => {
             <Label htmlFor="qf-role">{t3(language, 'Votre poste (optionnel)', 'Your role (optional)', 'Su cargo (opcional)')}</Label>
             <Input
               id="qf-role"
+              autoComplete="organization-title"
               value={data.role}
               onChange={(e) => update('role', e.target.value)}
               placeholder={t3(language, 'Fondateur, CMO, Acheteur...', 'Founder, CMO, Buyer...', 'Fundador, CMO, Comprador...')}
@@ -447,6 +494,7 @@ const QualificationForm: React.FC = () => {
             <Input
               id="qf-phone"
               type="tel"
+              autoComplete="tel"
               value={data.phone}
               onChange={(e) => update('phone', e.target.value)}
               placeholder="+33 6 12 34 56 78"
@@ -507,6 +555,10 @@ const QualificationForm: React.FC = () => {
           id="qf-email"
           type="email"
           required
+          autoComplete="email"
+          inputMode="email"
+          autoCapitalize="none"
+          spellCheck={false}
           value={data.email}
           onChange={(e) => update('email', e.target.value)}
           onFocus={handleFormStart}
@@ -523,6 +575,7 @@ const QualificationForm: React.FC = () => {
           <Input
             id="qf-name"
             required
+            autoComplete="name"
             value={data.name}
             onChange={(e) => update('name', e.target.value)}
             onFocus={handleFormStart}
@@ -537,6 +590,7 @@ const QualificationForm: React.FC = () => {
           <Input
             id="qf-company"
             required
+            autoComplete="organization"
             value={data.company}
             onChange={(e) => update('company', e.target.value)}
             onFocus={handleFormStart}
@@ -570,6 +624,8 @@ const QualificationForm: React.FC = () => {
             required
             inputMode="url"
             autoComplete="url"
+            autoCapitalize="none"
+            spellCheck={false}
             value={data.website}
             onChange={(e) => update('website', e.target.value)}
             onFocus={handleFormStart}
