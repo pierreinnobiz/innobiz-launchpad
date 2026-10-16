@@ -7,8 +7,9 @@ import { t3 } from '@/lib/t3';
 import { trackCTAClick } from '@/lib/tracking';
 import LegacyAnchors from '@/components/LegacyAnchors';
 
-// Image de l'ancien site (section « Engagement RSE ») : Tolia démonté, coque, module, électronique et batterie séparés.
-const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_demonte.webp`;
+// Rendu 3D réalisé avec Blender à partir des fichiers STP (16/10/2026) : cloche, base, pièces internes, module et flacon posés séparément sur une table.
+// Il remplace l'image de synthèse de l'ancien site (carte électronique avec port HDMI, diffuseur qui n'était pas le Tolia).
+const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_demontage_3d.webp`;
 
 /**
  * Durabilité et réparabilité : un argument fort pour les grandes marques d'aromathérapie (engagements RSE).
@@ -90,54 +91,52 @@ const DurabilitySection: React.FC = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-center">
-          <motion.figure
-            className="overflow-hidden rounded-3xl shadow-xl border border-border/40 bg-card"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={fadeBlurUp}
-          >
-            <img
-              src={IMG}
-              width={1361}
-              height={784}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-auto"
-              alt={t3(
-                language,
-                'Tolia démonté : architecture modulaire avec coque, module de diffusion, électronique et batterie remplaçables',
-                'Tolia disassembled: modular architecture with replaceable shell, diffusion module, electronics and battery',
-                'Tolia desmontado: arquitectura modular con carcasa, módulo de difusión, electrónica y batería reemplazables'
-              )}
-            />
-          </motion.figure>
+        <motion.figure
+          className="mx-auto max-w-5xl overflow-hidden rounded-3xl shadow-xl border border-border/40 bg-card"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={fadeBlurUp}
+        >
+          <img
+            src={IMG}
+            width={1600}
+            height={921}
+            loading="lazy"
+            decoding="async"
+            className="w-full h-auto"
+            alt={t3(
+              language,
+              'Tolia démonté, rendu 3D issu de nos fichiers de conception : la cloche, la base, les pièces internes, le module de diffusion et le flacon sont posés séparément sur une table en chêne',
+              'Tolia disassembled, 3D render from our design files: the cover, base, internal parts, diffusion module and bottle laid out separately on an oak table',
+              'Tolia desmontado, render 3D a partir de nuestros archivos de diseño: la cubierta, la base, las piezas internas, el módulo de difusión y el frasco dispuestos por separado sobre una mesa de roble'
+            )}
+          />
+        </motion.figure>
 
-          <motion.ul
-            className="grid gap-6"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-60px' }}
-            variants={staggerContainer}
-          >
-            {items.map((it, i) => (
-              <motion.li key={i} className="flex gap-4" variants={fadeBlurUp}>
-                <span
-                  className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full"
-                  style={{ background: 'hsl(145 35% 38% / 0.12)', color: 'hsl(145 35% 30%)' }}
-                  aria-hidden="true"
-                >
-                  <it.icon className="h-5 w-5" />
-                </span>
-                <div>
-                  <h3 className="font-semibold text-foreground text-lg leading-snug">{it.title}</h3>
-                  <p className="text-sm md:text-base text-muted-foreground leading-relaxed mt-1">{it.text}</p>
-                </div>
-              </motion.li>
-            ))}
-          </motion.ul>
-        </div>
+        <motion.ul
+          className="mx-auto mt-10 grid max-w-5xl gap-x-10 gap-y-7 md:grid-cols-2"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={staggerContainer}
+        >
+          {items.map((it, i) => (
+            <motion.li key={i} className="flex gap-4" variants={fadeBlurUp}>
+              <span
+                className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full"
+                style={{ background: 'hsl(145 35% 38% / 0.12)', color: 'hsl(145 35% 30%)' }}
+                aria-hidden="true"
+              >
+                <it.icon className="h-5 w-5" />
+              </span>
+              <div>
+                <h3 className="font-semibold text-foreground text-lg leading-snug">{it.title}</h3>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed mt-1">{it.text}</p>
+              </div>
+            </motion.li>
+          ))}
+        </motion.ul>
 
         <motion.div
           className="mt-12 md:mt-14 mx-auto max-w-3xl rounded-2xl border border-border/50 bg-card px-6 py-6 md:px-8 text-center"
