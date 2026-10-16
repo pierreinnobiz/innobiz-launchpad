@@ -25,9 +25,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(language, 'Pure et silencieuse', 'Pure and quiet', 'Pura y silenciosa'),
       text: t3(
         language,
-        'Ni eau, ni chaleur, ni pompe, ni ventilateur : l’huile est diffusée telle qu’elle sort du flacon, sans bruit qui dérange.',
-        'No water, no heat, no pump, no fan: the oil is diffused exactly as it comes out of the bottle, with no disturbing noise.',
-        'Sin agua, sin calor, sin bomba, sin ventilador: el aceite se difunde tal como sale del frasco, sin ruido que moleste.'
+        'Ni eau, ni chaleur, ni pompe, ni ventilateur, ni vibration : l’huile est diffusée telle qu’elle sort du flacon. Rien ne dérange le sommeil, la méditation ou le travail concentré.',
+        'No water, no heat, no pump, no fan, no vibration: the oil is diffused exactly as it comes out of the bottle. Nothing disturbs sleep, meditation or focused work.',
+        'Sin agua, sin calor, sin bomba, sin ventilador, sin vibración: el aceite se difunde tal como sale del frasco. Nada molesta al sueño, la meditación ni el trabajo concentrado.'
       ),
     },
     {
@@ -90,9 +90,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(language, 'Tout votre catalogue', 'Your whole catalogue', 'Todo su catálogo'),
       text: t3(
         language,
-        'Huiles essentielles pures, synergies complexes, hydrolats et parfums d’intérieur : un seul appareil, validé sur des centaines de formulations en laboratoire.',
-        'Pure essential oils, complex blends, hydrosols and home fragrances: one device, validated on hundreds of laboratory formulations.',
-        'Aceites esenciales puros, mezclas complejas, hidrolatos y fragancias para el hogar: un solo dispositivo, validado en cientos de formulaciones de laboratorio.'
+        'Huiles essentielles pures, synergies complexes, hydrolats, parfums d’intérieur : un seul appareil pour tout votre catalogue, validé sur des centaines de formulations en laboratoire. Plus besoin d’associer un diffuseur à chaque produit.',
+        'Pure essential oils, complex blends, hydrosols, home fragrances: one device for your whole catalogue, validated on hundreds of laboratory formulations. No more matching a diffuser to each product.',
+        'Aceites esenciales puros, mezclas complejas, hidrolatos, fragancias para el hogar: un solo dispositivo para todo su catálogo, validado en cientos de formulaciones de laboratorio. Ya no hace falta emparejar un difusor con cada producto.'
       ),
     },
     {
@@ -110,9 +110,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(language, 'Zéro colmatage', 'No clogging', 'Sin obstrucciones'),
       text: t3(
         language,
-        'Maîtrise microfluidique : huiles résineuses, essences d’agrumes et hydrolats passent sans boucher la buse.',
-        'Microfluidic mastery: resinous oils, citrus essences and hydrosols flow without clogging the nozzle.',
-        'Dominio microfluídico: aceites resinosos, esencias cítricas e hidrolatos fluyen sin obstruir la boquilla.'
+        'Maîtrise microfluidique : huiles résineuses, essences d’agrumes et hydrolats passent sans boucher la buse. Chaque buse est validée au laser, pour une diffusion régulière cycle après cycle.',
+        'Microfluidic mastery: resinous oils, citrus essences and hydrosols flow without clogging the nozzle. Every nozzle is laser-validated, for steady diffusion cycle after cycle.',
+        'Dominio microfluídico: aceites resinosos, esencias cítricas e hidrolatos fluyen sin obstruir la boquilla. Cada boquilla se valida con láser, para una difusión regular ciclo tras ciclo.'
       ),
     },
     {
@@ -130,9 +130,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(language, 'Conçu en France, 20 ans de R&D', 'Designed in France, 20 years of R&D', 'Diseñado en Francia, 20 años de I+D'),
       text: t3(
         language,
-        'Ingénierie, prototypage et assemblage dans notre site français. Microfluidique, acoustique, laser, électronique embarquée : quatre disciplines, un seul fabricant. Tolia est notre 7ᵉ génération.',
-        'Engineering, prototyping and assembly at our French facility. Microfluidics, acoustics, laser, embedded electronics: four disciplines, one manufacturer. Tolia is our 7th generation.',
-        'Ingeniería, prototipado y ensamblaje en nuestra instalación francesa. Microfluídica, acústica, láser, electrónica embarcada: cuatro disciplinas, un solo fabricante. Tolia es nuestra 7ª generación.'
+        'Ingénierie, prototypage et assemblage dans notre site français. Microfluidique, acoustique, laser, électronique embarquée : quatre disciplines, un seul fabricant, qui conçoit et développe lui-même la technologie. Tolia est notre 7ᵉ génération.',
+        'Engineering, prototyping and assembly at our French facility. Microfluidics, acoustics, laser, embedded electronics: four disciplines, one manufacturer that designs and develops the technology itself. Tolia is our 7th generation.',
+        'Ingeniería, prototipado y ensamblaje en nuestra instalación francesa. Microfluídica, acústica, láser, electrónica embarcada: cuatro disciplinas, un solo fabricante que diseña y desarrolla la tecnología él mismo. Tolia es nuestra 7ª generación.'
       ),
     },
     {
@@ -150,9 +150,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(language, 'Il voyage avec vos clients', 'It travels with your customers', 'Viaja con sus clientes'),
       text: t3(
         language,
-        'Chambre, bureau, voiture, spa, salle de yoga : chaque nouveau lieu d’usage est un nouveau moment de consommation d’huile.',
-        'Bedroom, office, car, spa, yoga room: each new place of use is a new moment of oil consumption.',
-        'Dormitorio, oficina, coche, spa, sala de yoga: cada nuevo lugar de uso es un nuevo momento de consumo de aceite.'
+        'Léger et sans fil : chambre, bureau, voiture, spa, salle de yoga. Chaque nouveau lieu d’usage est un nouveau moment de consommation d’huile.',
+        'Light and cordless: bedroom, office, car, spa, yoga room. Each new place of use is a new moment of oil consumption.',
+        'Ligero e inalámbrico: dormitorio, oficina, coche, spa, sala de yoga. Cada nuevo lugar de uso es un nuevo momento de consumo de aceite.'
       ),
     },
   ];

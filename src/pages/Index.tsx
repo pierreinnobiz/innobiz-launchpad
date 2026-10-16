@@ -4,6 +4,7 @@ import Navigation from '@/components/Navigation';
 import HeroSection from '@/components/sections/HeroSection';
 import SocialProofBar from '@/components/sections/SocialProofBar';
 import HomeProblemSection from '@/components/sections/HomeProblemSection';
+import RealProductStrip from '@/components/sections/RealProductStrip';
 import SectionGradient from '@/components/SectionGradient';
 import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
@@ -104,6 +105,8 @@ const Index: React.FC = () => {
       <SectionGradient from="hsl(25 18% 14%)" to="hsl(35 30% 93%)" height="80px" />
 
       <HomeProblemSection />
+
+      <RealProductStrip />
 
       {showBelowFold ? (
         <Suspense fallback={<div className="min-h-screen bg-background" aria-hidden="true" />}>

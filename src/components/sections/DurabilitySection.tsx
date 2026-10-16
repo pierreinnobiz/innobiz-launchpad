@@ -23,9 +23,9 @@ const DurabilitySection: React.FC = () => {
       title: t3(language, 'Modulaire', 'Modular', 'Modular'),
       text: t3(
         language,
-        'Coque, module de diffusion, électronique, batterie : chaque partie se remplace sans changer tout l’appareil.',
-        'Shell, diffusion module, electronics, battery: every part can be replaced without changing the whole device.',
-        'Carcasa, módulo de difusión, electrónica, batería: cada parte se puede reemplazar sin cambiar todo el dispositivo.'
+        'Coque, module de diffusion, électronique, batterie : chaque partie se remplace sans changer tout l’appareil. Sans verre fragile, sans eau stagnante ni pompe, il y a moins de pièces qui cassent, donc moins de retours à gérer.',
+        'Shell, diffusion module, electronics, battery: every part can be replaced without changing the whole device. With no fragile glass, no stagnant water and no pump, fewer parts break, so fewer returns to manage.',
+        'Carcasa, módulo de difusión, electrónica, batería: cada parte se puede reemplazar sin cambiar todo el dispositivo. Sin vidrio frágil, sin agua estancada ni bomba, hay menos piezas que se rompen y, por tanto, menos devoluciones que gestionar.'
       ),
     },
     {
