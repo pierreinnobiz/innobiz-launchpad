@@ -214,3 +214,14 @@
 .journee.fmt-m .rail,.journee.fmt-m .fill{top:11px}
 .journee.fmt-m .cursor{top:4px;width:14px;height:14px;margin-left:-7px}
 
+
+/* ---- version 6 : tout ce qui apparaît est piloté par le défilement (le script pose l'opacité et la position à chaque défilement) ;
+   aucune transition de durée fixe ici, sinon l'apparition « traînerait » derrière le doigt ou la molette ---- */
+.journee .scene,
+.journee .ln,
+.journee .dot,
+.journee .fade,
+.journee .wires path,
+.journee .hint { transition: none !important; }
+.journee .ln { will-change: opacity, transform; }
+.journee .wires path { will-change: stroke-dashoffset; }

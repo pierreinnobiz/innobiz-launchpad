@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
-import { trackCTAClick } from '@/lib/tracking';
+import { trackCTAClick, trackEvent } from '@/lib/tracking';
 import { createJourneeEngine, type JourneeEngine } from './engine';
 import { JOURNEE_TEXTS } from './texts';
 import LegacyAnchors from '@/components/LegacyAnchors';
@@ -29,6 +29,8 @@ const JourneeSection: React.FC = () => {
       () => langRef.current,
       BASE,
       (label) => trackCTAClick(label, 'journee', 'sample_journee'),
+      // jusqu'où vont les visiteurs ? un événement par écran de la séquence (A à I), une seule fois par visite
+      (id) => trackEvent('journee_scene', { scene: id }),
     );
     engineRef.current = engine;
     builtLang.current = langRef.current;
