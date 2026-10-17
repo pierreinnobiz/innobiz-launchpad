@@ -377,7 +377,7 @@ const QualificationForm: React.FC = () => {
             onClick={() => trackCTAClick('Book a 15-min call', 'sample-thanks', 'call_booking')}
             className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm font-semibold text-primary transition hover:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            {t3(language, 'Réserver 15 minutes', 'Book 15 minutes', 'Reservar 15 minutos')}
+            {t3(language, 'Réserver 15 min avec l’équipe', 'Book a 15-min call', 'Reservar 15 min con el equipo')}
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </a>
         </div>
@@ -623,7 +623,7 @@ const QualificationForm: React.FC = () => {
             setErrors((prev) => ({ ...prev, email: undefined, website: undefined }));
           }}
           onFocus={handleFormStart}
-          placeholder={t3(language, 'prenom@votremarque.com', 'name@yourbrand.com', 'nombre@sumarca.es')}
+          placeholder={t3(language, 'prenom@votremarque.com', 'name@yourbrand.com', 'nombre@suempresa.es')}
           className="h-11 rounded-xl"
           aria-invalid={!!errors.email}
         />
@@ -677,7 +677,7 @@ const QualificationForm: React.FC = () => {
           value={data.website}
           onChange={(e) => { siteAuto.current = false; update('website', e.target.value); }}
           onFocus={handleFormStart}
-          placeholder={t3(language, 'votremarque.com', 'yourbrand.com', 'sumarca.es')}
+          placeholder={t3(language, 'votremarque.com', 'yourbrand.com', 'suempresa.es')}
           className="h-11 rounded-xl"
           aria-invalid={!!errors.website}
         />

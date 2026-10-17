@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Check, Droplets, Flame, FlaskRound, Wind, X, type LucideIcon } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import LegacyAnchors from '@/components/LegacyAnchors';
+import CarouselDots from '@/components/CarouselDots';
 
 // Le geste en une image (scène du matin recadrée) : le flacon clipsé dans la base, les autres flacons avec leur module.
 const GESTE = `${import.meta.env.BASE_URL}journee/img/constat_geste.webp`;
@@ -17,6 +18,7 @@ const GESTE = `${import.meta.env.BASE_URL}journee/img/constat_geste.webp`;
  */
 const HomeProblemSection: React.FC = () => {
   const { language: l } = useLanguage();
+  const cartes = useRef<HTMLUListElement>(null);
 
   const techs: { icon: LucideIcon; name: string; usage: string; result: string }[] = [
     {
@@ -36,7 +38,7 @@ const HomeProblemSection: React.FC = () => {
       usage: t3(
         l,
         'La chaleur altère les molécules aromatiques. Le parfum s’affadit vite et ne ressemble plus à l’huile essentielle que l’on avait choisie.',
-        'Heat alters the aromatic molecules. The scent fades quickly and no longer smells like the essential oil you had chosen.',
+        'Heat alters the aromatic molecules. The scent fades quickly and no longer smells like the essential oil you chose.',
         'El calor altera las moléculas aromáticas. El aroma se apaga rápido y ya no se parece al aceite esencial que se había elegido.'
       ),
       result: t3(l, 'Une déception : le flacon n’est pas racheté.', 'A disappointment: the bottle is not bought again.', 'Una decepción: el frasco no se vuelve a comprar.'),
@@ -92,7 +94,7 @@ const HomeProblemSection: React.FC = () => {
               l,
               'En 20 ans de métier dans la diffusion, nous avons fait le même constat : l’envie de diffuser est bien là ; ce qui l’éteint, ce sont les gestes que chaque appareil impose. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne se rachètent plus.',
               'In 20 years of designing diffusers, we have seen the same thing again and again: people want to diffuse; what stops them is the chores each device demands. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.',
-              'En 20 años de experiencia en difusión, hemos llegado siempre a la misma conclusión: las ganas de difundir están ahí; lo que las apaga son los gestos que impone cada aparato. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
+              'En 20 años de experiencia en difusión de aromas, hemos llegado siempre a la misma conclusión: las ganas de aromatizar la casa están ahí; lo que las apaga son los gestos que impone cada aparato. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
             )}
           </p>
         </motion.div>
@@ -100,7 +102,8 @@ const HomeProblemSection: React.FC = () => {
         {/* Une carte par technologie : ce que l'on doit faire, puis ce qui se passe */}
         {/* téléphone : les 4 cartes défilent sur le côté (moins d'écrans de texte) ; tablette et ordinateur : grille */}
         <motion.ul
-          className="mt-10 md:mt-12 -mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
+          ref={cartes}
+          className="mt-10 md:mt-12 -mx-6 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto px-6 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
@@ -125,9 +128,12 @@ const HomeProblemSection: React.FC = () => {
             </motion.li>
           ))}
         </motion.ul>
-        <p className="mt-1 text-center text-xs text-muted-foreground sm:hidden">
-          {t3(l, 'Faites glisser pour voir les 4 technologies', 'Swipe to see all 4 technologies', 'Deslice para ver las 4 tecnologías')} →
-        </p>
+        <div className="mt-1 grid justify-items-center gap-1 sm:hidden">
+          <CarouselDots target={cartes} count={techs.length} />
+          <p className="text-center text-xs text-muted-foreground">
+            {t3(l, 'Faites glisser pour voir les 4 technologies', 'Swipe to see all 4 technologies', 'Deslice para ver las 4 tecnologías')} →
+          </p>
+        </div>
 
         {/* La réponse de Tolia */}
         <motion.div
@@ -181,26 +187,18 @@ const HomeProblemSection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="mt-10 text-center"
+          className="mt-8 text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-40px' }}
           variants={fadeBlurUp}
         >
-          <p className="mx-auto max-w-2xl text-lg md:text-xl font-semibold text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
-            {t3(
-              l,
-              'Quand diffuser ne demande plus aucun effort, on diffuse tous les jours. C’est ce qui ramène vos clients vers vos huiles.',
-              'When diffusing takes no effort, people diffuse every day. That is what brings your customers back to your oils.',
-              'Cuando aromatizar la casa no cuesta ningún esfuerzo, se hace a diario. Y sus clientes vuelven a comprar sus aceites.'
-            )}
-          </p>
           <a
             href="#journee"
-            className="mt-5 inline-flex items-center gap-2 text-sm font-semibold transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full px-2 py-1"
+            className="inline-flex items-center gap-2 text-sm font-semibold transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full px-2 py-1"
             style={{ color: 'hsl(28 52% 36%)' }}
           >
-            {t3(l, 'Voir Tolia en situation, sur une journée', 'See Tolia in action, over one day', 'Ver Tolia en uso, durante un día')}
+            {t3(l, 'Voir Tolia en situation, sur une journée', 'Spend a day with Tolia', 'Ver Tolia en uso, durante un día')}
             <ArrowDown className="h-4 w-4" aria-hidden="true" />
           </a>
         </motion.div>

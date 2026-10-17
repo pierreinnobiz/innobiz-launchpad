@@ -44,9 +44,9 @@ const DurabilitySection: React.FC = () => {
       title: t3(language, 'Un diffuseur qui reste utilisé', 'A diffuser that stays in use', 'Un difusor que se sigue usando'),
       text: t3(
         language,
-        'Sans eau, sans nettoyage, avec un changement d’huile en une seconde, Tolia est conçu pour éviter le « syndrome du placard » : il s’intègre aux routines quotidiennes au lieu de finir oublié au fond d’un placard.',
-        'With no water, no cleaning and an oil change in a second, Tolia is designed to avoid the “cupboard syndrome”: it fits into daily routines rather than ending up forgotten in a cupboard.',
-        'Sin agua, sin limpieza y con cambio de aceite en un segundo, Tolia está diseñado para evitar el «síndrome del armario»: se integra en las rutinas diarias en lugar de acabar olvidado en un armario.'
+        'Sans eau, sans nettoyage, avec un changement d’huile en une seconde, Tolia est conçu pour éviter le « syndrome du placard » : il s’intègre aux routines quotidiennes.',
+        'With no water, no cleaning and an oil change in a second, Tolia is designed to stay out of the cupboard: it fits into daily routines.',
+        'Sin agua, sin limpieza y con cambio de aceite en un segundo, Tolia está diseñado para evitar el «síndrome del armario»: se integra en las rutinas diarias.'
       ),
     },
     {
@@ -117,8 +117,8 @@ const DurabilitySection: React.FC = () => {
               {t3(
                 language,
                 'Illustration de principe : chaque pièce se démonte et se remplace.',
-                'Illustration: every part comes apart and can be replaced.',
-                'Ilustración: cada pieza se desmonta y se sustituye.'
+                'Conceptual illustration: every part comes apart and can be replaced.',
+                'Ilustración orientativa: cada pieza se desmonta y se sustituye.'
               )}
             </figcaption>
           </motion.figure>
@@ -162,9 +162,9 @@ const DurabilitySection: React.FC = () => {
             <p className="mt-1 text-base md:text-lg font-semibold text-foreground leading-snug">
               {t3(
                 language,
-                'Un produit pensé pour servir chaque jour pendant des années ne finit pas oublié au fond d’un placard. C’est un argument RSE concret pour votre marque.',
-                'A product designed to be used every day for years does not end up forgotten in a cupboard: a concrete sustainability story for your brand.',
-                'Un producto pensado para usarse a diario durante años no acaba olvidado en un armario: un argumento de sostenibilidad concreto para su marca.'
+                'Réparable et pensé pour servir chaque jour pendant des années : un argument RSE concret pour votre marque.',
+                'Repairable and designed for daily use over many years: a concrete sustainability story for your brand.',
+                'Reparable y pensado para usarse a diario durante años: un argumento de sostenibilidad concreto para su marca.'
               )}
             </p>
           </div>

@@ -32,9 +32,9 @@ const diffuserPoints: Tri[] = [
     es: 'Grabado láser, serigrafía o impresión UV de su logotipo en la cubierta y la base',
   },
   {
-    fr: 'Finitions mat, brillante, soft-touch, texturée ou métallique selon votre positionnement',
-    en: 'Matte, gloss, soft-touch, textured or metallic finishes to match your positioning',
-    es: 'Acabados mate, brillante, soft-touch, texturizado o metalizado según su posicionamiento',
+    fr: 'Finitions mat, brillante, soft‑touch, texturée ou métallique selon votre positionnement',
+    en: 'Matt, gloss, soft‑touch, textured or metallic finishes to match your positioning',
+    es: 'Acabados mate, brillante, soft‑touch, texturizado o metalizado según su posicionamiento',
   },
   {
     fr: 'Matériaux au choix : bois, résine, verre soufflé',
@@ -59,9 +59,9 @@ const pillars: Pillar[] = [
         es: 'Módulo de difusión personalizado con los colores de su marca',
       },
       {
-        fr: 'Câble de recharge USB-C avec manchon à votre charte graphique',
-        en: 'USB-C charging cable with a sleeve in your brand colours',
-        es: 'Cable de carga USB-C con funda según su identidad de marca',
+        fr: 'Câble de recharge USB‑C avec manchon à votre charte graphique',
+        en: 'USB‑C charging cable with a sleeve in your brand colours',
+        es: 'Cable de carga USB‑C con funda según su identidad de marca',
       },
     ],
   },
@@ -69,9 +69,9 @@ const pillars: Pillar[] = [
     icon: Package,
     title: { fr: 'Le packaging', en: 'Packaging', es: 'El estuche' },
     subtitle: {
-      fr: 'Un unboxing premium qui porte l’identité de votre marque',
-      en: 'A premium unboxing that carries your brand identity',
-      es: 'Un unboxing premium que lleva la identidad de su marca',
+      fr: 'Un unboxing qui porte l’identité de votre marque',
+      en: 'An unboxing that carries your brand identity',
+      es: 'Un unboxing que lleva la identidad de su marca',
     },
     points: [
       {
@@ -80,9 +80,9 @@ const pillars: Pillar[] = [
         es: 'Caja individual totalmente personalizable: dimensiones, materiales, colores',
       },
       {
-        fr: 'Insert explicatif et carte de bienvenue brandée pour un effet premium',
-        en: 'Branded explanatory insert and welcome card for a premium feel',
-        es: 'Inserto explicativo y tarjeta de bienvenida de marca para un efecto premium',
+        fr: 'Insert explicatif et carte de bienvenue à vos couleurs',
+        en: 'Explanatory insert and welcome card in your colours',
+        es: 'Folleto explicativo y tarjeta de bienvenida con sus colores',
       },
       {
         fr: 'QR code intégré reliant à votre programme de fidélité ou votre application',
@@ -106,14 +106,14 @@ const pillars: Pillar[] = [
         es: 'Manual de uso personalizado con su logo, colores y consejos de uso',
       },
       {
-        fr: 'Carte de garantie et carte de remerciement brandées pour renforcer la relation client',
-        en: 'Branded warranty and thank-you cards to strengthen customer relationships',
-        es: 'Tarjeta de garantía y de agradecimiento de marca para fortalecer la relación con el cliente',
+        fr: 'Cartes de garantie et de remerciement à votre marque',
+        en: 'Warranty and thank-you cards with your branding',
+        es: 'Tarjetas de garantía y de agradecimiento con su marca',
       },
       {
         fr: 'Supports PLV et fiches produit en magasin prêtes à imprimer',
         en: 'POS displays and in-store product sheets ready to print',
-        es: 'Displays PLV y fichas de producto en tienda listos para imprimir',
+        es: 'Expositores PLV y fichas de producto en tienda listos para imprimir',
       },
     ],
   },
@@ -168,7 +168,7 @@ const CustomizationSection: React.FC = () => {
             {t3(
               l,
               'Innobiz personnalise chaque composant de votre diffuseur. Couleurs, matières, finitions, logo, coffret : un diffuseur qui porte votre marque de bout en bout.',
-              'Innobiz customises every component of your diffuser. Colours, materials, finishes, logo, box: a diffuser that carries your brand from end to end.',
+              'Innobiz customises every component of your diffuser. Colours, materials, finishes, logo, box: a diffuser that carries your brand throughout.',
               'Innobiz personaliza cada componente de su difusor. Colores, materiales, acabados, logotipo, estuche: un difusor que lleva su marca de principio a fin.'
             )}
           </p>

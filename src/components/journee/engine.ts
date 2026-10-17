@@ -76,34 +76,34 @@ interface PageDef {
   box?: Record<Fmt, [number, number, number, number]>; // contour du produit (x0, y0, x1, y1)
   callouts?: CalloutDef[];
 }
+// Trois cadres par page (cycle 3 du test : une idée par cadre, aucune flèche ne barre la cloche).
 const PAGES: PageDef[] = [
   {
-    id: 'matin', kind: 'photo', tone: 't-day', icon: 'sunrise', color: 'var(--m1)', T: 4.9, img: 'kitchen',
+    id: 'matin', kind: 'photo', tone: 't-day', icon: 'sunrise', color: 'var(--m1)', T: 4.0, img: 'kitchen',
     box: { d: [705, 425, 1405, 725], m: [110, 1010, 970, 1440] },
     callouts: [
       { t: 0.9, at: { d: [1057, 492], m: [540, 1174] }, zone: 'top', tx: 1300 },
       { t: 1.9, at: { d: [1105, 688], m: [590, 1405] }, zone: 'bottom', tx: 1200 },
       { t: 2.9, at: { d: [955, 540], m: [420, 1200] }, zone: 'top', tx: 820 },
-      { t: 3.9, at: { d: [1268, 668], m: [790, 1398] }, zone: 'right' },
     ],
   },
   {
-    id: 'journee', kind: 'anim', tone: 't-day', icon: 'sun', color: 'var(--m2)', T: 8.9, anim: 'living', swap: [3.0, 4.7], cover: [4.9, 6.5],
+    id: 'journee', kind: 'anim', tone: 't-day', icon: 'sun', color: 'var(--m2)', T: 8.0, anim: 'living', swap: [3.0, 4.7], cover: [4.9, 6.5],
     box: { d: [705, 400, 1405, 795], m: [110, 1080, 970, 1560] },
     callouts: [
       { t: 0.9, at: { d: [1360, 716], m: [911, 1473] }, zone: 'right' },
       { t: 1.9, at: { d: [1078, 742], m: [560, 1500] }, zone: 'bottom', tx: 1180 },
       { t: 7.0, at: { d: [870, 585], m: [276, 1268] }, zone: 'top', tx: 780 },
-      { t: 8.0, at: { d: [1268, 612], m: [802, 1342] }, zone: 'bottom', tx: 1230 },
     ],
   },
   {
     id: 'soir', kind: 'anim', tone: 't-night', icon: 'moon', color: 'var(--m3)', T: 8.9, anim: 'bedroom', swap: [3.0, 4.7], cover: [4.9, 6.5],
     box: { d: [705, 395, 1405, 815], m: [110, 1090, 970, 1590] },
     callouts: [
-      { t: 0.9, at: { d: [1100, 748], m: [665, 1478] }, zone: 'bottom', tx: 1260 },
+      // cadres du bas écartés du halo (cycle 3 : les deux cadres le cachaient)
+      { t: 0.9, at: { d: [1100, 748], m: [665, 1478] }, zone: 'bottom', tx: 1430 },
       { t: 7.0, at: { d: [845, 590], m: [273, 1335] }, zone: 'top', tx: 800 },
-      { t: 8.0, at: { d: [1058, 806], m: [468, 1590] }, zone: 'bottom', tx: 860 },
+      { t: 8.0, at: { d: [1058, 806], m: [468, 1590] }, zone: 'bottom', tx: 690 },
     ],
   },
   { id: 'gamme', kind: 'gamme', tone: 't-dark', icon: 'grid', color: 'var(--copper-soft)', T: 4.6 },

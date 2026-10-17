@@ -353,5 +353,10 @@
    Téléphone et tablette : en haut, seulement si l'écran est assez haut pour ne pas toucher le titre ; ordinateur : en bas à droite. */
 .hero-poster-m { display: none; }
 .hero-poster-d { display: none; }
-@media (max-width: 1023px) and (min-height: 780px) { .hero-poster-m { display: block; } }
+@media (max-width: 1023px) and (min-height: 780px) {
+  .hero-poster-m { display: block; }
+  /* le texte commence sous l'image (au lieu de partir du bas de l'écran et de remonter sur l'image, cycle 3) */
+  #hero.hero-wrap { height: auto; min-height: 100vh; min-height: 100svh; }
+  #hero .hero-content { height: auto; justify-content: flex-start; padding-top: calc(76px + (100vw - 40px) * 0.625 + 22px); padding-bottom: 44px; }
+}
 @media (min-width: 1024px) and (min-height: 700px) { .hero-poster-d { display: block; } }

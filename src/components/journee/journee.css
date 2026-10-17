@@ -59,7 +59,7 @@
 .journee .jr-media > img,.journee .jr-media > canvas{position:absolute;display:block}
 .journee .jr-media > img{inset:0;width:100%;height:100%}
 .journee .jr-veil{position:absolute;inset:0;pointer-events:none}
-.journee .jr-glow{position:absolute;width:24%;aspect-ratio:3 / 1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,hsl(34 100% 64% / .8),hsl(28 100% 56% / .38) 48%,hsl(28 100% 50% / 0) 100%);mix-blend-mode:screen;filter:blur(4px);opacity:0;pointer-events:none}
+.journee .jr-glow{position:absolute;width:24%;aspect-ratio:3.6 / 1;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(closest-side,hsl(44 100% 86% / 1),hsl(38 100% 70% / .8) 26%,hsl(32 100% 60% / .38) 58%,hsl(28 100% 50% / 0) 100%);mix-blend-mode:screen;filter:blur(4px);opacity:0;pointer-events:none}
 .journee.fmt-m .jr-glow{width:34%}
 .journee .t-day .jr-veil{background:linear-gradient(90deg,hsl(36 45% 97% / .5) 0%,hsl(36 45% 97% / .18) 34%,hsl(36 45% 97% / 0) 50%)}
 .journee .t-night .jr-veil{background:linear-gradient(90deg,hsl(228 35% 5% / .45) 0%,hsl(228 35% 5% / .15) 34%,hsl(228 35% 5% / 0) 50%)}
@@ -73,7 +73,7 @@
 
 /* cadres blancs fléchés */
 .journee .jr-cos{position:absolute;inset:0;pointer-events:none;z-index:4}
-.journee .jr-co{position:absolute;left:0;top:0;width:clamp(215px,17cqw,310px);padding:.8em .95em .9em;border-radius:14px;background:var(--card);color:var(--ink-deep);box-shadow:0 16px 36px -18px hsl(24 30% 8% / .6);font-size:clamp(13.5px,.95cqw,16px);line-height:1.42;opacity:0}
+.journee .jr-co{position:absolute;left:0;top:0;width:clamp(232px,18cqw,325px);padding:.8em .95em .9em;border-radius:14px;background:var(--card);color:var(--ink-deep);box-shadow:0 16px 36px -18px hsl(24 30% 8% / .6);font-size:clamp(14.5px,1.04cqw,17px);line-height:1.42;opacity:0}
 .journee .jr-co b{display:block;margin-bottom:.25em;font-size:1.08em;font-weight:650;line-height:1.25;color:var(--ink-deep)}
 .journee .jr-co span{display:block;color:var(--ink-soft)}
 .journee .jr-arrows{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:4}

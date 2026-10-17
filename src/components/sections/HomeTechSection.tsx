@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { BatteryFull, Boxes, Droplets, Flag, FlaskConical, Microscope, MousePointerClick, RefreshCw, SlidersHorizontal, type LucideIcon } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import LegacyAnchors from '@/components/LegacyAnchors';
+import CarouselDots from '@/components/CarouselDots';
 
 /**
  * « Simple pour vos clients. Pensé pour durer. » — version compacte (17/10/2026, demande de Pierre) :
@@ -13,6 +14,7 @@ import LegacyAnchors from '@/components/LegacyAnchors';
  */
 const HomeTechSection: React.FC = () => {
   const { language: l } = useLanguage();
+  const liste = useRef<HTMLUListElement>(null);
 
   const items: { icon: LucideIcon; title: string; text: string; note?: boolean }[] = [
     {
@@ -20,20 +22,20 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Jusqu’à 90 h, sans fil', 'Up to 90 h, cordless', 'Hasta 90 h, sin cables'),
       text: t3(
         l,
-        'Sur batterie, recharge USB-C. Il passe de la chambre au bureau, à la voiture, au spa ou à la salle de yoga.',
-        'Battery-powered, USB-C charging. It moves from bedroom to office, car, spa or yoga room, no socket needed.',
-        'Con batería y carga USB-C. Pasa del dormitorio a la oficina, al coche, al spa o a la sala de yoga.'
+        'Sur batterie, recharge USB‑C. Il passe de la chambre au bureau, à la voiture, au spa ou à la salle de yoga.',
+        'Battery-powered, USB‑C charging. It moves from bedroom to office, car, spa or yoga room, no socket needed.',
+        'Con batería y carga USB‑C. Pasa del dormitorio a la oficina, al coche, al spa o a la sala de yoga.'
       ),
       note: true,
     },
     {
       icon: Droplets,
-      title: t3(l, 'Pure et silencieuse', 'Pure and silent', 'Pura y silenciosa'),
+      title: t3(l, 'Pure et silencieuse', 'Pure and quiet', 'Pura y silenciosa'),
       text: t3(
         l,
-        'Ni eau, ni chaleur : l’huile est diffusée pure. Ni pompe, ni ventilateur, ni vibration : rien ne trouble le sommeil.',
-        'No water, no heat: the oil is diffused pure. No pump, no fan, no vibration: nothing disturbs sleep.',
-        'Sin agua ni calor: el aceite se difunde puro. Sin bomba, sin ventilador, sin vibración: nada perturba el sueño.'
+        'Ni eau, ni chaleur : l’huile est diffusée pure. Ni pompe ni ventilateur : aucun bruit de moteur.',
+        'No water, no heat: the oil is diffused pure. No pump, no fan: no motor noise.',
+        'Sin agua ni calor: el aceite se difunde puro. Sin bomba ni ventilador: ningún ruido de motor.'
       ),
     },
     {
@@ -51,9 +53,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vos flacons, tels quels', 'Your bottles, as they are', 'Sus frascos, tal cual'),
       text: t3(
         l,
-        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Le flacon devient la recharge.',
+        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Le flacon devient la recharge.',
         'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). The bottle becomes the refill.',
-        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). El frasco es la recarga.'
+        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). El frasco es la recarga.'
       ),
     },
     {
@@ -61,9 +63,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vissez, clipsez, appuyez', 'Screw, clip, press', 'Enrosque, encaje, pulse'),
       text: t3(
         l,
-        'Le geste se comprend dès la première fois, sans notice : le flacon se visse, le module se clipse, un appui diffuse.',
-        'Intuitive from the very first use, no manual needed: the bottle screws on, the module clips in, one press starts diffusion.',
-        'El gesto se entiende desde la primera vez, sin manual: el frasco se enrosca, el módulo se encaja y una pulsación difunde.'
+        'Le geste se comprend dès la première fois : le flacon se visse sur son module, puis se clipse dans la base ; un appui diffuse.',
+        'Intuitive from the very first use: the bottle screws onto its module, then clips into the base; one press starts diffusion.',
+        'El gesto se entiende a la primera: el frasco se enrosca en su módulo y luego se encaja en la base; una pulsación inicia la difusión.'
       ),
     },
     {
@@ -88,12 +90,15 @@ const HomeTechSection: React.FC = () => {
     },
     {
       icon: Boxes,
+      // avantage de l'ancien site gardé (règle de Pierre : ne perdre aucun avantage). Au cycle 3, l'expert conseillait de le retirer
+      // (lu comme une contradiction avec « Une seule référence à gérer », devenue « Un seul diffuseur pour toutes vos huiles ») :
+      // décision laissée à Pierre.
       title: t3(l, 'Un module pour toute la gamme', 'One module for the whole range', 'Un módulo para toda la gama'),
       text: t3(
         l,
-        'Le même module sert sur tous les diffuseurs Tolia, actuels et futurs : grandes pièces, espaces pros, véhicules.',
-        'The same module works in every Tolia diffuser, current and future: large rooms, professional spaces, vehicles.',
-        'El mismo módulo sirve en todos los difusores Tolia, actuales y futuros: grandes espacios, entornos profesionales, vehículos.'
+        'Le même module de diffusion sert sur tous les modèles Tolia, y compris les formats à venir : grandes pièces, espaces pros, véhicules.',
+        'The same diffusion module works in every Tolia model, including upcoming formats: large rooms, professional spaces, vehicles.',
+        'El mismo módulo de difusión sirve en todos los modelos Tolia, incluidos los formatos que llegarán: grandes espacios, entornos profesionales, vehículos.'
       ),
     },
     {
@@ -143,14 +148,15 @@ const HomeTechSection: React.FC = () => {
         </motion.div>
 
         <motion.ul
-          className="grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3"
+          ref={liste}
+          className="-mx-6 flex snap-x snap-mandatory scroll-px-6 gap-3 overflow-x-auto px-6 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-x-8 sm:gap-y-7 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           variants={staggerContainer}
         >
           {items.map((it) => (
-            <motion.li key={it.title} className="flex gap-4" variants={fadeBlurUp}>
+            <motion.li key={it.title} className="flex min-w-[80%] snap-start gap-4 rounded-2xl border border-border/60 bg-card p-4 sm:min-w-0 sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0" variants={fadeBlurUp}>
               <span
                 className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full"
                 style={{ background: 'hsl(28 45% 48% / 0.12)', color: 'hsl(28 52% 36%)' }}
@@ -168,8 +174,9 @@ const HomeTechSection: React.FC = () => {
             </motion.li>
           ))}
         </motion.ul>
+        <CarouselDots target={liste} count={items.length} className="mt-2 sm:hidden" />
 
-        <p className="mt-10 text-center text-xs text-muted-foreground">{footnote}</p>
+        <p className="mt-8 sm:mt-10 text-center text-xs text-muted-foreground">{footnote}</p>
       </div>
     </section>
   );

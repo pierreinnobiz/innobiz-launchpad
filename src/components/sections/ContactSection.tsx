@@ -18,7 +18,7 @@ import QualificationForm from '@/components/QualificationForm';
 const ContactSection: React.FC = () => {
   const { language: l } = useLanguage();
   const [copied, setCopied] = useState(false);
-  const talk = t3(l, 'Choisir un créneau de 15 min', 'Pick a 15-min slot', 'Elegir un hueco de 15 min');
+  const talk = t3(l, 'Réserver 15 min avec l’équipe', 'Book a 15-min call', 'Reservar 15 min con el equipo');
 
   const copyEmail = async () => {
     try {
@@ -45,7 +45,7 @@ const ContactSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(l, 'Passons à l’essai', 'Let’s try it', 'Pasemos a la prueba')}
+            {t3(l, 'Passons à l’essai', 'Let’s try it', 'Pasemos a la práctica')}
           </span>
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
             {t3(l, 'Jugez Tolia par vous‑même, avec vos propres flacons.', 'Judge Tolia for yourself, with your own bottles.', 'Compruébelo usted mismo, con sus propios frascos.')}

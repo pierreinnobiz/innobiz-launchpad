@@ -6,7 +6,8 @@ import { t3 } from '@/lib/t3';
 const SocialProofBar: React.FC = () => {
   const { language } = useLanguage();
 
-  // Trois repères de crédibilité, tous issus des faits validés (100 000+ unités, 20 ans de métier, CE + RoHS).
+  // Trois repères, tous issus des faits validés : 100 000+ unités, 20 ans de métier, et le point d'entrée « dès 500 pièces »
+  // (cycle 3 du test : « déjà vendu en Europe » était dit juste au-dessus, sous les boutons ; CE et RoHS restent dans la FAQ).
   const stats = [
     {
       value: t3(language, '100 000+', '100,000+', '100.000+'),
@@ -14,11 +15,11 @@ const SocialProofBar: React.FC = () => {
     },
     {
       value: t3(language, '20 ans', '20 years', '20 años'),
-      label: t3(language, 'de métier dans la diffusion', 'in diffusion technology', 'de experiencia en difusión'),
+      label: t3(language, 'de métier dans la diffusion', 'in diffusion technology', 'de experiencia en difusión de aromas'),
     },
     {
-      value: 'CE · RoHS',
-      label: t3(language, 'déjà vendu en Europe', 'already sold across Europe', 'ya vendido en Europa'),
+      value: t3(language, 'Dès 500 pièces', 'From 500 units', 'Desde 500 unidades'),
+      label: t3(language, 'en commande sur stock', 'as a stock order', 'en pedido de stock'),
     },
   ];
 

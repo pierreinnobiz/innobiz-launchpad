@@ -174,7 +174,7 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
 
   return (
     <motion.h1
-      className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white leading-[1.1] tracking-tight"
+      className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(44px,4.2vw,64px)] font-bold text-white leading-[1.1] tracking-tight"
       initial="hidden"
       animate="visible"
       variants={{
@@ -215,7 +215,8 @@ const HeroSection: React.FC = () => {
   // voile un peu plus sombre au départ (0,4) : le titre reste lisible quand le film affiche ses propres lettres
   const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 0.7]);
   // Image du produit quand le film ne joue pas (téléphone en économie d'énergie, connexion lente, aperçu) ou une fois terminé :
-  // les marques testeuses ne voyaient aucun produit dans le premier écran (17/10/2026).
+  // les marques testeuses ne voyaient aucun produit dans le premier écran (17/10/2026). Image = fin de 18:30, Tolia fermé avec
+  // sa brume (cycle 3 : avec la cloche posée à côté de la base, trois marques ont cru voir un vase).
   const [film, setFilm] = useState({ playing: false, ended: false });
   const [waited, setWaited] = useState(false);
   useEffect(() => { const id = window.setTimeout(() => setWaited(true), 1200); return () => clearTimeout(id); }, []);
@@ -223,9 +224,9 @@ const HeroSection: React.FC = () => {
   const showPoster = (waited && !film.playing) || film.ended; // « playing » = film réellement visible (après son introduction)
   const posterAlt = t3(
     language,
-    'Diffuseur Tolia sur une table de cuisine : le flacon est clipsé dans la base, la brume sort de la buse',
-    'Tolia diffuser on a kitchen table: the bottle is clipped into the base, mist leaves the nozzle',
-    'Difusor Tolia sobre una mesa de cocina: el frasco está encajado en la base y la bruma sale de la boquilla'
+    'Diffuseur Tolia fermé sur une table de salon : la brume d’huile essentielle sort de la buse, deux flacons attendent à côté avec leur module',
+    'Closed Tolia diffuser on a living-room table: essential oil mist leaves the nozzle, two bottles wait beside it with their modules',
+    'Difusor Tolia cerrado sobre una mesa de salón: la bruma de aceite esencial sale de la boquilla y dos frascos esperan al lado con su módulo'
   );
 
   const title = t3(
@@ -255,13 +256,13 @@ const HeroSection: React.FC = () => {
   );
   const cta = t3(language, 'Recevoir mon échantillon gratuit', 'Get my free sample', 'Recibir mi muestra gratuita');
   // Deuxième porte d'entrée : parler directement à l'équipe (15 minutes en visio, sans formulaire).
-  const talk = t3(language, 'Parler à l’équipe · 15 min', 'Talk to the team · 15 min', 'Hablar con el equipo · 15 min');
+  const talk = t3(language, 'Réserver 15 min avec l’équipe', 'Book a 15-min call', 'Reservar 15 min con el equipo');
 
   return (
     <section
       ref={sectionRef}
       id="hero"
-      className="relative h-screen w-full overflow-hidden bg-black"
+      className="hero-wrap relative h-screen w-full overflow-hidden bg-black"
       style={{
         background:
           'radial-gradient(70% 60% at 75% 25%, hsl(28 40% 20% / 0.55) 0%, transparent 70%), linear-gradient(165deg, hsl(25 18% 15%) 0%, hsl(25 20% 7%) 100%)',
@@ -280,18 +281,18 @@ const HeroSection: React.FC = () => {
         className={`hero-poster-m pointer-events-none absolute left-5 right-5 top-[76px] z-[5] m-0 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
         style={{ aspectRatio: '16 / 10' }}
       >
-        <img src={waited ? `${POSTER}kitchen_m.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 72%' }} decoding="async" />
+        <img src={waited ? `${POSTER}hero_ferme.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
       </figure>
       <figure
         aria-hidden={!showPoster}
-        className={`hero-poster-d pointer-events-none absolute right-[5vw] bottom-[12vh] z-[5] m-0 overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
-        style={{ width: 'min(26vw, 420px)', aspectRatio: '16 / 10' }}
+        className={`hero-poster-d pointer-events-none absolute right-[5vw] top-1/2 z-[5] m-0 -translate-y-[42%] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
+        style={{ width: 'min(33vw, 540px)', aspectRatio: '16 / 10' }}
       >
-        <img src={waited ? `${POSTER}kitchen_d.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '56% 58%', transform: 'scale(1.6)', transformOrigin: '56% 56%' }} decoding="async" />
+        <img src={waited ? `${POSTER}hero_ferme.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
       </figure>
 
-      <div className="relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32 px-6 md:px-12 lg:px-20">
-        <div className="max-w-5xl space-y-5">
+      <div className="hero-content relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32 px-6 md:px-12 lg:px-20">
+        <div className="max-w-5xl space-y-5 lg:max-w-[min(52vw,760px)]">
           {/* « pour les marques » au-dessus du titre, plus visible (retour des marques testeuses) */}
           <motion.span
             className="block text-sm sm:text-base uppercase tracking-[0.14em] text-white/85 font-semibold"
@@ -333,7 +334,14 @@ const HeroSection: React.FC = () => {
                 {talk}
               </a>
             </div>
-            <p className="mt-3 text-sm text-white/80 font-light">{microcopy}</p>
+            <ul className="mt-3 flex flex-col gap-y-0.5 text-sm text-white/80 font-light sm:flex-row sm:flex-wrap">
+              {microcopy.split(' · ').map((m, i) => (
+                <li key={m}>
+                  {i > 0 && <span aria-hidden="true" className="mx-2 hidden sm:inline">·</span>}
+                  {m}
+                </li>
+              ))}
+            </ul>
           </motion.div>
         </div>
       </div>

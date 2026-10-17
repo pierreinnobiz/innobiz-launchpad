@@ -44,13 +44,13 @@ const HomeOffersSection: React.FC = () => {
         'Your diffuser, unmistakably your brand: colours, materials, logo and box.',
         'Su difusor, a su imagen: colores, materiales, logotipo y estuche.'
       ),
-      facts: t3(language, 'Généralement dès 3 000 pièces · 12 à 20 semaines', 'Typically from 3,000 units · 12 to 20 weeks', 'Normalmente desde 3.000 unidades · 12 a 20 semanas'),
+      facts: t3(language, 'Généralement dès 3 000 pièces · 12 à 20 semaines', 'Typically from 3,000 units · 12 to 20 weeks', 'Normalmente desde 3.000 unidades · 12 a 20 semanas'),
       cta: t3(language, 'Parler de mon projet', 'Discuss my project', 'Hablar de mi proyecto'),
       // détails de l'ancien site (offres et tableau comparatif) qui n'apparaissaient plus
       points: [
-        t3(language, 'Vos synergies, ou des synergies d’huiles essentielles co-développées avec Innobiz pour l’histoire de votre marque', 'Your own blends, or essential oil blends co-developed with Innobiz to fit your brand story', 'Sus sinergias, o sinergias de aceites esenciales co-desarrolladas con Innobiz para la historia de su marca'),
+        t3(language, 'Vos synergies, ou des synergies d’huiles essentielles co‑développées avec Innobiz pour l’histoire de votre marque', 'Your own blends, or essential oil blends co‑developed with Innobiz to fit your brand story', 'Sus sinergias, o sinergias de aceites esenciales co‑desarrolladas con Innobiz para la historia de su marca'),
         t3(language, 'Support industriel, réglementaire et supply chain complet d’Innobiz', 'Full industrial, regulatory and supply chain support from Innobiz', 'Soporte industrial, regulatorio y de cadena de suministro completo de Innobiz'),
-        t3(language, 'Couleur RAL ou Pantone, finitions mat, brillante, soft-touch, texturée ou métallique, matériaux : bois, résine, verre soufflé', 'RAL or Pantone colour, matte, gloss, soft-touch, textured or metallic finishes, materials: wood, resin, blown glass', 'Color RAL o Pantone, acabados mate, brillante, soft-touch, texturizado o metalizado, materiales: madera, resina, vidrio soplado'),
+        t3(language, 'Couleur RAL ou Pantone, finitions mat, brillante, soft‑touch, texturée ou métallique, matériaux : bois, résine, verre soufflé', 'RAL or Pantone colour, matt, gloss, soft‑touch, textured or metallic finishes, materials: wood, resin, blown glass', 'Color RAL o Pantone, acabados mate, brillante, soft-touch, texturizado o metalizado, materiales: madera, resina, vidrio soplado'),
         t3(language, 'Kit de lancement : photos, vidéos et textes prêts pour votre site et vos réseaux', 'Launch kit: photos, videos and copy ready for your website and social media', 'Kit de lanzamiento: fotos, vídeos y textos listos para su web y sus redes'),
         t3(language, 'Exclusivité de catégorie et de territoire négociable (par volume et engagement)', 'Category and territory exclusivity negotiable (by volume and commitment)', 'Exclusividad de categoría y territorio negociable (por volumen y compromiso)'),
       ],
@@ -71,14 +71,14 @@ const HomeOffersSection: React.FC = () => {
         'Add Tolia to your catalogue: ready-to-ship stock from France.',
         'Añada Tolia a su catálogo: stock listo para enviar desde Francia.'
       ),
-      facts: t3(language, 'Dès 500 pièces · 72 h si en stock', 'From 500 units · 72 h if in stock', 'Desde 500 unidades · 72 h si hay stock'),
+      facts: t3(language, 'Dès 500 pièces · expédition sous 72 h si en stock', 'From 500 units · ships within 72 h if in stock', 'Desde 500 unidades · envío en 72 h si hay stock'),
       cta: t3(language, 'Demander un devis', 'Request a quote', 'Solicitar presupuesto'),
       points: [
         t3(language, 'Livré sous la marque Tolia, avec documentation produit complète', 'Delivered under the Tolia brand, with full product documentation', 'Entregado con la marca Tolia y documentación completa del producto'),
-        t3(language, 'Fourreau extérieur co-brandé en option, pour l’intégrer à votre gamme', 'Optional co-branded outer sleeve to integrate with your range', 'Funda exterior opcional con su marca, para integrarlo en su gama'),
+        t3(language, 'Fourreau extérieur co‑brandé en option, pour l’intégrer à votre gamme', 'Optional co-branded outer sleeve to integrate with your range', 'Funda exterior opcional con su marca, para integrarlo en su gama'),
         t3(language, 'En rayon ou sur votre e-shop en moins d’un mois', 'On shelf or in your online shop in under a month', 'Productos en el lineal o en su web en menos de 1 mes'),
         t3(language, 'Kit de lancement : photos, vidéos et textes prêts pour votre site et vos réseaux', 'Launch kit: photos, videos and copy ready for your website and social media', 'Kit de lanzamiento: fotos, vídeos y textos listos para su web y sus redes'),
-        t3(language, 'Fonctionne avec les flacons standard du marché (col DIN 18, de 5 à 50 ml)', 'Works with industry-standard bottles (DIN 18 neck, 5 to 50 ml)', 'Funciona con los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml)'),
+        t3(language, 'Fonctionne avec les flacons standard du marché (col DIN 18, de 5 à 50 ml)', 'Works with industry-standard bottles (DIN 18 neck, 5 to 50 ml)', 'Funciona con los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml)'),
         t3(language, 'Commande non exclusive : rapidité et flexibilité', 'Non-exclusive order: speed and flexibility', 'Pedido no exclusivo: rapidez y flexibilidad'),
       ],
     },
@@ -101,33 +101,6 @@ const HomeOffersSection: React.FC = () => {
           <h2 className="heading-section text-foreground">
             {t3(language, 'Deux façons de démarrer.', 'Two ways to start.', 'Dos formas de empezar.')}
           </h2>
-        </motion.div>
-
-        {/* chemin pour les marques qui démarrent, en tête des offres (retours du test du 17/10/2026) */}
-        <motion.div
-          className="mx-auto mb-6 flex max-w-4xl flex-col items-center gap-3 rounded-2xl border border-border/50 bg-card px-5 py-4 text-center md:flex-row md:justify-between md:text-left"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-40px' }}
-          variants={fadeBlurUp}
-        >
-          <p className="text-sm md:text-base text-foreground">
-            <strong>{t3(language, 'Vous démarrez ?', 'Just starting out?', '¿Está empezando?')}</strong>{' '}
-            {t3(
-              language,
-              'Commencez par 500 pièces sur stock avec un fourreau co-brandé, puis passez à la marque blanche quand vos ventes suivent.',
-              'Begin with 500 units from stock with a co-branded sleeve, then move to white label as your sales grow.',
-              'Empiece con 500 unidades en stock con una funda con su marca y pase a la marca blanca cuando sus ventas lo justifiquen.'
-            )}
-          </p>
-          <button
-            type="button"
-            onClick={() => goToContact('stock', t3(language, 'Démarrer avec 500 pièces', 'Start with 500 units', 'Empezar con 500 unidades'))}
-            className="inline-flex flex-none items-center gap-2 rounded-full border border-primary/40 px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            {t3(language, 'Démarrer avec 500 pièces', 'Start with 500 units', 'Empezar con 500 unidades')}
-            <ArrowRight className="h-4 w-4" aria-hidden="true" />
-          </button>
         </motion.div>
 
         <motion.div
@@ -183,6 +156,32 @@ const HomeOffersSection: React.FC = () => {
           ))}
         </motion.div>
 
+        {/* tester le marché d'abord : sous les deux cartes (arbitrage de l'expert, cycle 3 : chacun lit d'abord son offre) */}
+        <motion.div
+          className="mx-auto mt-6 flex max-w-4xl flex-col items-center gap-3 rounded-2xl border border-border/50 bg-card px-5 py-4 text-center md:flex-row md:justify-between md:text-left"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-40px' }}
+          variants={fadeBlurUp}
+        >
+          <p className="text-sm md:text-base text-foreground">
+            <strong>{t3(language, 'Envie de tester le marché d’abord ?', 'Want to test the market first?', '¿Prefiere probar el mercado primero?')}</strong>{' '}
+            {t3(
+              language,
+              'Commencez par 500 pièces sur stock, avec un fourreau co‑brandé, puis passez à la marque blanche quand vos ventes suivent.',
+              'Start with 500 units from stock, with a co-branded sleeve, then move to white label as your sales grow.',
+              'Empiece con 500 unidades de stock, con funda personalizada, y pase a la marca blanca cuando sus ventas lo justifiquen.'
+            )}
+          </p>
+          <button
+            type="button"
+            onClick={() => goToContact('stock', t3(language, 'Démarrer avec 500 pièces', 'Start with 500 units', 'Empezar con 500 unidades'))}
+            className="inline-flex flex-none items-center gap-2 rounded-full border border-primary/40 px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          >
+            {t3(language, 'Démarrer avec 500 pièces', 'Start with 500 units', 'Empezar con 500 unidades')}
+            <ArrowRight className="h-4 w-4" aria-hidden="true" />
+          </button>
+        </motion.div>
       </div>
     </section>
   );

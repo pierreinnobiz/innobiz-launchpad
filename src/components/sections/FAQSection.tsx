@@ -13,16 +13,16 @@ const FAQSection: React.FC = () => {
 
   const faqs = [
     {
-      q: t3(language, 'Puis-je utiliser mes propres huiles essentielles ?', 'Can I use my own essential oils?', '¿Puedo usar mis propios aceites esenciales?'),
+      q: t3(language, 'Pouvons-nous utiliser nos propres huiles essentielles ?', 'Can we use our own essential oils?', '¿Podemos usar nuestros propios aceites esenciales?'),
       a: t3(
         language,
-        'Oui. Le module se visse sur vos flacons standard (col DIN 18, de 5 à 50 ml), sans transfert ni remplissage.',
+        'Oui. Le module se visse sur vos flacons standard (col DIN 18, de 5 à 50 ml), sans transfert ni remplissage.',
         'Yes. The module screws onto your standard bottles (DIN 18 neck, 5 to 50 ml), with no decanting and no refilling.',
-        'Sí. El módulo se enrosca en sus frascos estándar (cuello DIN 18, de 5 a 50 ml), sin trasvase ni rellenado.'
+        'Sí. El módulo se enrosca en sus frascos estándar (cuello DIN 18, de 5 a 50 ml), sin trasvase ni rellenado.'
       ),
     },
     {
-      q: t3(language, 'Quelles huiles peut-on diffuser avec Tolia ?', 'Which oils can Tolia diffuse?', '¿Qué aceites puede difundir Tolia?'),
+      q: t3(language, 'Quelles huiles et quels parfums peut-on diffuser avec Tolia ?', 'Which oils and fragrances can Tolia diffuse?', '¿Qué aceites y fragancias puede difundir Tolia?'),
       a: t3(
         language,
         'La technologie a été testée sur plus de 150 huiles essentielles et synergies, et elle diffuse aussi les parfums synthétiques et les parfums d’intérieur. Pour vos références les plus visqueuses, le plus simple est de les essayer avec l’échantillon.',
@@ -43,9 +43,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Qu’est-ce qui ramène vos clients vers vos huiles, et pas vers celles d’un concurrent ?', 'What brings customers back to your oils rather than a competitor’s?', '¿Qué hace que sus clientes vuelvan a sus aceites y no a los de la competencia?'),
       a: t3(
         language,
-        'Le col DIN 18 est un standard : un autre flacon peut se visser. Ce qui ramène vos clients vers vos huiles, c’est tout ce qui porte votre marque : le diffuseur et ses modules à vos couleurs, des modes de diffusion préprogrammés selon vos recommandations, une notice et un QR code vers votre programme de fidélité, et vos huiles, qu’ils connaissent déjà.',
-        'The DIN 18 neck is a standard, so another bottle can be screwed on. What brings customers back to your oils is everything that carries your brand: the diffuser and its modules in your colours, diffusion modes pre-programmed to your recommendations, a guide and a QR code to your loyalty programme, and your oils, which they already know.',
-        'El cuello DIN 18 es un estándar: otro frasco puede enroscarse. Lo que hace que sus clientes vuelvan a sus aceites es todo lo que lleva su marca: el difusor y sus módulos con sus colores, modos de difusión preprogramados según sus recomendaciones, un manual y un código QR hacia su programa de fidelización, y sus aceites, que ya conocen.'
+        'Le col DIN 18 est un standard : un autre flacon peut se visser. Ce qui ramène vos clients vers vos huiles, c’est tout ce qui porte votre marque : le diffuseur et ses modules à vos couleurs, des modes de diffusion préprogrammés selon vos recommandations, une notice et un QR code vers votre programme de fidélité, et vos huiles, qu’ils connaissent déjà.',
+        'The DIN 18 neck is a standard, so another bottle can be screwed on. What brings customers back to your oils is everything that carries your brand: the diffuser and its modules in your colours, diffusion modes pre-programmed to your recommendations, a guide and a QR code to your loyalty programme, and your oils, which they already know.',
+        'El cuello DIN 18 es un estándar: otro frasco puede enroscarse. Lo que hace que sus clientes vuelvan a sus aceites es todo lo que lleva su marca: el difusor y sus módulos con sus colores, modos de difusión preprogramados según sus recomendaciones, un manual y un código QR que lleva a su programa de fidelización, y sus aceites, que ya conocen.'
       ),
     },
     {
@@ -61,16 +61,16 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Qu’en est-il de la conformité réglementaire ?', 'What about regulatory compliance?', '¿Qué hay de la conformidad regulatoria?'),
       a: t3(
         language,
-        'Tolia est marqué CE, conforme RoHS et déjà vendu en Europe. Nous fournissons la documentation du diffuseur ; celle des huiles reste à la charge de la marque.',
-        'Tolia is CE-marked, RoHS-compliant and already sold across Europe. We provide the diffuser documentation; essential oil compliance remains with the brand.',
-        'Tolia lleva marcado CE, cumple RoHS y ya se vende en Europa. Facilitamos la documentación del difusor; la de los aceites sigue a cargo de la marca.'
+        'Tolia est marqué CE, conforme RoHS et déjà vendu en Europe. Nous fournissons la documentation du diffuseur ; celle des huiles reste à la charge de la marque. Vous vendez hors de l’UE ? Indiquez-nous vos marchés : nous vous confirmerons par écrit les règles applicables.',
+        'Tolia is CE-marked, RoHS-compliant and already sold across Europe. We provide the diffuser documentation; essential oil compliance remains with the brand. Selling outside the EU? Tell us your markets and we will confirm in writing which rules apply.',
+        'Tolia lleva marcado CE, cumple RoHS y ya se vende en Europa. Facilitamos la documentación del difusor; la de los aceites sigue a cargo de la marca. ¿Vende fuera de la UE? Indíquenos sus mercados y le confirmaremos por escrito qué normas se aplican.'
       ),
     },
     {
       q: t3(language, 'Exclusivité et co-branding ?', 'Exclusivity and co-branding?', '¿Exclusividad y co-branding?'),
       a: t3(
         language,
-        'Marque blanche : exclusivité de catégorie et de territoire négociable selon le volume. Commande stock : non exclusive, avec fourreau co-brandé en option.',
+        'Marque blanche : exclusivité de catégorie et de territoire négociable selon le volume. Commande stock : non exclusive, avec fourreau co‑brandé en option.',
         'White label: category and territory exclusivity is negotiable based on volume. Stock order: non-exclusive, with an optional co-branded sleeve.',
         'Marca blanca: la exclusividad de categoría y territorio es negociable según el volumen. Pedido de stock: no exclusivo, con funda exterior opcional con su marca.'
       ),
@@ -79,9 +79,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Comment Tolia soutient-il nos engagements RSE ?', 'How does Tolia support our sustainability commitments?', '¿Cómo apoya Tolia nuestros compromisos de sostenibilidad?'),
       a: t3(
         language,
-        'Tolia est conçu pour la longévité : composants modulaires, batterie remplaçable par l’utilisateur et système de diagnostic pour identifier et remplacer les pièces individuelles. Un produit pensé pour servir chaque jour pendant des années ne finit pas oublié au fond d’un placard : c’est un argument RSE concret pour votre marque.',
-        'Tolia is designed for longevity: modular components, user-replaceable battery, and a diagnostic system to identify and replace individual parts. A product designed to be used every day for years does not end up forgotten in a cupboard: a concrete sustainability story for your brand.',
-        'Tolia está diseñado para la longevidad: componentes modulares, batería reemplazable por el usuario y sistema de diagnóstico para identificar y reemplazar piezas individuales. Un producto pensado para usarse a diario durante años no acaba olvidado en un armario: un argumento de sostenibilidad concreto para su marca.'
+        'Tolia est conçu pour la longévité : composants modulaires, batterie remplaçable par l’utilisateur et système de diagnostic pour identifier et remplacer les pièces individuelles.',
+        'Tolia is designed for longevity: modular components, user-replaceable battery, and a diagnostic system to identify and replace individual parts.',
+        'Tolia está diseñado para la longevidad: componentes modulares, batería reemplazable por el usuario y sistema de diagnóstico para identificar y reemplazar piezas individuales.'
       ),
     },
     {
@@ -94,7 +94,7 @@ const FAQSection: React.FC = () => {
       ),
     },
     {
-      q: t3(language, 'Comment obtenir vos prix et un prix de vente conseillé ?', 'How do we get your prices and a recommended retail price?', '¿Cómo recibimos sus precios y el PVP recomendado?'),
+      q: t3(language, 'Comment obtenir vos prix et un prix de vente conseillé ?', 'How do we get your prices and a recommended retail price?', '¿Cómo obtenemos sus precios y el PVP recomendado?'),
       a: t3(
         language,
         'Le prix de vente conseillé dépend de votre marché, de votre canal (magasin ou en ligne) et du coffret choisi. Nos prix professionnels et la structure de marge vous sont communiqués dès le premier échange.',
@@ -103,7 +103,7 @@ const FAQSection: React.FC = () => {
       ),
     },
     {
-      q: t3(language, 'Comment démarrer ?', 'How do I get started?', '¿Cómo empiezo?'),
+      q: t3(language, 'Comment démarrer ?', 'How do we get started?', '¿Cómo empezamos?'),
       a: t3(
         language,
         'Deux possibilités, sans engagement : demandez un échantillon gratuit avec le formulaire ci-dessous (expédié de France sous 5 jours ouvrés), ou réservez 15 minutes en visio avec notre équipe. Une personne de notre équipe vous répond sous un jour ouvré.',
