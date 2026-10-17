@@ -365,7 +365,7 @@ const QualificationForm: React.FC = () => {
           <p className="text-sm text-muted-foreground">
             {t3(
               language,
-              "Envie d'en parler ? 15 minutes pour confirmer votre adresse, voir Tolia en direct et vérifier qu'il convient à votre gamme.",
+              "Envie d'en parler ? 15 minutes pour confirmer votre adresse, voir Tolia en direct et vérifier qu'il convient à votre gamme.",
               'Prefer to talk it through? 15 minutes to confirm your address, see Tolia live and check it fits your range.',
               '¿Prefiere hablarlo? 15 minutos para confirmar su dirección, ver Tolia en directo y comprobar que encaja con su gama.'
             )}
@@ -414,7 +414,7 @@ const QualificationForm: React.FC = () => {
           <h3 className="text-2xl md:text-3xl font-bold text-foreground mt-4">
             {t3(
               language,
-              'Parfait ! Où envoyons-nous votre échantillon ?',
+              'Parfait ! Où envoyons-nous votre échantillon ?',
               'Perfect! Where should we send your sample?',
               '¡Perfecto! ¿A dónde enviamos su muestra?'
             )}
@@ -422,7 +422,7 @@ const QualificationForm: React.FC = () => {
           <p className="text-sm text-muted-foreground mt-2">
             {t3(
               language,
-              'Adresse de livraison ; le reste est facultatif.',
+              'Adresse de livraison ; le reste est facultatif.',
               'Delivery address; everything else is optional.',
               'Dirección de entrega; lo demás es opcional.'
             )}
@@ -555,8 +555,8 @@ const QualificationForm: React.FC = () => {
             onChange={(e) => update('message', e.target.value)}
             placeholder={t3(
               language,
-              'Ex. : format de vos flacons, pays de vente, volumes envisagés, calendrier',
-              'E.g. your bottle sizes (10 ml droppers…), markets (UK, US…), volumes, timing',
+              'Ex. : format de vos flacons, pays de vente, volumes envisagés, calendrier',
+              'E.g. your bottle sizes (10 ml droppers…), markets (UK, US…), volumes, timing',
               'Ej.: formato de sus frascos, países de venta, volúmenes previstos, calendario'
             )}
             className="rounded-xl"
@@ -592,7 +592,7 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground mt-2">
           {t3(
             language,
-            "Trois informations pour commencer ; l'adresse de livraison et, si vous le souhaitez, votre projet juste après.",
+            "Trois informations pour commencer ; l'adresse de livraison et, si vous le souhaitez, votre projet juste après.",
             'Three details to start with; the delivery address and, if you like, your project right after.',
             'Tres datos para empezar; la dirección de envío y, si lo desea, su proyecto justo después.'
           )}
@@ -684,7 +684,7 @@ const QualificationForm: React.FC = () => {
         {errors.website && <p className="text-[13px] text-destructive">{errors.website}</p>}
         {!errors.website && siteAuto.current && data.website && (
           <p className="text-[12px] text-muted-foreground">
-            {t3(language, 'Rempli à partir de votre email : modifiez-le si besoin.', 'Filled in from your email: change it if needed.', 'Rellenado a partir de su email: modifíquelo si es necesario.')}
+            {t3(language, 'Rempli à partir de votre email : modifiez-le si besoin.', 'Filled in from your email: change it if needed.', 'Rellenado a partir de su email: modifíquelo si es necesario.')}
           </p>
         )}
       </div>
@@ -694,9 +694,9 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm font-medium text-foreground">
           {t3(
             language,
-            'Votre projet (facultatif)',
+            'Vous envisagez (facultatif)',
             'What are you considering? (optional)',
-            'Su proyecto (opcional)'
+            '¿Qué le interesa? (opcional)'
           )}
         </p>
         <div className="grid gap-2">
@@ -732,22 +732,20 @@ const QualificationForm: React.FC = () => {
       >
         {isSubmitting
           ? t3(language, 'Envoi…', 'Sending…', 'Enviando…')
-          : t3(language, 'Continuer : adresse de livraison', 'Continue: delivery address', 'Continuar: dirección de envío')}
+          : t3(language, 'Continuer : adresse de livraison', 'Continue: delivery address', 'Continuar: dirección de envío')}
         <ArrowRight className="w-5 h-5 ml-2" />
       </Button>
 
       {/* téléphone : une garantie par ligne (les points de séparation ne pendent plus en bout de ligne) */}
-      <div className="flex flex-col items-center gap-1 text-[12px] text-muted-foreground sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-3 sm:gap-y-1">
+      <div className="flex flex-col items-center gap-1 text-[12px] text-muted-foreground sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-1.5">
         <span className="inline-flex items-center gap-1.5">
           <Package className="w-3.5 h-3.5" />
           {t3(language, 'Expédié sous 5 jours ouvrés', 'Ships in 5 business days', 'Envío en 5 días hábiles')}
         </span>
-        <span aria-hidden="true" className="hidden sm:inline">·</span>
         <span className="inline-flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5" />
           {t3(language, 'Conçu et assemblé en France', 'Designed and assembled in France', 'Diseñado y ensamblado en Francia')}
         </span>
-        <span aria-hidden="true" className="hidden sm:inline">·</span>
         <span className="inline-flex items-center gap-1.5">
           <Lock className="w-3.5 h-3.5" />
           {t3(language, 'Vos données restent privées', 'Your data stays private', 'Sus datos permanecen privados')}

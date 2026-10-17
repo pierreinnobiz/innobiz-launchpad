@@ -102,7 +102,6 @@ const PAGES: PageDef[] = [
     box: { d: [705, 395, 1405, 815], m: [110, 1090, 970, 1590] },
     callouts: [
       { t: 0.9, at: { d: [1100, 748], m: [665, 1478] }, zone: 'bottom', tx: 1260 },
-      { t: 1.9, at: { d: [1262, 612], m: [802, 1350] }, zone: 'top', tx: 1330 },
       { t: 7.0, at: { d: [845, 590], m: [273, 1335] }, zone: 'top', tx: 800 },
       { t: 8.0, at: { d: [1058, 806], m: [468, 1590] }, zone: 'bottom', tx: 860 },
     ],
@@ -188,12 +187,16 @@ export function createJourneeEngine(
   };
 
   // ---------- éléments communs
+  // Lumière d'ambiance (22:00) : le halo chaud sous la base s'allume à l'écran juste avant le cadre qui en parle
+  // (sur le rendu, la lumière était trop faible pour se voir : retour des marques testeuses, 17/10/2026).
+  const GLOW: Record<Fmt, XY> = { d: [1058, 812], m: [551, 1584] };
   function mediaHtml(pg: PageDef, alt: string) {
     const [W, H] = PIC[F];
     if (pg.kind === 'anim') {
       const r = PATCH[pg.anim!][F];
+      const glow = pg.id === 'soir' ? `<span class="jr-glow" data-t="7.6" style="left:${pct(GLOW[F][0], W)};top:${pct(GLOW[F][1], H)}"></span>` : '';
       return `<img class="jr-img" src="${seqBase(pg.anim!)}" alt="${esc(alt)}" decoding="async">
-        <canvas class="jr-patch" width="${r[2]}" height="${r[3]}" style="left:${pct(r[0], W)};top:${pct(r[1], H)};width:${pct(r[2], W)};height:${pct(r[3], H)}"></canvas>`;
+        <canvas class="jr-patch" width="${r[2]}" height="${r[3]}" style="left:${pct(r[0], W)};top:${pct(r[1], H)};width:${pct(r[2], W)};height:${pct(r[3], H)}"></canvas>${glow}`;
     }
     return `<img class="jr-img" src="${IMG(pg.img!)}" alt="${esc(alt)}" decoding="async">`;
   }
@@ -440,7 +443,7 @@ export function createJourneeEngine(
   }
   function collectItems(i: number) {
     const S = st[i], pg = PAGES[i], items: Item[] = [];
-    S.el.querySelectorAll<HTMLElement>('[data-t]').forEach((el) => items.push({ el, t: +(el.dataset.t as string), kind: 'fade', last: -1 }));
+    S.el.querySelectorAll<HTMLElement>('[data-t]').forEach((el) => items.push({ el, t: +(el.dataset.t as string), kind: el.classList.contains('jr-glow') ? 'pop' : 'fade', last: -1 }));
     const arrowItems = (key: string, t: number, end?: number) => {
       S.el.querySelectorAll(`.jr-arrows path.halo[data-j="${key}"], .jr-arrows path.wire[data-j="${key}"]`).forEach((el) => items.push({ el, t: t + 0.2, end, kind: 'path', last: -1 }));
       S.el.querySelectorAll(`.jr-arrows .head[data-j="${key}"], .jr-arrows .adot[data-j="${key}"], .f-dot[data-j="${key}"]`).forEach((el) => items.push({ el, t: t + (M === 'pin' ? 0.55 : 0), end, kind: 'pop', last: -1 }));

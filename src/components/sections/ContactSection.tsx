@@ -31,7 +31,7 @@ const ContactSection: React.FC = () => {
   const reassure = [
     t3(l, 'Échantillon expédié de France sous 5 jours ouvrés', 'Sample shipped from France within 5 business days', 'Muestra enviada desde Francia en 5 días hábiles'),
     t3(l, 'Une vraie personne vous répond sous un jour ouvré', 'A real person replies within one business day', 'Una persona real le responde en un día hábil'),
-    t3(l, 'Prix et conditions partagés dès le premier échange', 'Pricing and terms shared from the first conversation', 'Precios y condiciones desde el primer contacto'),
+    t3(l, 'Prix et conditions partagés dès le premier échange', 'Pricing and terms shared from first contact', 'Precios y condiciones desde el primer contacto'),
   ];
 
   return (
@@ -53,7 +53,7 @@ const ContactSection: React.FC = () => {
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
-              'Deux façons de commencer, sans engagement : recevez un échantillon pour l’essayer, ou prenez 15 minutes avec notre équipe pour parler de votre projet.',
+              'Deux façons de commencer, sans engagement : recevez un échantillon pour l’essayer, ou prenez 15 minutes avec notre équipe pour parler de votre projet.',
               'Two ways to begin, with no commitment: receive a sample to try it, or take 15 minutes with our team to talk about your project.',
               'Dos formas de empezar, sin compromiso: reciba una muestra para probarlo o dedique 15 minutos con nuestro equipo a hablar de su proyecto.'
             )}
@@ -80,7 +80,7 @@ const ContactSection: React.FC = () => {
             aria-labelledby="contact-talk-title"
           >
             <h3 id="contact-talk-title" className="text-xl md:text-2xl font-bold text-foreground">
-              {t3(l, 'Vous préférez en parler ?', 'Prefer to talk it through?', '¿Prefiere hablarlo?')}
+              {t3(l, 'Vous préférez en parler ?', 'Prefer to talk it through?', '¿Prefiere hablarlo?')}
             </h3>
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
               {t3(

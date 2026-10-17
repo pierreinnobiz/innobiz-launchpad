@@ -13,16 +13,16 @@ const FAQSection: React.FC = () => {
 
   const faqs = [
     {
-      q: t3(language, 'Puis-je utiliser mes propres huiles essentielles ?', 'Can I use my own essential oils?', '¿Puedo usar mis propios aceites esenciales?'),
+      q: t3(language, 'Puis-je utiliser mes propres huiles essentielles ?', 'Can I use my own essential oils?', '¿Puedo usar mis propios aceites esenciales?'),
       a: t3(
         language,
-        'Oui. Le module se visse sur vos flacons standard (col DIN 18, de 5 à 50 ml), sans transfert ni remplissage.',
-        'Yes. The module screws onto your standard bottles (DIN 18 neck, 5 to 50 ml), with no decanting and no refilling.',
-        'Sí. El módulo se enrosca en sus frascos estándar (cuello DIN 18, de 5 a 50 ml), sin trasvase ni rellenado.'
+        'Oui. Le module se visse sur vos flacons standard (col DIN 18, de 5 à 50 ml), sans transfert ni remplissage.',
+        'Yes. The module screws onto your standard bottles (DIN 18 neck, 5 to 50 ml), with no decanting and no refilling.',
+        'Sí. El módulo se enrosca en sus frascos estándar (cuello DIN 18, de 5 a 50 ml), sin trasvase ni rellenado.'
       ),
     },
     {
-      q: t3(language, 'Quelles huiles peut-on diffuser avec Tolia ?', 'Which oils can Tolia diffuse?', '¿Qué aceites puede difundir Tolia?'),
+      q: t3(language, 'Quelles huiles peut-on diffuser avec Tolia ?', 'Which oils can Tolia diffuse?', '¿Qué aceites puede difundir Tolia?'),
       a: t3(
         language,
         'La technologie a été testée sur plus de 150 huiles essentielles et synergies, et elle diffuse aussi les parfums synthétiques et les parfums d’intérieur. Pour vos références les plus visqueuses, le plus simple est de les essayer avec l’échantillon.',
@@ -31,7 +31,7 @@ const FAQSection: React.FC = () => {
       ),
     },
     {
-      q: t3(language, 'Peut-on encadrer l’usage de nos huiles ?', 'Can we control how our oils are used?', '¿Podemos programar el uso recomendado de nuestros aceites?'),
+      q: t3(language, 'Peut-on encadrer l’usage de nos huiles ?', 'Can we control how our oils are used?', '¿Podemos programar el uso recomendado de nuestros aceites?'),
       a: t3(
         language,
         'Oui. Intensité, durée et intermittence peuvent être préprogrammées selon vos recommandations, et la diffusion s’arrête d’elle-même au bout de la durée choisie.',
@@ -40,73 +40,73 @@ const FAQSection: React.FC = () => {
       ),
     },
     {
-      q: t3(language, 'Qu’est-ce qui ramène vos clients vers vos huiles, et pas vers celles d’un concurrent ?', 'What brings customers back to your oils rather than a competitor’s?', '¿Qué hace que sus clientes vuelvan a sus aceites y no a los de la competencia?'),
+      q: t3(language, 'Qu’est-ce qui ramène vos clients vers vos huiles, et pas vers celles d’un concurrent ?', 'What brings customers back to your oils rather than a competitor’s?', '¿Qué hace que sus clientes vuelvan a sus aceites y no a los de la competencia?'),
       a: t3(
         language,
-        'Le col DIN 18 est un standard : un autre flacon peut se visser. Ce qui ramène vos clients vers vos huiles, c’est tout ce qui porte votre marque : le diffuseur et ses modules à vos couleurs, des modes de diffusion préprogrammés selon vos recommandations, une notice et un QR code vers votre programme de fidélité, et vos huiles, qu’ils connaissent déjà.',
+        'Le col DIN 18 est un standard : un autre flacon peut se visser. Ce qui ramène vos clients vers vos huiles, c’est tout ce qui porte votre marque : le diffuseur et ses modules à vos couleurs, des modes de diffusion préprogrammés selon vos recommandations, une notice et un QR code vers votre programme de fidélité, et vos huiles, qu’ils connaissent déjà.',
         'The DIN 18 neck is a standard, so another bottle can be screwed on. What brings customers back to your oils is everything that carries your brand: the diffuser and its modules in your colours, diffusion modes pre-programmed to your recommendations, a guide and a QR code to your loyalty programme, and your oils, which they already know.',
-        'El cuello DIN 18 es un estándar: otro frasco puede enroscarse. Lo que hace volver a sus clientes a sus aceites es todo lo que lleva su marca: el difusor y sus módulos con sus colores, modos de difusión preprogramados según sus recomendaciones, un manual y un código QR hacia su programa de fidelización, y sus aceites, que ya conocen.'
+        'El cuello DIN 18 es un estándar: otro frasco puede enroscarse. Lo que hace que sus clientes vuelvan a sus aceites es todo lo que lleva su marca: el difusor y sus módulos con sus colores, modos de difusión preprogramados según sus recomendaciones, un manual y un código QR hacia su programa de fidelización, y sus aceites, que ya conocen.'
       ),
     },
     {
-      q: t3(language, 'Quels sont les minimums de commande ?', 'What are the minimum order quantities?', '¿Cuáles son los pedidos mínimos?'),
+      q: t3(language, 'Quels sont les minimums de commande ?', 'What are the minimum order quantities?', '¿Cuáles son los pedidos mínimos?'),
       a: t3(
         language,
-        'Marque blanche : généralement dès 3 000 pièces, selon le projet. Commande stock : dès 500 pièces, expédiées de France sous 72 h si le stock le permet. Les prix sont partagés lors du premier échange.',
-        'White label: typically from 3,000 units, depending on the project. Stock order: from 500 units, shipped from France within 72 h if in stock. Pricing is shared during the first conversation.',
-        'Marca blanca: normalmente desde 3.000 unidades, según el proyecto. Pedido de stock: desde 500 unidades, enviadas desde Francia en 72 h si hay stock. Los precios se comparten en la primera conversación.'
+        'Marque blanche : généralement dès 3 000 pièces, selon le projet. Commande stock : dès 500 pièces, expédiées de France sous 72 h si le stock le permet. Les prix sont partagés lors du premier échange.',
+        'White label: typically from 3,000 units, depending on the project. Stock order: from 500 units, shipped from France within 72 h if in stock. Pricing is shared from first contact.',
+        'Marca blanca: normalmente desde 3.000 unidades, según el proyecto. Pedido de stock: desde 500 unidades, enviadas desde Francia en 72 h si hay stock. Le facilitamos los precios desde el primer contacto.'
       ),
     },
     {
-      q: t3(language, 'Qu’en est-il de la conformité réglementaire ?', 'What about regulatory compliance?', '¿Qué hay de la conformidad regulatoria?'),
+      q: t3(language, 'Qu’en est-il de la conformité réglementaire ?', 'What about regulatory compliance?', '¿Qué hay de la conformidad regulatoria?'),
       a: t3(
         language,
-        'Tolia est marqué CE, conforme RoHS et déjà vendu en Europe. Nous fournissons la documentation du diffuseur ; celle des huiles reste à la charge de la marque.',
+        'Tolia est marqué CE, conforme RoHS et déjà vendu en Europe. Nous fournissons la documentation du diffuseur ; celle des huiles reste à la charge de la marque.',
         'Tolia is CE-marked, RoHS-compliant and already sold across Europe. We provide the diffuser documentation; essential oil compliance remains with the brand.',
         'Tolia lleva marcado CE, cumple RoHS y ya se vende en Europa. Facilitamos la documentación del difusor; la de los aceites sigue a cargo de la marca.'
       ),
     },
     {
-      q: t3(language, 'Exclusivité et co-branding ?', 'Exclusivity and co-branding?', '¿Exclusividad y co-branding?'),
+      q: t3(language, 'Exclusivité et co-branding ?', 'Exclusivity and co-branding?', '¿Exclusividad y co-branding?'),
       a: t3(
         language,
-        'Marque blanche : exclusivité de catégorie et de territoire négociable selon le volume. Commande stock : non exclusive, avec fourreau co-brandé en option.',
+        'Marque blanche : exclusivité de catégorie et de territoire négociable selon le volume. Commande stock : non exclusive, avec fourreau co-brandé en option.',
         'White label: category and territory exclusivity is negotiable based on volume. Stock order: non-exclusive, with an optional co-branded sleeve.',
         'Marca blanca: la exclusividad de categoría y territorio es negociable según el volumen. Pedido de stock: no exclusivo, con funda exterior opcional con su marca.'
       ),
     },
     {
-      q: t3(language, 'Comment Tolia soutient-il nos engagements RSE ?', 'How does Tolia support our sustainability commitments?', '¿Cómo apoya Tolia nuestros compromisos de sostenibilidad?'),
+      q: t3(language, 'Comment Tolia soutient-il nos engagements RSE ?', 'How does Tolia support our sustainability commitments?', '¿Cómo apoya Tolia nuestros compromisos de sostenibilidad?'),
       a: t3(
         language,
-        'Tolia est conçu pour la longévité : composants modulaires, batterie remplaçable par l’utilisateur et système de diagnostic pour identifier et remplacer les pièces individuelles. Un produit pensé pour servir chaque jour pendant des années ne finit pas oublié dans un tiroir : c’est un argument RSE concret pour votre marque.',
+        'Tolia est conçu pour la longévité : composants modulaires, batterie remplaçable par l’utilisateur et système de diagnostic pour identifier et remplacer les pièces individuelles. Un produit pensé pour servir chaque jour pendant des années ne finit pas oublié au fond d’un placard : c’est un argument RSE concret pour votre marque.',
         'Tolia is designed for longevity: modular components, user-replaceable battery, and a diagnostic system to identify and replace individual parts. A product designed to be used every day for years does not end up forgotten in a cupboard: a concrete sustainability story for your brand.',
-        'Tolia está diseñado para la longevidad: componentes modulares, batería reemplazable por el usuario y sistema de diagnóstico para identificar y reemplazar piezas individuales. Un producto pensado para usarse a diario durante años no acaba olvidado en un cajón: un argumento de sostenibilidad concreto para su marca.'
+        'Tolia está diseñado para la longevidad: componentes modulares, batería reemplazable por el usuario y sistema de diagnóstico para identificar y reemplazar piezas individuales. Un producto pensado para usarse a diario durante años no acaba olvidado en un armario: un argumento de sostenibilidad concreto para su marca.'
       ),
     },
     {
-      q: t3(language, 'Fournissez-vous des supports marketing pour le lancement ?', 'Do you support product launches with marketing assets?', '¿Apoyan los lanzamientos de producto con material de marketing?'),
+      q: t3(language, 'Fournissez-vous des supports marketing pour le lancement ?', 'Do you support product launches with marketing assets?', '¿Apoyan los lanzamientos de producto con material de marketing?'),
       a: t3(
         language,
-        'Oui : nous fournissons photographies produit professionnelles, vidéos, spécifications techniques et textes prêts à l’emploi pour votre site, votre catalogue et vos présentations commerciales. Votre lancement commence avec un kit complet.',
-        'Yes, we provide professional product photography, video content, technical specifications, and ready-to-use copy for e-commerce, catalogue and trade presentations. Your launch starts with a complete toolkit.',
+        'Oui : nous fournissons photographies produit professionnelles, vidéos, spécifications techniques et textes prêts à l’emploi pour votre site, votre catalogue et vos présentations commerciales. Votre lancement commence avec un kit complet.',
+        'Yes: professional product photos, videos, technical specifications and ready-to-use copy for your online shop, catalogue and sales presentations. Everything comes in one launch kit.',
         'Sí: le proporcionamos fotografías profesionales del producto, vídeos, especificaciones técnicas y textos listos para usar en su tienda en línea, su catálogo y sus presentaciones comerciales. Su lanzamiento empieza con un kit completo.'
       ),
     },
     {
-      q: t3(language, 'Comment obtenir vos prix et un prix de vente conseillé ?', 'How do we get your prices and a recommended retail price?', '¿Cómo recibimos sus precios y el PVP recomendado?'),
+      q: t3(language, 'Comment obtenir vos prix et un prix de vente conseillé ?', 'How do we get your prices and a recommended retail price?', '¿Cómo recibimos sus precios y el PVP recomendado?'),
       a: t3(
         language,
         'Le prix de vente conseillé dépend de votre marché, de votre canal (magasin ou en ligne) et du coffret choisi. Nos prix professionnels et la structure de marge vous sont communiqués dès le premier échange.',
-        'The recommended retail price depends on your market, your channel (in store or online) and the box you choose. Our trade prices and margin structure are shared with you from the very first conversation.',
+        'The recommended retail price depends on your market, your channel (in store or online) and the box you choose. Our trade prices and margin structure are shared with you from first contact.',
         'El PVP recomendado depende de su mercado, de su canal (tienda o en línea) y del estuche elegido. Le facilitamos nuestros precios profesionales y la estructura de margen desde el primer contacto.'
       ),
     },
     {
-      q: t3(language, 'Comment démarrer ?', 'How do I get started?', '¿Cómo empiezo?'),
+      q: t3(language, 'Comment démarrer ?', 'How do I get started?', '¿Cómo empiezo?'),
       a: t3(
         language,
-        'Deux possibilités, sans engagement : demandez un échantillon gratuit avec le formulaire ci-dessous (expédié de France sous 5 jours ouvrés), ou réservez 15 minutes en visio avec notre équipe. Une personne de notre équipe vous répond sous un jour ouvré.',
+        'Deux possibilités, sans engagement : demandez un échantillon gratuit avec le formulaire ci-dessous (expédié de France sous 5 jours ouvrés), ou réservez 15 minutes en visio avec notre équipe. Une personne de notre équipe vous répond sous un jour ouvré.',
         'Two options, no commitment: request a free sample with the form below (shipped from France within 5 business days), or book a 15-minute video call with our team. A member of our team replies within one business day.',
         'Dos opciones, sin compromiso: solicite una muestra gratuita con el formulario de abajo (enviada desde Francia en 5 días hábiles) o reserve 15 minutos por videollamada con nuestro equipo. Una persona de nuestro equipo le responde en un día hábil.'
       ),

@@ -24,7 +24,7 @@ const DurabilitySection: React.FC = () => {
       title: t3(language, 'Modulaire', 'Modular', 'Modular'),
       text: t3(
         language,
-        'Cloche, module de diffusion, électronique, batterie : chaque partie se remplace sans changer tout l’appareil. Sans verrerie fragile à l’intérieur, sans eau stagnante ni pompe, il y a moins de pièces qui cassent, donc moins de retours à gérer.',
+        'Cloche, module de diffusion, électronique, batterie : chaque partie se remplace sans changer tout l’appareil. Sans verrerie fragile à l’intérieur, sans eau stagnante ni pompe, il y a moins de pièces qui cassent, donc moins de retours à gérer.',
         'Cover, diffusion module, electronics, battery: every part can be replaced without changing the whole device. With no fragile glassware inside, no stagnant water and no pump, fewer parts break, so fewer returns to manage.',
         'Cubierta, módulo de difusión, electrónica, batería: cada parte se puede reemplazar sin cambiar todo el dispositivo. Sin piezas de vidrio frágiles en su interior, sin agua estancada ni bomba, hay menos piezas que se rompen y, por tanto, menos devoluciones que gestionar.'
       ),
@@ -44,9 +44,9 @@ const DurabilitySection: React.FC = () => {
       title: t3(language, 'Un diffuseur qui reste utilisé', 'A diffuser that stays in use', 'Un difusor que se sigue usando'),
       text: t3(
         language,
-        'Sans eau, sans nettoyage, avec un changement d’huile en une seconde, Tolia évite le « syndrome du placard » : il s’intègre aux routines quotidiennes au lieu de finir oublié dans un tiroir.',
-        'With no water, no cleaning and an oil change in a second, Tolia avoids the “cupboard syndrome”: it fits into daily routines rather than ending up forgotten in a cupboard.',
-        'Sin agua, sin limpieza y con cambio de aceite en un segundo, Tolia evita el «síndrome del armario»: se integra en las rutinas diarias en lugar de acabar olvidado en un cajón.'
+        'Sans eau, sans nettoyage, avec un changement d’huile en une seconde, Tolia est conçu pour éviter le « syndrome du placard » : il s’intègre aux routines quotidiennes au lieu de finir oublié au fond d’un placard.',
+        'With no water, no cleaning and an oil change in a second, Tolia is designed to avoid the “cupboard syndrome”: it fits into daily routines rather than ending up forgotten in a cupboard.',
+        'Sin agua, sin limpieza y con cambio de aceite en un segundo, Tolia está diseñado para evitar el «síndrome del armario»: se integra en las rutinas diarias en lugar de acabar olvidado en un armario.'
       ),
     },
     {
@@ -61,7 +61,7 @@ const DurabilitySection: React.FC = () => {
     },
   ];
 
-  const cta = t3(language, 'Recevez votre échantillon gratuit', 'Get your free sample', 'Reciba su muestra gratis');
+  const cta = t3(language, 'Recevoir mon échantillon gratuit', 'Get my free sample', 'Recibir mi muestra gratuita');
 
   return (
     <section id="durabilite" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
@@ -84,7 +84,7 @@ const DurabilitySection: React.FC = () => {
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               language,
-              'En Europe, les consommateurs attendent de plus en plus des produits qui durent et qui se réparent. Tolia a été conçu dans cette logique : un diffuseur qui reste utilisé et qui peut être réparé au lieu d’être jeté.',
+              'En Europe, les consommateurs attendent de plus en plus des produits qui durent et qui se réparent. Tolia a été conçu dans cette logique : un diffuseur qui reste utilisé et qui peut être réparé au lieu d’être jeté.',
               'Across Europe, consumers increasingly expect products that last and can be repaired. Tolia was designed with this in mind: a diffuser that stays in use and can be repaired rather than thrown away.',
               'En Europa, los consumidores esperan cada vez más productos que duren y se puedan reparar. Tolia se diseñó con esta lógica: un difusor que se sigue usando y que puede repararse en lugar de tirarse.'
             )}
@@ -108,7 +108,7 @@ const DurabilitySection: React.FC = () => {
               className="w-full h-auto"
               alt={t3(
                 language,
-                'Vue éclatée d’un diffuseur modulaire : coque, module de diffusion, électronique et batterie séparés',
+                'Vue éclatée d’un diffuseur modulaire : coque, module de diffusion, électronique et batterie séparés',
                 'Exploded view of a modular diffuser: shell, diffusion module, electronics and battery shown separately',
                 'Vista despiezada de un difusor modular: carcasa, módulo de difusión, electrónica y batería por separado'
               )}
@@ -116,7 +116,7 @@ const DurabilitySection: React.FC = () => {
             <figcaption className="px-4 py-2.5 text-xs text-muted-foreground">
               {t3(
                 language,
-                'Illustration de principe : chaque pièce se démonte et se remplace.',
+                'Illustration de principe : chaque pièce se démonte et se remplace.',
                 'Illustration: every part comes apart and can be replaced.',
                 'Ilustración: cada pieza se desmonta y se sustituye.'
               )}
@@ -162,9 +162,9 @@ const DurabilitySection: React.FC = () => {
             <p className="mt-1 text-base md:text-lg font-semibold text-foreground leading-snug">
               {t3(
                 language,
-                'Un produit pensé pour servir chaque jour pendant des années ne finit pas oublié dans un tiroir. C’est un argument RSE concret pour votre marque.',
+                'Un produit pensé pour servir chaque jour pendant des années ne finit pas oublié au fond d’un placard. C’est un argument RSE concret pour votre marque.',
                 'A product designed to be used every day for years does not end up forgotten in a cupboard: a concrete sustainability story for your brand.',
-                'Un producto pensado para usarse a diario durante años no acaba olvidado en un cajón: un argumento de sostenibilidad concreto para su marca.'
+                'Un producto pensado para usarse a diario durante años no acaba olvidado en un armario: un argumento de sostenibilidad concreto para su marca.'
               )}
             </p>
           </div>

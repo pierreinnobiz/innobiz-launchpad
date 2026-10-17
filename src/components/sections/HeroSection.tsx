@@ -15,6 +15,9 @@ const prefersReducedMotion = () =>
 // Le film dure 41 secondes. Sa dernière image (un Tolia avec sa brume à côté d'un vase) restait figée à l'écran
 // une fois le film terminé : on fait maintenant disparaître le film en fondu, il ne reste que le fond sombre.
 const FILM_SECONDS = 41;
+// Le film commence par un grand titre « Tolia » (vers 3 à 5,5 s) qui passait derrière le titre de la page : on ne montre
+// le film qu'à partir de sa 6e seconde ; avant, l'image du produit reste affichée (retour des 5 marques testeuses, 17/10/2026).
+const SKIP_INTRO_S = 6;
 // Le lecteur envoie « playProgress » (avancement) et « finish » (fin) ; « timeupdate » et « ended » sont les noms de la nouvelle API.
 const VIMEO_EVENTS = ['play', 'playing', 'playProgress', 'timeupdate', 'finish', 'ended'];
 
@@ -28,6 +31,8 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
   const [showAnyway, setShowAnyway] = useState(false);
   const [ended, setEnded] = useState(false);
   const [gone, setGone] = useState(false);
+  const [filmSec, setFilmSec] = useState(0);
+  const [noEventsLate, setNoEventsLate] = useState(false);
 
   useEffect(() => {
     // Mount right after the first paint: the hero text is already on screen,
@@ -84,6 +89,7 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
         if (name === 'timeupdate' || name === 'playProgress') {
           setPlaying(true);
           const d = data.data || {};
+          if (typeof d.seconds === 'number') setFilmSec(d.seconds);
           if (typeof d.seconds === 'number' && typeof d.duration === 'number' && d.duration > 0 && d.seconds >= d.duration - 0.7) {
             setEnded(true);
           }
@@ -103,7 +109,9 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
       iframe?.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: event }), '*');
     });
     const id = window.setTimeout(() => setShowAnyway(true), 3000);
-    return () => clearTimeout(id);
+    // si le lecteur n'envoie jamais l'avancement, on montre le film après l'introduction supposée
+    const late = window.setTimeout(() => setNoEventsLate(true), (3 + SKIP_INTRO_S) * 1000);
+    return () => { clearTimeout(id); clearTimeout(late); };
   }, [iframeLoaded]);
 
   useEffect(() => {
@@ -123,8 +131,9 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
     return () => clearTimeout(id);
   }, [ended]);
 
-  const visible = (playing || showAnyway) && !ended;
-  useEffect(() => { onStatus?.(playing, ended); }, [playing, ended, onStatus]);
+  const pastIntro = filmSec >= SKIP_INTRO_S || (noEventsLate && filmSec === 0);
+  const visible = (playing || showAnyway) && pastIntro && !ended;
+  useEffect(() => { onStatus?.(visible, ended); }, [visible, ended, onStatus]);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -209,12 +218,12 @@ const HeroSection: React.FC = () => {
   // les marques testeuses ne voyaient aucun produit dans le premier écran (17/10/2026).
   const [film, setFilm] = useState({ playing: false, ended: false });
   const [waited, setWaited] = useState(false);
-  useEffect(() => { const id = window.setTimeout(() => setWaited(true), 2500); return () => clearTimeout(id); }, []);
+  useEffect(() => { const id = window.setTimeout(() => setWaited(true), 1200); return () => clearTimeout(id); }, []);
   const onFilm = useCallback((playing: boolean, ended: boolean) => setFilm((f) => (f.playing === playing && f.ended === ended ? f : { playing, ended })), []);
-  const showPoster = (waited && !film.playing) || film.ended;
+  const showPoster = (waited && !film.playing) || film.ended; // « playing » = film réellement visible (après son introduction)
   const posterAlt = t3(
     language,
-    'Diffuseur Tolia sur une table de cuisine : le flacon est clipsé dans la base, la brume sort de la buse',
+    'Diffuseur Tolia sur une table de cuisine : le flacon est clipsé dans la base, la brume sort de la buse',
     'Tolia diffuser on a kitchen table: the bottle is clipped into the base, mist leaves the nozzle',
     'Difusor Tolia sobre una mesa de cocina: el frasco está encajado en la base y la bruma sale de la boquilla'
   );
@@ -234,19 +243,19 @@ const HeroSection: React.FC = () => {
   // Le sous-titre dit d'abord CE QU'EST Tolia (un diffuseur qui se branche sur les flacons de la marque), puis le bénéfice.
   const subtitle = t3(
     language,
-    "Tolia est un diffuseur sans fil qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'il devient un geste quotidien, et vos clients rachètent vos huiles.",
+    "Tolia est un diffuseur sans fil qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'il devient un geste quotidien, et vos clients rachètent vos huiles.",
     'Tolia is a cordless diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.',
     'Tolia es un difusor inalámbrico que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.'
   );
   const microcopy = t3(
     language,
-    'Sans engagement · Réponse sous un jour ouvré · Marqué CE, déjà vendu en Europe',
+    'Sans engagement · Réponse sous un jour ouvré · Marqué CE, déjà vendu en Europe',
     'No commitment · Reply within one business day · CE-marked, already sold in Europe',
-    'Sin compromiso · Respuesta en un día hábil · Marcado CE, ya vendido en Europa'
+    'Sin compromiso · Respuesta en un día hábil · Marcado CE, ya vendido en Europa'
   );
-  const cta = t3(language, 'Recevez votre échantillon gratuit', 'Get your free sample', 'Reciba su muestra gratuita');
-  // Deuxième porte d'entrée : parler directement à l'équipe (15 minutes en visio, sans formulaire).
-  const talk = t3(language, 'Parler à l’équipe · 15 min', 'Talk to the team · 15 min', 'Hablar con el equipo · 15 min');
+  const cta = t3(language, 'Recevoir mon échantillon gratuit', 'Get my free sample', 'Recibir mi muestra gratuita');
+  // Deuxième porte d'entrée : parler directement à l'équipe (15 minutes en visio, sans formulaire).
+  const talk = t3(language, 'Parler à l’équipe · 15 min', 'Talk to the team · 15 min', 'Hablar con el equipo · 15 min');
 
   return (
     <section
@@ -324,7 +333,7 @@ const HeroSection: React.FC = () => {
                 {talk}
               </a>
             </div>
-            <p className="mt-3 text-xs text-white/75 font-light">{microcopy}</p>
+            <p className="mt-3 text-sm text-white/80 font-light">{microcopy}</p>
           </motion.div>
         </div>
       </div>

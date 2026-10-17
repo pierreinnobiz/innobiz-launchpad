@@ -28,7 +28,7 @@ const Navigation: React.FC = () => {
   }, []);
 
   const ctaLabel = language === 'es' ? 'Iniciar una conversación' : language === 'en' ? 'Start a conversation' : 'Démarrer une conversation';
-  const sampleLabel = language === 'es' ? 'Solicitar una muestra' : language === 'en' ? 'Request a sample' : 'Demander un échantillon';
+  const sampleLabel = language === 'es' ? 'Recibir mi muestra' : language === 'en' ? 'Get my sample' : 'Recevoir mon échantillon';
   const sampleLabelShort = language === 'es' ? 'Muestra' : language === 'en' ? 'Sample' : 'Échantillon';
 
   // Au-dessus du film du haut de page (fond sombre, en-tête transparent), les langues non choisies sont écrites en blanc :

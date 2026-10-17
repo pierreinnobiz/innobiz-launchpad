@@ -18,11 +18,11 @@ interface Pillar {
   points: Tri[];
 }
 
-// Textes repris de l'ancien site. Seul changement : le nom « Twist & Mist » n'est plus employé (« module de diffusion »),
+// Textes repris de l'ancien site. Seul changement : le nom « Twist & Mist » n'est plus employé (« module de diffusion »),
 // comme dans le reste de la nouvelle page.
 const diffuserPoints: Tri[] = [
   {
-    fr: 'Votre couleur exacte : choisissez parmi nos teintes ou donnez-nous votre référence RAL ou Pantone',
+    fr: 'Votre couleur exacte : choisissez parmi nos teintes ou donnez-nous votre référence RAL ou Pantone',
     en: 'Your exact colour: choose from our shades or give us your RAL or Pantone reference',
     es: 'Su color exacto: elija entre nuestros tonos o indíquenos su referencia RAL o Pantone',
   },
@@ -37,7 +37,7 @@ const diffuserPoints: Tri[] = [
     es: 'Acabados mate, brillante, soft-touch, texturizado o metalizado según su posicionamiento',
   },
   {
-    fr: 'Matériaux au choix : bois, résine, verre soufflé',
+    fr: 'Matériaux au choix : bois, résine, verre soufflé',
     en: 'Choice of materials: wood, resin, blown glass',
     es: 'Materiales a elegir: madera, resina, vidrio soplado',
   },
@@ -48,9 +48,9 @@ const pillars: Pillar[] = [
     icon: Puzzle,
     title: { fr: 'Les accessoires', en: 'Accessories', es: 'Los accesorios' },
     subtitle: {
-      fr: 'Modules de nébulisation et câbles aux couleurs de votre gamme',
+      fr: 'Modules de diffusion et câbles aux couleurs de votre gamme',
       en: 'Diffusion modules and cables in your range colours',
-      es: 'Módulos de nebulización y cables con los colores de su gama',
+      es: 'Módulos de difusión y cables con los colores de su gama',
     },
     points: [
       {
@@ -75,7 +75,7 @@ const pillars: Pillar[] = [
     },
     points: [
       {
-        fr: 'Boîte individuelle entièrement personnalisable : dimensions, matériaux, couleurs',
+        fr: 'Boîte individuelle entièrement personnalisable : dimensions, matériaux, couleurs',
         en: 'Fully customisable individual box: dimensions, materials, colours',
         es: 'Caja individual totalmente personalizable: dimensiones, materiales, colores',
       },
@@ -141,7 +141,7 @@ const CustomizationSection: React.FC = () => {
   const { language: l } = useLanguage();
   const cta = t3(l, 'Parler de mon projet', 'Discuss my project', 'Hablar de mi proyecto');
 
-  // Mise en page resserrée (17/10/2026, « trop d'espaces blancs ») : l'image et les quatre points du diffuseur côte à côte,
+  // Mise en page resserrée (17/10/2026, « trop d'espaces blancs ») : l'image et les quatre points du diffuseur côte à côte,
   // puis les trois familles (accessoires, packaging, notices) en cartes compactes. Le contenu est inchangé.
   return (
     <section id="personnalisation" className="py-14 md:py-20 bg-background relative overflow-hidden">
@@ -167,7 +167,7 @@ const CustomizationSection: React.FC = () => {
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
-              'Innobiz personnalise chaque composant de votre diffuseur. Couleurs, matières, finitions, logo, coffret : un diffuseur qui porte votre marque de bout en bout.',
+              'Innobiz personnalise chaque composant de votre diffuseur. Couleurs, matières, finitions, logo, coffret : un diffuseur qui porte votre marque de bout en bout.',
               'Innobiz customises every component of your diffuser. Colours, materials, finishes, logo, box: a diffuser that carries your brand from end to end.',
               'Innobiz personaliza cada componente de su difusor. Colores, materiales, acabados, logotipo, estuche: un difusor que lleva su marca de principio a fin.'
             )}
@@ -189,11 +189,11 @@ const CustomizationSection: React.FC = () => {
               loading="lazy"
               decoding="async"
               className="w-full h-auto"
-              alt={t3(l, 'Le diffuseur Tolia personnalisable : teintes, motifs et croquis', 'The customisable Tolia diffuser: shades, patterns and sketches', 'El difusor Tolia personalizable: tonos, motivos y bocetos')}
+              alt={t3(l, 'Le diffuseur Tolia personnalisable : teintes, motifs et croquis', 'The customisable Tolia diffuser: shades, patterns and sketches', 'El difusor Tolia personalizable: tonos, motivos y bocetos')}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 py-3">
               <div className="flex items-end gap-2.5">
-                <span className="text-sm font-semibold text-white/90">{t3(l, 'RAL · Pantone : la couleur de votre marque', 'RAL · Pantone: your brand’s colour', 'RAL · Pantone: el color de su marca')}</span>
+                <span className="text-sm font-semibold text-white/90">{t3(l, 'RAL · Pantone : la couleur de votre marque', 'RAL · Pantone: your brand’s colour', 'RAL · Pantone: el color de su marca')}</span>
               </div>
             </div>
           </div>
@@ -224,7 +224,7 @@ const CustomizationSection: React.FC = () => {
             <p className="mt-3 flex items-start gap-2 rounded-xl px-3.5 py-2.5 text-sm text-foreground" style={{ background: 'hsl(28 45% 48% / 0.08)' }}>
               <SlidersHorizontal className="mt-0.5 h-4 w-4 flex-none" style={{ color: 'hsl(28 45% 48%)' }} aria-hidden="true" />
               <span>
-                <strong>{t3(l, 'Et vos réglages :', 'And your settings:', 'Y sus ajustes:')}</strong>{' '}
+                <strong>{t3(l, 'Et vos réglages :', 'And your settings:', 'Y sus ajustes:')}</strong>{' '}
                 {t3(l, 'modes de diffusion préprogrammés selon vos recommandations.', 'diffusion modes pre-programmed to your recommendations.', 'modos de difusión preprogramados según sus recomendaciones.')}
               </span>
             </p>

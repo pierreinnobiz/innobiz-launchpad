@@ -53,7 +53,7 @@ const BrandMarqueeSection: React.FC = () => {
       <p className="mt-6 text-center text-xs text-muted-foreground px-6">
         {t3(
           language,
-          'Logos : propriété de leurs détenteurs respectifs.',
+          'Logos : propriété de leurs détenteurs respectifs.',
           'Logos are the property of their respective owners.',
           'Logotipos: propiedad de sus respectivos titulares.'
         )}

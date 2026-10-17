@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BatteryFull, Beaker, Boxes, Droplets, Flag, FlaskConical, LayoutGrid, Microscope, MousePointerClick, RefreshCw, SlidersHorizontal, Wrench, type LucideIcon } from 'lucide-react';
+import { BatteryFull, Boxes, Droplets, Flag, FlaskConical, Microscope, MousePointerClick, RefreshCw, SlidersHorizontal, type LucideIcon } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
@@ -8,7 +8,7 @@ import LegacyAnchors from '@/components/LegacyAnchors';
 
 /**
  * « Simple pour vos clients. Pensé pour durer. » — version compacte (17/10/2026, demande de Pierre) :
- * douze repères de longueur semblable, sans image ni tableau replié (la comparaison des technologies est maintenant
+ * neuf repères de longueur semblable (douze au cycle 1, réduits après le test par les marques), sans image ni tableau replié (la comparaison des technologies est maintenant
  * expliquée dès le début du site, dans « Le constat »). « Zéro colmatage » devient « Plus de 150 huiles testées ».
  */
 const HomeTechSection: React.FC = () => {
@@ -31,7 +31,7 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Pure et silencieuse', 'Pure and silent', 'Pura y silenciosa'),
       text: t3(
         l,
-        'Ni eau, ni chaleur : l’huile est diffusée pure. Ni pompe, ni ventilateur, ni vibration : rien ne trouble le sommeil.',
+        'Ni eau, ni chaleur : l’huile est diffusée pure. Ni pompe, ni ventilateur, ni vibration : rien ne trouble le sommeil.',
         'No water, no heat: the oil is diffused pure. No pump, no fan, no vibration: nothing disturbs sleep.',
         'Sin agua ni calor: el aceite se difunde puro. Sin bomba, sin ventilador, sin vibración: nada perturba el sueño.'
       ),
@@ -41,7 +41,7 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Une autre huile en 1 seconde', 'A different oil in 1 second', 'Otro aceite en 1 segundo'),
       text: t3(
         l,
-        'Le module reste vissé sur chaque flacon : on échange un flacon contre un autre, sans rien vider, rincer ni sécher.',
+        'Le module reste vissé sur chaque flacon : on échange un flacon contre un autre, sans rien vider, rincer ni sécher.',
         'The module stays screwed onto each bottle: swap one bottle for another, with nothing to empty, rinse or dry.',
         'El módulo permanece enroscado en cada frasco: se cambia un frasco por otro, sin vaciar, enjuagar ni secar nada.'
       ),
@@ -51,9 +51,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vos flacons, tels quels', 'Your bottles, as they are', 'Sus frascos, tal cual'),
       text: t3(
         l,
-        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Le flacon devient la recharge.',
-        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). The bottle becomes the refill.',
-        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). El frasco es la recarga.'
+        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Le flacon devient la recharge.',
+        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). The bottle becomes the refill.',
+        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). El frasco es la recarga.'
       ),
     },
     {
@@ -61,7 +61,7 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vissez, clipsez, appuyez', 'Screw, clip, press', 'Enrosque, encaje, pulse'),
       text: t3(
         l,
-        'Le geste se comprend dès la première fois, sans notice : le flacon se visse, le module se clipse, un appui diffuse.',
+        'Le geste se comprend dès la première fois, sans notice : le flacon se visse, le module se clipse, un appui diffuse.',
         'Intuitive from the very first use, no manual needed: the bottle screws on, the module clips in, one press starts diffusion.',
         'El gesto se entiende desde la primera vez, sin manual: el frasco se enrosca, el módulo se encaja y una pulsación difunde.'
       ),
@@ -71,19 +71,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Plus de 150 huiles testées', 'Over 150 oils tested', 'Más de 150 aceites probados'),
       text: t3(
         l,
-        'Une technologie testée sur plus de 150 huiles essentielles et synergies, et capable de diffuser aussi des parfums synthétiques.',
-        'A technology tested on more than 150 essential oils and blends, which can also diffuse synthetic fragrances.',
-        'Una tecnología probada con más de 150 aceites esenciales y sinergias, capaz de difundir también perfumes sintéticos.'
-      ),
-    },
-    {
-      icon: Beaker,
-      title: t3(l, 'Vos huiles, vos synergies', 'Your oils and blends', 'Sus aceites y sinergias'),
-      text: t3(
-        l,
-        'Huiles essentielles pures, synergies et parfums d’intérieur : un seul appareil pour votre catalogue, sans diffuseur dédié à chaque produit.',
-        'Pure essential oils, blends and home fragrances: one device for your catalogue, with no dedicated diffuser for each product.',
-        'Aceites esenciales puros, sinergias y fragancias para el hogar: un solo aparato para su catálogo, sin un difusor para cada producto.'
+        'Une technologie testée sur plus de 150 huiles essentielles et synergies, capable de diffuser aussi des parfums synthétiques et d’intérieur.',
+        'A technology tested on more than 150 essential oils and blends, which can also diffuse synthetic and home fragrances.',
+        'Una tecnología probada con más de 150 aceites esenciales y sinergias, capaz de difundir también perfumes sintéticos y fragancias para el hogar.'
       ),
     },
     {
@@ -101,29 +91,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Un module pour toute la gamme', 'One module for the whole range', 'Un módulo para toda la gama'),
       text: t3(
         l,
-        'Le même module sert sur tous les diffuseurs Tolia, actuels et futurs : grandes pièces, espaces pros, véhicules.',
+        'Le même module sert sur tous les diffuseurs Tolia, actuels et futurs : grandes pièces, espaces pros, véhicules.',
         'The same module works in every Tolia diffuser, current and future: large rooms, professional spaces, vehicles.',
         'El mismo módulo sirve en todos los difusores Tolia, actuales y futuros: grandes espacios, entornos profesionales, vehículos.'
-      ),
-    },
-    {
-      icon: LayoutGrid,
-      title: t3(l, 'Une seule référence à gérer', 'One SKU to manage', 'Una sola referencia que gestionar'),
-      text: t3(
-        l,
-        'Un diffuseur universel à la place de plusieurs références : moins de stock immobilisé, moins de SAV, un seul discours produit.',
-        'One universal diffuser instead of several SKUs: less tied-up stock, fewer after-sales issues, one product story.',
-        'Un difusor universal en lugar de varias referencias: menos stock inmovilizado, menos posventa, un solo discurso de producto.'
-      ),
-    },
-    {
-      icon: Wrench,
-      title: t3(l, 'Réparable', 'Repairable', 'Reparable'),
-      text: t3(
-        l,
-        'Batterie remplaçable, pièces changées une à une : un diffuseur qui dure des années au lieu de finir à la poubelle.',
-        'Replaceable battery, parts changed one by one: a diffuser that lasts for years instead of ending up in the bin.',
-        'Batería reemplazable y piezas sustituibles una a una: un difusor que dura años en lugar de acabar en la basura.'
       ),
     },
     {
@@ -131,7 +101,7 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Conçu en France, 7ᵉ génération', 'Designed in France, 7th generation', 'Diseñado en Francia, 7.ª generación'),
       text: t3(
         l,
-        'Ingénierie, prototypage et assemblage dans notre site français : 20 ans de R&D en microfluidique et électronique.',
+        'Ingénierie, prototypage et assemblage dans notre site français : 20 ans de R&D en microfluidique et électronique.',
         'Engineering, prototyping and assembly at our French facility: 20 years of R&D in microfluidics and electronics.',
         'Ingeniería, prototipado y ensamblaje en nuestra planta francesa: 20 años de I+D en microfluídica y electrónica.'
       ),
@@ -165,9 +135,9 @@ const HomeTechSection: React.FC = () => {
           <p className="mt-4 text-base md:text-lg text-muted-foreground">
             {t3(
               l,
-              'Tout ce que vous venez de voir, et ce qui se cache dedans, en douze repères.',
-              'Everything you have just seen, and what lies inside, in twelve points.',
-              'Todo lo que acaba de ver, y lo que hay dentro, en doce puntos.'
+              'Les caractéristiques qui rendent Tolia si simple, en neuf repères.',
+              'The features that make Tolia so simple, in nine points.',
+              'Las características que hacen que Tolia sea tan sencillo, en nueve puntos.'
             )}
           </p>
         </motion.div>

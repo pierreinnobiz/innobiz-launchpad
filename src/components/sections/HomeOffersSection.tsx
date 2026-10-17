@@ -7,7 +7,7 @@ import { t3 } from '@/lib/t3';
 import { trackCTAClick } from '@/lib/tracking';
 import LegacyAnchors from '@/components/LegacyAnchors';
 
-// Même comportement qu'avant : le bouton mémorise le type de projet puis fait défiler jusqu'au formulaire.
+// Même comportement qu'avant : le bouton mémorise le type de projet puis fait défiler jusqu'au formulaire.
 const goToContact = (type: 'white-label' | 'stock', label: string) => {
   trackCTAClick(label, 'offers', type === 'white-label' ? 'whitelabel' : 'quote_stock');
   try {
@@ -33,14 +33,14 @@ const HomeOffersSection: React.FC = () => {
       icon: Palette,
       who: t3(
         language,
-        'Pour les marques qui veulent leur propre diffuseur, exclusif et à leur image.',
+        'Pour les marques qui veulent leur propre diffuseur, en exclusivité.',
         'For brands that want an exclusive diffuser of their own.',
-        'Para las marcas que quieren su propio difusor, exclusivo y a su imagen.'
+        'Para las marcas que quieren su propio difusor, en exclusiva.'
       ),
       title: t3(language, 'Marque blanche', 'White label', 'Marca blanca'),
       text: t3(
         language,
-        'Votre diffuseur, à votre image : couleurs, matières, logo et coffret.',
+        'Votre diffuseur, à votre image : couleurs, matières, logo et coffret.',
         'Your diffuser, unmistakably your brand: colours, materials, logo and box.',
         'Su difusor, a su imagen: colores, materiales, logotipo y estuche.'
       ),
@@ -50,8 +50,8 @@ const HomeOffersSection: React.FC = () => {
       points: [
         t3(language, 'Vos synergies, ou des synergies d’huiles essentielles co-développées avec Innobiz pour l’histoire de votre marque', 'Your own blends, or essential oil blends co-developed with Innobiz to fit your brand story', 'Sus sinergias, o sinergias de aceites esenciales co-desarrolladas con Innobiz para la historia de su marca'),
         t3(language, 'Support industriel, réglementaire et supply chain complet d’Innobiz', 'Full industrial, regulatory and supply chain support from Innobiz', 'Soporte industrial, regulatorio y de cadena de suministro completo de Innobiz'),
-        t3(language, 'Couleur RAL ou Pantone, finitions mat, brillante, soft-touch, texturée ou métallique, matériaux : bois, résine, verre soufflé', 'RAL or Pantone colour, matte, gloss, soft-touch, textured or metallic finishes, materials: wood, resin, blown glass', 'Color RAL o Pantone, acabados mate, brillante, soft-touch, texturizado o metalizado, materiales: madera, resina, vidrio soplado'),
-        t3(language, 'Kit de lancement : photos, vidéos et textes prêts pour votre site et vos réseaux', 'Launch kit: photos, videos and copy ready for your website and social media', 'Kit de lanzamiento: fotos, vídeos y textos listos para su web y sus redes'),
+        t3(language, 'Couleur RAL ou Pantone, finitions mat, brillante, soft-touch, texturée ou métallique, matériaux : bois, résine, verre soufflé', 'RAL or Pantone colour, matte, gloss, soft-touch, textured or metallic finishes, materials: wood, resin, blown glass', 'Color RAL o Pantone, acabados mate, brillante, soft-touch, texturizado o metalizado, materiales: madera, resina, vidrio soplado'),
+        t3(language, 'Kit de lancement : photos, vidéos et textes prêts pour votre site et vos réseaux', 'Launch kit: photos, videos and copy ready for your website and social media', 'Kit de lanzamiento: fotos, vídeos y textos listos para su web y sus redes'),
         t3(language, 'Exclusivité de catégorie et de territoire négociable (par volume et engagement)', 'Category and territory exclusivity negotiable (by volume and commitment)', 'Exclusividad de categoría y territorio negociable (por volumen y compromiso)'),
       ],
     },
@@ -67,7 +67,7 @@ const HomeOffersSection: React.FC = () => {
       title: t3(language, 'Commande stock', 'Stock order', 'Pedido de stock'),
       text: t3(
         language,
-        'Ajoutez Tolia à votre catalogue : stock prêt à expédier depuis la France.',
+        'Ajoutez Tolia à votre catalogue : stock prêt à expédier depuis la France.',
         'Add Tolia to your catalogue: ready-to-ship stock from France.',
         'Añada Tolia a su catálogo: stock listo para enviar desde Francia.'
       ),
@@ -77,9 +77,9 @@ const HomeOffersSection: React.FC = () => {
         t3(language, 'Livré sous la marque Tolia, avec documentation produit complète', 'Delivered under the Tolia brand, with full product documentation', 'Entregado con la marca Tolia y documentación completa del producto'),
         t3(language, 'Fourreau extérieur co-brandé en option, pour l’intégrer à votre gamme', 'Optional co-branded outer sleeve to integrate with your range', 'Funda exterior opcional con su marca, para integrarlo en su gama'),
         t3(language, 'En rayon ou sur votre e-shop en moins d’un mois', 'On shelf or in your online shop in under a month', 'Productos en el lineal o en su web en menos de 1 mes'),
-        t3(language, 'Kit de lancement : photos, vidéos et textes prêts pour votre site et vos réseaux', 'Launch kit: photos, videos and copy ready for your website and social media', 'Kit de lanzamiento: fotos, vídeos y textos listos para su web y sus redes'),
-        t3(language, 'Fonctionne avec les flacons standard du marché (col DIN 18, de 5 à 50 ml)', 'Works with industry-standard bottles (DIN 18 neck, 5 to 50 ml)', 'Funciona con los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml)'),
-        t3(language, 'Commande non exclusive : rapidité et flexibilité', 'Non-exclusive order: speed and flexibility', 'Pedido no exclusivo: rapidez y flexibilidad'),
+        t3(language, 'Kit de lancement : photos, vidéos et textes prêts pour votre site et vos réseaux', 'Launch kit: photos, videos and copy ready for your website and social media', 'Kit de lanzamiento: fotos, vídeos y textos listos para su web y sus redes'),
+        t3(language, 'Fonctionne avec les flacons standard du marché (col DIN 18, de 5 à 50 ml)', 'Works with industry-standard bottles (DIN 18 neck, 5 to 50 ml)', 'Funciona con los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml)'),
+        t3(language, 'Commande non exclusive : rapidité et flexibilité', 'Non-exclusive order: speed and flexibility', 'Pedido no exclusivo: rapidez y flexibilidad'),
       ],
     },
   ];
@@ -112,7 +112,7 @@ const HomeOffersSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <p className="text-sm md:text-base text-foreground">
-            <strong>{t3(language, 'Vous démarrez ?', 'Just starting out?', '¿Está empezando?')}</strong>{' '}
+            <strong>{t3(language, 'Vous démarrez ?', 'Just starting out?', '¿Está empezando?')}</strong>{' '}
             {t3(
               language,
               'Commencez par 500 pièces sur stock avec un fourreau co-brandé, puis passez à la marque blanche quand vos ventes suivent.',

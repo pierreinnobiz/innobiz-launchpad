@@ -28,7 +28,7 @@ const HomeProblemSection: React.FC = () => {
         'Fill the tank, count the drops, then empty, rinse and dry it to avoid stagnant water. Diluted in water, the oil loses its strength.',
         'Llenar el depósito, contar las gotas y luego vaciar, enjuagar y secar para evitar el agua estancada. Diluido en agua, el aceite pierde fuerza.'
       ),
-      result: t3(l, 'Une corvée quotidienne : le diffuseur reste éteint.', 'A daily chore: the diffuser stays switched off.', 'Una tarea diaria: el difusor se queda apagado.'),
+      result: t3(l, 'Une corvée quotidienne : le diffuseur reste éteint.', 'A daily chore: the diffuser stays switched off.', 'Una tarea diaria: el difusor se queda apagado.'),
     },
     {
       icon: Flame,
@@ -39,18 +39,18 @@ const HomeProblemSection: React.FC = () => {
         'Heat alters the aromatic molecules. The scent fades quickly and no longer smells like the essential oil you had chosen.',
         'El calor altera las moléculas aromáticas. El aroma se apaga rápido y ya no se parece al aceite esencial que se había elegido.'
       ),
-      result: t3(l, 'Une déception : le flacon n’est pas racheté.', 'A disappointment: the bottle is not bought again.', 'Una decepción: el frasco no se vuelve a comprar.'),
+      result: t3(l, 'Une déception : le flacon n’est pas racheté.', 'A disappointment: the bottle is not bought again.', 'Una decepción: el frasco no se vuelve a comprar.'),
     },
     {
       icon: Wind,
-      name: t3(l, 'Diffusion passive : bâtonnets, pierre', 'Passive diffusion: reeds, stone', 'Difusión pasiva: varillas, piedra'),
+      name: t3(l, 'Diffusion passive : bâtonnets, pierre', 'Passive diffusion: reeds, stone', 'Difusión pasiva: varillas, piedra'),
       usage: t3(
         l,
-        'Agréables pour parfumer une entrée, mais sans réglage d’intensité ni de durée : le parfum faiblit jour après jour, et changer d’huile oblige à tout remplacer.',
+        'Agréables pour parfumer une entrée, mais sans réglage d’intensité ni de durée : le parfum faiblit jour après jour, et changer d’huile oblige à tout remplacer.',
         'Pleasant for scenting a hallway, but with no control over intensity or duration: the scent weakens day after day, and changing oil means replacing everything.',
         'Agradables para perfumar una entrada, pero sin ajuste de intensidad ni de duración: el aroma se debilita día tras día y cambiar de aceite obliga a sustituirlo todo.'
       ),
-      result: t3(l, 'Un usage oublié : on n’y pense plus.', 'A forgotten habit: nobody thinks about it any more.', 'Un uso olvidado: ya nadie piensa en ello.'),
+      result: t3(l, 'Un usage oublié : on n’y pense plus.', 'A forgotten habit: nobody thinks about it any more.', 'Un uso olvidado: ya nadie piensa en ello.'),
     },
     {
       icon: FlaskRound,
@@ -61,7 +61,7 @@ const HomeProblemSection: React.FC = () => {
         'A pump you can hear, fragile glassware to take apart and clean every time you change oil.',
         'Una bomba que se oye y unas piezas de vidrio frágiles que hay que desmontar y limpiar cada vez que se cambia de aceite.'
       ),
-      result: t3(l, 'Trop contraignant : on garde la même huile, puis on arrête.', 'Too much hassle: people keep the same oil, then stop.', 'Demasiado complicado: se mantiene el mismo aceite y luego se abandona.'),
+      result: t3(l, 'Trop contraignant : on garde la même huile, puis on arrête.', 'Too much hassle: people keep the same oil, then stop.', 'Demasiado complicado: se mantiene el mismo aceite y luego se abandona.'),
     },
   ];
 
@@ -90,7 +90,7 @@ const HomeProblemSection: React.FC = () => {
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
-              'En 20 ans de métier dans la diffusion, nous avons fait le même constat : l’envie de diffuser est bien là ; ce qui l’éteint, ce sont les gestes que chaque appareil impose. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne se rachètent plus.',
+              'En 20 ans de métier dans la diffusion, nous avons fait le même constat : l’envie de diffuser est bien là ; ce qui l’éteint, ce sont les gestes que chaque appareil impose. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne se rachètent plus.',
               'In 20 years of designing diffusers, we have seen the same thing again and again: people want to diffuse; what stops them is the chores each device demands. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.',
               'En 20 años de experiencia en difusión, hemos llegado siempre a la misma conclusión: las ganas de difundir están ahí; lo que las apaga son los gestos que impone cada aparato. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
             )}
@@ -161,7 +161,7 @@ const HomeProblemSection: React.FC = () => {
             <p className="mt-3 text-sm md:text-base leading-relaxed" style={{ color: 'hsl(36 40% 96% / 0.82)' }}>
               {t3(
                 l,
-                'Au lieu de verser l’huile dans l’appareil, c’est le diffuseur qui vient sur le flacon. Le flacon de votre marque se visse sur un module de diffusion et se clipse dans Tolia ; un appui lance la diffusion. Ni eau, ni chaleur, ni pompe, rien à nettoyer, et une autre huile en une seconde.',
+                'Au lieu de verser l’huile dans l’appareil, c’est le diffuseur qui vient sur le flacon. Le flacon de votre marque se visse sur un module de diffusion et se clipse dans Tolia ; un appui lance la diffusion. Ni eau, ni chaleur, ni pompe, rien à nettoyer, et une autre huile en une seconde.',
                 'Forget pouring oil into a device: with Tolia, the diffuser goes to the bottle. Your brand’s bottle screws onto a diffusion module and clips into Tolia; one press starts diffusion. No water, no heat, no pump, nothing to clean, and a different oil in one second.',
                 'En lugar de verter el aceite en el aparato, es el difusor el que va al frasco. El frasco de su marca se enrosca en un módulo de difusión y se encaja en Tolia; una pulsación inicia la difusión. Sin agua, sin calor, sin bomba, nada que limpiar y otro aceite en un segundo.'
               )}
@@ -171,7 +171,7 @@ const HomeProblemSection: React.FC = () => {
               <span>
                 {t3(
                   l,
-                  'Le geste devient quotidien : les flacons se vident, et vos clients les rachètent.',
+                  'Le geste devient quotidien : les flacons se vident, et vos clients les rachètent.',
                   'It becomes a daily habit: bottles run out, and your customers buy them again.',
                   'El gesto se vuelve diario: los frascos se vacían y sus clientes los vuelven a comprar.'
                 )}
