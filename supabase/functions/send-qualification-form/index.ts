@@ -19,6 +19,8 @@ interface SampleRequest {
   address_city?: string;
   role?: string;
   phone?: string;
+  // 17/10/2026 : « Votre projet en une phrase » (facultatif, étape 2 du formulaire d'échantillon)
+  message?: string;
   project_type?: "stock_order" | "white_label" | "exploring" | "unset";
   utm_source?: string;
   utm_medium?: string;
@@ -50,7 +52,7 @@ const handler = async (req: Request): Promise<Response> => {
       stage = "shipping",
       name, company, email, country, website, address,
       address_street, address_postal_code, address_city,
-      role, phone, project_type,
+      role, phone, project_type, message,
       utm_source, utm_medium, utm_campaign, utm_term, utm_content,
       referrer, landing_page,
     } = body;
@@ -77,7 +79,8 @@ const handler = async (req: Request): Promise<Response> => {
       (website && website.length > 300) ||
       (address && address.length > 500) ||
       (role && role.length > 200) ||
-      (phone && phone.length > 50)
+      (phone && phone.length > 50) ||
+      (message && message.length > 1000)
     ) {
       return new Response(
         JSON.stringify({ error: "Input exceeds maximum length." }),
@@ -160,6 +163,7 @@ const handler = async (req: Request): Promise<Response> => {
               <h2 style="color:#B17743;font-size:16px;">Intérêt projet</h2>
               <table style="width:100%;border-collapse:collapse;margin-bottom:16px;">
                 ${row("Type", sanitize(projectLabel))}
+                ${message ? row("Projet", sanitize(message).replace(/\n/g, "<br>")) : ""}
               </table>
 
               ${utmsHtml}

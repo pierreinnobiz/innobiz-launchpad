@@ -5,8 +5,9 @@ import { fadeBlurUp } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 
-// Neuf questions, réponses courtes. Les minimums, délais et la conformité sont ceux déjà publiés sur le site ; RSE, supports marketing et prix retrouvent leur réponse de l'ancien site.
-// 17/10/2026 : ajout « Quelles huiles peut-on diffuser ? » (plus de 150 huiles testées, phrase de Pierre) ; « Comment démarrer ? » propose aussi l'appel de 15 minutes.
+// Dix questions, réponses courtes. Les minimums, délais et la conformité sont ceux déjà publiés sur le site ; RSE, supports marketing et prix retrouvent leur réponse de l'ancien site.
+// 17/10/2026 : ajout « Quelles huiles peut-on diffuser ? » (plus de 150 huiles testées, phrase de Pierre) et « Peut-on encadrer l'usage de nos huiles ? » ;
+// « Comment démarrer ? » propose aussi l'appel de 15 minutes ; prix : plus de « conversation qualifiée » ; hydrolats retirés (à confirmer par Pierre).
 const FAQSection: React.FC = () => {
   const { language } = useLanguage();
 
@@ -16,7 +17,7 @@ const FAQSection: React.FC = () => {
       a: t3(
         language,
         'Oui. Le module se visse sur vos flacons standard (col DIN 18, de 5 à 50 ml), sans transfert ni remplissage.',
-        'Yes. The module screws onto your standard bottles (DIN 18 neck, 5 to 50 ml), with no transfer and no refilling.',
+        'Yes. The module screws onto your standard bottles (DIN 18 neck, 5 to 50 ml), with no decanting and no refilling.',
         'Sí. El módulo se enrosca en sus frascos estándar (cuello DIN 18, de 5 a 50 ml), sin trasvase ni rellenado.'
       ),
     },
@@ -24,9 +25,18 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Quelles huiles peut-on diffuser avec Tolia ?', 'Which oils can Tolia diffuse?', '¿Qué aceites puede difundir Tolia?'),
       a: t3(
         language,
-        'Tout votre catalogue : la technologie a été testée sur plus de 150 huiles essentielles et synergies, et elle diffuse aussi les parfums synthétiques. Hydrolats et parfums d’intérieur sont également compatibles.',
-        'Your whole catalogue: the technology has been tested on more than 150 essential oils and blends, and it also diffuses synthetic fragrances. Hydrosols and home fragrances are compatible too.',
-        'Todo su catálogo: la tecnología se ha probado con más de 150 aceites esenciales y sinergias, y difunde también perfumes sintéticos. Hidrolatos y fragancias para el hogar también son compatibles.'
+        'Tout votre catalogue : la technologie a été testée sur plus de 150 huiles essentielles et synergies, et elle diffuse aussi les parfums synthétiques.',
+        'Your whole catalogue: the technology has been tested on more than 150 essential oils and blends, and it also diffuses synthetic fragrances.',
+        'Todo su catálogo: la tecnología se ha probado con más de 150 aceites esenciales y sinergias, y difunde también perfumes sintéticos.'
+      ),
+    },
+    {
+      q: t3(language, 'Peut-on encadrer l’usage de nos huiles ?', 'Can we control how our oils are used?', '¿Podemos encuadrar el uso de nuestros aceites?'),
+      a: t3(
+        language,
+        'Oui. Intensité, durée et intermittence peuvent être préprogrammées selon vos recommandations, et la diffusion s’arrête d’elle-même au bout de la durée choisie.',
+        'Yes. Intensity, run time and on/off cycles can be pre-programmed to your recommendations, and diffusion stops by itself after the chosen time.',
+        'Sí. La intensidad, la duración y la intermitencia pueden preprogramarse según sus recomendaciones, y la difusión se detiene sola al cabo del tiempo elegido.'
       ),
     },
     {
@@ -53,16 +63,16 @@ const FAQSection: React.FC = () => {
         language,
         'Marque blanche : exclusivité de catégorie et de territoire négociable selon le volume. Commande stock : non exclusive, avec fourreau co-brandé en option.',
         'White label: category and territory exclusivity is negotiable based on volume. Stock order: non-exclusive, with an optional co-branded sleeve.',
-        'Marca blanca: la exclusividad de categoría y territorio es negociable según el volumen. Pedido de stock: no exclusivo, con funda co-brandeada opcional.'
+        'Marca blanca: la exclusividad de categoría y territorio es negociable según el volumen. Pedido de stock: no exclusivo, con funda exterior opcional con su marca.'
       ),
     },
     {
       q: t3(language, 'Comment Tolia soutient-il nos engagements RSE ?', 'How does Tolia support our sustainability commitments?', '¿Cómo apoya Tolia nuestros compromisos de sostenibilidad?'),
       a: t3(
         language,
-        'Tolia est conçu pour la longévité : composants modulaires, batterie remplaçable par l’utilisateur et système de diagnostic pour identifier et remplacer les pièces individuelles. Un produit utilisé quotidiennement pendant des années ne devient jamais un déchet dormant. C’est le meilleur argument RSE que vous puissiez avoir.',
-        'Tolia is designed for longevity: modular components, user-replaceable battery, and a diagnostic system to identify and replace individual parts. A product used daily for years never becomes dormant waste, which is the strongest CSR story you can tell.',
-        'Tolia está diseñado para la longevidad: componentes modulares, batería reemplazable por el usuario y sistema de diagnóstico para identificar y reemplazar piezas individuales. Un producto usado diariamente durante años nunca se convierte en residuo inactivo, que es la historia de RSE más fuerte que puede contar.'
+        'Tolia est conçu pour la longévité : composants modulaires, batterie remplaçable par l’utilisateur et système de diagnostic pour identifier et remplacer les pièces individuelles. Un produit utilisé chaque jour pendant des années ne finit jamais oublié dans un tiroir : c’est un argument RSE concret pour votre marque.',
+        'Tolia is designed for longevity: modular components, user-replaceable battery, and a diagnostic system to identify and replace individual parts. A product used every day for years never ends up forgotten in a drawer: a concrete sustainability story for your brand.',
+        'Tolia está diseñado para la longevidad: componentes modulares, batería reemplazable por el usuario y sistema de diagnóstico para identificar y reemplazar piezas individuales. Un producto que se usa a diario durante años nunca acaba olvidado en un cajón: un argumento de sostenibilidad concreto para su marca.'
       ),
     },
     {
@@ -70,7 +80,7 @@ const FAQSection: React.FC = () => {
       a: t3(
         language,
         'Oui, nous fournissons photographies produit professionnelles, contenu vidéo, spécifications techniques et textes prêts à l’emploi pour l’e-commerce, le catalogue et les présentations trade. Votre lancement commence avec un toolkit complet.',
-        'Yes, we provide professional product photography, video content, technical specifications, and ready-to-use copy for e-commerce, catalog, and trade presentations. Your launch starts with a complete toolkit.',
+        'Yes, we provide professional product photography, video content, technical specifications, and ready-to-use copy for e-commerce, catalogue and trade presentations. Your launch starts with a complete toolkit.',
         'Sí, proporcionamos fotografía profesional de producto, contenido de video, especificaciones técnicas y copy listo para usar para e-commerce, catálogo y presentaciones comerciales. Su lanzamiento comienza con un toolkit completo.'
       ),
     },
@@ -78,9 +88,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Quel prix de vente prévoir ?', 'What retail price should we plan for?', '¿Qué precio de venta deberíamos planificar?'),
       a: t3(
         language,
-        'Le positionnement retail et la structure de prix dépendent du marché, du canal et du niveau de packaging. Les prix B2B et la structure de marge sont partagés lors de votre première conversation qualifiée avec notre équipe.',
-        'Retail positioning and pricing structure depend on market, channel, and packaging tier. B2B pricing and margin details are shared during your first qualified conversation with our team.',
-        'El posicionamiento retail y la estructura de precios dependen del mercado, canal y nivel de packaging. Los precios B2B y los detalles de margen se comparten durante su primera conversación cualificada con nuestro equipo.'
+        'Le prix de vente conseillé dépend de votre marché, de votre canal (magasin ou en ligne) et du coffret choisi. Nos prix professionnels et la structure de marge vous sont communiqués dès le premier échange.',
+        'The recommended retail price depends on your market, your channel (in store or online) and the box you choose. Our trade prices and margin structure are shared with you from the very first conversation.',
+        'El precio de venta recomendado depende de su mercado, de su canal (tienda o en línea) y del estuche elegido. Nuestros precios profesionales y la estructura de margen se le comunican desde el primer contacto.'
       ),
     },
     {

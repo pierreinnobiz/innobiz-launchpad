@@ -14,7 +14,7 @@ const SocialProofBar: React.FC = () => {
     },
     {
       value: t3(language, '20 ans', '20 years', '20 años'),
-      label: t3(language, 'de métier dans la diffusion', 'in diffusion technology', 'de oficio en difusión'),
+      label: t3(language, 'de métier dans la diffusion', 'in diffusion technology', 'de experiencia en difusión'),
     },
     {
       value: 'CE · RoHS',

@@ -31,7 +31,7 @@
 
     /* Muted - Warm light sand */
     --muted: 35 20% 91%;
-    --muted-foreground: 25 10% 48%;
+    --muted-foreground: 25 12% 38%; /* 17/10/2026 : 48 % -> 38 %, gris trop pâle sur crème (retour des marques testeuses) */
 
     /* Accent - Warm sand tint */
     --accent: 35 35% 90%;
@@ -348,3 +348,10 @@
     transform: translateX(0);
   }
 }
+
+/* Haut de page : image du produit quand le film ne joue pas (17/10/2026).
+   Téléphone et tablette : en haut, seulement si l'écran est assez haut pour ne pas toucher le titre ; ordinateur : en bas à droite. */
+.hero-poster-m { display: none; }
+.hero-poster-d { display: none; }
+@media (max-width: 1023px) and (min-height: 760px) { .hero-poster-m { display: block; } }
+@media (min-width: 1024px) and (min-height: 700px) { .hero-poster-d { display: block; } }

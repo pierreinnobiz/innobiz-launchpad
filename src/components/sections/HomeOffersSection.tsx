@@ -41,7 +41,7 @@ const HomeOffersSection: React.FC = () => {
       text: t3(
         language,
         'Votre diffuseur, à votre image : couleurs, matières, logo et coffret.',
-        'Your diffuser, in your image: colours, materials, logo and box.',
+        'Your diffuser, unmistakably your brand: colours, materials, logo and box.',
         'Su difusor, a su imagen: colores, materiales, logotipo y estuche.'
       ),
       facts: t3(language, 'Généralement dès 3 000 pièces · 12 à 20 semaines', 'Typically from 3,000 units · 12 to 20 weeks', 'Normalmente desde 3.000 unidades · 12 a 20 semanas'),
@@ -50,7 +50,8 @@ const HomeOffersSection: React.FC = () => {
       points: [
         t3(language, 'Synergies d’huiles essentielles co-développées et adaptées à l’histoire de votre marque', 'Co-developed essential oil blends tailored to your brand story', 'Mezclas de aceites esenciales co-desarrolladas y adaptadas a la historia de su marca'),
         t3(language, 'Support industriel, réglementaire et supply chain complet d’Innobiz', 'Full industrial, regulatory and supply chain support from Innobiz', 'Soporte industrial, regulatorio y de cadena de suministro completo de Innobiz'),
-        t3(language, 'Couleur (RAL/Pantone), finitions mat, soft-touch ou métallique, matériaux : bois, résine, verre soufflé', 'Colour (RAL/Pantone), matte, soft-touch or metallic finishes, materials: wood, resin, blown glass', 'Color (RAL/Pantone), acabados mate, soft-touch o metálico, materiales: madera, resina, vidrio soplado'),
+        t3(language, 'Couleur RAL ou Pantone, finitions mat, brillante, soft-touch, texturée ou métallique, matériaux : bois, résine, verre soufflé', 'RAL or Pantone colour, matte, gloss, soft-touch, textured or metallic finishes, materials: wood, resin, blown glass', 'Color RAL o Pantone, acabados mate, brillante, soft-touch, texturizado o metalizado, materiales: madera, resina, vidrio soplado'),
+        t3(language, 'Kit de lancement : photos, vidéos et textes prêts pour votre site et vos réseaux', 'Launch kit: photos, videos and copy ready for your website and social media', 'Kit de lanzamiento: fotos, vídeos y textos listos para su web y sus redes'),
         t3(language, 'Exclusivité de catégorie et de territoire négociable (par volume et engagement)', 'Category and territory exclusivity negotiable (by volume and commitment)', 'Exclusividad de categoría y territorio negociable (por volumen y compromiso)'),
       ],
     },
@@ -73,9 +74,10 @@ const HomeOffersSection: React.FC = () => {
       facts: t3(language, 'Dès 500 pièces · 72 h si en stock', 'From 500 units · 72 h if in stock', 'Desde 500 unidades · 72 h si hay stock'),
       cta: t3(language, 'Demander un devis', 'Request a quote', 'Solicitar presupuesto'),
       points: [
-        t3(language, 'Livré en Tolia brandé, avec documentation produit complète', 'Delivered as branded Tolia with full product documentation', 'Entregado como Tolia con marca y documentación completa del producto'),
-        t3(language, 'Fourreau extérieur co-brandé en option, pour l’intégrer à votre gamme', 'Optional co-branded outer sleeve to integrate with your range', 'Funda exterior co-brandada opcional para integrarlo en su gama'),
-        t3(language, 'Produits en rayon en moins d’un mois', 'Products on shelf in under 1 month', 'Productos en estantería en menos de 1 mes'),
+        t3(language, 'Livré sous la marque Tolia, avec documentation produit complète', 'Delivered under the Tolia brand, with full product documentation', 'Entregado con la marca Tolia y documentación completa del producto'),
+        t3(language, 'Fourreau extérieur co-brandé en option, pour l’intégrer à votre gamme', 'Optional co-branded outer sleeve to integrate with your range', 'Funda exterior opcional con su marca, para integrarlo en su gama'),
+        t3(language, 'En rayon ou sur votre e-shop en moins d’un mois', 'On shelf or in your online shop in under a month', 'Productos en el lineal o en su web en menos de 1 mes'),
+        t3(language, 'Kit de lancement : photos, vidéos et textes prêts pour votre site et vos réseaux', 'Launch kit: photos, videos and copy ready for your website and social media', 'Kit de lanzamiento: fotos, vídeos y textos listos para su web y sus redes'),
         t3(language, 'Commande non exclusive : rapidité et flexibilité', 'Non-exclusive order: speed and flexibility', 'Pedido no exclusivo: rapidez y flexibilidad'),
       ],
     },
@@ -152,6 +154,23 @@ const HomeOffersSection: React.FC = () => {
             </motion.article>
           ))}
         </motion.div>
+
+        {/* chemin pour les petites marques qui démarrent (retour du test du 17/10/2026) */}
+        <motion.p
+          className="mx-auto mt-8 max-w-3xl rounded-2xl border border-border/50 bg-card px-5 py-4 text-center text-sm md:text-base text-foreground"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-40px' }}
+          variants={fadeBlurUp}
+        >
+          <strong>{t3(language, 'Vous démarrez ?', 'Just starting out?', '¿Está empezando?')}</strong>{' '}
+          {t3(
+            language,
+            'Commencez par 500 pièces sur stock avec un fourreau co-brandé, puis passez à la marque blanche quand vos ventes suivent.',
+            'Begin with 500 units from stock with a co-branded sleeve, then move to white label as your sales grow.',
+            'Empiece con 500 unidades en stock con una funda con su marca y pase a la marca blanca cuando sus ventas lo justifiquen.'
+          )}
+        </motion.p>
       </div>
     </section>
   );

@@ -22,9 +22,9 @@ interface Pillar {
 // comme dans le reste de la nouvelle page.
 const diffuserPoints: Tri[] = [
   {
-    fr: 'Palette illimitée : choisissez parmi nos teintes ou créez un Pantone exclusif',
-    en: 'Unlimited palette: choose from our shades or create an exclusive Pantone',
-    es: 'Paleta ilimitada: elija entre nuestras tonalidades o cree un Pantone exclusivo',
+    fr: 'Votre couleur exacte : choisissez parmi nos teintes ou donnez-nous votre référence RAL ou Pantone',
+    en: 'Your exact colour: choose from our shades or give us your RAL or Pantone reference',
+    es: 'Su color exacto: elija entre nuestros tonos o indíquenos su referencia RAL o Pantone',
   },
   {
     fr: 'Gravure laser, sérigraphie ou impression UV de votre logo sur coque et socle',
@@ -32,9 +32,9 @@ const diffuserPoints: Tri[] = [
     es: 'Grabado láser, serigrafía o impresión UV de su logo en carcasa y base',
   },
   {
-    fr: 'Finitions mat, brillant, soft-touch ou texturée selon votre positionnement',
-    en: 'Matte, gloss, soft-touch or textured finishes to match your positioning',
-    es: 'Acabados mate, brillante, soft-touch o texturizado según su posicionamiento',
+    fr: 'Finitions mat, brillante, soft-touch, texturée ou métallique selon votre positionnement',
+    en: 'Matte, gloss, soft-touch, textured or metallic finishes to match your positioning',
+    es: 'Acabados mate, brillante, soft-touch, texturizado o metalizado según su posicionamiento',
   },
   {
     fr: 'Matériaux au choix : bois, résine, verre soufflé',
@@ -72,7 +72,7 @@ const pillars: Pillar[] = [
   },
   {
     icon: Package,
-    title: { fr: 'Le packaging', en: 'Packaging', es: 'El empaque' },
+    title: { fr: 'Le packaging', en: 'Packaging', es: 'El estuche' },
     subtitle: {
       fr: 'Un unboxing premium qui porte l’identité de votre marque',
       en: 'A premium unboxing that carries your brand identity',
@@ -172,9 +172,9 @@ const CustomizationSection: React.FC = () => {
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
-              'Innobiz personnalise chaque composant de votre diffuseur. Des milliers de combinaisons possibles pour un produit qui ne ressemble qu’à vous.',
-              'Innobiz customises every component of your diffuser. Thousands of possible combinations for a product that looks only like you.',
-              'Innobiz personaliza cada componente de su difusor. Miles de combinaciones posibles para un producto que solo se parece a usted.'
+              'Innobiz personnalise chaque composant de votre diffuseur. Couleurs, matières, finitions, logo, coffret : un diffuseur qui porte votre marque de bout en bout.',
+              'Innobiz customises every component of your diffuser. Colours, materials, finishes, logo, box: a diffuser that carries your brand from end to end.',
+              'Innobiz personaliza cada componente de su difusor. Colores, materiales, acabados, logotipo, estuche: un difusor que lleva su marca de principio a fin.'
             )}
           </p>
         </motion.div>
@@ -198,8 +198,7 @@ const CustomizationSection: React.FC = () => {
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 py-3">
               <div className="flex items-end gap-2.5">
-                <span className="text-2xl md:text-3xl font-bold text-white" aria-hidden="true">∞</span>
-                <span className="pb-0.5 text-sm text-white/85">{t3(l, 'combinaisons de couleurs', 'colour combinations', 'combinaciones de colores')}</span>
+                <span className="text-sm font-semibold text-white/90">{t3(l, 'RAL · Pantone : la couleur de votre marque', 'RAL · Pantone: your brand’s colour', 'RAL · Pantone: el color de su marca')}</span>
               </div>
             </div>
           </div>

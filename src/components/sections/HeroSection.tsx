@@ -1,10 +1,12 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, CalendarCheck } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import { trackCTAClick } from '@/lib/tracking';
 import { calendlyUrl } from '@/lib/links';
+
+const POSTER = `${import.meta.env.BASE_URL}journee/img/`;
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
@@ -16,7 +18,7 @@ const FILM_SECONDS = 41;
 // Le lecteur envoie « playProgress » (avancement) et « finish » (fin) ; « timeupdate » et « ended » sont les noms de la nouvelle API.
 const VIMEO_EVENTS = ['play', 'playing', 'playProgress', 'timeupdate', 'finish', 'ended'];
 
-const HeroVideo: React.FC = () => {
+const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => void }> = ({ onStatus }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
   // Mount the player only after the first paint so it never competes with the
@@ -122,6 +124,7 @@ const HeroVideo: React.FC = () => {
   }, [ended]);
 
   const visible = (playing || showAnyway) && !ended;
+  useEffect(() => { onStatus?.(playing, ended); }, [playing, ended, onStatus]);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
@@ -200,7 +203,21 @@ const HeroSection: React.FC = () => {
     offset: ['start start', 'end start'],
   });
   const videoScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
-  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.3, 0.7]);
+  // voile un peu plus sombre au départ (0,4) : le titre reste lisible quand le film affiche ses propres lettres
+  const overlayOpacity = useTransform(scrollYProgress, [0, 0.5], [0.4, 0.7]);
+  // Image du produit quand le film ne joue pas (téléphone en économie d'énergie, connexion lente, aperçu) ou une fois terminé :
+  // les marques testeuses ne voyaient aucun produit dans le premier écran (17/10/2026).
+  const [film, setFilm] = useState({ playing: false, ended: false });
+  const [waited, setWaited] = useState(false);
+  useEffect(() => { const id = window.setTimeout(() => setWaited(true), 2500); return () => clearTimeout(id); }, []);
+  const onFilm = useCallback((playing: boolean, ended: boolean) => setFilm((f) => (f.playing === playing && f.ended === ended ? f : { playing, ended })), []);
+  const showPoster = (waited && !film.playing) || film.ended;
+  const posterAlt = t3(
+    language,
+    'Diffuseur Tolia sur une table de cuisine : le flacon est clipsé dans la base, la brume sort de la buse',
+    'Tolia diffuser on a kitchen table: the bottle is clipped into the base, mist leaves the nozzle',
+    'Difusor Tolia sobre una mesa de cocina: el frasco está encajado en la base y la bruma sale de la boquilla'
+  );
 
   const title = t3(
     language,
@@ -217,15 +234,15 @@ const HeroSection: React.FC = () => {
   // Le sous-titre dit d'abord CE QU'EST Tolia (un diffuseur qui se branche sur les flacons de la marque), puis le bénéfice.
   const subtitle = t3(
     language,
-    "Tolia diffuse vos huiles essentielles directement depuis vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'il devient un geste quotidien, et vos clients rachètent vos huiles.",
-    'Tolia diffuses your essential oils straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily gesture, and your customers buy your oils again.',
-    'Tolia difunde sus aceites esenciales directamente desde sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un gesto diario, y sus clientes vuelven a comprar sus aceites.'
+    "Tolia est un diffuseur sans fil qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'il devient un geste quotidien, et vos clients rachètent vos huiles.",
+    'Tolia is a cordless diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.',
+    'Tolia es un difusor inalámbrico que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.'
   );
   const microcopy = t3(
     language,
-    'Sans engagement · Réponse sous 24 heures',
-    'No commitment · Reply within 24 hours',
-    'Sin compromiso · Respuesta en 24 horas'
+    'Sans engagement · Réponse sous un jour ouvré',
+    'No commitment · Reply within one business day',
+    'Sin compromiso · Respuesta en un día hábil'
   );
   const cta = t3(language, 'Recevez votre échantillon gratuit', 'Get your free sample', 'Reciba su muestra gratuita');
   // Deuxième porte d'entrée : parler directement à l'équipe (15 minutes en visio, sans formulaire).
@@ -242,14 +259,40 @@ const HeroSection: React.FC = () => {
       }}
     >
       <motion.div className="absolute inset-0" style={{ scale: videoScale }}>
-        <HeroVideo />
+        <HeroVideo onStatus={onFilm} />
       </motion.div>
 
       <motion.div className="absolute inset-0 bg-black" style={{ opacity: overlayOpacity }} />
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
+      {/* image du produit (secours du film) : en haut sur téléphone, en bas à droite sur ordinateur */}
+      <figure
+        aria-hidden={!showPoster}
+        className={`hero-poster-m pointer-events-none absolute left-5 right-5 top-[84px] z-[5] m-0 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
+        style={{ aspectRatio: '4 / 3' }}
+      >
+        <img src={waited ? `${POSTER}kitchen_m.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 74%' }} decoding="async" />
+      </figure>
+      <figure
+        aria-hidden={!showPoster}
+        className={`hero-poster-d pointer-events-none absolute right-[5vw] bottom-[12vh] z-[5] m-0 overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
+        style={{ width: 'min(26vw, 420px)', aspectRatio: '16 / 10' }}
+      >
+        <img src={waited ? `${POSTER}kitchen_d.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '56% 58%' }} decoding="async" />
+      </figure>
+
       <div className="relative z-10 h-full flex flex-col justify-end pb-24 md:pb-32 px-6 md:px-12 lg:px-20">
-        <div className="max-w-5xl space-y-6">
+        <div className="max-w-5xl space-y-5">
+          {/* « pour les marques » au-dessus du titre, plus visible (retour des marques testeuses) */}
+          <motion.span
+            className="block text-sm sm:text-base uppercase tracking-[0.14em] text-white/85 font-semibold"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: prefersReducedMotion() ? 0 : 0.1 }}
+          >
+            {eyebrow}
+          </motion.span>
+
           <AnimatedTitle key={language} text={title} delay={0.3} />
 
           <motion.div
@@ -257,11 +300,7 @@ const HeroSection: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: prefersReducedMotion() ? 0 : 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
           >
-            <span className="text-xs sm:text-sm uppercase tracking-[0.15em] text-white/70 font-medium block mb-4">
-              {eyebrow}
-            </span>
-
-            <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-2xl font-light leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-xl font-light leading-relaxed">
               {subtitle}
             </p>
 

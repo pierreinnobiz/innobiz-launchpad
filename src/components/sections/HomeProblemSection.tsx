@@ -43,9 +43,9 @@ const HomeProblemSection: React.FC = () => {
       name: t3(l, 'Diffusion passive : bâtonnets, pierre', 'Passive diffusion: reeds, stone', 'Difusión pasiva: varillas, piedra'),
       usage: t3(
         l,
-        'Ni intensité ni durée réglables. Le parfum faiblit jour après jour, et changer d’huile oblige à tout remplacer.',
-        'No control over intensity or duration. The scent weakens day after day, and changing oil means replacing everything.',
-        'Sin ajuste de intensidad ni de duración. El aroma se debilita día tras día y cambiar de aceite obliga a sustituirlo todo.'
+        'Agréables pour parfumer une entrée, mais sans réglage d’intensité ni de durée : le parfum faiblit jour après jour, et changer d’huile oblige à tout remplacer.',
+        'Pleasant for scenting a hallway, but with no control over intensity or duration: the scent weakens day after day, and changing oil means replacing everything.',
+        'Agradables para perfumar una entrada, pero sin ajuste de intensidad ni de duración: el aroma se debilita día tras día y cambiar de aceite obliga a sustituirlo todo.'
       ),
       result: t3(l, 'Un usage oublié : on n’y pense plus.', 'A forgotten habit: nobody thinks about it any more.', 'Un uso olvidado: ya nadie piensa en ello.'),
     },
@@ -81,15 +81,15 @@ const HomeProblemSection: React.FC = () => {
               l,
               'Vos clients aiment diffuser. C’est leur diffuseur qui les décourage.',
               'Your customers love diffusing. It’s their diffuser that puts them off.',
-              'A sus clientes les encanta difundir. Es su difusor lo que les desanima.'
+              'A sus clientes les encanta aromatizar su hogar. Es su difusor lo que les desanima.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
-              'Nous avons étudié comment les consommateurs utilisent leur diffuseur au quotidien. L’envie de diffuser est bien là ; ce qui l’éteint, ce sont les gestes que chaque appareil impose. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne se rachètent plus.',
-              'We studied how consumers actually use their diffuser day to day. The wish to diffuse is there; what kills it are the chores each device demands. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are never bought again.',
-              'Hemos estudiado cómo usan los consumidores su difusor en el día a día. Las ganas de difundir están ahí; lo que las apaga son los gestos que impone cada aparato. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
+              'En 20 ans de métier dans la diffusion, nous avons fait le même constat : l’envie de diffuser est bien là ; ce qui l’éteint, ce sont les gestes que chaque appareil impose. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne se rachètent plus.',
+              'In 20 years of designing diffusers, we have seen the same thing again and again: the wish to diffuse is there; what kills it is the chores each device demands. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.',
+              'En 20 años de experiencia en difusión, hemos llegado siempre a la misma conclusión: las ganas de difundir están ahí; lo que las apaga son los gestos que impone cada aparato. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
             )}
           </p>
         </motion.div>
@@ -142,7 +142,7 @@ const HomeProblemSection: React.FC = () => {
               {t3(
                 l,
                 'Au lieu de verser l’huile dans l’appareil, c’est le diffuseur qui vient sur le flacon. Le flacon de votre marque se visse sur un module de diffusion et se clipse dans Tolia ; un appui lance la diffusion. Ni eau, ni chaleur, ni bruit de pompe, rien à nettoyer, et une autre huile en une seconde.',
-                'Instead of pouring the oil into the device, the diffuser comes to the bottle. Your brand’s bottle screws onto a diffusion module and clips into Tolia; one press starts diffusion. No water, no heat, no pump noise, nothing to clean, and a different oil in one second.',
+                'Forget pouring oil into a device: with Tolia, the diffuser goes to the bottle. Your brand’s bottle screws onto a diffusion module and clips into Tolia; one press starts diffusion. No water, no heat, no pump noise, nothing to clean, and a different oil in one second.',
                 'En lugar de verter el aceite en el aparato, es el difusor el que va al frasco. El frasco de su marca se enrosca en un módulo de difusión y se encaja en Tolia; una pulsación inicia la difusión. Sin agua, sin calor, sin ruido de bomba, nada que limpiar y otro aceite en un segundo.'
               )}
             </p>
@@ -152,7 +152,7 @@ const HomeProblemSection: React.FC = () => {
                 {t3(
                   l,
                   'Le geste devient quotidien : les flacons se vident, et vos clients les rachètent.',
-                  'The gesture becomes daily: bottles run out, and your customers buy them again.',
+                  'It becomes a daily habit: bottles run out, and your customers buy them again.',
                   'El gesto se vuelve diario: los frascos se vacían y sus clientes los vuelven a comprar.'
                 )}
               </span>
@@ -180,7 +180,7 @@ const HomeProblemSection: React.FC = () => {
             className="mt-5 inline-flex items-center gap-2 text-sm font-semibold transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full px-2 py-1"
             style={{ color: 'hsl(28 52% 36%)' }}
           >
-            {t3(l, 'Voir Tolia en situation, sur une journée', 'See Tolia in action, over one day', 'Ver Tolia en situación, durante un día')}
+            {t3(l, 'Voir Tolia en situation, sur une journée', 'See Tolia in action, over one day', 'Ver Tolia en uso, durante un día')}
             <ArrowDown className="h-4 w-4" aria-hidden="true" />
           </a>
         </motion.div>

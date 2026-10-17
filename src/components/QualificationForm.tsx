@@ -2,6 +2,7 @@ import React, { useState, useCallback, useRef, useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowRight, CheckCircle2, Gift, Truck, Package, ShieldCheck, Lock } from 'lucide-react';
@@ -31,6 +32,7 @@ interface FormState {
   city: string;
   role: string;
   phone: string;
+  message: string;
   projectType: ProjectType;
 }
 
@@ -126,6 +128,7 @@ const QualificationForm: React.FC = () => {
     city: '',
     role: '',
     phone: '',
+    message: '',
     projectType: projectTypeFromUrl() ?? 'unset',
     };
   });
@@ -318,6 +321,7 @@ const QualificationForm: React.FC = () => {
           address_city: city,
           role: data.role,
           phone: data.phone,
+          message: data.message.trim().slice(0, 1000),
           project_type: data.projectType,
           project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
           ...getUtmParams(),
@@ -390,11 +394,11 @@ const QualificationForm: React.FC = () => {
     {
       value: 'white_label',
       label: t3(language, 'Production marque blanche', 'White-label production', 'Producción marca blanca'),
-      sub: t3(language, 'à partir de 3 000 unités, personnalisation complète', 'from 3,000 units, full customization', 'desde 3.000 unidades, personalización completa'),
+      sub: t3(language, 'à partir de 3 000 unités, personnalisation complète', 'from 3,000 units, full customisation', 'desde 3.000 unidades, personalización completa'),
     },
     {
       value: 'exploring',
-      label: t3(language, "Simple découverte pour l'instant", 'Just exploring for now', 'Solo explorando por ahora'),
+      label: t3(language, 'Je découvre, volumes à définir', 'Just exploring, volumes to be defined', 'Estoy explorando, volúmenes por definir'),
       sub: '',
     },
   ];
@@ -418,9 +422,9 @@ const QualificationForm: React.FC = () => {
           <p className="text-sm text-muted-foreground mt-2">
             {t3(
               language,
-              'Adresse complète pour la livraison. Rôle et téléphone facultatifs.',
-              'Full delivery address. Role and phone optional.',
-              'Dirección completa para la entrega. Rol y teléfono opcionales.'
+              'Adresse de livraison ; le reste est facultatif.',
+              'Delivery address; everything else is optional.',
+              'Dirección de entrega; lo demás es opcional.'
             )}
           </p>
         </div>
@@ -537,6 +541,28 @@ const QualificationForm: React.FC = () => {
           </div>
         </div>
 
+        {/* 17/10/2026 : 4 marques testeuses sur 5 voulaient dire leur projet (volumes, format des flacons, canaux de vente) */}
+        <div className="space-y-1.5">
+          <Label htmlFor="qf-message">
+            {t3(language, 'Votre projet en une phrase', 'Your project in one sentence', 'Su proyecto en una frase')}{' '}
+            <span className="font-normal text-muted-foreground">{t3(language, '(facultatif)', '(optional)', '(opcional)')}</span>
+          </Label>
+          <Textarea
+            id="qf-message"
+            rows={3}
+            maxLength={1000}
+            value={data.message}
+            onChange={(e) => update('message', e.target.value)}
+            placeholder={t3(
+              language,
+              'Ex. : format de vos flacons, volumes envisagés, canaux de vente',
+              'E.g. your bottle sizes, expected volumes, sales channels',
+              'Ej.: formato de sus frascos, volúmenes previstos, canales de venta'
+            )}
+            className="rounded-xl"
+          />
+        </div>
+
         <Button
           type="submit"
           disabled={isSubmitting}
@@ -597,7 +623,7 @@ const QualificationForm: React.FC = () => {
             setErrors((prev) => ({ ...prev, email: undefined, website: undefined }));
           }}
           onFocus={handleFormStart}
-          placeholder="jane.doe@company.com"
+          placeholder={t3(language, 'prenom@votremarque.com', 'name@yourbrand.com', 'nombre@sumarca.es')}
           className="h-11 rounded-xl"
           aria-invalid={!!errors.email}
         />
@@ -614,7 +640,7 @@ const QualificationForm: React.FC = () => {
             value={data.name}
             onChange={(e) => update('name', e.target.value)}
             onFocus={handleFormStart}
-            placeholder={t3(language, 'Jeanne Dupont', 'Jane Doe', 'Juana Pérez')}
+            placeholder={t3(language, 'Prénom Nom', 'First and last name', 'Nombre y apellidos')}
             className="h-11 rounded-xl"
             aria-invalid={!!errors.name}
           />
@@ -629,7 +655,7 @@ const QualificationForm: React.FC = () => {
             value={data.company}
             onChange={(e) => update('company', e.target.value)}
             onFocus={handleFormStart}
-            placeholder={t3(language, 'Acme Aromathérapie', 'Acme Aromatherapy', 'Acme Aromaterapia')}
+            placeholder={t3(language, 'Nom de votre marque', 'Your brand name', 'Nombre de su marca')}
             className="h-11 rounded-xl"
             aria-invalid={!!errors.company}
           />
@@ -651,7 +677,7 @@ const QualificationForm: React.FC = () => {
           value={data.website}
           onChange={(e) => { siteAuto.current = false; update('website', e.target.value); }}
           onFocus={handleFormStart}
-          placeholder="company.com"
+          placeholder={t3(language, 'votremarque.com', 'yourbrand.com', 'sumarca.es')}
           className="h-11 rounded-xl"
           aria-invalid={!!errors.website}
         />
@@ -668,9 +694,9 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm font-medium text-foreground">
           {t3(
             language,
-            "Je m'intéresse aussi à (optionnel)",
-            "I'm also exploring (optional)",
-            'También me interesa (opcional)'
+            'Votre projet (facultatif)',
+            'What are you considering? (optional)',
+            'Su proyecto (opcional)'
           )}
         </p>
         <div className="grid gap-2">
@@ -718,7 +744,7 @@ const QualificationForm: React.FC = () => {
         <span aria-hidden="true">·</span>
         <span className="inline-flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5" />
-          {t3(language, 'Fabriqué en France', 'Made in France', 'Hecho en Francia')}
+          {t3(language, 'Conçu et assemblé en France', 'Designed and assembled in France', 'Diseñado y ensamblado en Francia')}
         </span>
         <span aria-hidden="true">·</span>
         <span className="inline-flex items-center gap-1.5">

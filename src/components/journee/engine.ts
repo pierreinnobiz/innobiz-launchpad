@@ -59,7 +59,9 @@ const PATCH: Record<string, Record<Fmt, number[]>> = {
 
 // move : la pièce montrée change de place pendant l'animation (ex. le flacon de lavande entre dans le diffuseur) ;
 // à l'instant move.t, la flèche quitte l'ancien point et se redessine vers le nouveau.
-interface CalloutDef { t: number; at: Record<Fmt, XY>; zone: Zone; tx?: number; move?: { t: number; at: Record<Fmt, XY> } }
+// end : la pièce montrée disparaît ou bouge pendant l'animation ; à cet instant la flèche s'efface et le cadre s'atténue
+// (il reste lisible) : une flèche ne montre jamais un endroit vide (retour du test du 17/10/2026).
+interface CalloutDef { t: number; at: Record<Fmt, XY>; zone: Zone; tx?: number; end?: number; move?: { t: number; at: Record<Fmt, XY> } }
 interface PageDef {
   id: 'matin' | 'journee' | 'soir' | 'gamme' | 'bilan';
   kind: 'photo' | 'anim' | 'gamme' | 'bilan';
@@ -89,20 +91,20 @@ const PAGES: PageDef[] = [
     id: 'journee', kind: 'anim', tone: 't-day', icon: 'sun', color: 'var(--m2)', T: 8.9, anim: 'living', swap: [3.0, 4.7], cover: [4.9, 6.5],
     box: { d: [705, 400, 1405, 795], m: [110, 1080, 970, 1560] },
     callouts: [
-      { t: 0.9, at: { d: [1265, 738], m: [783, 1494] }, zone: 'right' },
-      { t: 1.9, at: { d: [1057, 622], m: [540, 1340] }, zone: 'top', tx: 1180 },
+      { t: 0.9, at: { d: [1360, 716], m: [911, 1473] }, zone: 'right' },
+      { t: 1.9, at: { d: [1057, 622], m: [540, 1340] }, zone: 'top', tx: 1180, end: 4.9 },
       { t: 7.0, at: { d: [870, 585], m: [276, 1268] }, zone: 'top', tx: 780 },
-      { t: 8.0, at: { d: [996, 674], m: [466, 1418] }, zone: 'bottom', tx: 930 },
+      { t: 8.0, at: { d: [1268, 612], m: [802, 1342] }, zone: 'bottom', tx: 1230 },
     ],
   },
   {
     id: 'soir', kind: 'anim', tone: 't-night', icon: 'moon', color: 'var(--m3)', T: 8.9, anim: 'bedroom', swap: [3.0, 4.7], cover: [4.9, 6.5],
     box: { d: [705, 395, 1405, 815], m: [110, 1090, 970, 1590] },
     callouts: [
-      { t: 0.9, at: { d: [1100, 748], m: [580, 1500] }, zone: 'bottom', tx: 1260 },
-      { t: 1.9, at: { d: [1352, 598], m: [909, 1334] }, zone: 'top', tx: 1330, move: { t: 4.75, at: { d: [1100, 560], m: [600, 1250] } } },
+      { t: 0.9, at: { d: [1100, 748], m: [665, 1478] }, zone: 'bottom', tx: 1260 },
+      { t: 1.9, at: { d: [1352, 598], m: [909, 1334] }, zone: 'top', tx: 1330, end: 3.0 },
       { t: 7.0, at: { d: [845, 590], m: [273, 1335] }, zone: 'top', tx: 800 },
-      { t: 8.0, at: { d: [1058, 806], m: [551, 1575] }, zone: 'bottom', tx: 860 },
+      { t: 8.0, at: { d: [1058, 806], m: [468, 1590] }, zone: 'bottom', tx: 860 },
     ],
   },
   { id: 'gamme', kind: 'gamme', tone: 't-dark', icon: 'grid', color: 'var(--copper-soft)', T: 4.6 },
@@ -139,7 +141,7 @@ interface Seq {
   chrono: string;
   chronoEl: HTMLElement | null;
 }
-interface Item { el: Element; t: number; end?: number; kind: 'fade' | 'path' | 'pop' | 'show'; last: number }
+interface Item { el: Element; t: number; end?: number; dim?: number; kind: 'fade' | 'path' | 'pop' | 'show'; last: number }
 interface PageState { el: HTMLElement; act: number | null; done: boolean; t: number; items: Item[]; seq: Seq | null; seen: boolean }
 interface Rect { x: number; y: number; w: number; h: number }
 
@@ -216,9 +218,9 @@ export function createJourneeEngine(
     return `<p class="eyebrow" data-t="0"><i aria-hidden="true">${ICON.check}</i><span>${b.eyebrow}</span></p>
       <h3 class="b-h" data-t="0">${b.h}</h3>
       <ul class="b-tiles">${b.tiles.map((x, j) => `<li data-t="${(0.5 + j * 0.4).toFixed(2)}"><strong>${x.big}</strong><span>${x.small}</span></li>`).join('')}</ul>
+      <p class="b-note" data-t="1.5">${b.note}</p>
       <p class="b-p" data-t="1.9">${b.p}</p>
-      <div class="b-cta" data-t="2.4"><a class="cta" href="#contact">${b.cta}${ICON.arrow}</a><a class="cta2" href="${calendlyUrl('journee_bilan')}" target="_blank" rel="noopener noreferrer">${ICON.cal}${b.cta2}</a></div>
-      <p class="note" data-t="2.4">${b.note}</p>`;
+      <div class="b-cta" data-t="2.4"><a class="cta" href="#contact">${b.cta}${ICON.arrow}</a><a class="cta2" href="${calendlyUrl('journee_bilan')}" target="_blank" rel="noopener noreferrer">${ICON.cal}${b.cta2}</a></div>`;
   }
 
   // ---------- mode « page » (écran fixe, une page à la fois)
@@ -444,8 +446,10 @@ export function createJourneeEngine(
       S.el.querySelectorAll(`.jr-arrows .head[data-j="${key}"], .jr-arrows .adot[data-j="${key}"], .f-dot[data-j="${key}"]`).forEach((el) => items.push({ el, t: t + (M === 'pin' ? 0.55 : 0), end, kind: 'pop', last: -1 }));
     };
     (pg.callouts || []).forEach((c, j) => {
-      S.el.querySelectorAll(`.jr-co[data-j="${j}"], .f-cos li[data-j="${j}"]`).forEach((el) => items.push({ el, t: c.t, kind: 'fade', last: -1 }));
-      arrowItems(String(j), c.t, c.move?.t);
+      // sur téléphone, on lit les explications en faisant défiler : elles sont toutes là dès l'arrivée sur la page (cascade rapide)
+      const t0 = M === 'pin' ? c.t : 0.15 + 0.12 * j;
+      S.el.querySelectorAll(`.jr-co[data-j="${j}"], .f-cos li[data-j="${j}"]`).forEach((el) => items.push({ el, t: t0, dim: el.classList.contains('jr-co') ? c.end : undefined, kind: 'fade', last: -1 }));
+      arrowItems(String(j), t0, c.end ?? c.move?.t);
       if (c.move) arrowItems(`${j}b`, c.move.t + 0.15);
     });
     S.items = items;
@@ -453,19 +457,23 @@ export function createJourneeEngine(
   }
   function renderItems(S: PageState, t: number) {
     for (const it of S.items) {
-      let p = it.t <= 0 ? 1 : reduce ? (t >= it.t ? 1 : 0) : clamp01((t - it.t) / (it.kind === 'path' ? 0.5 : FADE));
-      if (it.end != null) p *= 1 - (reduce ? (t >= it.end ? 1 : 0) : clamp01((t - it.end) / 0.3)); // l'élément s'efface (la pièce a bougé)
-      if (p === it.last) continue;
-      it.last = p;
-      const e = ease(p), s = (it.el as HTMLElement).style ?? (it.el as SVGElement).style;
+      // apparition (0 -> 1), puis éventuellement effacement (la pièce montrée a bougé) ou atténuation (cadre d'une étape passée)
+      const pin = it.t <= 0 ? 1 : reduce ? (t >= it.t ? 1 : 0) : clamp01((t - it.t) / (it.kind === 'path' ? 0.5 : FADE));
+      let k = 1;
+      if (it.end != null) k *= 1 - (reduce ? (t >= it.end ? 1 : 0) : clamp01((t - it.end) / 0.3));
+      if (it.dim != null) k *= 1 - 0.4 * (reduce ? (t >= it.dim ? 1 : 0) : clamp01((t - it.dim) / 0.4));
+      const key = pin * 1e4 + k;
+      if (key === it.last) continue;
+      it.last = key;
+      const e = ease(pin), s = (it.el as HTMLElement).style ?? (it.el as SVGElement).style;
       if (it.kind === 'fade') {
-        s.opacity = e.toFixed(3);
-        s.translate = p >= 1 ? '0 0' : `0 ${((1 - e) * 10).toFixed(2)}px`;
+        s.opacity = (e * k).toFixed(3);
+        s.translate = pin >= 1 ? '0 0' : `0 ${((1 - e) * 10).toFixed(2)}px`;
       } else if (it.kind === 'path') {
         s.strokeDashoffset = (100 * (1 - e)).toFixed(2);
-        s.opacity = p > 0 ? '1' : '0';
+        s.opacity = pin > 0 ? k.toFixed(3) : '0';
       } else {
-        s.opacity = e.toFixed(3);
+        s.opacity = (e * k).toFixed(3);
       }
     }
   }

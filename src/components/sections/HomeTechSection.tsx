@@ -20,9 +20,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Jusqu’à 90 h, sans fil', 'Up to 90 h, cordless', 'Hasta 90 h, sin cables'),
       text: t3(
         l,
-        'Sur batterie, recharge USB-C. Il passe de la chambre au bureau, à la voiture ou au spa, sans chercher de prise.',
-        'Battery-powered, USB-C charging. It moves from bedroom to office, car or spa without hunting for a socket.',
-        'Con batería y carga USB-C. Pasa del dormitorio a la oficina, al coche o al spa sin buscar un enchufe.'
+        'Sur batterie, recharge USB-C. Il passe de la chambre au bureau, à la voiture, au spa ou à la salle de yoga.',
+        'Battery-powered, USB-C charging. It moves from bedroom to office, car, spa or yoga room, no socket needed.',
+        'Con batería y carga USB-C. Pasa del dormitorio a la oficina, al coche, al spa o a la sala de yoga.'
       ),
       note: true,
     },
@@ -62,7 +62,7 @@ const HomeTechSection: React.FC = () => {
       text: t3(
         l,
         'Le geste se comprend dès la première fois, sans notice : le flacon se visse, le module se clipse, un appui diffuse.',
-        'The gesture is clear from the first time, no manual needed: the bottle screws on, the module clips in, one press diffuses.',
+        'Intuitive from the very first use, no manual needed: the bottle screws on, the module clips in, one press diffuses.',
         'El gesto se entiende desde la primera vez, sin manual: el frasco se enrosca, el módulo se encaja y una pulsación difunde.'
       ),
     },
@@ -81,9 +81,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Tout votre catalogue', 'Your whole catalogue', 'Todo su catálogo'),
       text: t3(
         l,
-        'Huiles pures, synergies, hydrolats, parfums d’intérieur : un seul appareil pour tout le catalogue, sans diffuseur dédié.',
-        'Pure oils, blends, hydrosols, home fragrances: one device for the whole catalogue, with no dedicated diffuser.',
-        'Aceites puros, sinergias, hidrolatos, fragancias para el hogar: un solo aparato para todo el catálogo, sin difusor dedicado.'
+        'Huiles essentielles pures, synergies et parfums synthétiques : un seul appareil pour tout le catalogue, sans diffuseur dédié.',
+        'Pure essential oils, blends and synthetic fragrances: one device for the whole catalogue, with no dedicated diffuser.',
+        'Aceites esenciales puros, sinergias y perfumes sintéticos: un solo aparato para todo el catálogo, sin difusor dedicado.'
       ),
     },
     {
@@ -92,7 +92,7 @@ const HomeTechSection: React.FC = () => {
       text: t3(
         l,
         'Intensité, durée et intermittence se règlent d’une pression, avec un indicateur LED bleu, vert ou ambre. Sans application.',
-        'Intensity, duration and intermittence are set with one press, with a blue, green or amber LED indicator. No app.',
+        'Intensity, run time and on/off cycles are set with one press, with a blue, green or amber LED indicator. No app.',
         'Intensidad, duración e intermitencia se ajustan con una pulsación, con un indicador LED azul, verde o ámbar. Sin aplicación.'
       ),
     },
@@ -108,11 +108,11 @@ const HomeTechSection: React.FC = () => {
     },
     {
       icon: LayoutGrid,
-      title: t3(l, 'Une seule référence à gérer', 'One reference to manage', 'Una sola referencia que gestionar'),
+      title: t3(l, 'Une seule référence à gérer', 'One SKU to manage', 'Una sola referencia que gestionar'),
       text: t3(
         l,
         'Un diffuseur universel à la place de 5 à 10 références : moins de stock immobilisé, moins de SAV, plus de marge.',
-        'One universal diffuser instead of 5 to 10 references: less tied-up stock, less after-sales, more margin.',
+        'One universal diffuser instead of 5 to 10 SKUs: less tied-up stock, fewer after-sales issues, more margin.',
         'Un difusor universal en lugar de 5 a 10 referencias: menos stock inmovilizado, menos posventa, más margen.'
       ),
     },

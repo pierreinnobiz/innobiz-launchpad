@@ -18,6 +18,8 @@ const languages: { code: LangCode; label: string; available: boolean }[] = [
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage } = useLanguage();
+  const { pathname } = useLocation();
+  const overHero = pathname === '/' && !isScrolled; // en-tête transparent posé sur le film sombre de l'accueil
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -29,6 +31,8 @@ const Navigation: React.FC = () => {
   const sampleLabel = language === 'es' ? 'Solicitar una muestra' : language === 'en' ? 'Request a sample' : 'Demander un échantillon';
   const sampleLabelShort = language === 'es' ? 'Muestra' : language === 'en' ? 'Sample' : 'Échantillon';
 
+  // Au-dessus du film du haut de page (fond sombre, en-tête transparent), les langues non choisies sont écrites en blanc :
+  // en gris, elles étaient presque invisibles (17/10/2026).
   const LanguageSwitcher = ({ className = '' }: { className?: string }) => (
     <div className={`flex items-center gap-1 ${className}`}>
       {languages.map((lang) => (
@@ -39,9 +43,11 @@ const Navigation: React.FC = () => {
           className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
             language === lang.code
               ? 'bg-primary text-primary-foreground shadow-sm'
-              : lang.available
-                ? 'text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/50'
-                : 'text-muted-foreground/40 border border-border/20 cursor-not-allowed'
+              : !lang.available
+                ? 'text-muted-foreground/40 border border-border/20 cursor-not-allowed'
+                : overHero
+                  ? 'text-white/85 hover:text-white hover:bg-white/10 border border-white/35'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/50'
           }`}
           aria-label={`Switch to ${lang.label}`}
           title={!lang.available ? (language === 'en' ? 'Coming soon' : 'Bientôt disponible') : undefined}
@@ -88,19 +94,25 @@ const Navigation: React.FC = () => {
   );
 };
 
-/** Sticky mobile action bar — visible on arrival, hidden only over the contact form */
+/** Barre d'action fixe sur téléphone : cachée tant que le haut de page (qui a déjà ses boutons) est à l'écran, et au-dessus du formulaire.
+ *  17/10/2026 : trois boutons « échantillon » dans le premier écran, c'était trop (retour du test par les marques). */
 const StickyMobileCTA: React.FC<{ label: string }> = ({ label }) => {
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const contact = document.getElementById('contact');
-    if (!contact) return;
+    const seen = new Map<Element, boolean>();
     const obs = new IntersectionObserver(
-      ([e]) => setVisible(!e.isIntersecting),
+      (entries) => {
+        entries.forEach((e) => seen.set(e.target, e.isIntersecting));
+        setVisible(![...seen.values()].some(Boolean));
+      },
       { threshold: 0.1 }
     );
-    obs.observe(contact);
-    return () => obs.disconnect();
+    // la section contact n'existe qu'une fois le bas de page chargé : on la cherche jusqu'à la trouver
+    const watch = () => ['hero', 'journee', 'contact'].forEach((id) => { const el = document.getElementById(id); if (el && !seen.has(el)) { seen.set(el, false); obs.observe(el); } });
+    watch();
+    const timer = window.setInterval(() => { watch(); if (seen.size >= 3) window.clearInterval(timer); }, 800);
+    return () => { obs.disconnect(); window.clearInterval(timer); };
   }, []);
 
   return (

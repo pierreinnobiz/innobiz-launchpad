@@ -24,9 +24,9 @@ const DurabilitySection: React.FC = () => {
       title: t3(language, 'Modulaire', 'Modular', 'Modular'),
       text: t3(
         language,
-        'Coque, module de diffusion, électronique, batterie : chaque partie se remplace sans changer tout l’appareil. Sans verre fragile, sans eau stagnante ni pompe, il y a moins de pièces qui cassent, donc moins de retours à gérer.',
-        'Shell, diffusion module, electronics, battery: every part can be replaced without changing the whole device. With no fragile glass, no stagnant water and no pump, fewer parts break, so fewer returns to manage.',
-        'Carcasa, módulo de difusión, electrónica, batería: cada parte se puede reemplazar sin cambiar todo el dispositivo. Sin vidrio frágil, sin agua estancada ni bomba, hay menos piezas que se rompen y, por tanto, menos devoluciones que gestionar.'
+        'Cloche, module de diffusion, électronique, batterie : chaque partie se remplace sans changer tout l’appareil. Sans verrerie fragile à l’intérieur, sans eau stagnante ni pompe, il y a moins de pièces qui cassent, donc moins de retours à gérer.',
+        'Cover, diffusion module, electronics, battery: every part can be replaced without changing the whole device. With no fragile glassware inside, no stagnant water and no pump, fewer parts break, so fewer returns to manage.',
+        'Cubierta, módulo de difusión, electrónica, batería: cada parte se puede reemplazar sin cambiar todo el dispositivo. Sin cristalería frágil en su interior, sin agua estancada ni bomba, hay menos piezas que se rompen y, por tanto, menos devoluciones que gestionar.'
       ),
     },
     {
@@ -84,9 +84,9 @@ const DurabilitySection: React.FC = () => {
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               language,
-              'En Europe, une large majorité de consommateurs déclarent vouloir des produits plus durables et réparables, et cette attente progresse chaque année. Tolia a été conçu dans cette logique : un diffuseur qui reste utilisé et qui peut être réparé au lieu d’être jeté.',
-              'Across Europe, a large majority of consumers say they want more durable and repairable products, and this expectation grows every year. Tolia was designed with this in mind: a diffuser that stays in use and can be repaired rather than thrown away.',
-              'En Europa, una gran mayoría de consumidores declaran querer productos más duraderos y reparables, y esta expectativa crece cada año. Tolia fue diseñado con esta lógica: un difusor que se sigue usando y que puede repararse en lugar de tirarse.'
+              'En Europe, les consommateurs attendent de plus en plus des produits qui durent et qui se réparent. Tolia a été conçu dans cette logique : un diffuseur qui reste utilisé et qui peut être réparé au lieu d’être jeté.',
+              'Across Europe, consumers increasingly expect products that last and can be repaired. Tolia was designed with this in mind: a diffuser that stays in use and can be repaired rather than thrown away.',
+              'En Europa, los consumidores esperan cada vez más productos que duren y se puedan reparar. Tolia se diseñó con esta lógica: un difusor que se sigue usando y que puede repararse en lugar de tirarse.'
             )}
           </p>
         </motion.div>
@@ -113,6 +113,14 @@ const DurabilitySection: React.FC = () => {
                 'Vista despiezada de un difusor modular: carcasa, módulo de difusión, electrónica y batería por separado'
               )}
             />
+            <figcaption className="px-4 py-2.5 text-xs text-muted-foreground">
+              {t3(
+                language,
+                'Illustration de principe : chaque pièce se démonte et se remplace.',
+                'Illustration: every part comes apart and can be replaced.',
+                'Ilustración: cada pieza se desmonta y se sustituye.'
+              )}
+            </figcaption>
           </motion.figure>
 
           <motion.ul
@@ -154,17 +162,9 @@ const DurabilitySection: React.FC = () => {
             <p className="mt-1 text-base md:text-lg font-semibold text-foreground leading-snug">
               {t3(
                 language,
-                'Un produit utilisé quotidiennement pendant des années ne devient jamais un déchet dormant. C’est le meilleur argument RSE que vous puissiez avoir.',
-                'A product used daily for years never becomes dormant waste, which is the strongest CSR story you can tell.',
-                'Un producto usado diariamente durante años nunca se convierte en residuo inactivo, que es la historia de RSE más fuerte que puede contar.'
-              )}
-            </p>
-            <p className="mt-2 text-xs italic text-muted-foreground/70">
-              {t3(
-                language,
-                'Sources : études et positions européennes sur durabilité et réparabilité des produits.',
-                'Sources: European studies and policies on product durability and repairability.',
-                'Fuentes: estudios y políticas europeas sobre durabilidad y reparabilidad de productos.'
+                'Un produit utilisé chaque jour pendant des années ne finit jamais oublié dans un tiroir. C’est un argument RSE concret pour votre marque.',
+                'A product used every day for years never ends up forgotten in a drawer: a concrete sustainability story for your brand.',
+                'Un producto que se usa a diario durante años nunca acaba olvidado en un cajón: un argumento de sostenibilidad concreto para su marca.'
               )}
             </p>
           </div>
