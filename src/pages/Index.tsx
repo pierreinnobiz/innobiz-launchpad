@@ -9,6 +9,9 @@ import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
 import { useLanguage } from '@/contexts/LanguageContext';
 import SeoOpenGraph from '@/components/SeoOpenGraph';
+import { useLocation } from 'react-router-dom';
+import { langFromPath } from '@/lib/langPath';
+import { HOME_SEO } from '@/seo/homeSeo';
 
 
 // A stale build (old chunk names) makes this dynamic import fail after a deploy.
@@ -33,29 +36,15 @@ const IndexBelowFold = React.lazy(() =>
     })
 );
 
-const HOME_SEO = {
-  fr: {
-    title: "Diffuseurs d'huiles essentielles en marque blanche | Tolia by Innobiz",
-    description: "Diffuseur d'huiles essentielles pour les marques d'aromathérapie : il fonctionne directement avec vos flacons. Diffusion sans eau, arômes préservés, et des clients qui rachètent vos huiles.",
-    keywords: "diffuseurs d'huiles essentielles, diffusion huiles essentielles, diffuseur aromatique, arômes aromathérapie, diffuseur marque blanche, diffuseur sans eau",
-  },
-  en: {
-    title: 'White-Label Essential Oil Diffusers | Tolia by Innobiz',
-    description: 'Essential oil diffuser for aromatherapy brands that works straight from your own bottles. Waterless diffusion that protects the aroma, and customers who keep buying your oils.',
-    keywords: 'essential oil diffusers, essential oil diffusion, aromatic diffuser, aromatherapy aromas, white label diffuser, waterless diffuser',
-  },
-  es: {
-    title: 'Difusores de aceites esenciales de marca blanca | Tolia by Innobiz',
-    description: 'Difusor de aceites esenciales para marcas de aromaterapia que funciona directamente con sus frascos. Difusión sin agua, aromas intactos y clientes que vuelven a comprar sus aceites.',
-    keywords: 'difusores de aceites esenciales, difusión de aceites esenciales, difusor aromático, aromas aromaterapia, difusor marca blanca',
-  },
-} as const;
+
 
 
 const Index: React.FC = () => {
   useDocumentLang();
   const { language } = useLanguage();
   const seo = HOME_SEO[language] ?? HOME_SEO.en;
+  const pathLang = langFromPath(useLocation().pathname);
+  const homePath = pathLang ? `/${pathLang}/` : '/';
   // Below-the-fold sections are loaded in a separate chunk right after the
   // first paint, so the hero (LCP element on mobile) is not delayed by them.
   const [showBelowFold, setShowBelowFold] = useState(
@@ -91,9 +80,14 @@ const Index: React.FC = () => {
         <title>{seo.title}</title>
         <meta name="description" content={seo.description} />
         <meta name="keywords" content={seo.keywords} />
-        <link rel="canonical" href="https://www.innobiz-tolia.com/" />
+        {/* une adresse par langue : chaque page déclare la sienne, et ses traductions (référencement, 17/10/2026) */}
+        <link rel="canonical" href={`https://www.innobiz-tolia.com${homePath}`} />
+        <link rel="alternate" hrefLang="fr" href="https://www.innobiz-tolia.com/fr/" />
+        <link rel="alternate" hrefLang="en" href="https://www.innobiz-tolia.com/en/" />
+        <link rel="alternate" hrefLang="es" href="https://www.innobiz-tolia.com/es/" />
+        <link rel="alternate" hrefLang="x-default" href="https://www.innobiz-tolia.com/" />
       </Helmet>
-      <SeoOpenGraph title={seo.title} description={seo.description} path="/" />
+      <SeoOpenGraph title={seo.title} description={seo.description} path={homePath} />
 
       <Navigation />
 
@@ -115,5 +109,4 @@ const Index: React.FC = () => {
     </div>
   );
 };
-
 export default Index;

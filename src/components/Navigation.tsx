@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import innobizLogo from '@/assets/innobiz-logo.png';
 import { trackCTAClick } from '@/lib/tracking';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { isHomePath } from '@/lib/langPath';
 
 type LangCode = 'en' | 'fr' | 'es';
 
@@ -18,8 +19,9 @@ const languages: { code: LangCode; label: string; available: boolean }[] = [
 const Navigation: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const { language, setLanguage } = useLanguage();
-  const { pathname } = useLocation();
-  const overHero = pathname === '/' && !isScrolled; // en-tête transparent posé sur le film sombre de l'accueil
+  const { pathname, search } = useLocation();
+  const navigate = useNavigate();
+  const overHero = isHomePath(pathname) && !isScrolled; // en-tête transparent posé sur le film sombre de l'accueil
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 10);
@@ -31,6 +33,12 @@ const Navigation: React.FC = () => {
   const sampleLabel = language === 'es' ? 'Recibir mi muestra' : language === 'en' ? 'Get my sample' : 'Recevoir mon échantillon';
   const sampleLabelShort = language === 'es' ? 'Muestra' : language === 'en' ? 'Sample' : 'Échantillon';
 
+  // Une adresse par langue (/fr/, /en/, /es/) : sur l'accueil, changer de langue change aussi l'adresse (référencement, 17/10/2026).
+  const switchLang = (code: LangCode) => {
+    setLanguage(code);
+    if (isHomePath(pathname)) navigate({ pathname: `/${code}/`, search }, { replace: true });
+  };
+
   // Au-dessus du film du haut de page (fond sombre, en-tête transparent), les langues non choisies sont écrites en blanc :
   // en gris, elles étaient presque invisibles (17/10/2026).
   const LanguageSwitcher = ({ className = '' }: { className?: string }) => (
@@ -38,7 +46,7 @@ const Navigation: React.FC = () => {
       {languages.map((lang) => (
         <button
           key={lang.code}
-          onClick={() => lang.available && setLanguage(lang.code)}
+          onClick={() => lang.available && switchLang(lang.code)}
           disabled={!lang.available}
           className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
             language === lang.code

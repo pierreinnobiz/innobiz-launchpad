@@ -1,8 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
+import { isHomePath } from '@/lib/langPath';
 
 export const useScrollToTop = () => {
   const { pathname, hash } = useLocation();
+  const previous = useRef(pathname);
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -14,8 +16,12 @@ export const useScrollToTop = () => {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
-    // When there is no fragment, always return to the top of the page.
+    const was = previous.current;
+    previous.current = pathname;
+    // When there is no fragment, always return to the top of the page
+    // (except when only the language of the home page changes: /fr/ → /en/).
     if (!hash) {
+      if (was !== pathname && isHomePath(was) && isHomePath(pathname)) return;
       window.scrollTo(0, 0);
       return;
     }

@@ -50,6 +50,10 @@ const AppRoutes = () => {
       <Suspense fallback={<PageFallback />}>
         <Routes>
           <Route path="/" element={<Index />} />
+          {/* une adresse par langue pour la page d'accueil (référencement, 17/10/2026) */}
+          <Route path="/fr" element={<Index />} />
+          <Route path="/en" element={<Index />} />
+          <Route path="/es" element={<Index />} />
           <Route path="/faq" element={<LegacyFaq />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/legal" element={<Legal />} />

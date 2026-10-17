@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, ReactNode, useMemo, useEffect } from 'react';
+import { langFromPath } from '@/lib/langPath';
 
 const HTML_LANG_MAP: Record<'fr' | 'en' | 'es', string> = {
   fr: 'fr-FR',
@@ -223,6 +224,9 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 const getInitialLanguage = (): Language => {
   if (typeof window === 'undefined') return 'en';
+  // une adresse par langue (/fr/, /en/, /es/) : elle passe avant tout le reste
+  const fromPath = langFromPath(window.location.pathname);
+  if (fromPath) return fromPath;
   const param = (new URLSearchParams(window.location.search).get('lang') || '').toLowerCase();
   if (param === 'fr' || param === 'en' || param === 'es') return param;
   try {

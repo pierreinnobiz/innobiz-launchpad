@@ -3,9 +3,36 @@
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://www.innobiz-tolia.com/</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/?lang=en" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/?lang=es" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.innobiz-tolia.com/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.innobiz-tolia.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/es/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/" />
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://www.innobiz-tolia.com/es/</loc>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/fr/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/en/" />
+    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/es/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/" />
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>

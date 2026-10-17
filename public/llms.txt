@@ -1,20 +1,31 @@
 # Tolia by Innobiz
 
-> Tolia is a premium B2B essential oil diffuser for fragrance, aromatherapy and wellness brands. It turns a one-time diffuser sale into recurring revenue: the diffuser works straight from the brand's own bottles. Designed in France.
+> Tolia is a waterless, cordless essential oil diffuser designed in France by Innobiz for aromatherapy brands. It works straight from the brand's own standard bottles (DIN 18 neck, 5, 10, 15, 30 or 50 ml): no water, no cleaning, a different oil in one second. Brands sell it under their own name (white label, typically from 3,000 units) or from stock under the Tolia brand (from 500 units).
 
 ## Key facts
 
-- Cordless, up to 90 hours of battery life (70 to 90 h with the light off, 16 to 20 h with the ambient light on, depending on intensity); USB-C charging.
-- Changing oil takes 1 second: the diffusion module stays screwed onto each bottle.
-- Fits standard bottles (DIN 18 neck, 5 to 50 ml): brands use their own essential oils.
-- Waterless, no cleaning; replaceable battery; fully customisable (colours, materials, finishes, logo, box).
-- CE-marked, RoHS-compliant, already sold across Europe.
+- Designed in France by Innobiz (Jacou, near Montpellier).
+- Cordless: up to 90 hours of battery life (70 to 90 h with the light off, 16 to 20 h with the ambient light on, depending on intensity); USB-C charging; user-replaceable battery.
+- Waterless and heat-free: the essential oil is diffused pure, nothing to fill or clean.
+- Changing oil takes 1 second: a diffusion module stays screwed onto each bottle, which then clips into the base.
+- Diffusion time, strength and on/off cycles are easy to adjust; modes can be pre-programmed to the brand's recommendations.
+- Tested on more than 150 essential oils and blends; also diffuses synthetic and home fragrances.
+- Fully customisable for brands: colour (RAL or Pantone), finishes, materials, logo, box, diffusion modes.
+- White label: typically from 3,000 units, 12 to 20 weeks. Stock order: from 500 units, ships from France within 72 h if in stock.
+- CE-marked, RoHS-compliant, already sold in Europe.
+- Free sample for brands; reply within one business day.
 
 ## Pages
 
-- [Home](/): Product overview, business impact and free sample request for fragrance and wellness brands.
-- [FAQ](/#faq): Common questions about Tolia technology, stock orders, white-label production and samples.
-- [Contact](/contact): Request a free Tolia sample or send a message to the Innobiz team.
-- [Legal Notice](/legal): Company information, terms and legal disclosures.
-- [Privacy Policy](/privacy): How Innobiz collects, uses and protects personal data.
-- [Cookie Policy](/cookies): Information about cookies and tracking technologies on this site.
+- [Tolia in English](https://www.innobiz-tolia.com/en/): product, guided tour, technology, durability, customisation, offers, FAQ, contact.
+- [Tolia en français](https://www.innobiz-tolia.com/fr/): la même page en français.
+- [Tolia en español](https://www.innobiz-tolia.com/es/): la misma página en español.
+- [FAQ](https://www.innobiz-tolia.com/en/#faq): common questions (white label, bottles, oils and fragrances, battery, lead times, prices, compliance).
+- [Full text of the site](https://www.innobiz-tolia.com/llms-full.txt): the complete page in French, English and Spanish.
+- [Legal notice](https://www.innobiz-tolia.com/legal) · [Privacy policy](https://www.innobiz-tolia.com/privacy) · [Cookie policy](https://www.innobiz-tolia.com/cookies)
+
+## Contact
+
+- Email: contact@innobiz.fr
+- Phone: +33 4 67 84 89 14
+- Address: 8 rue Louis Breguet, 34830 Jacou, France

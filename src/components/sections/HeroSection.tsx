@@ -173,7 +173,7 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
   const delayChildren = fast ? 0 : delay;
 
   return (
-    <motion.h1
+    <motion.h2
       className="text-3xl sm:text-4xl md:text-5xl lg:text-[clamp(44px,4.2vw,64px)] font-bold text-white leading-[1.1] tracking-tight"
       initial="hidden"
       animate="visible"
@@ -199,7 +199,7 @@ const AnimatedTitle: React.FC<{ text: string; delay?: number }> = ({ text, delay
           {i < words.length - 1 && <span className="text-[0px]"> </span>}
         </React.Fragment>
       ))}
-    </motion.h1>
+    </motion.h2>
   );
 };
 
@@ -294,14 +294,15 @@ const HeroSection: React.FC = () => {
       <div className="hero-content relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32 px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl space-y-5 lg:max-w-[min(52vw,760px)]">
           {/* « pour les marques » au-dessus du titre, plus visible (retour des marques testeuses) */}
-          <motion.span
+          {/* titre principal pour Google : « Diffuseurs d'huiles essentielles pour les marques » (même apparence qu'avant) */}
+          <motion.h1
             className="block text-sm sm:text-base uppercase tracking-[0.14em] text-white/85 font-semibold"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: prefersReducedMotion() ? 0 : 0.1 }}
           >
             {eyebrow}
-          </motion.span>
+          </motion.h1>
 
           <AnimatedTitle key={language} text={title} delay={0.3} />
 
