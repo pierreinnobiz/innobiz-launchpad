@@ -36,17 +36,17 @@ const IndexBelowFold = React.lazy(() =>
 const HOME_SEO = {
   fr: {
     title: "Diffuseurs d'huiles essentielles en marque blanche | Tolia by Innobiz",
-    description: "Diffuseur aromatique rechargeable pour marques d'aromathérapie. Diffusion d'huiles essentielles sans eau, arômes préservés, revenus récurrents de recharges.",
+    description: "Diffuseur d'huiles essentielles pour les marques d'aromathérapie : il fonctionne directement avec vos flacons. Diffusion sans eau, arômes préservés, et des clients qui rachètent vos huiles.",
     keywords: "diffuseurs d'huiles essentielles, diffusion huiles essentielles, diffuseur aromatique, arômes aromathérapie, diffuseur marque blanche, diffuseur sans eau",
   },
   en: {
     title: 'White-Label Essential Oil Diffusers | Tolia by Innobiz',
-    description: 'Refillable aromatic diffuser for aromatherapy brands. Waterless essential oil diffusion that protects aroma integrity and drives recurring refill revenue.',
+    description: 'Essential oil diffuser for aromatherapy brands that works straight from your own bottles. Waterless diffusion that protects the aroma, and customers who keep buying your oils.',
     keywords: 'essential oil diffusers, essential oil diffusion, aromatic diffuser, aromatherapy aromas, white label diffuser, waterless diffuser',
   },
   es: {
     title: 'Difusores de aceites esenciales de marca blanca | Tolia by Innobiz',
-    description: 'Difusor aromático recargable para marcas de aromaterapia. Difusión de aceites esenciales sin agua, aromas intactos e ingresos recurrentes por recargas.',
+    description: 'Difusor de aceites esenciales para marcas de aromaterapia que funciona directamente con sus frascos. Difusión sin agua, aromas intactos y clientes que vuelven a comprar sus aceites.',
     keywords: 'difusores de aceites esenciales, difusión de aceites esenciales, difusor aromático, aromas aromaterapia, difusor marca blanca',
   },
 } as const;

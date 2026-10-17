@@ -53,9 +53,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vos flacons, tels quels', 'Your bottles, as they are', 'Sus frascos, tal cual'),
       text: t3(
         l,
-        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Votre flacon sert directement de recharge.',
-        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). Your bottle is the refill.',
-        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). Su frasco sirve directamente de recarga.'
+        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Rien à transvaser : le flacon s’utilise tel quel.',
+        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). Nothing to decant: the bottle is used as it is.',
+        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). Nada que trasvasar: el frasco se usa tal cual.'
       ),
     },
     {
@@ -80,12 +80,12 @@ const HomeTechSection: React.FC = () => {
     },
     {
       icon: SlidersHorizontal,
-      title: t3(l, 'Durée et puissance réglables', 'Adjustable time and strength', 'Duración y potencia ajustables'),
+      title: t3(l, 'Une diffusion facile à régler', 'Easy-to-adjust diffusion', 'Una difusión fácil de ajustar'),
       text: t3(
         l,
-        'La durée et la puissance de diffusion se règlent très simplement, pour répondre à toutes les conditions d’usage.',
-        'Diffusion time and strength are very easy to adjust, to suit every situation.',
-        'La duración y la potencia de difusión se ajustan de forma muy sencilla, para adaptarse a cualquier situación de uso.'
+        'La durée, la puissance et l’intermittence de la diffusion se règlent très simplement, pour répondre à toutes les conditions d’usage.',
+        'Diffusion time, strength and on/off cycles are very easy to adjust, to suit every situation.',
+        'La duración, la potencia y la intermitencia de la difusión se ajustan de forma muy sencilla, para adaptarse a cualquier situación de uso.'
       ),
     },
     {

@@ -20,15 +20,6 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://www.innobiz-tolia.com/faq</loc>
-    <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/faq?lang=en" />
-    <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/faq?lang=fr" />
-    <xhtml:link rel="alternate" hreflang="es" href="https://www.innobiz-tolia.com/faq?lang=es" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.innobiz-tolia.com/faq" />
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://www.innobiz-tolia.com/legal</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://www.innobiz-tolia.com/legal?lang=en" />
     <xhtml:link rel="alternate" hreflang="fr" href="https://www.innobiz-tolia.com/legal?lang=fr" />

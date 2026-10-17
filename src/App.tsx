@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { useWave2Tracking } from "@/hooks/useWave2Tracking";
@@ -12,7 +12,6 @@ import React, { Suspense } from "react";
 import Index from "./pages/Index";
 import ProspectTracker from "./components/ProspectTracker";
 import CookieConsent from "./components/CookieConsent";
-const FAQ = React.lazy(() => import("./pages/FAQ"));
 const Contact = React.lazy(() => import("./pages/Contact"));
 const Legal = React.lazy(() => import("./pages/Legal").then(m => ({ default: m.default })));
 const Privacy = React.lazy(() => import("./pages/Legal").then(m => ({ default: m.Privacy })));
@@ -35,6 +34,13 @@ const ScrollToTop = () => {
   return null;
 };
 
+// L'ancienne page FAQ séparée (/faq, anciens textes) renvoie vers la FAQ de la page d'accueil (18/10/2026) :
+// les anciens liens et les résultats de recherche continuent de fonctionner.
+const LegacyFaq = () => {
+  const { search } = useLocation();
+  return <Navigate to={{ pathname: '/', search, hash: '#faq' }} replace />;
+};
+
 const AppRoutes = () => {
   useWave2Tracking();
   return (
@@ -44,7 +50,7 @@ const AppRoutes = () => {
       <Suspense fallback={<PageFallback />}>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/faq" element={<FAQ />} />
+          <Route path="/faq" element={<LegacyFaq />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/privacy" element={<Privacy />} />

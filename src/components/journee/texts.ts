@@ -47,7 +47,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
   fr: {
     head: {
       kicker: 'Une journée avec Tolia',
-      h2: 'Suivez Tolia du matin au soir : trois moments, trois huiles essentielles, un seul diffuseur.',
+      h2: 'Voici une journée parmi d’autres. Chacun diffuse les huiles qu’il aime, quand il le souhaite : Tolia s’adapte à toutes les habitudes.',
       how: 'La visite se déroule en cinq étapes. Faites défiler la page ou utilisez le bouton « Suivant » : chaque étape s’affiche en entier avant de passer à la suivante.',
       howFlow: 'La visite se déroule en cinq étapes, à lire en faisant défiler : les numéros sur chaque image renvoient aux explications dessous.',
     },
@@ -66,21 +66,21 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
     },
     matin: {
       stop: { time: '07:30', sub: 'Matin' },
-      eyebrow: '07:30 · Le matin, dans la cuisine',
-      h: 'Un appui, et la diffusion commence avant même le café.',
-      p: 'Au réveil, personne n’a envie de remplir un réservoir, de compter des gouttes ou d’attendre qu’un appareil chauffe. Avec Tolia, le flacon de menthe poivrée est déjà en place : un appui sur la base, et la brume d’huile essentielle se répand aussitôt dans la cuisine. Rien à préparer, rien à nettoyer ensuite.',
-      alt: 'Diffuseur Tolia ouvert sur une table de cuisine au petit matin : le flacon Matin est clipsé dans la base, la brume sort de la buse, deux autres flacons attendent à côté',
+      eyebrow: '07:30 · Le matin, pour bien démarrer',
+      h: 'Un appui, et la journée démarre avec une huile tonifiante.',
+      p: 'Le matin, beaucoup choisissent une huile essentielle tonifiante, comme la menthe poivrée, pour bien démarrer la journée ; en hiver, d’autres préfèrent une huile que l’on diffuse traditionnellement à cette saison, comme le ravintsara. Avec Tolia, le flacon est déjà en place : un appui sur la base, et la brume se répand aussitôt. Rien à remplir, rien à doser, rien à nettoyer ensuite.',
+      alt: 'Diffuseur Tolia ouvert sur une table, le matin : le flacon Matin est clipsé dans la base, la brume sort de la buse, deux autres flacons attendent à côté',
       callouts: [
         { t: 'Votre flacon, tel quel', p: 'Nous avons retiré la cloche pour vous le montrer : le flacon de menthe poivrée est clipsé tête en bas dans la base. Rien à transvaser, aucune goutte à compter.' },
-        { t: 'Un appui pour lancer', p: 'La diffusion démarre aussitôt, sans temps de chauffe. La durée et la puissance se règlent très simplement.' },
+        { t: 'Un appui pour lancer', p: 'La diffusion démarre aussitôt, sans temps de chauffe. La durée, la puissance et l’intermittence se règlent très simplement.' },
         { t: 'Une brume d’huile pure', p: 'Nébulisation à froid : ni eau, ni chaleur. L’huile essentielle se diffuse telle qu’elle sort du flacon.' },
       ],
     },
     journee: {
-      stop: { time: '18:30', sub: 'Fin de journée' },
-      eyebrow: '18:30 · Fin de journée, au salon',
+      stop: { time: '14:00', sub: 'Après-midi' },
+      eyebrow: '14:00 · En début d’après-midi, au salon',
       h: 'Envie d’une autre huile essentielle ? Il suffit d’une seconde.',
-      p: 'En fin de journée, on a envie d’une note plus douce. Avec un diffuseur classique, il faudrait vider, rincer, sécher puis remplir le réservoir. Avec Tolia, le module de diffusion reste vissé sur chaque flacon : on retire la menthe poivrée, on clipse l’orange douce, on repose la cloche, et la diffusion repart.',
+      p: 'En début d’après-midi, on a souvent envie de changer d’ambiance : une note d’agrume plus douce pour une pause, ou une huile plus fraîche pour rester concentré. Avec un diffuseur classique, il faudrait vider, rincer, sécher puis remplir le réservoir. Avec Tolia, le module de diffusion reste vissé sur chaque flacon : on retire la menthe poivrée, on clipse l’orange douce, on repose la cloche, et la diffusion repart.',
       alt: 'Au salon, le flacon Matin sort de la base de Tolia, le flacon Journée prend sa place, puis la cloche est reposée et la brume repart',
       chrono: 'pour changer d’huile',
       callouts: [
@@ -90,10 +90,10 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       ],
     },
     soir: {
-      stop: { time: '22:00', sub: 'Soir' },
-      eyebrow: '22:00 · Le soir, dans la chambre',
+      stop: { time: '21:00', sub: 'Soir' },
+      eyebrow: '21:00 · Le soir, dans la chambre',
       h: 'Sans fil et silencieux, Tolia accompagne le coucher.',
-      p: 'Le soir, on emporte Tolia dans la chambre comme on emporte un livre : il n’a pas de fil. On clipse la lavande vraie, on choisit une diffusion douce, qui s’arrête d’elle-même au bout de la durée choisie. Sa batterie tient jusqu’à 90 heures et se recharge en USB‑C.',
+      p: 'Vers 21 h, on emporte Tolia dans la chambre comme on emporte un livre : il n’a pas de fil. On clipse la lavande vraie et on choisit une diffusion douce, par intermittence, qui s’arrête d’elle-même au bout de la durée choisie. Sa batterie tient jusqu’à 90 heures et se recharge en USB‑C.',
       alt: 'Dans la chambre, le flacon Journée sort de la base, le flacon Soir prend sa place, puis la cloche est reposée sur le diffuseur',
       chrono: 'pour changer d’huile',
       callouts: [
@@ -106,13 +106,13 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '', sub: 'Votre gamme' },
       eyebrow: 'Ce que vous venez de voir',
       recap: [
-        { time: '07:30', text: 'Un appui, et l’huile du matin se diffuse. Rien à préparer.' },
-        { time: '18:30', text: 'Une autre huile en une seconde, sans rien vider ni rincer.' },
-        { time: '22:00', text: 'Sans fil et silencieux au chevet, avec jusqu’à 90 h d’autonomie.' },
+        { time: '07:30', text: 'Une huile tonifiante pour bien démarrer, d’un seul appui.' },
+        { time: '14:00', text: 'Une autre huile en une seconde, sans rien vider ni rincer.' },
+        { time: '21:00', text: 'Sans fil et silencieux au chevet, avec jusqu’à 90 h d’autonomie.' },
       ],
       h: 'Ce que Tolia apporte à votre gamme',
       adv: [
-        { t: 'Vos flacons deviennent la recharge', p: 'Le module se visse sur les flacons standard (col DIN 18, de 5 à 50 ml) : vos clients rachètent simplement vos huiles.' },
+        { t: 'Vos flacons, directement', p: 'Le module se visse sur les flacons standard (col DIN 18, de 5 à 50 ml) : vos clients rachètent simplement vos huiles.' },
         { t: 'Un seul appareil pour votre gamme', p: 'La technologie a été testée sur plus de 150 huiles essentielles et synergies : le même appareil diffuse vos huiles pures et vos synergies.' },
         { t: 'Une seule référence à gérer', p: 'Un seul diffuseur pour toutes vos huiles, au lieu de plusieurs appareils : moins de stock, moins de SAV, un seul discours, en magasin comme en ligne.' },
         { t: 'Un diffuseur à votre image', p: 'Cloche, couleurs, matières, logo, coffret, modes de diffusion : Tolia porte votre marque de bout en bout.' },
@@ -124,7 +124,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       eyebrow: 'Le bilan de la journée',
       h: 'Nous avons conçu Tolia pour qu’il soit formidablement simple, et qu’on s’en serve tous les jours.',
       tiles: [
-        { big: '1 diffuseur', small: '3 moments, 3 huiles essentielles, aucun effort' },
+        { big: '1 diffuseur', small: 'pour toutes vos huiles, au moment que chacun choisit' },
         { big: '24+*', small: 'flacons achetés par an par un client équipé de Tolia, contre 2 à 3 avec un diffuseur classique' },
         { big: 'Jusqu’à 8×*', small: 'plus d’huiles essentielles consommées' },
       ],
@@ -137,7 +137,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
   en: {
     head: {
       kicker: 'A day with Tolia',
-      h2: 'Follow Tolia from morning to night: three moments, three essential oils, one diffuser.',
+      h2: 'Here is one day among many. Everyone diffuses the oils they like, whenever they like: Tolia adapts to every habit.',
       how: 'The tour has five steps. Scroll down or use the “Next” button: each step plays in full before moving on.',
       howFlow: 'The tour has five steps, read as you scroll: the numbers on each picture match the explanations below it.',
     },
@@ -156,21 +156,21 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
     },
     matin: {
       stop: { time: '07:30', sub: 'Morning' },
-      eyebrow: '07:30 · Morning, in the kitchen',
-      h: 'One press, and diffusion starts before the coffee does.',
-      p: 'First thing in the morning, nobody wants to fill a tank, count drops or wait for a device to warm up. With Tolia, the peppermint bottle is already in place: one press on the base and the essential oil mist spreads through the kitchen at once. Nothing to prepare, nothing to clean afterwards.',
+      eyebrow: '07:30 · Morning, a fresh start',
+      h: 'One press, and the day starts with an invigorating oil.',
+      p: 'In the morning, many people choose an invigorating essential oil, such as peppermint, to start the day; in winter, others prefer an oil traditionally diffused at that time of year, such as ravintsara. With Tolia, the bottle is already in place: one press on the base and the mist spreads at once. Nothing to fill, nothing to measure, nothing to clean afterwards.',
       alt: 'Open Tolia diffuser on a kitchen table early in the morning: the Morning bottle is clipped into the base, mist leaves the nozzle, two other bottles wait beside it',
       callouts: [
         { t: 'Your bottle, as it is', p: 'We lifted the cover so you can see it: the peppermint bottle is clipped upside down into the base. Nothing to decant, no drops to count.' },
-        { t: 'One press to start', p: 'Diffusion starts at once, with no warm-up. Time and strength are easy to adjust.' },
+        { t: 'One press to start', p: 'Diffusion starts at once, with no warm-up. Time, strength and on/off cycles are easy to adjust.' },
         { t: 'A mist of pure oil', p: 'Cold nebulisation: no water, no heat. The essential oil is diffused exactly as it leaves the bottle.' },
       ],
     },
     journee: {
-      stop: { time: '18:30', sub: 'Evening' },
-      eyebrow: '18:30 · End of the day, in the living room',
+      stop: { time: '14:00', sub: 'Afternoon' },
+      eyebrow: '14:00 · Early afternoon, in the living room',
       h: 'Fancy a different essential oil? It takes one second.',
-      p: 'At the end of the day, you want a softer note. With a classic diffuser you would have to empty, rinse, dry and refill the tank. With Tolia, the diffusion module stays screwed onto each bottle: take out the peppermint, clip in the sweet orange, put the cover back on, and diffusion starts again.',
+      p: 'In the early afternoon, you often want a change of atmosphere: a softer citrus note for a break, or a fresher oil to stay focused. With a classic diffuser you would have to empty, rinse and dry the tank, then fill it again. With Tolia, the diffusion module stays screwed onto each bottle: take out the peppermint, clip in the sweet orange, put the cover back on, and diffusion starts again.',
       alt: 'In the living room, the Morning bottle leaves Tolia’s base, the Day bottle takes its place, then the cover is set back and the mist starts again',
       chrono: 'to change oil',
       callouts: [
@@ -180,10 +180,10 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       ],
     },
     soir: {
-      stop: { time: '22:00', sub: 'Bedtime' },
-      eyebrow: '22:00 · Night-time, in the bedroom',
+      stop: { time: '21:00', sub: 'Evening' },
+      eyebrow: '21:00 · Evening, in the bedroom',
       h: 'Cordless and quiet, Tolia follows you to bed.',
-      p: 'At night, you take Tolia to the bedroom the way you would take a book: it has no cord. Clip in the true lavender, choose a gentle diffusion that stops by itself after the chosen time. The battery lasts up to 90 hours and recharges via USB‑C.',
+      p: 'At around 9 pm, you take Tolia to the bedroom the way you would take a book: it has no cord. Clip in the true lavender and choose a gentle diffusion with on/off cycles that stops by itself after the chosen time. The battery lasts up to 90 hours and recharges via USB‑C.',
       alt: 'In the bedroom, the Day bottle leaves the base, the Evening bottle takes its place, then the cover is set back on the diffuser',
       chrono: 'to change oil',
       callouts: [
@@ -196,13 +196,13 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '', sub: 'Your range' },
       eyebrow: 'What you have just seen',
       recap: [
-        { time: '07:30', text: 'One press and the morning oil diffuses. Nothing to prepare.' },
-        { time: '18:30', text: 'A different oil in one second, nothing to empty or rinse.' },
-        { time: '22:00', text: 'Cordless and quiet at the bedside, up to 90 h of battery.' },
+        { time: '07:30', text: 'An invigorating oil to start the day, in one press.' },
+        { time: '14:00', text: 'A different oil in one second, nothing to empty or rinse.' },
+        { time: '21:00', text: 'Cordless and quiet at the bedside, up to 90 h of battery.' },
       ],
       h: 'What Tolia brings to your range',
       adv: [
-        { t: 'Your bottles become the refill', p: 'The module screws onto standard bottles (DIN 18 neck, 5 to 50 ml): your customers simply buy your oils again.' },
+        { t: 'Your bottles, used directly', p: 'The module screws onto standard bottles (DIN 18 neck, 5 to 50 ml): your customers simply buy your oils again.' },
         { t: 'One device for your range', p: 'Tested on more than 150 essential oils and blends: the same device diffuses your single oils and your blends.' },
         { t: 'Just one SKU to manage', p: 'One diffuser for all your oils instead of several devices: less stock, fewer after-sales issues, one simple pitch, in store and online.' },
         { t: 'A diffuser that is unmistakably yours', p: 'Cover, colours, materials, logo, box, diffusion modes: Tolia carries your brand throughout.' },
@@ -214,7 +214,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       eyebrow: 'The day in summary',
       h: 'We designed Tolia to be wonderfully simple, so that people use it every day.',
       tiles: [
-        { big: '1 diffuser', small: '3 moments, 3 essential oils, no effort at all' },
+        { big: '1 diffuser', small: 'for all your oils, at whatever time each person chooses' },
         { big: '24+*', small: 'bottles bought per year by each Tolia owner, versus 2 to 3 with a classic diffuser' },
         { big: 'Up to 8×*', small: 'more essential oil consumed' },
       ],
@@ -227,7 +227,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
   es: {
     head: {
       kicker: 'Un día con Tolia',
-      h2: 'Acompañe a Tolia de la mañana a la noche: tres momentos, tres aceites esenciales, un solo difusor.',
+      h2: 'Este es un día entre muchos. Cada uno difunde los aceites que le gustan, cuando quiere: Tolia se adapta a todos los hábitos.',
       how: 'La visita tiene cinco etapas. Desplácese hacia abajo o utilice el botón «Siguiente»: cada etapa se muestra completa antes de pasar a la siguiente.',
       howFlow: 'La visita tiene cinco etapas, para leer desplazándose: los números de cada imagen remiten a las explicaciones de debajo.',
     },
@@ -246,21 +246,21 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
     },
     matin: {
       stop: { time: '07:30', sub: 'Mañana' },
-      eyebrow: '07:30 · Por la mañana, en la cocina',
-      h: 'Una pulsación, y la difusión empieza antes que el café.',
-      p: 'Al despertar, nadie tiene ganas de llenar un depósito, contar gotas o esperar a que un aparato se caliente. Con Tolia, el frasco de menta piperita ya está en su sitio: una pulsación en la base y la bruma de aceite esencial se extiende enseguida por la cocina. Nada que preparar, nada que limpiar después.',
+      eyebrow: '07:30 · Por la mañana, para empezar bien',
+      h: 'Una pulsación, y el día empieza con un aceite tonificante.',
+      p: 'Por la mañana, muchos eligen un aceite esencial tonificante, como la menta piperita, para empezar bien el día; en invierno, otros prefieren un aceite que se difunde tradicionalmente en esa época del año, como el ravintsara. Con Tolia, el frasco ya está en su sitio: una pulsación en la base y la bruma se extiende enseguida. Nada que llenar, nada que dosificar, nada que limpiar después.',
       alt: 'Difusor Tolia abierto sobre una mesa de cocina a primera hora: el frasco Mañana está encajado en la base, la bruma sale de la boquilla y otros dos frascos esperan al lado',
       callouts: [
         { t: 'Su frasco, tal cual', p: 'Hemos quitado la cubierta para que lo vea: el frasco de menta piperita está encajado boca abajo en la base. Nada que trasvasar, ninguna gota que contar.' },
-        { t: 'Una pulsación para empezar', p: 'La difusión arranca al instante, sin tiempo de calentamiento. La duración y la potencia se ajustan de forma muy sencilla.' },
+        { t: 'Una pulsación para empezar', p: 'La difusión arranca al instante, sin tiempo de calentamiento. La duración, la potencia y la intermitencia se ajustan de forma muy sencilla.' },
         { t: 'Una bruma de aceite puro', p: 'Nebulización en frío: sin agua ni calor. El aceite esencial se difunde tal como sale del frasco.' },
       ],
     },
     journee: {
-      stop: { time: '18:30', sub: 'Tarde' },
-      eyebrow: '18:30 · Al final del día, en el salón',
+      stop: { time: '14:00', sub: 'Tarde' },
+      eyebrow: '14:00 · A primera hora de la tarde, en el salón',
       h: '¿Le apetece otro aceite esencial? Basta un segundo.',
-      p: 'Al final del día, apetece una nota más suave. Con un difusor clásico habría que vaciar, enjuagar, secar y volver a llenar el depósito. Con Tolia, el módulo de difusión permanece enroscado en cada frasco: se retira la menta piperita, se encaja la naranja dulce, se vuelve a colocar la cubierta y la difusión se reanuda.',
+      p: 'A primera hora de la tarde, a menudo apetece cambiar de ambiente: una nota cítrica más suave para una pausa, o un aceite más fresco para mantener la concentración. Con un difusor clásico habría que vaciar, enjuagar, secar y volver a llenar el depósito. Con Tolia, el módulo de difusión permanece enroscado en cada frasco: se retira la menta piperita, se encaja la naranja dulce, se vuelve a colocar la cubierta y la difusión se reanuda.',
       alt: 'En el salón, el frasco Mañana sale de la base de Tolia, el frasco Día ocupa su lugar, luego se vuelve a colocar la cubierta y la bruma sale de nuevo',
       chrono: 'para cambiar de aceite',
       callouts: [
@@ -270,10 +270,10 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       ],
     },
     soir: {
-      stop: { time: '22:00', sub: 'Noche' },
-      eyebrow: '22:00 · Por la noche, en el dormitorio',
+      stop: { time: '21:00', sub: 'Noche' },
+      eyebrow: '21:00 · Por la noche, en el dormitorio',
       h: 'Sin cables y silencioso, Tolia acompaña la hora de dormir.',
-      p: 'Por la noche, Tolia se lleva al dormitorio como se lleva un libro: no tiene cable. Se encaja la lavanda verdadera, se elige una difusión suave que se detiene sola al cabo del tiempo elegido. Su batería dura hasta 90 horas y se recarga por USB‑C.',
+      p: 'Hacia las 21 h, Tolia se lleva al dormitorio como se lleva un libro: no tiene cable. Se encaja la lavanda verdadera y se elige una difusión suave e intermitente que se detiene sola al cabo del tiempo elegido. Su batería dura hasta 90 horas y se recarga por USB‑C.',
       alt: 'En el dormitorio, el frasco Día sale de la base, el frasco Noche ocupa su lugar y se vuelve a colocar la cubierta sobre el difusor',
       chrono: 'para cambiar de aceite',
       callouts: [
@@ -286,13 +286,13 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '', sub: 'Su gama' },
       eyebrow: 'Lo que acaba de ver',
       recap: [
-        { time: '07:30', text: 'Una pulsación y el aceite de la mañana se difunde. Nada que preparar.' },
-        { time: '18:30', text: 'Otro aceite en un segundo, sin vaciar ni enjuagar nada.' },
-        { time: '22:00', text: 'Sin cables y silencioso junto a la cama, hasta 90 h de batería.' },
+        { time: '07:30', text: 'Un aceite tonificante para empezar bien, con una sola pulsación.' },
+        { time: '14:00', text: 'Otro aceite en un segundo, sin vaciar ni enjuagar nada.' },
+        { time: '21:00', text: 'Sin cables y silencioso junto a la cama, hasta 90 h de batería.' },
       ],
       h: 'Lo que Tolia aporta a su gama',
       adv: [
-        { t: 'Sus frascos se convierten en la recarga', p: 'El módulo se enrosca en frascos estándar (cuello DIN 18, de 5 a 50 ml): sus clientes simplemente vuelven a comprar sus aceites.' },
+        { t: 'Sus frascos, directamente', p: 'El módulo se enrosca en frascos estándar (cuello DIN 18, de 5 a 50 ml): sus clientes simplemente vuelven a comprar sus aceites.' },
         { t: 'Un solo aparato para su gama', p: 'Probada con más de 150 aceites esenciales y sinergias: el mismo aparato difunde sus aceites puros y sus sinergias.' },
         { t: 'Una sola referencia que gestionar', p: 'Un solo difusor para todos sus aceites en lugar de varios aparatos: menos stock, menos posventa, un solo discurso, en tienda y en línea.' },
         { t: 'Un difusor a su imagen', p: 'Cubierta, colores, materiales, logotipo, estuche, modos de difusión: Tolia lleva su marca de principio a fin.' },
@@ -304,7 +304,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       eyebrow: 'Balance del día',
       h: 'Hemos diseñado Tolia para que sea extraordinariamente sencillo, y para que se use todos los días.',
       tiles: [
-        { big: '1 difusor', small: '3 momentos, 3 aceites esenciales, ningún esfuerzo' },
+        { big: '1 difusor', small: 'para todos sus aceites, en el momento que cada uno elija' },
         { big: '24+*', small: 'frascos comprados al año por cada cliente equipado con Tolia, frente a 2 o 3 con un difusor clásico' },
         { big: 'Hasta 8×*', small: 'más aceites esenciales consumidos' },
       ],

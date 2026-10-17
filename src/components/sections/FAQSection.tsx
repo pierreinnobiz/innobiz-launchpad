@@ -17,7 +17,7 @@ const FAQSection: React.FC = () => {
       a: t3(
         language,
         'Oui. Le module se visse sur vos flacons standard (col DIN 18, de 5 à 50 ml), sans transfert ni remplissage.',
-        'Yes. The module screws onto your standard bottles (DIN 18 neck, 5 to 50 ml), with no decanting and no refilling.',
+        'Yes. The module screws onto your standard bottles (DIN 18 neck, 5 to 50 ml), with no decanting and nothing to fill.',
         'Sí. El módulo se enrosca en sus frascos estándar (cuello DIN 18, de 5 a 50 ml), sin trasvase ni rellenado.'
       ),
     },
@@ -34,9 +34,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Peut-on encadrer l’usage de nos huiles ?', 'Can we control how our oils are used?', '¿Podemos programar el uso recomendado de nuestros aceites?'),
       a: t3(
         language,
-        'Oui. La durée et la puissance de diffusion peuvent être préprogrammées selon vos recommandations, et la diffusion s’arrête d’elle-même au bout de la durée choisie.',
-        'Yes. Diffusion time and strength can be pre-programmed to your recommendations, and diffusion stops by itself after the chosen time.',
-        'Sí. La duración y la potencia de difusión pueden preprogramarse según sus recomendaciones, y la difusión se detiene sola al cabo del tiempo elegido.'
+        'Oui. La durée, la puissance et l’intermittence de la diffusion peuvent être préprogrammées selon vos recommandations, et la diffusion s’arrête d’elle-même au bout de la durée choisie.',
+        'Yes. Diffusion time, strength and on/off cycles can be pre-programmed to your recommendations, and diffusion stops by itself after the chosen time.',
+        'Sí. La duración, la potencia y la intermitencia de la difusión pueden preprogramarse según sus recomendaciones, y la difusión se detiene sola al cabo del tiempo elegido.'
       ),
     },
     {
