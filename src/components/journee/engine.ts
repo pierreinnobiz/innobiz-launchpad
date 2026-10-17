@@ -42,6 +42,7 @@ const ICON: Record<string, string> = {
   left: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>',
   right: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>',
   cal: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M8 3v4M16 3v4M3.5 10h17M9 15l2 2 4-4"/></svg>',
+  replay: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>',
   mouse: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="3.5" width="10" height="17" rx="5"/><path d="M12 7.5v3"/></svg>',
 };
 
@@ -116,6 +117,10 @@ const SMOOTH_S = 0.085; // lissage de l'animation du flacon (secondes)
 const FADE = 0.45; // durée d'apparition d'un élément (secondes)
 const SCROLL_FULL = 0.42; // en mode « page », la page est entièrement affichée quand on a défilé 42 % d'un écran au-delà de son début
 const FETCH_PARALLEL = 6;
+// Le temps de chaque étape n'avance que lorsqu'elle est à l'écran et que l'onglet est visible (18/10/2026, Pierre ne voyait
+// « pas tout le temps » les animations : elles se jouaient une seule fois, sautaient au défilement, couraient onglet caché).
+const SCROLL_SPEED = 2.2; // le défilement peut accélérer une étape, au plus 2,2 fois : le geste reste visible (avant : il sautait)
+const MAX_WAIT = 6; // images d'une animation pas encore arrivées : l'étape attend au plus 6 s juste avant le geste
 
 const clamp01 = (x: number) => (x < 0 ? 0 : x > 1 ? 1 : x);
 const ease = (x: number) => { const t = clamp01(x); return 1 - (1 - t) * (1 - t) * (1 - t); };
@@ -137,11 +142,13 @@ interface Seq {
   started: boolean;
   done: boolean;
   loaded: number;
+  nOrig: number; // images d'origine (les autres sont calculées entre deux)
+  loadedOrig: number;
   chrono: string;
   chronoEl: HTMLElement | null;
 }
 interface Item { el: Element; t: number; end?: number; dim?: number; kind: 'fade' | 'path' | 'pop' | 'show'; last: number }
-interface PageState { el: HTMLElement; act: number | null; done: boolean; t: number; items: Item[]; seq: Seq | null; seen: boolean }
+interface PageState { el: HTMLElement; act: number | null; done: boolean; t: number; items: Item[]; seq: Seq | null; seen: boolean; clock: number; wait: number; vis: boolean }
 interface Rect { x: number; y: number; w: number; h: number }
 
 export function createJourneeEngine(
@@ -172,6 +179,7 @@ export function createJourneeEngine(
   let flowIO: IntersectionObserver | null = null, nearIO: IntersectionObserver | null = null, armIO: IntersectionObserver | null = null;
   let idleTimer = 0, armTimer = 0;
   let scrolledOnce = false;
+  let forceReplay = -1; // étape choisie au bouton, à la frise ou au clavier : elle se rejoue à l'arrivée
   const seenIds = new Set<string>();
 
   const modeNow = (): Mode => (innerWidth / innerHeight >= 1.15 && innerHeight >= 560 && innerWidth >= 900 ? 'pin' : 'flow');
@@ -200,8 +208,12 @@ export function createJourneeEngine(
     }
     return `<img class="jr-img" src="${IMG(pg.img!)}" alt="${esc(alt)}" decoding="async">`;
   }
-  const chronoHtml = (tx: PhotoPageText, pg: PageDef, cls: string) =>
-    pg.kind === 'anim' ? `<div class="${cls}" data-t="${(pg.swap![0] - 0.5).toFixed(2)}"><span class="n">${dec('0.0')}<small>s</small></span><span class="u">${tx.chrono}</span></div>` : '';
+  const chronoHtml = (tx: PhotoPageText, pg: PageDef, cls: string, i: number) => {
+    if (pg.kind !== 'anim') return '';
+    const ui = TX().ui;
+    return `<div class="${cls}" data-t="${(pg.swap![0] - 0.5).toFixed(2)}"><span class="n">${dec('0.0')}<small>s</small></span><span class="u">${tx.chrono}</span><span class="wt">${ui.loading}</span>`
+      + `<button type="button" class="jr-replay" data-i="${i}" title="${esc(ui.replay)}" aria-label="${esc(ui.replay)}">${ICON.replay}<span>${ui.replay}</span></button></div>`;
+  };
   const eyebrowHtml = (pg: PageDef, text: string, t = 0) =>
     `<p class="eyebrow" data-t="${t}"><i aria-hidden="true" style="--mi:${pg.color}">${ICON[pg.icon]}</i><span>${text}</span></p>`;
 
@@ -239,7 +251,7 @@ export function createJourneeEngine(
         ${eyebrowHtml(pg, t.eyebrow)}
         <h3 class="headline" data-t="0">${t.h}</h3>
         <p class="lead" data-t="0">${t.p}</p>
-        ${chronoHtml(t, pg, 'chrono')}
+        ${chronoHtml(t, pg, 'chrono', i)}
       </div>
       <div class="jr-cos">${t.callouts.map((c, j) => `<div class="jr-co" data-j="${j}"><b>${c.t}</b><span>${c.p}</span></div>`).join('')}</div>`;
   }
@@ -393,7 +405,7 @@ export function createJourneeEngine(
         <figure class="f-media" style="aspect-ratio:${W} / ${bh}">
           <div class="f-inner" style="top:${pct(-y0, bh)};height:${pct(H, bh)}">${mediaHtml(pg, t.alt)}</div>
           ${dots}
-          ${chronoHtml(t, pg, 'f-chrono')}
+          ${chronoHtml(t, pg, 'f-chrono', i)}
         </figure>
         <ol class="f-cos">${t.callouts.map((c, j) => `<li data-j="${j}"><span class="num" aria-hidden="true">${j + 1}</span><div><b>${c.t}</b><p>${c.p}</p></div></li>`).join('')}</ol>
       </article>${i < P - 1 ? `<p class="f-sep" aria-hidden="true">${ui.seq}${ICON.down}</p>` : ''}`;
@@ -408,16 +420,21 @@ export function createJourneeEngine(
     if ('IntersectionObserver' in window) {
       flowIO = new IntersectionObserver((en) => {
         en.forEach((e) => {
-          if (!e.isIntersecting) return;
           const i = st.findIndex((S) => S.el === e.target);
-          if (i >= 0 && st[i].act == null) { st[i].act = performance.now(); track(i); requestTick(); }
+          if (i < 0) return;
+          // la page compte comme « à l'écran » quand elle en occupe une bonne partie : si on la dépasse vite, son animation l'attend
+          const S = st[i];
+          S.vis = e.isIntersecting && (e.intersectionRatio >= 0.28 || e.intersectionRect.height >= innerHeight * 0.45);
+          if (S.vis && S.act == null) { S.act = performance.now(); track(i); }
+          if (S.vis && S.seq) startLoading(S.seq);
+          requestTick();
         });
-      }, { threshold: 0.3 });
+      }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5] });
       nearIO = new IntersectionObserver((en) => {
         en.forEach((e) => {
           if (!e.isIntersecting) return;
           const i = st.findIndex((S) => S.el === e.target);
-          if (i >= 0 && st[i].seq && prefetched) startLoading(st[i].seq!);
+          if (i >= 0 && st[i].seq) startLoading(st[i].seq!);
         });
       }, { rootMargin: '80% 0px' });
       st.forEach((S) => { flowIO!.observe(S.el); nearIO!.observe(S.el); });
@@ -435,11 +452,12 @@ export function createJourneeEngine(
         seq = {
           key: pg.anim!, cv, ctx: cv.getContext('2d') as CanvasRenderingContext2D, tau, urls: tau.map((_, n) => seqUrl(pg.anim!, n)), blobs: tau.map(() => null),
           bmps: tau.map(() => null), pending: new Set(), cur: 0, target: 0, dir: 1, sig: '', started: false, done: false, loaded: 0, chrono: '',
+          nOrig: tau.filter((x) => Number.isInteger(x)).length, loadedOrig: 0,
           chronoEl: el.querySelector('.chrono .n, .f-chrono .n'),
         };
       }
     }
-    return { el, act: null, done: false, t: 0, items: [], seq, seen: false };
+    return { el, act: null, done: false, t: 0, items: [], seq, seen: false, clock: 0, wait: 0, vis: false };
   }
   function collectItems(i: number) {
     const S = st[i], pg = PAGES[i], items: Item[] = [];
@@ -487,6 +505,9 @@ export function createJourneeEngine(
     const c = (navigator as unknown as { connection?: { saveData?: boolean; effectiveType?: string } }).connection;
     return !!c && (c.saveData === true || c.effectiveType === 'slow-2g' || c.effectiveType === '2g' || c.effectiveType === '3g');
   };
+  // les images de l'étape à l'écran passent en priorité ; les autres se chargent une à une en attendant
+  const needed = (x: PageState) => !!x.seq && !x.seq.done && (M === 'pin' ? x === st[active] : x.vis);
+  const isPriority = (Q: Seq) => st.some((x) => x.seq === Q && needed(x)) || !st.some(needed);
   // une animation à la fois : la suivante commence quand la précédente est chargée
   function startNextAnim() {
     const S = st.find((x) => x.seq && !x.seq.started);
@@ -501,9 +522,10 @@ export function createJourneeEngine(
       .sort((a, b) => (Number.isInteger(S.tau[b]) ? 1 : 0) - (Number.isInteger(S.tau[a]) ? 1 : 0) || a - b);
     let next = 0, act = 0;
     const pump = () => {
-      while (act < FETCH_PARALLEL && next < order.length && !destroyed) {
+      const lim = isPriority(S) ? FETCH_PARALLEL : 1;
+      while (act < lim && next < order.length && !destroyed) {
         const i = order[next++]; act++;
-        fetch(S.urls[i]).then((r) => (r.ok ? r.blob() : null)).then((b) => { S.blobs[i] = b; S.loaded++; }).catch(() => { /* image manquante : on s'en passe */ })
+        fetch(S.urls[i]).then((r) => (r.ok ? r.blob() : null)).then((b) => { S.blobs[i] = b; S.loaded++; if (b && Number.isInteger(S.tau[i])) S.loadedOrig++; }).catch(() => { /* image manquante : on s'en passe */ })
           .finally(() => { act--; S.sig = ''; pump(); requestTick(); });
       }
       if (next >= order.length && act === 0 && !S.done) { S.done = true; if (!destroyed) startNextAnim(); }
@@ -564,25 +586,51 @@ export function createJourneeEngine(
   }
 
   // ---------- temps de chaque page
-  function pageT(i: number, now: number) {
+  // le temps d'une page n'avance que lorsqu'elle est à l'écran (requestAnimationFrame s'arrête aussi quand l'onglet est caché)
+  const running = (i: number) => (M === 'pin' ? i === active && storyVisible() : st[i].vis);
+  const seqReady = (Q: Seq) => Q.done || Q.loadedOrig >= Q.nOrig;
+  function advance(i: number, dt: number) {
     const S = st[i], pg = PAGES[i];
-    if (S.done) return pg.T + 0.001;
-    let t = S.act != null ? (now - S.act) / 1000 : 0;
-    if (M === 'pin' && i === active) t = Math.max(t, scrollProg * pg.T);
-    if (reduce && S.act != null) t = pg.T + 0.001;
-    return t;
+    if (S.done || S.act == null || reduce || !running(i)) return;
+    // défilement : accélère l'étape (au plus SCROLL_SPEED fois), sans jamais la faire sauter
+    const step = dt * (M === 'pin' && i === active && scrollProg * pg.T > S.clock ? SCROLL_SPEED : 1);
+    // juste avant le geste, on attend que les images de l'animation soient arrivées (au plus MAX_WAIT secondes)
+    if (S.seq && pg.swap) {
+      const gate = pg.swap[0] - 0.35;
+      if (S.clock <= gate && S.clock + step >= gate && !seqReady(S.seq) && S.wait < MAX_WAIT) {
+        startLoading(S.seq);
+        S.wait += dt;
+        S.clock = gate;
+        S.el.classList.add('jr-wait');
+        return;
+      }
+    }
+    if (S.el.classList.contains('jr-wait')) S.el.classList.remove('jr-wait');
+    S.clock += step;
+  }
+  function pageT(i: number) {
+    const S = st[i], pg = PAGES[i];
+    if (S.done || (reduce && S.act != null)) return pg.T + 0.001;
+    return S.clock;
+  }
+  // rejouer une page depuis le début (arrivée en avançant, étape choisie, bouton « Revoir »)
+  function resetPage(S: PageState) {
+    S.done = false; S.clock = 0; S.wait = 0; S.t = 0;
+    S.el.classList.remove('played', 'jr-wait');
+    S.items.forEach((it) => { it.last = -1; });
+    if (S.seq) { const Q = S.seq; Q.cur = 0; Q.target = 0; Q.dir = 1; Q.sig = ''; }
   }
   function tick(ts: number) {
     raf = 0;
     if (destroyed) return;
-    const now = performance.now();
     const dt = lastTs ? Math.min(0.05, Math.max(0.001, (ts - lastTs) / 1000)) : 0.016;
     lastTs = ts;
     let busy = false;
     const live = M === 'pin' ? [active] : st.map((_, i) => i).filter((i) => st[i].act != null || st[i].done);
     for (const i of live) {
       const pg = PAGES[i], S = st[i];
-      const t = pageT(i, now);
+      advance(i, dt);
+      const t = pageT(i);
       S.t = t;
       renderItems(S, t);
       if (S.seq) {
@@ -596,8 +644,9 @@ export function createJourneeEngine(
         drawSeq(Q);
         if (Q.cur !== Q.target || Q.pending.size > 0) busy = true;
       }
+      S.el.classList.toggle('played', t >= (pg.cover ? pg.cover[1] : pg.T)); // montre le bouton « Revoir »
       if (t >= pg.T) { if (!S.done) S.done = true; }
-      else if (S.act != null || (M === 'pin' && scrollProg > 0)) busy = true;
+      else if (S.act != null ? running(i) : M === 'pin' && scrollProg > 0) busy = true;
     }
     if (M === 'pin') navProgress();
     if (busy) raf = requestAnimationFrame(tick); else lastTs = 0;
@@ -640,9 +689,14 @@ export function createJourneeEngine(
   function setActive(k: number, dir: number) {
     active = k;
     st.forEach((S, i) => { S.el.classList.toggle('on', i === k); S.el.setAttribute('aria-hidden', String(i !== k)); });
-    if (dir < 0) st[k].done = true;
+    // en avançant, ou quand on choisit l'étape (bouton, frise, clavier), elle se rejoue depuis le début ;
+    // en remontant à la molette, on la retrouve terminée (pour relire), avec le bouton « Revoir »
+    if (dir > 0 || k === forceReplay) resetPage(st[k]);
+    else if (dir < 0) st[k].done = true;
+    if (k === forceReplay) forceReplay = -1;
     if (st[k].act == null && storyVisible()) { st[k].act = performance.now(); track(k); }
-    if (prefetched) [k, k + 1].forEach((i) => { if (st[i]?.seq) startLoading(st[i].seq!); });
+    if (st[k].seq) startLoading(st[k].seq!); // les images de l'étape affichée passent en priorité
+    if (prefetched && st[k + 1]?.seq) startLoading(st[k + 1].seq!);
     updateNav();
     requestTick();
   }
@@ -659,6 +713,8 @@ export function createJourneeEngine(
   }
   function goto(k: number, instant?: boolean) {
     k = Math.min(P - 1, Math.max(0, k));
+    forceReplay = k;
+    if (k === active && st[k]) { resetPage(st[k]); forceReplay = -1; requestTick(); }
     if (M === 'pin') {
       const top = story.getBoundingClientRect().top + scrollY;
       scrollTo({ top: top + k * slot() + 2, behavior: ((reduce || instant) ? 'instant' : 'smooth') as ScrollBehavior });
@@ -709,6 +765,12 @@ export function createJourneeEngine(
   const onClick = (ev: Event) => {
     const el = ev.target as HTMLElement | null;
     if (!el?.closest) return;
+    const rp = el.closest('.jr-replay') as HTMLElement | null;
+    if (rp) {
+      const S = st[+(rp.dataset.i as string)];
+      if (S) { resetPage(S); if (S.act == null) S.act = performance.now(); requestTick(); }
+      return;
+    }
     if (el.closest('.jr-next')) { next(); return; }
     if (el.closest('.jr-prev')) { goto(active - 1); return; }
     const stop = el.closest('.jr-stop') as HTMLElement | null;

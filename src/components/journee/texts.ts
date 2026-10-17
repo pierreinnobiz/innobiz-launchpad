@@ -35,7 +35,7 @@ export interface BilanPageText {
 }
 export interface JourneeTexts {
   head: { kicker: string; h2: string; how: string; howFlow: string };
-  ui: { next: string; prev: string; skip: string; end: string; hint: string; step: string; tlAria: string; aria: string; seq: string };
+  ui: { next: string; prev: string; skip: string; end: string; hint: string; step: string; tlAria: string; aria: string; seq: string; replay: string; loading: string };
   matin: PhotoPageText;
   journee: PhotoPageText;
   soir: PhotoPageText;
@@ -61,6 +61,8 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       tlAria: 'Étapes de la visite',
       aria: 'Une journée avec Tolia, visite guidée',
       seq: 'Suite de la journée',
+      replay: 'Revoir le geste',
+      loading: 'chargement de l’animation…',
     },
     matin: {
       stop: { time: '07:30', sub: 'Matin' },
@@ -149,6 +151,8 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       tlAria: 'Tour steps',
       aria: 'A day with Tolia, guided tour',
       seq: 'The day goes on',
+      replay: 'Watch again',
+      loading: 'loading the animation…',
     },
     matin: {
       stop: { time: '07:30', sub: 'Morning' },
@@ -237,6 +241,8 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       tlAria: 'Etapas de la visita',
       aria: 'Un día con Tolia, visita guiada',
       seq: 'El día continúa',
+      replay: 'Ver de nuevo',
+      loading: 'cargando la animación…',
     },
     matin: {
       stop: { time: '07:30', sub: 'Mañana' },
