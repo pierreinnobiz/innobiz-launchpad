@@ -1,75 +1,147 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { CalendarCheck, Check, Copy, Mail, Phone } from 'lucide-react';
 import { fadeBlurUp } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
-import FastTrackDeckForm from '@/components/FastTrackDeckForm';
+import { trackCTAClick } from '@/lib/tracking';
+import { calendlyUrl, CONTACT_EMAIL, CONTACT_PHONE, CONTACT_PHONE_TEL } from '@/lib/links';
 import QualificationForm from '@/components/QualificationForm';
 
+/**
+ * Contact (refonte du 17/10/2026, demande de Pierre : « revoir la logique du call to action », « enlever recevoir la documentation ») :
+ * deux portes d'entrée côte à côte, sans engagement :
+ *  1. recevoir un échantillon (formulaire en deux étapes, trois champs obligatoires au départ) ;
+ *  2. en parler : réserver 15 minutes en visio, écrire ou appeler.
+ * La présentation par email (« recevoir la documentation ») est retirée : tout est déjà sur le site.
+ */
 const ContactSection: React.FC = () => {
-  const { language } = useLanguage();
+  const { language: l } = useLanguage();
+  const [copied, setCopied] = useState(false);
+  const talk = t3(l, 'Choisir un créneau de 15 min', 'Pick a 15-min slot', 'Elegir un hueco de 15 min');
+
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(CONTACT_EMAIL);
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch { /* copie refusée par le navigateur : l'adresse reste affichée et sélectionnable */ }
+  };
+
+  const reassure = [
+    t3(l, 'Échantillon expédié de France sous 5 jours ouvrés', 'Sample shipped from France within 5 business days', 'Muestra enviada desde Francia en 5 días hábiles'),
+    t3(l, 'Une vraie personne vous répond sous 24 h ouvrées', 'A real person replies within 24 business hours', 'Una persona real le responde en 24 h hábiles'),
+    t3(l, 'Prix et conditions partagés dès le premier échange', 'Pricing and terms shared from the first conversation', 'Precios y condiciones desde la primera conversación'),
+  ];
 
   return (
     <section id="contact" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+      <div className="max-w-6xl mx-auto px-6 md:px-12 relative z-10">
         <motion.div
-          className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full opacity-[0.03]"
-          style={{ background: 'radial-gradient(circle, hsl(28 45% 48%), transparent 60%)' }}
-          animate={{ scale: [1, 1.1, 1] }}
-          transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
-        />
-      </div>
-
-      <div className="max-w-3xl mx-auto px-6 md:px-12 lg:px-20 relative z-10">
-        <motion.div
-          className="text-center mb-12"
-          initial="hidden" whileInView="visible"
+          className="text-center max-w-3xl mx-auto mb-10"
+          initial="hidden"
+          whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
-            {t3(language, 'Recevez votre échantillon', 'Get your sample', 'Reciba su muestra')}
+            {t3(l, 'Passons à l’essai', 'Let’s try it', 'Pasemos a la prueba')}
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-foreground mb-4">
-            {t3(language,
-              'Jugez Tolia par vous-même.',
-              'Judge Tolia for yourself.',
-              'Juzgue Tolia por sí mismo.'
-            )}
+          <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
+            {t3(l, 'Jugez Tolia par vous‑même, chez vous.', 'Judge Tolia for yourself, at home.', 'Juzgue Tolia por sí mismo, en casa.')}
           </h2>
-          <p className="text-base text-muted-foreground font-light max-w-2xl mx-auto">
-            {t3(language,
-              'Aucun appel requis. Échantillon expédié de France sous 5 jours ouvrés.',
-              'No call required. Sample shipped from France within 5 business days.',
-              'Sin llamada previa. Muestra enviada desde Francia en 5 días hábiles.'
-            )}
-          </p>
-        </motion.div>
-
-        {/* Le titre de la section promet un échantillon : c'est donc le formulaire d'échantillon qui vient en premier.
-            La présentation par email (un seul champ) reste juste dessous, pour ceux qui ne sont pas encore prêts. */}
-        <motion.div
-          className="bg-card rounded-3xl p-6 md:p-10 border border-border/50 shadow-lg"
-          initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
-          whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <QualificationForm />
-        </motion.div>
-
-        <div className="text-center my-8">
-          <p className="text-sm text-muted-foreground">
+          <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
-              language,
-              'Pas encore prêt pour un échantillon ?',
-              'Not ready for a sample yet?',
-              '¿Todavía no quiere una muestra?'
+              l,
+              'Deux façons de commencer, sans engagement : recevez un échantillon pour l’essayer, ou prenez 15 minutes avec notre équipe pour parler de votre projet.',
+              'Two ways to begin, with no commitment: receive a sample to try it, or take 15 minutes with our team to talk about your project.',
+              'Dos formas de empezar, sin compromiso: reciba una muestra para probarlo o dedique 15 minutos con nuestro equipo a hablar de su proyecto.'
             )}
           </p>
-        </div>
+        </motion.div>
 
-        <FastTrackDeckForm />
+        <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)]">
+          <motion.div
+            className="bg-card rounded-3xl p-6 md:p-9 border border-border/50 shadow-lg"
+            initial={{ opacity: 0, y: 30, filter: 'blur(8px)' }}
+            whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <QualificationForm />
+          </motion.div>
+
+          <motion.aside
+            className="rounded-3xl border border-border/50 bg-card p-6 md:p-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={fadeBlurUp}
+            aria-labelledby="contact-talk-title"
+          >
+            <h3 id="contact-talk-title" className="text-xl md:text-2xl font-bold text-foreground">
+              {t3(l, 'Vous préférez en parler ?', 'Prefer to talk it through?', '¿Prefiere hablarlo?')}
+            </h3>
+            <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
+              {t3(
+                l,
+                '15 minutes en visio pour voir Tolia en direct, poser vos questions et vérifier qu’il convient à votre gamme. Aucun formulaire à remplir.',
+                '15 minutes on video to see Tolia live, ask your questions and check it fits your range. No form to fill in.',
+                '15 minutos por videollamada para ver Tolia en directo, plantear sus preguntas y comprobar que encaja con su gama. Sin formularios.'
+              )}
+            </p>
+            <a
+              href={calendlyUrl('contact')}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackCTAClick(talk, 'contact', 'call_booking')}
+              className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold text-white transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+              style={{ background: '#B17743' }}
+            >
+              <CalendarCheck className="h-4 w-4" aria-hidden="true" />
+              {talk}
+            </a>
+
+            <div className="mt-6 space-y-3 border-t border-border/60 pt-5 text-sm">
+              <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                {t3(l, 'Ou contactez-nous directement', 'Or contact us directly', 'O contáctenos directamente')}
+              </p>
+              <div className="flex items-center gap-2">
+                <Mail className="h-4 w-4 flex-none text-muted-foreground" aria-hidden="true" />
+                <a
+                  href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Tolia')}`}
+                  onClick={() => trackCTAClick('email', 'contact', 'email')}
+                  className="font-medium text-foreground underline-offset-4 hover:underline select-all"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  className="ml-auto inline-flex items-center gap-1 rounded-full border border-border/70 px-2.5 py-1 text-xs font-medium text-muted-foreground transition hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                >
+                  {copied ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : <Copy className="h-3.5 w-3.5" aria-hidden="true" />}
+                  {copied ? t3(l, 'Copiée', 'Copied', 'Copiada') : t3(l, 'Copier', 'Copy', 'Copiar')}
+                </button>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4 flex-none text-muted-foreground" aria-hidden="true" />
+                <a href={`tel:${CONTACT_PHONE_TEL}`} className="font-medium text-foreground underline-offset-4 hover:underline">
+                  {CONTACT_PHONE}
+                </a>
+              </div>
+            </div>
+
+            <ul className="mt-6 space-y-2.5 border-t border-border/60 pt-5">
+              {reassure.map((r) => (
+                <li key={r} className="flex items-start gap-2 text-sm text-muted-foreground">
+                  <Check className="mt-0.5 h-4 w-4 flex-none" style={{ color: 'hsl(145 35% 34%)' }} aria-hidden="true" />
+                  <span>{r}</span>
+                </li>
+              ))}
+            </ul>
+          </motion.aside>
+        </div>
       </div>
     </section>
   );

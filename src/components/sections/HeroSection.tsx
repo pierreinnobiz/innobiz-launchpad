@@ -1,9 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, CalendarCheck } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import { trackCTAClick } from '@/lib/tracking';
+import { calendlyUrl } from '@/lib/links';
 
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
@@ -213,11 +214,12 @@ const HeroSection: React.FC = () => {
     'Essential oil diffusers for brands',
     'Difusores de aceites esenciales para marcas'
   );
+  // Le sous-titre dit d'abord CE QU'EST Tolia (un diffuseur qui se branche sur les flacons de la marque), puis le bénéfice.
   const subtitle = t3(
     language,
-    "Tolia est assez simple pour devenir un geste quotidien : vos clients diffusent plus, et rachètent vos huiles.",
-    'Tolia is simple enough to become a daily gesture: your customers diffuse more, and reorder your oils.',
-    'Tolia es tan sencillo que se convierte en un gesto diario: sus clientes difunden más y vuelven a comprar sus aceites.'
+    "Tolia diffuse vos huiles essentielles directement depuis vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'il devient un geste quotidien, et vos clients rachètent vos huiles.",
+    'Tolia diffuses your essential oils straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily gesture, and your customers buy your oils again.',
+    'Tolia difunde sus aceites esenciales directamente desde sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un gesto diario, y sus clientes vuelven a comprar sus aceites.'
   );
   const microcopy = t3(
     language,
@@ -226,6 +228,8 @@ const HeroSection: React.FC = () => {
     'Sin compromiso · Respuesta en 24 horas'
   );
   const cta = t3(language, 'Recevez votre échantillon gratuit', 'Get your free sample', 'Reciba su muestra gratuita');
+  // Deuxième porte d'entrée : parler directement à l'équipe (15 minutes en visio, sans formulaire).
+  const talk = t3(language, 'Parler à l’équipe · 15 min', 'Talk to the team · 15 min', 'Hablar con el equipo · 15 min');
 
   return (
     <section
@@ -270,8 +274,18 @@ const HeroSection: React.FC = () => {
                 {cta}
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
-              <p className="text-xs text-white/75 font-light">{microcopy}</p>
+              <a
+                href={calendlyUrl('hero')}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackCTAClick(talk, 'hero', 'call_booking')}
+                className="inline-flex items-center gap-2 rounded-full border border-white/40 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+              >
+                <CalendarCheck className="h-4 w-4" aria-hidden="true" />
+                {talk}
+              </a>
             </div>
+            <p className="mt-3 text-xs text-white/75 font-light">{microcopy}</p>
           </motion.div>
         </div>
       </div>

@@ -7,13 +7,13 @@ import { t3 } from '@/lib/t3';
 import { trackCTAClick } from '@/lib/tracking';
 import LegacyAnchors from '@/components/LegacyAnchors';
 
-// Rendu 3D réalisé avec Blender à partir des fichiers STP (16/10/2026) : cloche, base, pièces internes, module et flacon posés séparément sur une table.
-// Il remplace l'image de synthèse de l'ancien site (carte électronique avec port HDMI, diffuseur qui n'était pas le Tolia).
-const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_demontage_3d.webp`;
+// Image de l'ancien site (vue éclatée), reprise à la demande de Pierre le 17/10/2026 : il la préfère au rendu 3D fait avec Blender.
+// Elle sera remplacée par sa photo réelle du diffuseur démonté (photo n° 9 du guide PHOTOS-A-PRENDRE.md).
+const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_vue_eclatee.webp`;
 
 /**
  * Durabilité et réparabilité : un argument fort pour les grandes marques d'aromathérapie (engagements RSE).
- * Textes repris de l'ancien site (section RSE et réponse RSE de la FAQ), sans chiffre nouveau.
+ * Image à gauche, quatre points à droite, puis le message « Pour votre marque » sur une ligne.
  */
 const DurabilitySection: React.FC = () => {
   const { language } = useLanguage();
@@ -64,11 +64,11 @@ const DurabilitySection: React.FC = () => {
   const cta = t3(language, 'Recevez votre échantillon gratuit', 'Get your free sample', 'Reciba su muestra gratis');
 
   return (
-    <section id="durabilite" className="py-16 md:py-24 bg-secondary relative overflow-hidden">
+    <section id="durabilite" className="py-14 md:py-20 bg-secondary relative overflow-hidden">
       <LegacyAnchors ids={['rse']} />
-      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-16">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
         <motion.div
-          className="text-center max-w-3xl mx-auto mb-10 md:mb-14"
+          className="text-center max-w-3xl mx-auto mb-10"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
@@ -81,7 +81,7 @@ const DurabilitySection: React.FC = () => {
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
             {t3(language, 'Un diffuseur pensé pour durer… et se réparer', 'A diffuser designed to last… and to be repaired', 'Un difusor diseñado para durar… y ser reparado')}
           </h2>
-          <p className="mt-5 text-base md:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               language,
               'En Europe, une large majorité de consommateurs déclarent vouloir des produits plus durables et réparables, et cette attente progresse chaque année. Tolia a été conçu dans cette logique : un diffuseur qui reste utilisé et qui peut être réparé au lieu d’être jeté.',
@@ -91,87 +91,91 @@ const DurabilitySection: React.FC = () => {
           </p>
         </motion.div>
 
-        <motion.figure
-          className="mx-auto max-w-5xl overflow-hidden rounded-3xl shadow-xl border border-border/40 bg-card"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={fadeBlurUp}
-        >
-          <img
-            src={IMG}
-            width={1600}
-            height={921}
-            loading="lazy"
-            decoding="async"
-            className="w-full h-auto"
-            alt={t3(
-              language,
-              'Tolia démonté, rendu 3D issu de nos fichiers de conception : la cloche, la base, les pièces internes, le module de diffusion et le flacon sont posés séparément sur une table en chêne',
-              'Tolia disassembled, 3D render from our design files: the cover, base, internal parts, diffusion module and bottle laid out separately on an oak table',
-              'Tolia desmontado, render 3D a partir de nuestros archivos de diseño: la cubierta, la base, las piezas internas, el módulo de difusión y el frasco dispuestos por separado sobre una mesa de roble'
-            )}
-          />
-        </motion.figure>
+        <div className="grid items-center gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,1fr)] lg:gap-12">
+          <motion.figure
+            className="overflow-hidden rounded-3xl shadow-xl border border-border/40 bg-card"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={fadeBlurUp}
+          >
+            <img
+              src={IMG}
+              width={1361}
+              height={784}
+              loading="lazy"
+              decoding="async"
+              className="w-full h-auto"
+              alt={t3(
+                language,
+                'Vue éclatée d’un diffuseur modulaire : coque, module de diffusion, électronique et batterie séparés',
+                'Exploded view of a modular diffuser: shell, diffusion module, electronics and battery shown separately',
+                'Vista despiezada de un difusor modular: carcasa, módulo de difusión, electrónica y batería por separado'
+              )}
+            />
+          </motion.figure>
 
-        <motion.ul
-          className="mx-auto mt-10 grid max-w-5xl gap-x-10 gap-y-7 md:grid-cols-2"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-60px' }}
-          variants={staggerContainer}
-        >
-          {items.map((it, i) => (
-            <motion.li key={i} className="flex gap-4" variants={fadeBlurUp}>
-              <span
-                className="mt-0.5 flex h-11 w-11 flex-none items-center justify-center rounded-full"
-                style={{ background: 'hsl(145 35% 38% / 0.12)', color: 'hsl(145 35% 30%)' }}
-                aria-hidden="true"
-              >
-                <it.icon className="h-5 w-5" />
-              </span>
-              <div>
-                <h3 className="font-semibold text-foreground text-lg leading-snug">{it.title}</h3>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed mt-1">{it.text}</p>
-              </div>
-            </motion.li>
-          ))}
-        </motion.ul>
+          <motion.ul
+            className="grid gap-y-5"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={staggerContainer}
+          >
+            {items.map((it) => (
+              <motion.li key={it.title} className="flex gap-4" variants={fadeBlurUp}>
+                <span
+                  className="mt-0.5 flex h-10 w-10 flex-none items-center justify-center rounded-full"
+                  style={{ background: 'hsl(145 35% 38% / 0.12)', color: 'hsl(145 35% 30%)' }}
+                  aria-hidden="true"
+                >
+                  <it.icon className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <h3 className="font-semibold text-foreground text-base md:text-lg leading-snug">{it.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed mt-1">{it.text}</p>
+                </div>
+              </motion.li>
+            ))}
+          </motion.ul>
+        </div>
 
         <motion.div
-          className="mt-12 md:mt-14 mx-auto max-w-3xl rounded-2xl border border-border/50 bg-card px-6 py-6 md:px-8 text-center"
+          className="mt-10 rounded-2xl border border-border/50 bg-card px-6 py-5 md:px-8 md:flex md:items-center md:justify-between md:gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           variants={fadeBlurUp}
         >
-          <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
-            {t3(language, 'Pour votre marque', 'For your brand', 'Para su marca')}
-          </p>
-          <p className="mt-2 text-lg md:text-xl font-semibold text-foreground leading-snug" style={{ textWrap: 'balance' } as React.CSSProperties}>
-            {t3(
-              language,
-              'Un produit utilisé quotidiennement pendant des années ne devient jamais un déchet dormant. C’est le meilleur argument RSE que vous puissiez avoir.',
-              'A product used daily for years never becomes dormant waste, which is the strongest CSR story you can tell.',
-              'Un producto usado diariamente durante años nunca se convierte en residuo inactivo, que es la historia de RSE más fuerte que puede contar.'
-            )}
-          </p>
+          <div className="min-w-0">
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              {t3(language, 'Pour votre marque', 'For your brand', 'Para su marca')}
+            </p>
+            <p className="mt-1 text-base md:text-lg font-semibold text-foreground leading-snug">
+              {t3(
+                language,
+                'Un produit utilisé quotidiennement pendant des années ne devient jamais un déchet dormant. C’est le meilleur argument RSE que vous puissiez avoir.',
+                'A product used daily for years never becomes dormant waste, which is the strongest CSR story you can tell.',
+                'Un producto usado diariamente durante años nunca se convierte en residuo inactivo, que es la historia de RSE más fuerte que puede contar.'
+              )}
+            </p>
+            <p className="mt-2 text-xs italic text-muted-foreground/70">
+              {t3(
+                language,
+                'Sources : études et positions européennes sur durabilité et réparabilité des produits.',
+                'Sources: European studies and policies on product durability and repairability.',
+                'Fuentes: estudios y políticas europeas sobre durabilidad y reparabilidad de productos.'
+              )}
+            </p>
+          </div>
           <a
             href="#contact"
             onClick={() => trackCTAClick(cta, 'durabilite', 'sample_durabilite')}
-            className="mt-5 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="mt-4 md:mt-0 inline-flex flex-none items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
           >
             {cta}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />
           </a>
-          <p className="mt-4 text-xs italic text-muted-foreground/70">
-            {t3(
-              language,
-              'Sources : études et positions européennes sur durabilité et réparabilité des produits.',
-              'Sources: European studies and policies on product durability and repairability.',
-              'Fuentes: estudios y políticas europeas sobre durabilidad y reparabilidad de productos.'
-            )}
-          </p>
         </motion.div>
       </div>
     </section>

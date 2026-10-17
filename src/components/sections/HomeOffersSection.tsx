@@ -1,13 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Package, Palette } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import { trackCTAClick } from '@/lib/tracking';
 import LegacyAnchors from '@/components/LegacyAnchors';
-
-const BASE = `${import.meta.env.BASE_URL}journee/img/`;
 
 // Même comportement qu'avant : le bouton mémorise le type de projet puis fait défiler jusqu'au formulaire.
 const goToContact = (type: 'white-label' | 'stock', label: string) => {
@@ -28,15 +26,16 @@ const goToContact = (type: 'white-label' | 'stock', label: string) => {
 const HomeOffersSection: React.FC = () => {
   const { language } = useLanguage();
 
+  // Sans image (17/10/2026) : les rendus 3D faisaient « image de synthèse ». Chaque carte dit pour qui elle est, puis les chiffres clés.
   const offers = [
     {
       type: 'white-label' as const,
-      img: `${BASE}custom_variants_d.webp`,
-      alt: t3(
+      icon: Palette,
+      who: t3(
         language,
-        'Sept diffuseurs Tolia personnalisés : motifs de cloche, couleurs et matières différents',
-        'Seven customised Tolia diffusers: different cover patterns, colours and materials',
-        'Siete difusores Tolia personalizados: distintos motivos de cubierta, colores y materiales'
+        'Pour les marques qui veulent leur propre diffuseur, exclusif et à leur image.',
+        'For brands that want their own diffuser, exclusive and in their image.',
+        'Para las marcas que quieren su propio difusor, exclusivo y a su imagen.'
       ),
       title: t3(language, 'Marque blanche', 'White label', 'Marca blanca'),
       text: t3(
@@ -57,12 +56,12 @@ const HomeOffersSection: React.FC = () => {
     },
     {
       type: 'stock' as const,
-      img: `${BASE}zoom_living_d.webp`,
-      alt: t3(
+      icon: Package,
+      who: t3(
         language,
-        'Diffuseur Tolia refermé sur une table : la brume sort de la buse en jet oblique',
-        'Closed Tolia diffuser on a table: the mist leaves the nozzle in an oblique jet',
-        'Difusor Tolia cerrado sobre una mesa: la bruma sale de la boquilla en un chorro oblicuo'
+        'Pour démarrer vite et proposer Tolia à vos clients dès ce mois-ci.',
+        'To start fast and offer Tolia to your customers this month.',
+        'Para empezar rápido y ofrecer Tolia a sus clientes este mismo mes.'
       ),
       title: t3(language, 'Commande stock', 'Stock order', 'Pedido de stock'),
       text: t3(
@@ -114,19 +113,22 @@ const HomeOffersSection: React.FC = () => {
               className="flex flex-col overflow-hidden rounded-3xl border border-border/50 bg-card shadow-md"
               variants={fadeBlurUp}
             >
-              <img
-                src={o.img}
-                alt={o.alt}
-                width={1920}
-                height={1080}
-                loading="lazy"
-                decoding="async"
-                className="aspect-[16/9] w-full object-cover"
-              />
               <div className="flex flex-1 flex-col p-6 md:p-8">
-                <h3 className="text-2xl font-bold text-foreground">{o.title}</h3>
+                <div className="flex items-center gap-3">
+                  <span
+                    className="flex h-11 w-11 flex-none items-center justify-center rounded-2xl"
+                    style={{ background: 'hsl(28 45% 48% / 0.12)', color: 'hsl(28 52% 36%)' }}
+                    aria-hidden="true"
+                  >
+                    <o.icon className="h-5 w-5" />
+                  </span>
+                  <h3 className="text-2xl font-bold text-foreground">{o.title}</h3>
+                </div>
+                <p className="mt-3 text-sm font-medium text-foreground/80">{o.who}</p>
                 <p className="mt-2 text-base text-muted-foreground leading-relaxed">{o.text}</p>
-                <p className="mt-4 text-sm font-semibold text-foreground">{o.facts}</p>
+                <p className="mt-4 inline-flex w-fit rounded-full px-3.5 py-1.5 text-sm font-semibold" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 52% 32%)' }}>
+                  {o.facts}
+                </p>
                 <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                   {o.points.map((pt, i) => (
                     <li key={i} className="flex items-start gap-2">
@@ -135,14 +137,17 @@ const HomeOffersSection: React.FC = () => {
                     </li>
                   ))}
                 </ul>
-                <button
-                  type="button"
-                  onClick={() => goToContact(o.type, o.cta)}
-                  className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                >
-                  {o.cta}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </button>
+                {/* le bouton reste en bas de la carte : les deux boutons sont alignés */}
+                <div className="mt-auto pt-6">
+                  <button
+                    type="button"
+                    onClick={() => goToContact(o.type, o.cta)}
+                    className="inline-flex w-fit items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-semibold text-primary-foreground transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  >
+                    {o.cta}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                </div>
               </div>
             </motion.article>
           ))}

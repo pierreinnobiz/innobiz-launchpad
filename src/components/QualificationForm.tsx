@@ -81,6 +81,15 @@ const projectTypeFromUrl = (): ProjectType | null => {
   return null;
 };
 
+// Le site web de la société est déduit de l'adresse email professionnelle (jane@marque.com -> marque.com),
+// sauf pour les messageries grand public. Le visiteur peut le corriger ; le champ n'est plus obligatoire (17/10/2026).
+const WEBMAIL = /^(gmail|googlemail|hotmail|outlook|live|msn|yahoo|ymail|icloud|me|mac|aol|gmx|web|proton|protonmail|pm|orange|free|sfr|laposte|wanadoo|bbox|neuf|club-internet|libero|virgilio|tiscali|t-online|freenet|seznam|wp|o2|interia|yandex|mail|qq|163|126|naver|hey|zoho)\./i;
+const domainFromEmail = (email: string): string => {
+  const m = email.trim().toLowerCase().match(/@([a-z0-9-]+(?:\.[a-z0-9-]+)*\.[a-z]{2,})$/);
+  if (!m) return '';
+  return WEBMAIL.test(m[1]) ? '' : m[1];
+};
+
 const getUtmParams = (): Record<string, string> => {
   try {
     const sp = new URLSearchParams(window.location.search);
@@ -98,22 +107,28 @@ const QualificationForm: React.FC = () => {
   const formStartedRef = useRef(false);
   const leadFiredRef = useRef(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
+  const siteAuto = useRef(false); // vrai tant que le site web a été rempli automatiquement depuis l'email
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-  const [data, setData] = useState<FormState>(() => ({
+  const [data, setData] = useState<FormState>(() => {
+    const email = prospectEmailFromUrl();
+    const site = domainFromEmail(email);
+    if (site) siteAuto.current = true;
+    return {
     name: '',
     company: '',
-    email: prospectEmailFromUrl(),
+    email,
     country: '',
-    website: '',
+    website: site,
     street: '',
     postalCode: '',
     city: '',
     role: '',
     phone: '',
     projectType: projectTypeFromUrl() ?? 'unset',
-  }));
+    };
+  });
 
   const update = useCallback(<K extends keyof FormState>(field: K, value: FormState[K]) => {
     setData((prev) => ({ ...prev, [field]: value }));
@@ -147,10 +162,9 @@ const QualificationForm: React.FC = () => {
       next.email = t3(language, 'Email invalide', 'Invalid email', 'Email no válido');
     if (!data.name.trim()) next.name = requiredMsg;
     if (!data.company.trim()) next.company = requiredMsg;
-    if (!data.country) next.country = requiredMsg;
+    // site web facultatif (rempli d'office depuis l'email) ; le pays est demandé à l'étape 2, avec l'adresse
     const site = data.website.trim();
-    if (!site) next.website = requiredMsg;
-    else if (!/^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/.*)?$/i.test(site))
+    if (site && !/^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/.*)?$/i.test(site))
       next.website = t3(language, 'Site web invalide', 'Invalid website', 'Sitio web no válido');
     setErrors(next);
     return Object.keys(next).length === 0;
@@ -413,6 +427,20 @@ const QualificationForm: React.FC = () => {
 
         <div className="grid gap-4">
           <div className="space-y-1.5">
+            <Label htmlFor="qf-country-2">{t3(language, 'Pays', 'Country', 'País')} *</Label>
+            <Select value={data.country} onValueChange={(v) => update('country', v)} required>
+              <SelectTrigger id="qf-country-2" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true">
+                <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
+              </SelectTrigger>
+              <SelectContent className="bg-card max-h-72">
+                {COUNTRIES.map((c) => (
+                  <SelectItem key={c} value={c}>{c}</SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+            {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
+          </div>
+          <div className="space-y-1.5">
             <Label htmlFor="qf-street">{t3(language, 'Adresse', 'Street address', 'Dirección')} *</Label>
             <Input
               id="qf-street"
@@ -425,9 +453,6 @@ const QualificationForm: React.FC = () => {
               aria-invalid={!!errors.street}
             />
             {errors.street && <p className="text-[13px] text-destructive">{errors.street}</p>}
-            <p className="text-[11px] text-muted-foreground">
-              {t3(language, 'Pays', 'Country', 'País')}: {data.country}
-            </p>
           </div>
         </div>
 
@@ -541,9 +566,9 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground mt-2">
           {t3(
             language,
-            "Quelques informations sur votre société. Nous demanderons l'adresse juste après.",
-            "A few details about your company. We'll ask for the address right after.",
-            'Algunos datos de su empresa. Pediremos la dirección justo después.'
+            "Trois informations pour commencer, l'adresse de livraison juste après.",
+            'Three details to start with, the delivery address right after.',
+            'Tres datos para empezar, la dirección de envío justo después.'
           )}
         </p>
       </div>
@@ -560,7 +585,17 @@ const QualificationForm: React.FC = () => {
           autoCapitalize="none"
           spellCheck={false}
           value={data.email}
-          onChange={(e) => update('email', e.target.value)}
+          onChange={(e) => {
+            const v = e.target.value;
+            // le site web suit l'email tant que le visiteur ne l'a pas modifié lui-même
+            setData((prev) => {
+              const d = domainFromEmail(v);
+              const next = { ...prev, email: v };
+              if (d && (siteAuto.current || !prev.website.trim())) { next.website = d; siteAuto.current = true; }
+              return next;
+            });
+            setErrors((prev) => ({ ...prev, email: undefined, website: undefined }));
+          }}
           onFocus={handleFormStart}
           placeholder="jane.doe@company.com"
           className="h-11 rounded-xl"
@@ -602,39 +637,30 @@ const QualificationForm: React.FC = () => {
         </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-4">
-        <div className="space-y-1.5">
-          <Label htmlFor="qf-country-1">{t3(language, 'Pays', 'Country', 'País')} *</Label>
-          <Select value={data.country} onValueChange={(v) => update('country', v)} required>
-            <SelectTrigger id="qf-country-1" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true" onFocus={handleFormStart}>
-              <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
-            </SelectTrigger>
-            <SelectContent className="bg-card max-h-72">
-              {COUNTRIES.map((c) => (
-                <SelectItem key={c} value={c}>{c}</SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
-        </div>
-        <div className="space-y-1.5">
-          <Label htmlFor="qf-website">{t3(language, 'Site web de la société', 'Company website', 'Sitio web de la empresa')} *</Label>
-          <Input
-            id="qf-website"
-            required
-            inputMode="url"
-            autoComplete="url"
-            autoCapitalize="none"
-            spellCheck={false}
-            value={data.website}
-            onChange={(e) => update('website', e.target.value)}
-            onFocus={handleFormStart}
-            placeholder="company.com"
-            className="h-11 rounded-xl"
-            aria-invalid={!!errors.website}
-          />
-          {errors.website && <p className="text-[13px] text-destructive">{errors.website}</p>}
-        </div>
+      <div className="space-y-1.5">
+        <Label htmlFor="qf-website">
+          {t3(language, 'Site web de la société', 'Company website', 'Sitio web de la empresa')}{' '}
+          <span className="font-normal text-muted-foreground">{t3(language, '(facultatif)', '(optional)', '(opcional)')}</span>
+        </Label>
+        <Input
+          id="qf-website"
+          inputMode="url"
+          autoComplete="url"
+          autoCapitalize="none"
+          spellCheck={false}
+          value={data.website}
+          onChange={(e) => { siteAuto.current = false; update('website', e.target.value); }}
+          onFocus={handleFormStart}
+          placeholder="company.com"
+          className="h-11 rounded-xl"
+          aria-invalid={!!errors.website}
+        />
+        {errors.website && <p className="text-[13px] text-destructive">{errors.website}</p>}
+        {!errors.website && siteAuto.current && data.website && (
+          <p className="text-[12px] text-muted-foreground">
+            {t3(language, 'Rempli à partir de votre email : modifiez-le si besoin.', 'Filled in from your email: change it if needed.', 'Rellenado a partir de su email: modifíquelo si es necesario.')}
+          </p>
+        )}
       </div>
 
       {/* Optional qualification */}
@@ -680,7 +706,7 @@ const QualificationForm: React.FC = () => {
       >
         {isSubmitting
           ? t3(language, 'Envoi…', 'Sending…', 'Enviando…')
-          : t3(language, 'Recevoir mon échantillon', 'Get my sample', 'Recibir mi muestra')}
+          : t3(language, 'Continuer : adresse de livraison', 'Continue: delivery address', 'Continuar: dirección de envío')}
         <ArrowRight className="w-5 h-5 ml-2" />
       </Button>
 

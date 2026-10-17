@@ -5,7 +5,8 @@ import { fadeBlurUp } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 
-// Huit questions, réponses courtes. Les minimums, délais et la conformité sont ceux déjà publiés sur le site ; RSE, supports marketing et prix retrouvent leur réponse de l'ancien site.
+// Neuf questions, réponses courtes. Les minimums, délais et la conformité sont ceux déjà publiés sur le site ; RSE, supports marketing et prix retrouvent leur réponse de l'ancien site.
+// 17/10/2026 : ajout « Quelles huiles peut-on diffuser ? » (plus de 150 huiles testées, phrase de Pierre) ; « Comment démarrer ? » propose aussi l'appel de 15 minutes.
 const FAQSection: React.FC = () => {
   const { language } = useLanguage();
 
@@ -17,6 +18,15 @@ const FAQSection: React.FC = () => {
         'Oui. Le module se visse sur vos flacons standard (col DIN 18, de 5 à 50 ml), sans transfert ni remplissage.',
         'Yes. The module screws onto your standard bottles (DIN 18 neck, 5 to 50 ml), with no transfer and no refilling.',
         'Sí. El módulo se enrosca en sus frascos estándar (cuello DIN 18, de 5 a 50 ml), sin trasvase ni rellenado.'
+      ),
+    },
+    {
+      q: t3(language, 'Quelles huiles peut-on diffuser avec Tolia ?', 'Which oils can Tolia diffuse?', '¿Qué aceites puede difundir Tolia?'),
+      a: t3(
+        language,
+        'Tout votre catalogue : la technologie a été testée sur plus de 150 huiles essentielles et synergies, et elle diffuse aussi les parfums synthétiques. Hydrolats et parfums d’intérieur sont également compatibles.',
+        'Your whole catalogue: the technology has been tested on more than 150 essential oils and blends, and it also diffuses synthetic fragrances. Hydrosols and home fragrances are compatible too.',
+        'Todo su catálogo: la tecnología se ha probado con más de 150 aceites esenciales y sinergias, y difunde también perfumes sintéticos. Hidrolatos y fragancias para el hogar también son compatibles.'
       ),
     },
     {
@@ -77,9 +87,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Comment démarrer ?', 'How do I get started?', '¿Cómo empiezo?'),
       a: t3(
         language,
-        'Remplissez le formulaire ci-dessous : il arrive directement à notre équipe (pas un chatbot), qui répond sous un jour ouvré. Échantillon expédié de France sous 5 jours ouvrés.',
-        'Fill in the form below: it goes straight to our team (not a chatbot), who reply within one business day. Sample shipped from France within 5 business days.',
-        'Rellene el formulario de abajo: llega directamente a nuestro equipo (no es un chatbot), que responde en un día hábil. Muestra enviada desde Francia en 5 días hábiles.'
+        'Deux possibilités, sans engagement : demandez un échantillon gratuit avec le formulaire ci-dessous (expédié de France sous 5 jours ouvrés), ou réservez 15 minutes en visio avec notre équipe. Une vraie personne vous répond sous un jour ouvré, pas un robot.',
+        'Two options, no commitment: request a free sample with the form below (shipped from France within 5 business days), or book a 15-minute video call with our team. A real person replies within one business day, not a bot.',
+        'Dos opciones, sin compromiso: solicite una muestra gratuita con el formulario de abajo (enviada desde Francia en 5 días hábiles) o reserve 15 minutos por videollamada con nuestro equipo. Una persona real le responde en un día hábil, no un robot.'
       ),
     },
   ];

@@ -146,19 +146,21 @@ const CustomizationSection: React.FC = () => {
   const { language: l } = useLanguage();
   const cta = t3(l, 'Parler de mon projet', 'Discuss my project', 'Hablar de mi proyecto');
 
+  // Mise en page resserrée (17/10/2026, « trop d'espaces blancs ») : l'image et les quatre points du diffuseur côte à côte,
+  // puis les trois familles (accessoires, packaging, notices) en cartes compactes. Le contenu est inchangé.
   return (
-    <section id="personnalisation" className="py-16 md:py-24 bg-background relative overflow-hidden">
+    <section id="personnalisation" className="py-14 md:py-20 bg-background relative overflow-hidden">
       <LegacyAnchors ids={['white-label', 'personalization']} />
-      <div className="max-w-6xl mx-auto px-6 md:px-12 lg:px-16">
+      <div className="max-w-6xl mx-auto px-6 md:px-12">
         <motion.div
-          className="text-center max-w-3xl mx-auto mb-10 md:mb-14"
+          className="text-center max-w-3xl mx-auto mb-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
           variants={fadeBlurUp}
         >
           <span
-            className="mb-5 inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-widest"
+            className="mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
             style={{ background: 'hsl(28 45% 48% / 0.08)', color: 'hsl(28 45% 48%)' }}
           >
             <Sparkles className="h-4 w-4" aria-hidden="true" />
@@ -167,7 +169,7 @@ const CustomizationSection: React.FC = () => {
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
             {t3(l, 'Faites de Tolia le diffuseur de votre marque', 'Make Tolia your brand’s own diffuser', 'Haga de Tolia el difusor de su marca')}
           </h2>
-          <p className="mt-5 text-base md:text-lg text-muted-foreground leading-relaxed">
+          <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
               'Innobiz personnalise chaque composant de votre diffuseur. Des milliers de combinaisons possibles pour un produit qui ne ressemble qu’à vous.',
@@ -178,45 +180,45 @@ const CustomizationSection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-12 md:mb-14"
+          className="grid gap-6 md:grid-cols-12 md:gap-8 items-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           variants={fadeBlurUp}
         >
-          <div className="relative overflow-hidden rounded-2xl shadow-lg border border-border/40">
+          <div className="relative overflow-hidden rounded-2xl shadow-lg border border-border/40 md:col-span-5">
             <img
               src={IMG}
               width={1600}
               height={892}
               loading="lazy"
               decoding="async"
-              className="w-full h-auto md:h-full md:object-cover md:aspect-square"
+              className="w-full h-auto"
               alt={t3(l, 'Le diffuseur Tolia personnalisable : teintes, motifs et croquis', 'The customisable Tolia diffuser: shades, patterns and sketches', 'El difusor Tolia personalizable: tonos, motivos y bocetos')}
             />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-5">
-              <div className="flex items-end gap-3">
-                <span className="text-3xl md:text-4xl font-bold text-white" aria-hidden="true">∞</span>
-                <span className="pb-1 text-sm text-white/85">{t3(l, 'combinaisons de couleurs', 'colour combinations', 'combinaciones de colores')}</span>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 py-3">
+              <div className="flex items-end gap-2.5">
+                <span className="text-2xl md:text-3xl font-bold text-white" aria-hidden="true">∞</span>
+                <span className="pb-0.5 text-sm text-white/85">{t3(l, 'combinaisons de couleurs', 'colour combinations', 'combinaciones de colores')}</span>
               </div>
             </div>
           </div>
 
-          <div>
-            <div className="mb-4 flex items-center gap-3">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }} aria-hidden="true">
+          <div className="md:col-span-7 min-w-0">
+            <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }} aria-hidden="true">
                 <Paintbrush className="h-4 w-4" />
               </span>
-              <h3 className="text-xl md:text-2xl font-bold text-foreground">{t3(l, 'Le diffuseur', 'The diffuser', 'El difusor')}</h3>
+              <h3 className="text-xl font-bold text-foreground">{t3(l, 'Le diffuseur', 'The diffuser', 'El difusor')}</h3>
+              <span className="text-sm text-muted-foreground">
+                {t3(l, 'Couleurs, finitions et gravures sur mesure', 'Custom colours, finishes and engravings', 'Colores, acabados y grabados a medida')}
+              </span>
             </div>
-            <p className="mb-5 text-sm text-muted-foreground">
-              {t3(l, 'Couleurs, finitions et gravures sur mesure', 'Custom colours, finishes and engravings', 'Colores, acabados y grabados a medida')}
-            </p>
-            <ol className="space-y-3">
+            <ol className="grid gap-2.5 sm:grid-cols-2">
               {diffuserPoints.map((p, i) => (
-                <li key={i} className="flex items-start gap-3 rounded-xl border border-border/30 bg-card p-3.5">
+                <li key={i} className="flex items-start gap-3 rounded-xl border border-border/30 bg-card px-3.5 py-3">
                   <span
-                    className="mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-lg text-xs font-bold"
+                    className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-md text-xs font-bold"
                     style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }}
                   >
                     {i + 1}
@@ -229,7 +231,7 @@ const CustomizationSection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="grid md:grid-cols-3 gap-6"
+          className="mt-6 grid gap-4 md:grid-cols-3"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-40px' }}
@@ -238,25 +240,20 @@ const CustomizationSection: React.FC = () => {
           {pillars.map((pillar) => (
             <motion.article
               key={pillar.title.en}
-              className="rounded-2xl border border-border/40 bg-card p-6 md:p-7 transition-shadow duration-500 hover:shadow-[0_12px_40px_-8px_hsl(28_45%_48%/0.12)]"
+              className="rounded-2xl border border-border/40 bg-card p-5"
               variants={fadeBlurUp}
             >
-              <div className="mb-4 flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }} aria-hidden="true">
+              <div className="mb-2 flex items-center gap-3">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }} aria-hidden="true">
                   <pillar.icon className="h-4 w-4" />
                 </span>
                 <h3 className="text-lg font-bold text-foreground">{t3(l, pillar.title.fr, pillar.title.en, pillar.title.es)}</h3>
               </div>
-              <p className="mb-4 text-sm font-medium text-foreground/80">{t3(l, pillar.subtitle.fr, pillar.subtitle.en, pillar.subtitle.es)}</p>
-              <ul className="space-y-2.5">
+              <p className="mb-3 text-sm font-medium text-foreground/80">{t3(l, pillar.subtitle.fr, pillar.subtitle.en, pillar.subtitle.es)}</p>
+              <ul className="space-y-1.5">
                 {pillar.points.map((p, i) => (
-                  <li key={i} className="flex items-start gap-2.5 text-sm leading-relaxed text-muted-foreground">
-                    <span
-                      className="mt-0.5 flex h-5 w-5 flex-none items-center justify-center rounded text-xs font-bold"
-                      style={{ background: 'hsl(28 45% 48% / 0.08)', color: 'hsl(28 45% 48%)' }}
-                    >
-                      {i + 1}
-                    </span>
+                  <li key={i} className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground">
+                    <span className="mt-[0.55em] h-1.5 w-1.5 flex-none rounded-full" style={{ background: 'hsl(28 45% 48%)' }} aria-hidden="true" />
                     {t3(l, p.fr, p.en, p.es)}
                   </li>
                 ))}
@@ -265,7 +262,7 @@ const CustomizationSection: React.FC = () => {
           ))}
         </motion.div>
 
-        <div className="mt-10 text-center">
+        <div className="mt-8 text-center">
           <button
             type="button"
             onClick={() => goToProject(cta)}
