@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, FileText, Package, Paintbrush, Puzzle, Sparkles, type LucideIcon } from 'lucide-react';
+import { ArrowRight, FileText, Package, Paintbrush, Puzzle, SlidersHorizontal, Sparkles, type LucideIcon } from 'lucide-react';
 import { fadeBlurUp, staggerContainer } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
@@ -27,9 +27,9 @@ const diffuserPoints: Tri[] = [
     es: 'Su color exacto: elija entre nuestros tonos o indíquenos su referencia RAL o Pantone',
   },
   {
-    fr: 'Gravure laser, sérigraphie ou impression UV de votre logo sur coque et socle',
-    en: 'Laser engraving, screen printing or UV printing of your logo on shell and base',
-    es: 'Grabado láser, serigrafía o impresión UV de su logo en carcasa y base',
+    fr: 'Gravure laser, sérigraphie ou impression UV de votre logo sur la cloche et la base',
+    en: 'Laser engraving, screen printing or UV printing of your logo on the cover and base',
+    es: 'Grabado láser, serigrafía o impresión UV de su logotipo en la cubierta y la base',
   },
   {
     fr: 'Finitions mat, brillante, soft-touch, texturée ou métallique selon votre positionnement',
@@ -49,7 +49,7 @@ const pillars: Pillar[] = [
     title: { fr: 'Les accessoires', en: 'Accessories', es: 'Los accesorios' },
     subtitle: {
       fr: 'Modules de nébulisation et câbles aux couleurs de votre gamme',
-      en: 'Nebulisation modules and cables in your range colours',
+      en: 'Diffusion modules and cables in your range colours',
       es: 'Módulos de nebulización y cables con los colores de su gama',
     },
     points: [
@@ -60,13 +60,8 @@ const pillars: Pillar[] = [
       },
       {
         fr: 'Câble de recharge USB-C avec manchon à votre charte graphique',
-        en: 'USB-C charging cable with sleeve in your brand guidelines',
+        en: 'USB-C charging cable with a sleeve in your brand colours',
         es: 'Cable de carga USB-C con funda según su identidad de marca',
-      },
-      {
-        fr: 'Modes de diffusion préprogrammés selon vos recommandations',
-        en: 'Pre-programmed diffusion modes based on your recommendations',
-        es: 'Modos de difusión preprogramados según sus recomendaciones',
       },
     ],
   },
@@ -226,6 +221,13 @@ const CustomizationSection: React.FC = () => {
                 </li>
               ))}
             </ol>
+            <p className="mt-3 flex items-start gap-2 rounded-xl px-3.5 py-2.5 text-sm text-foreground" style={{ background: 'hsl(28 45% 48% / 0.08)' }}>
+              <SlidersHorizontal className="mt-0.5 h-4 w-4 flex-none" style={{ color: 'hsl(28 45% 48%)' }} aria-hidden="true" />
+              <span>
+                <strong>{t3(l, 'Et vos réglages :', 'And your settings:', 'Y sus ajustes:')}</strong>{' '}
+                {t3(l, 'modes de diffusion préprogrammés selon vos recommandations.', 'diffusion modes pre-programmed to your recommendations.', 'modos de difusión preprogramados según sus recomendaciones.')}
+              </span>
+            </p>
           </div>
         </motion.div>
 

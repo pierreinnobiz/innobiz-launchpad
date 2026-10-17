@@ -6,6 +6,9 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import LegacyAnchors from '@/components/LegacyAnchors';
 
+// Le geste en une image (scène du matin recadrée) : le flacon clipsé dans la base, les autres flacons avec leur module.
+const GESTE = `${import.meta.env.BASE_URL}journee/img/constat_geste.webp`;
+
 /**
  * Le constat (refonte du 17/10/2026, demande de Pierre) : on montre que l'on connaît les usages.
  * Pour chaque technologie de diffusion : ce que l'utilisateur doit faire, puis ce qui se passe (le diffuseur s'arrête,
@@ -56,7 +59,7 @@ const HomeProblemSection: React.FC = () => {
         l,
         'Une pompe que l’on entend, une verrerie fragile à démonter et à nettoyer chaque fois que l’on change d’huile.',
         'A pump you can hear, fragile glassware to take apart and clean every time you change oil.',
-        'Una bomba que se oye y una cristalería frágil que hay que desmontar y limpiar cada vez que se cambia de aceite.'
+        'Una bomba que se oye y unas piezas de vidrio frágiles que hay que desmontar y limpiar cada vez que se cambia de aceite.'
       ),
       result: t3(l, 'Trop contraignant : on garde la même huile, puis on arrête.', 'Too much hassle: people keep the same oil, then stop.', 'Demasiado complicado: se mantiene el mismo aceite y luego se abandona.'),
     },
@@ -88,22 +91,23 @@ const HomeProblemSection: React.FC = () => {
             {t3(
               l,
               'En 20 ans de métier dans la diffusion, nous avons fait le même constat : l’envie de diffuser est bien là ; ce qui l’éteint, ce sont les gestes que chaque appareil impose. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne se rachètent plus.',
-              'In 20 years of designing diffusers, we have seen the same thing again and again: the wish to diffuse is there; what kills it is the chores each device demands. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.',
+              'In 20 years of designing diffusers, we have seen the same thing again and again: people want to diffuse; what stops them is the chores each device demands. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.',
               'En 20 años de experiencia en difusión, hemos llegado siempre a la misma conclusión: las ganas de difundir están ahí; lo que las apaga son los gestos que impone cada aparato. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
             )}
           </p>
         </motion.div>
 
         {/* Une carte par technologie : ce que l'on doit faire, puis ce qui se passe */}
+        {/* téléphone : les 4 cartes défilent sur le côté (moins d'écrans de texte) ; tablette et ordinateur : grille */}
         <motion.ul
-          className="mt-10 md:mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+          className="mt-10 md:mt-12 -mx-6 flex snap-x snap-mandatory gap-3 overflow-x-auto px-6 pb-3 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-4 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-4"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           variants={staggerContainer}
         >
           {techs.map((t) => (
-            <motion.li key={t.name} className="flex flex-col rounded-2xl border border-border/60 bg-card p-5" variants={fadeBlurUp}>
+            <motion.li key={t.name} className="flex min-w-[82%] snap-start flex-col rounded-2xl border border-border/60 bg-card p-5 sm:min-w-0" variants={fadeBlurUp}>
               <div className="flex items-center gap-3">
                 <span className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-muted text-muted-foreground" aria-hidden="true">
                   <t.icon className="h-5 w-5" />
@@ -121,29 +125,45 @@ const HomeProblemSection: React.FC = () => {
             </motion.li>
           ))}
         </motion.ul>
+        <p className="mt-1 text-center text-xs text-muted-foreground sm:hidden">
+          {t3(l, 'Faites glisser pour voir les 4 technologies', 'Swipe to see all 4 technologies', 'Deslice para ver las 4 tecnologías')} →
+        </p>
 
         {/* La réponse de Tolia */}
         <motion.div
-          className="mt-4 grid gap-5 rounded-2xl p-6 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-10 md:p-8"
+          className="mt-4 grid items-center gap-5 rounded-2xl p-5 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.5fr)] md:gap-8 md:p-7"
           style={{ background: 'hsl(25 20% 12%)', color: 'hsl(36 40% 96%)' }}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           variants={fadeBlurUp}
         >
-          <div>
+          <img
+            src={GESTE}
+            width={660}
+            height={440}
+            loading="lazy"
+            decoding="async"
+            className="w-full rounded-xl object-cover"
+            style={{ aspectRatio: '3 / 2' }}
+            alt={t3(
+              l,
+              'Le flacon clipsé tête en bas dans la base de Tolia, la brume qui sort, et deux flacons qui attendent avec leur module de diffusion vissé',
+              'The bottle clipped upside down into Tolia’s base, mist coming out, and two bottles waiting with their diffusion module screwed on',
+              'El frasco encajado boca abajo en la base de Tolia, la bruma saliendo y dos frascos esperando con su módulo de difusión enroscado'
+            )}
+          />
+          <div className="min-w-0">
             <p className="text-xs font-semibold uppercase tracking-[0.16em]" style={{ color: 'hsl(28 55% 66%)' }}>Tolia</p>
             <h3 className="mt-2 text-2xl md:text-3xl font-semibold leading-tight" style={{ textWrap: 'balance' } as React.CSSProperties}>
-              {t3(l, 'Nous avons pris le problème à l’envers.', 'We turned the problem upside down.', 'Le dimos la vuelta al problema.')}
+              {t3(l, 'Nous avons pris le problème à l’envers.', 'We turned the problem upside down.', 'Le hemos dado la vuelta al problema.')}
             </h3>
-          </div>
-          <div className="min-w-0">
-            <p className="text-sm md:text-base leading-relaxed" style={{ color: 'hsl(36 40% 96% / 0.82)' }}>
+            <p className="mt-3 text-sm md:text-base leading-relaxed" style={{ color: 'hsl(36 40% 96% / 0.82)' }}>
               {t3(
                 l,
-                'Au lieu de verser l’huile dans l’appareil, c’est le diffuseur qui vient sur le flacon. Le flacon de votre marque se visse sur un module de diffusion et se clipse dans Tolia ; un appui lance la diffusion. Ni eau, ni chaleur, ni bruit de pompe, rien à nettoyer, et une autre huile en une seconde.',
-                'Forget pouring oil into a device: with Tolia, the diffuser goes to the bottle. Your brand’s bottle screws onto a diffusion module and clips into Tolia; one press starts diffusion. No water, no heat, no pump noise, nothing to clean, and a different oil in one second.',
-                'En lugar de verter el aceite en el aparato, es el difusor el que va al frasco. El frasco de su marca se enrosca en un módulo de difusión y se encaja en Tolia; una pulsación inicia la difusión. Sin agua, sin calor, sin ruido de bomba, nada que limpiar y otro aceite en un segundo.'
+                'Au lieu de verser l’huile dans l’appareil, c’est le diffuseur qui vient sur le flacon. Le flacon de votre marque se visse sur un module de diffusion et se clipse dans Tolia ; un appui lance la diffusion. Ni eau, ni chaleur, ni pompe, rien à nettoyer, et une autre huile en une seconde.',
+                'Forget pouring oil into a device: with Tolia, the diffuser goes to the bottle. Your brand’s bottle screws onto a diffusion module and clips into Tolia; one press starts diffusion. No water, no heat, no pump, nothing to clean, and a different oil in one second.',
+                'En lugar de verter el aceite en el aparato, es el difusor el que va al frasco. El frasco de su marca se enrosca en un módulo de difusión y se encaja en Tolia; una pulsación inicia la difusión. Sin agua, sin calor, sin bomba, nada que limpiar y otro aceite en un segundo.'
               )}
             </p>
             <p className="mt-4 flex items-start gap-2 text-sm md:text-base font-semibold leading-snug" style={{ color: 'hsl(28 60% 70%)' }}>
@@ -172,7 +192,7 @@ const HomeProblemSection: React.FC = () => {
               l,
               'Quand diffuser ne demande plus aucun effort, on diffuse tous les jours. C’est ce qui ramène vos clients vers vos huiles.',
               'When diffusing takes no effort, people diffuse every day. That is what brings your customers back to your oils.',
-              'Cuando difundir no exige ningún esfuerzo, se difunde a diario. Eso es lo que hace volver a sus clientes a sus aceites.'
+              'Cuando aromatizar la casa no cuesta ningún esfuerzo, se hace a diario. Y sus clientes vuelven a comprar sus aceites.'
             )}
           </p>
           <a

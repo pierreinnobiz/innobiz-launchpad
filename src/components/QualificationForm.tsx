@@ -389,7 +389,7 @@ const QualificationForm: React.FC = () => {
     {
       value: 'stock_order',
       label: t3(language, 'Commande sur stock', 'Stock order', 'Pedido de stock'),
-      sub: t3(language, 'à partir de 500 unités, expédition 72h', 'from 500 units, ships in 72h', 'desde 500 unidades, envío en 72h'),
+      sub: t3(language, 'dès 500 unités, expédition sous 72 h si en stock', 'from 500 units, ships within 72 h if in stock', 'desde 500 unidades, envío en 72 h si hay stock'),
     },
     {
       value: 'white_label',
@@ -555,9 +555,9 @@ const QualificationForm: React.FC = () => {
             onChange={(e) => update('message', e.target.value)}
             placeholder={t3(
               language,
-              'Ex. : format de vos flacons, volumes envisagés, canaux de vente',
-              'E.g. your bottle sizes, expected volumes, sales channels',
-              'Ej.: formato de sus frascos, volúmenes previstos, canales de venta'
+              'Ex. : format de vos flacons, pays de vente, volumes envisagés, calendrier',
+              'E.g. your bottle sizes (10 ml droppers…), markets (UK, US…), volumes, timing',
+              'Ej.: formato de sus frascos, países de venta, volúmenes previstos, calendario'
             )}
             className="rounded-xl"
           />
@@ -592,15 +592,15 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground mt-2">
           {t3(
             language,
-            "Trois informations pour commencer, l'adresse de livraison juste après.",
-            'Three details to start with, the delivery address right after.',
-            'Tres datos para empezar, la dirección de envío justo después.'
+            "Trois informations pour commencer ; l'adresse de livraison et, si vous le souhaitez, votre projet juste après.",
+            'Three details to start with; the delivery address and, if you like, your project right after.',
+            'Tres datos para empezar; la dirección de envío y, si lo desea, su proyecto justo después.'
           )}
         </p>
       </div>
 
       <div className="space-y-1.5">
-        <Label htmlFor="qf-email">{t3(language, 'Email professionnel', 'Professional email', 'Email profesional')} *</Label>
+        <Label htmlFor="qf-email">{t3(language, 'Email professionnel', 'Work email', 'Email profesional')} *</Label>
         <Input
           ref={emailInputRef}
           id="qf-email"
@@ -632,7 +632,7 @@ const QualificationForm: React.FC = () => {
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-1.5">
-          <Label htmlFor="qf-name">{t3(language, 'Prénom et nom', 'First & last name', 'Nombre y apellidos')} *</Label>
+          <Label htmlFor="qf-name">{t3(language, 'Prénom et nom', 'Full name', 'Nombre y apellidos')} *</Label>
           <Input
             id="qf-name"
             required
@@ -655,7 +655,7 @@ const QualificationForm: React.FC = () => {
             value={data.company}
             onChange={(e) => update('company', e.target.value)}
             onFocus={handleFormStart}
-            placeholder={t3(language, 'Nom de votre marque', 'Your brand name', 'Nombre de su marca')}
+            placeholder={t3(language, 'Nom de votre société', 'Your company name', 'Nombre de su empresa')}
             className="h-11 rounded-xl"
             aria-invalid={!!errors.company}
           />
@@ -736,17 +736,18 @@ const QualificationForm: React.FC = () => {
         <ArrowRight className="w-5 h-5 ml-2" />
       </Button>
 
-      <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-[12px] text-muted-foreground">
+      {/* téléphone : une garantie par ligne (les points de séparation ne pendent plus en bout de ligne) */}
+      <div className="flex flex-col items-center gap-1 text-[12px] text-muted-foreground sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-3 sm:gap-y-1">
         <span className="inline-flex items-center gap-1.5">
           <Package className="w-3.5 h-3.5" />
           {t3(language, 'Expédié sous 5 jours ouvrés', 'Ships in 5 business days', 'Envío en 5 días hábiles')}
         </span>
-        <span aria-hidden="true">·</span>
+        <span aria-hidden="true" className="hidden sm:inline">·</span>
         <span className="inline-flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5" />
           {t3(language, 'Conçu et assemblé en France', 'Designed and assembled in France', 'Diseñado y ensamblado en Francia')}
         </span>
-        <span aria-hidden="true">·</span>
+        <span aria-hidden="true" className="hidden sm:inline">·</span>
         <span className="inline-flex items-center gap-1.5">
           <Lock className="w-3.5 h-3.5" />
           {t3(language, 'Vos données restent privées', 'Your data stays private', 'Sus datos permanecen privados')}

@@ -18,7 +18,7 @@ import QualificationForm from '@/components/QualificationForm';
 const ContactSection: React.FC = () => {
   const { language: l } = useLanguage();
   const [copied, setCopied] = useState(false);
-  const talk = t3(l, 'Choisir un créneau de 15 min', 'Pick a 15-min slot', 'Elegir un hueco de 15 min');
+  const talk = t3(l, 'Choisir un créneau de 15 min', 'Pick a 15-min slot', 'Elegir un hueco de 15 min');
 
   const copyEmail = async () => {
     try {
@@ -29,9 +29,9 @@ const ContactSection: React.FC = () => {
   };
 
   const reassure = [
-    t3(l, 'Échantillon expédié de France sous 5 jours ouvrés', 'Sample shipped from France within 5 business days', 'Muestra enviada desde Francia en 5 días hábiles'),
+    t3(l, 'Échantillon expédié de France sous 5 jours ouvrés', 'Sample shipped from France within 5 business days', 'Muestra enviada desde Francia en 5 días hábiles'),
     t3(l, 'Une vraie personne vous répond sous un jour ouvré', 'A real person replies within one business day', 'Una persona real le responde en un día hábil'),
-    t3(l, 'Prix et conditions partagés dès le premier échange', 'Pricing and terms shared from the first conversation', 'Precios y condiciones desde la primera conversación'),
+    t3(l, 'Prix et conditions partagés dès le premier échange', 'Pricing and terms shared from the first conversation', 'Precios y condiciones desde el primer contacto'),
   ];
 
   return (
@@ -48,7 +48,7 @@ const ContactSection: React.FC = () => {
             {t3(l, 'Passons à l’essai', 'Let’s try it', 'Pasemos a la prueba')}
           </span>
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
-            {t3(l, 'Jugez Tolia par vous‑même, avec vos propres flacons.', 'Judge Tolia for yourself, with your own bottles.', 'Juzgue Tolia usted mismo, con sus propios frascos.')}
+            {t3(l, 'Jugez Tolia par vous‑même, avec vos propres flacons.', 'Judge Tolia for yourself, with your own bottles.', 'Compruébelo usted mismo, con sus propios frascos.')}
           </h2>
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(

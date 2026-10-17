@@ -26,7 +26,7 @@ const DurabilitySection: React.FC = () => {
         language,
         'Cloche, module de diffusion, électronique, batterie : chaque partie se remplace sans changer tout l’appareil. Sans verrerie fragile à l’intérieur, sans eau stagnante ni pompe, il y a moins de pièces qui cassent, donc moins de retours à gérer.',
         'Cover, diffusion module, electronics, battery: every part can be replaced without changing the whole device. With no fragile glassware inside, no stagnant water and no pump, fewer parts break, so fewer returns to manage.',
-        'Cubierta, módulo de difusión, electrónica, batería: cada parte se puede reemplazar sin cambiar todo el dispositivo. Sin cristalería frágil en su interior, sin agua estancada ni bomba, hay menos piezas que se rompen y, por tanto, menos devoluciones que gestionar.'
+        'Cubierta, módulo de difusión, electrónica, batería: cada parte se puede reemplazar sin cambiar todo el dispositivo. Sin piezas de vidrio frágiles en su interior, sin agua estancada ni bomba, hay menos piezas que se rompen y, por tanto, menos devoluciones que gestionar.'
       ),
     },
     {
@@ -45,7 +45,7 @@ const DurabilitySection: React.FC = () => {
       text: t3(
         language,
         'Sans eau, sans nettoyage, avec un changement d’huile en une seconde, Tolia évite le « syndrome du placard » : il s’intègre aux routines quotidiennes au lieu de finir oublié dans un tiroir.',
-        'With no water, no cleaning and an oil change in a second, Tolia avoids the “cupboard syndrome”: it fits into daily routines rather than ending up forgotten in a drawer.',
+        'With no water, no cleaning and an oil change in a second, Tolia avoids the “cupboard syndrome”: it fits into daily routines rather than ending up forgotten in a cupboard.',
         'Sin agua, sin limpieza y con cambio de aceite en un segundo, Tolia evita el «síndrome del armario»: se integra en las rutinas diarias en lugar de acabar olvidado en un cajón.'
       ),
     },
@@ -162,9 +162,9 @@ const DurabilitySection: React.FC = () => {
             <p className="mt-1 text-base md:text-lg font-semibold text-foreground leading-snug">
               {t3(
                 language,
-                'Un produit utilisé chaque jour pendant des années ne finit jamais oublié dans un tiroir. C’est un argument RSE concret pour votre marque.',
-                'A product used every day for years never ends up forgotten in a drawer: a concrete sustainability story for your brand.',
-                'Un producto que se usa a diario durante años nunca acaba olvidado en un cajón: un argumento de sostenibilidad concreto para su marca.'
+                'Un produit pensé pour servir chaque jour pendant des années ne finit pas oublié dans un tiroir. C’est un argument RSE concret pour votre marque.',
+                'A product designed to be used every day for years does not end up forgotten in a cupboard: a concrete sustainability story for your brand.',
+                'Un producto pensado para usarse a diario durante años no acaba olvidado en un cajón: un argumento de sostenibilidad concreto para su marca.'
               )}
             </p>
           </div>

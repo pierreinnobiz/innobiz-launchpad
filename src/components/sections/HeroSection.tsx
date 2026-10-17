@@ -240,9 +240,9 @@ const HeroSection: React.FC = () => {
   );
   const microcopy = t3(
     language,
-    'Sans engagement · Réponse sous un jour ouvré',
-    'No commitment · Reply within one business day',
-    'Sin compromiso · Respuesta en un día hábil'
+    'Sans engagement · Réponse sous un jour ouvré · Marqué CE, déjà vendu en Europe',
+    'No commitment · Reply within one business day · CE-marked, already sold in Europe',
+    'Sin compromiso · Respuesta en un día hábil · Marcado CE, ya vendido en Europa'
   );
   const cta = t3(language, 'Recevez votre échantillon gratuit', 'Get your free sample', 'Reciba su muestra gratuita');
   // Deuxième porte d'entrée : parler directement à l'équipe (15 minutes en visio, sans formulaire).

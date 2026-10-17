@@ -17,7 +17,7 @@ const HomeTechSection: React.FC = () => {
   const items: { icon: LucideIcon; title: string; text: string; note?: boolean }[] = [
     {
       icon: BatteryFull,
-      title: t3(l, 'Jusqu’à 90 h, sans fil', 'Up to 90 h, cordless', 'Hasta 90 h, sin cables'),
+      title: t3(l, 'Jusqu’à 90 h, sans fil', 'Up to 90 h, cordless', 'Hasta 90 h, sin cables'),
       text: t3(
         l,
         'Sur batterie, recharge USB-C. Il passe de la chambre au bureau, à la voiture, au spa ou à la salle de yoga.',
@@ -51,9 +51,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vos flacons, tels quels', 'Your bottles, as they are', 'Sus frascos, tal cual'),
       text: t3(
         l,
-        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Le flacon devient la recharge.',
-        'The module screws onto standard market bottles (DIN 18 neck, 5 to 50 ml). The bottle becomes the refill.',
-        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). El frasco es la recarga.'
+        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Le flacon devient la recharge.',
+        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). The bottle becomes the refill.',
+        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). El frasco es la recarga.'
       ),
     },
     {
@@ -62,7 +62,7 @@ const HomeTechSection: React.FC = () => {
       text: t3(
         l,
         'Le geste se comprend dès la première fois, sans notice : le flacon se visse, le module se clipse, un appui diffuse.',
-        'Intuitive from the very first use, no manual needed: the bottle screws on, the module clips in, one press diffuses.',
+        'Intuitive from the very first use, no manual needed: the bottle screws on, the module clips in, one press starts diffusion.',
         'El gesto se entiende desde la primera vez, sin manual: el frasco se enrosca, el módulo se encaja y una pulsación difunde.'
       ),
     },
@@ -78,12 +78,12 @@ const HomeTechSection: React.FC = () => {
     },
     {
       icon: Beaker,
-      title: t3(l, 'Tout votre catalogue', 'Your whole catalogue', 'Todo su catálogo'),
+      title: t3(l, 'Vos huiles, vos synergies', 'Your oils and blends', 'Sus aceites y sinergias'),
       text: t3(
         l,
-        'Huiles essentielles pures, synergies et parfums synthétiques : un seul appareil pour tout le catalogue, sans diffuseur dédié.',
-        'Pure essential oils, blends and synthetic fragrances: one device for the whole catalogue, with no dedicated diffuser.',
-        'Aceites esenciales puros, sinergias y perfumes sintéticos: un solo aparato para todo el catálogo, sin difusor dedicado.'
+        'Huiles essentielles pures, synergies et parfums d’intérieur : un seul appareil pour votre catalogue, sans diffuseur dédié à chaque produit.',
+        'Pure essential oils, blends and home fragrances: one device for your catalogue, with no dedicated diffuser for each product.',
+        'Aceites esenciales puros, sinergias y fragancias para el hogar: un solo aparato para su catálogo, sin un difusor para cada producto.'
       ),
     },
     {
@@ -92,7 +92,7 @@ const HomeTechSection: React.FC = () => {
       text: t3(
         l,
         'Intensité, durée et intermittence se règlent d’une pression, avec un indicateur LED bleu, vert ou ambre. Sans application.',
-        'Intensity, run time and on/off cycles are set with one press, with a blue, green or amber LED indicator. No app.',
+        'Intensity, run time and on/off cycles are all set from one button, with a blue, green or amber LED indicator. No app.',
         'Intensidad, duración e intermitencia se ajustan con una pulsación, con un indicador LED azul, verde o ámbar. Sin aplicación.'
       ),
     },
@@ -111,9 +111,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Une seule référence à gérer', 'One SKU to manage', 'Una sola referencia que gestionar'),
       text: t3(
         l,
-        'Un diffuseur universel à la place de 5 à 10 références : moins de stock immobilisé, moins de SAV, plus de marge.',
-        'One universal diffuser instead of 5 to 10 SKUs: less tied-up stock, fewer after-sales issues, more margin.',
-        'Un difusor universal en lugar de 5 a 10 referencias: menos stock inmovilizado, menos posventa, más margen.'
+        'Un diffuseur universel à la place de plusieurs références : moins de stock immobilisé, moins de SAV, un seul discours produit.',
+        'One universal diffuser instead of several SKUs: less tied-up stock, fewer after-sales issues, one product story.',
+        'Un difusor universal en lugar de varias referencias: menos stock inmovilizado, menos posventa, un solo discurso de producto.'
       ),
     },
     {
@@ -140,9 +140,9 @@ const HomeTechSection: React.FC = () => {
 
   const footnote = t3(
     l,
-    '¹ 70 à 90 h lumière éteinte, 16 à 20 h lumière d’ambiance allumée, selon l’intensité.',
-    '¹ 70–90 h with the light off, 16–20 h with the ambient light on, depending on intensity.',
-    '¹ De 70 a 90 h con la luz apagada, de 16 a 20 h con la luz ambiental encendida, según la intensidad.'
+    '¹ 70 à 90 h lumière éteinte, 16 à 20 h lumière d’ambiance allumée, selon l’intensité.',
+    '¹ 70–90 h with the light off, 16–20 h with the ambient light on, depending on intensity.',
+    '¹ De 70 a 90 h con la luz apagada, de 16 a 20 h con la luz ambiental encendida, según la intensidad.'
   );
 
   return (
