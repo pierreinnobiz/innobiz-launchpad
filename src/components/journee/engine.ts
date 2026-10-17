@@ -117,7 +117,7 @@ const SMOOTH_S = 0.085; // lissage de l'animation du flacon (secondes)
 const FADE = 0.45; // durée d'apparition d'un élément (secondes)
 const SCROLL_FULL = 0.42; // en mode « page », la page est entièrement affichée quand on a défilé 42 % d'un écran au-delà de son début
 const FETCH_PARALLEL = 6;
-// Le temps de chaque étape n'avance que lorsqu'elle est à l'écran et que l'onglet est visible (18/10/2026, Pierre ne voyait
+// Le temps de chaque étape n'avance que lorsqu'elle est à l'écran et que l'onglet est visible (17/10/2026, Pierre ne voyait
 // « pas tout le temps » les animations : elles se jouaient une seule fois, sautaient au défilement, couraient onglet caché).
 const SCROLL_SPEED = 2.2; // le défilement peut accélérer une étape, au plus 2,2 fois : le geste reste visible (avant : il sautait)
 const MAX_WAIT = 6; // images d'une animation pas encore arrivées : l'étape attend au plus 6 s juste avant le geste

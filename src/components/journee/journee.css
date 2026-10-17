@@ -70,7 +70,7 @@
 .journee .chrono .n,.journee .f-chrono .n{font-family:var(--font-display);font-weight:650;font-size:clamp(30px,2.7cqw,48px);line-height:1;letter-spacing:-.03em;font-variant-numeric:tabular-nums;color:var(--copper-strong)}
 .journee .chrono .n small,.journee .f-chrono .n small{font-size:.48em;letter-spacing:0;margin-left:.1em}
 .journee .chrono .u,.journee .f-chrono .u{font-size:clamp(11px,.85cqw,13px);font-weight:650;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-/* revoir le geste ; attente des images de l'animation (18/10/2026) */
+/* revoir le geste ; attente des images de l'animation (17/10/2026) */
 .journee .jr-replay{margin-left:auto;align-self:center;display:none;align-items:center;gap:.4em;padding:.4em .85em;border:1px solid hsl(30 30% 30% / .22);border-radius:999px;background:transparent;color:var(--ink-deep);font:inherit;font-size:clamp(12px,.85cqw,13.5px);font-weight:600;line-height:1;cursor:pointer;pointer-events:auto;white-space:nowrap}
 .journee .jr-replay svg{width:1.05em;height:1.05em;flex:none}
 .journee .jr-replay:hover,.journee .jr-replay:focus-visible{border-color:var(--copper);color:var(--copper-strong);outline:none}

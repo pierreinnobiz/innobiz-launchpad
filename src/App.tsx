@@ -34,7 +34,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-// L'ancienne page FAQ séparée (/faq, anciens textes) renvoie vers la FAQ de la page d'accueil (18/10/2026) :
+// L'ancienne page FAQ séparée (/faq, anciens textes) renvoie vers la FAQ de la page d'accueil (17/10/2026) :
 // les anciens liens et les résultats de recherche continuent de fonctionner.
 const LegacyFaq = () => {
   const { search } = useLocation();
