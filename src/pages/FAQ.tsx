@@ -118,8 +118,8 @@ const FAQ: React.FC = () => {
         { 
           q: language === 'fr' ? 'La technologie est-elle protégée ?' : 'Is the technology protected?', 
           a: language === 'fr' 
-            ? 'Oui, Twist & Mist est une technologie propriétaire développée en exclusivité par Innobiz. Nous opérons avec des partenaires industriels sélectionnés.' 
-            : 'Yes, Twist & Mist is a proprietary technology developed exclusively by Innobiz. We operate with selected industrial partners.' 
+            ? 'Oui, la technologie de diffusion de Tolia est développée en exclusivité par Innobiz. Nous travaillons avec des partenaires industriels sélectionnés.' 
+            : 'Yes, Tolia’s diffusion technology is developed exclusively by Innobiz. We work with selected industrial partners.' 
         },
         { 
           q: language === 'fr' ? 'Puis-je revendre les modules à d\'autres marques ?' : 'Can I resell modules to other brands?', 

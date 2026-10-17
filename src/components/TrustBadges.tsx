@@ -8,7 +8,7 @@ interface TrustBadgesProps {
 
 const TrustBadges: React.FC<TrustBadgesProps> = ({ variant = 'light', className = '' }) => {
   const badges = [
-    { icon: Shield, label: 'Made in France' },
+    { icon: Shield, label: 'Designed in France' },
     { icon: Award, label: '2 ans de R&D' },
     { icon: Leaf, label: 'Éco-conçu' },
     { icon: Factory, label: '100% réparable' },

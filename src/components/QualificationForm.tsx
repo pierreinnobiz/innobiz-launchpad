@@ -592,9 +592,9 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground mt-2">
           {t3(
             language,
-            "Trois informations pour commencer ; l'adresse de livraison et, si vous le souhaitez, votre projet juste après.",
-            'Three details to start with; the delivery address and, if you like, your project right after.',
-            'Tres datos para empezar; la dirección de envío y, si lo desea, su proyecto justo después.'
+            "Trois informations pour commencer. Ensuite : l'adresse de livraison et, si vous le souhaitez, quelques mots sur votre projet.",
+            'Three details to start with. Then: the delivery address and, if you like, a few words about your project.',
+            'Tres datos para empezar. Después: la dirección de envío y, si lo desea, unas palabras sobre su proyecto.'
           )}
         </p>
       </div>
@@ -744,7 +744,7 @@ const QualificationForm: React.FC = () => {
         </span>
         <span className="inline-flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5" />
-          {t3(language, 'Conçu et assemblé en France', 'Designed and assembled in France', 'Diseñado y ensamblado en Francia')}
+          {t3(language, 'Conçu en France', 'Designed in France', 'Diseñado en Francia')}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <Lock className="w-3.5 h-3.5" />

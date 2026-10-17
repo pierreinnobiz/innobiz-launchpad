@@ -34,9 +34,9 @@ const DurabilitySection: React.FC = () => {
       title: t3(language, 'Batterie remplaçable', 'Replaceable battery', 'Batería reemplazable'),
       text: t3(
         language,
-        'Par l’utilisateur, avec un système de diagnostic pour identifier et remplacer les pièces une à une.',
-        'User-replaceable, with a diagnostic system to identify and replace individual parts.',
-        'Reemplazable por el usuario, con un sistema de diagnóstico para identificar y sustituir piezas individuales.'
+        'L’utilisateur peut changer lui-même la batterie, et un système de diagnostic aide à repérer la pièce à remplacer.',
+        'Users can change the battery themselves, and a diagnostic system helps identify the part to replace.',
+        'El propio usuario puede cambiar la batería, y un sistema de diagnóstico ayuda a localizar la pieza que hay que sustituir.'
       ),
     },
     {
@@ -54,7 +54,7 @@ const DurabilitySection: React.FC = () => {
       title: t3(language, 'En phase avec l’Europe', 'In step with Europe', 'En línea con Europa'),
       text: t3(
         language,
-        'Cette approche s’aligne avec les politiques européennes en faveur du droit à la réparation et des produits plus durables, un critère de plus en plus important dans les décisions d’achat.',
+        'Cette approche va dans le sens des règles européennes sur le droit à la réparation et les produits durables, un critère qui compte de plus en plus dans les décisions d’achat.',
         'This approach aligns with European policies promoting the right to repair and more durable products, an increasingly important criterion in purchasing decisions.',
         'Este enfoque se alinea con las políticas europeas a favor del derecho a la reparación y de productos más duraderos, un criterio cada vez más importante en las decisiones de compra.'
       ),

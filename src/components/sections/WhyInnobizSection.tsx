@@ -19,7 +19,7 @@ const WhyInnobizSection: React.FC = () => {
   const chips = [
     { icon: Calendar, label: t3(language, 'Fondé en 2005', 'Founded 2005', 'Fundada en 2005'), desc: t3(language, "20 ans de R&D dédiée à la diffusion d'huiles essentielles", '20 years of R&D dedicated to essential oil diffusion', '20 años de I+D dedicada a la difusión de aceites esenciales') },
     { icon: Shield, label: t3(language, 'Technologie exclusive', 'Exclusive technology', 'Tecnología exclusiva'), desc: t3(language, "Twist & Mist : technologie propriétaire développée et protégée par Innobiz", 'Twist & Mist: proprietary technology developed and protected by Innobiz', 'Twist & Mist: tecnología propietaria desarrollada y protegida por Innobiz') },
-    { icon: Flag, label: t3(language, 'Conçu en France', 'Designed in France', 'Diseñado en Francia'), desc: t3(language, "Ingénierie, prototypage et assemblage dans notre site français", 'Engineering, prototyping and assembly in our French facility', 'Ingeniería, prototipado y ensamblaje en nuestra instalación francesa') },
+    { icon: Flag, label: t3(language, 'Conçu en France', 'Designed in France', 'Diseñado en Francia'), desc: t3(language, "Conçu par notre équipe d’ingénieurs", 'Designed by our engineering team', 'Diseñado por nuestro equipo de ingenieros') },
     { icon: Wrench, label: t3(language, 'Réparable par conception', 'Repairable by design', 'Reparable por diseño'), desc: t3(language, "Batterie remplaçable, composants modulaires. Conforme à vos engagements RSE.", 'Replaceable battery, modular components. Aligned with your sustainability goals.', 'Batería reemplazable, componentes modulares. Alineado con sus objetivos de sostenibilidad.') },
   ];
 

@@ -22,9 +22,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Jusqu’à 90 h, sans fil', 'Up to 90 h, cordless', 'Hasta 90 h, sin cables'),
       text: t3(
         l,
-        'Sur batterie, recharge USB‑C. Il passe de la chambre au bureau, à la voiture, au spa ou à la salle de yoga.',
-        'Battery-powered, USB‑C charging. It moves from bedroom to office, car, spa or yoga room, no socket needed.',
-        'Con batería y carga USB‑C. Pasa del dormitorio a la oficina, al coche, al spa o a la sala de yoga.'
+        'Sur batterie, rechargeable en USB‑C : il passe de la chambre au bureau, au spa ou à la salle de yoga, sans chercher de prise.',
+        'Battery-powered with USB‑C charging: it moves from bedroom to office, spa or yoga room, no socket needed.',
+        'Con batería y carga USB‑C: pasa del dormitorio a la oficina, al spa o a la sala de yoga, sin buscar un enchufe.'
       ),
       note: true,
     },
@@ -53,9 +53,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vos flacons, tels quels', 'Your bottles, as they are', 'Sus frascos, tal cual'),
       text: t3(
         l,
-        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Le flacon devient la recharge.',
-        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). The bottle becomes the refill.',
-        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). El frasco es la recarga.'
+        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Votre flacon sert directement de recharge.',
+        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). Your bottle is the refill.',
+        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). Su frasco sirve directamente de recarga.'
       ),
     },
     {
@@ -63,7 +63,7 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vissez, clipsez, appuyez', 'Screw, clip, press', 'Enrosque, encaje, pulse'),
       text: t3(
         l,
-        'Le geste se comprend dès la première fois : le flacon se visse sur son module, puis se clipse dans la base ; un appui diffuse.',
+        'Le geste se comprend dès la première fois : le flacon se visse sur son module, puis se clipse dans la base ; un appui lance la diffusion.',
         'Intuitive from the very first use: the bottle screws onto its module, then clips into the base; one press starts diffusion.',
         'El gesto se entiende a la primera: el frasco se enrosca en su módulo y luego se encaja en la base; una pulsación inicia la difusión.'
       ),
@@ -80,12 +80,12 @@ const HomeTechSection: React.FC = () => {
     },
     {
       icon: SlidersHorizontal,
-      title: t3(l, 'Réglages en un geste', 'Settings in one press', 'Ajustes con una pulsación'),
+      title: t3(l, 'Durée et puissance réglables', 'Adjustable time and strength', 'Duración y potencia ajustables'),
       text: t3(
         l,
-        'Intensité, durée et intermittence se règlent d’une pression, avec un indicateur LED bleu, vert ou ambre. Sans application.',
-        'Intensity, run time and on/off cycles are all set from one button, with a blue, green or amber LED indicator. No app.',
-        'Intensidad, duración e intermitencia se ajustan con una pulsación, con un indicador LED azul, verde o ámbar. Sin aplicación.'
+        'La durée et la puissance de diffusion se règlent très simplement, pour répondre à toutes les conditions d’usage.',
+        'Diffusion time and strength are very easy to adjust, to suit every situation.',
+        'La duración y la potencia de difusión se ajustan de forma muy sencilla, para adaptarse a cualquier situación de uso.'
       ),
     },
     {
@@ -96,9 +96,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Un module pour toute la gamme', 'One module for the whole range', 'Un módulo para toda la gama'),
       text: t3(
         l,
-        'Le même module de diffusion sert sur tous les modèles Tolia, y compris les formats à venir : grandes pièces, espaces pros, véhicules.',
-        'The same diffusion module works in every Tolia model, including upcoming formats: large rooms, professional spaces, vehicles.',
-        'El mismo módulo de difusión sirve en todos los modelos Tolia, incluidos los formatos que llegarán: grandes espacios, entornos profesionales, vehículos.'
+        'Le même module de diffusion sert sur tous les modèles Tolia, y compris les formats à venir pour les grandes pièces et les espaces professionnels.',
+        'The same diffusion module works in every Tolia model, including upcoming formats for large rooms and professional spaces.',
+        'El mismo módulo de difusión sirve en todos los modelos Tolia, incluidos los futuros formatos para grandes espacios y entornos profesionales.'
       ),
     },
     {
@@ -106,9 +106,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Conçu en France, 7ᵉ génération', 'Designed in France, 7th generation', 'Diseñado en Francia, 7.ª generación'),
       text: t3(
         l,
-        'Ingénierie, prototypage et assemblage dans notre site français : 20 ans de R&D en microfluidique et électronique.',
-        'Engineering, prototyping and assembly at our French facility: 20 years of R&D in microfluidics and electronics.',
-        'Ingeniería, prototipado y ensamblaje en nuestra planta francesa: 20 años de I+D en microfluídica y electrónica.'
+        'Notre équipe d’ingénieurs l’a conçu en s’appuyant sur 20 ans de R&D en microfluidique et en électronique.',
+        'Designed by our engineering team, drawing on 20 years of R&D in microfluidics and electronics.',
+        'Diseñado por nuestro equipo de ingenieros, con 20 años de I+D en microfluídica y electrónica.'
       ),
     },
   ];

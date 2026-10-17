@@ -34,9 +34,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Peut-on encadrer l’usage de nos huiles ?', 'Can we control how our oils are used?', '¿Podemos programar el uso recomendado de nuestros aceites?'),
       a: t3(
         language,
-        'Oui. Intensité, durée et intermittence peuvent être préprogrammées selon vos recommandations, et la diffusion s’arrête d’elle-même au bout de la durée choisie.',
-        'Yes. Intensity, run time and on/off cycles can be pre-programmed to your recommendations, and diffusion stops by itself after the chosen time.',
-        'Sí. La intensidad, la duración y la intermitencia pueden preprogramarse según sus recomendaciones, y la difusión se detiene sola al cabo del tiempo elegido.'
+        'Oui. La durée et la puissance de diffusion peuvent être préprogrammées selon vos recommandations, et la diffusion s’arrête d’elle-même au bout de la durée choisie.',
+        'Yes. Diffusion time and strength can be pre-programmed to your recommendations, and diffusion stops by itself after the chosen time.',
+        'Sí. La duración y la potencia de difusión pueden preprogramarse según sus recomendaciones, y la difusión se detiene sola al cabo del tiempo elegido.'
       ),
     },
     {
@@ -52,7 +52,7 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Quels sont les minimums de commande ?', 'What are the minimum order quantities?', '¿Cuáles son los pedidos mínimos?'),
       a: t3(
         language,
-        'Marque blanche : généralement dès 3 000 pièces, selon le projet. Commande stock : dès 500 pièces, expédiées de France sous 72 h si le stock le permet. Les prix sont partagés lors du premier échange.',
+        'Marque blanche : généralement dès 3 000 pièces, selon le projet. Commande stock : dès 500 pièces, expédiées de France sous 72 h si le stock le permet. Nos prix vous sont communiqués dès le premier échange.',
         'White label: typically from 3,000 units, depending on the project. Stock order: from 500 units, shipped from France within 72 h if in stock. Pricing is shared from first contact.',
         'Marca blanca: normalmente desde 3.000 unidades, según el proyecto. Pedido de stock: desde 500 unidades, enviadas desde Francia en 72 h si hay stock. Le facilitamos los precios desde el primer contacto.'
       ),

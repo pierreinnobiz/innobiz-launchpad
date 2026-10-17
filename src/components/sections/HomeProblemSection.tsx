@@ -45,7 +45,7 @@ const HomeProblemSection: React.FC = () => {
     },
     {
       icon: Wind,
-      name: t3(l, 'Diffusion passive : bâtonnets, pierre', 'Passive diffusion: reeds, stone', 'Difusión pasiva: varillas, piedra'),
+      name: t3(l, 'Diffusion passive : bâtonnets, pierres parfumées', 'Passive diffusion: reeds, scented stones', 'Difusión pasiva: varillas, piedras aromáticas'),
       usage: t3(
         l,
         'Agréables pour parfumer une entrée, mais sans réglage d’intensité ni de durée : le parfum faiblit jour après jour, et changer d’huile oblige à tout remplacer.',
@@ -92,9 +92,9 @@ const HomeProblemSection: React.FC = () => {
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
-              'En 20 ans de métier dans la diffusion, nous avons fait le même constat : l’envie de diffuser est bien là ; ce qui l’éteint, ce sont les gestes que chaque appareil impose. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne se rachètent plus.',
-              'In 20 years of designing diffusers, we have seen the same thing again and again: people want to diffuse; what stops them is the chores each device demands. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.',
-              'En 20 años de experiencia en difusión de aromas, hemos llegado siempre a la misma conclusión: las ganas de aromatizar la casa están ahí; lo que las apaga son los gestos que impone cada aparato. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
+              'En 20 ans de métier dans la diffusion, nous avons toujours fait le même constat : vos clients ont envie de diffuser des huiles essentielles, mais les contraintes de leur diffuseur finissent par les décourager. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne sont plus rachetés.',
+              'In 20 years of designing diffusers, we have seen the same thing again and again: your customers want to diffuse essential oils, but the chores their diffuser demands end up putting them off. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.',
+              'En 20 años de experiencia en difusión de aromas, hemos llegado siempre a la misma conclusión: sus clientes tienen ganas de aromatizar su casa con aceites esenciales, pero las molestias de su difusor acaban por desanimarlos. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
             )}
           </p>
         </motion.div>
@@ -167,9 +167,9 @@ const HomeProblemSection: React.FC = () => {
             <p className="mt-3 text-sm md:text-base leading-relaxed" style={{ color: 'hsl(36 40% 96% / 0.82)' }}>
               {t3(
                 l,
-                'Au lieu de verser l’huile dans l’appareil, c’est le diffuseur qui vient sur le flacon. Le flacon de votre marque se visse sur un module de diffusion et se clipse dans Tolia ; un appui lance la diffusion. Ni eau, ni chaleur, ni pompe, rien à nettoyer, et une autre huile en une seconde.',
-                'Forget pouring oil into a device: with Tolia, the diffuser goes to the bottle. Your brand’s bottle screws onto a diffusion module and clips into Tolia; one press starts diffusion. No water, no heat, no pump, nothing to clean, and a different oil in one second.',
-                'En lugar de verter el aceite en el aparato, es el difusor el que va al frasco. El frasco de su marca se enrosca en un módulo de difusión y se encaja en Tolia; una pulsación inicia la difusión. Sin agua, sin calor, sin bomba, nada que limpiar y otro aceite en un segundo.'
+                'Au lieu de verser l’huile dans un réservoir, on utilise le flacon tel quel. Le flacon de votre marque se visse sur un module de diffusion, puis se clipse, tête en bas, dans la base de Tolia ; un appui lance la diffusion. Ni eau, ni chaleur, ni pompe, rien à nettoyer, et une autre huile en une seconde.',
+                'No more pouring oil into a tank: the bottle is used as it is. Your brand’s bottle screws onto a diffusion module, then clips upside down into Tolia’s base; one press starts diffusion. No water, no heat, no pump, nothing to clean, and a different oil in one second.',
+                'En lugar de verter el aceite en un depósito, se usa el frasco tal cual. El frasco de su marca se enrosca en un módulo de difusión y luego se encaja, boca abajo, en la base de Tolia; una pulsación inicia la difusión. Sin agua, sin calor, sin bomba, nada que limpiar y otro aceite en un segundo.'
               )}
             </p>
             <p className="mt-4 flex items-start gap-2 text-sm md:text-base font-semibold leading-snug" style={{ color: 'hsl(28 60% 70%)' }}>

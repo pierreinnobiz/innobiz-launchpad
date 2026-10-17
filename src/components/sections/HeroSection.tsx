@@ -244,7 +244,7 @@ const HeroSection: React.FC = () => {
   // Le sous-titre dit d'abord CE QU'EST Tolia (un diffuseur qui se branche sur les flacons de la marque), puis le bénéfice.
   const subtitle = t3(
     language,
-    "Tolia est un diffuseur sans fil qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'il devient un geste quotidien, et vos clients rachètent vos huiles.",
+    "Tolia est un diffuseur sans fil qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'on s'en sert chaque jour, et vos clients rachètent vos huiles.",
     'Tolia is a cordless diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.',
     'Tolia es un difusor inalámbrico que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.'
   );
