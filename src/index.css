@@ -353,5 +353,5 @@
    Téléphone et tablette : en haut, seulement si l'écran est assez haut pour ne pas toucher le titre ; ordinateur : en bas à droite. */
 .hero-poster-m { display: none; }
 .hero-poster-d { display: none; }
-@media (max-width: 1023px) and (min-height: 760px) { .hero-poster-m { display: block; } }
+@media (max-width: 1023px) and (min-height: 780px) { .hero-poster-m { display: block; } }
 @media (min-width: 1024px) and (min-height: 700px) { .hero-poster-d { display: block; } }

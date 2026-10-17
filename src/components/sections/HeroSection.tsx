@@ -268,20 +268,20 @@ const HeroSection: React.FC = () => {
       {/* image du produit (secours du film) : en haut sur téléphone, en bas à droite sur ordinateur */}
       <figure
         aria-hidden={!showPoster}
-        className={`hero-poster-m pointer-events-none absolute left-5 right-5 top-[84px] z-[5] m-0 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
-        style={{ aspectRatio: '4 / 3' }}
+        className={`hero-poster-m pointer-events-none absolute left-5 right-5 top-[76px] z-[5] m-0 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
+        style={{ aspectRatio: '16 / 10' }}
       >
-        <img src={waited ? `${POSTER}kitchen_m.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 74%' }} decoding="async" />
+        <img src={waited ? `${POSTER}kitchen_m.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 72%' }} decoding="async" />
       </figure>
       <figure
         aria-hidden={!showPoster}
         className={`hero-poster-d pointer-events-none absolute right-[5vw] bottom-[12vh] z-[5] m-0 overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
         style={{ width: 'min(26vw, 420px)', aspectRatio: '16 / 10' }}
       >
-        <img src={waited ? `${POSTER}kitchen_d.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '56% 58%' }} decoding="async" />
+        <img src={waited ? `${POSTER}kitchen_d.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '56% 58%', transform: 'scale(1.6)', transformOrigin: '56% 56%' }} decoding="async" />
       </figure>
 
-      <div className="relative z-10 h-full flex flex-col justify-end pb-24 md:pb-32 px-6 md:px-12 lg:px-20">
+      <div className="relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32 px-6 md:px-12 lg:px-20">
         <div className="max-w-5xl space-y-5">
           {/* « pour les marques » au-dessus du titre, plus visible (retour des marques testeuses) */}
           <motion.span
