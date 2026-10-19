@@ -8,7 +8,7 @@ import { trackCTAClick } from '@/lib/tracking';
 import LegacyAnchors from '@/components/LegacyAnchors';
 
 // Image de l'ancien site (section « Faites de Tolia le diffuseur de votre marque ») : planche de teintes, motifs et croquis.
-const IMG = `${import.meta.env.BASE_URL}journee/img/personnalisation_moodboard.webp`;
+const IMG = `${import.meta.env.BASE_URL}journee/img/personnalisation_teintes_3d.webp`;
 
 type Tri = { fr: string; en: string; es: string };
 interface Pillar {
@@ -189,7 +189,7 @@ const CustomizationSection: React.FC = () => {
               loading="lazy"
               decoding="async"
               className="w-full h-auto"
-              alt={t3(l, 'Le diffuseur Tolia personnalisable : teintes, motifs et croquis', 'The customisable Tolia diffuser: shades, patterns and sketches', 'El difusor Tolia personalizable: tonos, motivos y bocetos')}
+              alt={t3(l, 'Cinq diffuseurs Tolia de teintes différentes : la même forme, à la couleur de chaque marque', 'Five Tolia diffusers in different shades: the same shape, in each brand’s colour', 'Cinco difusores Tolia de tonos distintos: la misma forma, con el color de cada marca')}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 py-3">
               <div className="flex items-end gap-2.5">

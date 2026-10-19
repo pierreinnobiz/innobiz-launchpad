@@ -19,7 +19,7 @@ const FILM_SECONDS = 41;
 // le film qu'à partir de sa 6e seconde ; avant, l'image du produit reste affichée (retour des 5 marques testeuses, 17/10/2026).
 const SKIP_INTRO_S = 6;
 // Le lecteur envoie « playProgress » (avancement) et « finish » (fin) ; « timeupdate » et « ended » sont les noms de la nouvelle API.
-const VIMEO_EVENTS = ['play', 'playing', 'playProgress', 'timeupdate', 'finish', 'ended'];
+const VIMEO_EVENTS = ['play', 'playing', 'playProgress', 'timeupdate', 'finish', 'ended', 'error'];
 
 const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => void }> = ({ onStatus }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
@@ -33,6 +33,9 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
   const [gone, setGone] = useState(false);
   const [filmSec, setFilmSec] = useState(0);
   const [noEventsLate, setNoEventsLate] = useState(false);
+  // 20/10/2026 : le lecteur doit s'être annoncé (« ready ») pour être montré ; une erreur Vimeo (« Player error », vue sur
+  // le site en ligne le 16/09) laisse l'image fixe à l'écran au lieu du message d'erreur.
+  const [ready, setReady] = useState(false);
 
   useEffect(() => {
     // Mount right after the first paint: the hero text is already on screen,
@@ -84,7 +87,8 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
       try {
         const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
         const name = data?.event || data?.method;
-        if (name === 'ready') subscribe();
+        if (name === 'ready') { setReady(true); subscribe(); }
+        if (name === 'error') setEnded(true);
         if (name === 'play' || name === 'playing') setPlaying(true);
         if (name === 'timeupdate' || name === 'playProgress') {
           setPlaying(true);
@@ -132,7 +136,7 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
   }, [ended]);
 
   const pastIntro = filmSec >= SKIP_INTRO_S || (noEventsLate && filmSec === 0);
-  const visible = (playing || showAnyway) && pastIntro && !ended;
+  const visible = (playing || (showAnyway && ready)) && pastIntro && !ended;
   useEffect(() => { onStatus?.(visible, ended); }, [visible, ended, onStatus]);
 
   return (
@@ -224,9 +228,9 @@ const HeroSection: React.FC = () => {
   const showPoster = (waited && !film.playing) || film.ended; // « playing » = film réellement visible (après son introduction)
   const posterAlt = t3(
     language,
-    'Diffuseur Tolia fermé sur une table de salon : la brume d’huile essentielle sort de la buse, deux flacons attendent à côté avec leur module',
-    'Closed Tolia diffuser on a living-room table: essential oil mist leaves the nozzle, two bottles wait beside it with their modules',
-    'Difusor Tolia cerrado sobre una mesa de salón: la bruma de aceite esencial sale de la boquilla y dos frascos esperan al lado con su módulo'
+    'Diffuseur Tolia fermé, posé sur une table en chêne, et deux flacons à côté avec leur module de diffusion vissé',
+    'Closed Tolia diffuser on an oak table, with two bottles beside it, their diffusion module screwed on',
+    'Difusor Tolia cerrado sobre una mesa de roble, con dos frascos al lado y su módulo de difusión enroscado'
   );
 
   const title = t3(
@@ -281,14 +285,14 @@ const HeroSection: React.FC = () => {
         className={`hero-poster-m pointer-events-none absolute left-5 right-5 top-[76px] z-[5] m-0 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
         style={{ aspectRatio: '16 / 10' }}
       >
-        <img src={waited ? `${POSTER}hero_ferme.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
+        <img src={waited ? `${POSTER}hero_ferme_3d.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
       </figure>
       <figure
         aria-hidden={!showPoster}
         className={`hero-poster-d pointer-events-none absolute right-[5vw] top-1/2 z-[5] m-0 -translate-y-[42%] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
         style={{ width: 'min(33vw, 540px)', aspectRatio: '16 / 10' }}
       >
-        <img src={waited ? `${POSTER}hero_ferme.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
+        <img src={waited ? `${POSTER}hero_ferme_3d.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
       </figure>
 
       <div className="hero-content relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32 px-6 md:px-12 lg:px-20">

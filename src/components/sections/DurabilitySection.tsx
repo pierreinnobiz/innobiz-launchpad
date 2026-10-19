@@ -9,7 +9,9 @@ import LegacyAnchors from '@/components/LegacyAnchors';
 
 // Image de l'ancien site (vue éclatée), reprise à la demande de Pierre le 17/10/2026 : il la préfère au rendu 3D fait avec Blender.
 // Elle sera remplacée par sa photo réelle du diffuseur démonté (photo n° 9 du guide PHOTOS-A-PRENDRE.md).
-const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_vue_eclatee.webp`;
+const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_demontage_3d.webp`;
+// 20/10/2026 : vrai rendu 3D du Tolia démonté (fichiers STP, Blender) à la place de l'image IA de l'ancien site, qui montrait
+// un autre diffuseur (bleu tressé, carte électronique et batterie génériques).
 
 /**
  * Durabilité et réparabilité : un argument fort pour les grandes marques d'aromathérapie (engagements RSE).
@@ -101,24 +103,24 @@ const DurabilitySection: React.FC = () => {
           >
             <img
               src={IMG}
-              width={1361}
-              height={784}
+              width={1600}
+              height={921}
               loading="lazy"
               decoding="async"
               className="w-full h-auto"
               alt={t3(
                 language,
-                'Vue éclatée d’un diffuseur modulaire : coque, module de diffusion, électronique et batterie séparés',
-                'Exploded view of a modular diffuser: shell, diffusion module, electronics and battery shown separately',
-                'Vista despiezada de un difusor modular: carcasa, módulo de difusión, electrónica y batería por separado'
+                'Le Tolia démonté, posé sur une table : cloche, base, pièces intérieures, module de diffusion, flacon et petites pièces',
+                'Tolia taken apart on a table: cover, base, internal parts, diffusion module, bottle and small parts',
+                'Tolia desmontado sobre una mesa: campana, base, piezas internas, módulo de difusión, frasco y piezas pequeñas'
               )}
             />
             <figcaption className="px-4 py-2.5 text-xs text-muted-foreground">
               {t3(
                 language,
-                'Illustration de principe : chaque pièce se démonte et se remplace.',
-                'Conceptual illustration: every part comes apart and can be replaced.',
-                'Ilustración orientativa: cada pieza se desmonta y se sustituye.'
+                'Rendu issu des fichiers 3D du Tolia : chaque pièce se démonte et se remplace.',
+                'Rendered from Tolia’s 3D files: every part comes apart and can be replaced.',
+                'Imagen generada a partir de los archivos 3D de Tolia: cada pieza se desmonta y se sustituye.'
               )}
             </figcaption>
           </motion.figure>
