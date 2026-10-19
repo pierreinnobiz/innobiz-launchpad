@@ -1,10 +1,11 @@
 // Liens et coordonnées utilisés par le site.
-// Calendly : type d'événement « Tolia — 15 min call » du compte de Pierre (lu dans Calendly le 15/10/2026).
+// Calendly : rendez-vous de 30 minutes avec Simon Desbuisson (« Tolia essential oil diffuser — 30-min call & live demo »,
+// en visio Google Meet, lu dans Calendly le 19/10/2026 ; demande de Pierre du 19/10 : 30 min avec Simon, plus 15 min avec Pierre).
 // Depuis la refonte du 17/10/2026, il est proposé à côté du formulaire d'échantillon (« Vous préférez en parler ? »),
 // dans le haut de page et à la fin de la visite guidée ; « utm_medium » dit d'où vient la réservation.
 export const calendlyUrl = (medium: string) =>
-  `https://calendly.com/pthuret-innobiz/tolia-15-min-call?utm_source=site&utm_medium=${encodeURIComponent(medium)}`;
-export const CALENDLY_15_MIN_URL = calendlyUrl('sample_thanks');
+  `https://calendly.com/simon-innobiz/30min?utm_source=site&utm_medium=${encodeURIComponent(medium)}`;
+export const CALENDLY_RDV_URL = calendlyUrl('sample_thanks');
 
 // Coordonnées déjà publiées dans le pied de page.
 export const CONTACT_EMAIL = 'contact@innobiz.fr';

@@ -9,7 +9,7 @@ import { ArrowRight, CheckCircle2, Gift, Truck, Package, ShieldCheck, Lock } fro
 import { t3 } from '@/lib/t3';
 import { getSessionAttribution } from '@/lib/attribution';
 import { prospectEmailFromUrl } from '@/lib/prospect';
-import { CALENDLY_15_MIN_URL } from '@/lib/links';
+import { CALENDLY_RDV_URL } from '@/lib/links';
 import { trackCTAClick } from '@/lib/tracking';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -365,19 +365,19 @@ const QualificationForm: React.FC = () => {
           <p className="text-sm text-muted-foreground">
             {t3(
               language,
-              "Envie d'en parler ? 15 minutes pour confirmer votre adresse, voir Tolia en direct et vérifier qu'il convient à votre gamme.",
-              'Prefer to talk it through? 15 minutes to confirm your address, see Tolia live and check it fits your range.',
-              '¿Prefiere hablarlo? 15 minutos para confirmar su dirección, ver Tolia en directo y comprobar que encaja con su gama.'
+              "Envie d'en parler ? 30 minutes avec Simon Desbuisson pour confirmer votre adresse, voir Tolia en direct et vérifier qu'il convient à votre gamme.",
+              'Prefer to talk it through? 30 minutes with Simon Desbuisson to confirm your address, see Tolia live and check it fits your range.',
+              '¿Prefiere hablarlo? 30 minutos con Simon Desbuisson para confirmar su dirección, ver Tolia en directo y comprobar que encaja con su gama.'
             )}
           </p>
           <a
-            href={CALENDLY_15_MIN_URL}
+            href={CALENDLY_RDV_URL}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => trackCTAClick('Book a 15-min call', 'sample-thanks', 'call_booking')}
+            onClick={() => trackCTAClick('Book 30 min with Simon', 'sample-thanks', 'call_booking')}
             className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/40 px-5 py-2.5 text-sm font-semibold text-primary transition hover:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
-            {t3(language, 'Réserver 15 min avec l’équipe', 'Book a 15-min call', 'Reservar 15 min con el equipo')}
+            {t3(language, 'Réserver 30 min avec Simon', 'Book 30 min with Simon', 'Reservar 30 min con Simon')}
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </a>
         </div>

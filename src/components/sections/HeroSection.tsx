@@ -255,8 +255,8 @@ const HeroSection: React.FC = () => {
     'Sin compromiso · Respuesta en un día hábil · Marcado CE, ya vendido en Europa'
   );
   const cta = t3(language, 'Recevoir mon échantillon gratuit', 'Get my free sample', 'Recibir mi muestra gratuita');
-  // Deuxième porte d'entrée : parler directement à l'équipe (15 minutes en visio, sans formulaire).
-  const talk = t3(language, 'Réserver 15 min avec l’équipe', 'Book a 15-min call', 'Reservar 15 min con el equipo');
+  // Deuxième porte d'entrée : parler directement à l'équipe (30 minutes en visio avec Simon Desbuisson).
+  const talk = t3(language, 'Réserver 30 min avec Simon', 'Book 30 min with Simon', 'Reservar 30 min con Simon');
 
   return (
     <section

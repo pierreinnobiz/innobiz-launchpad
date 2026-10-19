@@ -12,13 +12,13 @@ import QualificationForm from '@/components/QualificationForm';
  * Contact (refonte du 17/10/2026, demande de Pierre : « revoir la logique du call to action », « enlever recevoir la documentation ») :
  * deux portes d'entrée côte à côte, sans engagement :
  *  1. recevoir un échantillon (formulaire en deux étapes, trois champs obligatoires au départ) ;
- *  2. en parler : réserver 15 minutes en visio, écrire ou appeler.
+ *  2. en parler : réserver 30 minutes en visio avec Simon Desbuisson, écrire ou appeler.
  * La présentation par email (« recevoir la documentation ») est retirée : tout est déjà sur le site.
  */
 const ContactSection: React.FC = () => {
   const { language: l } = useLanguage();
   const [copied, setCopied] = useState(false);
-  const talk = t3(l, 'Réserver 15 min avec l’équipe', 'Book a 15-min call', 'Reservar 15 min con el equipo');
+  const talk = t3(l, 'Réserver 30 min avec Simon', 'Book 30 min with Simon', 'Reservar 30 min con Simon');
 
   const copyEmail = async () => {
     try {
@@ -53,9 +53,9 @@ const ContactSection: React.FC = () => {
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
-              'Deux façons de commencer, sans engagement : recevez un échantillon pour l’essayer, ou prenez 15 minutes avec notre équipe pour parler de votre projet.',
-              'Two ways to begin, with no commitment: receive a sample to try it, or take 15 minutes with our team to talk about your project.',
-              'Dos formas de empezar, sin compromiso: reciba una muestra para probarlo o dedique 15 minutos con nuestro equipo a hablar de su proyecto.'
+              'Deux façons de commencer, sans engagement : recevez un échantillon pour l’essayer, ou prenez 30 minutes avec Simon Desbuisson pour parler de votre projet.',
+              'Two ways to begin, with no commitment: receive a sample to try it, or take 30 minutes with Simon Desbuisson to talk about your project.',
+              'Dos formas de empezar, sin compromiso: reciba una muestra para probarlo o dedique 30 minutos con Simon Desbuisson a hablar de su proyecto.'
             )}
           </p>
         </motion.div>
@@ -85,9 +85,9 @@ const ContactSection: React.FC = () => {
             <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
               {t3(
                 l,
-                '15 minutes en visio pour voir Tolia en direct, poser vos questions et vérifier qu’il convient à votre gamme. Aucun formulaire à remplir.',
-                '15 minutes on video to see Tolia live, ask your questions and check it fits your range. No form to fill in.',
-                '15 minutos por videollamada para ver Tolia en directo, plantear sus preguntas y comprobar que encaja con su gama. Sin formularios.'
+                '30 minutes en visio avec Simon Desbuisson, de l’équipe Innobiz, pour voir Tolia en direct, poser vos questions et vérifier qu’il convient à votre gamme. Vous choisissez le créneau dans son agenda.',
+                '30 minutes on video with Simon Desbuisson from the Innobiz team, to see Tolia live, ask your questions and check it fits your range. Pick a time in his calendar.',
+                '30 minutos por videollamada con Simon Desbuisson, del equipo Innobiz, para ver Tolia en directo, plantear sus preguntas y comprobar que encaja con su gama. Elija el horario en su agenda.'
               )}
             </p>
             <a

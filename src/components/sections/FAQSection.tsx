@@ -7,7 +7,7 @@ import { t3 } from '@/lib/t3';
 
 // Onze questions, réponses courtes. Les minimums, délais et la conformité sont ceux déjà publiés sur le site ; RSE, supports marketing et prix retrouvent leur réponse de l'ancien site.
 // 17/10/2026 : ajout « Quelles huiles peut-on diffuser ? » (plus de 150 huiles testées, phrase de Pierre) et « Peut-on encadrer l'usage de nos huiles ? » ;
-// « Comment démarrer ? » propose aussi l'appel de 15 minutes ; prix : plus de « conversation qualifiée » ; hydrolats retirés (à confirmer par Pierre).
+// « Comment démarrer ? » propose aussi l'appel de 30 minutes avec Simon (19/10/2026) ; prix : plus de « conversation qualifiée » ; hydrolats retirés (à confirmer par Pierre).
 const FAQSection: React.FC = () => {
   const { language } = useLanguage();
 
@@ -143,9 +143,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Comment démarrer ?', 'How do we get started?', '¿Cómo empezamos?'),
       a: t3(
         language,
-        'Deux possibilités, sans engagement : demandez un échantillon gratuit avec le formulaire ci-dessous (expédié de France sous 5 jours ouvrés), ou réservez 15 minutes en visio avec notre équipe. Une personne de notre équipe vous répond sous un jour ouvré.',
-        'Two options, no commitment: request a free sample with the form below (shipped from France within 5 business days), or book a 15-minute video call with our team. A member of our team replies within one business day.',
-        'Dos opciones, sin compromiso: solicite una muestra gratuita con el formulario de abajo (enviada desde Francia en 5 días hábiles) o reserve 15 minutos por videollamada con nuestro equipo. Una persona de nuestro equipo le responde en un día hábil.'
+        'Deux possibilités, sans engagement : demandez un échantillon gratuit avec le formulaire ci-dessous (expédié de France sous 5 jours ouvrés), ou réservez 30 minutes en visio avec Simon Desbuisson, de notre équipe. Une personne de notre équipe vous répond sous un jour ouvré.',
+        'Two options, no commitment: request a free sample with the form below (shipped from France within 5 business days), or book a 30-minute video call with Simon Desbuisson from our team. A member of our team replies within one business day.',
+        'Dos opciones, sin compromiso: solicite una muestra gratuita con el formulario de abajo (enviada desde Francia en 5 días hábiles) o reserve 30 minutos por videollamada con Simon Desbuisson, de nuestro equipo. Una persona de nuestro equipo le responde en un día hábil.'
       ),
     },
   ];
