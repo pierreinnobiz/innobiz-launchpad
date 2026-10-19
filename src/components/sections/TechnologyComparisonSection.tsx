@@ -58,7 +58,7 @@ const TechnologyComparisonSection: React.FC = () => {
   ];
 
   const stats = [
-    { value: '100K+', label: 'units sold in 7 months' },
+    { value: '100K+', label: 'diffusers using our technology, delivered in 7 months' },
     { value: '3.8×', label: 'more sales than conventional diffusers' },
     { value: '24+', label: 'bottles of oil consumed per user per year' },
   ];

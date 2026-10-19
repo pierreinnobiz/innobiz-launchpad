@@ -62,7 +62,7 @@ const MarketProofSection: React.FC = () => {
   const stats = [
     {
       value: '100K+',
-      label: t3(language, 'unités vendues en 7 mois', 'units sold in 7 months', 'unidades vendidas en 7 meses'),
+      label: t3(language, 'diffuseurs dotés de notre technologie, livrés en 7 mois', 'diffusers using our technology, delivered in 7 months', 'difusores con nuestra tecnología, entregados en 7 meses'),
       desc: t3(language, "Le lancement le plus rapide en 20 ans d'Innobiz. Demande validée à grande échelle.", "The fastest launch in Innobiz's 20-year history. Demand validated at scale.", 'El lanzamiento más rápido en 20 años de Innobiz. Demanda validada a escala.'),
     },
     {
@@ -91,9 +91,9 @@ const MarketProofSection: React.FC = () => {
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight mb-4">
             {t3(language,
-              "100 000+ unités vendues. Vos concurrents n'ont pas attendu.",
-              "100,000+ units sold. Your competitors did not wait.",
-              '100.000+ unidades vendidas. Sus competidores no esperaron.'
+              "Plus de 100 000 diffuseurs dotés de notre technologie, livrés en sept mois. Vos concurrents n'ont pas attendu.",
+              "Over 100,000 diffusers using our technology, delivered in seven months. Your competitors did not wait.",
+              'Más de 100.000 difusores con nuestra tecnología, entregados en siete meses. Sus competidores no esperaron.'
             )}
           </h2>
           <p className="text-base md:text-lg text-muted-foreground font-light">
