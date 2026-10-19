@@ -35,6 +35,12 @@ const Footer: React.FC = () => {
             <div className="mt-6 pt-4 border-t border-primary-foreground/10">
               <p className="text-primary-foreground/70 text-sm">+33 (0)4 67 84 89 14</p>
               <p className="text-primary-foreground/70 text-sm">contact@innobiz.fr</p>
+              {/* profil LinkedIn du fondateur (19/10/2026) : visible ici et repris dans les données structurées (vite.config.ts) */}
+              <p className="text-sm mt-2">
+                <a href="https://www.linkedin.com/in/pierre-emmanuel-thuret-b5bb7910/" target="_blank" rel="noopener" className="text-primary-foreground/70 hover:text-primary-foreground underline underline-offset-2 transition-colors">
+                  {t3(language, 'Pierre-Emmanuel Thuret, fondateur, sur LinkedIn', 'Pierre-Emmanuel Thuret, founder, on LinkedIn', 'Pierre-Emmanuel Thuret, fundador, en LinkedIn')}
+                </a>
+              </p>
             </div>
           </div>
         </div>

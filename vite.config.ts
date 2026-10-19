@@ -109,7 +109,11 @@ function seoPages() {
       "@graph": [
         { "@type": "Organization", "@id": `${SITE}/#organization`, name: "Innobiz", legalName: "INNOBIZ SARL", url: SITE, logo: `${SITE}/og-image.jpg`, description: ORG_DESC[lang],
           address: { "@type": "PostalAddress", streetAddress: "8 rue Louis Breguet", addressLocality: "Jacou", postalCode: "34830", addressCountry: "FR" },
-          contactPoint: { "@type": "ContactPoint", telephone: "+33-4-67-84-89-14", email: "contact@innobiz.fr", contactType: "sales" } },
+          contactPoint: { "@type": "ContactPoint", telephone: "+33-4-67-84-89-14", email: "contact@innobiz.fr", contactType: "sales" },
+          founder: { "@id": `${SITE}/#fondateur` } },
+        // le fondateur et son profil LinkedIn (donné par Pierre le 19/10/2026 ; Innobiz n'a pas de page LinkedIn d'entreprise)
+        { "@type": "Person", "@id": `${SITE}/#fondateur`, name: "Pierre-Emmanuel Thuret", jobTitle: lang === "fr" ? "Fondateur" : lang === "es" ? "Fundador" : "Founder",
+          worksFor: { "@id": `${SITE}/#organization` }, sameAs: ["https://www.linkedin.com/in/pierre-emmanuel-thuret-b5bb7910/"] },
         { "@type": "WebSite", "@id": `${SITE}/#website`, name: "Tolia by Innobiz", url: `${SITE}/`, inLanguage: ["fr-FR", "en-GB", "es-ES"], publisher: { "@id": `${SITE}/#organization` } },
         { "@type": "WebPage", "@id": `${url}#page`, url, name: seo.title, description: seo.description, inLanguage: HTML_LANG[lang], isPartOf: { "@id": `${SITE}/#website` }, about: { "@id": `${SITE}/#tolia` } },
         { "@type": "Product", "@id": `${SITE}/#tolia`, name: "Tolia", description: seo.description, brand: { "@type": "Brand", name: "Tolia" }, image, category: lang === "fr" ? "Diffuseur d'huiles essentielles" : lang === "es" ? "Difusor de aceites esenciales" : "Essential oil diffuser",

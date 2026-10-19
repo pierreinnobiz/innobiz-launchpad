@@ -4,7 +4,7 @@
 
 ## Key facts
 
-- Designed in France by Innobiz (Jacou, near Montpellier).
+- Designed in France by Innobiz (INNOBIZ SARL, Jacou, near Montpellier), founded by Pierre-Emmanuel Thuret ([LinkedIn](https://www.linkedin.com/in/pierre-emmanuel-thuret-b5bb7910/)).
 - Cordless: up to 90 hours of battery life (70 to 90 h with the light off, 16 to 20 h with the ambient light on, depending on intensity); USB-C charging; user-replaceable battery.
 - Waterless and heat-free: the essential oil is diffused pure, nothing to fill or clean.
 - Changing oil takes 1 second: a diffusion module stays screwed onto each bottle, which then clips into the base.
@@ -29,3 +29,4 @@
 - Email: contact@innobiz.fr
 - Phone: +33 4 67 84 89 14
 - Address: 8 rue Louis Breguet, 34830 Jacou, France
+- Founder: Pierre-Emmanuel Thuret, https://www.linkedin.com/in/pierre-emmanuel-thuret-b5bb7910/
