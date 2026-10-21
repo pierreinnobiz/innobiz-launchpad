@@ -110,6 +110,12 @@ const QualificationForm: React.FC = () => {
   const leadFiredRef = useRef(false);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const siteAuto = useRef(false); // vrai tant que le site web a été rempli automatiquement depuis l'email
+  // Anti-spam invisible (21/10/2026) : un champ caché que seuls les robots remplissent, et un délai minimum avant l'envoi.
+  // Un robot détecté voit le même parcours (étape 2 puis « merci ») mais rien n'est envoyé.
+  const piegeRef = useRef<HTMLInputElement>(null);
+  const debutRef = useRef(Date.now());
+  const robotRef = useRef(false);
+  const estRobot = () => (piegeRef.current?.value || '').trim() !== '' || Date.now() - debutRef.current < 1500;
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
@@ -236,6 +242,7 @@ const QualificationForm: React.FC = () => {
   const handleStep1Submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateStep1()) return;
+    if (robotRef.current || estRobot()) { robotRef.current = true; setStep(2); return; }
     setIsSubmitting(true);
 
     const intent = intentForGtag(data.projectType);
@@ -255,6 +262,7 @@ const QualificationForm: React.FC = () => {
           website: data.website.trim(),
           project_type: data.projectType,
           project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
+          hp: piegeRef.current?.value || '',
           ...utms,
           ...attribution,
         },
@@ -296,6 +304,7 @@ const QualificationForm: React.FC = () => {
   const handleStep2Submit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validateStep2()) return;
+    if (robotRef.current) { setStep(3); return; } // robot détecté à l'étape 1 : faux « merci », rien n'est envoyé
     setIsSubmitting(true);
 
     const street = data.street.trim();
@@ -581,6 +590,11 @@ const QualificationForm: React.FC = () => {
   // step === 1
   return (
     <form onSubmit={handleStep1Submit} className="space-y-6" noValidate>
+      {/* piège anti-robots : invisible, hors écran, ignoré par le clavier et les lecteurs d'écran */}
+      <div aria-hidden="true" style={{ position: 'absolute', left: '-10000px', top: 'auto', width: 1, height: 1, overflow: 'hidden' }}>
+        <label htmlFor="qf-confirm-url">Ne pas remplir</label>
+        <input id="qf-confirm-url" ref={piegeRef} type="text" name="confirm_url_b" tabIndex={-1} autoComplete="off" defaultValue="" />
+      </div>
       <div className="text-center mb-2">
         <span className="inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1 rounded-full" style={{ background: 'hsl(28 45% 48% / 0.12)', color: 'hsl(28 45% 38%)' }}>
           <Gift className="w-3.5 h-3.5" />

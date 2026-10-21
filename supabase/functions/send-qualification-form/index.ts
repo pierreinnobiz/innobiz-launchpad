@@ -21,6 +21,8 @@ interface SampleRequest {
   phone?: string;
   // 17/10/2026 : « Votre projet en une phrase » (facultatif, étape 2 du formulaire d'échantillon)
   message?: string;
+  // 21/10/2026 : champ piège anti-robots (invisible sur le site) ; rempli = envoi ignoré
+  hp?: string;
   project_type?: "stock_order" | "white_label" | "exploring" | "unset";
   utm_source?: string;
   utm_medium?: string;
@@ -48,6 +50,10 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const body: SampleRequest = await req.json();
+    // Anti-spam (21/10/2026) : un robot remplit le champ caché « hp » ; on répond « ok » sans rien enregistrer ni envoyer
+    if (typeof body.hp === "string" && body.hp.trim() !== "") {
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
+    }
     const {
       stage = "shipping",
       name, company, email, country, website, address,
