@@ -21,6 +21,16 @@ const SKIP_INTRO_S = 6;
 // Le lecteur envoie « playProgress » (avancement) et « finish » (fin) ; « timeupdate » et « ended » sont les noms de la nouvelle API.
 const VIMEO_EVENTS = ['play', 'playing', 'playProgress', 'timeupdate', 'finish', 'ended', 'error'];
 
+// Film only on wide screens, without reduced motion and without data saver.
+const canPlayHeroFilm = () => {
+  if (typeof window === 'undefined') return false;
+  if (window.innerWidth < 1024) return false;
+  if (prefersReducedMotion()) return false;
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+  if (conn?.saveData === true) return false;
+  return true;
+};
+
 const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => void }> = ({ onStatus }) => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -40,6 +50,8 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
   useEffect(() => {
     // Mount right after the first paint: the hero text is already on screen,
     // so the player can start loading immediately without hurting LCP.
+    // No player at all on small screens, reduced motion or data saver: the still image stays.
+    if (!canPlayHeroFilm()) return;
     let timer: number | undefined;
     const raf = requestAnimationFrame(() => {
       timer = window.setTimeout(() => setMounted(true), 120);
@@ -144,7 +156,7 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
       {mounted && !gone && (
         <iframe
           ref={iframeRef}
-          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=auto#t=1s"
+          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=720p#t=1s"
           className="absolute top-1/2 left-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
           style={{
             width: 'max(100vw, 177.78vh)',
@@ -285,14 +297,14 @@ const HeroSection: React.FC = () => {
         className={`hero-poster-m pointer-events-none absolute left-5 right-5 top-[76px] z-[5] m-0 overflow-hidden rounded-2xl shadow-xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
         style={{ aspectRatio: '16 / 10' }}
       >
-        <img src={waited ? `${POSTER}hero_ferme_3d.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
+        <img src={`${POSTER}hero_ferme_3d.webp`} loading="eager" fetchPriority="high" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
       </figure>
       <figure
         aria-hidden={!showPoster}
         className={`hero-poster-d pointer-events-none absolute right-[5vw] top-1/2 z-[5] m-0 -translate-y-[42%] overflow-hidden rounded-2xl shadow-2xl ring-1 ring-white/15 transition-opacity duration-700 ${showPoster ? 'opacity-100' : 'opacity-0'}`}
         style={{ width: 'min(33vw, 540px)', aspectRatio: '16 / 10' }}
       >
-        <img src={waited ? `${POSTER}hero_ferme_3d.webp` : undefined} loading="lazy" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
+        <img src={`${POSTER}hero_ferme_3d.webp`} loading="eager" fetchPriority="high" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
       </figure>
 
       <div className="hero-content relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32 px-6 md:px-12 lg:px-20">

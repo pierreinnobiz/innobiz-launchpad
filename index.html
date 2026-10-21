@@ -14,9 +14,8 @@
 
     <meta name="author" content="Innobiz" />
 
-    <!-- Performance: early connections for fonts, hero video and analytics -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <!-- Performance: hero still image first, early connections for hero video and analytics -->
+    <link rel="preload" as="image" href="/journee/img/hero_ferme_3d.webp" fetchpriority="high" />
     <link rel="preconnect" href="https://player.vimeo.com" crossorigin />
     <link rel="preconnect" href="https://f.vimeocdn.com" crossorigin />
     <link rel="preconnect" href="https://i.vimeocdn.com" crossorigin />
@@ -25,11 +24,6 @@
     <link rel="dns-prefetch" href="https://i.vimeocdn.com" />
     
     <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" media="print" onload="this.media='all'" />
-    <noscript>
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" />
-    </noscript>
 
 
     <!-- Canonical (updated per route by React) -->
