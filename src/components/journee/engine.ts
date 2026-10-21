@@ -51,11 +51,11 @@ const NSW = 25; // images d'origine 0-24 : changement de flacon (chrono 0 -> 1 s
 const NFR = 51;
 const PIC: Record<Fmt, XY> = { d: [1920, 1080], m: [1080, 1920] };
 // zone de l'image (en hauteur) montrée en mode « flux » : sur téléphone, la bande où se trouve le diffuseur
-const BAND: Record<Fmt, XY> = { d: [0, 1080], m: [880, 800] };
+const BAND: Record<Fmt, XY> = { d: [0, 1080], m: [680, 1040] };
 // emplacement de la partie animée (images d'animation = découpes de cette zone)
 const PATCH: Record<string, Record<Fmt, number[]>> = {
-  living: { d: [518, 200, 1402, 676], m: [0, 836, 1080, 762] },
-  bedroom: { d: [0, 188, 1410, 876], m: [0, 822, 982, 964] },
+  living: { d: [702, 0, 1218, 972], m: [0, 612, 1080, 1114] },
+  bedroom: { d: [702, 0, 1218, 972], m: [0, 612, 1080, 1114] },
 };
 
 // move : la pièce montrée change de place pendant l'animation (ex. le flacon de lavande entre dans le diffuseur) ;
@@ -81,30 +81,30 @@ interface PageDef {
 const PAGES: PageDef[] = [
   {
     id: 'matin', kind: 'photo', tone: 't-day', icon: 'sunrise', color: 'var(--m1)', T: 4.0, img: 'kitchen',
-    box: { d: [705, 425, 1405, 725], m: [110, 1010, 970, 1440] },
+    box: { d: [760, 320, 1640, 870], m: [40, 1000, 1040, 1620] },
     callouts: [
-      { t: 0.9, at: { d: [1057, 492], m: [540, 1174] }, zone: 'top', tx: 1300 },
-      { t: 1.9, at: { d: [1105, 688], m: [590, 1405] }, zone: 'bottom', tx: 1200 },
-      { t: 2.9, at: { d: [955, 540], m: [420, 1200] }, zone: 'top', tx: 820 },
+      { t: 0.9, at: { d: [943, 484], m: [248, 1183] }, zone: 'top', tx: 1300 },
+      { t: 1.9, at: { d: [963, 729], m: [270, 1459] }, zone: 'bottom', tx: 1200 },
+      { t: 2.9, at: { d: [837, 332], m: [126, 1009] }, zone: 'top', tx: 820 },
     ],
   },
   {
     id: 'journee', kind: 'anim', tone: 't-day', icon: 'sun', color: 'var(--m2)', T: 8.0, anim: 'living', swap: [3.0, 4.7], cover: [4.9, 6.5],
-    box: { d: [705, 400, 1405, 795], m: [110, 1080, 970, 1560] },
+    box: { d: [760, 320, 1640, 870], m: [40, 1000, 1040, 1620] },
     callouts: [
-      { t: 0.9, at: { d: [1360, 716], m: [911, 1473] }, zone: 'right' },
-      { t: 1.9, at: { d: [1078, 742], m: [560, 1500] }, zone: 'bottom', tx: 1180 },
-      { t: 7.0, at: { d: [870, 585], m: [276, 1268] }, zone: 'top', tx: 780 },
+      { t: 0.9, at: { d: [1434, 744], m: [809, 1479] }, zone: 'right' },
+      { t: 1.9, at: { d: [1164, 630], m: [501, 1348] }, zone: 'bottom', tx: 1180 },
+      { t: 7.0, at: { d: [1101, 438], m: [428, 1128] }, zone: 'top', tx: 780 },
     ],
   },
   {
     id: 'soir', kind: 'anim', tone: 't-night', icon: 'moon', color: 'var(--m3)', T: 8.9, anim: 'bedroom', swap: [3.0, 4.7], cover: [4.9, 6.5],
-    box: { d: [705, 395, 1405, 815], m: [110, 1090, 970, 1590] },
+    box: { d: [760, 320, 1640, 870], m: [40, 1000, 1040, 1620] },
     callouts: [
       // cadres du bas écartés du halo (cycle 3 : les deux cadres le cachaient)
-      { t: 0.9, at: { d: [1100, 748], m: [665, 1478] }, zone: 'bottom', tx: 1430 },
-      { t: 7.0, at: { d: [845, 590], m: [273, 1335] }, zone: 'top', tx: 800 },
-      { t: 8.0, at: { d: [1058, 806], m: [468, 1590] }, zone: 'bottom', tx: 690 },
+      { t: 0.9, at: { d: [1198, 739], m: [540, 1473] }, zone: 'bottom', tx: 1430 },
+      { t: 7.0, at: { d: [1101, 438], m: [428, 1128] }, zone: 'top', tx: 800 },
+      { t: 8.0, at: { d: [1159, 762], m: [495, 1498] }, zone: 'bottom', tx: 690 },
     ],
   },
   { id: 'gamme', kind: 'gamme', tone: 't-dark', icon: 'grid', color: 'var(--copper-soft)', T: 4.6 },
@@ -197,7 +197,7 @@ export function createJourneeEngine(
   // ---------- éléments communs
   // Lumière d'ambiance (22:00) : le halo chaud sous la base s'allume à l'écran juste avant le cadre qui en parle
   // (sur le rendu, la lumière était trop faible pour se voir : retour des marques testeuses, 17/10/2026).
-  const GLOW: Record<Fmt, XY> = { d: [1058, 812], m: [551, 1584] };
+  const GLOW: Record<Fmt, XY> = { d: [1159, 762], m: [495, 1498] };
   function mediaHtml(pg: PageDef, alt: string) {
     const [W, H] = PIC[F];
     if (pg.kind === 'anim') {
