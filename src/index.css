@@ -136,6 +136,55 @@
 }
 
 @layer components {
+  /* Zone tactile d'au moins 44 x 44 px, invisible : l'apparence du bouton ne change pas. */
+  .tap-target {
+    position: relative;
+  }
+  .tap-target::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+  /* Sélecteur de langue : boutons serrés, la zone s'étend en hauteur et jusqu'au milieu de l'espace voisin. */
+  .tap-target-tight::after {
+    width: calc(100% + 4px);
+  }
+  /* « Passer la visite » de la visite « journée » (style de la section non modifié). */
+  .journee .jr-skip::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: max(100%, 44px);
+    height: max(100%, 44px);
+    transform: translate(-50%, -50%);
+  }
+
+  /* Lien « Aller au contenu » : invisible sauf au clavier. */
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: 0.75rem;
+    z-index: 100;
+    transform: translateY(-200%);
+    padding: 0.75rem 1.25rem;
+    border-radius: 9999px;
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    font-weight: 600;
+    font-size: 0.875rem;
+  }
+  .skip-link:focus,
+  .skip-link:focus-visible {
+    transform: translateY(0);
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
   /* Hero button variants - Plaud.ai inspired: bold, clean, prominent */
   .btn-hero-primary {
     @apply inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-semibold rounded-2xl;

@@ -48,7 +48,7 @@ const Navigation: React.FC = () => {
           key={lang.code}
           onClick={() => lang.available && switchLang(lang.code)}
           disabled={!lang.available}
-          className={`px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
+          className={`tap-target tap-target-tight px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
             language === lang.code
               ? 'bg-primary text-primary-foreground shadow-sm'
               : !lang.available
@@ -82,7 +82,7 @@ const Navigation: React.FC = () => {
               <a
                 href="#contact"
                 onClick={() => trackCTAClick(sampleLabel, 'nav', 'sample_nav')}
-                className="inline-flex shrink-0"
+                className="tap-target inline-flex shrink-0"
               >
                 <Button
                   size="sm"

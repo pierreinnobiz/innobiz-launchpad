@@ -12,6 +12,7 @@ import SeoOpenGraph from '@/components/SeoOpenGraph';
 import { useLocation } from 'react-router-dom';
 import { langFromPath } from '@/lib/langPath';
 import { HOME_SEO } from '@/seo/homeSeo';
+import { t3 } from '@/lib/t3';
 
 
 // A stale build (old chunk names) makes this dynamic import fail after a deploy.
@@ -89,8 +90,13 @@ const Index: React.FC = () => {
       </Helmet>
       <SeoOpenGraph title={seo.title} description={seo.description} path={homePath} />
 
+      <a href="#contenu" className="skip-link">
+        {t3(language, 'Aller au contenu', 'Skip to content', 'Ir al contenido')}
+      </a>
+
       <Navigation />
 
+      <main id="contenu" tabIndex={-1} className="outline-none">
       <HeroSection />
 
       <SocialProofBar />
@@ -106,6 +112,7 @@ const Index: React.FC = () => {
       ) : (
         <div className="min-h-screen bg-background" aria-hidden="true" />
       )}
+      </main>
     </div>
   );
 };

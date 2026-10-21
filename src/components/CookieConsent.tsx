@@ -145,14 +145,14 @@ const CookieConsent = () => {
             <button
               type="button"
               onClick={() => decide('denied')}
-              className="px-4 py-2 text-sm font-medium rounded-lg border border-border bg-background hover:bg-secondary transition-colors"
+              className="tap-target px-4 py-2 text-sm font-medium rounded-lg border border-border bg-background hover:bg-secondary transition-colors"
             >
               {decline}
             </button>
             <button
               type="button"
               onClick={() => decide('granted')}
-              className="px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:brightness-110 transition-all"
+              className="tap-target px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-primary-foreground hover:brightness-110 transition-all"
             >
               {accept}
             </button>
