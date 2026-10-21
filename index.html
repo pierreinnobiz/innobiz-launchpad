@@ -114,8 +114,8 @@
     </script>
 
     <!-- GA4 with Consent Mode v2 — defaults DENIED before any measurement.
-         gtag.js is always loaded so consent updates apply immediately; no
-         analytics cookie is written while analytics_storage is 'denied'. -->
+         21/10/2026 (décision de Pierre, choix « A ») : gtag.js n'est chargé QU'APRÈS « Tout accepter »
+         (ou au chargement si le visiteur avait déjà accepté) ; refus ou absence de choix = aucun appel à Google. -->
     <script>
       window.dataLayer = window.dataLayer || [];
       window.gtag = function(){ window.dataLayer.push(arguments); };
@@ -164,7 +164,9 @@
         s.async = true;
         document.head.appendChild(s);
       };
-      (window.requestIdleCallback || function(cb){ setTimeout(cb, 1200); })(function(){ window.loadGtagScript(); });
+      if (window.__toliaConsent === 'granted') {
+        (window.requestIdleCallback || function(cb){ setTimeout(cb, 1200); })(function(){ window.loadGtagScript(); });
+      }
     </script>
     <meta property="og:title" content="White-Label Essential Oil Diffusers | Tolia by Innobiz">
   <meta name="twitter:title" content="White-Label Essential Oil Diffusers | Tolia by Innobiz">

@@ -106,6 +106,8 @@ const CookieConsent = () => {
       ad_personalization: choice,
       analytics_storage: choice,
     });
+    // 21/10/2026 : Google Analytics n'est chargé qu'après acceptation (voir index.html, loadGtagScript)
+    if (choice === 'granted') (window as Window & { loadGtagScript?: () => void }).loadGtagScript?.();
   };
 
   const decide = (choice: 'granted' | 'denied') => {

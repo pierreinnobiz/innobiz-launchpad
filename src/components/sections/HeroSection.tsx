@@ -237,7 +237,9 @@ const HeroSection: React.FC = () => {
   const [waited, setWaited] = useState(false);
   useEffect(() => { const id = window.setTimeout(() => setWaited(true), 1200); return () => clearTimeout(id); }, []);
   const onFilm = useCallback((playing: boolean, ended: boolean) => setFilm((f) => (f.playing === playing && f.ended === ended ? f : { playing, ended })), []);
-  const showPoster = (waited && !film.playing) || film.ended; // « playing » = film réellement visible (après son introduction)
+  // pas de film sur cet écran (téléphone, tablette, mouvement réduit, économie de données) : l'image s'affiche tout de suite
+  const [sansFilm] = useState(() => !canPlayHeroFilm());
+  const showPoster = sansFilm || (waited && !film.playing) || film.ended; // « playing » = film réellement visible (après son introduction)
   const posterAlt = t3(
     language,
     'Diffuseur Tolia fermé, posé sur une table en chêne, et deux flacons à côté avec leur module de diffusion vissé',
