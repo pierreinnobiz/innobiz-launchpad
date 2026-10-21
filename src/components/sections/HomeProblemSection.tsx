@@ -195,7 +195,7 @@ const HomeProblemSection: React.FC = () => {
         >
           <a
             href="#journee"
-            className="inline-flex items-center gap-2 text-sm font-semibold transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full px-2 py-1"
+            className="tap-target inline-flex items-center gap-2 text-sm font-semibold transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full px-2 py-1"
             style={{ color: 'hsl(28 52% 36%)' }}
           >
             {t3(l, 'Voir Tolia en situation, sur une journée', 'Spend a day with Tolia', 'Ver Tolia en uso, durante un día')}
