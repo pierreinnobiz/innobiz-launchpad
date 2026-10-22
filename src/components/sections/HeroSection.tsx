@@ -262,15 +262,15 @@ const HeroSection: React.FC = () => {
   // Le sous-titre dit d'abord CE QU'EST Tolia (un diffuseur qui se branche sur les flacons de la marque), puis le bénéfice.
   const subtitle = t3(
     language,
-    "Tolia est un diffuseur sans fil qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'on s'en sert chaque jour, et vos clients rachètent vos huiles.",
-    'Tolia is a cordless diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.',
-    'Tolia es un difusor inalámbrico que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.'
+    "Tolia est un diffuseur sur batterie qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'on s'en sert chaque jour, et vos clients rachètent vos huiles.",
+    'Tolia is a battery-powered diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.',
+    'Tolia es un difusor con batería que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.'
   );
   const microcopy = t3(
     language,
-    'Sans engagement · Réponse sous un jour ouvré · Marqué CE, déjà vendu en Europe',
-    'No commitment · Reply within one business day · CE-marked, already sold in Europe',
-    'Sin compromiso · Respuesta en un día hábil · Marcado CE, ya vendido en Europa'
+    'Sans engagement · Réponse sous un jour ouvré · Plus de 100 000 diffuseurs dotés de notre technologie vendus dans le monde',
+    'No commitment · Reply within one business day · More than 100,000 diffusers using our technology sold worldwide',
+    'Sin compromiso · Respuesta en un día hábil · Más de 100.000 difusores con nuestra tecnología vendidos en todo el mundo'
   );
   const cta = t3(language, 'Recevoir mon échantillon gratuit', 'Get my free sample', 'Recibir mi muestra gratuita');
   // Deuxième porte d'entrée : parler directement à l'équipe (30 minutes en visio avec Simon Desbuisson).

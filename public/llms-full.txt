@@ -1,6 +1,6 @@
 # Tolia by Innobiz — texte complet du site (FR, EN, ES)
 
-Tolia est un diffuseur d’huiles essentielles sans eau et sans fil, conçu en France par Innobiz pour les marques d’aromathérapie.
+Tolia est un diffuseur d’huiles essentielles sans eau, sur batterie, conçu en France par Innobiz pour les marques d’aromathérapie.
 Pages : https://www.innobiz-tolia.com/fr/ · https://www.innobiz-tolia.com/en/ · https://www.innobiz-tolia.com/es/
 
 ---
@@ -11,13 +11,13 @@ Pages : https://www.innobiz-tolia.com/fr/ · https://www.innobiz-tolia.com/en/ 
 
 ## Chaque diffuseur vendu est le début d’un revenu récurrent.
 
-Tolia est un diffuseur sans fil qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu’on s’en sert chaque jour, et vos clients rachètent vos huiles.
+Tolia est un diffuseur sur batterie qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu’on s’en sert chaque jour, et vos clients rachètent vos huiles.
 
 - Sans engagement
 - Réponse sous un jour ouvré
-- Marqué CE, déjà vendu en Europe
+- Plus de 100 000 diffuseurs dotés de notre technologie vendus dans le monde
 
-- 100 000+ — diffuseurs dotés de notre technologie, livrés en 7 mois
+- 100 000+ — diffuseurs dotés de notre technologie vendus dans le monde
 - 20 ans — de métier dans la diffusion
 - Dès 500 pièces — en commande sur stock
 
@@ -25,11 +25,11 @@ Tolia est un diffuseur sans fil qui fonctionne directement avec vos flacons : n
 
 En 20 ans de métier dans la diffusion, nous avons toujours fait le même constat : vos clients ont envie de diffuser des huiles essentielles, mais les contraintes de leur diffuseur finissent par les décourager. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne sont plus rachetés.
 
-### Ultrasons, avec réservoir d’eau
+### Diffuseur à ultrasons, avec de l’eau
 
 À l’usage
 
-Remplir le réservoir, compter les gouttes, puis vider, rincer et sécher pour éviter l’eau stagnante. Diluée dans l’eau, l’huile perd de sa force.
+Quelques gouttes d’huile dans un grand réservoir : 1 à 2 ml d’huile pour 200 à 300 ml d’eau, soit 100 à 300 fois plus d’eau que d’huile. Il faut ensuite vider, rincer et sécher le réservoir. Tolia, lui, diffuse l’huile pure, sans une goutte d’eau.
 
 Une corvée quotidienne : le diffuseur reste éteint.
 
@@ -80,7 +80,7 @@ Nous avons retiré la cloche pour vous le montrer : le flacon de menthe poivré
 La diffusion démarre aussitôt, sans temps de chauffe. La durée, la puissance et l’intermittence se règlent très simplement.
 
 #### Une brume d’huile pure
-Nébulisation à froid : ni eau, ni chaleur. L’huile essentielle se diffuse telle qu’elle sort du flacon.
+Nébulisation ultrasonique : l’huile n’est ni chauffée ni diluée dans l’eau. Elle devient une brume très fine, qui reste longtemps dans l’air.
 
 14:00 · En début d’après-midi, au salon
 
@@ -95,15 +95,15 @@ Chaque flacon garde son module vissé : plus rien à vider, à rincer ni à mé
 Le flacon se clipse dans la base d’un seul geste, puis la cloche se repose par-dessus.
 
 #### Pure, intacte, silencieuse
-Sans eau qui la dilue ni chaleur qui l’altère, l’huile garde tout son parfum. Ni pompe ni ventilateur : aucun bruit de moteur.
+Sans eau qui la dilue ni chaleur qui l’altère, l’huile garde tout son parfum et ses molécules aromatiques. Ni pompe ni ventilateur : aucun bruit de moteur.
 
 21:00 · Le soir, dans la chambre
 
-### Sans fil et silencieux, Tolia accompagne le coucher.
+### Sur batterie et silencieux, Tolia accompagne le coucher.
 
 Vers 21 h, on emporte Tolia dans la chambre comme on emporte un livre : il n’a pas de fil. On clipse la lavande vraie et on choisit une diffusion douce, par intermittence, qui s’arrête d’elle-même au bout de la durée choisie. Sa batterie tient jusqu’à 90 heures et se recharge en USB‑C.
 
-#### Sans fil, jusqu’à 90 h
+#### Jusqu’à 90 h d’autonomie
 Batterie rechargeable en USB‑C : 70 à 90 h lumière éteinte, 16 à 20 h avec la lumière d’ambiance.
 
 #### Arrêt automatique
@@ -116,7 +116,7 @@ Ce que vous venez de voir
 
 - 07:30 : La menthe poivrée pour bien démarrer, d’un seul appui.
 - 14:00: Une autre huile en une seconde, sans rien vider ni rincer.
-- 21:00 : Sans fil et silencieux au chevet, avec jusqu’à 90 h d’autonomie.
+- 21:00 : Silencieux au chevet, avec jusqu’à 90 h d’autonomie.
 
 ### Ce que Tolia apporte à votre gamme
 
@@ -143,13 +143,13 @@ Le café l’a montré : quand préparer un expresso s’est réduit à un seul
 
 Les caractéristiques qui rendent Tolia si simple, en neuf repères.
 
-### Jusqu’à 90 h, sans fil
+### Jusqu’à 90 h d’autonomie
 
 Sur batterie, rechargeable en USB‑C : il passe de la chambre au bureau, au spa ou à la salle de yoga, sans chercher de prise.
 
 ### Pure et silencieuse
 
-Ni eau, ni chaleur : l’huile est diffusée pure. Ni pompe ni ventilateur : aucun bruit de moteur.
+Nébulisation ultrasonique, sans eau ni chaleur : l’huile est diffusée pure, en une brume très fine qui reste longtemps dans l’air. Ni pompe ni ventilateur : aucun bruit de moteur.
 
 ### Une autre huile en 1 seconde
 
@@ -321,7 +321,7 @@ Marque blanche : généralement dès 3 000 pièces, selon le projet. Commande s
 En marque blanche, comptez généralement 12 à 20 semaines, selon le projet. Pour aller plus vite, la commande sur stock (dès 500 pièces) part de France sous 72 h si le stock le permet, sous la marque Tolia, avec un fourreau à vos couleurs en option.
 
 ### Qu’en est-il de la conformité réglementaire ?
-Tolia est marqué CE, conforme RoHS et déjà vendu en Europe. Nous fournissons la documentation du diffuseur ; celle des huiles reste à la charge de la marque. Vous vendez hors de l’UE ? Indiquez-nous vos marchés : nous vous confirmerons par écrit les règles applicables.
+Tolia est marqué CE et conforme RoHS. Plus de 100 000 diffuseurs dotés de notre technologie ont déjà été vendus dans le monde. Nous fournissons la documentation du diffuseur ; celle des huiles reste à la charge de la marque. Vous vendez hors de l’UE ? Indiquez-nous vos marchés : nous vous confirmerons par écrit les règles applicables.
 
 ### Exclusivité et co-branding ?
 Marque blanche : exclusivité de catégorie et de territoire négociable selon le volume. Commande stock : non exclusive, avec fourreau co‑brandé en option.
@@ -392,13 +392,13 @@ Jacou, France • www.innobiz.fr
 
 ## Every diffuser sold is the start of recurring revenue.
 
-Tolia is a cordless diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.
+Tolia is a battery-powered diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.
 
 - No commitment
 - Reply within one business day
-- CE-marked, already sold in Europe
+- More than 100,000 diffusers using our technology sold worldwide
 
-- 100,000+ — diffusers using our technology, delivered in 7 months
+- 100,000+ — diffusers using our technology sold worldwide
 - 20 years — in diffusion technology
 - From 500 units — as a stock order
 
@@ -406,11 +406,11 @@ Tolia is a cordless diffuser that works straight from your own bottles: no water
 
 In 20 years of designing diffusers, we have seen the same thing again and again: your customers want to diffuse essential oils, but the chores their diffuser demands end up putting them off. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.
 
-### Ultrasonic, with a water tank
+### Ultrasonic diffuser, with water
 
 In daily use
 
-Fill the tank, count the drops, then empty, rinse and dry it to avoid stagnant water. Diluted in water, the oil loses its strength.
+A few drops of oil in a large tank: 1 to 2 ml of oil for 200 to 300 ml of water, so 100 to 300 times more water than oil. The tank then has to be emptied, rinsed and dried. Tolia, by contrast, diffuses the oil pure, without a single drop of water.
 
 A daily chore: the diffuser stays switched off.
 
@@ -461,7 +461,7 @@ We lifted the cover so you can see it: the peppermint bottle is clipped upside d
 Diffusion starts at once, with no warm-up. Time, strength and on/off cycles are easy to adjust.
 
 #### A mist of pure oil
-Cold nebulisation: no water, no heat. The essential oil is diffused exactly as it leaves the bottle.
+Ultrasonic nebulisation: the oil is neither heated nor diluted in water. It becomes a very fine mist that lingers in the air.
 
 14:00 · Early afternoon, in the living room
 
@@ -476,15 +476,15 @@ Each bottle keeps its module screwed on: nothing left to empty, rinse or mix.
 The bottle clips into the base in one move, then the cover goes back on top.
 
 #### Pure, intact, quiet
-No water to dilute it, no heat to alter it: the oil keeps its full scent. No pump, no fan: no motor noise.
+No water to dilute it, no heat to alter it: the oil keeps its full scent and its aromatic molecules. No pump, no fan: no motor noise.
 
 21:00 · Evening, in the bedroom
 
-### Cordless and quiet, Tolia follows you to bed.
+### Battery-powered and quiet, Tolia follows you to bed.
 
 At around 9 pm, you take Tolia to the bedroom the way you would take a book: it has no cord. Clip in the true lavender and choose a gentle diffusion with on/off cycles that stops by itself after the chosen time. The battery lasts up to 90 hours and recharges via USB‑C.
 
-#### Cordless, up to 90 h
+#### Up to 90 h of battery life
 USB‑C rechargeable battery: 70 to 90 h with the light off, 16 to 20 h with the ambient light on.
 
 #### Auto shut-off
@@ -497,7 +497,7 @@ What you have just seen
 
 - 07:30: Peppermint to start the day, in one press.
 - 14:00: A different oil in one second, nothing to empty or rinse.
-- 21:00: Cordless and quiet at the bedside, up to 90 h of battery.
+- 21:00: Quiet at the bedside, up to 90 h of battery.
 
 ### What Tolia brings to your range
 
@@ -524,13 +524,13 @@ Coffee proved it: once making an espresso took a single touch, it became a daily
 
 The features that make Tolia so simple, in nine points.
 
-### Up to 90 h, cordless
+### Up to 90 h of battery life
 
 Battery-powered with USB‑C charging: it moves from bedroom to office, spa or yoga room, no socket needed.
 
 ### Pure and quiet
 
-No water, no heat: the oil is diffused pure. No pump, no fan: no motor noise.
+Ultrasonic nebulisation, with no water and no heat: the oil is diffused pure, as a very fine mist that lingers in the air. No pump, no fan: no motor noise.
 
 ### A different oil in 1 second
 
@@ -702,7 +702,7 @@ White label: typically from 3,000 units, depending on the project. Stock order: 
 For white label, allow 12 to 20 weeks, depending on the project. To move faster, a stock order (from 500 units) ships from France within 72 h if in stock, under the Tolia brand, with an optional sleeve in your colours.
 
 ### What about regulatory compliance?
-Tolia is CE-marked, RoHS-compliant and already sold across Europe. We provide the diffuser documentation; essential oil compliance remains with the brand. Selling outside the EU? Tell us your markets and we will confirm in writing which rules apply.
+Tolia is CE-marked and RoHS-compliant. More than 100,000 diffusers using our technology have already been sold worldwide. We provide the diffuser documentation; essential oil compliance remains with the brand. Selling outside the EU? Tell us your markets and we will confirm in writing which rules apply.
 
 ### Exclusivity and co-branding?
 White label: category and territory exclusivity is negotiable based on volume. Stock order: non-exclusive, with an optional co-branded sleeve.
@@ -773,13 +773,13 @@ Jacou, France • www.innobiz.fr
 
 ## Cada difusor vendido es el inicio de un ingreso recurrente.
 
-Tolia es un difusor inalámbrico que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.
+Tolia es un difusor con batería que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.
 
 - Sin compromiso
 - Respuesta en un día hábil
-- Marcado CE, ya vendido en Europa
+- Más de 100.000 difusores con nuestra tecnología vendidos en todo el mundo
 
-- 100.000+ — difusores con nuestra tecnología, entregados en 7 meses
+- 100.000+ — difusores con nuestra tecnología vendidos en todo el mundo
 - 20 años — de experiencia en difusión de aromas
 - Desde 500 unidades — en pedido de stock
 
@@ -787,11 +787,11 @@ Tolia es un difusor inalámbrico que funciona directamente con sus frascos: sin 
 
 En 20 años de experiencia en difusión de aromas, hemos llegado siempre a la misma conclusión: sus clientes tienen ganas de aromatizar su casa con aceites esenciales, pero las molestias de su difusor acaban por desanimarlos. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.
 
-### Ultrasonidos, con depósito de agua
+### Difusor por ultrasonidos, con agua
 
 En el uso diario
 
-Llenar el depósito, contar las gotas y luego vaciar, enjuagar y secar para evitar el agua estancada. Diluido en agua, el aceite pierde fuerza.
+Unas gotas de aceite en un gran depósito: de 1 a 2 ml de aceite por 200 a 300 ml de agua, es decir, de 100 a 300 veces más agua que aceite. Después hay que vaciar, enjuagar y secar el depósito. Tolia, en cambio, difunde el aceite puro, sin una gota de agua.
 
 Una tarea diaria: el difusor se queda apagado.
 
@@ -842,7 +842,7 @@ Hemos quitado la cubierta para que lo vea: el frasco de menta piperita está enc
 La difusión arranca al instante, sin tiempo de calentamiento. La duración, la potencia y la intermitencia se ajustan de forma muy sencilla.
 
 #### Una bruma de aceite puro
-Nebulización en frío: sin agua ni calor. El aceite esencial se difunde tal como sale del frasco.
+Nebulización ultrasónica: el aceite no se calienta ni se diluye en agua. Se convierte en una bruma muy fina que permanece mucho tiempo en el aire.
 
 14:00 · A primera hora de la tarde, en el salón
 
@@ -857,15 +857,15 @@ Cada frasco conserva su módulo enroscado: ya no hay nada que vaciar, enjuagar n
 El frasco se encaja en la base con un solo gesto y la cubierta se vuelve a colocar encima.
 
 #### Aceite puro, difusión silenciosa
-Sin agua que lo diluya ni calor que lo altere, el aceite conserva todo su aroma. Sin bomba ni ventilador: ningún ruido de motor.
+Sin agua que lo diluya ni calor que lo altere, el aceite conserva todo su aroma y sus moléculas aromáticas. Sin bomba ni ventilador: ningún ruido de motor.
 
 21:00 · Por la noche, en el dormitorio
 
-### Sin cables y silencioso, Tolia acompaña la hora de dormir.
+### Con batería y silencioso, Tolia acompaña la hora de dormir.
 
 Hacia las 21 h, Tolia se lleva al dormitorio como se lleva un libro: no tiene cable. Se encaja la lavanda verdadera y se elige una difusión suave e intermitente que se detiene sola al cabo del tiempo elegido. Su batería dura hasta 90 horas y se recarga por USB‑C.
 
-#### Sin cables, hasta 90 h
+#### Hasta 90 h de autonomía
 Batería recargable por USB‑C: de 70 a 90 h con la luz apagada, de 16 a 20 h con la luz ambiental.
 
 #### Apagado automático
@@ -878,7 +878,7 @@ Lo que acaba de ver
 
 - 07:30: La menta piperita para empezar bien, con una sola pulsación.
 - 14:00: Otro aceite en un segundo, sin vaciar ni enjuagar nada.
-- 21:00: Sin cables y silencioso junto a la cama, hasta 90 h de batería.
+- 21:00: Silencioso junto a la cama, hasta 90 h de batería.
 
 ### Lo que Tolia aporta a su gama
 
@@ -905,13 +905,13 @@ El café lo demostró: el día en que preparar un espresso se redujo a un solo g
 
 Las características que hacen que Tolia sea tan sencillo, en nueve puntos.
 
-### Hasta 90 h, sin cables
+### Hasta 90 h de autonomía
 
 Con batería y carga USB‑C: pasa del dormitorio a la oficina, al spa o a la sala de yoga, sin buscar un enchufe.
 
 ### Pura y silenciosa
 
-Sin agua ni calor: el aceite se difunde puro. Sin bomba ni ventilador: ningún ruido de motor.
+Nebulización ultrasónica, sin agua ni calor: el aceite se difunde puro, en una bruma muy fina que permanece mucho tiempo en el aire. Sin bomba ni ventilador: ningún ruido de motor.
 
 ### Otro aceite en 1 segundo
 
@@ -1083,7 +1083,7 @@ Marca blanca: normalmente desde 3.000 unidades, según el proyecto. Pedido de st
 En marca blanca, cuente normalmente de 12 a 20 semanas, según el proyecto. Para ir más rápido, el pedido de stock (desde 500 unidades) sale de Francia en 72 h si hay stock, con la marca Tolia y una funda con sus colores como opción.
 
 ### ¿Qué hay de la conformidad regulatoria?
-Tolia lleva marcado CE, cumple RoHS y ya se vende en Europa. Facilitamos la documentación del difusor; la de los aceites sigue a cargo de la marca. ¿Vende fuera de la UE? Indíquenos sus mercados y le confirmaremos por escrito qué normas se aplican.
+Tolia lleva marcado CE y cumple RoHS. Ya se han vendido en todo el mundo más de 100.000 difusores con nuestra tecnología. Facilitamos la documentación del difusor; la de los aceites sigue a cargo de la marca. ¿Vende fuera de la UE? Indíquenos sus mercados y le confirmaremos por escrito qué normas se aplican.
 
 ### ¿Exclusividad y co-branding?
 Marca blanca: la exclusividad de categoría y territorio es negociable según el volumen. Pedido de stock: no exclusivo, con funda exterior opcional con su marca.

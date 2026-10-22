@@ -7,13 +7,12 @@ const SocialProofBar: React.FC = () => {
   const { language } = useLanguage();
 
   // Trois repères, tous issus des faits validés : 100 000+ diffuseurs dotés de notre technologie, 20 ans de métier, et le
-  // point d'entrée « dès 500 pièces ». Correction de Pierre (19/10/2026) : les 100 000 sont des diffuseurs MISTI livrés lors des
-  // lancements des clients (même technologie de diffusion), jamais « 100 000 Tolia ».
-  // (cycle 3 du test : « déjà vendu en Europe » était dit juste au-dessus, sous les boutons ; CE et RoHS restent dans la FAQ).
+  // point d'entrée « dès 500 pièces ». Pierre, 22/10/2026 : les 100 000 = ventes MISTI + Tolia additionnées, sans nommer l'un
+  // ou l'autre (« dotés de notre technologie ») ; « livrés en 7 mois » retiré. CE et RoHS restent dans la FAQ.
   const stats = [
     {
       value: t3(language, '100\u00a0000+', '100,000+', '100.000+'),
-      label: t3(language, 'diffuseurs dotés de notre technologie, livrés en 7 mois', 'diffusers using our technology, delivered in 7 months', 'difusores con nuestra tecnología, entregados en 7 meses'),
+      label: t3(language, 'diffuseurs dotés de notre technologie vendus dans le monde', 'diffusers using our technology sold worldwide', 'difusores con nuestra tecnología vendidos en todo el mundo'),
     },
     {
       value: t3(language, '20 ans', '20 years', '20 años'),

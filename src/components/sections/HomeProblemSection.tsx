@@ -23,12 +23,12 @@ const HomeProblemSection: React.FC = () => {
   const techs: { icon: LucideIcon; name: string; usage: string; result: string }[] = [
     {
       icon: Droplets,
-      name: t3(l, 'Ultrasons, avec réservoir d’eau', 'Ultrasonic, with a water tank', 'Ultrasonidos, con depósito de agua'),
+      name: t3(l, 'Diffuseur à ultrasons, avec de l’eau', 'Ultrasonic diffuser, with water', 'Difusor por ultrasonidos, con agua'),
       usage: t3(
         l,
-        'Remplir le réservoir, compter les gouttes, puis vider, rincer et sécher pour éviter l’eau stagnante. Diluée dans l’eau, l’huile perd de sa force.',
-        'Fill the tank, count the drops, then empty, rinse and dry it to avoid stagnant water. Diluted in water, the oil loses its strength.',
-        'Llenar el depósito, contar las gotas y luego vaciar, enjuagar y secar para evitar el agua estancada. Diluido en agua, el aceite pierde fuerza.'
+        'Quelques gouttes d’huile dans un grand réservoir : 1 à 2 ml d’huile pour 200 à 300 ml d’eau, soit 100 à 300 fois plus d’eau que d’huile. Il faut ensuite vider, rincer et sécher le réservoir. Tolia, lui, diffuse l’huile pure, sans une goutte d’eau.',
+        'A few drops of oil in a large tank: 1 to 2 ml of oil for 200 to 300 ml of water, so 100 to 300 times more water than oil. The tank then has to be emptied, rinsed and dried. Tolia, by contrast, diffuses the oil pure, without a single drop of water.',
+        'Unas gotas de aceite en un gran depósito: de 1 a 2 ml de aceite por 200 a 300 ml de agua, es decir, de 100 a 300 veces más agua que aceite. Después hay que vaciar, enjuagar y secar el depósito. Tolia, en cambio, difunde el aceite puro, sin una gota de agua.'
       ),
       result: t3(l, 'Une corvée quotidienne : le diffuseur reste éteint.', 'A daily chore: the diffuser stays switched off.', 'Una tarea diaria: el difusor se queda apagado.'),
     },

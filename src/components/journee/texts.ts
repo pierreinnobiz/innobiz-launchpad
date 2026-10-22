@@ -73,7 +73,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       callouts: [
         { t: 'Votre flacon, tel quel', p: 'Nous avons retiré la cloche pour vous le montrer : le flacon de menthe poivrée est clipsé tête en bas dans la base. Rien à transvaser, aucune goutte à compter.' },
         { t: 'Un appui pour lancer', p: 'La diffusion démarre aussitôt, sans temps de chauffe. La durée, la puissance et l’intermittence se règlent très simplement.' },
-        { t: 'Une brume d’huile pure', p: 'Nébulisation à froid : ni eau, ni chaleur. L’huile essentielle se diffuse telle qu’elle sort du flacon.' },
+        { t: 'Une brume d’huile pure', p: 'Nébulisation ultrasonique : l’huile n’est ni chauffée ni diluée dans l’eau. Elle devient une brume très fine, qui reste longtemps dans l’air.' },
       ],
     },
     journee: {
@@ -86,18 +86,18 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       callouts: [
         { t: 'Un module sur chaque flacon', p: 'Chaque flacon garde son module vissé : plus rien à vider, à rincer ni à mélanger.' },
         { t: 'Clipser, c’est tout', p: 'Le flacon se clipse dans la base d’un seul geste, puis la cloche se repose par-dessus.' },
-        { t: 'Pure, intacte, silencieuse', p: 'Sans eau qui la dilue ni chaleur qui l’altère, l’huile garde tout son parfum. Ni pompe ni ventilateur : aucun bruit de moteur.' },
+        { t: 'Pure, intacte, silencieuse', p: 'Sans eau qui la dilue ni chaleur qui l’altère, l’huile garde tout son parfum et ses molécules aromatiques. Ni pompe ni ventilateur : aucun bruit de moteur.' },
       ],
     },
     soir: {
       stop: { time: '21:00', sub: 'Soir' },
       eyebrow: '21:00 · Le soir, dans la chambre',
-      h: 'Sans fil et silencieux, Tolia accompagne le coucher.',
+      h: 'Sur batterie et silencieux, Tolia accompagne le coucher.',
       p: 'Vers 21 h, on emporte Tolia dans la chambre comme on emporte un livre : il n’a pas de fil. On clipse la lavande vraie et on choisit une diffusion douce, par intermittence, qui s’arrête d’elle-même au bout de la durée choisie. Sa batterie tient jusqu’à 90 heures et se recharge en USB‑C.',
       alt: 'Dans la chambre, le flacon Journée sort de la base, le flacon Soir prend sa place, puis la cloche est reposée sur le diffuseur',
       chrono: 'pour changer d’huile',
       callouts: [
-        { t: 'Sans fil, jusqu’à 90 h', p: 'Batterie rechargeable en USB‑C : 70 à 90 h lumière éteinte, 16 à 20 h avec la lumière d’ambiance.' },
+        { t: 'Jusqu’à 90 h d’autonomie', p: 'Batterie rechargeable en USB‑C : 70 à 90 h lumière éteinte, 16 à 20 h avec la lumière d’ambiance.' },
         { t: 'Arrêt automatique', p: 'La diffusion s’arrête d’elle-même au bout de la durée choisie. Et sans pompe ni ventilateur, aucun bruit de moteur.' },
         { t: 'Une lumière d’ambiance douce', p: 'Un halo chaleureux sous la base, que l’on allume ou non, selon l’envie.' },
       ],
@@ -108,7 +108,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       recap: [
         { time: '07:30', text: 'La menthe poivrée pour bien démarrer, d’un seul appui.' },
         { time: '14:00', text: 'Une autre huile en une seconde, sans rien vider ni rincer.' },
-        { time: '21:00', text: 'Sans fil et silencieux au chevet, avec jusqu’à 90 h d’autonomie.' },
+        { time: '21:00', text: 'Silencieux au chevet, avec jusqu’à 90 h d’autonomie.' },
       ],
       h: 'Ce que Tolia apporte à votre gamme',
       adv: [
@@ -163,7 +163,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       callouts: [
         { t: 'Your bottle, as it is', p: 'We lifted the cover so you can see it: the peppermint bottle is clipped upside down into the base. Nothing to decant, no drops to count.' },
         { t: 'One press to start', p: 'Diffusion starts at once, with no warm-up. Time, strength and on/off cycles are easy to adjust.' },
-        { t: 'A mist of pure oil', p: 'Cold nebulisation: no water, no heat. The essential oil is diffused exactly as it leaves the bottle.' },
+        { t: 'A mist of pure oil', p: 'Ultrasonic nebulisation: the oil is neither heated nor diluted in water. It becomes a very fine mist that lingers in the air.' },
       ],
     },
     journee: {
@@ -176,18 +176,18 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       callouts: [
         { t: 'One module on every bottle', p: 'Each bottle keeps its module screwed on: nothing left to empty, rinse or mix.' },
         { t: 'Just clip it in', p: 'The bottle clips into the base in one move, then the cover goes back on top.' },
-        { t: 'Pure, intact, quiet', p: 'No water to dilute it, no heat to alter it: the oil keeps its full scent. No pump, no fan: no motor noise.' },
+        { t: 'Pure, intact, quiet', p: 'No water to dilute it, no heat to alter it: the oil keeps its full scent and its aromatic molecules. No pump, no fan: no motor noise.' },
       ],
     },
     soir: {
       stop: { time: '21:00', sub: 'Evening' },
       eyebrow: '21:00 · Evening, in the bedroom',
-      h: 'Cordless and quiet, Tolia follows you to bed.',
+      h: 'Battery-powered and quiet, Tolia follows you to bed.',
       p: 'At around 9 pm, you take Tolia to the bedroom the way you would take a book: it has no cord. Clip in the true lavender and choose a gentle diffusion with on/off cycles that stops by itself after the chosen time. The battery lasts up to 90 hours and recharges via USB‑C.',
       alt: 'In the bedroom, the Day bottle leaves the base, the Evening bottle takes its place, then the cover is set back on the diffuser',
       chrono: 'to change oil',
       callouts: [
-        { t: 'Cordless, up to 90 h', p: 'USB‑C rechargeable battery: 70 to 90 h with the light off, 16 to 20 h with the ambient light on.' },
+        { t: 'Up to 90 h of battery life', p: 'USB‑C rechargeable battery: 70 to 90 h with the light off, 16 to 20 h with the ambient light on.' },
         { t: 'Auto shut-off', p: 'Diffusion stops by itself after the chosen time. And with no pump or fan, there is no motor noise.' },
         { t: 'A soft ambient light', p: 'A warm glow under the base, on or off as you like.' },
       ],
@@ -198,7 +198,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       recap: [
         { time: '07:30', text: 'Peppermint to start the day, in one press.' },
         { time: '14:00', text: 'A different oil in one second, nothing to empty or rinse.' },
-        { time: '21:00', text: 'Cordless and quiet at the bedside, up to 90 h of battery.' },
+        { time: '21:00', text: 'Quiet at the bedside, up to 90 h of battery.' },
       ],
       h: 'What Tolia brings to your range',
       adv: [
@@ -253,7 +253,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       callouts: [
         { t: 'Su frasco, tal cual', p: 'Hemos quitado la cubierta para que lo vea: el frasco de menta piperita está encajado boca abajo en la base. Nada que trasvasar, ninguna gota que contar.' },
         { t: 'Una pulsación para empezar', p: 'La difusión arranca al instante, sin tiempo de calentamiento. La duración, la potencia y la intermitencia se ajustan de forma muy sencilla.' },
-        { t: 'Una bruma de aceite puro', p: 'Nebulización en frío: sin agua ni calor. El aceite esencial se difunde tal como sale del frasco.' },
+        { t: 'Una bruma de aceite puro', p: 'Nebulización ultrasónica: el aceite no se calienta ni se diluye en agua. Se convierte en una bruma muy fina que permanece mucho tiempo en el aire.' },
       ],
     },
     journee: {
@@ -266,18 +266,18 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       callouts: [
         { t: 'Un módulo en cada frasco', p: 'Cada frasco conserva su módulo enroscado: ya no hay nada que vaciar, enjuagar ni mezclar.' },
         { t: 'Encajar y listo', p: 'El frasco se encaja en la base con un solo gesto y la cubierta se vuelve a colocar encima.' },
-        { t: 'Aceite puro, difusión silenciosa', p: 'Sin agua que lo diluya ni calor que lo altere, el aceite conserva todo su aroma. Sin bomba ni ventilador: ningún ruido de motor.' },
+        { t: 'Aceite puro, difusión silenciosa', p: 'Sin agua que lo diluya ni calor que lo altere, el aceite conserva todo su aroma y sus moléculas aromáticas. Sin bomba ni ventilador: ningún ruido de motor.' },
       ],
     },
     soir: {
       stop: { time: '21:00', sub: 'Noche' },
       eyebrow: '21:00 · Por la noche, en el dormitorio',
-      h: 'Sin cables y silencioso, Tolia acompaña la hora de dormir.',
+      h: 'Con batería y silencioso, Tolia acompaña la hora de dormir.',
       p: 'Hacia las 21 h, Tolia se lleva al dormitorio como se lleva un libro: no tiene cable. Se encaja la lavanda verdadera y se elige una difusión suave e intermitente que se detiene sola al cabo del tiempo elegido. Su batería dura hasta 90 horas y se recarga por USB‑C.',
       alt: 'En el dormitorio, el frasco Día sale de la base, el frasco Noche ocupa su lugar y se vuelve a colocar la cubierta sobre el difusor',
       chrono: 'para cambiar de aceite',
       callouts: [
-        { t: 'Sin cables, hasta 90 h', p: 'Batería recargable por USB‑C: de 70 a 90 h con la luz apagada, de 16 a 20 h con la luz ambiental.' },
+        { t: 'Hasta 90 h de autonomía', p: 'Batería recargable por USB‑C: de 70 a 90 h con la luz apagada, de 16 a 20 h con la luz ambiental.' },
         { t: 'Apagado automático', p: 'La difusión se detiene sola al cabo del tiempo elegido. Y sin bomba ni ventilador, no hay ruido de motor.' },
         { t: 'Una luz ambiental suave', p: 'Un halo cálido bajo la base, encendido o apagado a su gusto.' },
       ],
@@ -288,7 +288,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       recap: [
         { time: '07:30', text: 'La menta piperita para empezar bien, con una sola pulsación.' },
         { time: '14:00', text: 'Otro aceite en un segundo, sin vaciar ni enjuagar nada.' },
-        { time: '21:00', text: 'Sin cables y silencioso junto a la cama, hasta 90 h de batería.' },
+        { time: '21:00', text: 'Silencioso junto a la cama, hasta 90 h de batería.' },
       ],
       h: 'Lo que Tolia aporta a su gama',
       adv: [

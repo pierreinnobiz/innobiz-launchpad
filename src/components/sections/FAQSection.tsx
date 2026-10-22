@@ -98,9 +98,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Qu’en est-il de la conformité réglementaire ?', 'What about regulatory compliance?', '¿Qué hay de la conformidad regulatoria?'),
       a: t3(
         language,
-        'Tolia est marqué CE, conforme RoHS et déjà vendu en Europe. Nous fournissons la documentation du diffuseur ; celle des huiles reste à la charge de la marque. Vous vendez hors de l’UE ? Indiquez-nous vos marchés : nous vous confirmerons par écrit les règles applicables.',
-        'Tolia is CE-marked, RoHS-compliant and already sold across Europe. We provide the diffuser documentation; essential oil compliance remains with the brand. Selling outside the EU? Tell us your markets and we will confirm in writing which rules apply.',
-        'Tolia lleva marcado CE, cumple RoHS y ya se vende en Europa. Facilitamos la documentación del difusor; la de los aceites sigue a cargo de la marca. ¿Vende fuera de la UE? Indíquenos sus mercados y le confirmaremos por escrito qué normas se aplican.'
+        'Tolia est marqué CE et conforme RoHS. Plus de 100 000 diffuseurs dotés de notre technologie ont déjà été vendus dans le monde. Nous fournissons la documentation du diffuseur ; celle des huiles reste à la charge de la marque. Vous vendez hors de l’UE ? Indiquez-nous vos marchés : nous vous confirmerons par écrit les règles applicables.',
+        'Tolia is CE-marked and RoHS-compliant. More than 100,000 diffusers using our technology have already been sold worldwide. We provide the diffuser documentation; essential oil compliance remains with the brand. Selling outside the EU? Tell us your markets and we will confirm in writing which rules apply.',
+        'Tolia lleva marcado CE y cumple RoHS. Ya se han vendido en todo el mundo más de 100.000 difusores con nuestra tecnología. Facilitamos la documentación del difusor; la de los aceites sigue a cargo de la marca. ¿Vende fuera de la UE? Indíquenos sus mercados y le confirmaremos por escrito qué normas se aplican.'
       ),
     },
     {

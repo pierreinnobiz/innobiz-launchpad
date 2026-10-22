@@ -19,7 +19,7 @@ const HomeTechSection: React.FC = () => {
   const items: { icon: LucideIcon; title: string; text: string; note?: boolean }[] = [
     {
       icon: BatteryFull,
-      title: t3(l, 'Jusqu’à 90 h, sans fil', 'Up to 90 h, cordless', 'Hasta 90 h, sin cables'),
+      title: t3(l, 'Jusqu’à 90 h d’autonomie', 'Up to 90 h of battery life', 'Hasta 90 h de autonomía'),
       text: t3(
         l,
         'Sur batterie, rechargeable en USB‑C : il passe de la chambre au bureau, au spa ou à la salle de yoga, sans chercher de prise.',
@@ -33,9 +33,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Pure et silencieuse', 'Pure and quiet', 'Pura y silenciosa'),
       text: t3(
         l,
-        'Ni eau, ni chaleur : l’huile est diffusée pure. Ni pompe ni ventilateur : aucun bruit de moteur.',
-        'No water, no heat: the oil is diffused pure. No pump, no fan: no motor noise.',
-        'Sin agua ni calor: el aceite se difunde puro. Sin bomba ni ventilador: ningún ruido de motor.'
+        'Nébulisation ultrasonique, sans eau ni chaleur : l’huile est diffusée pure, en une brume très fine qui reste longtemps dans l’air. Ni pompe ni ventilateur : aucun bruit de moteur.',
+        'Ultrasonic nebulisation, with no water and no heat: the oil is diffused pure, as a very fine mist that lingers in the air. No pump, no fan: no motor noise.',
+        'Nebulización ultrasónica, sin agua ni calor: el aceite se difunde puro, en una bruma muy fina que permanece mucho tiempo en el aire. Sin bomba ni ventilador: ningún ruido de motor.'
       ),
     },
     {
