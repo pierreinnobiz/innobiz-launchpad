@@ -26,25 +26,3 @@ export const trackCTAClick = (ctaLabel: string, section: string, ctaType?: strin
     cta_type: ctaType || section,
   });
 };
-
-// Scroll depth tracking - call once on mount
-export const initScrollDepthTracking = () => {
-  const thresholds = [25, 50, 75, 90];
-  const fired = new Set<number>();
-
-  const handleScroll = () => {
-    const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-    if (scrollHeight <= 0) return;
-    const percent = Math.round((window.scrollY / scrollHeight) * 100);
-
-    thresholds.forEach(t => {
-      if (percent >= t && !fired.has(t)) {
-        fired.add(t);
-        trackEvent('scroll_depth', { depth: `${t}%` });
-      }
-    });
-  };
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  return () => window.removeEventListener('scroll', handleScroll);
-};

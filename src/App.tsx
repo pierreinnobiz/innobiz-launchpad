@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
-import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
 import { AuthProvider } from "@/hooks/useAuth";
 import { useWave2Tracking } from "@/hooks/useWave2Tracking";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
@@ -12,14 +12,12 @@ import React, { Suspense } from "react";
 import Index from "./pages/Index";
 import ProspectTracker from "./components/ProspectTracker";
 import CookieConsent from "./components/CookieConsent";
-const Contact = React.lazy(() => import("./pages/Contact"));
 const Legal = React.lazy(() => import("./pages/Legal").then(m => ({ default: m.default })));
 const Privacy = React.lazy(() => import("./pages/Legal").then(m => ({ default: m.Privacy })));
 const Cookies = React.lazy(() => import("./pages/Legal").then(m => ({ default: m.Cookies })));
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Admin = React.lazy(() => import("./pages/Admin"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
-const LanguageAudit = React.lazy(() => import("./pages/LanguageAudit"));
 
 const queryClient = new QueryClient();
 
@@ -41,6 +39,14 @@ const LegacyFaq = () => {
   return <Navigate to={{ pathname: '/', search, hash: '#faq' }} replace />;
 };
 
+// L'ancienne page /contact (formulaires en anglais, « 48 heures ») renvoie vers le formulaire de la page d'accueil,
+// dans la langue du visiteur (22/10/2026, point F3).
+const LegacyContact = () => {
+  const { search } = useLocation();
+  const { language } = useLanguage();
+  return <Navigate to={{ pathname: `/${language}/`, search, hash: '#contact' }} replace />;
+};
+
 const AppRoutes = () => {
   useWave2Tracking();
   return (
@@ -55,13 +61,12 @@ const AppRoutes = () => {
           <Route path="/en" element={<Index />} />
           <Route path="/es" element={<Index />} />
           <Route path="/faq" element={<LegacyFaq />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/contact" element={<LegacyContact />} />
           <Route path="/legal" element={<Legal />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/cookies" element={<Cookies />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
-          <Route path="/language-audit" element={<LanguageAudit />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

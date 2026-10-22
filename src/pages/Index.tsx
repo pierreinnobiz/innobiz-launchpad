@@ -5,7 +5,6 @@ import HeroSection from '@/components/sections/HeroSection';
 import SocialProofBar from '@/components/sections/SocialProofBar';
 import HomeProblemSection from '@/components/sections/HomeProblemSection';
 import SectionGradient from '@/components/SectionGradient';
-import { initScrollDepthTracking } from '@/lib/tracking';
 import { useDocumentLang } from '@/hooks/useDocumentLang';
 import { useLanguage } from '@/contexts/LanguageContext';
 import SeoOpenGraph from '@/components/SeoOpenGraph';
@@ -51,11 +50,6 @@ const Index: React.FC = () => {
   const [showBelowFold, setShowBelowFold] = useState(
     typeof window !== 'undefined' && Boolean(window.location.hash)
   );
-
-  useEffect(() => {
-    const cleanup = initScrollDepthTracking();
-    return cleanup;
-  }, []);
 
   useEffect(() => {
     if (showBelowFold) return;

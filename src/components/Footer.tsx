@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import innobizLogo from '@/assets/innobiz-logo.png';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
+import { MANAGE_COOKIES_EVENT } from '@/components/CookieConsent';
 
 // Pied de page allégé : plus de phrase d'accroche ni de bouton répété (le formulaire est juste au-dessus).
 // Les informations légales (société, SIRET, adresse, liens) sont inchangées.
@@ -31,6 +32,11 @@ const Footer: React.FC = () => {
               <li><Link to="/legal" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">{t3(language, 'Mentions légales', 'Legal notice', 'Aviso legal')}</Link></li>
               <li><Link to="/privacy" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">{t3(language, 'Politique de confidentialité', 'Privacy policy', 'Política de privacidad')}</Link></li>
               <li><Link to="/cookies" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">Cookies</Link></li>
+              <li>
+                <button type="button" onClick={() => window.dispatchEvent(new Event(MANAGE_COOKIES_EVENT))} className="text-left text-primary-foreground/70 hover:text-primary-foreground underline-offset-2 hover:underline transition-colors">
+                  {t3(language, 'Gérer les cookies', 'Manage cookies', 'Gestionar las cookies')}
+                </button>
+              </li>
             </ul>
             <div className="mt-6 pt-4 border-t border-primary-foreground/10">
               <p className="text-primary-foreground/70 text-sm">+33 (0)4 67 84 89 14</p>

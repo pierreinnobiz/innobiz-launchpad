@@ -182,22 +182,47 @@ const handler = async (req: Request): Promise<Response> => {
       }),
     });
 
-    if (!emailResponse.ok) {
+    // 22/10/2026 : un email qui ne part pas n'empêche plus l'envoi au CRM (avant : réponse 500 et demande perdue)
+    const emailOk = emailResponse.ok;
+    if (!emailOk) {
       const errorBody = await emailResponse.text();
       console.error("Resend API error:", errorBody);
-      return new Response(
-        JSON.stringify({ error: "Failed to send notification." }),
-        { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
-      );
     }
 
+    // Alerte par email quand le CRM n'a pas reçu une adresse confirmée (pas de Slack dans ce projet)
+    const alerteCrm = async (raison: string) => {
+      try {
+        await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+          body: JSON.stringify({
+            from: FROM_ADDRESS,
+            to: [TO_ADDRESS],
+            subject: `⚠️ Échantillon NON transmis au CRM – ${sanitize(company || name || email)}`,
+            html: `<div style="font-family:Arial,sans-serif;max-width:640px;">
+              <p><strong>Cette demande d'échantillon n'est pas arrivée dans le CRM.</strong> À saisir à la main.</p>
+              <p>Raison : ${sanitize(raison)}</p>
+              <table style="border-collapse:collapse;">
+                ${row("Nom", sanitize(name || ""))}${row("Société", sanitize(company || ""))}${row("Email", sanitize(email))}
+                ${row("Pays", sanitize(country || ""))}${row("Adresse", sanitize(address || "").replace(/\n/g, "<br>"))}
+                ${row("Téléphone", sanitize(phone || ""))}${row("Projet", sanitize(projectLabel))}
+              </table></div>`,
+          }),
+        });
+      } catch (e) {
+        console.error("Alerte CRM impossible :", e);
+      }
+    };
+    let crmOk = false;
+
     // --- CRM push (étape 2 uniquement : adresse confirmée) ---
-    // Non bloquant : toute erreur est loggée mais la réponse reste 200.
+    // Une erreur du CRM déclenche une alerte par email ; la réponse reste 200 si l'email de notification est parti.
     if (stage === "shipping" && address && String(address).trim().length > 0) {
       try {
         const sampleSecret = Deno.env.get("SAMPLE_REQUEST_SECRET");
         if (!sampleSecret) {
           console.error("SAMPLE_REQUEST_SECRET is not set — skipping CRM push");
+          await alerteCrm("clé secrète du CRM absente côté serveur");
         } else {
           const streetPart = (address_street ?? "").trim();
           const postalPart = (address_postal_code ?? "").trim();
@@ -226,7 +251,7 @@ const handler = async (req: Request): Promise<Response> => {
                 phone: phone ?? "",
                 website: website ?? "",
                 project_type: project_type ?? "",
-                source: utm_source ? "instantly" : "",
+                source: utm_source ?? "",
                 utm_source: utm_source ?? "",
                 utm_medium: utm_medium ?? "",
                 utm_campaign: utm_campaign ?? "",
@@ -240,13 +265,25 @@ const handler = async (req: Request): Promise<Response> => {
           console.log("CRM push status:", crmResponse.status, "body:", crmText.slice(0, 500));
           if (!crmResponse.ok) {
             console.error("CRM push non-OK:", crmResponse.status, crmText);
+            await alerteCrm(`le CRM a répondu ${crmResponse.status}`);
+          } else {
+            crmOk = true;
           }
         }
       } catch (crmError) {
-        console.error("CRM push failed (ignored):", crmError);
+        console.error("CRM push failed:", crmError);
+        await alerteCrm("le CRM ne répond pas");
       }
     }
     // --- fin CRM push ---
+
+    // la demande n'est enregistrée nulle part : le site affiche « l'envoi n'a pas fonctionné » et le visiteur réessaie
+    if (!emailOk && !crmOk) {
+      return new Response(
+        JSON.stringify({ error: "Failed to send notification." }),
+        { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
+      );
+    }
 
     return new Response(JSON.stringify({ success: true, stage }), {
       status: 200,

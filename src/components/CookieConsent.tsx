@@ -84,9 +84,30 @@ const writeChoice = (choice: 'granted' | 'denied') => {
   try { localStorage.setItem(STORAGE_KEY, choice); } catch { /* blocked */ }
 };
 
+// 22/10/2026 (point A4, CNIL) : le lien « Gérer les cookies » du pied de page rouvre le bandeau
+export const MANAGE_COOKIES_EVENT = 'tolia:cookies-manage';
+
+// Retrait des cookies Google Analytics quand le visiteur retire son accord
+const clearGaCookies = () => {
+  try {
+    const names = document.cookie.split('; ').map((c) => c.split('=')[0]).filter((n) => n === '_ga' || n.startsWith('_ga_'));
+    const host = location.hostname;
+    const domains = ['', host, '.' + host, '.' + host.replace(/^www\./, '')];
+    for (const n of names) for (const d of domains) {
+      document.cookie = `${n}=; Max-Age=0; Path=/${d ? '; Domain=' + d : ''}`;
+    }
+  } catch { /* cookies blocked */ }
+};
+
 const CookieConsent = () => {
   const { language } = useLanguage();
   const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const open = () => setVisible(true);
+    window.addEventListener(MANAGE_COOKIES_EVENT, open);
+    return () => window.removeEventListener(MANAGE_COOKIES_EVENT, open);
+  }, []);
 
   useEffect(() => {
     const current = readChoice();
@@ -114,6 +135,7 @@ const CookieConsent = () => {
     writeChoice(choice);
     setVisible(false);
     applyConsent(choice);
+    if (choice === 'denied') clearGaCookies();
   };
 
   if (!visible) return null;
@@ -134,16 +156,16 @@ const CookieConsent = () => {
       aria-label={S(language, 'Consentement cookies', 'Cookie consent', 'Consentimiento de cookies')}
       className="fixed inset-x-0 bottom-0 z-40 pointer-events-none"
     >
-      <div className="mx-auto max-w-5xl m-3 md:m-4 pointer-events-auto">
-        <div className="rounded-2xl border border-border bg-background/95 backdrop-blur-md shadow-xl p-4 md:p-5 flex flex-col md:flex-row md:items-center gap-3 md:gap-5">
-          <p className="text-sm text-foreground/80 leading-relaxed flex-1 !text-left">
+      <div className="mx-auto max-w-5xl m-2 md:m-4 pointer-events-auto">
+        <div className="rounded-2xl border border-border bg-background/95 backdrop-blur-md shadow-xl px-3 py-2.5 md:p-5 flex flex-col md:flex-row md:items-center gap-2 md:gap-5">
+          <p className="text-[13px] md:text-sm text-foreground/80 leading-snug md:leading-relaxed flex-1 !text-left">
             {message}{' '}
             <Link to="/cookies" className="underline text-primary hover:opacity-80">
               {policy}
             </Link>
             .
           </p>
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="grid grid-cols-2 md:flex items-center gap-2 shrink-0">
             <button
               type="button"
               onClick={() => decide('denied')}

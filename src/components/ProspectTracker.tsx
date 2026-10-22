@@ -37,7 +37,8 @@ const ProspectTracker = () => {
     const utmSource = params.get('utm_source') || '(direct)';
     const utmCampaign = params.get('utm_campaign') || '';
     const utmContent = params.get('utm_content') || '';
-    const prospectEmail = window.__prospectEmail || ref || '(anonymous)';
+    // 22/10/2026 : l'email du prospect n'est plus envoyé à Google Analytics (Google l'interdit et le masque de toute façon) ;
+    // le suivi nominatif passe par useWave2Tracking.
 
     // Local queue for events fired before gtag.js finishes loading.
     const pendingEvents: unknown[][] = [];
@@ -94,7 +95,6 @@ const ProspectTracker = () => {
     if (ref && !window.__prospectVisitSent) {
       window.__prospectVisitSent = true;
       gtag('event', 'prospect_visit', {
-        prospect_email: ref,
         utm_source: utmSource,
         utm_campaign: utmCampaign,
         utm_content: utmContent,
@@ -115,7 +115,6 @@ const ProspectTracker = () => {
           fired.add(m);
           gtag('event', 'scroll_depth', {
             percent: m,
-            prospect_email: prospectEmail,
             utm_source: utmSource,
           });
         }
@@ -134,19 +133,17 @@ const ProspectTracker = () => {
       window.setTimeout(() => {
         gtag('event', 'time_on_page', {
           seconds,
-          prospect_email: window.__prospectEmail || prospectEmail,
           utm_source: utmSource,
         });
       }, ms)
     );
 
-    // BEHAVIOR 4 - CTA CLICKS
+    // BEHAVIOR 4 - CTA CLICKS (liens seulement : l'envoi du formulaire est mesuré par form_submit, 22/10/2026)
     const handleClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null;
       if (!target) return;
 
       const link = target.closest('a') as HTMLAnchorElement | null;
-      const button = target.closest('button') as HTMLButtonElement | null;
 
       let matched: HTMLElement | null = null;
       let href = '';
@@ -163,17 +160,12 @@ const ProspectTracker = () => {
         }
       }
 
-      if (!matched && button && button.type === 'submit') {
-        matched = button;
-      }
-
       if (!matched) return;
 
       const text = (matched.textContent || '').trim().slice(0, 50);
       gtag('event', 'cta_click', {
         cta_text: text,
         cta_href: href,
-        prospect_email: prospectEmail,
         utm_source: utmSource,
       });
     };

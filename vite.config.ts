@@ -18,7 +18,7 @@ function deResidueGuard() {
     { name: "lang=de", re: /\blang=de\b/g },
   ];
   const root = path.resolve(__dirname, "src");
-  const exclude = new Set([path.join(root, "pages", "LanguageAudit.tsx")]);
+  const exclude = new Set<string>();
   const walk = (dir: string, out: string[] = []): string[] => {
     for (const entry of readdirSync(dir)) {
       const full = join(dir, entry);

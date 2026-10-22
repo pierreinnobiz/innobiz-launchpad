@@ -156,7 +156,7 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
       {mounted && !gone && (
         <iframe
           ref={iframeRef}
-          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=720p#t=1s"
+          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=720p&dnt=1#t=1s"
           className="absolute top-1/2 left-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
           style={{
             width: 'max(100vw, 177.78vh)',

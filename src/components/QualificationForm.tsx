@@ -92,6 +92,17 @@ const domainFromEmail = (email: string): string => {
   return WEBMAIL.test(m[1]) ? '' : m[1];
 };
 
+// identifiant du champ à rendre actif quand il est en erreur (accessibilité, 22/10/2026)
+const FIELD_ID: Partial<Record<keyof FormState, string>> = {
+  email: 'qf-email', name: 'qf-name', company: 'qf-company', website: 'qf-website',
+  country: 'qf-country-2', street: 'qf-street', postalCode: 'qf-postal', city: 'qf-city',
+};
+const focusFirstError = (errs: Partial<Record<keyof FormState, string>>) => {
+  const first = (Object.keys(errs) as (keyof FormState)[])[0];
+  const id = first && FIELD_ID[first];
+  if (id) window.setTimeout(() => document.getElementById(id)?.focus(), 0);
+};
+
 const getUtmParams = (): Record<string, string> => {
   try {
     const sp = new URLSearchParams(window.location.search);
@@ -118,6 +129,8 @@ const QualificationForm: React.FC = () => {
   const estRobot = () => (piegeRef.current?.value || '').trim() !== '' || Date.now() - debutRef.current < 1500;
   const [step, setStep] = useState<1 | 2 | 3>(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  // 22/10/2026 : si le serveur ne répond pas, on reste sur l'étape et on le dit (avant : « merci » affiché et demande perdue)
+  const [sendError, setSendError] = useState(false);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [data, setData] = useState<FormState>(() => {
     const email = prospectEmailFromUrl();
@@ -176,6 +189,7 @@ const QualificationForm: React.FC = () => {
     if (site && !/^(https?:\/\/)?([\w-]+\.)+[a-z]{2,}(\/.*)?$/i.test(site))
       next.website = t3(language, 'Site web invalide', 'Invalid website', 'Sitio web no válido');
     setErrors(next);
+    focusFirstError(next);
     return Object.keys(next).length === 0;
   };
 
@@ -236,6 +250,7 @@ const QualificationForm: React.FC = () => {
 
 
     setErrors(next);
+    focusFirstError(next);
     return Object.keys(next).length === 0;
   };
 
@@ -244,6 +259,7 @@ const QualificationForm: React.FC = () => {
     if (!validateStep1()) return;
     if (robotRef.current || estRobot()) { robotRef.current = true; setStep(2); return; }
     setIsSubmitting(true);
+    setSendError(false);
 
     const intent = intentForGtag(data.projectType);
     const utms = getUtmParams();
@@ -284,20 +300,17 @@ const QualificationForm: React.FC = () => {
       });
       window.gtag?.('event', 'generate_lead', {
         form_id: 'sample_request_main',
-        prospect_email: data.email,
         intent,
         ...utms,
       });
       window.gtag?.('event', 'sample_requested', {
-        prospect_email: data.email,
         intent,
         ...utms,
       });
     }
 
     setIsSubmitting(false);
-    // Advance to step 2 regardless: user can still complete shipping; if the
-    // lead failed to save, step 2's submit will resend full data anyway.
+    if (!leadSaved) { setSendError(true); return; }
     setStep(2);
   };
 
@@ -306,6 +319,7 @@ const QualificationForm: React.FC = () => {
     if (!validateStep2()) return;
     if (robotRef.current) { setStep(3); return; } // robot détecté à l'étape 1 : faux « merci », rien n'est envoyé
     setIsSubmitting(true);
+    setSendError(false);
 
     const street = data.street.trim();
     const postal = data.postalCode.trim();
@@ -315,8 +329,9 @@ const QualificationForm: React.FC = () => {
       : `${street}\n${city}`;
 
 
+    let ok = false;
     try {
-      await supabase.functions.invoke('send-qualification-form', {
+      const { error } = await supabase.functions.invoke('send-qualification-form', {
         body: {
           stage: 'shipping',
           name: data.name,
@@ -335,15 +350,35 @@ const QualificationForm: React.FC = () => {
           project_type_label: PROJECT_TYPE_TO_LABEL[data.projectType],
           ...getUtmParams(),
           ...getSessionAttribution(),
+          lang: language,
         },
       });
+      if (error) throw error;
+      ok = true;
     } catch (err) {
       console.error('Shipping submit error (step 2):', err);
-    } finally {
-      setIsSubmitting(false);
-      setStep(3);
     }
+    setIsSubmitting(false);
+    if (!ok) { setSendError(true); return; }
+    // la vraie fin de la demande : adresse de livraison confirmée (22/10/2026)
+    window.gtag?.('event', 'sample_address_confirmed', {
+      form_id: 'sample_request_main',
+      intent: intentForGtag(data.projectType),
+      ...getUtmParams(),
+    });
+    setStep(3);
   };
+
+  const sendErrorBox = sendError ? (
+    <p role="alert" className="rounded-xl border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-foreground">
+      {t3(
+        language,
+        "L'envoi n'a pas fonctionné. Vérifiez votre connexion et cliquez à nouveau ; si le problème continue, écrivez-nous à contact@innobiz.fr.",
+        "Sending didn't work. Check your connection and click again; if the problem persists, email us at contact@innobiz.fr.",
+        'El envío no ha funcionado. Compruebe su conexión y vuelva a hacer clic; si el problema continúa, escríbanos a contact@innobiz.fr.'
+      )}
+    </p>
+  ) : null;
 
   if (step === 3) {
     const firstName = data.name.trim().split(' ')[0] || '';
@@ -442,7 +477,7 @@ const QualificationForm: React.FC = () => {
           <div className="space-y-1.5">
             <Label htmlFor="qf-country-2">{t3(language, 'Pays', 'Country', 'País')} *</Label>
             <Select value={data.country} onValueChange={(v) => update('country', v)} required>
-              <SelectTrigger id="qf-country-2" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-required="true">
+              <SelectTrigger id="qf-country-2" className="h-11 rounded-xl" aria-invalid={!!errors.country} aria-describedby={errors.country ? 'qf-err-country' : undefined} aria-required="true">
                 <SelectValue placeholder={t3(language, 'Sélectionner', 'Select', 'Seleccionar')} />
               </SelectTrigger>
               <SelectContent className="bg-card max-h-72">
@@ -451,7 +486,7 @@ const QualificationForm: React.FC = () => {
                 ))}
               </SelectContent>
             </Select>
-            {errors.country && <p className="text-[13px] text-destructive">{errors.country}</p>}
+            {errors.country && <p id="qf-err-country" role="alert" className="text-[13px] text-destructive">{errors.country}</p>}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="qf-street">{t3(language, 'Adresse', 'Street address', 'Dirección')} *</Label>
@@ -464,8 +499,9 @@ const QualificationForm: React.FC = () => {
               placeholder={t3(language, 'Rue de Rivoli', 'Rivoli Street', 'Calle de Rivoli')}
               className="h-11 rounded-xl"
               aria-invalid={!!errors.street}
+            aria-describedby={errors.street ? 'qf-err-street' : undefined}
             />
-            {errors.street && <p className="text-[13px] text-destructive">{errors.street}</p>}
+            {errors.street && <p id="qf-err-street" role="alert" className="text-[13px] text-destructive">{errors.street}</p>}
           </div>
         </div>
 
@@ -490,12 +526,13 @@ const QualificationForm: React.FC = () => {
                     placeholder="00000"
                     className="h-11 rounded-xl"
                     aria-invalid={!!errors.postalCode}
+                  aria-describedby={errors.postalCode ? 'qf-err-postalCode' : undefined}
                   />
                 </>
               );
             })()}
 
-            {errors.postalCode && <p className="text-[13px] text-destructive">{errors.postalCode}</p>}
+            {errors.postalCode && <p id="qf-err-postalCode" role="alert" className="text-[13px] text-destructive">{errors.postalCode}</p>}
           </div>
           <div className="space-y-1.5">
             <Label htmlFor="qf-city">{t3(language, 'Ville', 'City', 'Ciudad')} *</Label>
@@ -508,8 +545,9 @@ const QualificationForm: React.FC = () => {
               placeholder={t3(language, 'Paris', 'Paris', 'París')}
               className="h-11 rounded-xl"
               aria-invalid={!!errors.city}
+            aria-describedby={errors.city ? 'qf-err-city' : undefined}
             />
-            {errors.city && <p className="text-[13px] text-destructive">{errors.city}</p>}
+            {errors.city && <p id="qf-err-city" role="alert" className="text-[13px] text-destructive">{errors.city}</p>}
           </div>
         </div>
 
@@ -572,6 +610,7 @@ const QualificationForm: React.FC = () => {
           />
         </div>
 
+        {sendErrorBox}
         <Button
           type="submit"
           disabled={isSubmitting}
@@ -640,8 +679,9 @@ const QualificationForm: React.FC = () => {
           placeholder={t3(language, 'prenom@votremarque.com', 'name@yourbrand.com', 'nombre@suempresa.es')}
           className="h-11 rounded-xl"
           aria-invalid={!!errors.email}
+        aria-describedby={errors.email ? 'qf-err-email' : undefined}
         />
-        {errors.email && <p className="text-[13px] text-destructive">{errors.email}</p>}
+        {errors.email && <p id="qf-err-email" role="alert" className="text-[13px] text-destructive">{errors.email}</p>}
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
@@ -657,8 +697,9 @@ const QualificationForm: React.FC = () => {
             placeholder={t3(language, 'Prénom Nom', 'First and last name', 'Nombre y apellidos')}
             className="h-11 rounded-xl"
             aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? 'qf-err-name' : undefined}
           />
-          {errors.name && <p className="text-[13px] text-destructive">{errors.name}</p>}
+          {errors.name && <p id="qf-err-name" role="alert" className="text-[13px] text-destructive">{errors.name}</p>}
         </div>
         <div className="space-y-1.5">
           <Label htmlFor="qf-company">{t3(language, 'Société', 'Company', 'Empresa')} *</Label>
@@ -672,8 +713,9 @@ const QualificationForm: React.FC = () => {
             placeholder={t3(language, 'Nom de votre société', 'Your company name', 'Nombre de su empresa')}
             className="h-11 rounded-xl"
             aria-invalid={!!errors.company}
+          aria-describedby={errors.company ? 'qf-err-company' : undefined}
           />
-          {errors.company && <p className="text-[13px] text-destructive">{errors.company}</p>}
+          {errors.company && <p id="qf-err-company" role="alert" className="text-[13px] text-destructive">{errors.company}</p>}
         </div>
       </div>
 
@@ -694,8 +736,9 @@ const QualificationForm: React.FC = () => {
           placeholder={t3(language, 'votremarque.com', 'yourbrand.com', 'suempresa.es')}
           className="h-11 rounded-xl"
           aria-invalid={!!errors.website}
+        aria-describedby={errors.website ? 'qf-err-website' : undefined}
         />
-        {errors.website && <p className="text-[13px] text-destructive">{errors.website}</p>}
+        {errors.website && <p id="qf-err-website" role="alert" className="text-[13px] text-destructive">{errors.website}</p>}
         {!errors.website && siteAuto.current && data.website && (
           <p className="text-[12px] text-muted-foreground">
             {t3(language, 'Rempli à partir de votre email : modifiez-le si besoin.', 'Filled in from your email: change it if needed.', 'Rellenado a partir de su email: modifíquelo si es necesario.')}
@@ -705,7 +748,7 @@ const QualificationForm: React.FC = () => {
 
       {/* Optional qualification */}
       <div className="p-5 rounded-2xl border border-border/60 bg-muted/30 space-y-3">
-        <p className="text-sm font-medium text-foreground">
+        <p id="qf-project-label" className="text-sm font-medium text-foreground">
           {t3(
             language,
             'Vous envisagez (facultatif)',
@@ -713,13 +756,15 @@ const QualificationForm: React.FC = () => {
             '¿Qué le interesa? (opcional)'
           )}
         </p>
-        <div className="grid gap-2">
+        <div className="grid gap-2" role="radiogroup" aria-labelledby="qf-project-label">
           {projectOptions.map((opt) => {
             const active = data.projectType === opt.value;
             return (
               <button
                 key={opt.value}
                 type="button"
+                role="radio"
+                aria-checked={active}
                 onClick={() => update('projectType', opt.value)}
                 className={`flex items-start gap-3 p-3 rounded-xl border text-left transition-all ${
                   active ? 'border-primary bg-primary/5 ring-1 ring-primary' : 'border-border hover:border-primary/40 bg-card'
@@ -738,6 +783,7 @@ const QualificationForm: React.FC = () => {
         </div>
       </div>
 
+      {sendErrorBox}
       <Button
         type="submit"
         disabled={isSubmitting}
@@ -760,11 +806,22 @@ const QualificationForm: React.FC = () => {
           <ShieldCheck className="w-3.5 h-3.5" />
           {t3(language, 'Conçu en France', 'Designed in France', 'Diseñado en Francia')}
         </span>
-        <span className="inline-flex items-center gap-1.5">
-          <Lock className="w-3.5 h-3.5" />
-          {t3(language, 'Vos données restent privées', 'Your data stays private', 'Sus datos permanecen privados')}
-        </span>
       </div>
+      {/* 22/10/2026 (point F2) : information au moment de la collecte, avec lien vers la politique de confidentialité */}
+      <p className="flex items-start justify-center gap-1.5 text-center text-[12px] text-muted-foreground">
+        <Lock className="w-3.5 h-3.5 mt-0.5 shrink-0" aria-hidden="true" />
+        <span>
+          {t3(
+            language,
+            "Vos données servent uniquement à vous envoyer l'échantillon et à vous recontacter.",
+            'Your details are only used to send your sample and get back to you.',
+            'Sus datos solo se usan para enviarle la muestra y volver a contactarle.'
+          )}{' '}
+          <a href="/privacy" className="underline underline-offset-2 hover:text-foreground">
+            {t3(language, 'En savoir plus', 'Learn more', 'Más información')}
+          </a>
+        </span>
+      </p>
     </form>
   );
 };

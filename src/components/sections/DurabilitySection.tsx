@@ -9,7 +9,7 @@ import LegacyAnchors from '@/components/LegacyAnchors';
 
 // Image de l'ancien site (vue éclatée), reprise à la demande de Pierre le 17/10/2026 : il la préfère au rendu 3D fait avec Blender.
 // Elle sera remplacée par sa photo réelle du diffuseur démonté (photo n° 9 du guide PHOTOS-A-PRENDRE.md).
-const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_tolia_nikura.webp`;
+const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_tolia_cloche_diamant.webp`;
 // 20/10/2026, demande de Pierre : l'image de l'ancien site (générée par IA) est gardée, mais son diffuseur bleu inventé est
 // remplacé par le vrai Tolia issu des fichiers STP : base blanche vide debout, cloche diamant (celle des Tolia Nikura) couchée.
 // Fabrication : outils/blender/durabilite.py + durabilite-2026-10-20/ (masque.py, remplit.py).
