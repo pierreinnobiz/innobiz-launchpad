@@ -266,11 +266,12 @@ const HeroSection: React.FC = () => {
     'Tolia is a battery-powered diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.',
     'Tolia es un difusor con batería que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.'
   );
+  // 22/10/2026 : le chiffre des 100 000 n'est plus répété ici, le bandeau chiffré juste en dessous le montre déjà (accord de Pierre)
   const microcopy = t3(
     language,
-    'Sans engagement · Réponse sous un jour ouvré · Plus de 100 000 diffuseurs dotés de notre technologie vendus dans le monde',
-    'No commitment · Reply within one business day · More than 100,000 diffusers using our technology sold worldwide',
-    'Sin compromiso · Respuesta en un día hábil · Más de 100.000 difusores con nuestra tecnología vendidos en todo el mundo'
+    'Sans engagement · Réponse sous un jour ouvré',
+    'No commitment · Reply within one business day',
+    'Sin compromiso · Respuesta en un día hábil'
   );
   const cta = t3(language, 'Recevoir mon échantillon gratuit', 'Get my free sample', 'Recibir mi muestra gratuita');
   // Deuxième porte d'entrée : parler directement à l'équipe (30 minutes en visio avec Simon Desbuisson).
