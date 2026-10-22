@@ -48,7 +48,7 @@ const Legal: React.FC = () => {
       <SeoHead
         path="/legal"
         title={t3(l, 'Mentions légales | Tolia by Innobiz', 'Legal Notice | Tolia by Innobiz', 'Aviso legal | Tolia by Innobiz')}
-        description={t3(l, 'Mentions légales du site Tolia by Innobiz : éditeur, directeur de la publication, hébergement, propriété intellectuelle.', 'Legal notice for the Tolia by Innobiz site: publisher, publication director, hosting, intellectual property.', 'Aviso legal del sitio Tolia by Innobiz: editor, director de la publicación, alojamiento, propiedad intelectual.')}
+        description={t3(l, 'Mentions légales de Tolia by Innobiz : INNOBIZ SARL à Jacou, près de Montpellier, directeur de la publication, hébergement du site et propriété intellectuelle.', 'Legal notice for the Tolia by Innobiz website: INNOBIZ SARL in Jacou, near Montpellier, France, publication director, website hosting and intellectual property.', 'Aviso legal de Tolia by Innobiz: INNOBIZ SARL en Jacou, cerca de Montpellier (Francia), director de la publicación, alojamiento y propiedad intelectual.')}
       />
       <Page title={t3(l, 'Mentions légales', 'Legal Notice', 'Aviso legal')}>
         <Block title={t3(l, 'Éditeur du site', 'Site publisher', 'Editor del sitio')}>
@@ -116,7 +116,7 @@ export const Privacy: React.FC = () => {
       <SeoHead
         path="/privacy"
         title={t3(l, 'Politique de confidentialité | Tolia by Innobiz', 'Privacy Policy | Tolia by Innobiz', 'Política de privacidad | Tolia by Innobiz')}
-        description={t3(l, 'Politique de confidentialité Tolia by Innobiz : données collectées, finalités, prestataires, durée et droits RGPD.', 'Tolia by Innobiz privacy policy: data collected, purposes, service providers, retention and GDPR rights.', 'Política de privacidad de Tolia by Innobiz: datos recogidos, finalidades, proveedores, conservación y derechos RGPD.')}
+        description={t3(l, 'Politique de confidentialité de Tolia by Innobiz : données du formulaire d\'échantillon, utilisation, prestataires, durée de conservation et vos droits RGPD.', 'Tolia by Innobiz privacy policy: data collected through the sample request form, how it is used, service providers, retention period and your GDPR rights.', 'Política de privacidad de Tolia by Innobiz: datos del formulario de solicitud de muestra, uso, proveedores, plazo de conservación y sus derechos RGPD.')}
       />
       <Page title={t3(l, 'Politique de confidentialité', 'Privacy Policy', 'Política de privacidad')}>
         <Block title={t3(l, 'Responsable du traitement', 'Data controller', 'Responsable del tratamiento')}>
@@ -196,7 +196,7 @@ export const Cookies: React.FC = () => {
       <SeoHead
         path="/cookies"
         title={t3(l, 'Politique cookies | Tolia by Innobiz', 'Cookie Policy | Tolia by Innobiz', 'Política de cookies | Tolia by Innobiz')}
-        description={t3(l, 'Politique cookies Tolia by Innobiz : cookies utilisés, durées et gestion de votre choix.', 'Tolia by Innobiz cookie policy: cookies used, durations and managing your choice.', 'Política de cookies de Tolia by Innobiz: cookies utilizadas, duración y gestión de su elección.')}
+        description={t3(l, 'Politique cookies de Tolia by Innobiz : cookies nécessaires, mesure d\'audience Google Analytics seulement avec votre accord, durées et comment changer d\'avis.', 'Tolia by Innobiz cookie policy: necessary cookies, Google Analytics audience measurement only with your consent, how long they last and how to change your mind.', 'Política de cookies de Tolia by Innobiz: cookies necesarias, Google Analytics solo con su consentimiento, duración de cada cookie y cómo cambiar de opinión.')}
       />
       <Page title={t3(l, 'Politique cookies', 'Cookie Policy', 'Política de cookies')}>
         <Block title={t3(l, "Qu'est-ce qu'un cookie ?", 'What is a cookie?', '¿Qué es una cookie?')}>
