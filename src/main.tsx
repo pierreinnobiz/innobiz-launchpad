@@ -1,16 +1,13 @@
 import { createRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App.tsx";
-import "@fontsource/inter/latin-300.css";
-import "@fontsource/inter/latin-ext-300.css";
-import "@fontsource/inter/latin-400.css";
-import "@fontsource/inter/latin-ext-400.css";
-import "@fontsource/inter/latin-500.css";
-import "@fontsource/inter/latin-ext-500.css";
-import "@fontsource/inter/latin-600.css";
-import "@fontsource/inter/latin-ext-600.css";
-import "@fontsource/inter/latin-700.css";
-import "@fontsource/inter/latin-ext-700.css";
+// 22/10/2026 : fichiers « tous jeux de caractères » avec unicode-range : le navigateur ne télécharge que ce que la page utilise
+// (avant : latin + latin-ext toujours téléchargés, 10 fichiers et 294 Ko au lieu de 5)
+import "@fontsource/inter/300.css";
+import "@fontsource/inter/400.css";
+import "@fontsource/inter/500.css";
+import "@fontsource/inter/600.css";
+import "@fontsource/inter/700.css";
 import "./index.css";
 import { captureSessionAttribution } from "./lib/attribution";
 

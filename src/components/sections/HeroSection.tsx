@@ -324,11 +324,9 @@ const HeroSection: React.FC = () => {
 
           <AnimatedTitle key={language} text={title} delay={0.3} />
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: prefersReducedMotion() ? 0 : 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
-          >
+          {/* 22/10/2026 (point D1) : sous-titre et boutons affichés tout de suite, sans fondu : sur ordinateur, ce texte est le plus
+              gros élément du premier écran et son fondu retardé de 1,1 s faisait mesurer 4,4 s à Google (LCP) */}
+          <div>
             <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-xl font-light leading-relaxed">
               {subtitle}
             </p>
@@ -343,7 +341,7 @@ const HeroSection: React.FC = () => {
                 <ArrowRight className="h-4 w-4" aria-hidden="true" />
               </a>
               <a
-                href={calendlyUrl('hero')}
+                href={calendlyUrl('hero', language)}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackCTAClick(talk, 'hero', 'call_booking')}
@@ -361,7 +359,7 @@ const HeroSection: React.FC = () => {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

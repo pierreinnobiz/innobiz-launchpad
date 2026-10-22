@@ -8,7 +8,9 @@ import { trackCTAClick } from '@/lib/tracking';
 import LegacyAnchors from '@/components/LegacyAnchors';
 
 // Image de l'ancien site (section « Faites de Tolia le diffuseur de votre marque ») : planche de teintes, motifs et croquis.
-const IMG = `${import.meta.env.BASE_URL}journee/img/personnalisation_atelier_3d.webp`;
+// 22/10/2026 (point B7) : deux colonnes seulement sur grand écran (sur tablette, la photo et les textes étaient trop serrés)
+import IMG from '@/assets/journee/img/personnalisation_atelier_3d.webp';
+import IMG_900 from '@/assets/journee/img/personnalisation_atelier_3d_900.webp'; // version 900 px pour les écrans où l'image est petite (22/10/2026, point D5)
 
 type Tri = { fr: string; en: string; es: string };
 interface Pillar {
@@ -175,21 +177,23 @@ const CustomizationSection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="grid gap-6 md:grid-cols-12 md:gap-8 items-center"
+          className="grid gap-6 lg:grid-cols-12 lg:gap-8 items-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-60px' }}
           variants={fadeBlurUp}
         >
-          <div className="relative overflow-hidden rounded-2xl shadow-lg border border-border/40 md:col-span-5">
+          <div className="relative overflow-hidden rounded-2xl shadow-lg border border-border/40 lg:col-span-5">
             <img
               src={IMG}
+              srcSet={`${IMG_900} 900w, ${IMG} 1600w`}
+              sizes="(min-width: 1024px) 40vw, 100vw"
               width={1600}
               height={892}
               loading="lazy"
               decoding="async"
               className="w-full h-auto"
-              alt={t3(l, 'Des diffuseurs Tolia aux cloches de couleurs et de motifs différents (diamant, stries, tressé, vagues), sur une table de travail avec un cahier d’idées, des nuanciers, des croquis et un brouillon de notice', 'Tolia diffusers with covers in different colours and patterns (diamond, ribbed, woven, waves) on a work table with an idea book, colour fans, sketches and a draft manual', 'Difusores Tolia con campanas de colores y motivos distintos (diamante, estrías, trenzado, ondas) sobre una mesa de trabajo con un cuaderno de ideas, muestrarios, bocetos y un borrador de manual')}
+              alt={t3(l, 'Des diffuseurs Tolia aux cloches de couleurs et de motifs différents (diamant, stries, tressé, vagues), sur une table de travail avec un cahier d’idées, des nuanciers, des croquis et un brouillon de notice', 'Tolia diffusers with covers in different colours and patterns (diamond, ribbed, woven, waves) on a work table with an idea book, colour fans, sketches and a draft manual', 'Difusores Tolia con cubiertas de colores y motivos distintos (diamante, estrías, trenzado, ondas) sobre una mesa de trabajo con un cuaderno de ideas, muestrarios, bocetos y un borrador de manual')}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 py-3">
               <div className="flex items-end gap-2.5">
@@ -198,7 +202,7 @@ const CustomizationSection: React.FC = () => {
             </div>
           </div>
 
-          <div className="md:col-span-7 min-w-0">
+          <div className="lg:col-span-7 min-w-0">
             <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }} aria-hidden="true">
                 <Paintbrush className="h-4 w-4" />
@@ -232,7 +236,7 @@ const CustomizationSection: React.FC = () => {
         </motion.div>
 
         <motion.div
-          className="mt-6 grid gap-4 md:grid-cols-3"
+          className="mt-6 grid gap-4 lg:grid-cols-3"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-40px' }}

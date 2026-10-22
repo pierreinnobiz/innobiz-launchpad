@@ -9,7 +9,8 @@ import LegacyAnchors from '@/components/LegacyAnchors';
 
 // Image de l'ancien site (vue éclatée), reprise à la demande de Pierre le 17/10/2026 : il la préfère au rendu 3D fait avec Blender.
 // Elle sera remplacée par sa photo réelle du diffuseur démonté (photo n° 9 du guide PHOTOS-A-PRENDRE.md).
-const IMG = `${import.meta.env.BASE_URL}journee/img/durabilite_tolia_cloche_diamant.webp`;
+import IMG from '@/assets/journee/img/durabilite_tolia_cloche_diamant.webp';
+import IMG_900 from '@/assets/journee/img/durabilite_tolia_cloche_diamant_900.webp'; // version 900 px pour les écrans où l'image est petite (22/10/2026, point D5)
 // 20/10/2026, demande de Pierre : l'image de l'ancien site (générée par IA) est gardée, mais son diffuseur bleu inventé est
 // remplacé par le vrai Tolia issu des fichiers STP : base blanche vide debout, cloche diamant (celle des Tolia Nikura) couchée.
 // Fabrication : outils/blender/durabilite.py + durabilite-2026-10-20/ (masque.py, remplit.py).
@@ -104,6 +105,8 @@ const DurabilitySection: React.FC = () => {
           >
             <img
               src={IMG}
+              srcSet={`${IMG_900} 900w, ${IMG} 1600w`}
+              sizes="(min-width: 1024px) 40vw, 100vw"
               width={1600}
               height={922}
               loading="lazy"
@@ -113,7 +116,7 @@ const DurabilitySection: React.FC = () => {
                 language,
                 'Le Tolia démonté sur une table : la cloche diamant couchée, la base vide, et autour les composants, les outils et la notice',
                 'Tolia taken apart on a table: the diamond cover lying down, the empty base, with the components, tools and manual around them',
-                'Tolia desmontado sobre una mesa: la campana diamante tumbada, la base vacía y, alrededor, los componentes, las herramientas y el manual'
+                'Tolia desmontado sobre una mesa: la cubierta diamante tumbada, la base vacía y, alrededor, los componentes, las herramientas y el manual'
               )}
             />
             <figcaption className="px-4 py-2.5 text-xs text-muted-foreground">

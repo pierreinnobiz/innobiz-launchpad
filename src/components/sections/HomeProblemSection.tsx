@@ -8,7 +8,7 @@ import LegacyAnchors from '@/components/LegacyAnchors';
 import CarouselDots from '@/components/CarouselDots';
 
 // Le geste en une image (scène du matin recadrée) : le flacon clipsé dans la base, les autres flacons avec leur module.
-const GESTE = `${import.meta.env.BASE_URL}journee/img/constat_geste_3d.webp`;
+import GESTE from '@/assets/journee/img/constat_geste_3d.webp';
 
 /**
  * Le constat (refonte du 17/10/2026, demande de Pierre) : on montre que l'on connaît les usages.

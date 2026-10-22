@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
-import { useAuth } from '@/hooks/useAuth';
+import { AuthProvider, useAuth } from '@/hooks/useAuth';
+import { Toaster } from '@/components/ui/sonner';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { ScrollArea } from '@/components/ui/scroll-area';
@@ -634,4 +635,12 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+// connexion et notifications chargées seulement avec cette page (22/10/2026)
+const AdminPage = () => (
+  <AuthProvider>
+    <Toaster />
+    <Admin />
+  </AuthProvider>
+);
+
+export default AdminPage;

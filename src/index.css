@@ -127,6 +127,11 @@
 
   html {
     scroll-behavior: smooth;
+    /* 22/10/2026 (point B5) : en descendant vers une partie (#contact…), son titre ne passe plus sous la barre du haut */
+    scroll-padding-top: 72px;
+  }
+  @media (min-width: 1024px) {
+    html { scroll-padding-top: 88px; }
   }
 
   body {

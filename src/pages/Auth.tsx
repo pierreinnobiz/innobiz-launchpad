@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { useAuth } from '@/hooks/useAuth';
+import { AuthProvider, useAuth } from '@/hooks/useAuth';
+import { Toaster } from '@/components/ui/sonner';
 import { toast } from 'sonner';
 import { Eye, EyeOff, Loader2 } from 'lucide-react';
 
@@ -139,4 +140,12 @@ const Auth = () => {
   );
 };
 
-export default Auth;
+// connexion et notifications chargées seulement avec cette page (22/10/2026)
+const AuthPage = () => (
+  <AuthProvider>
+    <Toaster />
+    <Auth />
+  </AuthProvider>
+);
+
+export default AuthPage;

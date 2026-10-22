@@ -176,7 +176,7 @@ const HomeOffersSection: React.FC = () => {
           <button
             type="button"
             onClick={() => goToContact('stock', t3(language, 'Démarrer avec 500 pièces', 'Start with 500 units', 'Empezar con 500 unidades'))}
-            className="inline-flex flex-none items-center gap-2 rounded-full border border-primary/40 px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="tap-target inline-flex flex-none items-center gap-2 rounded-full border border-primary/40 px-4 py-2 text-sm font-semibold text-primary transition hover:bg-primary/5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
           >
             {t3(language, 'Démarrer avec 500 pièces', 'Start with 500 units', 'Empezar con 500 unidades')}
             <ArrowRight className="h-4 w-4" aria-hidden="true" />

@@ -91,7 +91,7 @@ const ContactSection: React.FC = () => {
               )}
             </p>
             <a
-              href={calendlyUrl('contact')}
+              href={calendlyUrl('contact', l)}
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackCTAClick(talk, 'contact', 'call_booking')}
@@ -111,14 +111,14 @@ const ContactSection: React.FC = () => {
                 <a
                   href={`mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Tolia')}`}
                   onClick={() => trackCTAClick('email', 'contact', 'email')}
-                  className="font-medium text-foreground underline-offset-4 hover:underline select-all"
+                  className="tap-target font-medium text-foreground underline-offset-4 hover:underline select-all"
                 >
                   {CONTACT_EMAIL}
                 </a>
                 <button
                   type="button"
                   onClick={copyEmail}
-                  className="ml-auto inline-flex items-center gap-1 rounded-full border border-border/70 px-2.5 py-1 text-xs font-medium text-muted-foreground transition hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                  className="tap-target ml-auto inline-flex items-center gap-1 rounded-full border border-border/70 px-2.5 py-1 text-xs font-medium text-muted-foreground transition hover:text-foreground focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   {copied ? <Check className="h-3.5 w-3.5" aria-hidden="true" /> : <Copy className="h-3.5 w-3.5" aria-hidden="true" />}
                   {copied ? t3(l, 'Copiée', 'Copied', 'Copiada') : t3(l, 'Copier', 'Copy', 'Copiar')}
@@ -126,7 +126,7 @@ const ContactSection: React.FC = () => {
               </div>
               <div className="flex items-center gap-2">
                 <Phone className="h-4 w-4 flex-none text-muted-foreground" aria-hidden="true" />
-                <a href={`tel:${CONTACT_PHONE_TEL}`} className="font-medium text-foreground underline-offset-4 hover:underline">
+                <a href={`tel:${CONTACT_PHONE_TEL}`} className="tap-target font-medium text-foreground underline-offset-4 hover:underline">
                   {CONTACT_PHONE}
                 </a>
               </div>

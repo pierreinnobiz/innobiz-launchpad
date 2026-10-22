@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import innobizLogo from '@/assets/innobiz-logo.png';
+import innobizLogo from '@/assets/innobiz-logo-140.png'; // 140 px suffisent pour un logo affiché à 28 px de haut (avant : 680 px)
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import { MANAGE_COOKIES_EVENT } from '@/components/CookieConsent';
@@ -18,16 +18,16 @@ const Footer: React.FC = () => {
             <div className="flex items-center gap-3 mb-4">
               <span className="text-2xl font-bold">Tolia</span>
               <span className="text-primary-foreground/50">by</span>
-              <img src={innobizLogo} alt="Innobiz - Aromatherapy and wellness experts" className="h-7 brightness-0 invert opacity-80" loading="lazy" decoding="async" />
+              <img src={innobizLogo} alt="Innobiz" className="h-7 brightness-0 invert opacity-80" loading="lazy" decoding="async" />
             </div>
             <div className="text-primary-foreground/60 text-sm space-y-1">
-              <p>INNOBIZ SARL - SIRET 484 775 432 00034</p>
-              <p>8 rue Louis Breguet, 34830 Jacou, France</p>
+              <p>INNOBIZ SARL – SIRET 484 775 432 00034</p>
+              <p>8 rue Louis Breguet, 34830 Jacou, {t3(language, 'France', 'France', 'Francia')}</p>
             </div>
           </div>
 
           <div>
-            <h4 className="font-medium mb-4 text-primary-foreground/90">{t3(language, 'Informations', 'Information', 'Información')}</h4>
+            <h2 className="text-base font-medium mb-4 text-primary-foreground/90">{t3(language, 'Informations', 'Information', 'Información')}</h2>
             <ul className="space-y-2">
               <li><Link to="/legal" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">{t3(language, 'Mentions légales', 'Legal notice', 'Aviso legal')}</Link></li>
               <li><Link to="/privacy" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">{t3(language, 'Politique de confidentialité', 'Privacy policy', 'Política de privacidad')}</Link></li>
@@ -53,9 +53,9 @@ const Footer: React.FC = () => {
 
         <div className="mt-6 pt-4 border-t border-primary-foreground/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-primary-foreground/60 text-sm">© {new Date().getFullYear()} Tolia by INNOBIZ. {t3(language, 'Tous droits réservés.', 'All rights reserved.', 'Todos los derechos reservados.')}</p>
+            <p className="text-primary-foreground/60 text-sm">© {new Date().getFullYear()} Tolia by Innobiz. {t3(language, 'Tous droits réservés.', 'All rights reserved.', 'Todos los derechos reservados.')}</p>
             <p className="text-primary-foreground/60 text-sm">
-              Jacou, France • <a href="https://www.innobiz.fr" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">www.innobiz.fr</a>
+              Jacou, {t3(language, 'France', 'France', 'Francia')} • <a href="https://www.innobiz.fr" target="_blank" rel="noopener noreferrer" className="hover:text-primary-foreground transition-colors">www.innobiz.fr</a>
             </p>
           </div>
         </div>

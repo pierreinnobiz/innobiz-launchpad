@@ -159,7 +159,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       eyebrow: '07:30 · Morning, a fresh start',
       h: 'One press, and the day starts with an invigorating oil.',
       p: 'In the morning, many people choose an invigorating essential oil, such as peppermint, to start the day; in winter, others prefer an oil traditionally diffused at that time of year, such as ravintsara. With Tolia, the bottle is already in place: one press on the base and the mist spreads at once. Nothing to fill, nothing to measure, nothing to clean afterwards.',
-      alt: 'Open Tolia diffuser on a kitchen table early in the morning: the Morning bottle is clipped into the base, mist leaves the nozzle, two other bottles wait beside it',
+      alt: 'Open Tolia diffuser on a table in the morning: the Morning bottle is clipped into the base, mist leaves the nozzle, two other bottles wait beside it',
       callouts: [
         { t: 'Your bottle, as it is', p: 'We lifted the cover so you can see it: the peppermint bottle is clipped upside down into the base. Nothing to decant, no drops to count.' },
         { t: 'One press to start', p: 'Diffusion starts at once, with no warm-up. Time, strength and on/off cycles are easy to adjust.' },
@@ -249,7 +249,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       eyebrow: '07:30 · Por la mañana, para empezar bien',
       h: 'Una pulsación, y el día empieza con un aceite tonificante.',
       p: 'Por la mañana, muchos eligen un aceite esencial tonificante, como la menta piperita, para empezar bien el día; en invierno, otros prefieren un aceite que se difunde tradicionalmente en esa época del año, como el ravintsara. Con Tolia, el frasco ya está en su sitio: una pulsación en la base y la bruma se extiende enseguida. Nada que llenar, nada que dosificar, nada que limpiar después.',
-      alt: 'Difusor Tolia abierto sobre una mesa de cocina a primera hora: el frasco Mañana está encajado en la base, la bruma sale de la boquilla y otros dos frascos esperan al lado',
+      alt: 'Difusor Tolia abierto sobre una mesa por la mañana: el frasco Mañana está encajado en la base, la bruma sale de la boquilla y otros dos frascos esperan al lado',
       callouts: [
         { t: 'Su frasco, tal cual', p: 'Hemos quitado la cubierta para que lo vea: el frasco de menta piperita está encajado boca abajo en la base. Nada que trasvasar, ninguna gota que contar.' },
         { t: 'Una pulsación para empezar', p: 'La difusión arranca al instante, sin tiempo de calentamiento. La duración, la potencia y la intermitencia se ajustan de forma muy sencilla.' },
@@ -293,7 +293,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       h: 'Lo que Tolia aporta a su gama',
       adv: [
         { t: 'Sus frascos, directamente', p: 'El módulo se enrosca en frascos estándar (cuello DIN 18, de 5 a 50 ml): sus clientes simplemente vuelven a comprar sus aceites.' },
-        { t: 'Un solo aparato para su gama', p: 'Probada con más de 150 aceites esenciales y sinergias: el mismo aparato difunde sus aceites puros y sus sinergias.' },
+        { t: 'Un solo aparato para su gama', p: 'Probado con más de 150 aceites esenciales y sinergias: el mismo aparato difunde sus aceites puros y sus sinergias.' },
         { t: 'Una sola referencia que gestionar', p: 'Un solo difusor para todos sus aceites en lugar de varios aparatos: menos stock, menos posventa, un solo discurso, en tienda y en línea.' },
         { t: 'Un difusor a su imagen', p: 'Cubierta, colores, materiales, logotipo, estuche, modos de difusión: Tolia lleva su marca de principio a fin.' },
       ],

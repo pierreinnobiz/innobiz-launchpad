@@ -2,17 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import innobizLogo from '@/assets/innobiz-logo.png';
+import innobizLogo from '@/assets/innobiz-logo-140.png'; // 140 px suffisent pour un logo affiché à 28 px de haut (avant : 680 px)
 import { trackCTAClick } from '@/lib/tracking';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { isHomePath } from '@/lib/langPath';
 
 type LangCode = 'en' | 'fr' | 'es';
 
-const languages: { code: LangCode; label: string; available: boolean }[] = [
-  { code: 'fr', label: 'FR', available: true },
-  { code: 'en', label: 'EN', available: true },
-  { code: 'es', label: 'ES', available: true },
+// nom de chaque langue écrit dans cette langue (lu par les lecteurs d'écran à la place de « FR », « EN », « ES »)
+const languages: { code: LangCode; label: string; name: string }[] = [
+  { code: 'fr', label: 'FR', name: 'Français' },
+  { code: 'en', label: 'EN', name: 'English' },
+  { code: 'es', label: 'ES', name: 'Español' },
 ];
 
 
@@ -41,27 +42,30 @@ const Navigation: React.FC = () => {
 
   // Au-dessus du film du haut de page (fond sombre, en-tête transparent), les langues non choisies sont écrites en blanc :
   // en gris, elles étaient presque invisibles (17/10/2026).
-  const LanguageSwitcher = ({ className = '' }: { className?: string }) => (
-    <div className={`flex items-center gap-1 ${className}`}>
+  // 22/10/2026 : de vrais liens (/fr/, /en/, /es/) que Google et les assistants IA peuvent suivre ; affichés par un simple appel
+  // de fonction (un composant déclaré ici était recréé à chaque affichage et le clavier perdait sa place après un changement de langue).
+  const langHref = (code: LangCode) => (isHomePath(pathname) ? `/${code}/${search}` : `${pathname}?lang=${code}`);
+  const renderLanguages = () => (
+    <div className="flex items-center gap-1">
       {languages.map((lang) => (
-        <button
+        <a
           key={lang.code}
-          onClick={() => lang.available && switchLang(lang.code)}
-          disabled={!lang.available}
+          href={langHref(lang.code)}
+          hrefLang={lang.code}
+          lang={lang.code}
+          onClick={(e) => { e.preventDefault(); switchLang(lang.code); }}
           className={`tap-target tap-target-tight px-2.5 py-1 rounded-full text-xs font-semibold transition-all ${
             language === lang.code
               ? 'bg-primary text-primary-foreground shadow-sm'
-              : !lang.available
-                ? 'text-muted-foreground/40 border border-border/20 cursor-not-allowed'
-                : overHero
-                  ? 'text-white/85 hover:text-white hover:bg-white/10 border border-white/35'
-                  : 'text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/50'
+              : overHero
+                ? 'text-white/85 hover:text-white hover:bg-white/10 border border-white/35'
+                : 'text-muted-foreground hover:text-foreground hover:bg-secondary border border-border/50'
           }`}
-          aria-label={`Switch to ${lang.label}`}
-          title={!lang.available ? (language === 'en' ? 'Coming soon' : 'Bientôt disponible') : undefined}
+          aria-label={lang.name}
+          aria-current={language === lang.code ? 'true' : undefined}
         >
           {lang.label}
-        </button>
+        </a>
       ))}
     </div>
   );
@@ -71,27 +75,25 @@ const Navigation: React.FC = () => {
       <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-background/95 backdrop-blur-xl border-b border-border/40 shadow-sm' : 'bg-transparent'}`}>
         <div className="section-container">
           <nav className="flex items-center justify-between h-16 lg:h-20">
-            <Link to="/" className="flex items-center gap-2.5 group">
+            <Link to={`/${language}/`} className="tap-target flex items-center gap-2.5 group">
               <span className="text-xl lg:text-2xl font-bold text-primary transition-colors group-hover:text-primary/80">Tolia</span>
               <span className="text-muted-foreground text-xs hidden sm:inline">by</span>
-              <img src={innobizLogo} alt="Innobiz - Aromatherapy and wellness experts" className="h-7 hidden sm:inline opacity-70 group-hover:opacity-100 transition-opacity" />
+              <img src={innobizLogo} alt="Innobiz" className="h-7 hidden sm:inline opacity-70 group-hover:opacity-100 transition-opacity" />
             </Link>
 
             <div className="flex items-center gap-2 sm:gap-3">
-              <LanguageSwitcher />
-              <a
-                href="#contact"
-                onClick={() => trackCTAClick(sampleLabel, 'nav', 'sample_nav')}
-                className="tap-target inline-flex shrink-0"
+              {renderLanguages()}
+              {/* un seul élément cliquable (avant : un bouton dans un lien, deux arrêts au clavier) */}
+              <Button
+                asChild
+                size="sm"
+                className="tap-target shrink-0 rounded-full font-semibold bg-primary text-primary-foreground hover:brightness-110 px-3 sm:px-4"
               >
-                <Button
-                  size="sm"
-                  className="rounded-full font-semibold bg-primary text-primary-foreground hover:brightness-110 px-3 sm:px-4"
-                >
+                <a href="#contact" onClick={() => trackCTAClick(sampleLabel, 'nav', 'sample_nav')}>
                   <span className="lg:hidden whitespace-nowrap">{sampleLabelShort}</span>
                   <span className="hidden lg:inline whitespace-nowrap">{sampleLabel}</span>
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
           </nav>
         </div>
@@ -127,6 +129,10 @@ const StickyMobileCTA: React.FC<{ label: string }> = ({ label }) => {
     <a
       href="#contact"
       onClick={() => trackCTAClick(label, 'sticky-mobile', 'sample_hero')}
+      // cachée : ni visible, ni atteignable au clavier, ni lue par les lecteurs d'écran (22/10/2026)
+      {...({ inert: visible ? undefined : '' } as Record<string, unknown>)}
+      aria-hidden={!visible}
+      tabIndex={visible ? undefined : -1}
       className={`lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-primary text-primary-foreground h-14 flex items-center justify-center gap-2 text-sm font-semibold shadow-lg transition-transform duration-300 ${
         visible ? 'translate-y-0' : 'translate-y-full'
       }`}

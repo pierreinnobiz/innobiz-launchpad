@@ -9,7 +9,7 @@ import { ArrowRight, CheckCircle2, Gift, Truck, Package, ShieldCheck, Lock } fro
 import { t3 } from '@/lib/t3';
 import { getSessionAttribution } from '@/lib/attribution';
 import { prospectEmailFromUrl } from '@/lib/prospect';
-import { CALENDLY_RDV_URL } from '@/lib/links';
+import { calendlyUrl } from '@/lib/links';
 import { trackCTAClick } from '@/lib/tracking';
 import { supabase } from '@/integrations/supabase/client';
 
@@ -415,7 +415,7 @@ const QualificationForm: React.FC = () => {
             )}
           </p>
           <a
-            href={CALENDLY_RDV_URL}
+            href={calendlyUrl('sample_thanks', language)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackCTAClick('Book 30 min with Simon', 'sample-thanks', 'call_booking')}

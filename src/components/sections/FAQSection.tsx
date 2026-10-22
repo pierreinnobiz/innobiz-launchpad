@@ -28,7 +28,7 @@ const FAQSection: React.FC = () => {
         language,
         'Oui, tout votre catalogue : le module se visse sur les flacons standard de 5, 10, 15, 30 ou 50 ml (col DIN 18), sans transfert ni remplissage.',
         'Yes, your whole range: the module screws onto standard 5, 10, 15, 30 or 50 ml bottles (DIN 18 neck), with no decanting and nothing to fill.',
-        'Sí, todo su catálogo: el módulo se enrosca en los frascos estándar de 5, 10, 15, 30 o 50 ml (cuello DIN 18), sin trasvase ni rellenado.'
+        'Sí, todo su catálogo: el módulo se enrosca en los frascos estándar de 5, 10, 15, 30 o 50 ml (cuello DIN 18), sin trasvase ni llenado.'
       ),
     },
     {

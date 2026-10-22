@@ -1,54 +1,83 @@
 # Moteurs de recherche et assistants IA : tout le site public est ouvert (17/10/2026).
 User-agent: Googlebot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: Bingbot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 # Assistants IA (réponses et recherches dans ChatGPT, Claude, Perplexity, Gemini, Apple Intelligence…)
 User-agent: OAI-SearchBot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: ChatGPT-User
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: GPTBot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: Claude-SearchBot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: Claude-User
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: ClaudeBot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: PerplexityBot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: Perplexity-User
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: Google-Extended
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: Applebot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: Applebot-Extended
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: Twitterbot
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: facebookexternalhit
 Allow: /
+Disallow: /auth
+Disallow: /admin
 
 User-agent: *
 Allow: /
 Disallow: /auth
 Disallow: /admin
-Disallow: /language-audit
 
 Sitemap: https://www.innobiz-tolia.com/sitemap.xml

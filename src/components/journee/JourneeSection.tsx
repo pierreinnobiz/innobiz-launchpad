@@ -6,9 +6,6 @@ import { JOURNEE_TEXTS } from './texts';
 import LegacyAnchors from '@/components/LegacyAnchors';
 import './journee.css';
 
-// Les images de la visite sont dans public/journee (les images d'animation sont chargées au dernier moment).
-const BASE = `${import.meta.env.BASE_URL}journee/`;
-
 /**
  * « Une journée avec Tolia » : visite guidée en cinq pages (07:30, 18:30, 22:00, Votre gamme, Bilan).
  * Sur ordinateur, l'écran reste en place et chaque page se déroule en entier (texte, cadres blancs fléchés, animation) ;
@@ -29,7 +26,6 @@ const JourneeSection: React.FC = () => {
     const engine = createJourneeEngine(
       rootRef.current,
       () => langRef.current,
-      BASE,
       (label) => trackCTAClick(label, 'journee', 'sample_journee'),
       // jusqu'où vont les visiteurs ? un événement par page de la visite, une seule fois par visite
       (id) => trackEvent('journee_scene', { scene: id }),

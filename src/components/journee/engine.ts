@@ -16,6 +16,11 @@ import { JOURNEE_TEXTS, type JourneeLang, type JourneeTexts, type PhotoPageText,
 import { ANIM_TAU } from './anim-manifest';
 import { calendlyUrl } from '@/lib/links';
 
+// Images de la visite dans src/assets/journee : Vite leur donne un nom avec empreinte, servi depuis /assets/ et gardé un an
+// par le navigateur (22/10/2026 ; avant, dans public/journee, elles étaient retéléchargées à chaque visite : 2,2 Mo).
+const ASSETS = import.meta.glob('../../assets/journee/**/*.webp', { eager: true, query: '?url', import: 'default' }) as Record<string, string>;
+const asset = (p: string) => ASSETS[`../../assets/journee/${p}`];
+
 type Fmt = 'd' | 'm';
 type Mode = 'pin' | 'flow';
 type XY = [number, number];
@@ -102,7 +107,7 @@ const PAGES: PageDef[] = [
     box: { d: [760, 320, 1640, 870], m: [40, 1000, 1040, 1620] },
     callouts: [
       // cadres du bas écartés du halo (cycle 3 : les deux cadres le cachaient)
-      { t: 0.9, at: { d: [1198, 739], m: [540, 1473] }, zone: 'bottom', tx: 1430 },
+      { t: 0.9, at: { d: [1198, 739], m: [600, 1420] }, zone: 'bottom', tx: 1430 }, // téléphone : remonté sur le socle, il touchait la pastille du halo (22/10/2026)
       { t: 7.0, at: { d: [1101, 438], m: [428, 1128] }, zone: 'top', tx: 800 },
       { t: 8.0, at: { d: [1159, 762], m: [495, 1498] }, zone: 'bottom', tx: 690 },
     ],
@@ -154,7 +159,6 @@ interface Rect { x: number; y: number; w: number; h: number }
 export function createJourneeEngine(
   root: HTMLElement,
   getLang: () => JourneeLang,
-  base: string,
   onCta?: (label: string) => void,
   onScene?: (id: string) => void,
 ): JourneeEngine {
@@ -185,9 +189,9 @@ export function createJourneeEngine(
   const modeNow = (): Mode => (innerWidth / innerHeight >= 1.15 && innerHeight >= 560 && innerWidth >= 900 ? 'pin' : 'flow');
   const fmtNow = (m: Mode): Fmt => (m === 'pin' ? 'd' : innerWidth < innerHeight ? 'm' : 'd');
   const slot = () => innerHeight;
-  const IMG = (k: string) => `${base}img/${k}_${F}.webp`;
-  const seqBase = (k: string) => `${base}anim/${k}/${F}_base.webp`;
-  const seqUrl = (k: string, i: number) => `${base}anim/${k}/${F}_p${String(i).padStart(3, '0')}.webp`;
+  const IMG = (k: string) => asset(`img/${k}_${F}.webp`);
+  const seqBase = (k: string) => asset(`anim/${k}/${F}_base.webp`);
+  const seqUrl = (k: string, i: number) => asset(`anim/${k}/${F}_p${String(i).padStart(3, '0')}.webp`);
   const pct = (v: number, t: number) => (v / t * 100).toFixed(3) + '%';
   const stopLabel = (i: number) => {
     const s = (TX() as any)[PAGES[i].id].stop as { time: string; sub: string };
@@ -235,7 +239,7 @@ export function createJourneeEngine(
       <ul class="b-tiles">${b.tiles.map((x, j) => `<li data-t="${(0.5 + j * 0.4).toFixed(2)}"><strong>${x.big}</strong><span>${x.small}</span></li>`).join('')}</ul>
       <p class="b-note" data-t="1.5">${b.note}</p>
       <p class="b-p" data-t="1.9">${b.p}</p>
-      <div class="b-cta" data-t="2.4"><a class="cta" href="#contact">${b.cta}${ICON.arrow}</a><a class="cta2" href="${calendlyUrl('journee_bilan')}" target="_blank" rel="noopener noreferrer">${ICON.cal}${b.cta2}</a></div>`;
+      <div class="b-cta" data-t="2.4"><a class="cta" href="#contact">${b.cta}${ICON.arrow}</a><a class="cta2" href="${calendlyUrl('journee_bilan', getLang())}" target="_blank" rel="noopener noreferrer">${ICON.cal}${b.cta2}</a></div>`;
   }
 
   // ---------- mode « page » (écran fixe, une page à la fois)
@@ -461,7 +465,13 @@ export function createJourneeEngine(
   }
   function collectItems(i: number) {
     const S = st[i], pg = PAGES[i], items: Item[] = [];
-    S.el.querySelectorAll<HTMLElement>('[data-t]').forEach((el) => items.push({ el, t: +(el.dataset.t as string), kind: el.classList.contains('jr-glow') ? 'pop' : 'fade', last: -1 }));
+    // 22/10/2026 (point B4) : sur téléphone, « Votre gamme » et « Bilan » apparaissent en cascade rapide (avant : jusqu'à 4 s d'écran vide)
+    const fast = M !== 'pin' && (pg.kind === 'gamme' || pg.kind === 'bilan');
+    let n = 0;
+    S.el.querySelectorAll<HTMLElement>('[data-t]').forEach((el) => {
+      const t = +(el.dataset.t as string);
+      items.push({ el, t: fast ? Math.min(t, 0.1 + 0.08 * n++) : t, kind: el.classList.contains('jr-glow') ? 'pop' : 'fade', last: -1 });
+    });
     const arrowItems = (key: string, t: number, end?: number) => {
       S.el.querySelectorAll(`.jr-arrows path.halo[data-j="${key}"], .jr-arrows path.wire[data-j="${key}"]`).forEach((el) => items.push({ el, t: t + 0.2, end, kind: 'path', last: -1 }));
       S.el.querySelectorAll(`.jr-arrows .head[data-j="${key}"], .jr-arrows .adot[data-j="${key}"], .f-dot[data-j="${key}"]`).forEach((el) => items.push({ el, t: t + (M === 'pin' ? 0.55 : 0), end, kind: 'pop', last: -1 }));
@@ -489,6 +499,8 @@ export function createJourneeEngine(
       const e = ease(pin), s = (it.el as HTMLElement).style ?? (it.el as SVGElement).style;
       if (it.kind === 'fade') {
         s.opacity = (e * k).toFixed(3);
+        // pas encore apparu : ni atteignable au clavier, ni lu (22/10/2026, accessibilité)
+        if (it.el instanceof HTMLElement) it.el.inert = e * k < 0.05;
         s.translate = pin >= 1 ? '0 0' : `0 ${((1 - e) * 10).toFixed(2)}px`;
       } else if (it.kind === 'path') {
         s.strokeDashoffset = (100 * (1 - e)).toFixed(2);
@@ -800,7 +812,8 @@ export function createJourneeEngine(
   // Les images d'animation ne se chargent pas pendant l'arrivée sur la page : le haut (film, titre, bouton) passe d'abord.
   // Elles démarrent quand la visite approche de l'écran (au moins 2,5 s après l'ouverture), ou au bout de 6 s.
   const arm = () => { if (prefetched || destroyed) return; prefetched = true; startNextAnim(); };
-  idleTimer = window.setTimeout(arm, 6000);
+  // 22/10/2026 : sur téléphone, plus de chargement au bout de 6 s (1,5 à 2 Mo de forfait pour ceux qui ne descendent pas)
+  if (modeNow() === 'pin') idleTimer = window.setTimeout(arm, 6000);
   if ('IntersectionObserver' in window) {
     armIO = new IntersectionObserver((en, ob) => {
       if (en.some((x) => x.isIntersecting)) { ob.disconnect(); armTimer = window.setTimeout(arm, Math.max(0, 2500 - performance.now())); }

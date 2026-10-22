@@ -1,13 +1,10 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { LanguageProvider, useLanguage } from "@/contexts/LanguageContext";
-import { AuthProvider } from "@/hooks/useAuth";
 import { useWave2Tracking } from "@/hooks/useWave2Tracking";
 import { useScrollToTop } from "@/hooks/useScrollToTop";
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect } from "react";
+import { Helmet } from "react-helmet-async";
+import { isHomePath } from "@/lib/langPath";
 
 import Index from "./pages/Index";
 import ProspectTracker from "./components/ProspectTracker";
@@ -18,8 +15,6 @@ const Cookies = React.lazy(() => import("./pages/Legal").then(m => ({ default: m
 const Auth = React.lazy(() => import("./pages/Auth"));
 const Admin = React.lazy(() => import("./pages/Admin"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
-
-const queryClient = new QueryClient();
 
 const PageFallback = () => (
   <div className="min-h-screen bg-background flex items-center justify-center">
@@ -47,11 +42,26 @@ const LegacyContact = () => {
   return <Navigate to={{ pathname: `/${language}/`, search, hash: '#contact' }} replace />;
 };
 
+// 22/10/2026 (points E1 et E2) : les données structurées de l'accueil (FAQ, produit…) sont retirées des autres pages,
+// et les pages internes (/auth, /admin) sont exclues de Google.
+const SeoParAdresse = () => {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    if (!isHomePath(pathname)) document.getElementById('ld-accueil')?.remove();
+  }, [pathname]);
+  return /^\/(auth|admin)(\/|$)/.test(pathname) ? (
+    <Helmet>
+      <meta name="robots" content="noindex, nofollow" />
+    </Helmet>
+  ) : null;
+};
+
 const AppRoutes = () => {
   useWave2Tracking();
   return (
     <>
       <ScrollToTop />
+      <SeoParAdresse />
       <ProspectTracker />
       <Suspense fallback={<PageFallback />}>
         <Routes>
@@ -75,20 +85,14 @@ const AppRoutes = () => {
   );
 };
 
+// 22/10/2026 (point D5) : la connexion (AuthProvider) et les notifications (Sonner) ne servent qu'aux pages /auth et /admin :
+// elles y sont chargées, et ne pèsent plus sur la page d'accueil ; react-query et les bulles d'aide n'étaient utilisés nulle part.
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <LanguageProvider>
-      <AuthProvider>
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <AppRoutes />
-          </BrowserRouter>
-        </TooltipProvider>
-      </AuthProvider>
-    </LanguageProvider>
-  </QueryClientProvider>
+  <LanguageProvider>
+    <BrowserRouter>
+      <AppRoutes />
+    </BrowserRouter>
+  </LanguageProvider>
 );
 
 export default App;
