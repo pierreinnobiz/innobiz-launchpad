@@ -31,10 +31,43 @@ interface SampleRequest {
   utm_content?: string;
   referrer?: string;
   landing_page?: string;
+  // 22/10/2026 : langue du site lue par le visiteur (fr, en, es) pour l'email de remerciement
+  lang?: string;
 }
 
 const FROM_ADDRESS = "Tolia Sample <noreply@innobiz-tolia.com>";
 const TO_ADDRESS = "pierre.innobiz@gmail.com";
+
+// Email de remerciement envoyé au demandeur quand il confirme son adresse (accord de Pierre du 22/10/2026, point V7 :
+// signé « L'équipe Tolia by Innobiz », réponses vers contact@innobiz.fr), dans la langue du site qu'il lisait.
+const MERCI_FROM = "Tolia by Innobiz <noreply@innobiz-tolia.com>";
+const MERCI_REPLY_TO = "contact@innobiz.fr";
+const MERCI: Record<"fr" | "en" | "es", { subject: string; hello: (n: string) => string; lines: string[]; talk: string; question: string; bye: string; team: string; footer: string }> = {
+  fr: {
+    subject: "Votre échantillon Tolia est en préparation",
+    hello: (n) => `Bonjour${n ? " " + n : ""},`,
+    lines: ["Merci pour votre demande. Votre échantillon Tolia sera expédié de France sous 5 jours ouvrés, à cette adresse :", "Nous vous écrirons sous un jour ouvré pour parler de votre projet."],
+    talk: "Vous préférez en parler de vive voix ? Simon Desbuisson vous propose 30 minutes en visio pour voir Tolia en direct :",
+    question: "Une question, ou une erreur dans l'adresse ? Répondez simplement à cet email.",
+    bye: "Bien cordialement,", team: "L'équipe Tolia by Innobiz", footer: "Tolia by Innobiz · Jacou, France · www.innobiz-tolia.com",
+  },
+  en: {
+    subject: "Your Tolia sample is being prepared",
+    hello: (n) => `Hello${n ? " " + n : ""},`,
+    lines: ["Thank you for your request. Your Tolia sample will ship from France within 5 business days, to this address:", "We will write to you within one business day to talk about your project."],
+    talk: "Would you rather talk it through? Simon Desbuisson offers you 30 minutes by video call to see Tolia live:",
+    question: "A question, or a mistake in the address? Simply reply to this email.",
+    bye: "Kind regards,", team: "The Tolia by Innobiz team", footer: "Tolia by Innobiz · Jacou, France · www.innobiz-tolia.com",
+  },
+  es: {
+    subject: "Su muestra de Tolia está en preparación",
+    hello: (n) => `Hola${n ? ", " + n : ""}:`,
+    lines: ["Gracias por su solicitud. Su muestra de Tolia se enviará desde Francia en un plazo de 5 días hábiles a esta dirección:", "Le escribiremos en un día hábil para hablar de su proyecto."],
+    talk: "¿Prefiere hablarlo de viva voz? Simon Desbuisson le propone 30 minutos por videollamada para ver Tolia en directo:",
+    question: "¿Una pregunta o un error en la dirección? Simplemente responda a este email.",
+    bye: "Atentamente,", team: "El equipo de Tolia by Innobiz", footer: "Tolia by Innobiz · Jacou, Francia · www.innobiz-tolia.com",
+  },
+};
 
 const PROJECT_LABEL: Record<string, string> = {
   stock_order: "Stock order (500+ units)",
@@ -60,7 +93,7 @@ const handler = async (req: Request): Promise<Response> => {
       address_street, address_postal_code, address_city,
       role, phone, project_type, message,
       utm_source, utm_medium, utm_campaign, utm_term, utm_content,
-      referrer, landing_page,
+      referrer, landing_page, lang,
     } = body;
 
     if (!email) {
@@ -283,6 +316,36 @@ const handler = async (req: Request): Promise<Response> => {
         JSON.stringify({ error: "Failed to send notification." }),
         { status: 500, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
+    }
+
+    // Email de remerciement au demandeur (étape 2 seulement, adresse confirmée) ; un échec ne bloque pas la réponse
+    if (stage === "shipping" && address && String(address).trim().length > 0) {
+      try {
+        const L = lang === "en" || lang === "es" ? lang : "fr";
+        const T = MERCI[L];
+        const prenom = String(name || "").trim().split(/\s+/)[0] || "";
+        const lien = `https://calendly.com/simon-innobiz/30min?utm_source=email&utm_medium=merci_echantillon&utm_content=lang_${L}`;
+        const adresse = [sanitize(String(address)).replace(/\n/g, "<br>"), country ? sanitize(String(country)) : ""].filter(Boolean).join("<br>");
+        const p = (t: string) => `<p style="margin:0 0 14px;">${t}</p>`;
+        const html = `<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.55;color:#2b211b;max-width:600px;">
+          ${p(sanitize(T.hello(prenom)))}
+          ${p(sanitize(T.lines[0]))}
+          <p style="margin:0 0 14px;padding:10px 14px;background:#f6efe6;border-radius:8px;">${adresse}</p>
+          ${p(sanitize(T.lines[1]))}
+          ${p(sanitize(T.talk) + `<br><a href="${lien}" style="color:#8c592c;">${lien.split("?")[0]}</a>`)}
+          ${p(sanitize(T.question))}
+          ${p(sanitize(T.bye) + "<br>" + sanitize(T.team))}
+          <p style="margin:18px 0 0;font-size:12px;color:#7a6f63;">${sanitize(T.footer)}</p>
+        </div>`;
+        const r = await fetch("https://api.resend.com/emails", {
+          method: "POST",
+          headers: { "Authorization": `Bearer ${RESEND_API_KEY}`, "Content-Type": "application/json" },
+          body: JSON.stringify({ from: MERCI_FROM, to: [email], reply_to: MERCI_REPLY_TO, subject: T.subject, html }),
+        });
+        if (!r.ok) console.error("Email de remerciement non envoyé :", r.status, await r.text().catch(() => ""));
+      } catch (e) {
+        console.error("Email de remerciement impossible :", e);
+      }
     }
 
     return new Response(JSON.stringify({ success: true, stage }), {

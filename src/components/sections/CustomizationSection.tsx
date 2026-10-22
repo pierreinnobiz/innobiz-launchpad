@@ -158,7 +158,7 @@ const CustomizationSection: React.FC = () => {
         >
           <span
             className="mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-widest"
-            style={{ background: 'hsl(28 45% 48% / 0.08)', color: 'hsl(28 45% 48%)' }}
+            style={{ background: 'hsl(28 45% 48% / 0.08)', color: 'hsl(28 52% 36%)' }}
           >
             <Sparkles className="h-4 w-4" aria-hidden="true" />
             {t3(l, 'Expert marque blanche', 'White-label expert', 'Experto en marca blanca')}
@@ -204,7 +204,7 @@ const CustomizationSection: React.FC = () => {
 
           <div className="lg:col-span-7 min-w-0">
             <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1">
-              <span className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }} aria-hidden="true">
+              <span className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 52% 36%)' }} aria-hidden="true">
                 <Paintbrush className="h-4 w-4" />
               </span>
               <h3 className="text-xl font-bold text-foreground">{t3(l, 'Le diffuseur', 'The diffuser', 'El difusor')}</h3>
@@ -217,7 +217,7 @@ const CustomizationSection: React.FC = () => {
                 <li key={i} className="flex items-start gap-3 rounded-xl border border-border/30 bg-card px-3.5 py-3">
                   <span
                     className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-md text-xs font-bold"
-                    style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }}
+                    style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 52% 36%)' }}
                   >
                     {i + 1}
                   </span>
@@ -226,7 +226,7 @@ const CustomizationSection: React.FC = () => {
               ))}
             </ol>
             <p className="mt-3 flex items-start gap-2 rounded-xl px-3.5 py-2.5 text-sm text-foreground" style={{ background: 'hsl(28 45% 48% / 0.08)' }}>
-              <SlidersHorizontal className="mt-0.5 h-4 w-4 flex-none" style={{ color: 'hsl(28 45% 48%)' }} aria-hidden="true" />
+              <SlidersHorizontal className="mt-0.5 h-4 w-4 flex-none" style={{ color: 'hsl(28 52% 36%)' }} aria-hidden="true" />
               <span>
                 <strong>{t3(l, 'Et vos réglages :', 'And your settings:', 'Y sus ajustes:')}</strong>{' '}
                 {t3(l, 'modes de diffusion préprogrammés selon vos recommandations.', 'diffusion modes pre-programmed to your recommendations.', 'modos de difusión preprogramados según sus recomendaciones.')}
@@ -249,7 +249,7 @@ const CustomizationSection: React.FC = () => {
               variants={fadeBlurUp}
             >
               <div className="mb-2 flex items-center gap-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 45% 48%)' }} aria-hidden="true">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg" style={{ background: 'hsl(28 45% 48% / 0.1)', color: 'hsl(28 52% 36%)' }} aria-hidden="true">
                   <pillar.icon className="h-4 w-4" />
                 </span>
                 <h3 className="text-lg font-bold text-foreground">{t3(l, pillar.title.fr, pillar.title.en, pillar.title.es)}</h3>
@@ -258,7 +258,7 @@ const CustomizationSection: React.FC = () => {
               <ul className="space-y-1.5">
                 {pillar.points.map((p, i) => (
                   <li key={i} className="flex items-start gap-2 text-sm leading-relaxed text-muted-foreground">
-                    <span className="mt-[0.55em] h-1.5 w-1.5 flex-none rounded-full" style={{ background: 'hsl(28 45% 48%)' }} aria-hidden="true" />
+                    <span className="mt-[0.55em] h-1.5 w-1.5 flex-none rounded-full" style={{ background: 'hsl(28 52% 36%)' }} aria-hidden="true" />
                     {t3(l, p.fr, p.en, p.es)}
                   </li>
                 ))}

@@ -44,7 +44,7 @@ const ContactSection: React.FC = () => {
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeBlurUp}
         >
-          <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
+          <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 52% 36%)' }}>
             {t3(l, 'Passons à l’essai', 'Let’s try it', 'Pasemos a la práctica')}
           </span>
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
@@ -96,7 +96,7 @@ const ContactSection: React.FC = () => {
               rel="noopener noreferrer"
               onClick={() => trackCTAClick(talk, 'contact', 'call_booking')}
               className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-xl px-5 py-3.5 text-sm font-semibold text-white transition hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-              style={{ background: '#B17743' }}
+              style={{ background: 'hsl(28 52% 36%)' }}
             >
               <CalendarCheck className="h-4 w-4" aria-hidden="true" />
               {talk}

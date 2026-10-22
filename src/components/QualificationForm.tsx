@@ -615,7 +615,7 @@ const QualificationForm: React.FC = () => {
           type="submit"
           disabled={isSubmitting}
           className="w-full h-12 text-base rounded-xl text-white"
-          style={{ background: '#B17743' }}
+          style={{ background: 'hsl(28 52% 36%)' }}
         >
           {isSubmitting
             ? t3(language, 'Envoi…', 'Sending…', 'Enviando…')
@@ -788,7 +788,7 @@ const QualificationForm: React.FC = () => {
         type="submit"
         disabled={isSubmitting}
         className="w-full h-12 text-base rounded-xl text-white"
-        style={{ background: '#B17743' }}
+        style={{ background: 'hsl(28 52% 36%)' }}
       >
         {isSubmitting
           ? t3(language, 'Envoi…', 'Sending…', 'Enviando…')

@@ -95,7 +95,7 @@ const HomeOffersSection: React.FC = () => {
           viewport={{ once: true, margin: '-80px' }}
           variants={fadeBlurUp}
         >
-          <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
+          <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 52% 36%)' }}>
             {t3(language, 'Pour votre marque', 'For your brand', 'Para su marca')}
           </span>
           <h2 className="heading-section text-foreground">
@@ -135,7 +135,7 @@ const HomeOffersSection: React.FC = () => {
                 <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
                   {o.points.map((pt, i) => (
                     <li key={i} className="flex items-start gap-2">
-                      <Check className="mt-0.5 h-4 w-4 flex-none" style={{ color: 'hsl(28 45% 48%)' }} aria-hidden="true" />
+                      <Check className="mt-0.5 h-4 w-4 flex-none" style={{ color: 'hsl(28 52% 36%)' }} aria-hidden="true" />
                       <span>{pt}</span>
                     </li>
                   ))}

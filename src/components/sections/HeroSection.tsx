@@ -309,8 +309,9 @@ const HeroSection: React.FC = () => {
         <img src={`${POSTER}hero_ferme_3d.webp`} loading="eager" fetchPriority="high" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
       </figure>
 
-      <div className="hero-content relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32 px-6 md:px-12 lg:px-20">
-        <div className="max-w-5xl space-y-5 lg:max-w-[min(52vw,760px)]">
+      {/* 22/10/2026 (point V2) : texte aligné sur le logo et sur le reste du site (classe hero-align, voir index.css) */}
+      <div className="hero-content hero-align relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32">
+        <div className="max-w-5xl space-y-5 lg:max-w-[min(46vw,680px)]">
           {/* « pour les marques » au-dessus du titre, plus visible (retour des marques testeuses) */}
           {/* titre principal pour Google : « Diffuseurs d'huiles essentielles pour les marques » (même apparence qu'avant) */}
           <motion.h1

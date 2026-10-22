@@ -67,8 +67,8 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
     matin: {
       stop: { time: '07:30', sub: 'Matin' },
       eyebrow: '07:30 · Le matin, pour bien démarrer',
-      h: 'Un appui, et la journée démarre avec une huile tonifiante.',
-      p: 'Le matin, beaucoup choisissent une huile essentielle tonifiante, comme la menthe poivrée, pour bien démarrer la journée ; en hiver, d’autres préfèrent une huile que l’on diffuse traditionnellement à cette saison, comme le ravintsara. Avec Tolia, le flacon est déjà en place : un appui sur la base, et la brume se répand aussitôt. Rien à remplir, rien à doser, rien à nettoyer ensuite.',
+      h: 'Un appui, et la journée démarre avec la menthe poivrée.',
+      p: 'Le matin, beaucoup choisissent la menthe poivrée, connue pour son parfum frais et vif ; en hiver, d’autres préfèrent le ravintsara, que l’on diffuse traditionnellement à cette saison. Avec Tolia, le flacon est déjà en place : un appui sur la base, et la brume se répand aussitôt. Rien à remplir, rien à doser, rien à nettoyer ensuite.',
       alt: 'Diffuseur Tolia ouvert sur une table, le matin : le flacon Matin est clipsé dans la base, la brume sort de la buse, deux autres flacons attendent à côté',
       callouts: [
         { t: 'Votre flacon, tel quel', p: 'Nous avons retiré la cloche pour vous le montrer : le flacon de menthe poivrée est clipsé tête en bas dans la base. Rien à transvaser, aucune goutte à compter.' },
@@ -80,7 +80,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '14:00', sub: 'Après-midi' },
       eyebrow: '14:00 · En début d’après-midi, au salon',
       h: 'Envie d’une autre huile essentielle ? Il suffit d’une seconde.',
-      p: 'En début d’après-midi, on a souvent envie de changer d’ambiance : une note d’agrume plus douce pour une pause, ou une huile plus fraîche pour rester concentré. Avec un diffuseur classique, il faudrait vider, rincer, sécher puis remplir le réservoir. Avec Tolia, le module de diffusion reste vissé sur chaque flacon : on retire la menthe poivrée, on clipse l’orange douce, on repose la cloche, et la diffusion repart.',
+      p: 'En début d’après-midi, on a souvent envie de changer d’ambiance : une note d’agrume plus douce pour une pause, comme l’orange douce, ou le romarin, réputé pour accompagner les moments de concentration. Avec un diffuseur classique, il faudrait vider, rincer, sécher puis remplir le réservoir. Avec Tolia, le module de diffusion reste vissé sur chaque flacon : on retire la menthe poivrée, on clipse l’orange douce, on repose la cloche, et la diffusion repart.',
       alt: 'Au salon, le flacon Matin sort de la base de Tolia, le flacon Journée prend sa place, puis la cloche est reposée et la brume repart',
       chrono: 'pour changer d’huile',
       callouts: [
@@ -106,7 +106,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '', sub: 'Votre gamme' },
       eyebrow: 'Ce que vous venez de voir',
       recap: [
-        { time: '07:30', text: 'Une huile tonifiante pour bien démarrer, d’un seul appui.' },
+        { time: '07:30', text: 'La menthe poivrée pour bien démarrer, d’un seul appui.' },
         { time: '14:00', text: 'Une autre huile en une seconde, sans rien vider ni rincer.' },
         { time: '21:00', text: 'Sans fil et silencieux au chevet, avec jusqu’à 90 h d’autonomie.' },
       ],
@@ -157,8 +157,8 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
     matin: {
       stop: { time: '07:30', sub: 'Morning' },
       eyebrow: '07:30 · Morning, a fresh start',
-      h: 'One press, and the day starts with an invigorating oil.',
-      p: 'In the morning, many people choose an invigorating essential oil, such as peppermint, to start the day; in winter, others prefer an oil traditionally diffused at that time of year, such as ravintsara. With Tolia, the bottle is already in place: one press on the base and the mist spreads at once. Nothing to fill, nothing to measure, nothing to clean afterwards.',
+      h: 'One press, and the day starts with peppermint.',
+      p: 'In the morning, many people choose peppermint, known for its fresh, lively scent; in winter, others prefer ravintsara, traditionally diffused at that time of year. With Tolia, the bottle is already in place: one press on the base and the mist spreads at once. Nothing to fill, nothing to measure, nothing to clean afterwards.',
       alt: 'Open Tolia diffuser on a table in the morning: the Morning bottle is clipped into the base, mist leaves the nozzle, two other bottles wait beside it',
       callouts: [
         { t: 'Your bottle, as it is', p: 'We lifted the cover so you can see it: the peppermint bottle is clipped upside down into the base. Nothing to decant, no drops to count.' },
@@ -170,7 +170,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '14:00', sub: 'Afternoon' },
       eyebrow: '14:00 · Early afternoon, in the living room',
       h: 'Fancy a different essential oil? It takes one second.',
-      p: 'In the early afternoon, you often want a change of atmosphere: a softer citrus note for a break, or a fresher oil to stay focused. With a classic diffuser you would have to empty, rinse and dry the tank, then fill it again. With Tolia, the diffusion module stays screwed onto each bottle: take out the peppermint, clip in the sweet orange, put the cover back on, and diffusion starts again.',
+      p: 'In the early afternoon, you often want a change of atmosphere: a softer citrus note for a break, such as sweet orange, or rosemary, known for accompanying moments of concentration. With a classic diffuser you would have to empty, rinse and dry the tank, then fill it again. With Tolia, the diffusion module stays screwed onto each bottle: take out the peppermint, clip in the sweet orange, put the cover back on, and diffusion starts again.',
       alt: 'In the living room, the Morning bottle leaves Tolia’s base, the Day bottle takes its place, then the cover is set back and the mist starts again',
       chrono: 'to change oil',
       callouts: [
@@ -196,7 +196,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '', sub: 'Your range' },
       eyebrow: 'What you have just seen',
       recap: [
-        { time: '07:30', text: 'An invigorating oil to start the day, in one press.' },
+        { time: '07:30', text: 'Peppermint to start the day, in one press.' },
         { time: '14:00', text: 'A different oil in one second, nothing to empty or rinse.' },
         { time: '21:00', text: 'Cordless and quiet at the bedside, up to 90 h of battery.' },
       ],
@@ -247,8 +247,8 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
     matin: {
       stop: { time: '07:30', sub: 'Mañana' },
       eyebrow: '07:30 · Por la mañana, para empezar bien',
-      h: 'Una pulsación, y el día empieza con un aceite tonificante.',
-      p: 'Por la mañana, muchos eligen un aceite esencial tonificante, como la menta piperita, para empezar bien el día; en invierno, otros prefieren un aceite que se difunde tradicionalmente en esa época del año, como el ravintsara. Con Tolia, el frasco ya está en su sitio: una pulsación en la base y la bruma se extiende enseguida. Nada que llenar, nada que dosificar, nada que limpiar después.',
+      h: 'Una pulsación, y el día empieza con la menta piperita.',
+      p: 'Por la mañana, muchos eligen la menta piperita, conocida por su aroma fresco y vivo; en invierno, otros prefieren el ravintsara, que se difunde tradicionalmente en esa época del año. Con Tolia, el frasco ya está en su sitio: una pulsación en la base y la bruma se extiende enseguida. Nada que llenar, nada que dosificar, nada que limpiar después.',
       alt: 'Difusor Tolia abierto sobre una mesa por la mañana: el frasco Mañana está encajado en la base, la bruma sale de la boquilla y otros dos frascos esperan al lado',
       callouts: [
         { t: 'Su frasco, tal cual', p: 'Hemos quitado la cubierta para que lo vea: el frasco de menta piperita está encajado boca abajo en la base. Nada que trasvasar, ninguna gota que contar.' },
@@ -260,7 +260,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '14:00', sub: 'Tarde' },
       eyebrow: '14:00 · A primera hora de la tarde, en el salón',
       h: '¿Le apetece otro aceite esencial? Basta un segundo.',
-      p: 'A primera hora de la tarde, a menudo apetece cambiar de ambiente: una nota cítrica más suave para una pausa, o un aceite más fresco para mantener la concentración. Con un difusor clásico habría que vaciar, enjuagar, secar y volver a llenar el depósito. Con Tolia, el módulo de difusión permanece enroscado en cada frasco: se retira la menta piperita, se encaja la naranja dulce, se vuelve a colocar la cubierta y la difusión se reanuda.',
+      p: 'A primera hora de la tarde, a menudo apetece cambiar de ambiente: una nota cítrica más suave para una pausa, como la naranja dulce, o el romero, conocido por acompañar los momentos de concentración. Con un difusor clásico habría que vaciar, enjuagar, secar y volver a llenar el depósito. Con Tolia, el módulo de difusión permanece enroscado en cada frasco: se retira la menta piperita, se encaja la naranja dulce, se vuelve a colocar la cubierta y la difusión se reanuda.',
       alt: 'En el salón, el frasco Mañana sale de la base de Tolia, el frasco Día ocupa su lugar, luego se vuelve a colocar la cubierta y la bruma sale de nuevo',
       chrono: 'para cambiar de aceite',
       callouts: [
@@ -286,7 +286,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       stop: { time: '', sub: 'Su gama' },
       eyebrow: 'Lo que acaba de ver',
       recap: [
-        { time: '07:30', text: 'Un aceite tonificante para empezar bien, con una sola pulsación.' },
+        { time: '07:30', text: 'La menta piperita para empezar bien, con una sola pulsación.' },
         { time: '14:00', text: 'Otro aceite en un segundo, sin vaciar ni enjuagar nada.' },
         { time: '21:00', text: 'Sin cables y silencioso junto a la cama, hasta 90 h de batería.' },
       ],

@@ -75,9 +75,9 @@ function seoPages() {
     es: "Innobiz diseña en Francia difusores de aceites esenciales de marca blanca para marcas de aromaterapia.",
   };
   const PROPS = {
-    fr: [["Autonomie", "jusqu'à 90 h sans fil (70 à 90 h lumière éteinte, 16 à 20 h avec la lumière d'ambiance)"], ["Charge de la batterie", "USB-C"], ["Flacons compatibles", "flacons standard à col DIN 18, de 5 à 50 ml"], ["Eau", "aucune : l'huile essentielle est diffusée pure"], ["Changement d'huile", "1 seconde"], ["Huiles testées", "plus de 150 huiles essentielles et synergies"]],
-    en: [["Battery life", "up to 90 h cordless (70 to 90 h with the light off, 16 to 20 h with the ambient light on)"], ["Charging", "USB-C"], ["Compatible bottles", "standard DIN 18 neck bottles, 5 to 50 ml"], ["Water", "none: the essential oil is diffused pure"], ["Changing oil", "1 second"], ["Oils tested", "more than 150 essential oils and blends"]],
-    es: [["Autonomía", "hasta 90 h sin cables (de 70 a 90 h con la luz apagada, de 16 a 20 h con la luz ambiental)"], ["Carga de la batería", "USB-C"], ["Frascos compatibles", "frascos estándar con cuello DIN 18, de 5 a 50 ml"], ["Agua", "ninguna: el aceite esencial se difunde puro"], ["Cambio de aceite", "1 segundo"], ["Aceites probados", "más de 150 aceites esenciales y sinergias"]],
+    fr: [["Autonomie", "jusqu'à 90 h sur batterie (70 à 90 h lumière éteinte, 16 à 20 h avec la lumière d'ambiance)"], ["Charge de la batterie", "USB-C"], ["Flacons compatibles", "flacons standard à col DIN 18, de 5 à 50 ml"], ["Eau", "aucune : l'huile essentielle est diffusée pure"], ["Changement d'huile", "1 seconde"], ["Huiles testées", "plus de 150 huiles essentielles et synergies"]],
+    en: [["Battery life", "up to 90 h on battery (70 to 90 h with the light off, 16 to 20 h with the ambient light on)"], ["Charging", "USB-C"], ["Compatible bottles", "standard DIN 18 neck bottles, 5 to 50 ml"], ["Water", "none: the essential oil is diffused pure"], ["Changing oil", "1 second"], ["Oils tested", "more than 150 essential oils and blends"]],
+    es: [["Autonomía", "hasta 90 h con batería (de 70 a 90 h con la luz apagada, de 16 a 20 h con la luz ambiental)"], ["Carga de la batería", "USB-C"], ["Frascos compatibles", "frascos estándar con cuello DIN 18, de 5 a 50 ml"], ["Agua", "ninguna: el aceite esencial se difunde puro"], ["Cambio de aceite", "1 segundo"], ["Aceites probados", "más de 150 aceites esenciales y sinergias"]],
   };
   // texte de l'image de partage, dans la langue de la page (comme src/lib/seo.ts)
   const OG_ALT = {

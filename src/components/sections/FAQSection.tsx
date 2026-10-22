@@ -53,9 +53,9 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Quelle est l’autonomie de Tolia ?', 'How long does Tolia’s battery last?', '¿Cuánto dura la batería de Tolia?'),
       a: t3(
         language,
-        'Jusqu’à 90 heures sans fil : de 70 à 90 h lumière éteinte, de 16 à 20 h avec la lumière d’ambiance, selon l’intensité. La batterie se recharge en USB‑C, et l’utilisateur peut la remplacer lui-même.',
-        'Up to 90 hours cordless: 70 to 90 h with the light off, 16 to 20 h with the ambient light on, depending on intensity. The battery charges via USB‑C, and users can replace it themselves.',
-        'Hasta 90 horas sin cables: de 70 a 90 h con la luz apagada y de 16 a 20 h con la luz ambiental, según la intensidad. La batería se recarga por USB‑C y el propio usuario puede sustituirla.'
+        'Jusqu’à 90 heures d’autonomie sur batterie : de 70 à 90 h lumière éteinte, de 16 à 20 h avec la lumière d’ambiance, selon l’intensité. La batterie se recharge en USB‑C, et l’utilisateur peut la remplacer lui-même.',
+        'Up to 90 hours of battery life: 70 to 90 h with the light off, 16 to 20 h with the ambient light on, depending on intensity. The battery charges via USB‑C, and users can replace it themselves.',
+        'Hasta 90 horas de autonomía con batería: de 70 a 90 h con la luz apagada y de 16 a 20 h con la luz ambiental, según la intensidad. La batería se recarga por USB‑C y el propio usuario puede sustituirla.'
       ),
     },
     {
@@ -160,7 +160,7 @@ const FAQSection: React.FC = () => {
           viewport={{ once: true, margin: '-80px' }}
           variants={fadeBlurUp}
         >
-          <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>FAQ</span>
+          <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 52% 36%)' }}>FAQ</span>
           <h2 className="heading-section text-foreground">
             {t3(language, 'Questions fréquentes', 'Frequently asked questions', 'Preguntas frecuentes')}
           </h2>

@@ -21,8 +21,10 @@
     --popover: 35 25% 99%;
     --popover-foreground: 25 15% 18%;
 
-    /* Primary - Warm terracotta sand (from product amber tones) */
-    --primary: 28 45% 48%;
+    /* Primary - Warm terracotta sand (from product amber tones)
+       22/10/2026 (point V1, accord de Pierre) : cuivre plus foncé, comme --copper-strong de la visite, pour que le texte
+       clair des boutons et du pied de page soit lisible (contraste 5,5:1 au lieu de 3,5:1) */
+    --primary: 28 52% 36%;
     --primary-foreground: 35 30% 97%;
 
     /* Secondary - Warm cream */
@@ -46,7 +48,7 @@
 
     --border: 35 20% 87%;
     --input: 35 20% 87%;
-    --ring: 28 45% 48%;
+    --ring: 28 52% 36%;
 
     --radius: 0.75rem;
 
@@ -231,6 +233,18 @@
   /* Section styles - More generous spacing like Plaud */
   .section-container {
     @apply max-w-6xl mx-auto px-6 lg:px-8;
+  }
+
+  /* Haut de page : même bord gauche que .section-container (72rem centrés + 1,5 ou 2rem), sur toute la largeur (22/10/2026) */
+  .hero-align {
+    padding-left: calc(max(0px, (100% - 72rem) / 2) + 1.5rem);
+    padding-right: calc(max(0px, (100% - 72rem) / 2) + 1.5rem);
+  }
+  @media (min-width: 1024px) {
+    .hero-align {
+      padding-left: calc(max(0px, (100% - 72rem) / 2) + 2rem);
+      padding-right: calc(max(0px, (100% - 72rem) / 2) + 2rem);
+    }
   }
 
   .section-padding {

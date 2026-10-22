@@ -131,7 +131,7 @@ const HomeTechSection: React.FC = () => {
           viewport={{ once: true, margin: '-80px' }}
           variants={fadeBlurUp}
         >
-          <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 45% 48%)' }}>
+          <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 52% 36%)' }}>
             {t3(l, 'Technologie', 'Technology', 'Tecnología')}
           </span>
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
