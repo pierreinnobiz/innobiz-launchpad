@@ -207,7 +207,8 @@ const FilmButton: React.FC<{ label: string; closeLabel: string; className: strin
           {open && (
             <video
               ref={videoRef}
-              src={heroFilm}
+              // sur téléphone et tablette, la version légère (déjà chargée par la vignette) démarre tout de suite
+              src={window.innerWidth < 1024 ? heroFilmPhone : heroFilm}
               className="block w-full rounded-xl bg-black shadow-2xl"
               style={{ aspectRatio: '16 / 9' }}
               controls
