@@ -5,6 +5,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 import { trackCTAClick } from '@/lib/tracking';
 import { calendlyUrl } from '@/lib/links';
+import heroFilm from '@/assets/hero/tolia-film.mp4';
 
 const POSTER = `${import.meta.env.BASE_URL}journee/img/`;
 
@@ -12,14 +13,9 @@ const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
   window.matchMedia?.('(prefers-reduced-motion: reduce)').matches === true;
 
-// Le film dure 41 secondes. Sa dernière image (un Tolia avec sa brume à côté d'un vase) restait figée à l'écran
-// une fois le film terminé : on fait maintenant disparaître le film en fondu, il ne reste que le fond sombre.
-const FILM_SECONDS = 41;
-// Le film commence par un grand titre « Tolia » (vers 3 à 5,5 s) qui passait derrière le titre de la page : on ne montre
-// le film qu'à partir de sa 6e seconde ; avant, l'image du produit reste affichée (retour des 5 marques testeuses, 17/10/2026).
-const SKIP_INTRO_S = 6;
-// Le lecteur envoie « playProgress » (avancement) et « finish » (fin) ; « timeupdate » et « ended » sont les noms de la nouvelle API.
-const VIMEO_EVENTS = ['play', 'playing', 'playProgress', 'timeupdate', 'finish', 'ended', 'error'];
+// 26/10/2026 : le film est servi par le site lui-même (fichier MP4 de 3,4 Mo, src/assets/hero) au lieu du lecteur Vimeo,
+// qui ne montrait le film qu'au bout de 10 à 12 secondes (chargement du lecteur, puis attente de la fin du titre « Tolia »).
+// Le fichier commence directement après ce titre (6 premières secondes coupées) : plus rien à attendre.
 
 // Film only on wide screens, without reduced motion and without data saver.
 const canPlayHeroFilm = () => {
@@ -32,25 +28,16 @@ const canPlayHeroFilm = () => {
 };
 
 const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => void }> = ({ onStatus }) => {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-  const [iframeLoaded, setIframeLoaded] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
   // Mount the player only after the first paint so it never competes with the
-  // hero text (LCP) for bandwidth on mobile connections.
+  // hero text and image for the first render.
   const [mounted, setMounted] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [showAnyway, setShowAnyway] = useState(false);
   const [ended, setEnded] = useState(false);
   const [gone, setGone] = useState(false);
-  const [filmSec, setFilmSec] = useState(0);
-  const [noEventsLate, setNoEventsLate] = useState(false);
-  // 20/10/2026 : le lecteur doit s'être annoncé (« ready ») pour être montré ; une erreur Vimeo (« Player error », vue sur
-  // le site en ligne le 16/09) laisse l'image fixe à l'écran au lieu du message d'erreur.
-  const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    // Mount right after the first paint: the hero text is already on screen,
-    // so the player can start loading immediately without hurting LCP.
-    // No player at all on small screens, reduced motion or data saver: the still image stays.
+    // No film at all on small screens, reduced motion or data saver: the still image stays.
     if (!canPlayHeroFilm()) return;
     let timer: number | undefined;
     const raf = requestAnimationFrame(() => {
@@ -63,82 +50,20 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
   }, []);
 
   useEffect(() => {
-    // The Vimeo player sometimes focuses its own iframe after load, which
-    // pulls the viewport back to the hero on deep links like /#contact.
-    // Because this is a decorative background video, immediately defocus it and
-    // notify the rest of the app so it can restore the anchor position.
-    if (!mounted) return;
-    const iframe = iframeRef.current;
-    if (!iframe) return;
-    let attempts = 0;
-    const maxAttempts = 100;
-    const id = setInterval(() => {
-      attempts++;
-      if (document.activeElement === iframe) {
-        iframe.blur();
-        window.dispatchEvent(new CustomEvent('tolia:heroiframe:focus'));
-      }
-      if (attempts >= maxAttempts) {
-        clearInterval(id);
-      }
-    }, 50);
-    return () => clearInterval(id);
+    // Le film attend le visiteur : en pause dès que le haut de page n'est presque plus visible, il reprend quand on y revient.
+    const video = videoRef.current;
+    if (!mounted || !video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (video.ended) return;
+        if (entry.intersectionRatio >= 0.35) video.play().catch(() => { /* lecture refusée : l'image reste */ });
+        else video.pause();
+      },
+      { threshold: [0, 0.35] }
+    );
+    observer.observe(video.parentElement ?? video);
+    return () => observer.disconnect();
   }, [mounted]);
-
-  useEffect(() => {
-    // Messages du lecteur Vimeo : début de lecture, avancement, fin.
-    // Le lecteur n'écoute nos demandes qu'une fois « ready » : c'est à ce moment qu'on s'abonne aux événements.
-    const subscribe = () => {
-      VIMEO_EVENTS.forEach((ev) => {
-        iframeRef.current?.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: ev }), '*');
-      });
-    };
-    const handleMessage = (event: MessageEvent) => {
-      const frame = iframeRef.current;
-      if (!frame || event.source !== frame.contentWindow) return;
-      try {
-        const data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
-        const name = data?.event || data?.method;
-        if (name === 'ready') { setReady(true); subscribe(); }
-        if (name === 'error') setEnded(true);
-        if (name === 'play' || name === 'playing') setPlaying(true);
-        if (name === 'timeupdate' || name === 'playProgress') {
-          setPlaying(true);
-          const d = data.data || {};
-          if (typeof d.seconds === 'number') setFilmSec(d.seconds);
-          if (typeof d.seconds === 'number' && typeof d.duration === 'number' && d.duration > 0 && d.seconds >= d.duration - 0.7) {
-            setEnded(true);
-          }
-        }
-        if (name === 'ended' || name === 'finish') setEnded(true);
-      } catch { /* message sans rapport avec le lecteur */ }
-    };
-    window.addEventListener('message', handleMessage);
-    return () => window.removeEventListener('message', handleMessage);
-  }, []);
-
-  useEffect(() => {
-    // Demande au lecteur de signaler la lecture ; si le lecteur reste muet, on affiche quand même le film.
-    if (!iframeLoaded) return;
-    const iframe = iframeRef.current;
-    VIMEO_EVENTS.forEach((event) => {
-      iframe?.contentWindow?.postMessage(JSON.stringify({ method: 'addEventListener', value: event }), '*');
-    });
-    const id = window.setTimeout(() => setShowAnyway(true), 3000);
-    // si le lecteur n'envoie jamais l'avancement, on montre le film après l'introduction supposée
-    const late = window.setTimeout(() => setNoEventsLate(true), (3 + SKIP_INTRO_S) * 1000);
-    return () => { clearTimeout(id); clearTimeout(late); };
-  }, [iframeLoaded]);
-
-  useEffect(() => {
-    // Filets de sécurité si le lecteur n'envoie jamais ses messages de lecture.
-    const afterPlay = playing ? window.setTimeout(() => setEnded(true), (FILM_SECONDS + 3) * 1000) : undefined;
-    const noPlay = window.setTimeout(() => setEnded(true), (FILM_SECONDS + 12) * 1000);
-    return () => {
-      if (afterPlay) clearTimeout(afterPlay);
-      clearTimeout(noPlay);
-    };
-  }, [playing]);
 
   useEffect(() => {
     // Une fois le fondu terminé, on retire complètement le lecteur.
@@ -147,27 +72,25 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
     return () => clearTimeout(id);
   }, [ended]);
 
-  const pastIntro = filmSec >= SKIP_INTRO_S || (noEventsLate && filmSec === 0);
-  const visible = (playing || (showAnyway && ready)) && pastIntro && !ended;
+  const visible = playing && !ended;
   useEffect(() => { onStatus?.(visible, ended); }, [visible, ended, onStatus]);
 
   return (
     <div className="absolute inset-0 overflow-hidden">
       {mounted && !gone && (
-        <iframe
-          ref={iframeRef}
-          src="https://player.vimeo.com/video/1181120283?h=43d9f2ae8d&background=1&autoplay=1&loop=0&muted=1&autopause=0&quality=720p&dnt=1#t=1s"
-          className="absolute top-1/2 left-1/2 border-0 -translate-x-1/2 -translate-y-1/2"
-          style={{
-            width: 'max(100vw, 177.78vh)',
-            height: 'max(100vh, 56.25vw)',
-            opacity: visible ? 1 : 0,
-            transition: 'opacity 1.4s ease',
-            pointerEvents: 'none',
-          }}
-          allow="autoplay; fullscreen"
-          onLoad={() => setIframeLoaded(true)}
-          title="Tolia diffuser hero video"
+        <video
+          ref={videoRef}
+          src={heroFilm}
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ opacity: visible ? 1 : 0, transition: 'opacity 1.4s ease', pointerEvents: 'none' }}
+          muted
+          autoPlay
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          onPlaying={() => setPlaying(true)}
+          onEnded={() => setEnded(true)}
+          onError={() => setEnded(true)}
           tabIndex={-1}
           aria-hidden="true"
         />
