@@ -10,7 +10,7 @@ import CarouselDots from '@/components/CarouselDots';
 /**
  * « Simple pour vos clients. Pensé pour durer. » — version compacte (17/10/2026, demande de Pierre) :
  * neuf repères de longueur semblable (douze au cycle 1, réduits après le test par les marques), sans image ni tableau replié (la comparaison des technologies est maintenant
- * expliquée dès le début du site, dans « Le constat »). « Zéro colmatage » devient « Plus de 150 huiles testées ».
+ * expliquée dès le début du site, dans « Le constat »). « Zéro colmatage » devient « Plus de 150 huiles testées », puis « Toutes les huiles essentielles » (26/10/2026, Pierre).
  */
 const HomeTechSection: React.FC = () => {
   const { language: l } = useLanguage();
@@ -53,9 +53,9 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Vos flacons, tels quels', 'Your bottles, as they are', 'Sus frascos, tal cual'),
       text: t3(
         l,
-        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml). Rien à transvaser : le flacon s’utilise tel quel.',
-        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml). Nothing to decant: the bottle is used as it is.',
-        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml). Nada que trasvasar: el frasco se usa tal cual.'
+        'Le module se visse sur les flacons standard du marché (col DIN 18, de 5 à 50 ml), sans même retirer le compte‑gouttes. Rien à transvaser : le flacon s’utilise tel quel.',
+        'The module screws onto industry-standard bottles (DIN 18 neck, 5 to 50 ml), without even removing the dropper. Nothing to decant: the bottle is used as it is.',
+        'El módulo se enrosca en los frascos estándar del mercado (cuello DIN 18, de 5 a 50 ml), sin siquiera quitar el cuentagotas. Nada que trasvasar: el frasco se usa tal cual.'
       ),
     },
     {
@@ -70,12 +70,12 @@ const HomeTechSection: React.FC = () => {
     },
     {
       icon: Microscope,
-      title: t3(l, 'Plus de 150 huiles testées', 'Over 150 oils tested', 'Más de 150 aceites probados'),
+      title: t3(l, 'Toutes les huiles essentielles', 'Every essential oil', 'Todos los aceites esenciales'),
       text: t3(
         l,
-        'Une technologie testée sur plus de 150 huiles essentielles et synergies, capable de diffuser aussi des parfums synthétiques et d’intérieur.',
-        'A technology tested on more than 150 essential oils and blends, which can also diffuse synthetic and home fragrances.',
-        'Una tecnología probada con más de 150 aceites esenciales y sinergias, capaz de difundir también perfumes sintéticos y fragancias para el hogar.'
+        'Notre technologie de diffusion exclusive, mise au point par Innobiz, diffuse toutes les huiles essentielles du marché (plus de 150 testées), ainsi que les parfums naturels et les parfums d’intérieur de synthèse. Une performance qu’aucun autre diffuseur d’huile pure n’atteint aujourd’hui.',
+        'Our exclusive diffusion technology, developed by Innobiz, diffuses every essential oil on the market (more than 150 tested), as well as natural fragrances and synthetic home fragrances. A performance no other pure-oil diffuser achieves today.',
+        'Nuestra tecnología de difusión exclusiva, desarrollada por Innobiz, difunde todos los aceites esenciales del mercado (más de 150 probados), así como los perfumes naturales y las fragancias sintéticas para el hogar. Un rendimiento que ningún otro difusor de aceite puro alcanza hoy.'
       ),
     },
     {

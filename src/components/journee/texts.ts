@@ -71,7 +71,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       p: 'Le matin, beaucoup choisissent la menthe poivrée, connue pour son parfum frais et vif ; en hiver, d’autres préfèrent le ravintsara, que l’on diffuse traditionnellement à cette saison. Avec Tolia, le flacon est déjà en place : un appui sur la base, et la brume se répand aussitôt. Rien à remplir, rien à doser, rien à nettoyer ensuite.',
       alt: 'Diffuseur Tolia ouvert sur une table, le matin : le flacon Matin est clipsé dans la base, la brume sort de la buse, deux autres flacons attendent à côté',
       callouts: [
-        { t: 'Votre flacon, tel quel', p: 'Nous avons retiré la cloche pour vous le montrer : le flacon de menthe poivrée est clipsé tête en bas dans la base. Rien à transvaser, aucune goutte à compter.' },
+        { t: 'Votre flacon, tel quel', p: 'Nous avons retiré la cloche pour vous le montrer : le flacon de menthe poivrée est clipsé tête en bas dans la base. Pas de compte‑gouttes à retirer, rien à transvaser, aucune goutte à compter.' },
         { t: 'Un appui pour lancer', p: 'La diffusion démarre aussitôt, sans temps de chauffe. La durée, la puissance et l’intermittence se règlent très simplement.' },
         { t: 'Une brume d’huile pure', p: 'Nébulisation ultrasonique : l’huile n’est ni chauffée ni diluée dans l’eau. Elle devient une brume très fine, qui reste longtemps dans l’air.' },
       ],
@@ -113,7 +113,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       h: 'Ce que Tolia apporte à votre gamme',
       adv: [
         { t: 'Vos flacons, directement', p: 'Le module se visse sur les flacons standard (col DIN 18, de 5 à 50 ml) : vos clients rachètent simplement vos huiles.' },
-        { t: 'Un seul appareil pour votre gamme', p: 'La technologie a été testée sur plus de 150 huiles essentielles et synergies : le même appareil diffuse vos huiles pures et vos synergies.' },
+        { t: 'Un seul appareil pour votre gamme', p: 'Notre technologie diffuse toutes les huiles essentielles du marché, vos synergies, et même les parfums naturels ou de synthèse : un seul appareil pour toute votre gamme.' },
         { t: 'Une seule référence à gérer', p: 'Un seul diffuseur pour toutes vos huiles, au lieu de plusieurs appareils : moins de stock, moins de SAV, un seul discours, en magasin comme en ligne.' },
         { t: 'Un diffuseur à votre image', p: 'Cloche, couleurs, matières, logo, coffret, modes de diffusion : Tolia porte votre marque de bout en bout.' },
       ],
@@ -161,7 +161,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       p: 'In the morning, many people choose peppermint, known for its fresh, lively scent; in winter, others prefer ravintsara, traditionally diffused at that time of year. With Tolia, the bottle is already in place: one press on the base and the mist spreads at once. Nothing to fill, nothing to measure, nothing to clean afterwards.',
       alt: 'Open Tolia diffuser on a table in the morning: the Morning bottle is clipped into the base, mist leaves the nozzle, two other bottles wait beside it',
       callouts: [
-        { t: 'Your bottle, as it is', p: 'We lifted the cover so you can see it: the peppermint bottle is clipped upside down into the base. Nothing to decant, no drops to count.' },
+        { t: 'Your bottle, as it is', p: 'We lifted the cover so you can see it: the peppermint bottle is clipped upside down into the base. No dropper to remove, nothing to decant, no drops to count.' },
         { t: 'One press to start', p: 'Diffusion starts at once, with no warm-up. Time, strength and on/off cycles are easy to adjust.' },
         { t: 'A mist of pure oil', p: 'Ultrasonic nebulisation: the oil is neither heated nor diluted in water. It becomes a very fine mist that lingers in the air.' },
       ],
@@ -203,7 +203,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       h: 'What Tolia brings to your range',
       adv: [
         { t: 'Your bottles, used directly', p: 'The module screws onto standard bottles (DIN 18 neck, 5 to 50 ml): your customers simply buy your oils again.' },
-        { t: 'One device for your range', p: 'Tested on more than 150 essential oils and blends: the same device diffuses your single oils and your blends.' },
+        { t: 'One device for your range', p: 'Our technology diffuses every essential oil on the market, your blends, and even natural or synthetic fragrances: one device for your whole range.' },
         { t: 'Just one SKU to manage', p: 'One diffuser for all your oils instead of several devices: less stock, fewer after-sales issues, one simple pitch, in store and online.' },
         { t: 'A diffuser that is unmistakably yours', p: 'Cover, colours, materials, logo, box, diffusion modes: Tolia carries your brand throughout.' },
       ],
@@ -251,7 +251,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       p: 'Por la mañana, muchos eligen la menta piperita, conocida por su aroma fresco y vivo; en invierno, otros prefieren el ravintsara, que se difunde tradicionalmente en esa época del año. Con Tolia, el frasco ya está en su sitio: una pulsación en la base y la bruma se extiende enseguida. Nada que llenar, nada que dosificar, nada que limpiar después.',
       alt: 'Difusor Tolia abierto sobre una mesa por la mañana: el frasco Mañana está encajado en la base, la bruma sale de la boquilla y otros dos frascos esperan al lado',
       callouts: [
-        { t: 'Su frasco, tal cual', p: 'Hemos quitado la cubierta para que lo vea: el frasco de menta piperita está encajado boca abajo en la base. Nada que trasvasar, ninguna gota que contar.' },
+        { t: 'Su frasco, tal cual', p: 'Hemos quitado la cubierta para que lo vea: el frasco de menta piperita está encajado boca abajo en la base. Ningún cuentagotas que quitar, nada que trasvasar, ninguna gota que contar.' },
         { t: 'Una pulsación para empezar', p: 'La difusión arranca al instante, sin tiempo de calentamiento. La duración, la potencia y la intermitencia se ajustan de forma muy sencilla.' },
         { t: 'Una bruma de aceite puro', p: 'Nebulización ultrasónica: el aceite no se calienta ni se diluye en agua. Se convierte en una bruma muy fina que permanece mucho tiempo en el aire.' },
       ],
@@ -293,7 +293,7 @@ export const JOURNEE_TEXTS: Record<JourneeLang, JourneeTexts> = {
       h: 'Lo que Tolia aporta a su gama',
       adv: [
         { t: 'Sus frascos, directamente', p: 'El módulo se enrosca en frascos estándar (cuello DIN 18, de 5 a 50 ml): sus clientes simplemente vuelven a comprar sus aceites.' },
-        { t: 'Un solo aparato para su gama', p: 'Probado con más de 150 aceites esenciales y sinergias: el mismo aparato difunde sus aceites puros y sus sinergias.' },
+        { t: 'Un solo aparato para su gama', p: 'Nuestra tecnología difunde todos los aceites esenciales del mercado, sus sinergias e incluso perfumes naturales o sintéticos: un solo aparato para toda su gama.' },
         { t: 'Una sola referencia que gestionar', p: 'Un solo difusor para todos sus aceites en lugar de varios aparatos: menos stock, menos posventa, un solo discurso, en tienda y en línea.' },
         { t: 'Un difusor a su imagen', p: 'Cubierta, colores, materiales, logotipo, estuche, modos de difusión: Tolia lleva su marca de principio a fin.' },
       ],

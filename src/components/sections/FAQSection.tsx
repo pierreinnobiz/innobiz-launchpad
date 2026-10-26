@@ -6,7 +6,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
 
 // Onze questions, réponses courtes. Les minimums, délais et la conformité sont ceux déjà publiés sur le site ; RSE, supports marketing et prix retrouvent leur réponse de l'ancien site.
-// 17/10/2026 : ajout « Quelles huiles peut-on diffuser ? » (plus de 150 huiles testées, phrase de Pierre) et « Peut-on encadrer l'usage de nos huiles ? » ;
+// 17/10/2026 : ajout « Quelles huiles peut-on diffuser ? » (plus de 150 huiles testées, phrase de Pierre ; « toutes les huiles du marché » + parfums naturels et de synthèse + compte‑gouttes, 26/10/2026) et « Peut-on encadrer l'usage de nos huiles ? » ;
 // « Comment démarrer ? » propose aussi l'appel de 30 minutes avec Simon (19/10/2026) ; prix : plus de « conversation qualifiée » ; hydrolats retirés (à confirmer par Pierre).
 const FAQSection: React.FC = () => {
   const { language } = useLanguage();
@@ -26,18 +26,18 @@ const FAQSection: React.FC = () => {
       q: t3(language, 'Pouvons-nous utiliser nos propres huiles essentielles ?', 'Can we use our own essential oils?', '¿Podemos usar nuestros propios aceites esenciales?'),
       a: t3(
         language,
-        'Oui, tout votre catalogue : le module se visse sur les flacons standard de 5, 10, 15, 30 ou 50 ml (col DIN 18), sans transfert ni remplissage.',
-        'Yes, your whole range: the module screws onto standard 5, 10, 15, 30 or 50 ml bottles (DIN 18 neck), with no decanting and nothing to fill.',
-        'Sí, todo su catálogo: el módulo se enrosca en los frascos estándar de 5, 10, 15, 30 o 50 ml (cuello DIN 18), sin trasvase ni llenado.'
+        'Oui, tout votre catalogue : le module se visse sur les flacons standard de 5, 10, 15, 30 ou 50 ml (col DIN 18), sans retirer le compte‑gouttes, sans transfert ni remplissage.',
+        'Yes, your whole range: the module screws onto standard 5, 10, 15, 30 or 50 ml bottles (DIN 18 neck), without removing the dropper, with no decanting and nothing to fill.',
+        'Sí, todo su catálogo: el módulo se enrosca en los frascos estándar de 5, 10, 15, 30 o 50 ml (cuello DIN 18), sin quitar el cuentagotas, sin trasvase ni llenado.'
       ),
     },
     {
       q: t3(language, 'Quelles huiles et quels parfums peut-on diffuser avec Tolia ?', 'Which oils and fragrances can Tolia diffuse?', '¿Qué aceites y fragancias puede difundir Tolia?'),
       a: t3(
         language,
-        'La technologie a été testée sur plus de 150 huiles essentielles et synergies, et elle diffuse aussi les parfums synthétiques et les parfums d’intérieur. Pour vos références les plus visqueuses, le plus simple est de les essayer avec l’échantillon.',
-        'The technology has been tested on more than 150 essential oils and blends, and it also diffuses synthetic and home fragrances. For your most viscous oils, the simplest way is to try them with the sample.',
-        'La tecnología se ha probado con más de 150 aceites esenciales y sinergias, y difunde también perfumes sintéticos y fragancias para el hogar. Para sus referencias más viscosas, lo más sencillo es probarlas con la muestra.'
+        'Toutes les huiles essentielles du marché : notre technologie exclusive a été testée sur plus de 150 huiles essentielles et synergies. Elle diffuse aussi les parfums naturels et les parfums d’intérieur de synthèse.',
+        'Every essential oil on the market: our exclusive technology has been tested on more than 150 essential oils and blends. It also diffuses natural fragrances and synthetic home fragrances.',
+        'Todos los aceites esenciales del mercado: nuestra tecnología exclusiva se ha probado con más de 150 aceites esenciales y sinergias. También difunde perfumes naturales y fragancias sintéticas para el hogar.'
       ),
     },
     {
