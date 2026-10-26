@@ -1,11 +1,12 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowRight, CalendarCheck } from 'lucide-react';
+import { ArrowRight, CalendarCheck, Play, X } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
-import { trackCTAClick } from '@/lib/tracking';
+import { trackCTAClick, trackEvent } from '@/lib/tracking';
 import { calendlyUrl } from '@/lib/links';
 import heroFilm from '@/assets/hero/tolia-film.mp4';
+import heroFilmPhone from '@/assets/hero/tolia-film-telephone.mp4';
 
 const POSTER = `${import.meta.env.BASE_URL}journee/img/`;
 
@@ -96,6 +97,129 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
         />
       )}
     </div>
+  );
+};
+
+// 26/10/2026 (idée C de Pierre) : sur téléphone, le film (version légère de 1,3 Mo) joue dans la vignette du haut de page,
+// par-dessus l'image. Il ne se charge qu'après la page, pour ne pas retarder le premier affichage, et seulement sur les écrans
+// où la vignette est montrée (mêmes règles que .hero-poster-m dans index.css).
+const canPlayCardFilm = () => {
+  if (typeof window === 'undefined') return false;
+  if (window.innerWidth >= 1024 || window.innerHeight < 780) return false;
+  if (prefersReducedMotion()) return false;
+  const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+  return conn?.saveData !== true;
+};
+
+const CardFilm: React.FC = () => {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const [playing, setPlaying] = useState(false);
+  const [ended, setEnded] = useState(false);
+
+  useEffect(() => {
+    if (!canPlayCardFilm()) return;
+    let timer: number | undefined;
+    const start = () => { timer = window.setTimeout(() => setMounted(true), 300); };
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start, { once: true });
+    return () => {
+      window.removeEventListener('load', start);
+      if (timer) clearTimeout(timer);
+    };
+  }, []);
+
+  useEffect(() => {
+    // en pause quand la vignette sort de l'écran, reprise quand on y revient
+    const video = videoRef.current;
+    if (!mounted || !video) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (video.ended) return;
+        if (entry.intersectionRatio >= 0.5) video.play().catch(() => { /* lecture refusée : l'image reste */ });
+        else video.pause();
+      },
+      { threshold: [0, 0.5] }
+    );
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, [mounted]);
+
+  if (!mounted) return null;
+  return (
+    <video
+      ref={videoRef}
+      src={heroFilmPhone}
+      className="absolute inset-0 h-full w-full object-cover"
+      style={{ opacity: playing && !ended ? 1 : 0, transition: 'opacity 1s ease' }}
+      muted
+      autoPlay
+      playsInline
+      preload="auto"
+      disablePictureInPicture
+      onPlaying={() => setPlaying(true)}
+      onEnded={() => setEnded(true)}
+      onError={() => setEnded(true)}
+      tabIndex={-1}
+      aria-hidden="true"
+    />
+  );
+};
+
+// 26/10/2026 (idée B de Pierre) : bouton « Voir Tolia en action » qui ouvre le film en grand, avec ses commandes.
+// Fenêtre native <dialog> : Échap la ferme, aucun module en plus à télécharger.
+const FilmButton: React.FC<{ label: string; closeLabel: string; className: string }> = ({ label, closeLabel, className }) => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [open, setOpen] = useState(false);
+
+  const show = () => {
+    setOpen(true);
+    dialogRef.current?.showModal();
+    trackEvent('hero_film_open', { section: 'hero' });
+  };
+  const close = () => dialogRef.current?.close();
+
+  return (
+    <>
+      <button type="button" onClick={show} className={className}>
+        <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-black">
+          <Play className="h-3.5 w-3.5 translate-x-[1px] fill-current" aria-hidden="true" />
+        </span>
+        {label}
+      </button>
+      <dialog
+        ref={dialogRef}
+        aria-label={label}
+        onClose={() => { videoRef.current?.pause(); setOpen(false); }}
+        onClick={(e) => { if (e.target === dialogRef.current) close(); }}
+        className="pointer-events-auto m-auto w-[min(92vw,1100px)] max-w-none overflow-visible bg-transparent p-0 backdrop:bg-black/85"
+      >
+        <div className="relative">
+          <button
+            type="button"
+            onClick={close}
+            className="absolute -top-11 right-0 inline-flex items-center gap-1.5 rounded-full bg-white/15 px-3 py-1.5 text-sm font-semibold text-white hover:bg-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          >
+            <X className="h-4 w-4" aria-hidden="true" />
+            {closeLabel}
+          </button>
+          {open && (
+            <video
+              ref={videoRef}
+              src={heroFilm}
+              className="block w-full rounded-xl bg-black shadow-2xl"
+              style={{ aspectRatio: '16 / 9' }}
+              controls
+              autoPlay
+              muted
+              playsInline
+              preload="auto"
+            />
+          )}
+        </div>
+      </dialog>
+    </>
   );
 };
 
@@ -196,6 +320,8 @@ const HeroSection: React.FC = () => {
     'No commitment · Reply within one business day',
     'Sin compromiso · Respuesta en un día hábil'
   );
+  const filmLabel = t3(language, 'Voir Tolia en action · 35 s', 'See Tolia in action · 35 s', 'Ver Tolia en acción · 35 s');
+  const closeLabel = t3(language, 'Fermer', 'Close', 'Cerrar');
   const cta = t3(language, 'Recevoir mon échantillon gratuit', 'Get my free sample', 'Recibir mi muestra gratuita');
   // Deuxième porte d'entrée : parler directement à l'équipe (30 minutes en visio avec Simon Desbuisson).
   const talk = t3(language, 'Réserver 30 min avec Simon', 'Book 30 min with Simon', 'Reservar 30 min con Simon');
@@ -224,6 +350,12 @@ const HeroSection: React.FC = () => {
         style={{ aspectRatio: '16 / 10' }}
       >
         <img src={`${POSTER}hero_ferme_3d.webp`} loading="eager" fetchPriority="high" alt={showPoster ? posterAlt : ''} className="h-full w-full object-cover" style={{ objectPosition: '50% 50%' }} decoding="async" />
+        <CardFilm />
+        <FilmButton
+          label={filmLabel}
+          closeLabel={closeLabel}
+          className="pointer-events-auto absolute bottom-3 left-3 inline-flex items-center gap-2 rounded-full bg-black/55 py-1.5 pl-1.5 pr-3.5 text-sm font-semibold text-white backdrop-blur-sm focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        />
       </figure>
       <figure
         aria-hidden={!showPoster}
@@ -284,6 +416,12 @@ const HeroSection: React.FC = () => {
                 </li>
               ))}
             </ul>
+            {/* sur téléphone, le même bouton est posé sur la vignette du film (classe hero-film-cta, voir index.css) */}
+            <FilmButton
+              label={filmLabel}
+              closeLabel={closeLabel}
+              className="hero-film-cta mt-6 items-center gap-2.5 rounded-full border border-white/30 bg-white/10 py-1.5 pl-1.5 pr-4 text-sm font-semibold text-white backdrop-blur-sm transition hover:bg-white/20 focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            />
           </div>
         </div>
       </div>
