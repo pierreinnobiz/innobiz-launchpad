@@ -421,7 +421,7 @@
    Téléphone et tablette : en haut, seulement si l'écran est assez haut pour ne pas toucher le titre ; ordinateur : en bas à droite. */
 .hero-poster-m { display: none; }
 .hero-poster-d { display: none; }
-@media (max-width: 1023px) and (min-height: 780px) {
+@media (max-width: 1023px) and (orientation: portrait) {
   .hero-poster-m { display: block; }
   /* le texte commence sous l'image (au lieu de partir du bas de l'écran et de remonter sur l'image, cycle 3) */
   #hero.hero-wrap { height: auto; min-height: 100vh; min-height: 100svh; }
@@ -430,4 +430,9 @@
 @media (min-width: 1024px) and (min-height: 700px) { .hero-poster-d { display: block; } }
 /* bouton « Voir Tolia en action » (26/10/2026) : sous les boutons, sauf là où la vignette du haut le porte déjà */
 .hero-film-cta { display: inline-flex; }
-@media (max-width: 1023px) and (min-height: 780px) { .hero-film-cta { display: none; } }
+@media (max-width: 1023px) and (orientation: portrait) { .hero-film-cta { display: none; } }
+/* téléphone tenu en largeur (26/10/2026) : le texte ne tient pas dans la hauteur ; il commence sous la barre du haut au lieu de remonter dessous */
+@media (max-height: 500px) and (orientation: landscape) {
+  #hero.hero-wrap { height: auto; min-height: 100vh; min-height: 100svh; }
+  #hero .hero-content { height: auto; justify-content: flex-start; padding-top: 96px; padding-bottom: 40px; }
+}

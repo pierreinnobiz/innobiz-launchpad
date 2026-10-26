@@ -18,10 +18,10 @@ const prefersReducedMotion = () =>
 // qui ne montrait le film qu'au bout de 10 à 12 secondes (chargement du lecteur, puis attente de la fin du titre « Tolia »).
 // Le fichier commence directement après ce titre (6 premières secondes coupées) : plus rien à attendre.
 
-// Film only on wide screens, without reduced motion and without data saver.
+// Film in the background on wide screens and on phones held sideways (26/10/2026), without reduced motion and without data saver.
 const canPlayHeroFilm = () => {
   if (typeof window === 'undefined') return false;
-  if (window.innerWidth < 1024) return false;
+  if (window.innerWidth < 1024 && window.innerWidth <= window.innerHeight) return false;
   if (prefersReducedMotion()) return false;
   const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
   if (conn?.saveData === true) return false;
@@ -54,6 +54,10 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
     // Le film attend le visiteur : en pause dès que le haut de page n'est presque plus visible, il reprend quand on y revient.
     const video = videoRef.current;
     if (!mounted || !video) return;
+    // React ne pose pas l'attribut « muted » dans la page : Safari sur iPhone n'accepte la lecture automatique que s'il y est
+    video.defaultMuted = true;
+    video.muted = true;
+    video.setAttribute('muted', '');
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (video.ended) return;
@@ -81,7 +85,7 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
       {mounted && !gone && (
         <video
           ref={videoRef}
-          src={heroFilm}
+          src={window.innerWidth < 1024 ? heroFilmPhone : heroFilm}
           className="absolute inset-0 h-full w-full object-cover"
           style={{ opacity: visible ? 1 : 0, transition: 'opacity 1.4s ease', pointerEvents: 'none' }}
           muted
@@ -101,11 +105,12 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
 };
 
 // 26/10/2026 (idée C de Pierre) : sur téléphone, le film (version légère de 1,3 Mo) joue dans la vignette du haut de page,
-// par-dessus l'image. Il ne se charge qu'après la page, pour ne pas retarder le premier affichage, et seulement sur les écrans
-// où la vignette est montrée (mêmes règles que .hero-poster-m dans index.css).
+// par-dessus l'image, sur tous les écrans où la vignette est montrée (mêmes règles que .hero-poster-m dans index.css : moins de
+// 1024 px de large, tenu droit). Pierre veut qu'il démarre tout de suite : il se charge dès le premier affichage. (Jusqu'au 26/10,
+// la vignette exigeait 780 px de haut, ce qu'un iPhone n'a pas avec la barre de Safari : ni vignette ni film.)
 const canPlayCardFilm = () => {
   if (typeof window === 'undefined') return false;
-  if (window.innerWidth >= 1024 || window.innerHeight < 780) return false;
+  if (window.innerWidth >= 1024 || window.innerWidth > window.innerHeight) return false;
   if (prefersReducedMotion()) return false;
   const conn = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
   return conn?.saveData !== true;
@@ -120,11 +125,11 @@ const CardFilm: React.FC = () => {
   useEffect(() => {
     if (!canPlayCardFilm()) return;
     let timer: number | undefined;
-    const start = () => { timer = window.setTimeout(() => setMounted(true), 300); };
-    if (document.readyState === 'complete') start();
-    else window.addEventListener('load', start, { once: true });
+    const raf = requestAnimationFrame(() => {
+      timer = window.setTimeout(() => setMounted(true), 120);
+    });
     return () => {
-      window.removeEventListener('load', start);
+      cancelAnimationFrame(raf);
       if (timer) clearTimeout(timer);
     };
   }, []);
@@ -133,6 +138,10 @@ const CardFilm: React.FC = () => {
     // en pause quand la vignette sort de l'écran, reprise quand on y revient
     const video = videoRef.current;
     if (!mounted || !video) return;
+    // React ne pose pas l'attribut « muted » dans la page : Safari sur iPhone n'accepte la lecture automatique que s'il y est
+    video.defaultMuted = true;
+    video.muted = true;
+    video.setAttribute('muted', '');
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (video.ended) return;
