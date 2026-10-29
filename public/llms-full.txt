@@ -311,7 +311,7 @@ Jusqu’à 90 heures d’autonomie sur batterie : de 70 à 90 h lumière éteint
 Oui. La durée, la puissance et l’intermittence de la diffusion peuvent être préprogrammées selon vos recommandations, et la diffusion s’arrête d’elle-même au bout de la durée choisie.
 
 ### Qu’est-ce qui ramène vos clients vers vos huiles, et pas vers celles d’un concurrent ?
-Le col DIN 18 est un standard : le flacon d’une autre marque peut donc aussi s’y visser. Ce qui ramène vos clients vers vos huiles, c’est tout ce qui porte votre marque : le diffuseur et ses modules à vos couleurs, des modes de diffusion préprogrammés selon vos recommandations, une notice et un QR code vers votre programme de fidélité, et vos huiles, qu’ils connaissent déjà.
+Le col DIN 18 est un standard : un autre flacon peut se visser. Ce qui ramène vos clients vers vos huiles, c’est tout ce qui porte votre marque : le diffuseur et ses modules à vos couleurs, des modes de diffusion préprogrammés selon vos recommandations, une notice et un QR code vers votre programme de fidélité, et vos huiles, qu’ils connaissent déjà.
 
 ### Quels sont les minimums de commande ?
 Marque blanche : généralement dès 3 000 pièces, selon le projet. Commande sur stock : dès 500 pièces, expédiées de France sous 72 h si le stock le permet. Nos prix vous sont communiqués dès le premier échange.
@@ -694,7 +694,7 @@ Up to 90 hours of battery life: 70 to 90 h with the light off, 16 to 20 h with t
 Yes. Diffusion duration, strength and on/off cycles can be pre-programmed to your recommendations, and diffusion stops by itself after the chosen time.
 
 ### What brings customers back to your oils rather than a competitor’s?
-The DIN 18 neck is a standard, so another brand’s bottle can be screwed on too. What brings customers back to your oils is everything that carries your brand: the diffuser and its modules in your colours, diffusion modes pre-programmed to your recommendations, a user manual and a QR code to your loyalty programme, and your oils, which they already know.
+The DIN 18 neck is a standard, so another bottle can be screwed on. What brings customers back to your oils is everything that carries your brand: the diffuser and its modules in your colours, diffusion modes pre-programmed to your recommendations, a guide and a QR code to your loyalty programme, and your oils, which they already know.
 
 ### What are the minimum order quantities?
 White label: typically from 3,000 units, depending on the project. Stock order: from 500 units, shipped from France within 72 h if in stock. We share our prices from the very first conversation.
@@ -1077,7 +1077,7 @@ Hasta 90 horas de autonomía con batería: de 70 a 90 h con la luz apagada y de 
 Sí. La duración, la potencia y la intermitencia de la difusión pueden preprogramarse según sus recomendaciones, y la difusión se detiene sola al cabo del tiempo elegido.
 
 ### ¿Qué hace que sus clientes vuelvan a sus aceites y no a los de la competencia?
-El cuello DIN 18 es un estándar: el frasco de otra marca también puede enroscarse. Lo que hace que sus clientes vuelvan a sus aceites es todo lo que lleva su marca: el difusor y sus módulos con sus colores, modos de difusión preprogramados según sus recomendaciones, un manual y un código QR que lleva a su programa de fidelización, y sus aceites, que ya conocen.
+El cuello DIN 18 es un estándar: otro frasco puede enroscarse. Lo que hace que sus clientes vuelvan a sus aceites es todo lo que lleva su marca: el difusor y sus módulos con sus colores, modos de difusión preprogramados según sus recomendaciones, un manual y un código QR que lleva a su programa de fidelización, y sus aceites, que ya conocen.
 
 ### ¿Cuáles son los pedidos mínimos?
 Marca blanca: normalmente desde 3.000 unidades, según el proyecto. Pedido de stock: desde 500 unidades, enviadas desde Francia en 72 h si hay stock. Le facilitamos los precios desde el primer contacto.
