@@ -20,7 +20,7 @@ interface Pillar {
   points: Tri[];
 }
 
-// Textes repris de l'ancien site. Seul changement : le nom « Twist & Mist » n'est plus employé (« module de diffusion »),
+// Textes repris de l'ancien site. Seul changement : le nom « Twist & Mist » n'est plus employé (« module de diffusion »),
 // comme dans le reste de la nouvelle page.
 const diffuserPoints: Tri[] = [
   {
@@ -143,7 +143,7 @@ const CustomizationSection: React.FC = () => {
   const { language: l } = useLanguage();
   const cta = t3(l, 'Parler de mon projet', 'Discuss my project', 'Hablar de mi proyecto');
 
-  // Mise en page resserrée (17/10/2026, « trop d'espaces blancs ») : l'image et les quatre points du diffuseur côte à côte,
+  // Mise en page resserrée (17/10/2026, « trop d'espaces blancs ») : l'image et les quatre points du diffuseur côte à côte,
   // puis les trois familles (accessoires, packaging, notices) en cartes compactes. Le contenu est inchangé.
   return (
     <section id="personnalisation" className="py-14 md:py-20 bg-background relative overflow-hidden">

@@ -12,7 +12,7 @@ import QualificationForm from '@/components/QualificationForm';
  * Contact (refonte du 17/10/2026, demande de Pierre : « revoir la logique du call to action », « enlever recevoir la documentation ») :
  * deux portes d'entrée côte à côte, sans engagement :
  *  1. recevoir un échantillon (formulaire en deux étapes, trois champs obligatoires au départ) ;
- *  2. en parler : réserver 30 minutes en visio avec Simon Desbuisson, écrire ou appeler.
+ *  2. en parler : réserver 30 minutes en visio avec Simon Desbuisson, écrire ou appeler.
  * La présentation par email (« recevoir la documentation ») est retirée : tout est déjà sur le site.
  */
 const ContactSection: React.FC = () => {

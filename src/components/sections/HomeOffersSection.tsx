@@ -7,7 +7,7 @@ import { t3 } from '@/lib/t3';
 import { trackCTAClick } from '@/lib/tracking';
 import LegacyAnchors from '@/components/LegacyAnchors';
 
-// Même comportement qu'avant : le bouton mémorise le type de projet puis fait défiler jusqu'au formulaire.
+// Même comportement qu'avant : le bouton mémorise le type de projet puis fait défiler jusqu'au formulaire.
 const goToContact = (type: 'white-label' | 'stock', label: string) => {
   trackCTAClick(label, 'offers', type === 'white-label' ? 'whitelabel' : 'quote_stock');
   try {

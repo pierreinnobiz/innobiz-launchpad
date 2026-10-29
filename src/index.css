@@ -436,3 +436,8 @@
   #hero.hero-wrap { height: auto; min-height: 100vh; min-height: 100svh; }
   #hero .hero-content { height: auto; justify-content: flex-start; padding-top: 96px; padding-bottom: 40px; }
 }
+
+/* 29/10/2026 : Safari en économie d'énergie refuse la lecture automatique et affichait son propre bouton « lecture » au milieu du
+   film du haut de page ; le site bascule alors sur le film en image (HeroSection.tsx). Ce bouton n'est jamais montré. */
+#hero video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
+#hero video::-webkit-media-controls { display: none !important; }

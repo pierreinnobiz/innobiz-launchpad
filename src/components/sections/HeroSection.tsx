@@ -28,6 +28,13 @@ const canPlayHeroFilm = () => {
   return true;
 };
 
+// 29/10/2026 : Safari en mode économie d'énergie (Mac sur batterie, iPhone) refuse toute lecture automatique de vidéo, même sans
+// le son : le film restait sur sa première image avec un bouton « lecture » au milieu (vu par Pierre). Le même fichier MP4 posé dans
+// une balise <img> s'anime pourtant tout seul dans Safari, même dans ce mode (essai du 29/10/2026) : on bascule alors sur une image.
+// Une image ne prévient pas de la fin du film : on la retire après la durée du film (lue dans le fichier, 35 s par défaut).
+const refusLecture = (e: unknown) => (e as { name?: string } | null)?.name === 'NotAllowedError';
+const DUREE_FILM = 34.96;
+
 const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => void }> = ({ onStatus }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   // Mount the player only after the first paint so it never competes with the
@@ -36,6 +43,8 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
   const [playing, setPlaying] = useState(false);
   const [ended, setEnded] = useState(false);
   const [gone, setGone] = useState(false);
+  const [enImage, setEnImage] = useState(false);
+  const duree = useRef(DUREE_FILM);
 
   useEffect(() => {
     // No film at all on small screens, reduced motion or data saver: the still image stays.
@@ -61,7 +70,7 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (video.ended) return;
-        if (entry.intersectionRatio >= 0.35) video.play().catch(() => { /* lecture refusée : l'image reste */ });
+        if (entry.intersectionRatio >= 0.35) video.play().catch((e) => { if (refusLecture(e)) setEnImage(true); /* sinon l'image reste */ });
         else video.pause();
       },
       { threshold: [0, 0.35] }
@@ -69,6 +78,13 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
     observer.observe(video.parentElement ?? video);
     return () => observer.disconnect();
   }, [mounted]);
+
+  useEffect(() => {
+    // film affiché en image : fondu de sortie juste avant sa fin (l'image recommencerait le film au début)
+    if (!enImage || !playing) return;
+    const id = window.setTimeout(() => setEnded(true), Math.max(1, duree.current - 0.6) * 1000);
+    return () => clearTimeout(id);
+  }, [enImage, playing]);
 
   useEffect(() => {
     // Une fois le fondu terminé, on retire complètement le lecteur.
@@ -82,17 +98,29 @@ const HeroVideo: React.FC<{ onStatus?: (playing: boolean, ended: boolean) => voi
 
   return (
     <div className="absolute inset-0 overflow-hidden">
-      {mounted && !gone && (
+      {mounted && !gone && enImage && (
+        <img
+          src={window.innerWidth < 1024 ? heroFilmPhone : heroFilm}
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease', pointerEvents: 'none' }}
+          onLoad={() => setPlaying(true)}
+          onError={() => setEnded(true)}
+          aria-hidden="true"
+        />
+      )}
+      {mounted && !gone && !enImage && (
         <video
           ref={videoRef}
           src={window.innerWidth < 1024 ? heroFilmPhone : heroFilm}
           className="absolute inset-0 h-full w-full object-cover"
-          style={{ opacity: visible ? 1 : 0, transition: 'opacity 1.4s ease', pointerEvents: 'none' }}
+          style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.6s ease', pointerEvents: 'none' }}
           muted
           autoPlay
           playsInline
           preload="auto"
           disablePictureInPicture
+          onLoadedMetadata={(e) => { if (e.currentTarget.duration > 0) duree.current = e.currentTarget.duration; }}
           onPlaying={() => setPlaying(true)}
           onEnded={() => setEnded(true)}
           onError={() => setEnded(true)}
@@ -121,6 +149,9 @@ const CardFilm: React.FC = () => {
   const [mounted, setMounted] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [ended, setEnded] = useState(false);
+  const [enImage, setEnImage] = useState(false);
+  const [retire, setRetire] = useState(false);
+  const duree = useRef(DUREE_FILM);
 
   useEffect(() => {
     if (!canPlayCardFilm()) return;
@@ -145,7 +176,7 @@ const CardFilm: React.FC = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (video.ended) return;
-        if (entry.intersectionRatio >= 0.5) video.play().catch(() => { /* lecture refusée : l'image reste */ });
+        if (entry.intersectionRatio >= 0.5) video.play().catch((e) => { if (refusLecture(e)) setEnImage(true); /* sinon l'image reste */ });
         else video.pause();
       },
       { threshold: [0, 0.5] }
@@ -154,18 +185,46 @@ const CardFilm: React.FC = () => {
     return () => observer.disconnect();
   }, [mounted]);
 
+  useEffect(() => {
+    // film affiché en image (Safari en économie d'énergie) : fondu de sortie juste avant sa fin
+    if (!enImage || !playing) return;
+    const id = window.setTimeout(() => setEnded(true), Math.max(1, duree.current - 0.6) * 1000);
+    return () => clearTimeout(id);
+  }, [enImage, playing]);
+
+  useEffect(() => {
+    // après le fondu de sortie, l'image (qui recommencerait le film en boucle) est retirée
+    if (!enImage || !ended) return;
+    const id = window.setTimeout(() => setRetire(true), 900);
+    return () => clearTimeout(id);
+  }, [enImage, ended]);
+
   if (!mounted) return null;
+  if (enImage) {
+    return retire ? null : (
+      <img
+        src={heroFilmPhone}
+        alt=""
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ opacity: playing && !ended ? 1 : 0, transition: 'opacity 0.6s ease' }}
+        onLoad={() => setPlaying(true)}
+        onError={() => setEnded(true)}
+        aria-hidden="true"
+      />
+    );
+  }
   return (
     <video
       ref={videoRef}
       src={heroFilmPhone}
       className="absolute inset-0 h-full w-full object-cover"
-      style={{ opacity: playing && !ended ? 1 : 0, transition: 'opacity 1s ease' }}
+      style={{ opacity: playing && !ended ? 1 : 0, transition: 'opacity 0.6s ease' }}
       muted
       autoPlay
       playsInline
       preload="auto"
       disablePictureInPicture
+      onLoadedMetadata={(e) => { if (e.currentTarget.duration > 0) duree.current = e.currentTarget.duration; }}
       onPlaying={() => setPlaying(true)}
       onEnded={() => setEnded(true)}
       onError={() => setEnded(true)}
@@ -333,7 +392,7 @@ const HeroSection: React.FC = () => {
   const filmLabel = t3(language, 'Voir Tolia en action · 35 s', 'See Tolia in action · 35 s', 'Ver Tolia en acción · 35 s');
   const closeLabel = t3(language, 'Fermer', 'Close', 'Cerrar');
   const cta = t3(language, 'Recevoir mon échantillon gratuit', 'Get my free sample', 'Recibir mi muestra gratuita');
-  // Deuxième porte d'entrée : parler directement à l'équipe (30 minutes en visio avec Simon Desbuisson).
+  // Deuxième porte d'entrée : parler directement à l'équipe (30 minutes en visio avec Simon Desbuisson).
   const talk = t3(language, 'Réserver 30 min avec Simon', 'Book 30 min with Simon', 'Reservar 30 min con Simon');
 
   return (

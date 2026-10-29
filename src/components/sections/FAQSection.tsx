@@ -7,7 +7,7 @@ import { t3 } from '@/lib/t3';
 
 // Onze questions, réponses courtes. Les minimums, délais et la conformité sont ceux déjà publiés sur le site ; RSE, supports marketing et prix retrouvent leur réponse de l'ancien site.
 // 17/10/2026 : ajout « Quelles huiles peut-on diffuser ? » (plus de 150 huiles testées, phrase de Pierre ; « toutes les huiles du marché » + parfums naturels et de synthèse + compte‑gouttes, 26/10/2026) et « Peut-on encadrer l'usage de nos huiles ? » ;
-// « Comment démarrer ? » propose aussi l'appel de 30 minutes avec Simon (19/10/2026) ; prix : plus de « conversation qualifiée » ; hydrolats retirés (à confirmer par Pierre).
+// « Comment démarrer ? » propose aussi l'appel de 30 minutes avec Simon (19/10/2026) ; prix : plus de « conversation qualifiée » ; hydrolats retirés (à confirmer par Pierre).
 const FAQSection: React.FC = () => {
   const { language } = useLanguage();
 
