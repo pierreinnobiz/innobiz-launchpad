@@ -34,7 +34,7 @@ const diffuserPoints: Tri[] = [
     es: 'Grabado láser, serigrafía o impresión UV de su logotipo en la cubierta y la base',
   },
   {
-    fr: 'Finitions mat, brillante, soft‑touch, texturée ou métallique selon votre positionnement',
+    fr: 'Finitions mate, brillante, soft‑touch, texturée ou métallique selon votre positionnement',
     en: 'Matt, gloss, soft‑touch, textured or metallic finishes to match your positioning',
     es: 'Acabados mate, brillante, soft‑touch, texturizado o metalizado según su posicionamiento',
   },
@@ -51,7 +51,7 @@ const pillars: Pillar[] = [
     title: { fr: 'Les accessoires', en: 'Accessories', es: 'Los accesorios' },
     subtitle: {
       fr: 'Modules de diffusion et câbles aux couleurs de votre gamme',
-      en: 'Diffusion modules and cables in your range colours',
+      en: 'Diffusion modules and cables in the colours of your range',
       es: 'Módulos de difusión y cables con los colores de su gama',
     },
     points: [
@@ -61,7 +61,7 @@ const pillars: Pillar[] = [
         es: 'Módulo de difusión personalizado con los colores de su marca',
       },
       {
-        fr: 'Câble de recharge USB‑C avec manchon à votre charte graphique',
+        fr: 'Câble de recharge USB‑C avec manchon aux couleurs de votre charte graphique',
         en: 'USB‑C charging cable with a sleeve in your brand colours',
         es: 'Cable de carga USB‑C con funda según su identidad de marca',
       },
@@ -113,9 +113,9 @@ const pillars: Pillar[] = [
         es: 'Tarjetas de garantía y de agradecimiento con su marca',
       },
       {
-        fr: 'Supports PLV et fiches produit en magasin prêtes à imprimer',
+        fr: 'Supports PLV et fiches produit en magasin prêts à imprimer',
         en: 'POS displays and in-store product sheets ready to print',
-        es: 'Expositores PLV y fichas de producto en tienda listos para imprimir',
+        es: 'Material PLV y fichas de producto para tienda, listos para imprimir',
       },
     ],
   },
@@ -161,7 +161,7 @@ const CustomizationSection: React.FC = () => {
             style={{ background: 'hsl(28 45% 48% / 0.08)', color: 'hsl(28 52% 36%)' }}
           >
             <Sparkles className="h-4 w-4" aria-hidden="true" />
-            {t3(l, 'Expert marque blanche', 'White-label expert', 'Experto en marca blanca')}
+            {t3(l, 'Expert en marque blanche', 'White-label expert', 'Experto en marca blanca')}
           </span>
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
             {t3(l, 'Faites de Tolia le diffuseur de votre marque', 'Make Tolia your brand’s own diffuser', 'Haga de Tolia el difusor de su marca')}
@@ -170,7 +170,7 @@ const CustomizationSection: React.FC = () => {
             {t3(
               l,
               'Innobiz personnalise chaque composant de votre diffuseur. Couleurs, matières, finitions, logo, coffret : un diffuseur qui porte votre marque de bout en bout.',
-              'Innobiz customises every component of your diffuser. Colours, materials, finishes, logo, box: a diffuser that carries your brand throughout.',
+              'Innobiz customises every component of your diffuser. Colours, materials, finishes, logo, box: a diffuser that bears your brand in every detail.',
               'Innobiz personaliza cada componente de su difusor. Colores, materiales, acabados, logotipo, estuche: un difusor que lleva su marca de principio a fin.'
             )}
           </p>
@@ -193,7 +193,7 @@ const CustomizationSection: React.FC = () => {
               loading="lazy"
               decoding="async"
               className="w-full h-auto"
-              alt={t3(l, 'Des diffuseurs Tolia aux cloches de couleurs et de motifs différents (diamant, stries, tressé, vagues), sur une table de travail avec un cahier d’idées, des nuanciers, des croquis et un brouillon de notice', 'Tolia diffusers with covers in different colours and patterns (diamond, ribbed, woven, waves) on a work table with an idea book, colour fans, sketches and a draft manual', 'Difusores Tolia con cubiertas de colores y motivos distintos (diamante, estrías, trenzado, ondas) sobre una mesa de trabajo con un cuaderno de ideas, muestrarios, bocetos y un borrador de manual')}
+              alt={t3(l, 'Des diffuseurs Tolia aux cloches de couleurs et de motifs différents (diamant, stries, tressé, vagues), sur une table de travail avec un cahier d’idées, des nuanciers, des croquis et un brouillon de notice', 'Tolia diffusers with covers in different colours and patterns (diamond, ribbed, woven, waves) on a work table with a notebook of ideas, colour swatches, sketches and a draft manual', 'Difusores Tolia con cubiertas de colores y motivos distintos (diamante, estrías, trenzado, ondas) sobre una mesa de trabajo con un cuaderno de ideas, muestrarios, bocetos y un borrador de manual')}
             />
             <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent px-4 py-3">
               <div className="flex items-end gap-2.5">

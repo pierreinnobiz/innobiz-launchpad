@@ -300,26 +300,26 @@ const HeroSection: React.FC = () => {
   const posterAlt = t3(
     language,
     'Diffuseur Tolia fermé, posé sur une table en chêne, et deux flacons à côté avec leur module de diffusion vissé',
-    'Closed Tolia diffuser on an oak table, with two bottles beside it, their diffusion module screwed on',
-    'Difusor Tolia cerrado sobre una mesa de roble, con dos frascos al lado y su módulo de difusión enroscado'
+    'Closed Tolia diffuser on an oak table, with two bottles beside it, each with its diffusion module screwed on',
+    'Difusor Tolia cerrado sobre una mesa de roble, con dos frascos al lado, cada uno con su módulo de difusión enroscado'
   );
 
   const title = t3(
     language,
-    "Chaque diffuseur vendu est le début d'un revenu récurrent.",
+    "Chaque diffuseur vendu est le début d’un revenu récurrent.",
     'Every diffuser sold is the start of recurring revenue.',
     'Cada difusor vendido es el inicio de un ingreso recurrente.'
   );
   const eyebrow = t3(
     language,
-    "Diffuseurs d'huiles essentielles pour les marques",
+    "Diffuseurs d’huiles essentielles pour les marques",
     'Essential oil diffusers for brands',
     'Difusores de aceites esenciales para marcas'
   );
   // Le sous-titre dit d'abord CE QU'EST Tolia (un diffuseur qui se branche sur les flacons de la marque), puis le bénéfice.
   const subtitle = t3(
     language,
-    "Tolia est un diffuseur sur batterie qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu'on s'en sert chaque jour, et vos clients rachètent vos huiles.",
+    "Tolia est un diffuseur sur batterie qui fonctionne directement avec vos flacons : ni eau, ni nettoyage, une autre huile en une seconde. Si simple qu’on s’en sert chaque jour, et vos clients rachètent vos huiles.",
     'Tolia is a battery-powered diffuser that works straight from your own bottles: no water, no cleaning, a different oil in one second. So simple it becomes a daily habit, and your customers buy your oils again.',
     'Tolia es un difusor con batería que funciona directamente con sus frascos: sin agua, sin limpieza, otro aceite en un segundo. Tan sencillo que se convierte en un hábito diario, y sus clientes vuelven a comprar sus aceites.'
   );
@@ -327,7 +327,7 @@ const HeroSection: React.FC = () => {
   const microcopy = t3(
     language,
     'Sans engagement · Réponse sous un jour ouvré',
-    'No commitment · Reply within one business day',
+    'No commitment · Reply within one working day',
     'Sin compromiso · Respuesta en un día hábil'
   );
   const filmLabel = t3(language, 'Voir Tolia en action · 35 s', 'See Tolia in action · 35 s', 'Ver Tolia en acción · 35 s');

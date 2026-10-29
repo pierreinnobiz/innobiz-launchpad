@@ -29,9 +29,9 @@ const ContactSection: React.FC = () => {
   };
 
   const reassure = [
-    t3(l, 'Échantillon expédié de France sous 5 jours ouvrés', 'Sample shipped from France within 5 business days', 'Muestra enviada desde Francia en 5 días hábiles'),
-    t3(l, 'Une vraie personne vous répond sous un jour ouvré', 'A real person replies within one business day', 'Una persona real le responde en un día hábil'),
-    t3(l, 'Prix et conditions partagés dès le premier échange', 'Pricing and terms shared from first contact', 'Precios y condiciones desde el primer contacto'),
+    t3(l, 'Échantillon expédié de France sous 5 jours ouvrés', 'Sample shipped from France within 5 working days', 'Muestra enviada desde Francia en 5 días hábiles'),
+    t3(l, 'Une vraie personne vous répond sous un jour ouvré', 'A real person replies within one working day', 'Una persona real le responde en un día hábil'),
+    t3(l, 'Prix et conditions partagés dès le premier échange', 'Pricing and terms shared from the very first conversation', 'Precios y condiciones desde el primer contacto'),
   ];
 
   return (
@@ -45,7 +45,7 @@ const ContactSection: React.FC = () => {
           variants={fadeBlurUp}
         >
           <span className="font-semibold text-sm tracking-wide uppercase mb-4 block" style={{ color: 'hsl(28 52% 36%)' }}>
-            {t3(l, 'Passons à l’essai', 'Let’s try it', 'Pasemos a la práctica')}
+            {t3(l, 'Passons à l’essai', 'Put it to the test', 'Hagamos la prueba')}
           </span>
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
             {t3(l, 'Jugez Tolia par vous‑même, avec vos propres flacons.', 'Judge Tolia for yourself, with your own bottles.', 'Compruébelo usted mismo, con sus propios frascos.')}
@@ -55,7 +55,7 @@ const ContactSection: React.FC = () => {
               l,
               'Deux façons de commencer, sans engagement : recevez un échantillon pour l’essayer, ou prenez 30 minutes avec Simon Desbuisson pour parler de votre projet.',
               'Two ways to begin, with no commitment: receive a sample to try it, or take 30 minutes with Simon Desbuisson to talk about your project.',
-              'Dos formas de empezar, sin compromiso: reciba una muestra para probarlo o dedique 30 minutos con Simon Desbuisson a hablar de su proyecto.'
+              'Dos formas de empezar, sin compromiso: reciba una muestra para probarlo o reserve 30 minutos con Simon Desbuisson para hablar de su proyecto.'
             )}
           </p>
         </motion.div>
@@ -86,8 +86,8 @@ const ContactSection: React.FC = () => {
               {t3(
                 l,
                 '30 minutes en visio avec Simon Desbuisson, de l’équipe Innobiz, pour voir Tolia en direct, poser vos questions et vérifier qu’il convient à votre gamme. Vous choisissez le créneau dans son agenda.',
-                '30 minutes on video with Simon Desbuisson from the Innobiz team, to see Tolia live, ask your questions and check it fits your range. Pick a time in his calendar.',
-                '30 minutos por videollamada con Simon Desbuisson, del equipo Innobiz, para ver Tolia en directo, plantear sus preguntas y comprobar que encaja con su gama. Elija el horario en su agenda.'
+                'A 30-minute video call with Simon Desbuisson from the Innobiz team to see Tolia live, ask your questions and check it fits your range. Pick a time in his calendar.',
+                '30 minutos por videollamada con Simon Desbuisson, del equipo Innobiz, para ver Tolia en directo, plantear sus preguntas y comprobar que encaja con su gama. Usted elige el horario en la agenda de Simon.'
               )}
             </p>
             <a

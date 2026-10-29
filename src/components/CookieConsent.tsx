@@ -142,7 +142,7 @@ const CookieConsent = () => {
 
   const message = S(
     language,
-    "Nous utilisons des cookies pour mesurer l'audience du site. Vous pouvez accepter ou refuser.",
+    "Nous utilisons des cookies pour mesurer l’audience du site. Vous pouvez accepter ou refuser.",
     'We use cookies to measure site traffic. You can accept or decline.',
     'Utilizamos cookies para medir el tráfico del sitio. Puede aceptar o rechazar.'
   );

@@ -23,7 +23,7 @@ const NotFound = () => {
         <h1 className="mb-4 text-4xl font-bold">404</h1>
         <p className="mb-4 text-xl text-muted-foreground">{t3(language, 'Cette page est introuvable.', 'This page could not be found.', 'No se encuentra esta página.')}</p>
         <a href={`/${language}/`} className="text-primary underline hover:text-primary/90">
-          {t3(language, "Retour à l'accueil", 'Back to the home page', 'Volver a la página de inicio')}
+          {t3(language, "Retour à l’accueil", 'Back to the home page', 'Volver a la página de inicio')}
         </a>
       </div>
     </div>

@@ -54,7 +54,7 @@ const MERCI: Record<"fr" | "en" | "es", { subject: string; hello: (n: string) =>
   en: {
     subject: "Your Tolia sample is being prepared",
     hello: (n) => `Hello${n ? " " + n : ""},`,
-    lines: ["Thank you for your request. Your Tolia sample will ship from France within 5 business days, to this address:", "We will write to you within one business day to talk about your project."],
+    lines: ["Thank you for your request. Your Tolia sample will ship from France within 5 working days, to this address:", "We will write to you within one working day to talk about your project."],
     talk: "Would you rather talk it through? Simon Desbuisson offers you 30 minutes by video call to see Tolia live:",
     question: "A question, or a mistake in the address? Simply reply to this email.",
     bye: "Kind regards,", team: "The Tolia by Innobiz team", footer: "Tolia by Innobiz · Jacou, France · www.innobiz-tolia.com",

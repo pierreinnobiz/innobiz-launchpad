@@ -26,11 +26,11 @@ const HomeProblemSection: React.FC = () => {
       name: t3(l, 'Diffuseur à ultrasons, avec de l’eau', 'Ultrasonic diffuser, with water', 'Difusor por ultrasonidos, con agua'),
       usage: t3(
         l,
-        'Quelques gouttes d’huile dans un grand réservoir : 1 à 2 ml d’huile pour 200 à 300 ml d’eau, soit 100 à 300 fois plus d’eau que d’huile. Il faut ensuite vider, rincer et sécher le réservoir. Tolia, lui, diffuse l’huile pure, sans une goutte d’eau.',
+        'Quelques gouttes d’huile dans un grand réservoir : 1 à 2 ml d’huile pour 200 à 300 ml d’eau, soit 100 à 300 fois plus d’eau que d’huile. Il faut ensuite vider, rincer et sécher le réservoir. Tolia, lui, diffuse l’huile pure, sans une goutte d’eau.',
         'A few drops of oil in a large tank: 1 to 2 ml of oil for 200 to 300 ml of water, so 100 to 300 times more water than oil. The tank then has to be emptied, rinsed and dried. Tolia, by contrast, diffuses the oil pure, without a single drop of water.',
         'Unas gotas de aceite en un gran depósito: de 1 a 2 ml de aceite por 200 a 300 ml de agua, es decir, de 100 a 300 veces más agua que aceite. Después hay que vaciar, enjuagar y secar el depósito. Tolia, en cambio, difunde el aceite puro, sin una gota de agua.'
       ),
-      result: t3(l, 'Une corvée quotidienne : le diffuseur reste éteint.', 'A daily chore: the diffuser stays switched off.', 'Una tarea diaria: el difusor se queda apagado.'),
+      result: t3(l, 'Une corvée quotidienne : le diffuseur reste éteint.', 'A daily chore: the diffuser stays switched off.', 'Un engorro diario: el difusor se queda apagado.'),
     },
     {
       icon: Flame,
@@ -49,21 +49,21 @@ const HomeProblemSection: React.FC = () => {
       usage: t3(
         l,
         'Agréables pour parfumer une entrée, mais sans réglage d’intensité ni de durée : le parfum faiblit jour après jour, et changer d’huile oblige à tout remplacer.',
-        'Pleasant for scenting a hallway, but with no control over intensity or duration: the scent weakens day after day, and changing oil means replacing everything.',
+        'Pleasant for scenting a hallway, but with no control over intensity or duration: the scent weakens day after day, and switching oils means replacing everything.',
         'Agradables para perfumar una entrada, pero sin ajuste de intensidad ni de duración: el aroma se debilita día tras día y cambiar de aceite obliga a sustituirlo todo.'
       ),
       result: t3(l, 'Un usage oublié : on n’y pense plus.', 'A forgotten habit: nobody thinks about it any more.', 'Un uso olvidado: ya nadie piensa en ello.'),
     },
     {
       icon: FlaskRound,
-      name: t3(l, 'Nébuliseur à verrerie', 'Nebuliser with glassware', 'Nebulizador de vidrio'),
+      name: t3(l, 'Nébuliseur à verrerie', 'Glass nebuliser', 'Nebulizador de vidrio'),
       usage: t3(
         l,
         'Une pompe que l’on entend, une verrerie fragile à démonter et à nettoyer chaque fois que l’on change d’huile.',
-        'A pump you can hear, fragile glassware to take apart and clean every time you change oil.',
+        'A pump you can hear, fragile glassware to take apart and clean every time you switch oils.',
         'Una bomba que se oye y unas piezas de vidrio frágiles que hay que desmontar y limpiar cada vez que se cambia de aceite.'
       ),
-      result: t3(l, 'Trop contraignant : on garde la même huile, puis on arrête.', 'Too much hassle: people keep the same oil, then stop.', 'Demasiado complicado: se mantiene el mismo aceite y luego se abandona.'),
+      result: t3(l, 'Trop contraignant : on garde la même huile, puis on arrête.', 'Too much hassle: people keep the same oil, then stop.', 'Demasiado complicado: se sigue con el mismo aceite y, al final, se deja de usar.'),
     },
   ];
 
@@ -92,7 +92,7 @@ const HomeProblemSection: React.FC = () => {
           <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
               l,
-              'En 20 ans de métier dans la diffusion, nous avons toujours fait le même constat : vos clients ont envie de diffuser des huiles essentielles, mais les contraintes de leur diffuseur finissent par les décourager. Au bout de quelques semaines, plus de la moitié des diffuseurs finissent dans un placard, et les flacons d’huiles essentielles ne sont plus rachetés.',
+              'En 20 ans de métier dans la diffusion, nous avons toujours fait le même constat : vos clients ont envie de diffuser des huiles essentielles, mais les contraintes de leur diffuseur finissent par les décourager. Au bout de quelques semaines, plus de la moitié des diffuseurs se retrouvent dans un placard, et les flacons d’huiles essentielles ne sont plus rachetés.',
               'In 20 years of designing diffusers, we have seen the same thing again and again: your customers want to diffuse essential oils, but the chores their diffuser demands end up putting them off. After a few weeks, more than half of diffusers end up in a cupboard, and the essential oil bottles are no longer repurchased.',
               'En 20 años de experiencia en difusión de aromas, hemos llegado siempre a la misma conclusión: sus clientes tienen ganas de aromatizar su casa con aceites esenciales, pero las molestias de su difusor acaban por desanimarlos. Al cabo de unas semanas, más de la mitad de los difusores acaban en un armario y los frascos de aceites esenciales ya no se vuelven a comprar.'
             )}
@@ -198,7 +198,7 @@ const HomeProblemSection: React.FC = () => {
             className="tap-target inline-flex items-center gap-2 text-sm font-semibold transition hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-full px-2 py-1"
             style={{ color: 'hsl(28 52% 36%)' }}
           >
-            {t3(l, 'Voir Tolia en situation, sur une journée', 'Spend a day with Tolia', 'Ver Tolia en uso, durante un día')}
+            {t3(l, 'Voir Tolia en situation, sur une journée', 'Spend a day with Tolia', 'Ver Tolia en situación real, a lo largo de un día')}
             <ArrowDown className="h-4 w-4" aria-hidden="true" />
           </a>
         </motion.div>

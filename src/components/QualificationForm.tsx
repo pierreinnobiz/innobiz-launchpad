@@ -46,6 +46,52 @@ const COUNTRIES = [
   'New Zealand', 'Morocco', 'Tunisia', 'South Africa', 'Other',
 ];
 
+// Noms des pays affichés dans la langue du visiteur (29/10/2026 : la liste s'affichait en anglais sur les pages française et
+// espagnole). La valeur enregistrée et envoyée au CRM reste le nom anglais ci-dessus (POSTAL_OPTIONAL_COUNTRIES s'en sert).
+const COUNTRY_NAMES: Record<string, [fr: string, es: string]> = {
+  'France': ['France', 'Francia'],
+  'Belgium': ['Belgique', 'Bélgica'],
+  'Switzerland': ['Suisse', 'Suiza'],
+  'Luxembourg': ['Luxembourg', 'Luxemburgo'],
+  'Germany': ['Allemagne', 'Alemania'],
+  'Netherlands': ['Pays-Bas', 'Países Bajos'],
+  'Spain': ['Espagne', 'España'],
+  'Portugal': ['Portugal', 'Portugal'],
+  'Italy': ['Italie', 'Italia'],
+  'United Kingdom': ['Royaume-Uni', 'Reino Unido'],
+  'Ireland': ['Irlande', 'Irlanda'],
+  'Austria': ['Autriche', 'Austria'],
+  'Denmark': ['Danemark', 'Dinamarca'],
+  'Sweden': ['Suède', 'Suecia'],
+  'Norway': ['Norvège', 'Noruega'],
+  'Finland': ['Finlande', 'Finlandia'],
+  'Poland': ['Pologne', 'Polonia'],
+  'Czech Republic': ['République tchèque', 'República Checa'],
+  'United States': ['États-Unis', 'Estados Unidos'],
+  'Canada': ['Canada', 'Canadá'],
+  'Mexico': ['Mexique', 'México'],
+  'Brazil': ['Brésil', 'Brasil'],
+  'Argentina': ['Argentine', 'Argentina'],
+  'United Arab Emirates': ['Émirats arabes unis', 'Emiratos Árabes Unidos'],
+  'Saudi Arabia': ['Arabie saoudite', 'Arabia Saudí'],
+  'Qatar': ['Qatar', 'Catar'],
+  'Kuwait': ['Koweït', 'Kuwait'],
+  'Bahrain': ['Bahreïn', 'Baréin'],
+  'Japan': ['Japon', 'Japón'],
+  'South Korea': ['Corée du Sud', 'Corea del Sur'],
+  'China': ['Chine', 'China'],
+  'Hong Kong': ['Hong Kong', 'Hong Kong'],
+  'Singapore': ['Singapour', 'Singapur'],
+  'Australia': ['Australie', 'Australia'],
+  'New Zealand': ['Nouvelle-Zélande', 'Nueva Zelanda'],
+  'Morocco': ['Maroc', 'Marruecos'],
+  'Tunisia': ['Tunisie', 'Túnez'],
+  'South Africa': ['Afrique du Sud', 'Sudáfrica'],
+  'Other': ['Autre pays', 'Otro país'],
+};
+const countryLabel = (c: string, language: string) =>
+  language === 'en' ? c : (COUNTRY_NAMES[c]?.[language === 'es' ? 1 : 0] ?? c);
+
 // International postal code: 3–10 alphanumerics, optionally separated by space or hyphen.
 const POSTAL_CODE_PATTERN = /^[A-Za-z0-9][A-Za-z0-9\s-]{1,8}[A-Za-z0-9]$/;
 
@@ -201,14 +247,14 @@ const QualificationForm: React.FC = () => {
     if (!street) {
       next.street = t3(
         language,
-        "Merci d'indiquer votre adresse",
+        "Merci d’indiquer votre adresse",
         'Please enter your street address',
         'Por favor, indique su dirección'
       );
     } else if (street.length < 5) {
       next.street = t3(
         language,
-        "L'adresse doit comporter au moins 5 caractères",
+        "L’adresse doit comporter au moins 5 caractères",
         'Street address must be at least 5 characters',
         'La dirección debe tener al menos 5 caracteres'
       );
@@ -221,7 +267,7 @@ const QualificationForm: React.FC = () => {
       if (!postalOptional) {
         next.postalCode = t3(
           language,
-          'Merci d\'indiquer votre code postal',
+          'Merci d’indiquer votre code postal',
           'Please enter your postal code',
           'Por favor, indique su código postal'
         );
@@ -240,7 +286,7 @@ const QualificationForm: React.FC = () => {
     if (!city) {
       next.city = t3(
         language,
-        'Merci d\'indiquer votre ville',
+        'Merci d’indiquer votre ville',
         'Please enter your city',
         'Por favor, indique su ciudad'
       );
@@ -373,8 +419,8 @@ const QualificationForm: React.FC = () => {
     <p role="alert" className="rounded-xl border border-destructive/40 bg-destructive/5 px-4 py-3 text-sm text-foreground">
       {t3(
         language,
-        "L'envoi n'a pas fonctionné. Vérifiez votre connexion et cliquez à nouveau ; si le problème continue, écrivez-nous à contact@innobiz.fr.",
-        "Sending didn't work. Check your connection and click again; if the problem persists, email us at contact@innobiz.fr.",
+        "L’envoi n’a pas fonctionné. Vérifiez votre connexion et cliquez à nouveau ; si le problème continue, écrivez-nous à contact@innobiz.fr.",
+        "Your request couldn’t be sent. Please check your connection and try again; if the problem persists, email us at contact@innobiz.fr.",
         'El envío no ha funcionado. Compruebe su conexión y vuelva a hacer clic; si el problema continúa, escríbanos a contact@innobiz.fr.'
       )}
     </p>
@@ -399,9 +445,9 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground max-w-md mx-auto">
           {t3(
             language,
-            "Suivi par email à l'adresse renseignée.",
+            "Suivi par email à l’adresse renseignée.",
             'Track it via the email confirmation we just sent you.',
-            'Seguimiento por email en la dirección indicada.'
+            'Seguimiento por email a la dirección indicada.'
           )}
         </p>
         {/* Facultatif : proposé après la demande, pour ceux qui préfèrent en parler. L'échantillon part de toute façon. */}
@@ -409,7 +455,7 @@ const QualificationForm: React.FC = () => {
           <p className="text-sm text-muted-foreground">
             {t3(
               language,
-              "Envie d'en parler ? 30 minutes avec Simon Desbuisson pour confirmer votre adresse, voir Tolia en direct et vérifier qu'il convient à votre gamme.",
+              "Envie d’en parler ? 30 minutes avec Simon Desbuisson pour confirmer votre adresse, voir Tolia en direct et vérifier qu’il convient à votre gamme.",
               'Prefer to talk it through? 30 minutes with Simon Desbuisson to confirm your address, see Tolia live and check it fits your range.',
               '¿Prefiere hablarlo? 30 minutos con Simon Desbuisson para confirmar su dirección, ver Tolia en directo y comprobar que encaja con su gama.'
             )}
@@ -433,12 +479,12 @@ const QualificationForm: React.FC = () => {
     {
       value: 'stock_order',
       label: t3(language, 'Commande sur stock', 'Stock order', 'Pedido de stock'),
-      sub: t3(language, 'dès 500 unités, expédition sous 72 h si en stock', 'from 500 units, ships within 72 h if in stock', 'desde 500 unidades, envío en 72 h si hay stock'),
+      sub: t3(language, 'dès 500 pièces, expédition sous 72 h si en stock', 'from 500 units, ships within 72 h if in stock', 'desde 500 unidades, envío en 72 h si hay stock'),
     },
     {
       value: 'white_label',
-      label: t3(language, 'Production marque blanche', 'White-label production', 'Producción marca blanca'),
-      sub: t3(language, 'à partir de 3 000 unités, personnalisation complète', 'from 3,000 units, full customisation', 'desde 3.000 unidades, personalización completa'),
+      label: t3(language, 'Production en marque blanche', 'White-label production', 'Producción en marca blanca'),
+      sub: t3(language, 'à partir de 3 000 pièces, personnalisation complète', 'from 3,000 units, full customisation', 'desde 3.000 unidades, personalización completa'),
     },
     {
       value: 'exploring',
@@ -482,7 +528,7 @@ const QualificationForm: React.FC = () => {
               </SelectTrigger>
               <SelectContent className="bg-card max-h-72">
                 {COUNTRIES.map((c) => (
-                  <SelectItem key={c} value={c}>{c}</SelectItem>
+                  <SelectItem key={c} value={c}>{countryLabel(c, language)}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -496,7 +542,7 @@ const QualificationForm: React.FC = () => {
               autoComplete="address-line1"
               value={data.street}
               onChange={(e) => update('street', e.target.value)}
-              placeholder={t3(language, 'Rue de Rivoli', 'Rivoli Street', 'Calle de Rivoli')}
+              placeholder={t3(language, 'Rue de Rivoli', '10 High Street', 'Calle Mayor')}
               className="h-11 rounded-xl"
               aria-invalid={!!errors.street}
             aria-describedby={errors.street ? 'qf-err-street' : undefined}
@@ -542,7 +588,7 @@ const QualificationForm: React.FC = () => {
               autoComplete="address-level2"
               value={data.city}
               onChange={(e) => update('city', e.target.value)}
-              placeholder={t3(language, 'Paris', 'Paris', 'París')}
+              placeholder={t3(language, 'Paris', 'Paris', 'Madrid')}
               className="h-11 rounded-xl"
               aria-invalid={!!errors.city}
             aria-describedby={errors.city ? 'qf-err-city' : undefined}
@@ -555,18 +601,18 @@ const QualificationForm: React.FC = () => {
 
         <div className="grid sm:grid-cols-2 gap-4">
           <div className="space-y-1.5">
-            <Label htmlFor="qf-role">{t3(language, 'Votre poste (optionnel)', 'Your role (optional)', 'Su cargo (opcional)')}</Label>
+            <Label htmlFor="qf-role">{t3(language, 'Votre poste (facultatif)', 'Your role (optional)', 'Su cargo (opcional)')}</Label>
             <Input
               id="qf-role"
               autoComplete="organization-title"
               value={data.role}
               onChange={(e) => update('role', e.target.value)}
-              placeholder={t3(language, 'Fondateur, CMO, Acheteur...', 'Founder, CMO, Buyer...', 'Fundador, CMO, Comprador...')}
+              placeholder={t3(language, 'Fondateur, CMO, acheteur…', 'Founder, CMO, Buyer…', 'Fundador, CMO, Comprador...')}
               className="h-11 rounded-xl"
             />
           </div>
           <div className="space-y-1.5">
-            <Label htmlFor="qf-phone">{t3(language, 'Téléphone (optionnel)', 'Phone (optional)', 'Teléfono (opcional)')}</Label>
+            <Label htmlFor="qf-phone">{t3(language, 'Téléphone (facultatif)', 'Phone (optional)', 'Teléfono (opcional)')}</Label>
             <Input
               id="qf-phone"
               type="tel"
@@ -582,7 +628,7 @@ const QualificationForm: React.FC = () => {
                 language,
                 'Demandé par DHL et FedEx pour la livraison internationale',
                 'Required by DHL and FedEx for international delivery',
-                'Requerido por DHL y FedEx para la entrega internacional'
+                'Lo piden DHL y FedEx para los envíos internacionales'
               )}
             </p>
           </div>
@@ -619,7 +665,7 @@ const QualificationForm: React.FC = () => {
         >
           {isSubmitting
             ? t3(language, 'Envoi…', 'Sending…', 'Enviando…')
-            : t3(language, "Confirmer l'envoi", 'Confirm shipping', 'Confirmar el envío')}
+            : t3(language, "Confirmer l’envoi", 'Confirm and send', 'Confirmar el envío')}
           <ArrowRight className="w-5 h-5 ml-2" />
         </Button>
       </form>
@@ -645,7 +691,7 @@ const QualificationForm: React.FC = () => {
         <p className="text-sm text-muted-foreground mt-2">
           {t3(
             language,
-            "Trois informations pour commencer. Ensuite : l'adresse de livraison et, si vous le souhaitez, quelques mots sur votre projet.",
+            "Trois informations pour commencer. Ensuite : l’adresse de livraison et, si vous le souhaitez, quelques mots sur votre projet.",
             'Three details to start with. Then: the delivery address and, if you like, a few words about your project.',
             'Tres datos para empezar. Después: la dirección de envío y, si lo desea, unas palabras sobre su proyecto.'
           )}
@@ -676,7 +722,7 @@ const QualificationForm: React.FC = () => {
             setErrors((prev) => ({ ...prev, email: undefined, website: undefined }));
           }}
           onFocus={handleFormStart}
-          placeholder={t3(language, 'prenom@votremarque.com', 'name@yourbrand.com', 'nombre@suempresa.es')}
+          placeholder={t3(language, 'prenom@votremarque.com', 'name@yourbrand.com', 'nombre@sumarca.es')}
           className="h-11 rounded-xl"
           aria-invalid={!!errors.email}
         aria-describedby={errors.email ? 'qf-err-email' : undefined}
@@ -733,7 +779,7 @@ const QualificationForm: React.FC = () => {
           value={data.website}
           onChange={(e) => { siteAuto.current = false; update('website', e.target.value); }}
           onFocus={handleFormStart}
-          placeholder={t3(language, 'votremarque.com', 'yourbrand.com', 'suempresa.es')}
+          placeholder={t3(language, 'votremarque.com', 'yourbrand.com', 'sumarca.es')}
           className="h-11 rounded-xl"
           aria-invalid={!!errors.website}
         aria-describedby={errors.website ? 'qf-err-website' : undefined}
@@ -800,7 +846,7 @@ const QualificationForm: React.FC = () => {
       <div className="flex flex-col items-center gap-1 text-[12px] text-muted-foreground sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-5 sm:gap-y-1.5">
         <span className="inline-flex items-center gap-1.5">
           <Package className="w-3.5 h-3.5" />
-          {t3(language, 'Expédié sous 5 jours ouvrés', 'Ships in 5 business days', 'Envío en 5 días hábiles')}
+          {t3(language, 'Expédié sous 5 jours ouvrés', 'Ships within 5 working days', 'Envío en 5 días hábiles')}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <ShieldCheck className="w-3.5 h-3.5" />
@@ -813,7 +859,7 @@ const QualificationForm: React.FC = () => {
         <span>
           {t3(
             language,
-            "Vos données servent uniquement à vous envoyer l'échantillon et à vous recontacter.",
+            "Vos données servent uniquement à vous envoyer l’échantillon et à vous recontacter.",
             'Your details are only used to send your sample and get back to you.',
             'Sus datos solo se usan para enviarle la muestra y volver a contactarle.'
           )}{' '}

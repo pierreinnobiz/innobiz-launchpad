@@ -32,7 +32,7 @@ const DurabilitySection: React.FC = () => {
       text: t3(
         language,
         'Cloche, module de diffusion, électronique, batterie : chaque partie se remplace sans changer tout l’appareil. Sans verrerie fragile à l’intérieur, sans eau stagnante ni pompe, il y a moins de pièces qui cassent, donc moins de retours à gérer.',
-        'Cover, diffusion module, electronics, battery: every part can be replaced without changing the whole device. With no fragile glassware inside, no stagnant water and no pump, fewer parts break, so fewer returns to manage.',
+        'Cover, diffusion module, electronics, battery: every part can be replaced without changing the whole device. With no fragile glassware inside, no stagnant water and no pump, there are fewer parts that can break, so fewer returns to handle.',
         'Cubierta, módulo de difusión, electrónica, batería: cada parte se puede reemplazar sin cambiar todo el dispositivo. Sin piezas de vidrio frágiles en su interior, sin agua estancada ni bomba, hay menos piezas que se rompen y, por tanto, menos devoluciones que gestionar.'
       ),
     },
@@ -52,7 +52,7 @@ const DurabilitySection: React.FC = () => {
       text: t3(
         language,
         'Sans eau, sans nettoyage, avec un changement d’huile en une seconde, Tolia est conçu pour éviter le « syndrome du placard » : il s’intègre aux routines quotidiennes.',
-        'With no water, no cleaning and an oil change in a second, Tolia is designed to stay out of the cupboard: it fits into daily routines.',
+        'With no water, no cleaning and switching oils in a second, Tolia is designed to stay out of the cupboard: it fits into daily routines.',
         'Sin agua, sin limpieza y con cambio de aceite en un segundo, Tolia está diseñado para evitar el «síndrome del armario»: se integra en las rutinas diarias.'
       ),
     },
@@ -63,7 +63,7 @@ const DurabilitySection: React.FC = () => {
         language,
         'Cette approche va dans le sens des règles européennes sur le droit à la réparation et les produits durables, un critère qui compte de plus en plus dans les décisions d’achat.',
         'This approach aligns with European policies promoting the right to repair and more durable products, an increasingly important criterion in purchasing decisions.',
-        'Este enfoque se alinea con las políticas europeas a favor del derecho a la reparación y de productos más duraderos, un criterio cada vez más importante en las decisiones de compra.'
+        'Este enfoque va en la línea de las normas europeas sobre el derecho a reparar y los productos sostenibles, un criterio cada vez más importante en las decisiones de compra.'
       ),
     },
   ];
@@ -86,7 +86,7 @@ const DurabilitySection: React.FC = () => {
             {t3(language, 'Durabilité & réparabilité', 'Durability & repairability', 'Durabilidad y reparabilidad')}
           </span>
           <h2 className="heading-section text-foreground" style={{ textWrap: 'balance' } as React.CSSProperties}>
-            {t3(language, 'Un diffuseur pensé pour durer… et se réparer', 'A diffuser designed to last… and to be repaired', 'Un difusor diseñado para durar… y ser reparado')}
+            {t3(language, 'Un diffuseur pensé pour durer… et se réparer', 'A diffuser designed to last… and to be repaired', 'Un difusor diseñado para durar… y repararse')}
           </h2>
           <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed">
             {t3(
@@ -117,7 +117,7 @@ const DurabilitySection: React.FC = () => {
               className="w-full h-auto"
               alt={t3(
                 language,
-                'Le Tolia démonté sur une table : la cloche diamant couchée, la base vide, le module doré, les pièces intérieures et un flacon d’huile essentielle',
+                'Le Tolia démonté sur une table : la cloche diamant couchée, la base vide, le module doré, les pièces intérieures et un flacon d’huile essentielle',
                 'Tolia taken apart on a table: the diamond cover lying down, the empty base, the gold module, the internal parts and an essential oil bottle',
                 'Tolia desmontado sobre una mesa: la cubierta diamante tumbada, la base vacía, el módulo dorado, las piezas internas y un frasco de aceite esencial'
               )}
@@ -125,7 +125,7 @@ const DurabilitySection: React.FC = () => {
             <figcaption className="px-4 py-2.5 text-xs text-muted-foreground">
               {t3(
                 language,
-                'Illustration : chaque pièce se démonte et se remplace.',
+                'Illustration : chaque pièce se démonte et se remplace.',
                 'Illustration: every part comes apart and can be replaced.',
                 'Ilustración: cada pieza se desmonta y se sustituye.'
               )}

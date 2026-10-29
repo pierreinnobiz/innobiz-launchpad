@@ -8,8 +8,8 @@ export interface HomeSeo { title: string; description: string; keywords: string 
 
 export const HOME_SEO: Record<HomeSeoLang, HomeSeo> = {
   fr: {
-    title: "Diffuseur d'huiles essentielles en marque blanche | Tolia",
-    description: "Tolia, diffuseur d'huiles essentielles sans eau, sur batterie, conçu en France pour les marques : il fonctionne avec vos flacons de 5 à 50 ml.",
+    title: "Diffuseur d’huiles essentielles en marque blanche | Tolia",
+    description: "Tolia, diffuseur d’huiles essentielles sans eau, sur batterie, conçu en France pour les marques : il fonctionne avec vos flacons de 5 à 50 ml.",
     keywords: "diffuseurs d'huiles essentielles, diffusion huiles essentielles, diffuseur aromatique, arômes aromathérapie, diffuseur marque blanche, diffuseur sans eau",
   },
   en: {
@@ -20,6 +20,6 @@ export const HOME_SEO: Record<HomeSeoLang, HomeSeo> = {
   es: {
     title: 'Difusor de aceites esenciales de marca blanca | Tolia',
     description: 'Tolia, difusor de aceites esenciales sin agua y con batería, diseñado en Francia para las marcas: funciona con sus frascos de 5 a 50 ml.',
-    keywords: 'difusores de aceites esenciales, difusión de aceites esenciales, difusor aromático, aromas aromaterapia, difusor marca blanca',
+    keywords: 'difusores de aceites esenciales, difusión de aceites esenciales, difusor aromático, aromas aromaterapia, difusor de marca blanca, difusor sin agua',
   },
 };

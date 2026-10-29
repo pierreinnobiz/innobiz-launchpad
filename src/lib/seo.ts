@@ -15,7 +15,7 @@ const OG_LOCALES: Record<SeoLanguage, string> = {
 };
 
 const OG_IMAGE_ALT: Record<SeoLanguage, string> = {
-  fr: "Tolia by Innobiz, diffuseur d'huiles essentielles sans eau, en marque blanche",
+  fr: "Tolia by Innobiz, diffuseur d’huiles essentielles sans eau, en marque blanche",
   en: 'Tolia by Innobiz, waterless white-label essential oil diffuser',
   es: 'Tolia by Innobiz, difusor de aceites esenciales sin agua, de marca blanca',
 };

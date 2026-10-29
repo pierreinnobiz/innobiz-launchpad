@@ -33,7 +33,7 @@ const HomeTechSection: React.FC = () => {
       title: t3(l, 'Pure et silencieuse', 'Pure and quiet', 'Pura y silenciosa'),
       text: t3(
         l,
-        'Nébulisation ultrasonique, sans eau ni chaleur : l’huile est diffusée pure, en une brume très fine qui reste longtemps dans l’air. Ni pompe ni ventilateur : aucun bruit de moteur.',
+        'Nébulisation ultrasonique, sans eau ni chaleur : l’huile est diffusée pure, en une brume très fine qui reste longtemps dans l’air. Ni pompe ni ventilateur : aucun bruit de moteur.',
         'Ultrasonic nebulisation, with no water and no heat: the oil is diffused pure, as a very fine mist that lingers in the air. No pump, no fan: no motor noise.',
         'Nebulización ultrasónica, sin agua ni calor: el aceite se difunde puro, en una bruma muy fina que permanece mucho tiempo en el aire. Sin bomba ni ventilador: ningún ruido de motor.'
       ),
@@ -74,7 +74,7 @@ const HomeTechSection: React.FC = () => {
       text: t3(
         l,
         'Notre technologie de diffusion exclusive, mise au point par Innobiz, diffuse toutes les huiles essentielles du marché (plus de 150 testées), ainsi que les parfums naturels et les parfums d’intérieur de synthèse. Une performance qu’aucun autre diffuseur d’huile pure n’atteint aujourd’hui.',
-        'Our exclusive diffusion technology, developed by Innobiz, diffuses every essential oil on the market (more than 150 tested), as well as natural fragrances and synthetic home fragrances. A performance no other pure-oil diffuser achieves today.',
+        'Our exclusive diffusion technology, developed by Innobiz, diffuses every essential oil on the market (more than 150 tested), as well as natural fragrances and synthetic home fragrances. No other pure-oil diffuser can match that today.',
         'Nuestra tecnología de difusión exclusiva, desarrollada por Innobiz, difunde todos los aceites esenciales del mercado (más de 150 probados), así como los perfumes naturales y las fragancias sintéticas para el hogar. Un rendimiento que ningún otro difusor de aceite puro alcanza hoy.'
       ),
     },
@@ -84,7 +84,7 @@ const HomeTechSection: React.FC = () => {
       text: t3(
         l,
         'La durée, la puissance et l’intermittence de la diffusion se règlent très simplement, pour répondre à toutes les conditions d’usage.',
-        'Diffusion time, strength and on/off cycles are very easy to adjust, to suit every situation.',
+        'Diffusion duration, strength and on/off cycles are very easy to adjust, to suit every situation.',
         'La duración, la potencia y la intermitencia de la difusión se ajustan de forma muy sencilla, para adaptarse a cualquier situación de uso.'
       ),
     },

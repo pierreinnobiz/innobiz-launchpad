@@ -48,13 +48,13 @@ const Legal: React.FC = () => {
       <SeoHead
         path="/legal"
         title={t3(l, 'Mentions légales | Tolia by Innobiz', 'Legal Notice | Tolia by Innobiz', 'Aviso legal | Tolia by Innobiz')}
-        description={t3(l, 'Mentions légales de Tolia by Innobiz : INNOBIZ SARL à Jacou, près de Montpellier, directeur de la publication, hébergement du site et propriété intellectuelle.', 'Legal notice for the Tolia by Innobiz website: INNOBIZ SARL in Jacou, near Montpellier, France, publication director, website hosting and intellectual property.', 'Aviso legal de Tolia by Innobiz: INNOBIZ SARL en Jacou, cerca de Montpellier (Francia), director de la publicación, alojamiento y propiedad intelectual.')}
+        description={t3(l, 'Mentions légales de Tolia by Innobiz : INNOBIZ SARL à Jacou, près de Montpellier, directeur de la publication, hébergement du site et propriété intellectuelle.', 'Legal notice for the Tolia by Innobiz website: INNOBIZ SARL in Jacou, near Montpellier, France, publication director, website hosting and intellectual property.', 'Aviso legal de Tolia by Innobiz: INNOBIZ SARL en Jacou, cerca de Montpellier (Francia), director de la publicación, alojamiento y propiedad intelectual.')}
       />
       <Page title={t3(l, 'Mentions légales', 'Legal Notice', 'Aviso legal')}>
         <Block title={t3(l, 'Éditeur du site', 'Site publisher', 'Editor del sitio')}>
           <p className="leading-relaxed">
             <strong>INNOBIZ</strong><br />
-            {t3(l, 'Société à responsabilité limitée (SARL) au capital de 7 500 €', 'Limited liability company (SARL) with a share capital of €7,500', 'Sociedad de responsabilidad limitada (SARL) con un capital de 7.500 €')}<br />
+            {t3(l, 'Société à responsabilité limitée (SARL) au capital de 7 500 €', 'Limited liability company (SARL) with a share capital of €7,500', 'Sociedad de responsabilidad limitada (SARL) con un capital de 7.500 €')}<br />
             SIRET : 484 775 432 00034 · RCS Montpellier<br />
             {t3(l, 'N° TVA intracommunautaire', 'EU VAT number', 'N.º de IVA intracomunitario')} : FR 42 484775432
           </p>
@@ -79,7 +79,7 @@ const Legal: React.FC = () => {
         </Block>
         <Block title={t3(l, 'Hébergement', 'Hosting', 'Alojamiento')}>
           <p className="leading-relaxed">
-            {t3(l, 'Ce site est hébergé par :', 'This site is hosted by:', 'Este sitio está alojado por:')}<br />
+            {t3(l, 'Ce site est hébergé par :', 'This site is hosted by:', 'Este sitio está alojado por:')}<br />
             <strong>Lovable / GPT Engineer Inc.</strong><br />
             San Francisco, CA, {t3(l, 'États-Unis', 'United States', 'Estados Unidos')}<br />
             <a href="https://lovable.dev" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">www.lovable.dev</a><br />
@@ -90,8 +90,8 @@ const Legal: React.FC = () => {
           <p className="leading-relaxed">
             {t3(
               l,
-              "L'ensemble du contenu de ce site (textes, images, vidéos, logos, marques) est la propriété exclusive d'INNOBIZ ou de ses partenaires. Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site est interdite, sauf autorisation écrite préalable.",
-              'All content on this site (texts, images, videos, logos, trademarks) is the exclusive property of INNOBIZ or its partners. Any reproduction, representation, modification, publication or adaptation of all or part of the site is prohibited without prior written authorisation.',
+              "L’ensemble du contenu de ce site (textes, images, vidéos, logos, marques) est la propriété exclusive d’INNOBIZ ou de ses partenaires. Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site est interdite, sauf autorisation écrite préalable.",
+              'All content on this site (text, images, videos, logos, trademarks) is the exclusive property of INNOBIZ or its partners. Any reproduction, representation, modification, publication or adaptation of all or part of the site is prohibited without prior written authorisation.',
               'Todo el contenido de este sitio (textos, imágenes, vídeos, logotipos, marcas) es propiedad exclusiva de INNOBIZ o de sus socios. Queda prohibida cualquier reproducción, representación, modificación, publicación o adaptación de la totalidad o de parte del sitio sin autorización previa por escrito.'
             )}
           </p>
@@ -116,7 +116,7 @@ export const Privacy: React.FC = () => {
       <SeoHead
         path="/privacy"
         title={t3(l, 'Politique de confidentialité | Tolia by Innobiz', 'Privacy Policy | Tolia by Innobiz', 'Política de privacidad | Tolia by Innobiz')}
-        description={t3(l, 'Politique de confidentialité de Tolia by Innobiz : données du formulaire d\'échantillon, utilisation, prestataires, durée de conservation et vos droits RGPD.', 'Tolia by Innobiz privacy policy: data collected through the sample request form, how it is used, service providers, retention period and your GDPR rights.', 'Política de privacidad de Tolia by Innobiz: datos del formulario de solicitud de muestra, uso, proveedores, plazo de conservación y sus derechos RGPD.')}
+        description={t3(l, 'Politique de confidentialité de Tolia by Innobiz : données du formulaire d’échantillon, utilisation, prestataires, durée de conservation et vos droits RGPD.', 'Tolia by Innobiz privacy policy: data collected through the sample request form, how it is used, service providers, retention period and your GDPR rights.', 'Política de privacidad de Tolia by Innobiz: datos del formulario de solicitud de muestra, uso, proveedores, plazo de conservación y sus derechos RGPD.')}
       />
       <Page title={t3(l, 'Politique de confidentialité', 'Privacy Policy', 'Política de privacidad')}>
         <Block title={t3(l, 'Responsable du traitement', 'Data controller', 'Responsable del tratamiento')}>
@@ -131,7 +131,7 @@ export const Privacy: React.FC = () => {
           <p className="leading-relaxed">
             {t3(
               l,
-              "Quand vous demandez un échantillon : votre email professionnel, vos prénom et nom, votre société, son site web, votre pays et votre adresse de livraison ; et, si vous les donnez, votre poste, votre téléphone et quelques mots sur votre projet.",
+              "Quand vous demandez un échantillon : votre email professionnel, vos prénom et nom, votre société, son site web, votre pays et votre adresse de livraison ; et, si vous les donnez, votre poste, votre téléphone et quelques mots sur votre projet.",
               'When you request a sample: your work email, first and last name, company, its website, your country and your delivery address; and, if you provide them, your job title, your phone number and a few words about your project.',
               'Cuando solicita una muestra: su email profesional, su nombre y apellidos, su empresa, su sitio web, su país y su dirección de envío; y, si los facilita, su cargo, su teléfono y unas palabras sobre su proyecto.'
             )}
@@ -139,7 +139,7 @@ export const Privacy: React.FC = () => {
           <p className="leading-relaxed mt-3">
             {t3(
               l,
-              "Si vous arrivez sur le site par un lien d'un de nos emails, votre visite est rattachée à votre adresse email pour notre suivi commercial.",
+              "Si vous arrivez sur le site par un lien d’un de nos emails, votre visite est rattachée à votre adresse email pour notre suivi commercial.",
               'If you reach the site through a link in one of our emails, your visit is linked to your email address for our sales follow-up.',
               'Si llega al sitio a través de un enlace de uno de nuestros emails, su visita se vincula a su dirección de email para nuestro seguimiento comercial.'
             )}
@@ -149,24 +149,24 @@ export const Privacy: React.FC = () => {
           <p className="leading-relaxed">
             {t3(
               l,
-              "Vous envoyer l'échantillon, vous recontacter au sujet de votre projet et suivre nos échanges commerciaux. Cette utilisation repose sur notre intérêt légitime à développer une relation entre entreprises.",
+              "Vous envoyer l’échantillon, vous recontacter au sujet de votre projet et suivre nos échanges commerciaux. Cette utilisation repose sur notre intérêt légitime à développer une relation entre entreprises.",
               'To send you the sample, to contact you about your project and to follow up on our business exchanges. This use is based on our legitimate interest in developing a business-to-business relationship.',
               'Para enviarle la muestra, volver a contactarle sobre su proyecto y hacer el seguimiento de nuestros intercambios comerciales. Este uso se basa en nuestro interés legítimo en desarrollar una relación entre empresas.'
             )}
           </p>
         </Block>
-        <Block title={t3(l, 'Qui les traite pour nous', 'Who processes them for us', 'Quién los trata por nosotros')}>
+        <Block title={t3(l, 'Qui les traite pour nous', 'Who processes them for us', 'Quién los trata en nuestro nombre')}>
           <ul className="list-disc pl-6 space-y-1">
-            <li>{t3(l, 'Lovable : hébergement du site', 'Lovable: website hosting', 'Lovable: alojamiento del sitio')}</li>
-            <li>{t3(l, 'Supabase : enregistrement des demandes', 'Supabase: storage of requests', 'Supabase: registro de las solicitudes')}</li>
-            <li>{t3(l, 'Resend : envoi des emails', 'Resend: sending emails', 'Resend: envío de los emails')}</li>
+            <li>{t3(l, 'Lovable : hébergement du site', 'Lovable: website hosting', 'Lovable: alojamiento del sitio')}</li>
+            <li>{t3(l, 'Supabase : enregistrement des demandes', 'Supabase: storage of requests', 'Supabase: registro de las solicitudes')}</li>
+            <li>{t3(l, 'Resend : envoi des emails', 'Resend: sending emails', 'Resend: envío de los emails')}</li>
             <li>{t3(l, 'notre outil de gestion commerciale', 'our sales management tool', 'nuestra herramienta de gestión comercial')}</li>
-            <li>{t3(l, 'Google Analytics : mesure d’audience, seulement si vous acceptez les cookies', 'Google Analytics: audience measurement, only if you accept cookies', 'Google Analytics: medición de audiencia, solo si acepta las cookies')}</li>
-            <li>{t3(l, 'Vimeo : lecture du film de présentation', 'Vimeo: playback of the presentation film', 'Vimeo: reproducción del vídeo de presentación')}</li>
-            <li>{t3(l, 'Calendly : si vous réservez un rendez-vous', 'Calendly: if you book a meeting', 'Calendly: si reserva una cita')}</li>
+            <li>{t3(l, 'Google Analytics : mesure d’audience, seulement si vous acceptez les cookies', 'Google Analytics: audience measurement, only if you accept cookies', 'Google Analytics: medición de audiencia, solo si acepta las cookies')}</li>
+            <li>{t3(l, 'Vimeo : lecture du film de présentation', 'Vimeo: playback of the presentation video', 'Vimeo: reproducción del vídeo de presentación')}</li>
+            <li>{t3(l, 'Calendly : si vous réservez un rendez-vous', 'Calendly: if you book a meeting', 'Calendly: si reserva una cita')}</li>
           </ul>
           <p className="leading-relaxed mt-3">
-            {t3(l, "Certains de ces services sont situés hors de l'Union européenne.", 'Some of these services are located outside the European Union.', 'Algunos de estos servicios se encuentran fuera de la Unión Europea.')}
+            {t3(l, "Certains de ces services sont situés hors de l’Union européenne.", 'Some of these services are located outside the European Union.', 'Algunos de estos servicios se encuentran fuera de la Unión Europea.')}
           </p>
         </Block>
         <Block title={t3(l, 'Durée de conservation', 'Retention period', 'Plazo de conservación')}>
@@ -178,8 +178,8 @@ export const Privacy: React.FC = () => {
           <p className="leading-relaxed">
             {t3(
               l,
-              "Vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, de portabilité et d'opposition. Pour les exercer : contact@innobiz.fr. Vous pouvez aussi adresser une réclamation à la CNIL (www.cnil.fr).",
-              'You have the right to access, rectify, erase, restrict, port and object. To exercise these rights: contact@innobiz.fr. You can also lodge a complaint with the CNIL, the French data protection authority (www.cnil.fr).',
+              "Vous disposez d’un droit d’accès, de rectification, d’effacement, de limitation, de portabilité et d’opposition. Pour les exercer : contact@innobiz.fr. Vous pouvez aussi adresser une réclamation à la CNIL (www.cnil.fr).",
+              'You have the right of access, rectification, erasure, restriction of processing, data portability and objection. To exercise these rights: contact@innobiz.fr. You can also lodge a complaint with the CNIL, the French data protection authority (www.cnil.fr).',
               'Tiene derecho de acceso, rectificación, supresión, limitación, portabilidad y oposición. Para ejercerlos: contact@innobiz.fr. También puede presentar una reclamación ante la CNIL, la autoridad francesa de protección de datos (www.cnil.fr).'
             )}
           </p>
@@ -196,10 +196,10 @@ export const Cookies: React.FC = () => {
       <SeoHead
         path="/cookies"
         title={t3(l, 'Politique cookies | Tolia by Innobiz', 'Cookie Policy | Tolia by Innobiz', 'Política de cookies | Tolia by Innobiz')}
-        description={t3(l, 'Politique cookies de Tolia by Innobiz : cookies nécessaires, mesure d\'audience Google Analytics seulement avec votre accord, durées et comment changer d\'avis.', 'Tolia by Innobiz cookie policy: necessary cookies, Google Analytics audience measurement only with your consent, how long they last and how to change your mind.', 'Política de cookies de Tolia by Innobiz: cookies necesarias, Google Analytics solo con su consentimiento, duración de cada cookie y cómo cambiar de opinión.')}
+        description={t3(l, 'Politique cookies de Tolia by Innobiz : cookies nécessaires, mesure d’audience Google Analytics seulement avec votre accord, durées et comment changer d’avis.', 'Tolia by Innobiz cookie policy: necessary cookies, Google Analytics audience measurement only with your consent, how long they last and how to change your mind.', 'Política de cookies de Tolia by Innobiz: cookies necesarias, Google Analytics solo con su consentimiento, duración de cada cookie y cómo cambiar de opinión.')}
       />
       <Page title={t3(l, 'Politique cookies', 'Cookie Policy', 'Política de cookies')}>
-        <Block title={t3(l, "Qu'est-ce qu'un cookie ?", 'What is a cookie?', '¿Qué es una cookie?')}>
+        <Block title={t3(l, "Qu’est-ce qu’un cookie ?", 'What is a cookie?', '¿Qué es una cookie?')}>
           <p className="leading-relaxed">
             {t3(
               l,
@@ -209,21 +209,21 @@ export const Cookies: React.FC = () => {
             )}
           </p>
         </Block>
-        <Block title={t3(l, 'Toujours présents (nécessaires)', 'Always present (necessary)', 'Siempre presentes (necesarias)')}>
+        <Block title={t3(l, 'Toujours présents (nécessaires)', 'Always active (strictly necessary)', 'Siempre presentes (necesarias)')}>
           <ul className="list-disc pl-6 space-y-1">
-            <li>{t3(l, 'Votre choix sur les cookies : 6 mois.', 'Your cookie choice: 6 months.', 'Su elección sobre las cookies: 6 meses.')}</li>
-            <li>{t3(l, "Des cookies de sécurité de l'hébergeur et de Vimeo : de quelques minutes à un an.", 'Security cookies from the host and from Vimeo: from a few minutes to one year.', 'Cookies de seguridad del alojamiento y de Vimeo: de unos minutos a un año.')}</li>
-            <li>{t3(l, "Une statistique de visite de l'hébergeur : 30 minutes.", 'A visit statistic from the host: 30 minutes.', 'Una estadística de visita del alojamiento: 30 minutos.')}</li>
+            <li>{t3(l, 'Votre choix sur les cookies : 6 mois.', 'Your cookie choice: 6 months.', 'Su elección sobre las cookies: 6 meses.')}</li>
+            <li>{t3(l, "Des cookies de sécurité de l’hébergeur et de Vimeo : de quelques minutes à un an.", 'Security cookies from the host and from Vimeo: from a few minutes to one year.', 'Cookies de seguridad del proveedor de alojamiento y de Vimeo: de unos minutos a un año.')}</li>
+            <li>{t3(l, "Un cookie de statistique de visite de l’hébergeur : 30 minutes.", 'A visit-statistics cookie from the host: 30 minutes.', 'Una cookie de estadísticas de visita del proveedor de alojamiento: 30 minutos.')}</li>
           </ul>
         </Block>
-        <Block title={t3(l, 'Seulement si vous cliquez « Tout accepter »', 'Only if you click “Accept all”', 'Solo si hace clic en «Aceptar todo»')}>
+        <Block title={t3(l, 'Seulement si vous cliquez sur « Tout accepter »', 'Only if you click “Accept all”', 'Solo si hace clic en «Aceptar todo»')}>
           <p className="leading-relaxed">
-            {t3(l, "Google Analytics, pour mesurer l'audience du site : 13 mois.", 'Google Analytics, to measure site traffic: 13 months.', 'Google Analytics, para medir la audiencia del sitio: 13 meses.')}
+            {t3(l, "Google Analytics, pour mesurer l’audience du site : 13 mois.", 'Google Analytics, to measure site traffic: 13 months.', 'Google Analytics, para medir la audiencia del sitio: 13 meses.')}
           </p>
         </Block>
-        <Block title={t3(l, "Changer d'avis", 'Changing your mind', 'Cambiar de opinión')}>
+        <Block title={t3(l, "Changer d’avis", 'Changing your mind', 'Cambiar de opinión')}>
           <p className="leading-relaxed">
-            {t3(l, 'Vous pouvez changer votre choix à tout moment avec le lien « Gérer les cookies » en bas de chaque page, ou ici : ', 'You can change your choice at any time with the “Manage cookies” link at the bottom of every page, or here: ', 'Puede cambiar su elección en cualquier momento con el enlace «Gestionar las cookies» al pie de cada página, o aquí: ')}
+            {t3(l, 'Vous pouvez changer votre choix à tout moment avec le lien « Gérer les cookies » en bas de chaque page, ou ici : ', 'You can change your choice at any time with the “Manage cookies” link at the bottom of every page, or here: ', 'Puede cambiar su elección en cualquier momento con el enlace «Gestionar las cookies» al pie de cada página, o aquí: ')}
             <button type="button" onClick={() => window.dispatchEvent(new Event(MANAGE_COOKIES_EVENT))} className="text-primary underline underline-offset-2 hover:opacity-80">
               {t3(l, 'Gérer les cookies', 'Manage cookies', 'Gestionar las cookies')}
             </button>
