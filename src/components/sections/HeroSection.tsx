@@ -435,8 +435,11 @@ const HeroSection: React.FC = () => {
       </figure>
 
       {/* 22/10/2026 (point V2) : texte aligné sur le logo et sur le reste du site (classe hero-align, voir index.css) */}
-      <div className="hero-content hero-align relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32">
-        <div className="max-w-5xl space-y-5 lg:max-w-[min(46vw,680px)]">
+      {/* 01/11/2026 : sur téléphone et tablette en portrait, ce bloc commence tout en haut de l'écran avec une marge qui recouvre la vignette
+          du film ; posé devant elle (z-10 contre z-5), il recevait les touchers : le bouton « Voir Tolia en action » ne réagissait pas.
+          Le bloc laisse donc passer les clics (pointer-events-none) et son contenu les reçoit toujours (pointer-events-auto). */}
+      <div className="hero-content hero-align pointer-events-none relative z-10 h-full flex flex-col justify-end pb-14 md:pb-32">
+        <div className="pointer-events-auto max-w-5xl space-y-5 lg:max-w-[min(46vw,680px)]">
           {/* « pour les marques » au-dessus du titre, plus visible (retour des marques testeuses) */}
           {/* titre principal pour Google : « Diffuseurs d'huiles essentielles pour les marques » (même apparence qu'avant) */}
           <motion.h1
