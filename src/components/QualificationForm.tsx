@@ -11,6 +11,7 @@ import { getSessionAttribution } from '@/lib/attribution';
 import { prospectEmailFromUrl } from '@/lib/prospect';
 import { calendlyUrl } from '@/lib/links';
 import { trackCTAClick } from '@/lib/tracking';
+import { brandEvent } from '@/lib/brandTracking';
 import { supabase } from '@/integrations/supabase/client';
 
 declare global {
@@ -218,6 +219,7 @@ const QualificationForm: React.FC = () => {
     if (!formStartedRef.current) {
       formStartedRef.current = true;
       window.gtag?.('event', 'form_start', { form_id: 'sample_request_main' });
+      brandEvent('fst');
     }
   };
 
@@ -338,6 +340,7 @@ const QualificationForm: React.FC = () => {
     // Fire GA4 conversion events only after a confirmed save, and only once.
     if (leadSaved && !leadFiredRef.current) {
       leadFiredRef.current = true;
+      brandEvent('fsb', '1');
       window.gtag?.('event', 'form_submit', {
         form_id: 'sample_request_main',
         step: 1,
@@ -407,6 +410,7 @@ const QualificationForm: React.FC = () => {
     setIsSubmitting(false);
     if (!ok) { setSendError(true); return; }
     // la vraie fin de la demande : adresse de livraison confirmée (22/10/2026)
+    brandEvent('fsb', '2');
     window.gtag?.('event', 'sample_address_confirmed', {
       form_id: 'sample_request_main',
       intent: intentForGtag(data.projectType),

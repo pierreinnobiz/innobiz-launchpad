@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { recentCtaClick, trackEvent } from '@/lib/tracking';
+import { brandEvent } from '@/lib/brandTracking';
 
 declare global {
   interface Window {
@@ -144,30 +146,29 @@ const ProspectTracker = () => {
       if (!target) return;
 
       const link = target.closest('a') as HTMLAnchorElement | null;
+      if (!link) return;
 
-      let matched: HTMLElement | null = null;
-      let href = '';
+      // 01/11/2026 : un clic déjà compté à la main par trackCTAClick (menu, haut de page, visite…) n'est pas compté une seconde fois
+      if (recentCtaClick()) return;
 
-      if (link) {
-        const rawHref = link.getAttribute('href') || '';
-        if (
-          rawHref.includes('contact') ||
-          rawHref.includes('#request') ||
-          rawHref.includes('mailto')
-        ) {
-          matched = link;
-          href = link.href || rawHref;
-        }
-      }
+      const rawHref = link.getAttribute('href') || '';
 
-      if (!matched) return;
+      // 01/11/2026 : liens vers un rendez-vous Calendly ou vers LinkedIn, non comptés ailleurs
+      let host = '';
+      try { host = new URL(link.href).hostname; } catch { /* adresse illisible */ }
+      if (/(^|\.)calendly\.com$/.test(host)) { trackEvent('outbound_click', { destination: 'calendly' }); return; }
+      if (/(^|\.)linkedin\.com$/.test(host)) { trackEvent('outbound_click', { destination: 'linkedin' }); return; }
 
-      const text = (matched.textContent || '').trim().slice(0, 50);
+      if (!(rawHref.includes('contact') || rawHref.includes('#request') || rawHref.includes('mailto'))) return;
+
+      // innerText respecte l'affichage : « Get my sample » et non « SampleGet my sample » (libellé court + libellé long collés)
+      const text = ((link.innerText || link.textContent || '').trim()).slice(0, 50);
       gtag('event', 'cta_click', {
         cta_text: text,
-        cta_href: href,
+        cta_href: link.href || rawHref,
         utm_source: utmSource,
       });
+      brandEvent('cta', rawHref.includes('mailto') ? 'mailto' : 'contact');
     };
     document.addEventListener('click', handleClick);
 

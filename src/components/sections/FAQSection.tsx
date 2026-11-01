@@ -4,6 +4,7 @@ import { ChevronDown } from 'lucide-react';
 import { fadeBlurUp } from '@/lib/animations';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { t3 } from '@/lib/t3';
+import { trackEvent } from '@/lib/tracking';
 
 // Onze questions, réponses courtes. Les minimums, délais et la conformité sont ceux déjà publiés sur le site ; RSE, supports marketing et prix retrouvent leur réponse de l'ancien site.
 // 17/10/2026 : ajout « Quelles huiles peut-on diffuser ? » (plus de 150 huiles testées, phrase de Pierre ; « toutes les huiles du marché » + parfums naturels et de synthèse + compte‑gouttes, 26/10/2026) et « Peut-on encadrer l'usage de nos huiles ? » ;
@@ -168,7 +169,11 @@ const FAQSection: React.FC = () => {
 
         <div className="divide-y divide-border/60 rounded-2xl border border-border/50 bg-card">
           {faqs.map((faq, i) => (
-            <details key={i} className="group px-5 md:px-6">
+            <details
+              key={i}
+              className="group px-5 md:px-6"
+              onToggle={(e) => { if ((e.currentTarget as HTMLDetailsElement).open) trackEvent('faq_open', { question: String(i + 1) }); }}
+            >
               <summary className="flex cursor-pointer list-none items-center justify-between gap-4 py-5 font-semibold text-foreground [&::-webkit-details-marker]:hidden">
                 <span className="text-left">{faq.q}</span>
                 <ChevronDown className="h-5 w-5 flex-none text-muted-foreground transition-transform group-open:rotate-180" aria-hidden="true" />

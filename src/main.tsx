@@ -10,8 +10,11 @@ import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 import "./index.css";
 import { captureSessionAttribution } from "./lib/attribution";
+import { initBrandTracking } from "./lib/brandTracking";
 
 captureSessionAttribution();
+// 01/11/2026 : suivi par marque (inactif sans code `lid` dans le lien d'arrivée)
+initBrandTracking();
 
 createRoot(document.getElementById("root")!).render(
   <HelmetProvider>

@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 01/11/2026 (suivi par marque, accord de Pierre) : le lien d'un de nos emails peut porter un code `lid` (identifiant de la fiche contact
+         dans notre CRM). Il est lu ici puis RETIRÉ de l'adresse avant tout autre script (hébergeur, Google Analytics, mémoire de la page
+         d'arrivée), gardé en mémoire seulement (jamais de cookie ni de stockage) et jamais envoyé à Google. Voir src/lib/brandTracking.ts. -->
+    <script>
+      (function () {
+        try {
+          var u = new URL(location.href), v = u.searchParams.get('lid');
+          if (v === null) return;
+          u.searchParams.delete('lid');
+          history.replaceState(history.state, '', u.pathname + u.search + u.hash);
+          if (/^rec[A-Za-z0-9]{14}$/.test(v)) window.__toliaLid = v;
+        } catch (e) { /* adresse illisible : rien n'est suivi */ }
+      })();
+    </script>
     <!-- 21/10/2026 (audit Lovable) : icônes déclarées, thème clair imposé, couleur de la barre du navigateur mobile -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />

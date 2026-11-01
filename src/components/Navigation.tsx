@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import innobizLogo from '@/assets/innobiz-logo-140.png'; // 140 px suffisent pour un logo affiché à 28 px de haut (avant : 680 px)
-import { trackCTAClick } from '@/lib/tracking';
+import { trackCTAClick, trackEvent } from '@/lib/tracking';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { isHomePath } from '@/lib/langPath';
 
@@ -36,6 +36,7 @@ const Navigation: React.FC = () => {
 
   // Une adresse par langue (/fr/, /en/, /es/) : sur l'accueil, changer de langue change aussi l'adresse (référencement, 17/10/2026).
   const switchLang = (code: LangCode) => {
+    if (code !== language) trackEvent('lang_switch', { from: language, to: code });
     setLanguage(code);
     if (isHomePath(pathname)) navigate({ pathname: `/${code}/`, search }, { replace: true });
   };

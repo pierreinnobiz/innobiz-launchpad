@@ -1,6 +1,7 @@
 import React, { useEffect, useState, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import Navigation from '@/components/Navigation';
+import SectionViewTracker from '@/components/SectionViewTracker';
 import HeroSection from '@/components/sections/HeroSection';
 import SocialProofBar from '@/components/sections/SocialProofBar';
 import HomeProblemSection from '@/components/sections/HomeProblemSection';
@@ -89,6 +90,7 @@ const Index: React.FC = () => {
       </a>
 
       <Navigation />
+      <SectionViewTracker />
 
       <main id="contenu" tabIndex={-1} className="outline-none">
       <HeroSection />
