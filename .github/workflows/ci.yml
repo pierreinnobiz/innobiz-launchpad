@@ -1,0 +1,55 @@
+# CI minimale (27/11/2026) : à chaque PR et à chaque push sur main, vérifie que le site se construit,
+# que les types et le lint passent, et que les fonctions Supabase se compilent.
+# Ne déploie rien : la mise en ligne reste gérée par Lovable.
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    name: Site (lint, types, build)
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      # npm install et non npm ci : Lovable met à jour bun.lock mais pas package-lock.json,
+      # et bun.lock pointe en partie vers le cache npm privé de Lovable.
+      - name: Dépendances
+        run: npm install --no-audit --no-fund
+      - name: Lint (règles de style antérieures en avertissement, voir eslint.ci.config.js)
+        run: npx eslint -c eslint.ci.config.js .
+      - name: Types TypeScript
+        run: npx tsc --noEmit -p tsconfig.app.json
+      - name: Build
+        run: npm run build
+
+  fonctions:
+    name: Fonctions Supabase (compilation Deno)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - name: Compilation des fonctions
+        run: |
+          for f in supabase/functions/*/index.ts; do
+            echo "::group::$f"
+            deno check "$f"
+            echo "::endgroup::"
+          done
