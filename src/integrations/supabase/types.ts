@@ -82,6 +82,27 @@ export type Database = {
           },
         ]
       }
+      form_rate_events: {
+        Row: {
+          created_at: string
+          id: number
+          key_hash: string
+          kind: string
+        }
+        Insert: {
+          created_at?: string
+          id?: never
+          key_hash: string
+          kind: string
+        }
+        Update: {
+          created_at?: string
+          id?: never
+          key_hash?: string
+          kind?: string
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string | null
