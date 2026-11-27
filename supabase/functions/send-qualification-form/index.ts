@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -76,6 +77,56 @@ const PROJECT_LABEL: Record<string, string> = {
   unset: "Unspecified",
 };
 
+
+// 27/11/2026 : limite de fréquence (audit sécurité). Sans elle, un script peut faire envoyer l'email de
+// remerciement à n'importe quelle adresse depuis innobiz-tolia.com (risque pour la réputation du domaine).
+// On garde seulement des empreintes SHA-256 (ni IP ni email en clair). En cas d'erreur de la base,
+// on laisse passer : mieux vaut un envoi de trop qu'une vraie demande d'échantillon perdue.
+const LIMITE_PAR_IP_HEURE = 20;
+const LIMITE_PAR_EMAIL_JOUR = 6; // 2 étapes par demande → jusqu'à 3 demandes complètes par jour
+
+async function empreinte(valeur: string): Promise<string> {
+  const octets = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(valeur));
+  return Array.from(new Uint8Array(octets)).map((b) => b.toString(16).padStart(2, "0")).join("");
+}
+
+async function depasseLimite(req: Request, email: string): Promise<boolean> {
+  try {
+    const url = Deno.env.get("SUPABASE_URL");
+    const cle = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY");
+    if (!url || !cle) return false;
+    const db = createClient(url, cle);
+    const ip = (req.headers.get("x-forwarded-for") || "").split(",")[0].trim() || "inconnue";
+    const [ipHash, emailHash] = await Promise.all([
+      empreinte("ip:" + ip),
+      empreinte("email:" + email.trim().toLowerCase()),
+    ]);
+    const ilYA = (ms: number) => new Date(Date.now() - ms).toISOString();
+    const [parIp, parEmail] = await Promise.all([
+      db.from("form_rate_events").select("id", { count: "exact", head: true })
+        .eq("kind", "qualification").eq("key_hash", ipHash).gte("created_at", ilYA(3600_000)),
+      db.from("form_rate_events").select("id", { count: "exact", head: true })
+        .eq("kind", "qualification").eq("key_hash", emailHash).gte("created_at", ilYA(86_400_000)),
+    ]);
+    if (parIp.error || parEmail.error) {
+      console.error("Limite de fréquence indisponible :", parIp.error?.message || parEmail.error?.message);
+      return false;
+    }
+    if ((parIp.count ?? 0) >= LIMITE_PAR_IP_HEURE || (parEmail.count ?? 0) >= LIMITE_PAR_EMAIL_JOUR) {
+      return true;
+    }
+    const { error } = await db.from("form_rate_events").insert([
+      { kind: "qualification", key_hash: ipHash },
+      { kind: "qualification", key_hash: emailHash },
+    ]);
+    if (error) console.error("Journal de fréquence non écrit :", error.message);
+    return false;
+  } catch (e) {
+    console.error("Limite de fréquence impossible :", e);
+    return false;
+  }
+}
+
 const handler = async (req: Request): Promise<Response> => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
@@ -133,6 +184,12 @@ const handler = async (req: Request): Promise<Response> => {
         JSON.stringify({ error: "Invalid email format." }),
         { status: 400, headers: { "Content-Type": "application/json", ...corsHeaders } }
       );
+    }
+
+    // Au-delà de la limite : même réponse « ok » que le champ piège, sans rien envoyer ni enregistrer
+    if (await depasseLimite(req, email)) {
+      console.warn("[Sécurité] Envoi ignoré : limite de fréquence atteinte");
+      return new Response(JSON.stringify({ success: true }), { status: 200, headers: { "Content-Type": "application/json", ...corsHeaders } });
     }
 
     const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
